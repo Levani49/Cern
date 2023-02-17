@@ -58,6 +58,8 @@ const preloadModel = (modelName: string): void => {
  * @param chunkSize
  */
 function preloadModels(models: string[], chunkSize = 3): void {
+  if (!window.requestIdleCallback) return;
+
   let i = 0;
 
   /**
