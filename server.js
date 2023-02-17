@@ -10,4 +10,4 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.use(express.static(path.join(__dirname, "dist")));
-app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
+app.listen(PORT, () => console.log(`server is listening on port ${PORT}`));
