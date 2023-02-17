@@ -21,13 +21,15 @@ function App(): JSX.Element {
   }, []);
 
   return (
-    <div className="h-screen">
-      <Navigation />
+    <>
+      <div className="flex">
+        <Navigation />
+      </div>
       <SettingsModal show={!show} onClose={(): void => setShow(!show)} />
       <div className="absolute w-full h-full top-0 left-0">
         <Scene />
       </div>
-    </div>
+    </>
   );
 }
 

@@ -12,7 +12,7 @@ import MenuDropdown from "./MenuDropdown.component";
  */
 export default function CameraViewMenu(): JSX.Element {
   return (
-    <div className="relative group">
+    <div className="inline-flex group">
       <MenuIcon Icon={BoxIcon} />
       <MenuDropdown>
         <MenuIcon Icon={BoxIcon} />

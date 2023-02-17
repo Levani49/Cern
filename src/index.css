@@ -12,6 +12,8 @@
 
 body {
   overflow-y: hidden;
+  max-height: 100vh;
+  height: 100vh;
 }
 
 .select-wrapper {
@@ -25,6 +27,10 @@ body {
   right: 3%;
   transform: translate(-50%, 50%);
   position: absolute;
+}
+
+.flex-auto {
+  flex: 0 0 auto;
 }
 
 @layer base {

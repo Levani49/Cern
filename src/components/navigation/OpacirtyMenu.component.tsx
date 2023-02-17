@@ -10,9 +10,9 @@ import { ReactComponent as WaterDropIcon } from "../../assets/svg/water-drop.svg
  */
 export default function OpacirtyMenu(): JSX.Element {
   return (
-    <div className="relative group">
+    <div className="inline-flex group">
       <MenuIcon Icon={WaterDropIcon} />
-      <MenuDropdown className="ml-[-50px]">
+      <MenuDropdown className="ml-[-50px] mt-8">
         <div className="w-auto flex justify-center items-center h-6 p-1">
           <input
             type="range"

@@ -14,7 +14,7 @@ import MenuDropdown from "./MenuDropdown.component";
  */
 export default function GeometryCutsMenu(): JSX.Element {
   return (
-    <div className="relative group">
+    <div className="inline-flex group">
       <MenuIcon Icon={ScissorIcon} />
       <MenuDropdown>
         <MenuIcon Icon={LeftWallIcon} />

@@ -16,7 +16,7 @@ import MenuDropdown from "./MenuDropdown.component";
  */
 export default function DroneMenu(): JSX.Element {
   return (
-    <div className="relative group">
+    <div className="inline-flex group">
       <MenuIcon Icon={DroneIcon} />
       <MenuDropdown>
         <MenuIcon Icon={FlyIcon} />
