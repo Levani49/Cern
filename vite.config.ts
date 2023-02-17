@@ -16,17 +16,5 @@ export default defineConfig({
   },
   build: {
     chunkSizeWarningLimit: 1600,
-    sourcemap: false,
-    rollupOptions: {
-      maxParallelFileOps: 2,
-      output: {
-        sourcemap: true,
-        manualChunks: (id) => {
-          if (id.includes("node_modules")) {
-            return "vendor";
-          }
-        },
-      },
-    },
   },
 });
