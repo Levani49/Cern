@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /// <reference types="vitest" />
 /// <reference types="vite-plugin-svgr/client" />
 import { defineConfig } from "vite";
@@ -13,10 +15,17 @@ export default defineConfig({
     setupFiles: "./src/setup-tests.ts",
   },
   build: {
-    chunkSizeWarningLimit: 1600,
     sourcemap: false,
     rollupOptions: {
-      cache: false,
+      maxParallelFileOps: 2,
+      output: {
+        sourcemap: true,
+        manualChunks: (id) => {
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
+        },
+      },
     },
   },
 });
