@@ -15,6 +15,7 @@ export default defineConfig({
     setupFiles: "./src/setup-tests.ts",
   },
   build: {
+    chunkSizeWarningLimit: 1600,
     sourcemap: false,
     rollupOptions: {
       maxParallelFileOps: 2,
