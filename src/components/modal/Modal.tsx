@@ -31,7 +31,7 @@ export default function Modal({ show, title, onCloseHandler, children }: Props):
     <Draggable nodeRef={nodeRef} bounds="parent" handle=".handle">
       <div ref={nodeRef} className="modal text-white z-50">
         <div className="w-full">
-          {/* do not remove class 'handle' since it's used by draggable element, which means that drag events will only triggered on elements which will have handle class */}
+          {/* do not remove class 'handle' since it's used by draggable element, which means that drag events will only trigger on elements which will have <<handle>> class */}
           <div className="handle shadow-md p-2 flex justify-between items-center cursor-move">
             <h4 className="uppercase font-medium text-base pl-2">{title}</h4>
             <XMarkIcon className="h-8 w-8 cursor-pointer pr-2" onClick={onCloseHandler} />

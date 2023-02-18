@@ -2,7 +2,6 @@ import { ReactComponent as MenuLogo } from "../../assets/svg/menu.svg";
 import { ReactComponent as EventsIcon } from "../../assets/svg/events.svg";
 
 import { ReactComponent as WireframeIcon } from "../../assets/svg/wireframe.svg";
-import { ReactComponent as InfoIcon } from "../../assets/svg/info.svg";
 import { ReactComponent as FullScreenIcon } from "../../assets/svg/fullscreen.svg";
 
 import MenuIcon from "./MenuIcon.component";
@@ -10,7 +9,8 @@ import DroneMenu from "./DroneMenu.component";
 import CameraViewMenu from "./CameraViewMenu.component";
 import GeometryCutsMenu from "./GeometryCutsMenu.component";
 import OpacirtyMenu from "./OpacirtyMenu.component";
-import SettinsMenu from "./SettinsMenu.component";
+import SettingsMenu from "./SettingsMenu.component";
+import InfoMenu from "./InfoMenu.component";
 
 /**
  * Top navigation of the app
@@ -33,8 +33,8 @@ export default function Navigation(): JSX.Element {
         <GeometryCutsMenu />
         <OpacirtyMenu />
         <MenuIcon Icon={WireframeIcon} />
-        <SettinsMenu />
-        <MenuIcon Icon={InfoIcon} />
+        <SettingsMenu />
+        <InfoMenu />
         <MenuIcon Icon={FullScreenIcon} />
       </nav>
     </div>

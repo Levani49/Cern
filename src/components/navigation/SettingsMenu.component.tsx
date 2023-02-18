@@ -9,7 +9,7 @@ import { ReactComponent as RoadIcon } from "../../assets/svg/road.svg";
 /**
  *
  */
-export default function SettinsMenu(): JSX.Element {
+export default function SettingsMenu(): JSX.Element {
   const dispatch = useAppDispatch();
   const show = useAppSelector(selectShowSettingsStatus);
 
