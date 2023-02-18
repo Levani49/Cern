@@ -7,6 +7,7 @@ import SettingsModal from "./components/modal/modals/settings/Settings.modal";
 // Three
 import Scene from "./three/init";
 import preLoadAllModel from "./utils/preloadModels";
+import Comp from "./features/Comp";
 
 /**
  * Entry point of the app
@@ -26,7 +27,8 @@ function App(): JSX.Element {
         <Navigation />
       </div>
       <SettingsModal show={show} onClose={(): void => setShow(!show)} />
-      <div className="absolute w-full h-full top-0 left-0">
+      <Comp />
+      <div className="absolute z-10 w-full h-full top-0 left-0">
         <Scene />
       </div>
     </>
