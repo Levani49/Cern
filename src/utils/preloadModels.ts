@@ -1,11 +1,5 @@
 import { useGLTF } from "@react-three/drei";
 
-/**
- *
- * @param ms
- */
-const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
-
 const modelsUrl = import.meta.env.VITE_MODELS_PROVIDER;
 
 const models = [
@@ -64,7 +58,6 @@ const preloadModel = (modelName: string): void => {
  * @param chunkSize
  */
 async function preloadModels(models: string[], chunkSize = 3): Promise<void> {
-  await sleep(5000);
   if (!window.requestIdleCallback) return;
 
   let i = 0;
