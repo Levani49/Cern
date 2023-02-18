@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Modal from "../Modal";
+import Modal from "../../Modal";
 import Slider from "./Slider.component";
 import OptionsBox from "./OptionsBox.component";
 import SettingsDropdown from "./SettingsDropdown.component";

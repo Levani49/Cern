@@ -45,7 +45,7 @@ body {
   }
 
   .modal {
-    @apply fixed min-w-[256px] rounded-md top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-dark flex;
+    @apply fixed min-w-[256px] rounded-md top-0 right-0 transform -translate-x-1/2 -translate-y-1/2 bg-dark flex;
   }
 
   .focus {

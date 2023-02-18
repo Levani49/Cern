@@ -54,6 +54,6 @@ export default function Modal({ show, onClose, title, children }: Props): JSX.El
       </div>
     </Draggable>,
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    document.getElementById("root")!,
+    document.getElementById("modal")!,
   );
 }
