@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../app/store";
 
+import type { RootState } from "../app/app.types";
 interface ISettings {
   show: boolean;
 }

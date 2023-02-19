@@ -4,6 +4,7 @@ import { ReactComponent as RightSideBox } from "../../assets/svg/right-side-box.
 
 import MenuIcon from "./MenuIcon.component";
 import MenuDropdown from "./MenuDropdown.component";
+
 import { useAppDispatch } from "../../app/hooks";
 import { setDefaultView, setLeftCameraView, setRightCameraView } from "../../features/cameraSlice";
 

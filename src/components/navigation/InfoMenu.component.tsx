@@ -1,9 +1,10 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { ReactComponent as InfoIcon } from "../../assets/svg/info.svg";
+
 import { closeInfoModal, openInfoModal, selectInfoSettingsStatus } from "../../features/infoSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 import MenuIcon from "./MenuIcon.component";
 import InfoModal from "../modals/Info.modal";
-import { ReactComponent as InfoIcon } from "../../assets/svg/info.svg";
 
 /**
  *

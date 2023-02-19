@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Vector3 } from "@react-three/fiber";
-import { RootState } from "../app/store";
+
+import type { RootState } from "../app/app.types";
 
 interface ICameraSettings {
   position: Vector3;

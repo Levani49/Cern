@@ -9,9 +9,6 @@ import AnimateHeight from "../AnimateHeight.component";
 /**
  * Settings component that displays different settings options in a modal.
  *
- * @param {Props} props - The props of the component.
- * @param {boolean} props.show - Whether the modal should be displayed or not.
- * @param {Function} props.onClose - The callback function to close the modal.
  * @returns {JSX.Element} ReactElement
  */
 export default function SettingsModal(): JSX.Element {

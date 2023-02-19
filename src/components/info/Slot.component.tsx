@@ -5,11 +5,10 @@ interface Props {
 }
 
 /**
+ * A component representing a slot with information about a person.
  *
- * @param root0
- * @param root0.name
- * @param root0.src
- * @param root0.role
+ *@param {Props} props - The props object containing the name, src and role.
+ *@returns {JSX.Element} A JSX Element representing a slot with person information.
  */
 export default function Slot({ name, src, role }: Props): JSX.Element {
   return (
@@ -23,14 +22,4 @@ export default function Slot({ name, src, role }: Props): JSX.Element {
       </div>
     </div>
   );
-
-  // return <div className="flex justify-center items-center flex-col gap-1 bg-black p-2 rounded">
-  //     <img
-  //         loading="lazy"
-  //         className="h-16 w-16 rounded-full"
-  //         src={src}
-  //         alt={`${name}`}
-  //     />
-  //     <h4 className="text-sm">{name}</h4>
-  // </div>
 }

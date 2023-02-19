@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { AnimatePresence, motion } from "framer-motion";
+
+import type { ReactChildren } from "../app/app.types";
 
 interface Props {
-  children: React.ReactNode | React.ReactNode[];
+  children: ReactChildren;
   title: string;
 }
 

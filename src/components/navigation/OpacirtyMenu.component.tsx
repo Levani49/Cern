@@ -1,7 +1,7 @@
-import MenuDropdown from "./MenuDropdown.component";
-
-import MenuIcon from "./MenuIcon.component";
 import { ReactComponent as WaterDropIcon } from "../../assets/svg/water-drop.svg";
+
+import MenuDropdown from "./MenuDropdown.component";
+import MenuIcon from "./MenuIcon.component";
 
 /**
  * Provides functionality which controls opacity of geometries
