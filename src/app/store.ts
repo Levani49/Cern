@@ -2,8 +2,9 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
 import settingsReducer from "../features/settingsSlice";
 import infoReducer from "../features/infoSlice";
+import cameraReducer from "../features/cameraSlice";
 
-const rootReducer = combineReducers({ settings: settingsReducer, info: infoReducer });
+const rootReducer = combineReducers({ settings: settingsReducer, info: infoReducer, camera: cameraReducer });
 
 const store = configureStore({
   reducer: rootReducer,

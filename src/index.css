@@ -11,7 +11,7 @@
 }
 
 body {
-  overflow-y: hidden;
+  overflow-y: hidden !important;
   max-height: 100vh;
   height: 100vh;
 }
@@ -50,5 +50,13 @@ body {
 
   .focus {
     @apply text-blue;
+  }
+
+  .cardBackground {
+    background-image: linear-gradient(163deg, #5476ff 0%, #3700ff 100%);
+  }
+
+  .cardShadow {
+    box-shadow: 0px 0px 30px 1px rgba(69, 139, 220, 0.3);
   }
 }

@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { openSettingsModal, closeSettingsModal, selectShowSettingsStatus } from "../../features/settingsSlice";
 
 import MenuIcon from "./MenuIcon.component";
-import SettingsModal from "../modal/modals/settings/Settings.modal";
+import SettingsModal from "../modals/Settings.modal";
 
 import { ReactComponent as RoadIcon } from "../../assets/svg/road.svg";
 
