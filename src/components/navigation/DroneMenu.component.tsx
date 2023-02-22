@@ -56,7 +56,7 @@ export default function DroneMenu(): JSX.Element {
 
   return (
     <div className="inline-flex group">
-      <Button>
+      <Button onClick={(): void => handleModeChange("idle")}>
         <SvgIcon className={`${isActive ? "text-red-500 animate-pulse" : ""}`} Icon={DroneIcon} />
       </Button>
       <MenuDropdown>
