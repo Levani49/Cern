@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Vector3 } from "@react-three/fiber";
 
 import type { RootState } from "../app/app.types";
 
 interface ICameraSettings {
-  position: Vector3;
+  position: [number, number, number];
 }
 
 const initialState: ICameraSettings = {
@@ -54,4 +53,4 @@ export const { setLeftCameraView, setRightCameraView, setDefaultView } = cameraS
  *
  * @param state
  */
-export const selectCameraPosition = (state: RootState): Vector3 => state.camera.position;
+export const selectCameraPosition = (state: RootState): [number, number, number] => state.camera.position;
