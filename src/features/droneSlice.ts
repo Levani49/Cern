@@ -38,11 +38,11 @@ export const droneSlice = createSlice({
       if (state.camera) {
         switch (state.droneType) {
           case "idle":
-            stopDroneMode(state.currentState);
+            stopDroneMode(state.camera, state.currentState);
             break;
           default:
             if (state.currentState !== "idle") {
-              stopDroneMode(state.currentState);
+              stopDroneMode(state.camera, state.currentState);
             }
             startDroneMode(state.camera, state.droneType, handleFinish);
             state.currentState = state.droneType;

@@ -34,6 +34,7 @@ export default class Rocket {
     this.zAxisIterator = (0 - z) / maxIteration;
 
     camera.position.set(x, y, z);
+    camera.lookAt(0, 0, 0);
   }
 
   /**
@@ -64,6 +65,7 @@ export default class Rocket {
       cameraZ = z + this.zAxisIterator;
 
       camera.position.set(cameraX, cameraY, cameraZ);
+      camera.lookAt(0, 0, 0);
     };
 
     s();

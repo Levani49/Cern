@@ -48,8 +48,8 @@ export default function DroneMenu(): JSX.Element {
   const menuItems: MenuItem[] = [
     { Icon: CircleIcon, mode: "circle" },
     { Icon: HelixIcon, mode: "helix" },
-    { Icon: DollyZoomIcon, mode: "zoom" },
     { Icon: RocketIcon, mode: "rocket" },
+    { Icon: DollyZoomIcon, mode: "zoom" },
     { Icon: FlyIcon, mode: "fly" },
     { Icon: FilmIcon, mode: "z0" },
   ];

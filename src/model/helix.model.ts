@@ -1,6 +1,5 @@
 import { Camera } from "@react-three/fiber";
 
-import ee from "../utils/EventsEmitter.utils";
 import { emptyFn } from "../utils/emptyFn.utils";
 
 import type { eFn } from "../app/app.types";
@@ -42,12 +41,13 @@ export default class Helix {
       const z = Math.sin(angleStep * i) * radius;
 
       camera.position.set(x, y, z);
+      camera.lookAt(0, 0, 0);
+
       i += speed;
 
       if (i > fullCircle) {
         this.stop();
         cb();
-        ee.emit("stop");
       }
     };
 

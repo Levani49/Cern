@@ -9,6 +9,7 @@ import { selectDroneState } from "../features/droneSlice";
 export default function CustomOrbitControls(): JSX.Element {
   const droneType = useAppSelector(selectDroneState);
   const rotate = droneType === "circle" ? true : false;
+  const enabled = droneType === "idle" || droneType === "circle";
 
-  return <OrbitControls autoRotate={rotate} enableZoom={true} makeDefault />;
+  return <OrbitControls enabled={enabled} autoRotate={rotate} enableZoom={true} makeDefault />;
 }
