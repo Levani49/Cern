@@ -1,6 +1,9 @@
 import { Camera } from "@react-three/fiber";
-import ee from "../utils/EventsEmitter.utils";
 
+import ee from "../utils/EventsEmitter.utils";
+import { emptyFn } from "../utils/emptyFn.utils";
+
+import type { eFn } from "../app/app.types";
 /**
  *
  */
@@ -16,14 +19,16 @@ export default class Helix {
   /**
    *
    * @param animationRef
+   * @param animationRe
    */
-  constructor(private animationRef: number = 0) {}
+  constructor(private animationRef: number | null = null) {}
 
   /**
    *
    * @param camera
+   * @param cb
    */
-  start(camera: Camera): void {
+  start(camera: Camera, cb: eFn = emptyFn): void {
     const { angleStep, radius, heightStep, initialHeight, speed, fullCircle } = this.settings;
     let i = 0;
     /**
@@ -41,6 +46,7 @@ export default class Helix {
 
       if (i > fullCircle) {
         this.stop();
+        cb();
         ee.emit("stop");
       }
     };

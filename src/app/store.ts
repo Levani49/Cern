@@ -14,6 +14,11 @@ const rootReducer = combineReducers({
 
 const store = configureStore({
   reducer: rootReducer,
+  /**
+   *
+   * @param getDefaultMiddleware
+   */
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
 });
 
 export default store;
