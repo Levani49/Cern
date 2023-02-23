@@ -14,6 +14,7 @@ export default function CustomGrid(): JSX.Element {
       sectionSize={3.3}
       sectionThickness={1.5}
       fadeDistance={50}
+      sectionColor="gray"
     />
   );
 }

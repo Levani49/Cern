@@ -8,7 +8,7 @@ interface ICameraSettings {
 }
 
 const initialState: ICameraSettings = {
-  position: [5, 3, -4],
+  position: [3, 3, 3],
 };
 
 /**

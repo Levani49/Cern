@@ -2,5 +2,5 @@
  *
  */
 export default function Fog(): JSX.Element {
-  return <fog attach="fog" />;
+  return <fog color="black" attach="fog" />;
 }
