@@ -4,7 +4,7 @@ import type { eFn } from "../app/app.types";
 import { emptyFn } from "../utils/emptyFn.utils";
 
 /**
- *
+ * Rocket class for animating a rocket launch.
  */
 export default class Rocket {
   public settings = {
@@ -22,8 +22,9 @@ export default class Rocket {
   private zAxisIterator = 0;
 
   /**
+   * Prepares the camera for rocket animation by setting the starting point and look-at point.
    *
-   * @param camera
+   * @param camera - The camera used in the animation.
    */
   prepare(camera: Camera): void {
     const { maxHeight, startingPoint, maxIteration } = this.settings;
@@ -38,9 +39,10 @@ export default class Rocket {
   }
 
   /**
+   * Starts the rocket animation.
    *
-   * @param camera
-   * @param cb
+   * @param camera - The camera used in the animation.
+   * @param cb - Optional callback function to be called after animation is finished.
    */
   start(camera: Camera, cb: eFn = emptyFn): void {
     this.prepare(camera);
@@ -49,7 +51,7 @@ export default class Rocket {
     let cameraZ: number;
 
     /**
-     *
+     * Recursive function that animates the rocket launch.
      */
     const s = (): void => {
       this.animationRef = requestAnimationFrame(s);
@@ -72,7 +74,7 @@ export default class Rocket {
   }
 
   /**
-   *
+   * Stops the rocket animation.
    */
   stop(): void {
     if (this.animationRef) {
@@ -81,8 +83,9 @@ export default class Rocket {
   }
 
   /**
+   * Constructs a new Rocket instance.
    *
-   * @param animationRef
+   * @param animationRef - Optional animation reference value.
    */
   constructor(private animationRef: number | null = null) {}
 }

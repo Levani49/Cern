@@ -3,7 +3,9 @@ import { useFrame } from "@react-three/fiber";
 import { DirectionalLight } from "three";
 
 /**
+ * Renders ambient and directional lights in a 3D scene.
  *
+ * @returns {JSX.Element} JSX.Element
  */
 export default function Lights(): JSX.Element {
   const dirLight = useRef<DirectionalLight>(null);

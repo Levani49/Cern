@@ -5,7 +5,7 @@ import Navigation from "./components/navigation/Navigation.component";
 
 // Three
 import Scene from "./three/init";
-// import preLoadAllModel from "./utils/preloadModels";
+import preLoadAllModel from "./utils/preloadModels";
 
 /**
  * Entry point of the app
@@ -14,7 +14,7 @@ import Scene from "./three/init";
  */
 function App(): JSX.Element {
   useEffect(() => {
-    // preLoadAllModel();
+    preLoadAllModel();
   }, []);
 
   return (

@@ -13,16 +13,19 @@ const zoom = new Zoom();
 const cinema = new Cinema();
 
 /**
+ * Empty function
  *
+ * @returns {void} void
  */
-const emptyFn: eFn = () => {
+const emptyFn: eFn = (): void => {
   return;
 };
 
 /**
+ * Stop the current drone mode animation if it is active
  *
- * @param camera
- * @param type
+ * @param {camera} camera - The camera object to update
+ * @param {type} type - The type of drone mode to stop
  */
 export const stopDroneMode = (camera: Camera, type: DroneTypes): void => {
   switch (type) {
@@ -46,10 +49,11 @@ export const stopDroneMode = (camera: Camera, type: DroneTypes): void => {
 };
 
 /**
+ * Start a drone mode animation
  *
- * @param camera
- * @param type
- * @param cb
+ * @param {camera} camera - The camera object to update
+ * @param {type} type - The type of drone mode to start
+ * @param {cb} cb - A callback function to execute after the animation finishes
  */
 export const startDroneMode = (camera: Camera, type: DroneTypes, cb: eFn = emptyFn): void => {
   switch (type) {

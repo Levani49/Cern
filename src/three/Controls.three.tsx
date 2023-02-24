@@ -7,9 +7,11 @@ import { selectDroneState, setDroneCamera } from "../features/droneSlice";
 import { selectCameraPosition } from "../features/cameraSlice";
 
 import Player from "./Player.three";
+
 /**
+ * Renders either an `OrbitControls` or a `Player` component based on the drone type.
  *
- * @param props
+ * @returns {JSX.Element} The controls component.
  */
 export default function Controls(): JSX.Element {
   const droneType = useAppSelector(selectDroneState);

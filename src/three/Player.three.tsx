@@ -15,12 +15,14 @@ interface Props {
 const SPEED = 5;
 
 /**
+ * A 3D player object that can move forward, backward, left, and right in 3D space
  *
- * @param root0
- * @param root0.cameraPosition
- * @param root0.currentCameraPosition
+ * @param {Props} props - Component props
+ * @param {Array<number>} props.currentCameraPosition - Current camera position in 3D space
+ * @returns {JSX.Element} The player component
  */
 export default function Player({ currentCameraPosition }: Props): JSX.Element {
+  // Get the camera and player controls
   const { camera } = useThree();
   const { moveForward, moveBackward, moveLeft, moveRight } = usePlayerControls();
   const [ref, api] = useSphere(() => ({
@@ -29,6 +31,7 @@ export default function Player({ currentCameraPosition }: Props): JSX.Element {
     position: [...currentCameraPosition],
   }));
 
+  // Set the player's velocity based on the movement controls
   const velocity = useRef([...currentCameraPosition]);
   useEffect(() => {
     api.velocity.subscribe((v) => (velocity.current = v));
@@ -49,7 +52,9 @@ export default function Player({ currentCameraPosition }: Props): JSX.Element {
   });
 
   /**
+   * Handle palyer cancelation
    *
+   * @returns { void } void
    */
   const hadnelCancel = (): void => {
     store.dispatch(droneMode("idle"));

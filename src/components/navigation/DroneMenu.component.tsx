@@ -23,9 +23,11 @@ interface MenuItem {
 }
 
 /**
- * Provides Different drone modes
+ * Renders a DroneMenu component that displays a dropdown menu of drone modes.
  *
- * @returns {JSX.Element} ReactElement
+ * @function
+ * @name DroneMenu
+ * @returns {JSX.Element} - A JSX element representing the DroneMenu component.
  */
 export default function DroneMenu(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -34,8 +36,13 @@ export default function DroneMenu(): JSX.Element {
   const isActive = currentModeMemoized !== "idle";
 
   /**
+   
+   * Event handler for changing the drone mode.
    *
-   * @param mode
+   * @function
+   * @name handleModeChange
+   * @param {DroneTypes} mode - The drone mode to change to.
+   * @returns {void}
    */
   const handleModeChange = (mode: DroneTypes): void => {
     if (currentModeMemoized === mode) {

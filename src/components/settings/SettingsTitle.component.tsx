@@ -7,13 +7,13 @@ interface Props {
 }
 
 /**
- * SettingsTitle component that displays a title and toggle button.
+ * Renders a title bar for a settings section with a toggle icon to show/hide the settings content.
  *
- * @param {Props} props - The props of the component.
- * @param {boolean} props.show - Whether the toggle button should display the "minus" icon or the "plus" icon.
- * @param {string} props.title - The title of the component.
- * @param {() => void} props.onClose - A callback function that is called when the title is clicked.
- * @returns {JSX.Element} ReactElement
+ * @param {object} props - The component props.
+ * @param {boolean} props.show - Whether the settings content is currently shown.
+ * @param {string} props.title - The title of the settings section.
+ * @param {Function} props.onClose - A function to call when the user clicks the title bar to close the section.
+ * @returns {JSX.Element} A React component for the settings title bar.
  */
 export default function SettingsTitle({ show, title, onClose }: Props): JSX.Element {
   return (

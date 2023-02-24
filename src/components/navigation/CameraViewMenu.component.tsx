@@ -9,29 +9,43 @@ import { useAppDispatch } from "../../app/hooks";
 import { setDefaultView, setLeftCameraView, setRightCameraView } from "../../features/cameraSlice";
 
 /**
- * Provides different views of the scene
+ * Renders a CameraViewMenu component that displays a dropdown menu of camera view options.
  *
- * @returns {JSX.Element} ReactElement
+ * @function
+ * @name CameraViewMenu
+ * @returns {JSX.Element} - A JSX element representing the CameraViewMenu component.
  */
 export default function CameraViewMenu(): JSX.Element {
   const dispatch = useAppDispatch();
 
   /**
+   * Event handler for setting the default camera view.
    *
+   * @function
+   * @name defaultViewHandler
+   *@returns {void}
    */
   const defaultViewHandler = (): void => {
     dispatch(setDefaultView());
   };
 
   /**
+   * Event handler for setting the left side camera view.
    *
+   * @function
+   * @name leftSideViewHandler
+   *@returns {void}
    */
   const leftSideViewHandler = (): void => {
     dispatch(setLeftCameraView());
   };
 
   /**
+   * Event handler for setting the right side camera view.
    *
+   * @function
+   * @name rightSideViewHandler
+   *@returns {void}
    */
   const rightSideViewHandler = (): void => {
     dispatch(setRightCameraView());

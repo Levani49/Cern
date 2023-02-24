@@ -9,8 +9,10 @@ interface PlayerControls {
 }
 
 /**
+ * Gets the corresponding movement control field for a given keyboard key code.
  *
- * @param key
+ * @param {string} key - The keyboard key code to look up.
+ * @returns {string|undefined} The corresponding movement control field, or undefined if no match was found.
  */
 function moveFieldByKey(key: string): string | undefined {
   const keys: Record<string, string> = {
@@ -25,7 +27,9 @@ function moveFieldByKey(key: string): string | undefined {
 }
 
 /**
+ * A custom hook that returns an object with the current player movement controls.
  *
+ * @returns {PlayerControls} An object with properties for the current player movement controls.
  */
 export function usePlayerControls(): PlayerControls {
   const [movement, setMovement] = useState<PlayerControls>({
@@ -38,8 +42,9 @@ export function usePlayerControls(): PlayerControls {
 
   useEffect(() => {
     /**
+     * A callback function to handle keydown events and update the player movement state.
      *
-     * @param e
+     * @param {KeyboardEvent} e - The event object for the keydown event.
      */
     const handleKeyDown = (e: KeyboardEvent): void => {
       setMovement((m) => ({
@@ -49,8 +54,9 @@ export function usePlayerControls(): PlayerControls {
     };
 
     /**
+     * A callback function to handle keyup events and update the player movement state.
      *
-     * @param e
+     * @param {KeyboardEvent} e - The event object for the keyup event.
      */
     const handleKeyUp = (e: KeyboardEvent): void => {
       setMovement((m) => ({

@@ -12,9 +12,11 @@ import SettingsMenu from "./SettingsMenu.component";
 import InfoMenu from "./InfoMenu.component";
 
 /**
- * Top navigation of the app
+ * Renders a Navigation component that displays the app's navigation menu.
  *
- * @returns {JSX.Element} ReactElement
+ * @function
+ * @name Navigation
+ * @returns {JSX.Element} - A JSX element representing the Navigation component.
  */
 export default function Navigation(): JSX.Element {
   return (

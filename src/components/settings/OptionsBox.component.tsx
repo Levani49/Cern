@@ -1,5 +1,7 @@
 /**
- * @returns {JSX.Element} ReactElement
+ * Renders a select box for choosing the camera mode.
+ *
+ * @returns {JSX.Element} A React component for the select box.
  */
 export default function OptionsBox(): JSX.Element {
   return (

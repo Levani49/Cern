@@ -5,7 +5,7 @@ import type { eFn } from "../app/app.types";
 import { emptyFn } from "../utils/emptyFn.utils";
 
 /**
- *
+ * A class for controlling the camera movement in a cinema-style animation.
  */
 export default class Cinema {
   settings = {
@@ -13,9 +13,10 @@ export default class Cinema {
   };
 
   /**
+   * Starts the cinema-style animation.
    *
-   * @param camera
-   * @param cb
+   * @param {Camera} camera - The camera object to be controlled.
+   * @param {eFn} cb - A callback function to be called when the animation is complete.
    */
   start(camera: Camera, cb: eFn = emptyFn): void {
     const { road } = this.settings;
@@ -27,8 +28,9 @@ export default class Cinema {
     let alpha = Math.PI / 2;
     let distance = 0;
     let reverse = 1;
+
     /**
-     *
+     * A callback function for the animation loop.
      */
     const s = (): void => {
       this.animationRef = requestAnimationFrame(s);
@@ -85,7 +87,7 @@ export default class Cinema {
   }
 
   /**
-   *
+   * Stops the cinema-style animation.
    */
   stop(): void {
     if (this.animationRef) {
@@ -94,8 +96,9 @@ export default class Cinema {
   }
 
   /**
+   * Creates a new instance of the `Cinema` class.
    *
-   * @param animationRef
+   * @param {number} animationRef - The animation reference ID.
    */
-  constructor(private animationRef = 0) {}
+  constructor(private animationRef: number = 0) {}
 }

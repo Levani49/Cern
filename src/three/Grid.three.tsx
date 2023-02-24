@@ -1,7 +1,9 @@
 import { Grid } from "@react-three/drei";
 
 /**
+ * Renders a custom grid.
  *
+ * @returns {JSX.Element} JSX.Element
  */
 export default function CustomGrid(): JSX.Element {
   return (

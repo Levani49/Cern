@@ -5,10 +5,15 @@ interface Props {
 }
 
 /**
- * A component representing a slot with information about a person.
+ * Renders a Slot component that displays an image, name, and role.
  *
- *@param {Props} props - The props object containing the name, src and role.
- *@returns {JSX.Element} A JSX Element representing a slot with person information.
+ * @function
+ * @name Slot
+ * @param {object} props - The properties to be passed to the component.
+ * @param {string} props.name - The name to be displayed in the component.
+ * @param {string} props.src - The image source URL to be displayed in the component.
+ * @param {string} props.role - The role to be displayed in the component.
+ * @returns {JSX.Element} - A JSX element representing the Slot component.
  */
 export default function Slot({ name, src, role }: Props): JSX.Element {
   return (

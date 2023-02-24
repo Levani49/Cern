@@ -13,16 +13,14 @@ interface Props {
 }
 
 /**
- 
-A modal component that can be displayed with a title and content, and be closed either by clicking a close icon or pressing the escape key.
-The modal is also draggable by its title.
- 
- * @param {object} props - The properties for the component.
- * @param {boolean} props.show - Determines whether the modal should be displayed or not.
- * @param {string} props.title - The title for the modal.
- * @param {React.ReactElement | React.ReactElement[]} props.children - The content for the modal.
- * @param props.onCloseHandler
- * @returns {JSX.Element} ReactElement
+ * Renders a modal dialog that is displayed on top of the page content.
+ *
+ * @param {object} props - The component props.
+ * @param {boolean} props.show - Whether the modal is currently shown.
+ * @param {string} props.title - The title to display in the modal header.
+ * @param {Function} props.onCloseHandler - A function to call when the user clicks the close button in the modal header.
+ * @param {React.ReactNode} props.children - The content to display inside the modal.
+ * @returns {JSX.Element} A React component for the modal dialog.
  */
 export default function Modal({ show, title, onCloseHandler, children }: Props): JSX.Element {
   const nodeRef = useRef<HTMLDivElement | null>(null);

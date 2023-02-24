@@ -14,10 +14,13 @@ export default function SettingsMenu(): JSX.Element {
   const show = useAppSelector(selectShowSettingsStatus);
 
   /**
+   * Toggles the visibility of the info modal.
    *
+   * @function
+   * @name toggleModal
+   * @returns {void}
    */
   const toggleModal = (): void => {
-    console.log("ok");
     show ? dispatch(closeSettingsModal()) : dispatch(openSettingsModal());
   };
 

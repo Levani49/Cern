@@ -5,9 +5,11 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 /**
+ * Renders a button component with hover and transition effects.
  *
- * @param root0
- * @param root0.children
+ * @param {object} props - The component props.
+ * @param {React.ReactNode} props.children - The content to display inside the button.
+ * @returns {JSX.Element} A React component for the button.
  */
 export default function Button({ children, ...props }: Props): JSX.Element {
   return (

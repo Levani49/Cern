@@ -10,8 +10,11 @@ import Controls from "./Controls.three";
 import EnvironmentThree from "./Environment.three";
 import Detector from "./detector-parts/Detector.three";
 import { Physics } from "@react-three/cannon";
+
 /**
+ * Main scene of application
  *
+ * @returns { JSX.Element } JSX.ELement
  */
 export default function Scene(): JSX.Element {
   return (

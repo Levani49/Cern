@@ -16,7 +16,8 @@ export default function SettingsModal(): JSX.Element {
   const dispatch = useAppDispatch();
 
   /**
-   *
+   * @function
+   * handles to close modal
    */
   const closeModalHandler = (): void => {
     dispatch(closeSettingsModal());

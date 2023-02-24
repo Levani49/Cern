@@ -3,9 +3,16 @@ import { eFn } from "../app/app.types";
 import { emptyFn } from "../utils/emptyFn.utils";
 
 /**
- *
+ * Zoom class that animates a PerspectiveCamera by moving it closer to the origin and reducing its field of view.
  */
 export default class Zoom {
+  /**
+   * The settings for the Zoom animation.
+   *
+   * @property {number} fovIterator - The amount to decrease the field of view each step.
+   * @property {number} xAxisIterator - The amount to move the camera towards the origin in the X direction each step.
+   * @property {number} fullStep - The total number of steps for the animation.
+   */
   settings = {
     fovIterator: -0.09,
     xAxisIterator: -0.005,
@@ -13,9 +20,10 @@ export default class Zoom {
   };
 
   /**
+   * Starts the Zoom animation for the specified camera.
    *
-   * @param camera
-   * @param cb
+   * @param {PerspectiveCamera} camera - The camera to animate.
+   * @param {eFn} [cb=emptyFn] - Optional callback function to execute when the animation is complete.
    */
   start(camera: PerspectiveCamera, cb: eFn = emptyFn): void {
     camera.position.set(5, 1, 0);
@@ -24,7 +32,7 @@ export default class Zoom {
     let i = 0;
 
     /**
-     *
+     * The function that performs each step of the Zoom animation.
      */
     const s = (): void => {
       this.animationRef = requestAnimationFrame(s);
@@ -46,8 +54,9 @@ export default class Zoom {
   }
 
   /**
+   * Stops the Zoom animation for the specified camera.
    *
-   * @param camera
+   * @param {PerspectiveCamera} camera - The camera to stop animating.
    */
   stop(camera: PerspectiveCamera): void {
     if (this.animationRef) {
@@ -60,8 +69,9 @@ export default class Zoom {
   }
 
   /**
+   * Creates a new Zoom instance.
    *
-   * @param animationRef
+   * @param {number} [animationRef=0] - Optional animation reference ID to use when stopping the animation.
    */
   constructor(private animationRef: number = 0) {}
 }

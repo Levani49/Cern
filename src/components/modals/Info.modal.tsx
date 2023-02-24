@@ -8,19 +8,19 @@ import { TEMP_INFO } from "../../TEMP_STATIC_DATA";
 import type { Employee } from "../../app/app.types";
 
 /**
- * Settings component that displays different settings options in a modal.
+ * Renders an InfoModal component that displays information about employees in a modal window.
  *
- * @param {Props} props - The props of the component.
- * @param {boolean} props.show - Whether the modal should be displayed or not.
- * @param {Function} props.onClose - The callback function to close the modal.
- * @returns {JSX.Element} ReactElement
+ * @function
+ * @name InfoModal
+ * @returns {JSX.Element} - A JSX element representing the InfoModal component.
  */
 export default function InfoModal(): JSX.Element {
   const show = useAppSelector(selectInfoSettingsStatus);
   const dispatch = useAppDispatch();
 
   /**
-   *
+   * @function
+   * handles to close modal
    */
   const closeModalHandler = (): void => {
     dispatch(closeInfoModal());

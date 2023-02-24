@@ -40,7 +40,7 @@ const models = [
 
 /**
  *
- * @param modelName
+ * @param {modelName} modelName - The name of the model to be preloaded.
  */
 const preloadModel = (modelName: string): void => {
   const pathToModel = `${modelsUrl}${modelName}`;
@@ -53,9 +53,11 @@ const preloadModel = (modelName: string): void => {
 
 // Define a function to preload multiple models in chunks
 /**
+ * Preload multiple 3D models in chunks to improve performance.
  *
- * @param models
- * @param chunkSize
+ * @param {string[]} models - The array of model names to be preloaded.
+ * @param {number} [chunkSize=3] - The size of each chunk to be preloaded (default value is 3).
+ * @returns {Promise<void>} Promise<void>.
  */
 async function preloadModels(models: string[], chunkSize = 3): Promise<void> {
   if (!window.requestIdleCallback) return;
@@ -64,7 +66,7 @@ async function preloadModels(models: string[], chunkSize = 3): Promise<void> {
 
   /**
    *
-   * @param chunk
+   * @param {chunk} chunk The chunk of models to be preloaded.
    */
   const loadChunk = (chunk: string[]): void => {
     for (let j = 0; j < chunk.length; j++) {
@@ -80,45 +82,10 @@ async function preloadModels(models: string[], chunkSize = 3): Promise<void> {
 }
 
 /**
- *
+ * Preloads all models
  */
 export default function preLoadAllModel(): void {
   preloadModels(models, 3);
 }
 
 export { modelsUrl };
-
-// useGLTF.preload(`${modelsUrl}/pixel-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/sct-bar-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/sct-sidea-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/sct-sidec-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/trt-bar-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/trt-sidec-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/trt-sidea-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/pixel-pp1-side-a-cut1.glb`);
-// useGLTF.preload(`${modelsUrl}/lar-emec-sidea-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/lar-emec-sidec-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/lar-hec-sidea-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/lar-hec-sidec-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/lar-fcal-sidea-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/lar-fcal-sidec-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/lar-barrel-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/tile-barrel-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/tile-end-cap-sidea-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/tile-end-cap-sidec-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/flex-chain-sec9-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/flex-chain-sec11-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/flex-chain-sec15-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/serv-muon-sw-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/serv-muon-cable-trays-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/serv-muon-cable-trays-inside-barrel-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/serv-muon-barrel-calo-ele-boxes-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/serv-z0-sec1-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/serv-z0-sec3-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/serv-z0-sec5-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/serv-z0-sec7-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/barrel-toroid-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/end-cap-toroid-sidea-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/tower-turret-sidea-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/tower-turret-sidec-cut3.glb`);
-// useGLTF.preload(`${modelsUrl}/end-cap-toroid-sidec-cut3.glb`);
