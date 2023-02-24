@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import FlyOverlay from "./components/flyOverlay.component";
 
 // Components
 import Navigation from "./components/navigation/Navigation.component";
@@ -24,6 +25,7 @@ function App(): JSX.Element {
       </div>
       <div className="absolute z-10 w-full h-full top-0 left-0">
         <Scene />
+        <FlyOverlay />
       </div>
     </>
   );

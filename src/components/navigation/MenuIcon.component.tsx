@@ -3,6 +3,7 @@ import Button from "../Button.component";
 
 interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   Icon: SVGIcon;
+  disabled?: boolean;
 }
 
 /**

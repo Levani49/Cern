@@ -55,7 +55,11 @@ export const stopDroneMode = (camera: Camera, type: DroneTypes): void => {
  * @param {type} type - The type of drone mode to start
  * @param {cb} cb - A callback function to execute after the animation finishes
  */
-export const startDroneMode = (camera: Camera, type: DroneTypes, cb: eFn = emptyFn): void => {
+export const startDroneMode = (
+  camera: Camera,
+  type: DroneTypes,
+  cb: eFn = emptyFn,
+): void => {
   switch (type) {
     case "helix":
       helix.start(camera, cb);

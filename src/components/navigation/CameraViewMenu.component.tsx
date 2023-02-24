@@ -5,8 +5,13 @@ import { ReactComponent as RightSideBox } from "../../assets/svg/right-side-box.
 import MenuIcon from "./MenuIcon.component";
 import MenuDropdown from "./MenuDropdown.component";
 
-import { useAppDispatch } from "../../app/hooks";
-import { setDefaultView, setLeftCameraView, setRightCameraView } from "../../features/cameraSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import {
+  selectDroneState,
+  setDefaultView,
+  setLeftCameraView,
+  setRightCameraView,
+} from "../../features/cameraSlice";
 
 /**
  * Renders a CameraViewMenu component that displays a dropdown menu of camera view options.
@@ -17,6 +22,9 @@ import { setDefaultView, setLeftCameraView, setRightCameraView } from "../../fea
  */
 export default function CameraViewMenu(): JSX.Element {
   const dispatch = useAppDispatch();
+  const droneType = useAppSelector(selectDroneState);
+
+  const disable = droneType !== "idle";
 
   /**
    * Event handler for setting the default camera view.
@@ -55,9 +63,21 @@ export default function CameraViewMenu(): JSX.Element {
     <div className="inline-flex group">
       <MenuIcon Icon={BoxIcon} />
       <MenuDropdown>
-        <MenuIcon Icon={BoxIcon} onClick={defaultViewHandler} />
-        <MenuIcon Icon={LeftSideBox} onClick={leftSideViewHandler} />
-        <MenuIcon Icon={RightSideBox} onClick={rightSideViewHandler} />
+        <MenuIcon
+          Icon={BoxIcon}
+          onClick={defaultViewHandler}
+          disabled={disable}
+        />
+        <MenuIcon
+          Icon={LeftSideBox}
+          onClick={leftSideViewHandler}
+          disabled={disable}
+        />
+        <MenuIcon
+          Icon={RightSideBox}
+          onClick={rightSideViewHandler}
+          disabled={disable}
+        />
       </MenuDropdown>
     </div>
   );

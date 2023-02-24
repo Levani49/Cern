@@ -5,7 +5,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { PointerLockControls } from "@react-three/drei";
 
 import { usePlayerControls } from "../hooks/playerControls.hook";
-import { droneMode } from "../features/droneSlice";
+import { setDroneMode } from "../features/cameraSlice";
 import store from "../app/store";
 
 interface Props {
@@ -24,7 +24,8 @@ const SPEED = 5;
 export default function Player({ currentCameraPosition }: Props): JSX.Element {
   // Get the camera and player controls
   const { camera } = useThree();
-  const { moveForward, moveBackward, moveLeft, moveRight } = usePlayerControls();
+  const { moveForward, moveBackward, moveLeft, moveRight } =
+    usePlayerControls();
   const [ref, api] = useSphere(() => ({
     mass: 1,
     type: "Dynamic",
@@ -43,10 +44,18 @@ export default function Player({ currentCameraPosition }: Props): JSX.Element {
     }
     const direction = new Vector3();
 
-    const frontVector = new Vector3(0, 0, Number(moveBackward) - Number(moveForward));
+    const frontVector = new Vector3(
+      0,
+      0,
+      Number(moveBackward) - Number(moveForward),
+    );
     const sideVector = new Vector3(Number(moveLeft) - Number(moveRight), 0, 0);
 
-    direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(SPEED).applyEuler(camera.rotation);
+    direction
+      .subVectors(frontVector, sideVector)
+      .normalize()
+      .multiplyScalar(SPEED)
+      .applyEuler(camera.rotation);
 
     api.velocity.set(direction.x, direction.y, direction.z);
   });
@@ -57,13 +66,19 @@ export default function Player({ currentCameraPosition }: Props): JSX.Element {
    * @returns { void } void
    */
   const hadnelCancel = (): void => {
-    store.dispatch(droneMode("idle"));
+    store.dispatch(setDroneMode("idle"));
   };
 
   return (
     <>
       <PointerLockControls onUnlock={hadnelCancel} />
-      <mesh ref={ref as React.MutableRefObject<Mesh<BufferGeometry, Material | Material[]>>}></mesh>
+      <mesh
+        ref={
+          ref as React.MutableRefObject<
+            Mesh<BufferGeometry, Material | Material[]>
+          >
+        }
+      ></mesh>
     </>
   );
 }
