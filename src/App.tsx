@@ -23,7 +23,6 @@ function App(): JSX.Element {
         <Navigation />
       </div>
       <div className="absolute z-10 w-full h-full top-0 left-0">
-        {/* <h1 className="flex bg-transparent absolute z-50 color-white left-1/2 top-1/2">Press W/A/S/D</h1> */}
         <Scene />
       </div>
     </>
