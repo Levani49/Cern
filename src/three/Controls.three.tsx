@@ -1,15 +1,15 @@
-import { OrbitControls, PointerLockControls } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { useEffect } from "react";
+import { useThree } from "@react-three/fiber";
 
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { droneMode, selectDroneState, setDroneCamera } from "../features/droneSlice";
-import { onEscapeKeyDown } from "../utils/userEvents.utils";
-import store from "../app/store";
-import { useThree } from "@react-three/fiber";
+import { selectDroneState, setDroneCamera } from "../features/droneSlice";
 import { selectCameraPosition } from "../features/cameraSlice";
 
+import Player from "./Player.three";
 /**
  *
+ * @param props
  */
 export default function Controls(): JSX.Element {
   const droneType = useAppSelector(selectDroneState);
@@ -22,29 +22,11 @@ export default function Controls(): JSX.Element {
     camera.position.set(...position);
   }, [camera, dispatch, position]);
 
-  useEffect(() => {
-    if (droneType === "fly") {
-      /**
-       *
-       * @param e
-       */
-      const dispatcher = (e: KeyboardEvent): void => {
-        document.exitPointerLock();
-        onEscapeKeyDown(e, () => store.dispatch(droneMode("idle")));
-        console.log("yea");
-      };
-
-      window.addEventListener("keydown", dispatcher);
-
-      return () => window.removeEventListener("keydown", dispatcher);
-    }
-  }, [droneType]);
-
   const rotate = droneType === "circle";
   const isFreeFly = droneType === "fly";
 
   if (isFreeFly) {
-    return <PointerLockControls />;
+    return <Player currentCameraPosition={[camera.position.x, camera.position.y, camera.position.z]} />;
   }
 
   return <OrbitControls makeDefault autoRotate={rotate} />;

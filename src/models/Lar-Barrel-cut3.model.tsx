@@ -8,6 +8,7 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { modelsUrl } from "../utils/preloadModels";
+import applyDefaultsToModel from "../utils/applyDefaultsToModel.utils";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -28,6 +29,9 @@ type GLTFResult = GLTF & {
  */
 export function LarBarrelCut3(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(`${modelsUrl}/lar-barrel-cut3.glb`) as GLTFResult;
+
+  applyDefaultsToModel(materials);
+
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Mesh_0006.geometry} material={materials["Material_0.006"]} />

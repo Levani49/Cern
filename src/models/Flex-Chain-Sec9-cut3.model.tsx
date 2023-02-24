@@ -8,6 +8,7 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { modelsUrl } from "../utils/preloadModels";
+import applyDefaultsToModel from "../utils/applyDefaultsToModel.utils";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -32,6 +33,9 @@ type GLTFResult = GLTF & {
  */
 export function FlexChainSec9Cut3(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(`${modelsUrl}/flex-chain-sec9-cut3.glb`) as GLTFResult;
+
+  applyDefaultsToModel(materials);
+
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.cable.geometry} material={materials._000002AFFD169B00} />

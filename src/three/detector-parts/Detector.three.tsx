@@ -107,7 +107,6 @@ export default function Detector(): JSX.Element {
           <Services />
         </>
       )}
-
       <InnerDetector />
     </>
   );

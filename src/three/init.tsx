@@ -9,6 +9,7 @@ import CustomGrid from "./Grid.three";
 import Controls from "./Controls.three";
 import EnvironmentThree from "./Environment.three";
 import Detector from "./detector-parts/Detector.three";
+import { Physics } from "@react-three/cannon";
 /**
  *
  */
@@ -16,16 +17,18 @@ export default function Scene(): JSX.Element {
   return (
     <>
       <Canvas gl={{ pixelRatio: window.devicePixelRatio * 0.5, alpha: true, toneMapping: NoToneMapping }} linear>
-        <Lights />
-        <Fog />
-        <Suspense fallback={null}>
-          <Detector />
-        </Suspense>
-        <CustomGrid />
-        <Controls />
-        <EnvironmentThree />
-        <Stats />
+        <Physics gravity={[0, 0, 0]}>
+          <Lights />
+          <Fog />
+          <Suspense fallback={null}>
+            <Detector />
+          </Suspense>
+          <CustomGrid />
+          <Controls />
+          <EnvironmentThree />
+        </Physics>
       </Canvas>
+      <Stats />
       <Loader />
     </>
   );
