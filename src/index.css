@@ -33,6 +33,13 @@ body {
   flex: 0 0 auto;
 }
 
+.info-graph {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @layer base {
   html {
     font-family: "Poppins", sans-serif;
