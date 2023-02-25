@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import FlyOverlay from "./components/FlyOverlay.component";
 
 // Components
 import Navigation from "./components/navigation/Navigation.component";
+import FlyOverlay from "./components/FlyGraph.component";
 
 // Three
 import Scene from "./three/init";
