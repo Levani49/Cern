@@ -4,7 +4,8 @@ import type { RootState } from "../app/app.types";
 
 interface RendererInfo {
   show: boolean;
-  sh: boolean;
+  showStats: boolean;
+  showAxis: boolean;
   renderer: {
     triangles: number;
     fps: number;
@@ -16,7 +17,8 @@ type RendererType = RendererInfo["renderer"];
 
 const initialState: RendererInfo = {
   show: false,
-  sh: true,
+  showStats: true,
+  showAxis: true,
   renderer: {
     triangles: 0,
     fps: 0,
@@ -39,7 +41,16 @@ export const infoSlice = createSlice({
      * @param action
      */
     showRendererStats: (state, action: PayloadAction<boolean>) => {
-      state.sh = action.payload;
+      state.showStats = action.payload;
+    },
+
+    /**
+     *
+     * @param state
+     * @param action
+     */
+    showAxis: (state, action: PayloadAction<boolean>) => {
+      state.showAxis = action.payload;
     },
 
     /**
@@ -57,7 +68,8 @@ export const infoSlice = createSlice({
 });
 
 export default infoSlice.reducer;
-export const { setRendererStats, showRendererStats } = infoSlice.actions;
+export const { setRendererStats, showRendererStats, showAxis } =
+  infoSlice.actions;
 
 /**
  *
@@ -77,5 +89,12 @@ export const selectRendererStats = (state: RootState): RendererType =>
  *
  * @param state
  */
-export const selectRendererStatsShow = (state: RootState): boolean =>
-  state.info.sh;
+export const selectRendererStatsState = (state: RootState): boolean =>
+  state.info.showStats;
+
+/**
+ *
+ * @param state
+ */
+export const selectRendererAxisState = (state: RootState): boolean =>
+  state.info.showAxis;

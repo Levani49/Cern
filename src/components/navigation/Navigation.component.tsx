@@ -1,7 +1,8 @@
+import { ArrowsPointingOutIcon } from "@heroicons/react/24/outline";
+
 import { ReactComponent as MenuLogo } from "../../assets/svg/menu.svg";
 import { ReactComponent as EventsIcon } from "../../assets/svg/events.svg";
 import { ReactComponent as WireframeIcon } from "../../assets/svg/wireframe.svg";
-import { ReactComponent as AxisIcon } from "../../assets/svg/axis.svg";
 
 import MenuIcon from "./MenuIcon.component";
 import DroneMenu from "./DroneMenu.component";
@@ -11,7 +12,7 @@ import OpacirtyMenu from "./OpacirtyMenu.component";
 import SettingsMenu from "./SettingsMenu.component";
 import AboutMenu from "./AboutMenu.component";
 import StatsMenu from "./StatsMenu.component";
-import { ArrowsPointingOutIcon } from "@heroicons/react/24/outline";
+import AxisMenu from "./AxisMenu.component";
 
 /**
  * Renders a Navigation component that displays the app's navigation menu.
@@ -37,7 +38,7 @@ export default function Navigation(): JSX.Element {
         <OpacirtyMenu />
         <MenuIcon Icon={WireframeIcon} />
         <StatsMenu />
-        <MenuIcon Icon={AxisIcon} />
+        <AxisMenu />
         <SettingsMenu />
         <MenuIcon Icon={ArrowsPointingOutIcon} />
         <AboutMenu />

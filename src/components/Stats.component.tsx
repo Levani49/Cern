@@ -1,7 +1,7 @@
 import { useAppSelector } from "../app/hooks";
 import {
   selectRendererStats,
-  selectRendererStatsShow,
+  selectRendererStatsState,
 } from "../features/rendererSlice";
 
 /**
@@ -9,7 +9,7 @@ import {
  */
 export default function Stats(): JSX.Element {
   const { triangles, fps, memory } = useAppSelector(selectRendererStats);
-  const show = useAppSelector(selectRendererStatsShow);
+  const show = useAppSelector(selectRendererStatsState);
 
   if (!show) {
     return <></>;

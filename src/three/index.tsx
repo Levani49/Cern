@@ -11,6 +11,7 @@ import Controls from "./Controls.three";
 import EnvironmentThree from "./Environment.three";
 import Detector from "./detector-parts/Detector.three";
 import StatsDispatcher from "./Stats.three";
+import Axis from "./Axis.three";
 
 /**
  * Main scene of application
@@ -38,6 +39,7 @@ export default function Scene(): JSX.Element {
           <Controls />
           <EnvironmentThree />
         </Physics>
+        <Axis />
         <StatsDispatcher />
       </Canvas>
       <Loader />
