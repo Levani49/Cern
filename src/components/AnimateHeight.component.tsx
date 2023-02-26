@@ -36,7 +36,10 @@ export default function AnimateHeight({ children, title }: Props): JSX.Element {
 
   return (
     <div className="flex flex-col rounded-lg">
-      <button aria-expanded={isOpen} className="flex justify-between text-left items-center w-full space-x-4">
+      <button
+        aria-expanded={isOpen}
+        className="flex justify-between text-left items-center w-full space-x-4"
+      >
         <div className="text-md font-semibold ml-1">{title}</div>
         <AnimatePresence initial={false} mode="wait">
           <motion.div

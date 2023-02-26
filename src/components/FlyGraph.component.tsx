@@ -12,9 +12,13 @@ import {
  * @returns {JSX.Element} A JSX element that displays the overlay.
  */
 export default function FlyOverlay(): JSX.Element {
-  const showFlyModal = useAppSelector(selectFlyModalState);
-  const droneMode = useAppSelector(selectDroneState);
   const dispatch = useAppDispatch();
+
+  const { showFlyModal, droneMode } = useAppSelector((state) => ({
+    showFlyModal: selectFlyModalState(state),
+    droneMode: selectDroneState(state),
+  }));
+
   const isFreeFLy = droneMode === "fly";
 
   /**

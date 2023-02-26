@@ -1,14 +1,13 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
-import settingsReducer from "../features/settingsSlice";
-import infoReducer from "../features/infoSlice";
+import infoReducer from "../features/rendererSlice";
 import cameraReducer from "../features/cameraSlice";
-// import droneReducer from "../features/droneSlice";
+import modalsreducer from "../features/modalsSlice";
 
 const rootReducer = combineReducers({
-  settings: settingsReducer,
   info: infoReducer,
   camera: cameraReducer,
+  modals: modalsreducer,
 });
 
 const store = configureStore({

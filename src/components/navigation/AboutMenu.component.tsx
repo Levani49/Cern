@@ -1,10 +1,13 @@
-import { ReactComponent as InfoIcon } from "../../assets/svg/info.svg";
-
-import { closeInfoModal, openInfoModal, selectInfoSettingsStatus } from "../../features/infoSlice";
+import {
+  selectAboutModalState,
+  showAboutModal,
+} from "../../features/modalsSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
+import { ReactComponent as InfoIcon } from "../../assets/svg/info.svg";
+
 import MenuIcon from "./MenuIcon.component";
-import InfoModal from "../modals/Info.modal";
+import AboutModal from "../modals/About.modal";
 
 /**
  * Renders an InfoMenu component that displays an icon for opening a modal with more information.
@@ -13,9 +16,9 @@ import InfoModal from "../modals/Info.modal";
  * @name InfoMenu
  * @returns {JSX.Element} - A JSX element representing the InfoMenu component.
  */
-export default function InfoMenu(): JSX.Element {
+export default function AboutMenu(): JSX.Element {
   const dispatch = useAppDispatch();
-  const show = useAppSelector(selectInfoSettingsStatus);
+  const show = useAppSelector(selectAboutModalState);
 
   /**
    * Toggles the visibility of the info modal.
@@ -25,13 +28,13 @@ export default function InfoMenu(): JSX.Element {
    * @returns {void}
    */
   const toggleModal = (): void => {
-    show ? dispatch(closeInfoModal()) : dispatch(openInfoModal());
+    show ? dispatch(showAboutModal(false)) : dispatch(showAboutModal(true));
   };
 
   return (
     <>
       <MenuIcon Icon={InfoIcon} onClick={toggleModal} />
-      <InfoModal />
+      <AboutModal />
     </>
   );
 }

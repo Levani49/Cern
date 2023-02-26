@@ -7,6 +7,7 @@ import MenuDropdown from "./MenuDropdown.component";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
+  selectCameraViewMode,
   selectDroneState,
   setDefaultView,
   setLeftCameraView,
@@ -22,63 +23,57 @@ import {
  */
 export default function CameraViewMenu(): JSX.Element {
   const dispatch = useAppDispatch();
-  const droneType = useAppSelector(selectDroneState);
 
-  const disable = droneType !== "idle";
+  const { droneType, viewType } = useAppSelector((state) => ({
+    droneType: selectDroneState(state),
+    viewType: selectCameraViewMode(state),
+  }));
 
-  /**
-   * Event handler for setting the default camera view.
-   *
-   * @function
-   * @name defaultViewHandler
-   *@returns {void}
-   */
-  const defaultViewHandler = (): void => {
-    dispatch(setDefaultView());
+  const Icon =
+    viewType === "default"
+      ? BoxIcon
+      : viewType === "left"
+      ? LeftSideBox
+      : viewType === "right"
+      ? RightSideBox
+      : BoxIcon;
+
+  const handlers = {
+    default: setDefaultView,
+    left: setLeftCameraView,
+    right: setRightCameraView,
   };
 
-  /**
-   * Event handler for setting the left side camera view.
-   *
-   * @function
-   * @name leftSideViewHandler
-   *@returns {void}
-   */
-  const leftSideViewHandler = (): void => {
-    dispatch(setLeftCameraView());
-  };
+  const innerHtml = Object.entries(handlers).map(([type, handler]) => {
+    /**
+     *
+     */
+    const onClickHandler = (): void => {
+      dispatch(handler());
+    };
 
-  /**
-   * Event handler for setting the right side camera view.
-   *
-   * @function
-   * @name rightSideViewHandler
-   *@returns {void}
-   */
-  const rightSideViewHandler = (): void => {
-    dispatch(setRightCameraView());
-  };
+    return (
+      <MenuIcon
+        key={type}
+        Icon={
+          type === "default"
+            ? BoxIcon
+            : type === "left"
+            ? LeftSideBox
+            : type === "right"
+            ? RightSideBox
+            : BoxIcon
+        }
+        onClick={onClickHandler}
+        disabled={droneType !== "idle"}
+      />
+    );
+  });
 
   return (
     <div className="inline-flex group">
-      <MenuIcon Icon={BoxIcon} />
-      <MenuDropdown>
-        <MenuIcon
-          Icon={BoxIcon}
-          onClick={defaultViewHandler}
-          disabled={disable}
-        />
-        <MenuIcon
-          Icon={LeftSideBox}
-          onClick={leftSideViewHandler}
-          disabled={disable}
-        />
-        <MenuIcon
-          Icon={RightSideBox}
-          onClick={rightSideViewHandler}
-          disabled={disable}
-        />
-      </MenuDropdown>
+      <MenuIcon Icon={Icon} active />
+      <MenuDropdown>{innerHtml}</MenuDropdown>
     </div>
   );
 }

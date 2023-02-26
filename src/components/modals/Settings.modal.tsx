@@ -1,10 +1,13 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { selectShowSettingsStatus, closeSettingsModal } from "../../features/settingsSlice";
+import {
+  selectSettingsModalState,
+  showSettingsModal,
+} from "../../features/modalsSlice";
 
 import Modal from "../Modal";
 import Slider from "../settings/Slider.component";
-import OptionsBox from "../settings/OptionsBox.component";
 import AnimateHeight from "../AnimateHeight.component";
+import OptionsBox from "../settings/OptionsBox.component";
 
 /**
  * Settings component that displays different settings options in a modal.
@@ -12,15 +15,15 @@ import AnimateHeight from "../AnimateHeight.component";
  * @returns {JSX.Element} ReactElement
  */
 export default function SettingsModal(): JSX.Element {
-  const show = useAppSelector(selectShowSettingsStatus);
   const dispatch = useAppDispatch();
+  const show = useAppSelector(selectSettingsModalState);
 
   /**
    * @function
    * handles to close modal
    */
   const closeModalHandler = (): void => {
-    dispatch(closeSettingsModal());
+    dispatch(showSettingsModal(false));
   };
 
   return (

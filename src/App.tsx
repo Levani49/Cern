@@ -1,12 +1,10 @@
-import { useEffect } from "react";
-
 // Components
 import Navigation from "./components/navigation/Navigation.component";
 import FlyOverlay from "./components/FlyGraph.component";
 
 // Three
-import Scene from "./three/init";
-import preLoadAllModel from "./utils/preloadModels";
+import Scene from "./three";
+import Stats from "./components/Stats.component";
 
 /**
  * Entry point of the app
@@ -14,10 +12,6 @@ import preLoadAllModel from "./utils/preloadModels";
  * @returns {JSX.Element} JSX Element.
  */
 function App(): JSX.Element {
-  useEffect(() => {
-    preLoadAllModel();
-  }, []);
-
   return (
     <>
       <div className="flex">
@@ -26,6 +20,7 @@ function App(): JSX.Element {
       <div className="absolute z-10 w-full h-full top-0 left-0">
         <Scene />
         <FlyOverlay />
+        <Stats />
       </div>
     </>
   );

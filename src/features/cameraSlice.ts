@@ -3,23 +3,28 @@ import { WritableDraft } from "immer/dist/internal";
 import { Camera } from "@react-three/fiber";
 
 import { startDroneMode, stopDroneMode } from "../utils/handleDrone.utils";
-import ee from "../utils/EventsEmitter.utils";
+import ee from "../utils/eventsEmitter.utils";
 
 import type { DroneTypes, RootState } from "../app/app.types";
+
+type ViewModes = "default" | "left" | "right";
+
 interface ICameraSettings {
   position: [number, number, number];
   currentState: DroneTypes;
   droneType: DroneTypes;
   camera: Camera | null;
   showFlyModal: boolean;
+  viewMode: ViewModes;
 }
 
 const initialState: ICameraSettings = {
-  position: [3, 3, 3],
+  position: [6, 3, 3],
   currentState: "idle",
   droneType: "idle",
   camera: null,
   showFlyModal: false,
+  viewMode: "default",
 };
 
 /**
@@ -40,6 +45,7 @@ export const cameraSlice = createSlice({
      */
     setLeftCameraView: (state) => {
       state.position = [0, 0, 5];
+      state.viewMode = "left";
     },
     /**
      *
@@ -47,6 +53,7 @@ export const cameraSlice = createSlice({
      */
     setRightCameraView: (state) => {
       state.position = [5, 0.5, 0];
+      state.viewMode = "right";
     },
     /**
      *
@@ -54,6 +61,7 @@ export const cameraSlice = createSlice({
      */
     setDefaultView: (state) => {
       state.position = [5, 3, -4];
+      state.viewMode = "default";
     },
     /**
      *
@@ -130,3 +138,10 @@ export const selectDroneState = (state: RootState): DroneTypes =>
  */
 export const selectFlyModalState = (state: RootState): boolean =>
   state.camera.showFlyModal;
+
+/**
+ *
+ * @param state
+ */
+export const selectCameraViewMode = (state: RootState): ViewModes =>
+  state.camera.viewMode;

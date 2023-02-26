@@ -35,7 +35,14 @@ body {
 
 .info-graph {
   position: absolute;
-  top: 20%;
+  top: 18%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-center {
+  position: absolute;
+  top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -52,7 +59,7 @@ body {
   }
 
   .modal {
-    @apply fixed min-w-[256px] rounded-md top-0 right-0 transform -translate-x-1/2 -translate-y-1/2 bg-dark flex;
+    @apply modal-center min-w-[256px]  bg-dark flex;
   }
 
   .focus {

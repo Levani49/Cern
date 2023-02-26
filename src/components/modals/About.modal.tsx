@@ -1,5 +1,8 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { selectInfoSettingsStatus, closeInfoModal } from "../../features/infoSlice";
+import {
+  selectAboutModalState,
+  showAboutModal,
+} from "../../features/modalsSlice";
 
 import Modal from "../Modal";
 import Slot from "../info/Slot.component";
@@ -14,16 +17,16 @@ import type { Employee } from "../../app/app.types";
  * @name InfoModal
  * @returns {JSX.Element} - A JSX element representing the InfoModal component.
  */
-export default function InfoModal(): JSX.Element {
-  const show = useAppSelector(selectInfoSettingsStatus);
+export default function AboutModal(): JSX.Element {
   const dispatch = useAppDispatch();
+  const show = useAppSelector(selectAboutModalState);
 
   /**
    * @function
    * handles to close modal
    */
   const closeModalHandler = (): void => {
-    dispatch(closeInfoModal());
+    dispatch(showAboutModal(false));
   };
 
   return (

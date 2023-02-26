@@ -69,6 +69,14 @@ export default function DroneMenu(): JSX.Element {
     { Icon: FilmIcon, mode: "z0" },
   ];
 
+  const innerHtml = menuItems.map((item: MenuItem) => (
+    <MenuIcon
+      key={item.mode}
+      Icon={item.Icon}
+      onClick={(): void => handleModeChange(item.mode)}
+    />
+  ));
+
   return (
     <div className="inline-flex group">
       <Button onClick={(): void => handleModeChange("idle")}>
@@ -77,15 +85,7 @@ export default function DroneMenu(): JSX.Element {
           Icon={DroneIcon}
         />
       </Button>
-      <MenuDropdown>
-        {menuItems.map((item: MenuItem) => (
-          <MenuIcon
-            key={item.mode}
-            Icon={item.Icon}
-            onClick={(): void => handleModeChange(item.mode)}
-          />
-        ))}
-      </MenuDropdown>
+      <MenuDropdown>{innerHtml}</MenuDropdown>
     </div>
   );
 }
