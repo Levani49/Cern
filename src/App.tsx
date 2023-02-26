@@ -13,7 +13,7 @@ import Stats from "./components/Stats.component";
  */
 function App(): JSX.Element {
   return (
-    <>
+    <div id="fullscreen">
       <div className="flex">
         <Navigation />
       </div>
@@ -22,7 +22,7 @@ function App(): JSX.Element {
         <FlyOverlay />
         <Stats />
       </div>
-    </>
+    </div>
   );
 }
 

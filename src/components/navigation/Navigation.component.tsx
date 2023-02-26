@@ -1,5 +1,3 @@
-import { ArrowsPointingOutIcon } from "@heroicons/react/24/outline";
-
 import { ReactComponent as MenuLogo } from "../../assets/svg/menu.svg";
 import { ReactComponent as EventsIcon } from "../../assets/svg/events.svg";
 import { ReactComponent as WireframeIcon } from "../../assets/svg/wireframe.svg";
@@ -14,6 +12,7 @@ import AboutMenu from "./AboutMenu.component";
 import StatsMenu from "./StatsMenu.component";
 import AxisMenu from "./AxisMenu.component";
 import GridMenu from "./GridMenu.component";
+import FullScreenMenu from "./FullScreenMenu.component";
 
 /**
  * Renders a Navigation component that displays the app's navigation menu.
@@ -42,7 +41,7 @@ export default function Navigation(): JSX.Element {
         <AxisMenu />
         <GridMenu />
         <SettingsMenu />
-        <MenuIcon Icon={ArrowsPointingOutIcon} title="Enter in fullscreen" />
+        <FullScreenMenu />
         <AboutMenu />
       </nav>
     </div>
