@@ -72,7 +72,7 @@ export default function CameraViewMenu(): JSX.Element {
 
   return (
     <div className="inline-flex group">
-      <MenuIcon Icon={Icon} active />
+      <MenuIcon Icon={Icon} active title="Camera views" />
       <MenuDropdown>{innerHtml}</MenuDropdown>
     </div>
   );

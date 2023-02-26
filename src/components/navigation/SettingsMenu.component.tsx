@@ -30,7 +30,11 @@ export default function SettingsMenu(): JSX.Element {
 
   return (
     <>
-      <MenuIcon Icon={Cog8ToothIcon} onClick={toggleModal} />
+      <MenuIcon
+        Icon={Cog8ToothIcon}
+        onClick={toggleModal}
+        title="Settings Menu"
+      />
       <SettingsModal />
     </>
   );

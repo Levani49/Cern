@@ -22,5 +22,12 @@ export default function AxisMenu(): JSX.Element {
     show ? dispatch(showAxis(false)) : dispatch(showAxis(true));
   };
 
-  return <MenuIcon Icon={AxisIcon} active={show} onClick={toggler} />;
+  return (
+    <MenuIcon
+      Icon={AxisIcon}
+      active={show}
+      onClick={toggler}
+      title="Toggle Axis"
+    />
+  );
 }

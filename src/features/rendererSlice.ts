@@ -6,6 +6,7 @@ interface RendererInfo {
   show: boolean;
   showStats: boolean;
   showAxis: boolean;
+  showGrid: boolean;
   renderer: {
     triangles: number;
     fps: number;
@@ -19,6 +20,7 @@ const initialState: RendererInfo = {
   show: false,
   showStats: true,
   showAxis: true,
+  showGrid: true,
   renderer: {
     triangles: 0,
     fps: 0,
@@ -52,6 +54,14 @@ export const infoSlice = createSlice({
     showAxis: (state, action: PayloadAction<boolean>) => {
       state.showAxis = action.payload;
     },
+    /**
+     *
+     * @param state
+     * @param action
+     */
+    showGrid: (state, action: PayloadAction<boolean>) => {
+      state.showGrid = action.payload;
+    },
 
     /**
      *
@@ -68,7 +78,7 @@ export const infoSlice = createSlice({
 });
 
 export default infoSlice.reducer;
-export const { setRendererStats, showRendererStats, showAxis } =
+export const { setRendererStats, showRendererStats, showAxis, showGrid } =
   infoSlice.actions;
 
 /**
@@ -98,3 +108,10 @@ export const selectRendererStatsState = (state: RootState): boolean =>
  */
 export const selectRendererAxisState = (state: RootState): boolean =>
   state.info.showAxis;
+
+/**
+ *
+ * @param state
+ */
+export const selectRendererGridState = (state: RootState): boolean =>
+  state.info.showGrid;

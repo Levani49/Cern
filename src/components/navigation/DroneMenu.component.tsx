@@ -25,6 +25,7 @@ import type { SVGIcon, DroneTypes } from "../../app/app.types";
 interface MenuItem {
   Icon: SVGIcon;
   mode: DroneTypes;
+  title: string;
 }
 
 /**
@@ -61,25 +62,29 @@ export default function DroneMenu(): JSX.Element {
   };
 
   const menuItems: MenuItem[] = [
-    { Icon: CircleIcon, mode: "circle" },
-    { Icon: HelixIcon, mode: "helix" },
-    { Icon: RocketIcon, mode: "rocket" },
-    { Icon: DollyZoomIcon, mode: "zoom" },
-    { Icon: FlyIcon, mode: "fly" },
-    { Icon: FilmIcon, mode: "z0" },
+    { Icon: CircleIcon, mode: "circle", title: "Circle mode" },
+    { Icon: HelixIcon, mode: "helix", title: "Helix mode" },
+    { Icon: RocketIcon, mode: "rocket", title: "Rocket mode" },
+    { Icon: DollyZoomIcon, mode: "zoom", title: "Zoom mode" },
+    { Icon: FlyIcon, mode: "fly", title: "Fly mode" },
+    { Icon: FilmIcon, mode: "z0", title: "Cinema mode" },
   ];
 
   const innerHtml = menuItems.map((item: MenuItem) => (
     <MenuIcon
       key={item.mode}
       Icon={item.Icon}
+      title={item.title}
       onClick={(): void => handleModeChange(item.mode)}
     />
   ));
 
   return (
     <div className="inline-flex group">
-      <Button onClick={(): void => handleModeChange("idle")}>
+      <Button
+        onClick={(): void => handleModeChange("idle")}
+        title="Drone modes"
+      >
         <SvgIcon
           className={`${isActive ? "text-red-500 animate-pulse" : ""}`}
           Icon={DroneIcon}

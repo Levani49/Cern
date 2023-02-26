@@ -27,6 +27,7 @@ export default function StatsMenu(): JSX.Element {
       Icon={ChartBarIcon}
       active={showRendererStatsMenu}
       onClick={toggleRendererStatsMenu}
+      title="Toggles visibility of stats."
     />
   );
 }

@@ -1,4 +1,6 @@
 import { Grid } from "@react-three/drei";
+import { useAppSelector } from "../app/hooks";
+import { selectRendererGridState } from "../features/rendererSlice";
 
 /**
  * Renders a custom grid.
@@ -6,6 +8,12 @@ import { Grid } from "@react-three/drei";
  * @returns {JSX.Element} JSX.Element
  */
 export default function CustomGrid(): JSX.Element {
+  const show = useAppSelector(selectRendererGridState);
+
+  if (!show) {
+    return <></>;
+  }
+
   return (
     <Grid
       renderOrder={-1}

@@ -13,6 +13,7 @@ import SettingsMenu from "./SettingsMenu.component";
 import AboutMenu from "./AboutMenu.component";
 import StatsMenu from "./StatsMenu.component";
 import AxisMenu from "./AxisMenu.component";
+import GridMenu from "./GridMenu.component";
 
 /**
  * Renders a Navigation component that displays the app's navigation menu.
@@ -30,17 +31,18 @@ export default function Navigation(): JSX.Element {
             <span className="text-blue">t</span>core
           </h1>
         </div>
-        <MenuIcon Icon={MenuLogo} />
-        <MenuIcon Icon={EventsIcon} />
+        <MenuIcon Icon={MenuLogo} title="toggles geometry menu" />
+        <MenuIcon Icon={EventsIcon} title="Events menu" />
         <DroneMenu />
         <CameraViewMenu />
         <GeometryCutsMenu />
         <OpacirtyMenu />
-        <MenuIcon Icon={WireframeIcon} />
+        <MenuIcon Icon={WireframeIcon} title="Toggles wireframe of geometry" />
         <StatsMenu />
         <AxisMenu />
+        <GridMenu />
         <SettingsMenu />
-        <MenuIcon Icon={ArrowsPointingOutIcon} />
+        <MenuIcon Icon={ArrowsPointingOutIcon} title="Enter in fullscreen" />
         <AboutMenu />
       </nav>
     </div>

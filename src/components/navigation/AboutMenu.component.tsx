@@ -33,7 +33,7 @@ export default function AboutMenu(): JSX.Element {
 
   return (
     <>
-      <MenuIcon Icon={InfoIcon} onClick={toggleModal} />
+      <MenuIcon Icon={InfoIcon} onClick={toggleModal} title="About" />
       <AboutModal />
     </>
   );
