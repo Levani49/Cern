@@ -39,7 +39,9 @@ export default function FlyOverlay(): JSX.Element {
             Press
             <span className="font-bold text-yellow-500"> W | A | S | D </span>
             to move, use your mouse to rotate
-            <span className="font-bold text-yellow-500"> CAMERA</span>
+            <span className="font-bold text-yellow-500"> CAMERA </span>, Press{" "}
+            <span className="font-bold text-yellow-500"> ESC </span> to exit
+            from mode.
           </h1>
         )}
         {showFlyModal && (
