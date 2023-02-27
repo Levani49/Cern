@@ -10,7 +10,7 @@ import {
  */
 export default function FileActions(): JSX.Element {
   return (
-    <div className="w-full flex justify-around items-center">
+    <div className="w-full flex justify-between px-2 items-center">
       <ArrowUpTrayIcon className="icon" />
       <div className="flex gap-2 items-center">
         <ChevronLeftIcon className="icon" />
