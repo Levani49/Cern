@@ -50,7 +50,7 @@ export default function StatsDispatcher(): JSX.Element {
           memory: statsRef.current.memory,
         }),
       );
-    }, 2000);
+    }, 3000);
 
     return () => clearInterval(intervalId);
   }, [dispatch, scene]);
