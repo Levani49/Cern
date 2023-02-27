@@ -1,4 +1,4 @@
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 
 import { useAppDispatch } from "../app/hooks";
@@ -8,10 +8,15 @@ import StatsUtils from "../utils/stats.utils";
 const stats = new StatsUtils();
 
 /**
+ * Component that dispatches stats about the scene to the rendererSlice store.
+ * Computes the total number of triangles in the scene and dispatches it along with
+ * the current FPS and memory usage to the store at a set interval.
  *
+ * @returns {JSX.Element} A JSX element containing the component.
  */
 export default function StatsDispatcher(): JSX.Element {
   const dispatch = useAppDispatch();
+  const { scene } = useThree();
   const statsRef = useRef<{ triangles: number; fps: number; memory: number }>({
     triangles: 0,
     fps: 0,
@@ -20,6 +25,24 @@ export default function StatsDispatcher(): JSX.Element {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
+      let triangleCount = 0;
+      scene.traverse((object) => {
+        if (object.type === "Mesh") {
+          const mesh = object as THREE.Mesh;
+          const geometry = mesh.geometry as THREE.BufferGeometry;
+          const index = geometry.getIndex();
+
+          if (index !== null) {
+            const numTriangles = index.array.length / 3;
+            triangleCount += numTriangles;
+          }
+        }
+      });
+
+      statsRef.current.triangles = triangleCount;
+      statsRef.current.fps = stats.fps;
+      statsRef.current.memory = stats.memory;
+
       dispatch(
         setRendererStats({
           triangles: statsRef.current.triangles,
@@ -27,16 +50,13 @@ export default function StatsDispatcher(): JSX.Element {
           memory: statsRef.current.memory,
         }),
       );
-    }, 1000);
+    }, 2000);
 
     return () => clearInterval(intervalId);
-  }, [dispatch]);
+  }, [dispatch, scene]);
 
-  useFrame(({ gl }) => {
+  useFrame(() => {
     stats.update();
-    statsRef.current.triangles = gl.info.render.triangles;
-    statsRef.current.fps = stats.fps;
-    statsRef.current.memory = stats.memory;
   });
 
   return <></>;

@@ -5,7 +5,7 @@ import cameraReducer from "../features/cameraSlice";
 import modalsreducer from "../features/modalsSlice";
 
 const rootReducer = combineReducers({
-  info: infoReducer,
+  renderer: infoReducer,
   camera: cameraReducer,
   modals: modalsreducer,
 });

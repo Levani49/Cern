@@ -86,32 +86,32 @@ export const { setRendererStats, showRendererStats, showAxis, showGrid } =
  * @param state
  */
 export const selectInfoSettingsStatus = (state: RootState): boolean =>
-  state.info.show;
+  state.renderer.show;
 
 /**
  *
  * @param state
  */
 export const selectRendererStats = (state: RootState): RendererType =>
-  state.info.renderer;
+  state.renderer.renderer;
 
 /**
  *
  * @param state
  */
 export const selectRendererStatsState = (state: RootState): boolean =>
-  state.info.showStats;
+  state.renderer.showStats;
 
 /**
  *
  * @param state
  */
 export const selectRendererAxisState = (state: RootState): boolean =>
-  state.info.showAxis;
+  state.renderer.showAxis;
 
 /**
  *
  * @param state
  */
 export const selectRendererGridState = (state: RootState): boolean =>
-  state.info.showGrid;
+  state.renderer.showGrid;

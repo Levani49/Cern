@@ -30,13 +30,13 @@ export default function Navigation(): JSX.Element {
             <span className="text-blue">t</span>core
           </h1>
         </div>
-        <MenuIcon Icon={MenuLogo} title="toggles geometry menu" />
+        <MenuIcon Icon={MenuLogo} title="Geometry menu" />
         <MenuIcon Icon={EventsIcon} title="Events menu" />
         <DroneMenu />
         <CameraViewMenu />
         <GeometryCutsMenu />
         <OpacirtyMenu />
-        <MenuIcon Icon={WireframeIcon} title="Toggles wireframe of geometry" />
+        <MenuIcon Icon={WireframeIcon} title="Wireframe of geometry" />
         <StatsMenu />
         <AxisMenu />
         <GridMenu />

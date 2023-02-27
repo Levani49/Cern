@@ -14,10 +14,7 @@ export default function OpacirtyMenu(): JSX.Element {
 
   return (
     <div className="inline-flex group">
-      <MenuIcon
-        Icon={WaterDropIcon}
-        title="Controls transparency of geometries"
-      />
+      <MenuIcon Icon={WaterDropIcon} title="Transparency of geometries" />
       <MenuDropdown className="ml-[-50px] mt-8">
         <div className="w-auto flex justify-center items-center h-6 p-1">
           <input
