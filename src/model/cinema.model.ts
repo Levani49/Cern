@@ -8,8 +8,12 @@ import { emptyFn } from "../utils/emptyFn.utils";
  * A class for controlling the camera movement in a cinema-style animation.
  */
 export default class Cinema {
-  settings = {
-    road: new CatmullRomCurve3([new Vector3(22, 16, 14), new Vector3(12, 3, 28), new Vector3(0, 0, 22)]).getPoints(700),
+  public configuration = {
+    road: new CatmullRomCurve3([
+      new Vector3(22, 16, 14),
+      new Vector3(12, 3, 28),
+      new Vector3(0, 0, 22),
+    ]).getPoints(700),
   };
 
   /**
@@ -19,7 +23,7 @@ export default class Cinema {
    * @param {eFn} cb - A callback function to be called when the animation is complete.
    */
   start(camera: Camera, cb: eFn = emptyFn): void {
-    const { road } = this.settings;
+    const { road } = this.configuration;
 
     let shouldRotationStart = false;
     let cameraIsOnZ0 = false;

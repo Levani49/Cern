@@ -7,7 +7,7 @@ import { emptyFn } from "../utils/emptyFn.utils";
  * Rocket class for animating a rocket launch.
  */
 export default class Rocket {
-  public settings = {
+  public configuration = {
     startingPoint: {
       x: 3,
       y: 3,
@@ -27,7 +27,7 @@ export default class Rocket {
    * @param camera - The camera used in the animation.
    */
   prepare(camera: Camera): void {
-    const { maxHeight, startingPoint, maxIteration } = this.settings;
+    const { maxHeight, startingPoint, maxIteration } = this.configuration;
     const { x, y, z } = startingPoint;
 
     this.yAxisIterator = (maxHeight - y) / maxIteration;
@@ -57,7 +57,7 @@ export default class Rocket {
       this.animationRef = requestAnimationFrame(s);
       const { x, y, z } = camera.position;
 
-      if (y + this.yAxisIterator > this.settings.maxHeight) {
+      if (y + this.yAxisIterator > this.configuration.maxHeight) {
         this.stop();
         cb();
       }

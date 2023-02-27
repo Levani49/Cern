@@ -13,7 +13,7 @@ export default class Zoom {
    * @property {number} xAxisIterator - The amount to move the camera towards the origin in the X direction each step.
    * @property {number} fullStep - The total number of steps for the animation.
    */
-  settings = {
+  public configuration = {
     fovIterator: -0.09,
     xAxisIterator: -0.005,
     fullStep: 450,
@@ -28,7 +28,7 @@ export default class Zoom {
   start(camera: PerspectiveCamera, cb: eFn = emptyFn): void {
     camera.position.set(5, 1, 0);
 
-    const { xAxisIterator, fovIterator, fullStep } = this.settings;
+    const { xAxisIterator, fovIterator, fullStep } = this.configuration;
     let i = 0;
 
     /**

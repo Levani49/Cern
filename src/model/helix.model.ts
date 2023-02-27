@@ -17,7 +17,7 @@ export default class Helix {
    * - `speed`: The speed at which the camera moves along the helix.
    * - `fullCircle`: The number of iterations of the animation loop before it stops.
    */
-  public settings = {
+  public configuration = {
     radius: 6.6,
     angleStep: 0.05,
     heightStep: 0.05,
@@ -40,7 +40,8 @@ export default class Helix {
    * @param cb - An optional callback function to execute when the animation is complete.
    */
   start(camera: Camera, cb: eFn = emptyFn): void {
-    const { angleStep, radius, heightStep, initialHeight, speed, fullCircle } = this.settings;
+    const { angleStep, radius, heightStep, initialHeight, speed, fullCircle } =
+      this.configuration;
     let i = 0;
 
     /**
