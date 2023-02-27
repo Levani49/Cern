@@ -22,19 +22,27 @@ interface Props {
  * @param {React.ReactNode} props.children - The content to display inside the modal.
  * @returns {JSX.Element} A React component for the modal dialog.
  */
-export default function Modal({ show, title, onCloseHandler, children }: Props): JSX.Element {
+export default function Modal({
+  show,
+  title,
+  onCloseHandler,
+  children,
+}: Props): JSX.Element {
   const nodeRef = useRef<HTMLDivElement | null>(null);
 
   if (!show) return <></>;
 
   return createPortal(
     <Draggable nodeRef={nodeRef} bounds="parent" handle=".handle">
-      <div ref={nodeRef} className="modal text-white z-50">
+      <div ref={nodeRef} className="modal text-white z-50 rounded">
         <div className="w-full">
           {/* do not remove class 'handle' since it's used by draggable element, which means that drag events will only trigger on elements which will have <<handle>> class */}
           <div className="handle shadow-md p-2 flex justify-between items-center cursor-move">
             <h4 className="uppercase font-medium text-base pl-2">{title}</h4>
-            <XMarkIcon className="h-8 w-8 cursor-pointer pr-2 z-[2000]" onPointerDown={onCloseHandler} />
+            <XMarkIcon
+              className="h-8 w-8 cursor-pointer pr-2 z-[2000]"
+              onPointerDown={onCloseHandler}
+            />
           </div>
           <div className="modal-body p-2">{children}</div>
         </div>

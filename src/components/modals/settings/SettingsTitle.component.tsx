@@ -15,11 +15,23 @@ interface Props {
  * @param {Function} props.onClose - A function to call when the user clicks the title bar to close the section.
  * @returns {JSX.Element} A React component for the settings title bar.
  */
-export default function SettingsTitle({ show, title, onClose }: Props): JSX.Element {
+export default function SettingsTitle({
+  show,
+  title,
+  onClose,
+}: Props): JSX.Element {
   return (
-    <div onClick={onClose} role="presentation" className="flex cursor-pointer justify-between items-center p-1">
+    <div
+      onClick={onClose}
+      role="presentation"
+      className="flex cursor-pointer justify-between items-center p-1"
+    >
       <span className="select-none">{title}</span>
-      {show ? <MinusIcon className="w-5 h-5 cursor-pointer" /> : <PlusIcon className="w-5 h-5 cursor-pointer" />}
+      {show ? (
+        <MinusIcon className="w-5 h-5 cursor-pointer" />
+      ) : (
+        <PlusIcon className="w-5 h-5 cursor-pointer" />
+      )}
     </div>
   );
 }

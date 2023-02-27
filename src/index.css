@@ -55,11 +55,11 @@ body {
 
 @layer components {
   .icon {
-    @apply w-[22px] h-[22px] text-light hover:text-blue;
+    @apply w-[22px] h-[22px] text-light hover:text-blue cursor-pointer;
   }
 
   .modal {
-    @apply modal-center min-w-[256px]  bg-dark flex;
+    @apply modal-center min-w-[256px] bg-dark flex;
   }
 
   .focus {

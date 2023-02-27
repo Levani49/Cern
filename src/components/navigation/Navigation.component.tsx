@@ -1,5 +1,4 @@
 import { ReactComponent as MenuLogo } from "../../assets/svg/menu.svg";
-import { ReactComponent as EventsIcon } from "../../assets/svg/events.svg";
 import { ReactComponent as WireframeIcon } from "../../assets/svg/wireframe.svg";
 
 import MenuIcon from "./MenuIcon.component";
@@ -13,6 +12,7 @@ import StatsMenu from "./StatsMenu.component";
 import AxisMenu from "./AxisMenu.component";
 import GridMenu from "./GridMenu.component";
 import FullScreenMenu from "./FullScreenMenu.component";
+import EventsMenu from "./EventsMenu.component";
 
 /**
  * Renders a Navigation component that displays the app's navigation menu.
@@ -31,7 +31,7 @@ export default function Navigation(): JSX.Element {
           </h1>
         </div>
         <MenuIcon Icon={MenuLogo} title="Geometry menu" />
-        <MenuIcon Icon={EventsIcon} title="Events menu" />
+        <EventsMenu />
         <DroneMenu />
         <CameraViewMenu />
         <GeometryCutsMenu />

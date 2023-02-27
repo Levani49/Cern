@@ -5,7 +5,7 @@ import {
 } from "../../features/modalsSlice";
 
 import Modal from "../Modal";
-import Slot from "../info/Slot.component";
+import Slot from "./about/Slot.component";
 
 import { TEMP_INFO } from "../../TEMP_STATIC_DATA";
 import type { Employee } from "../../app/app.types";

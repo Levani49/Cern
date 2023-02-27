@@ -5,9 +5,9 @@ import {
 } from "../../features/modalsSlice";
 
 import Modal from "../Modal";
-import Slider from "../settings/Slider.component";
+import Slider from "./settings/Slider.component";
 import AnimateHeight from "../AnimateHeight.component";
-import OptionsBox from "../settings/OptionsBox.component";
+import OptionsBox from "./settings/OptionsBox.component";
 
 /**
  * Settings component that displays different settings options in a modal.
