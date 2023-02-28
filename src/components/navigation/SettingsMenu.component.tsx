@@ -1,7 +1,7 @@
 import { Cog8ToothIcon } from "@heroicons/react/24/outline";
 
 import MenuIcon from "./MenuIcon.component";
-import SettingsModal from "../modals/Settings.modal";
+import SettingsModal from "../modals/settings/Settings.modal";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {

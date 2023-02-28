@@ -1,14 +1,14 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
   selectAboutModalState,
   showAboutModal,
-} from "../../features/modalsSlice";
+} from "../../../features/modalsSlice";
 
 import Modal from "../Modal";
-import Slot from "./about/Slot.component";
+import Slot from "./Slot.component";
 
-import { TEMP_INFO } from "../../TEMP_STATIC_DATA";
-import type { Employee } from "../../app/app.types";
+import { TEMP_INFO } from "../../../TEMP_STATIC_DATA";
+import type { Employee } from "../../../app/app.types";
 
 /**
  * Renders an InfoModal component that displays information about employees in a modal window.

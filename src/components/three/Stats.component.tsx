@@ -1,8 +1,8 @@
-import { useAppSelector } from "../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 import {
   selectRendererStats,
   selectRendererStatsState,
-} from "../features/rendererSlice";
+} from "../../features/rendererSlice";
 
 /**
  *

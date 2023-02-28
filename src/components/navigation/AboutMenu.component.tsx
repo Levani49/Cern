@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { ReactComponent as InfoIcon } from "../../assets/svg/info.svg";
 
 import MenuIcon from "./MenuIcon.component";
-import AboutModal from "../modals/About.modal";
+import AboutModal from "../modals/about/About.modal";
 
 /**
  * Renders an InfoMenu component that displays an icon for opening a modal with more information.

@@ -6,7 +6,7 @@ import {
 } from "../../features/modalsSlice";
 
 import MenuIcon from "./MenuIcon.component";
-import EventsModal from "../modals/Events.modal";
+import EventsModal from "../modals/events/Events.modal";
 
 /**
  *

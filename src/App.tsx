@@ -1,10 +1,10 @@
 // Components
 import Navigation from "./components/navigation/Navigation.component";
-import FlyOverlay from "./components/FlyGraph.component";
+import FlyOverlay from "./components/three/FlyGraph.component";
 
 // Three
 import Scene from "./three";
-import Stats from "./components/Stats.component";
+import Stats from "./components/three/Stats.component";
 
 /**
  * Entry point of the app

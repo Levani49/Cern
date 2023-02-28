@@ -47,6 +47,16 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.last-event-line {
+  border-image: linear-gradient(
+    to bottom,
+    rgb(223 230 233) 0%,
+    rgb(223 230 233) 53%,
+    rgba(108, 219, 141, 0) 53%
+  );
+  border-image-slice: 1;
+}
+
 @layer base {
   html {
     font-family: "Poppins", sans-serif;
@@ -59,7 +69,7 @@ body {
   }
 
   .modal {
-    @apply modal-center min-w-[256px] bg-dark flex;
+    @apply modal-center min-w-[256px] max-h-[450px] overflow-y-auto bg-dark flex;
   }
 
   .focus {
