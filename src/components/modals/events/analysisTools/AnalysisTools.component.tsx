@@ -1,18 +1,44 @@
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+import {
+  CurrentAnalysisTool,
+  selectCurrentEventAnalysisTool,
+  setEventCurrentAnalysisTool,
+} from "../../../../features/modalsSlice";
+import AnalysisTool from "./AnalysisTool.component";
+
 /**
  *
  */
 export default function AnalysisTools(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const currentTool = useAppSelector(selectCurrentEventAnalysisTool);
+
+  /**
+   *
+   * @param tool
+   */
+  const handleClick = (tool: CurrentAnalysisTool): void => {
+    dispatch(setEventCurrentAnalysisTool(tool));
+  };
+
+  const tools = {
+    filter: "Filter",
+    algorithm: "Algorithms",
+    info: "Info",
+  };
+
+  const innerHtml = Object.entries(tools).map(([tool, title]) => (
+    <AnalysisTool
+      key={tool}
+      title={title}
+      active={currentTool === tool}
+      onClick={(): void => handleClick(tool as CurrentAnalysisTool)}
+    />
+  ));
+
   return (
-    <div className="flex border-b-[1px] border-white justify-between items-center text-xs">
-      <div className="border border-white py-2 px-4 cursor-pointer uppercase">
-        filter
-      </div>
-      <div className="cursor-pointer py-2 px-4 uppercase border border-transparent transition-all hover:border-white">
-        algorithms
-      </div>
-      <div className="cursor-pointer uppercase py-2 px-4 border border-transparent transition-all hover:border-white">
-        info
-      </div>
+    <div className="flex border-b-[1px] border-transparentLight justify-between items-center text-xs">
+      {innerHtml}
     </div>
   );
 }

@@ -33,7 +33,7 @@ export default function InfoTool({
   time,
 }: Props): JSX.Element {
   return (
-    <div className={`${!show && "hidden"}`}>
+    <div className={`${!show && "hidden"} ml-2`}>
       <div className="flex gap-2 items-center">
         <PlusCircleIcon className="icon" />
         <span className="text-blue text-xs">{eventName}</span>

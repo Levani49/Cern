@@ -37,7 +37,7 @@ export default function Modal({
       <div ref={nodeRef} className="modal text-white z-50 rounded">
         <div className="w-full">
           {/* do not remove class 'handle' since it's used by draggable element, which means that drag events will only trigger on elements which will have <<handle>> class */}
-          <div className="handle shadow-md p-2 flex justify-between items-center cursor-move">
+          <div className="handle shadow-md p-2 flex justify-between items-center cursor-move sticky top-0 bg-transparentLight z-[2000]">
             <h4 className="uppercase font-medium text-base pl-2">{title}</h4>
             <XMarkIcon
               className="h-8 w-8 cursor-pointer pr-2 z-[2000]"

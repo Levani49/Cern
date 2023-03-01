@@ -1,16 +1,28 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../app/app.types";
 
+export type CurrentAnalysisTool = "algorithm" | "filter" | "info";
+
 interface Modals {
   aboutModalIsOpen: boolean;
   settingsModalIsOpen: boolean;
   eventsModalIsOpen: boolean;
+  events: {
+    analysisTools: {
+      currentTool: CurrentAnalysisTool;
+    };
+  };
 }
 
 const initialState: Modals = {
   aboutModalIsOpen: false,
   settingsModalIsOpen: false,
   eventsModalIsOpen: false,
+  events: {
+    analysisTools: {
+      currentTool: "info",
+    },
+  },
 };
 
 // type NewType = WritableDraft<Modals>;
@@ -54,13 +66,29 @@ export const modalsSlice = createSlice({
     showEventsModal: (state, action: PayloadAction<boolean>) => {
       state.eventsModalIsOpen = action.payload;
     },
+
+    /**
+     *
+     * @param state
+     * @param action
+     */
+    setEventCurrentAnalysisTool: (
+      state,
+      action: PayloadAction<CurrentAnalysisTool>,
+    ) => {
+      state.events.analysisTools.currentTool = action.payload;
+    },
   },
 });
 
 export default modalsSlice.reducer;
 
-export const { showSettingsModal, showAboutModal, showEventsModal } =
-  modalsSlice.actions;
+export const {
+  showSettingsModal,
+  showAboutModal,
+  showEventsModal,
+  setEventCurrentAnalysisTool,
+} = modalsSlice.actions;
 
 /**
  * Selects the state of the settings modal from the Redux store.
@@ -88,3 +116,11 @@ export const selectAboutModalState = (state: RootState): boolean =>
  */
 export const selectEventsModalState = (state: RootState): boolean =>
   state.modals.eventsModalIsOpen;
+
+/**
+ *
+ * @param state
+ */
+export const selectCurrentEventAnalysisTool = (
+  state: RootState,
+): CurrentAnalysisTool => state.modals.events.analysisTools.currentTool;

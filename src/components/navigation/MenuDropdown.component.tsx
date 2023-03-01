@@ -14,10 +14,13 @@ interface Props extends React.HTMLAttributes<HTMLElement> {
  * @param {string} props.className - The class name to be applied to the dropdown menu container.
  * @returns {JSX.Element} - A JSX element representing the MenuDropdown component.
  */
-export default function MenuDropdown({ children, className }: Props): JSX.Element {
+export default function MenuDropdown({
+  children,
+  className,
+}: Props): JSX.Element {
   return (
     <div
-      className={`mt-8 hidden group-hover:flex group-active:flex flex-col w-auto h-auto absolute bg-dark border border-gray-600 rounded ${
+      className={`mt-8 hidden group-hover:flex group-active:flex flex-col w-auto h-auto absolute bg-transparentDark border border-gray-600 rounded ${
         className ? className : ""
       }`}
     >

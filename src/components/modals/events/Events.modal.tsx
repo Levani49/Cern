@@ -1,5 +1,8 @@
+import { useMemo } from "react";
+
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
+  selectCurrentEventAnalysisTool,
   selectEventsModalState,
   showEventsModal,
 } from "../../../features/modalsSlice";
@@ -10,6 +13,7 @@ import EventsResultsToggler from "./event-objects/EventsResultsToggler.component
 import FileActions from "./fileActions/FileActions.component";
 import InfoTool from "./analysisTools/info/InfoTool.component";
 import AlgorithmTool from "./analysisTools/algorithm/AlgorithmTool.component";
+import FilterTool from "./analysisTools/filter/FilterTool.component";
 
 /**
  * Renders an InfoModal component that displays information about employees in a modal window.
@@ -20,15 +24,49 @@ import AlgorithmTool from "./analysisTools/algorithm/AlgorithmTool.component";
  */
 export default function EventsModal(): JSX.Element {
   const dispatch = useAppDispatch();
+
   const show = useAppSelector(selectEventsModalState);
 
+  const currentAnalysisTool = useAppSelector(selectCurrentEventAnalysisTool);
+
+  const memoizedAnalysisTool = useMemo(() => {
+    return currentAnalysisTool;
+  }, [currentAnalysisTool]);
+
   /**
-   * @function
-   * handles to close modal
+   *
    */
   const closeModalHandler = (): void => {
     dispatch(showEventsModal(false));
   };
+
+  /**
+   *
+   */
+  const renderCurrentTool = (): JSX.Element => {
+    switch (memoizedAnalysisTool) {
+      case "info":
+        return (
+          <InfoTool
+            show={true}
+            eventName="Event E 05/50"
+            num="1659078"
+            lumiBlocks="65"
+            runNumber="206497"
+            date="2012-07-06"
+            time="03:38:35"
+          />
+        );
+      case "algorithm":
+        return <AlgorithmTool />;
+      case "filter":
+        return <FilterTool />;
+      default:
+        return <></>;
+    }
+  };
+
+  const currentTool = renderCurrentTool();
 
   return (
     <Modal title="Events" show={show} onCloseHandler={closeModalHandler}>
@@ -37,18 +75,7 @@ export default function EventsModal(): JSX.Element {
         <EventsResultsToggler />
         <AnalysisTools />
       </div>
-      <div className="p-2">
-        <InfoTool
-          show={false}
-          eventName="Event E 05/50"
-          num="1659078"
-          lumiBlocks="65"
-          runNumber="206497"
-          date="2012-07-06"
-          time="03:38:35"
-        />
-        <AlgorithmTool />
-      </div>
+      {currentTool}
     </Modal>
   );
 }
