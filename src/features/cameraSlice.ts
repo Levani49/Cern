@@ -19,7 +19,7 @@ interface ICameraSettings {
 }
 
 const initialState: ICameraSettings = {
-  position: [6, 3, 3],
+  position: [3, 3, 3],
   currentState: "idle",
   droneType: "idle",
   camera: null,
@@ -60,7 +60,7 @@ export const cameraSlice = createSlice({
      * @param state
      */
     setDefaultView: (state) => {
-      state.position = [5, 3, -4];
+      state.position = [3, 3, 4];
       state.viewMode = "default";
     },
     /**
