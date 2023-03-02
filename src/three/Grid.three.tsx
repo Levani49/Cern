@@ -1,5 +1,7 @@
 import { Grid } from "@react-three/drei";
+
 import { useAppSelector } from "../app/hooks";
+import { selectDarkModeState } from "../features/globalsSlice";
 import { selectRendererGridState } from "../features/rendererSlice";
 
 /**
@@ -8,9 +10,14 @@ import { selectRendererGridState } from "../features/rendererSlice";
  * @returns {JSX.Element} JSX.Element
  */
 export default function CustomGrid(): JSX.Element {
-  const show = useAppSelector(selectRendererGridState);
+  const { show, prefersDarkMode } = useAppSelector((state) => ({
+    show: selectRendererGridState(state),
+    prefersDarkMode: selectDarkModeState(state),
+  }));
 
   if (!show) {
+    return <></>;
+  } else if (prefersDarkMode) {
     return <></>;
   }
 

@@ -3,8 +3,10 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import infoReducer from "../features/rendererSlice";
 import cameraReducer from "../features/cameraSlice";
 import modalsreducer from "../features/modalsSlice";
+import globalsReducer from "../features/globalsSlice";
 
 const rootReducer = combineReducers({
+  globals: globalsReducer,
   renderer: infoReducer,
   camera: cameraReducer,
   modals: modalsreducer,
