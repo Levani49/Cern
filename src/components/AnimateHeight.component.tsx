@@ -40,7 +40,7 @@ export default function AnimateHeight({ children, title }: Props): JSX.Element {
         aria-expanded={isOpen}
         className="flex justify-between text-left items-center w-full space-x-4"
       >
-        <div className="text-md font-semibold ml-1">{title}</div>
+        <span className="text-sm  ml-1">{title}</span>
         <AnimatePresence initial={false} mode="wait">
           <motion.div
             key={isOpen ? "minus" : "plus"}
