@@ -5,6 +5,7 @@ Command: npx gltfjsx@6.1.4 /Users/nzurashv/Desktop/work/tracercentral/resources/
 
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
+import applyDefaultsToModel from "../utils/applyDefaultsToModel.utils";
 import { modelsUrl } from "../utils/preloadModels";
 
 type GLTFResult = GLTF & {
@@ -25,6 +26,9 @@ type GLTFResult = GLTF & {
  */
 export function LarEmecSideCCut3(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(`${modelsUrl}/lar-emec-sidec-cut3.glb`) as GLTFResult;
+
+  applyDefaultsToModel(materials);
+
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Mesh_1003.geometry} material={materials["Material_1.002"]} />

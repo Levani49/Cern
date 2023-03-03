@@ -14,6 +14,34 @@ body {
   overflow-y: hidden !important;
   max-height: 100vh;
   height: 100vh;
+  background: black;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--primary);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(23, 23, 23);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(67, 67, 67);
+  border-radius: 16px;
+  /* border: 3px solid var(--primary); */
+}
+
+.modalstyles {
+  background: rgba(8, 8, 8, 0.24);
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
 }
 
 .select-wrapper {
@@ -33,6 +61,30 @@ body {
   flex: 0 0 auto;
 }
 
+.info-graph {
+  position: absolute;
+  top: 13.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-center {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  transform: translate(-50%, -50%);
+}
+
+.last-event-line {
+  border-image: linear-gradient(
+    to bottom,
+    rgb(223 230 233) 0%,
+    rgb(223 230 233) 53%,
+    rgba(108, 219, 141, 0) 53%
+  );
+  border-image-slice: 1;
+}
+
 @layer base {
   html {
     font-family: "Poppins", sans-serif;
@@ -41,11 +93,11 @@ body {
 
 @layer components {
   .icon {
-    @apply w-[22px] h-[22px] text-light hover:text-blue;
+    @apply w-[22px] h-[22px] text-light hover:text-blue cursor-pointer;
   }
 
   .modal {
-    @apply fixed min-w-[256px] rounded-md top-0 right-0 transform -translate-x-1/2 -translate-y-1/2 bg-dark flex;
+    @apply modal-center min-w-[256px] max-h-[450px] overflow-y-auto modalstyles flex;
   }
 
   .focus {

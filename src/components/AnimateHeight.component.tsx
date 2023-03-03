@@ -21,18 +21,26 @@ export default function AnimateHeight({ children, title }: Props): JSX.Element {
   const [isOpen, setIsOpen] = useState(true);
 
   /**
+   * opens Modal
    *
+   * @returns { void } void
    */
   const openModal = (): void => setIsOpen(true);
+
   /**
+   * closes Modal
    *
+   * @returns { void } void
    */
   const closeModal = (): void => setIsOpen(false);
 
   return (
-    <div className="flex flex-col w-full rounded-lg">
-      <button aria-expanded={isOpen} className="flex justify-between text-left items-center w-full space-x-4">
-        <div className="text-md font-semibold ml-1">{title}</div>
+    <div className="flex flex-col rounded-lg">
+      <button
+        aria-expanded={isOpen}
+        className="flex justify-between text-left items-center w-full space-x-4"
+      >
+        <span className="text-sm  ml-1">{title}</span>
         <AnimatePresence initial={false} mode="wait">
           <motion.div
             key={isOpen ? "minus" : "plus"}
@@ -57,9 +65,9 @@ export default function AnimateHeight({ children, title }: Props): JSX.Element {
             }}
           >
             {isOpen ? (
-              <MinusIcon onClick={closeModal} className="w-5 h-5 cursor-pointer" />
+              <MinusIcon onClick={closeModal} className="w-5 cursor-pointer" />
             ) : (
-              <PlusIcon onClick={openModal} className="w-5 h-5 cursor-pointer" />
+              <PlusIcon onClick={openModal} className="w-5 cursor-pointer" />
             )}
           </motion.div>
         </AnimatePresence>

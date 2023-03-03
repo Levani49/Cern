@@ -33,7 +33,9 @@ import { TowerTurretSideCCut3 } from "../../models/Tower-Turret-SideC-cut3.model
 import { EndCapToroidSideCCut3 } from "../../models/End-Cap-Toroid-SideC-cut3.model";
 
 /**
+ * Inner Detector
  *
+ * @returns { JSX.Element } JSX.Element
  */
 export function InnerDetector(): JSX.Element {
   return (
@@ -50,7 +52,9 @@ export function InnerDetector(): JSX.Element {
 }
 
 /**
+ * Services
  *
+ * @returns { JSX.Element } JSX.Element
  */
 function Services(): JSX.Element {
   return (
@@ -81,7 +85,9 @@ function Services(): JSX.Element {
 }
 
 /**
+ * Magnest Systems
  *
+ * @returns { JSX.Element } JSX.Element
  */
 function MagnetSystems(): JSX.Element {
   return (
@@ -96,7 +102,9 @@ function MagnetSystems(): JSX.Element {
 }
 
 /**
+ * Detector
  *
+ * @returns { JSX.Element } JSX.Element
  */
 export default function Detector(): JSX.Element {
   return (
@@ -107,7 +115,6 @@ export default function Detector(): JSX.Element {
           <Services />
         </>
       )}
-
       <InnerDetector />
     </>
   );

@@ -1,29 +1,40 @@
-import { ReactComponent as RoadIcon } from "../../assets/svg/road.svg";
-
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { openSettingsModal, closeSettingsModal, selectShowSettingsStatus } from "../../features/settingsSlice";
+import { Cog8ToothIcon } from "@heroicons/react/24/outline";
 
 import MenuIcon from "./MenuIcon.component";
-import SettingsModal from "../modals/Settings.modal";
+import SettingsModal from "../modals/settings/Settings.modal";
+
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import {
+  selectSettingsModalState,
+  showSettingsModal,
+} from "../../features/modalsSlice";
 
 /**
  *
  */
 export default function SettingsMenu(): JSX.Element {
   const dispatch = useAppDispatch();
-  const show = useAppSelector(selectShowSettingsStatus);
-
+  const show = useAppSelector(selectSettingsModalState);
   /**
+   * Toggles the visibility of the info modal.
    *
+   * @function
+   * @name toggleModal
+   * @returns {void}
    */
   const toggleModal = (): void => {
-    console.log("ok");
-    show ? dispatch(closeSettingsModal()) : dispatch(openSettingsModal());
+    show
+      ? dispatch(showSettingsModal(false))
+      : dispatch(showSettingsModal(true));
   };
 
   return (
     <>
-      <MenuIcon Icon={RoadIcon} onClick={toggleModal} />
+      <MenuIcon
+        Icon={Cog8ToothIcon}
+        onClick={toggleModal}
+        title="Settings Menu"
+      />
       <SettingsModal />
     </>
   );
