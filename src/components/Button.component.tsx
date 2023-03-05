@@ -15,7 +15,7 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
 export default function Button({ children, ...props }: Props): JSX.Element {
   return (
     <button
-      className="p-1 border-2 border-transparent hover:border-gray-600 rounded transition-all z-50"
+      className="p-1 border-2 border-transparent hover:border-[#dfe6e926] rounded transition-all z-50"
       {...props}
     >
       {children}
