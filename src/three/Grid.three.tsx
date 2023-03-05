@@ -10,14 +10,12 @@ import { selectRendererGridState } from "../features/rendererSlice";
  * @returns {JSX.Element} JSX.Element
  */
 export default function CustomGrid(): JSX.Element {
-  const { show, prefersDarkMode } = useAppSelector((state) => ({
+  const { show } = useAppSelector((state) => ({
     show: selectRendererGridState(state),
     prefersDarkMode: selectDarkModeState(state),
   }));
 
   if (!show) {
-    return <></>;
-  } else if (prefersDarkMode) {
     return <></>;
   }
 
@@ -26,12 +24,13 @@ export default function CustomGrid(): JSX.Element {
       renderOrder={-1}
       position={[0, -1.85, 0]}
       infiniteGrid
-      cellSize={0.6}
+      cellSize={0.7}
       cellThickness={0.6}
-      sectionSize={3.3}
+      sectionSize={3}
       sectionThickness={1.5}
       fadeDistance={50}
       sectionColor="gray"
+      cellColor="#96b09b"
     />
   );
 }

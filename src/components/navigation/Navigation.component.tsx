@@ -25,7 +25,7 @@ import GridMenu from "./GridMenu.component";
 export default function Navigation(): JSX.Element {
   return (
     <div className="flex flex-auto justify-center items-center fixed top-0 w-full select-none z-50 ">
-      <nav className="flex items-center gap-2 w-auto overflow-x-auto rounded-sm bg-transparentDark dark:bg-dark py-2 pl-4 pr-4">
+      <nav className="flex items-center gap-2 w-auto overflow-x-auto rounded-sm bg-transparentDark dark:bg-gray py-2 pl-4 pr-4">
         <div className="uppercase font-medium text-light cursor-pointer w-8 h-8 flex justify-center">
           <img
             src="https://tracer-evd-mc.web.cern.ch/css/images/Tracer-Logo2022.png"

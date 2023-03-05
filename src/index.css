@@ -14,7 +14,7 @@ body {
   overflow-y: hidden !important;
   max-height: 100vh;
   height: 100vh;
-  background: black;
+  background: rgb(28, 28, 28);
 }
 
 /* Firefox */
@@ -93,7 +93,7 @@ body {
 
 @layer components {
   .icon {
-    @apply w-[22px] h-[22px] text-light hover:text-blue cursor-pointer;
+    @apply w-[22px] h-[22px] text-light hover:text-blue dark:hover:text-green cursor-pointer;
   }
 
   .modal {
