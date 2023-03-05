@@ -17,6 +17,10 @@ body {
   background: rgb(28, 28, 28);
 }
 
+body::backdrop {
+  background: rgb(28, 28, 28);
+}
+
 /* Firefox */
 * {
   scrollbar-width: thin;
