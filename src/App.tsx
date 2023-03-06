@@ -6,6 +6,7 @@ import FlyOverlay from "./components/three/FlyGraph.component";
 import Scene from "./three";
 import Stats from "./components/three/Stats.component";
 import Tree from "./components/tree/Tree.component";
+import Logo from "./components/logo/Logo.component";
 
 /**
  * Entry point of the app
@@ -25,6 +26,7 @@ function App(): JSX.Element {
         <Scene />
         <FlyOverlay />
         <Stats />
+        <Logo />
       </div>
     </>
   );
