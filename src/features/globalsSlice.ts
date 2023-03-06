@@ -6,7 +6,7 @@ interface GlobalsSlice {
 }
 
 const initialState: GlobalsSlice = {
-  prefersDarkMode: false,
+  prefersDarkMode: true,
 };
 
 const globalsSlice = createSlice({
