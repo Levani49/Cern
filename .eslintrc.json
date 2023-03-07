@@ -90,7 +90,10 @@
                             "castShadow",
                             "position",
                             "intensity",
-                            "attach"
+                            "attach",
+                            "visible",
+                            "args",
+                            "toneMapped"
                         ]
                     }
                 ]
