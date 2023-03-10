@@ -45,8 +45,8 @@ export default function Scene(): JSX.Element {
           <ParticleSystem />
         </Physics>
         <Axis />
-        <StatsDispatcher />
         <Effects />
+        <StatsDispatcher />
       </Canvas>
       <Loader />
     </>
