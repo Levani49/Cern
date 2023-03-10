@@ -18,13 +18,17 @@ export default function Axis(): JSX.Element {
   if (!show) return <></>;
 
   return (
-    <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
-      <GizmoViewport
-        axisColors={["#ff6b53", "#21df80", "#5f6af1"]}
-        disabled={disable}
-        labelColor="white"
-        axisHeadScale={0.8}
-      />
-    </GizmoHelper>
+    <>
+      {show && (
+        <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
+          <GizmoViewport
+            axisColors={["#ff6b53", "#21df80", "#5f6af1"]}
+            disabled={disable}
+            labelColor="white"
+            axisHeadScale={0.8}
+          />
+        </GizmoHelper>
+      )}
+    </>
   );
 }

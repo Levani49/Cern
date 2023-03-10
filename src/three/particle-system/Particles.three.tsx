@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { MathUtils, Object3D } from "three";
 import { useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
@@ -21,14 +21,8 @@ export default function Particles({ onFinish }: Props): JSX.Element {
   const electronRefs = useRef<Array<Object3D | null>>([]);
   const iterationRef = useRef(1);
 
-  useEffect(() => {
-    console.log("Mounted");
-
-    return () => console.log("UnMounted");
-  }, []);
-
   const electronArray = useMemo(() => {
-    return new Array(600).fill(0, 0).map((_, index) => {
+    return new Array(500).fill(0, 0).map((_, index) => {
       const theta = MathUtils.randFloatSpread(360);
       const phi = MathUtils.randFloatSpread(360);
       const distance = 0.001;
