@@ -16,7 +16,7 @@ const stats = new StatsUtils();
  */
 export default function StatsDispatcher(): JSX.Element {
   const dispatch = useAppDispatch();
-  const { scene, gl } = useThree();
+  const { scene } = useThree();
   const statsRef = useRef<{ triangles: number; fps: number; memory: number }>({
     triangles: 0,
     fps: 0,
@@ -26,7 +26,6 @@ export default function StatsDispatcher(): JSX.Element {
   useEffect(() => {
     const intervalId = setInterval(() => {
       let triangleCount = 0;
-      console.log(gl.info.render.calls);
       scene.traverse((object) => {
         if (object.type === "Mesh") {
           const mesh = object as THREE.Mesh;

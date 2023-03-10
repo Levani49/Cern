@@ -17,28 +17,30 @@ export default function Collision({ cb }: Props): JSX.Element {
   const [show, setShow] = useState(true);
   const electron1Ref = useRef<Group>(null);
   const electron2Ref = useRef<Group>(null);
-  let speed = 0.15;
+  let speed = 0.345;
 
   useFrame(() => {
-    if (electron1Ref.current && show) {
+    if (electron1Ref.current && electron2Ref.current && show) {
       if (electron1Ref.current.position.z < 0.001) {
         setShow(false);
         cb();
         speed = 0;
       }
       electron1Ref.current.position.z -= speed;
-    }
-    if (electron2Ref.current) {
       electron2Ref.current.position.z += speed;
     }
   });
 
-  if (!show) return <></>;
-
-  return (
+  const innerHtml = show ? (
     <>
       <Electron position={[0, 0, 25.38]} ref={electron1Ref} />
       <Electron position={[0, 0, -25.38]} ref={electron2Ref} />
     </>
+  ) : (
+    <></>
   );
+
+  if (!show) return <></>;
+
+  return innerHtml;
 }

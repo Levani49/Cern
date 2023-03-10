@@ -1,18 +1,25 @@
-import { useMemo, useRef, useState } from "react";
-import { MathUtils, Object3D, Vector3 } from "three";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { MathUtils, Object3D } from "three";
 import { useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 
 import Electron from "./Electron.three";
 import Collision from "./Collision.three";
 
-const center = new Vector3(0, 0, 0);
 /**
  *
  */
 export default function Particles(): JSX.Element {
+  const [show, setShow] = useState(true);
   const [explode, setExplode] = useState(false);
   const electronRefs = useRef<Array<Object3D | null>>([]);
+  const iterationRef = useRef(1);
+
+  useEffect(() => {
+    console.log("Mounted", show);
+
+    return () => console.log({ a: "UnMounted", show });
+  });
 
   const electronArray = useMemo(() => {
     return new Array(600).fill(0, 0).map((_, index) => {
@@ -41,20 +48,28 @@ export default function Particles(): JSX.Element {
     if (explode) {
       electronRefs.current.forEach((electron) => {
         if (electron) {
-          const relativePosition = electron.position.clone().sub(center);
+          const relativePosition = electron.position.clone();
           const direction = relativePosition.normalize();
           electron.position.addScaledVector(direction, 0.25);
+          iterationRef.current += 1;
         }
       });
+
+      // NUMBER OF ITERATION
+      if (iterationRef.current > 80000) {
+        setShow(false);
+      }
     }
   });
 
   return (
     <>
-      <Float speed={0} rotationIntensity={0} floatIntensity={0}>
-        <Collision cb={(): void => setExplode(true)} />
-        <group visible={explode ? true : false}>{electronArray}</group>
-      </Float>
+      {show && (
+        <Float speed={0} rotationIntensity={0} floatIntensity={0}>
+          <Collision cb={(): void => setExplode(true)} />
+          <group visible={explode ? true : false}>{electronArray}</group>
+        </Float>
+      )}
     </>
   );
 }
