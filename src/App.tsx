@@ -1,5 +1,5 @@
 // Components
-import Navigation from "./components/navigation/Navigation.component";
+import Navigation from "./components/navigation/Index";
 import FlyOverlay from "./components/three/FlyGraph.component";
 
 // Three
@@ -7,6 +7,7 @@ import Scene from "./three";
 import Stats from "./components/three/Stats.component";
 import Tree from "./components/tree/Tree.component";
 import Logo from "./components/logo/Logo.component";
+import Test from "./components/test.component";
 
 /**
  * Entry point of the app
@@ -26,6 +27,7 @@ function App(): JSX.Element {
         <Scene />
         <FlyOverlay />
         <Stats />
+        <Test />
         <Logo />
       </div>
     </>

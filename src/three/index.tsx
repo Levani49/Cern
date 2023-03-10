@@ -13,8 +13,9 @@ import Detector from "./detector-parts/Detector.three";
 import StatsDispatcher from "./Stats.three";
 import Axis from "./Axis.three";
 
-import Particles from "./particle-system/Particles.three";
+// import Particles from "./particle-system/Particles.three";
 import Effects from "./particle-system/Effects.three";
+import ParticleSystem from "./particle-system/index.three";
 
 /**
  * Main scene of application
@@ -41,7 +42,7 @@ export default function Scene(): JSX.Element {
           <CustomGrid />
           <Controls />
           <EnvironmentThree />
-          <Particles />
+          <ParticleSystem />
         </Physics>
         <Axis />
         <StatsDispatcher />
