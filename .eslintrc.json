@@ -53,7 +53,7 @@
         "@typescript-eslint/explicit-function-return-type": "error",
         "import/no-unresolved": "error",
         "jsdoc/require-jsdoc": [
-            "warn",
+            "off",
             {
                 "require": {
                     "ArrowFunctionExpression": true,

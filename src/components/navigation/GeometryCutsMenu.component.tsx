@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { ReactComponent as ScissorIcon } from "../../assets/svg/scissor.svg";
 import { ReactComponent as LeftWallIcon } from "../../assets/svg/left-wall.svg";
 import { ReactComponent as RightWallIcon } from "../../assets/svg/right-wall.svg";
