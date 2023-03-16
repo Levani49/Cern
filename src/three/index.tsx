@@ -5,14 +5,14 @@ import { Physics } from "@react-three/cannon";
 
 import Lights from "./Light.three";
 import Controls from "./Controls.three";
-import Detector from "./detector-parts/Detector.three";
+import Fog from "./Fog.three";
+import Axis from "./Axis.three";
+import CustomGrid from "./Grid.three";
+import Environment from "./Environment.three";
+import StatsDispatcher from "./Stats.three";
+import ParticleSystem from "./particle-system/index.three";
 
-const Fog = lazy(() => import("./Fog.three"));
-const Axis = lazy(() => import("./Axis.three"));
-const CustomGrid = lazy(() => import("./Grid.three"));
-const Environment = lazy(() => import("./Environment.three"));
-const StatsDispatcher = lazy(() => import("./Stats.three"));
-const ParticleSystem = lazy(() => import("./particle-system/index.three"));
+const Detector = lazy(() => import("./detector-parts/Detector.three"));
 
 /**
  * Main scene of application
@@ -32,17 +32,15 @@ export default function Scene(): JSX.Element {
       >
         <Physics gravity={[0, 0, 0]}>
           <Lights />
-          <Suspense fallback={null}>
+          <Suspense>
             <Detector />
           </Suspense>
-          <Suspense>
-            <Fog />
-            <CustomGrid />
-            <Environment />
-            <ParticleSystem />
-            <Axis />
-            <StatsDispatcher />
-          </Suspense>
+          <Fog />
+          <CustomGrid />
+          <Environment />
+          <ParticleSystem />
+          <Axis />
+          <StatsDispatcher />
           <Controls />
         </Physics>
       </Canvas>
