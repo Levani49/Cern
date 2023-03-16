@@ -3,13 +3,11 @@ import { lazy, Suspense } from "react";
 import Navigation from "./components/navigation/Index";
 import PreloadImage from "./components/PreloadImage.component";
 import Scene from "./three";
+import FlyOverlay from "./components/three/FlyGraph.component";
+import Stats from "./components/three/Stats.component";
+import Logo from "./components/logo/Logo.component";
 
-const FlyOverlay = lazy(() => import("./components/three/FlyGraph.component"));
-const Stats = lazy(() => import("./components/three/Stats.component"));
 const Tree = lazy(() => import("./components/tree/Tree.component"));
-const Logo = lazy(() => import("./components/logo/Logo.component"));
-const Test = lazy(() => import("./components/test.component"));
-
 /**
  * Entry point of the app
  *
@@ -29,12 +27,9 @@ function App(): JSX.Element {
           </Suspense>
         </div>
         <Scene />
-        <Suspense>
-          <FlyOverlay />
-          <Stats />
-          <Test />
-          <Logo />
-        </Suspense>
+        <FlyOverlay />
+        <Stats />
+        <Logo />
       </div>
     </>
   );
