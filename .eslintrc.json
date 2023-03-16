@@ -93,7 +93,8 @@
                             "attach",
                             "visible",
                             "args",
-                            "toneMapped"
+                            "toneMapped",
+                            "object"
                         ]
                     }
                 ]

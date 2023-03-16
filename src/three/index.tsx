@@ -12,7 +12,7 @@ import Environment from "./Environment.three";
 import StatsDispatcher from "./Stats.three";
 import ParticleSystem from "./particle-system/index.three";
 
-const Detector = lazy(() => import("./detector-parts/Detector.three"));
+const Detector = lazy(() => import("./Detector.three"));
 
 /**
  * Main scene of application
