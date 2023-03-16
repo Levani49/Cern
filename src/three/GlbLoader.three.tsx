@@ -10,9 +10,13 @@ dracoLoader.setDecoderPath("/draco/");
 dracoLoader.setDecoderConfig({ type: "js" });
 
 export default function GlbLoader({ src }: { src: string }): JSX.Element {
-  const gltf = useLoader(GLTFLoader, `${url}/${src}.glb`, (loader) => {
-    loader.setDRACOLoader(dracoLoader);
-  });
+  const gltf = useLoader(
+    GLTFLoader,
+    `${url}/${src}.glb`,
+    (loader: GLTFLoader): void => {
+      loader.setDRACOLoader(dracoLoader);
+    },
+  );
 
   gltf.scene.traverse((child) => {
     if (child instanceof Mesh) {
