@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 
 import Navigation from "./components/navigation/Index";
+import PreloadImage from "./components/PreloadImage.component";
 import Scene from "./three";
 
 const FlyOverlay = lazy(() => import("./components/three/FlyGraph.component"));
@@ -17,6 +18,7 @@ const Test = lazy(() => import("./components/test.component"));
 function App(): JSX.Element {
   return (
     <>
+      <PreloadImage src="https://tracer-evd-mc.web.cern.ch/css/images/Tracer-Logo2022.png" />
       <div className="flex">
         <Navigation />
       </div>
