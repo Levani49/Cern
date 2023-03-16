@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+@import url("./fonts.css");
 
 @tailwind base;
 @tailwind components;
@@ -15,6 +15,7 @@ body {
   max-height: 100vh;
   height: 100vh;
   background: rgb(28, 28, 28);
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 body::backdrop {

@@ -5,9 +5,6 @@ module.exports = {
   theme: {
     extend: {
       variants: {},
-      fontFamily: {
-        custom: ["Poppins", "sans-serif"],
-      },
       colors: {
         dark: "#212529",
         light: "#dfe6e9",

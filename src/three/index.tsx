@@ -4,15 +4,15 @@ import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/cannon";
 
 import Lights from "./Light.three";
-import Controls from "./Controls.three";
 import Fog from "./Fog.three";
-import Axis from "./Axis.three";
-import CustomGrid from "./Grid.three";
-import Environment from "./Environment.three";
 import StatsDispatcher from "./Stats.three";
-import ParticleSystem from "./particle-system/index.three";
 
 const Detector = lazy(() => import("./Detector.three"));
+const Environment = lazy(() => import("./Environment.three"));
+const ParticleSystem = lazy(() => import("./particle-system/index.three"));
+const Controls = lazy(() => import("./Controls.three"));
+const Axis = lazy(() => import("./Axis.three"));
+const Grid = lazy(() => import("./Grid.three"));
 
 /**
  * Main scene of application
@@ -36,12 +36,14 @@ export default function Scene(): JSX.Element {
             <Detector />
           </Suspense>
           <Fog />
-          <CustomGrid />
-          <Environment />
-          <ParticleSystem />
-          <Axis />
+          <Suspense>
+            <Grid />
+            <Environment />
+            <ParticleSystem />
+            <Controls />
+            <Axis />
+          </Suspense>
           <StatsDispatcher />
-          <Controls />
         </Physics>
       </Canvas>
     </>

@@ -17,7 +17,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          main: ["./src/index.css"],
+          main: ["./src/styles/index.css"],
         },
       },
     },

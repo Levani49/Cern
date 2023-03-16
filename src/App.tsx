@@ -2,12 +2,13 @@ import { lazy, Suspense } from "react";
 
 import Navigation from "./components/navigation/Index";
 import PreloadImage from "./components/PreloadImage.component";
-import Scene from "./three";
 import FlyOverlay from "./components/three/FlyGraph.component";
 import Stats from "./components/three/Stats.component";
-import Logo from "./components/logo/Logo.component";
 
 const Tree = lazy(() => import("./components/tree/Tree.component"));
+const Scene = lazy(() => import("./three"));
+const Logo = lazy(() => import("./components/logo/Logo.component"));
+
 /**
  * Entry point of the app
  *
@@ -26,10 +27,12 @@ function App(): JSX.Element {
             <Tree />
           </Suspense>
         </div>
-        <Scene />
         <FlyOverlay />
         <Stats />
-        <Logo />
+        <Suspense>
+          <Scene />
+          <Logo />
+        </Suspense>
       </div>
     </>
   );
