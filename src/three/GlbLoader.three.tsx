@@ -6,7 +6,7 @@ import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 const url = import.meta.env.VITE_MODELS_PROVIDER;
 
 const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath("./draco/");
+dracoLoader.setDecoderPath("/draco/");
 dracoLoader.setDecoderConfig({ type: "js" });
 
 export default function GlbLoader({ src }: { src: string }): JSX.Element {
