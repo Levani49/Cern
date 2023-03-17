@@ -1,9 +1,9 @@
-import { GeometryTree } from "../../features/geometryMenuSlice/geometryTree";
+import { TreeNode } from "../../features/geometryMenuSlice/geometryTree";
 import ChildNode from "./ChildNode.component";
 import ParentNode from "./ParentNode.component";
 
 interface Props {
-  tree: GeometryTree;
+  tree: TreeNode[];
 }
 
 /**
@@ -13,31 +13,18 @@ interface Props {
  * @param root0.state
  */
 export default function RecursiveTree({ tree }: Props): JSX.Element {
-  const elements = Object.keys(tree).map((key: string): JSX.Element => {
-    const node = tree[key];
-
+  const elements = tree.map((node: TreeNode): JSX.Element => {
+    const { id, name, state } = node;
     if (!node.children) {
-      return (
-        <ChildNode
-          key={`${node.name}-${node.id}`}
-          uid={node.id}
-          name={node.name}
-          modelState={node.state}
-        />
-      );
+      return <ChildNode key={id} uid={id} name={name} modelState={state} />;
     } else {
       return (
-        <ParentNode
-          key={`${node.name}-${node.id}`}
-          uid={node.id}
-          name={node.name}
-          modelState={node.state}
-        >
-          <RecursiveTree tree={node.children as unknown as GeometryTree} />
+        <ParentNode key={id} uid={id} name={name} modelState={state}>
+          <RecursiveTree tree={node.children} />
         </ParentNode>
       );
     }
   });
 
-  return <ul>{elements}</ul>;
+  return <ul className="select-none">{elements}</ul>;
 }

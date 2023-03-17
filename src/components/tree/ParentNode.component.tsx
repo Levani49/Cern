@@ -45,7 +45,7 @@ export default function ParentNode({
   let innerState: string;
 
   if (modelState === "isLoaded") {
-    innerState = "text-red-500";
+    innerState = "text-green";
   } else if (modelState === "partialyLoaded") {
     innerState = "text-yellow-500";
   } else {

@@ -27,6 +27,8 @@ export default function ChildNode({
 }: Props): JSX.Element {
   const dispatch = useAppDispatch();
 
+  // console.log(modelState);
+
   const onClickHandler = (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>,
   ): void => {
@@ -46,7 +48,7 @@ export default function ChildNode({
   let innerState: string;
 
   if (modelState === "isLoaded") {
-    innerState = "text-red-500";
+    innerState = "text-green";
   } else {
     innerState = "text-white";
   }

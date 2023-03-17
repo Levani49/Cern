@@ -1,37 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/app.types";
 
-import {
-  Node,
-  GeometryState,
-  GeometryTree,
-  GEOMETRY_MENU_TREE,
-} from "./geometryTree";
+import { TreeNode, GeometryState, GEOMETRY_MENU_TREE } from "./geometryTree";
 
 interface GeometryTreeSlice {
   show: boolean;
-  tree: GeometryTree;
+  tree: TreeNode[];
 }
 
 const initialState: GeometryTreeSlice = {
   show: true,
   tree: GEOMETRY_MENU_TREE,
 };
-
-// const findNodeById = (node: Node, nodeId: string): Node | undefined => {
-//   if (node.id === nodeId) {
-//     return node;
-//   }
-//   if (node.children) {
-//     for (const childNode of node.children) {
-//       const foundNode = findNodeById(childNode, nodeId);
-//       if (foundNode) {
-//         return foundNode;
-//       }
-//     }
-//   }
-//   return undefined;
-// };
 
 export const geometrySlice = createSlice({
   name: "tree",
@@ -41,13 +21,14 @@ export const geometrySlice = createSlice({
       state,
       action: PayloadAction<{
         nodeId: string;
-        propToChange: keyof Node;
+        propToChange: string;
         modelState: GeometryState;
       }>,
     ) => {
       const { nodeId, propToChange, modelState } = action.payload;
+      console.log(nodeId, propToChange, modelState);
 
-      const updateDescendandNodes = (node: Node): Node => {
+      const updateDescendandNodes = (node: TreeNode): TreeNode => {
         if (node.children) {
           return {
             ...node,
@@ -62,7 +43,7 @@ export const geometrySlice = createSlice({
         }
       };
 
-      const updateNode = (node: Node): Node => {
+      const updateNode = (node: TreeNode): TreeNode => {
         if (node.id === nodeId) {
           // Found the node with the matching ID, update its descendants
           const updatedNode = {
@@ -85,10 +66,9 @@ export const geometrySlice = createSlice({
         }
       };
 
-      const updatedTree: GeometryTree = {};
-      Object.entries(state.tree).forEach(([key, node]) => {
-        updatedTree[key] = updateNode(node);
-      });
+      const updatedTree = state.tree.map(
+        (node: TreeNode): TreeNode => updateNode(node),
+      );
 
       state.tree = updatedTree;
     },
@@ -101,13 +81,15 @@ export const geometrySlice = createSlice({
       }>,
     ) => {
       const { nodeId, propToChange, modelState } = action.payload;
-      const updateNode = (node: Node): Node => {
+
+      const updateNode = (node: TreeNode): TreeNode => {
         if (node.children) {
           return {
             ...node,
             children: node.children.map(updateNode),
           };
         }
+
         if (node.id === nodeId) {
           return {
             ...node,
@@ -116,10 +98,10 @@ export const geometrySlice = createSlice({
         }
         return node;
       };
-      const updatedTree: GeometryTree = {};
-      Object.entries(state.tree).forEach(([key, node]) => {
-        updatedTree[key] = updateNode(node);
-      });
+
+      const updatedTree = state.tree.map(
+        (node: TreeNode): TreeNode => updateNode(node),
+      );
 
       state.tree = updatedTree;
     },
@@ -135,5 +117,5 @@ export const { updateChildNodeState, updateParentNodeState } =
  *
  * @param state
  */
-export const selectGeometryTree = (state: RootState): GeometryTree =>
+export const selectGeometryTree = (state: RootState): TreeNode[] =>
   state.tree.tree;

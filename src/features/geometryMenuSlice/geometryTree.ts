@@ -1,71 +1,69 @@
 export type GeometryState = "notLoaded" | "partialyLoaded" | "isLoaded";
 
-export interface Node {
+export interface TreeNode {
   id: string;
   name: string;
   state: GeometryState;
   modelPath?: string;
-  children?: Node[];
+  children?: TreeNode[];
 }
 
-export interface GeometryTree {
-  [key: string]: Node;
+function generateId(): string {
+  return Math.floor(Math.random() * 1000000).toString();
 }
 
-export type NodeKeys = keyof Node;
-
-export const GEOMETRY_MENU_TREE: GeometryTree = {
-  atlas_detector: {
-    id: "1",
+export const GEOMETRY_MENU_TREE: TreeNode[] = [
+  {
+    id: generateId(),
     name: "atlas detector",
     state: "partialyLoaded",
     children: [
       {
-        id: "2",
+        id: generateId(),
         name: "main components",
         state: "partialyLoaded",
         children: [
           {
-            id: "3",
+            id: generateId(),
             name: "magnet_systems",
             state: "notLoaded",
             children: [],
           },
           {
-            id: "4",
+            id: generateId(),
             name: "inner_detector",
             state: "isLoaded",
             children: [
               {
-                id: "5",
+                id: generateId(),
                 name: "pixel",
                 state: "isLoaded",
                 modelPath: "abc1",
               },
               {
-                id: "6",
+                id: generateId(),
                 name: "sct",
                 state: "isLoaded",
                 children: [
                   {
-                    id: "7",
+                    id: generateId(),
                     name: "barrel",
                     state: "isLoaded",
                     modelPath: "abc2",
                   },
                   {
-                    id: "8",
+                    id: generateId(),
                     name: "endcap",
                     state: "isLoaded",
                     children: [
                       {
-                        id: "9",
+                        id: generateId(),
                         name: "side a",
                         state: "isLoaded",
                         modelPath: "abc2",
                       },
                       {
-                        id: "10",
+                        id: generateId(),
                         name: "side c",
                         state: "isLoaded",
                         modelPath: "abc2",
@@ -79,18 +77,18 @@ export const GEOMETRY_MENU_TREE: GeometryTree = {
         ],
       },
       {
-        id: "11",
+        id: generateId(),
         name: "support structure",
         state: "notLoaded",
         children: [],
       },
       {
-        id: "12",
+        id: generateId(),
         name: "cavern",
         state: "notLoaded",
         children: [
           {
-            id: "13",
+            id: generateId(),
             name: "ux15",
             state: "notLoaded",
             modelPath: "abc3",
@@ -99,4 +97,4 @@ export const GEOMETRY_MENU_TREE: GeometryTree = {
       },
     ],
   },
-};
+];
