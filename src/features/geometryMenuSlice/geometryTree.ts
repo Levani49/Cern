@@ -239,8 +239,8 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
       {
         id: generateId(),
         name: "cavern",
-        state: "notLoaded",
-        showChildren: false,
+        state: "isLoaded",
+        showChildren: true,
         children: [
           {
             id: generateId(),
