@@ -17,36 +17,21 @@ export default function RecursiveTree({ tree }: Props): JSX.Element {
     const node = tree[key];
 
     if (!node.children) {
-      const onClickHandler = (
-        e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-      ): void => {
-        e.stopPropagation();
-        console.log(node.name);
-      };
       return (
         <ChildNode
           key={`${node.name}-${node.id}`}
           uid={node.id}
           name={node.name}
-          state={node.state}
-          onClick={onClickHandler}
+          modelState={node.state}
         />
       );
     } else {
-      const onClickHandler = (
-        e: React.MouseEvent<HTMLUListElement, MouseEvent>,
-      ): void => {
-        e.stopPropagation();
-        console.log(node.name);
-      };
-
       return (
         <ParentNode
           key={`${node.name}-${node.id}`}
           uid={node.id}
           name={node.name}
-          parentIsActive={node.state}
-          onClick={onClickHandler}
+          modelState={node.state}
         >
           <RecursiveTree tree={node.children as unknown as GeometryTree} />
         </ParentNode>

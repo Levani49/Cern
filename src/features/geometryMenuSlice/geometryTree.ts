@@ -29,6 +29,7 @@ export const GEOMETRY_MENU_TREE: GeometryTree = {
             id: "3",
             name: "magnet_systems",
             state: "notLoaded",
+            children: [],
           },
           {
             id: "4",

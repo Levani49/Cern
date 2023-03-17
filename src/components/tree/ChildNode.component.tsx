@@ -1,12 +1,13 @@
 // import { useAppDispatch } from "../../app/hooks";
 // import { updateState } from "../../features/geometryMenuSlice/geometryMenuSlice";
+import { useAppDispatch } from "../../app/hooks";
+import { updateChildNodeState } from "../../features/geometryMenuSlice/geometryMenuSlice";
 import { GeometryState } from "../../features/geometryMenuSlice/geometryTree";
 
 interface Props {
   uid: string;
   name: string;
-  state: GeometryState;
-  onClick: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
+  modelState: GeometryState;
 }
 
 /**
@@ -17,20 +18,34 @@ interface Props {
  * @param root0.onClick
  * @param root0.uid
  * @param root0.state
+ * @param root0.modelState
  */
-export default function ChildNode({ name, uid, state }: Props): JSX.Element {
-  // const dispatch = useAppDispatch();
+export default function ChildNode({
+  name,
+  uid,
+  modelState,
+}: Props): JSX.Element {
+  const dispatch = useAppDispatch();
 
   const onClickHandler = (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>,
   ): void => {
     e.stopPropagation();
-    console.log(uid);
+    const state: GeometryState =
+      modelState === "isLoaded" ? "notLoaded" : "isLoaded";
+
+    dispatch(
+      updateChildNodeState({
+        nodeId: uid,
+        propToChange: "state",
+        modelState: state,
+      }),
+    );
   };
 
   let innerState: string;
 
-  if (state === "isLoaded") {
+  if (modelState === "isLoaded") {
     innerState = "text-red-500";
   } else {
     innerState = "text-white";
@@ -39,7 +54,7 @@ export default function ChildNode({ name, uid, state }: Props): JSX.Element {
   return (
     <li
       role="presentation"
-      className={`ml-4 ${innerState}`}
+      className={`ml-4 cursor-pointer select-none flex ${innerState}`}
       onClick={onClickHandler}
     >
       {name}

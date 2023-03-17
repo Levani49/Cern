@@ -24,7 +24,7 @@ import GridMenu from "./GridMenu.component";
  */
 export default function Navigation(): JSX.Element {
   return (
-    <div className="flex flex-auto justify-center items-center fixed top-0 w-full select-none z-50 ">
+    <div className="flex flex-auto justify-center items-center fixed top-0 w-full select-none z-50 select-none">
       <nav className="flex items-center gap-2 w-auto overflow-x-auto rounded-sm bg-transparentDark dark:bg-gray py-2 pl-4 pr-4">
         <h1 className="text-light font-medium text-base">
           <span className="text-blue  dark:text-green text-lg">T</span>CORE

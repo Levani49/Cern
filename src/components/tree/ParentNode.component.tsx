@@ -1,10 +1,11 @@
+import { useAppDispatch } from "../../app/hooks";
+import { updateParentNodeState } from "../../features/geometryMenuSlice/geometryMenuSlice";
 import { GeometryState } from "../../features/geometryMenuSlice/geometryTree";
 
 interface Props {
   uid: string;
   name: string;
-  parentIsActive: GeometryState;
-  onClick: (e: React.MouseEvent<HTMLUListElement, MouseEvent>) => void;
+  modelState: GeometryState;
   children: JSX.Element | JSX.Element[];
 }
 
@@ -15,28 +16,51 @@ interface Props {
  * @param root0.parentIsActive
  * @param root0.children
  * @param root0.onClick
+ * @param root0.uid
+ * @param root0.modelState
  */
 export default function ParentNode({
+  uid,
   name,
-  parentIsActive,
-  onClick,
+  modelState,
   children,
 }: Props): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const onClickHandler = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+  ): void => {
+    e.stopPropagation();
+    const state = modelState === "isLoaded" ? "notLoaded" : "isLoaded";
+    console.log({ modelState, uid });
+    dispatch(
+      updateParentNodeState({
+        nodeId: uid,
+        propToChange: "state",
+        modelState: state,
+      }),
+    );
+  };
+
   let innerState: string;
 
-  if (parentIsActive === "isLoaded") {
+  if (modelState === "isLoaded") {
     innerState = "text-red-500";
-  } else if (parentIsActive === "partialyLoaded") {
+  } else if (modelState === "partialyLoaded") {
     innerState = "text-yellow-500";
   } else {
     innerState = "text-white";
   }
 
   return (
-    <ul role="presentation" className={`${innerState} ml-4`} onClick={onClick}>
+    <ul
+      role="presentation"
+      className={`${innerState} ml-4 cursor-pointer`}
+      onClick={onClickHandler}
+    >
       <span>+</span>
       {name}
-      <div className="flex flex-col gap-[1px]">{children}</div>
+      <div className="flex flex-col select-none gap-[1px]">{children}</div>
     </ul>
   );
 }
