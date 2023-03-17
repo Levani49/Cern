@@ -14,12 +14,23 @@ interface Props {
  */
 export default function RecursiveTree({ tree }: Props): JSX.Element {
   const elements = tree.map((node: TreeNode): JSX.Element => {
-    const { id, name, state } = node;
+    const { id, name, state, showChildren } = node;
     if (!node.children) {
       return <ChildNode key={id} uid={id} name={name} modelState={state} />;
     } else {
+      const show = showChildren
+        ? showChildren === true
+          ? true
+          : false
+        : false;
       return (
-        <ParentNode key={id} uid={id} name={name} modelState={state}>
+        <ParentNode
+          key={id}
+          uid={id}
+          name={name}
+          modelState={state}
+          showChildren={show}
+        >
           <RecursiveTree tree={node.children} />
         </ParentNode>
       );

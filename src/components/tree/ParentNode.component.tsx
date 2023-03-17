@@ -6,6 +6,7 @@ interface Props {
   uid: string;
   name: string;
   modelState: GeometryState;
+  showChildren: boolean;
   children: JSX.Element | JSX.Element[];
 }
 
@@ -18,11 +19,13 @@ interface Props {
  * @param root0.onClick
  * @param root0.uid
  * @param root0.modelState
+ * @param root0.showChildren
  */
 export default function ParentNode({
   uid,
   name,
   modelState,
+  showChildren,
   children,
 }: Props): JSX.Element {
   const dispatch = useAppDispatch();
@@ -59,7 +62,13 @@ export default function ParentNode({
     >
       <span>+</span>
       {name}
-      <div className="flex flex-col select-none gap-[1px]">{children}</div>
+      <div
+        className={`flex flex-col select-none gap-[1px] ${
+          !showChildren && "hidden"
+        }`}
+      >
+        {children}
+      </div>
     </ul>
   );
 }
