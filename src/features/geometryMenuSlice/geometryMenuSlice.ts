@@ -13,6 +13,83 @@ const initialState: GeometryTreeSlice = {
   tree: GEOMETRY_MENU_TREE,
 };
 
+// function updateTree(tree: TreeNode[]): TreeNode[] {
+//   return tree.map((node) => {
+//     if (node.children) {
+//       const updatedChildren = updateTree(node.children);
+
+//       const childrenStates = updatedChildren.map((child) => child.state);
+//       const allLoaded = childrenStates.every((state) => state === "isLoaded");
+//       const someLoaded = childrenStates.some((state) => state === "isLoaded");
+
+//       let updatedState = "notLoaded";
+
+//       if (allLoaded) {
+//         updatedState = "isLoaded";
+//       } else if (someLoaded) {
+//         updatedState = "partialyLoaded";
+//       }
+
+//       // The parent node's state is updated based on its direct children only
+//       return { ...node, state: updatedState, children: updatedChildren };
+//     } else {
+//       return node;
+//     }
+//   });
+// }
+function updateNodeAndAncestors(
+  tree: TreeNode[],
+  nodeId: string,
+  modelState: GeometryState,
+): TreeNode[] {
+  const updateNode = (node: TreeNode): TreeNode | null => {
+    if (node.id === nodeId) {
+      return { ...node, state: modelState };
+    }
+
+    if (node.children) {
+      const updatedChildren = node.children
+        .map(updateNode)
+        .filter(Boolean) as TreeNode[];
+
+      if (updatedChildren.length > 0) {
+        const newChildren = node.children.map((child) => {
+          const updatedChild = updatedChildren.find(
+            (updated) => updated.id === child.id,
+          );
+          return updatedChild ? updatedChild : child;
+        });
+
+        const childrenStates = newChildren.map((child) => child.state);
+        const allLoaded = childrenStates.every((state) => state === "isLoaded");
+        const someLoaded = childrenStates.some((state) => state === "isLoaded");
+        const allNotLoaded = childrenStates.every(
+          (state) => state === "notLoaded",
+        );
+        const somePartial = childrenStates.some(
+          (state) => state === "partialyLoaded",
+        );
+
+        let updatedState = node.state;
+
+        if (allLoaded) {
+          updatedState = "isLoaded";
+        } else if (someLoaded || somePartial) {
+          updatedState = "partialyLoaded";
+        } else if (allNotLoaded) {
+          updatedState = "notLoaded";
+        }
+
+        return { ...node, state: updatedState, children: newChildren };
+      }
+    }
+
+    return null;
+  };
+
+  return tree.map((node) => updateNode(node) || node);
+}
+
 export const geometrySlice = createSlice({
   name: "tree",
   initialState,
@@ -26,7 +103,6 @@ export const geometrySlice = createSlice({
       }>,
     ) => {
       const { nodeId, propToChange, modelState } = action.payload;
-      console.log(nodeId, propToChange, modelState);
 
       const updateDescendandNodes = (node: TreeNode): TreeNode => {
         if (node.children) {
@@ -70,7 +146,11 @@ export const geometrySlice = createSlice({
         (node: TreeNode): TreeNode => updateNode(node),
       );
 
-      state.tree = updatedTree;
+      // const app = updateTree(updatedTree);
+      // state.tree = app;
+      // state.tree = app;
+
+      state.tree = updateNodeAndAncestors(updatedTree, nodeId, modelState);
     },
     updateChildNodeState: (
       state,
@@ -103,7 +183,10 @@ export const geometrySlice = createSlice({
         (node: TreeNode): TreeNode => updateNode(node),
       );
 
-      state.tree = updatedTree;
+      // const app = updateTree(updatedTree);
+      // state.tree = updatedTree;
+      // state.tree = app;
+      state.tree = updateNodeAndAncestors(updatedTree, nodeId, modelState);
     },
   },
 });

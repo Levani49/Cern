@@ -32,7 +32,6 @@ export default function ParentNode({
   ): void => {
     e.stopPropagation();
     const state = modelState === "isLoaded" ? "notLoaded" : "isLoaded";
-    console.log({ modelState, uid });
     dispatch(
       updateParentNodeState({
         nodeId: uid,

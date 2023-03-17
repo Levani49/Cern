@@ -93,6 +93,12 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
             state: "notLoaded",
             modelPath: "abc3",
           },
+          {
+            id: generateId(),
+            name: "ux18",
+            state: "notLoaded",
+            modelPath: "abc3",
+          },
         ],
       },
     ],
