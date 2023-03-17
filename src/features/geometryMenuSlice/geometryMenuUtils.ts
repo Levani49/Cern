@@ -1,5 +1,12 @@
 import { GeometryState, TreeNode } from "./geometryTree";
 
+type UpdateNodeFunction = (
+  node: TreeNode,
+  nodeId: string,
+  propToChange: string,
+  modelState: string,
+) => TreeNode;
+
 export function updateNodeAndAncestors(
   tree: TreeNode[],
   nodeId: string,
@@ -74,11 +81,11 @@ const updateDescendandNodes = (
   }
 };
 
-export const updateParentNode = (
-  node: TreeNode,
-  nodeId: string,
-  propToChange: string,
-  modelState: string,
+export const updateParentNode: UpdateNodeFunction = (
+  node,
+  nodeId,
+  propToChange,
+  modelState,
 ): TreeNode => {
   if (node.id === nodeId) {
     // Found the node with the matching ID, update its descendants
@@ -106,11 +113,11 @@ export const updateParentNode = (
   }
 };
 
-export const updateChildNode = (
-  node: TreeNode,
-  nodeId: string,
-  propToChange: string,
-  modelState: string,
+export const updateChildNode: UpdateNodeFunction = (
+  node,
+  nodeId,
+  propToChange,
+  modelState,
 ): TreeNode => {
   if (node.children) {
     return {

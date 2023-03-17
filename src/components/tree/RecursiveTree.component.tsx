@@ -37,5 +37,5 @@ export default function RecursiveTree({ tree }: Props): JSX.Element {
     }
   });
 
-  return <ul className="select-none">{elements}</ul>;
+  return <ul className="select-none overflow-y-auto h-4/5">{elements}</ul>;
 }

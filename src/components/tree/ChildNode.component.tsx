@@ -54,7 +54,7 @@ export default function ChildNode({
   return (
     <li
       role="presentation"
-      className={`ml-4 cursor-pointer select-none flex ${innerState}`}
+      className={`ml-4 cursor-pointer select-none flex uppercase ${innerState}`}
       onClick={onClickHandler}
     >
       {name}

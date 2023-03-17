@@ -57,7 +57,7 @@ export default function ParentNode({
   return (
     <ul
       role="presentation"
-      className={`${innerState} ml-4 cursor-pointer`}
+      className={`${innerState} uppercase text-sm  ml-4 cursor-pointer`}
       onClick={onClickHandler}
     >
       <span>+</span>

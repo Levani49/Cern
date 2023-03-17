@@ -186,6 +186,690 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
               },
             ],
           },
+          {
+            id: generateId(),
+            name: "itk",
+            state: "notLoaded",
+            showChildren: false,
+            children: [
+              {
+                id: generateId(),
+                name: "pixel detector",
+                state: "notLoaded",
+                showChildren: false,
+                children: [
+                  {
+                    id: generateId(),
+                    name: "pixel inner system",
+                    state: "notLoaded",
+                    showChildren: false,
+                    children: [
+                      {
+                        id: generateId(),
+                        name: "barrel",
+                        state: "notLoaded",
+                        modelPath: "abc1",
+                      },
+                      {
+                        id: generateId(),
+                        name: "endcap",
+                        state: "notLoaded",
+                        showChildren: false,
+                        children: [
+                          {
+                            id: generateId(),
+                            name: "side a",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "side c",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    id: generateId(),
+                    name: "pixel outer system",
+                    state: "notLoaded",
+                    showChildren: false,
+                    children: [
+                      {
+                        id: generateId(),
+                        name: "barrel",
+                        state: "notLoaded",
+                        modelPath: "abc1",
+                      },
+                      {
+                        id: generateId(),
+                        name: "endcap",
+                        state: "notLoaded",
+                        showChildren: false,
+                        children: [
+                          {
+                            id: generateId(),
+                            name: "side a",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "side b",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                        ],
+                      },
+                      {
+                        id: generateId(),
+                        name: "pixel pp1",
+                        state: "notLoaded",
+                        showChildren: false,
+                        children: [
+                          {
+                            id: generateId(),
+                            name: "side a",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "side c",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            id: generateId(),
+            name: "calorimetry",
+            state: "notLoaded",
+            showChildren: false,
+            children: [
+              {
+                id: generateId(),
+                name: "lar",
+                state: "notLoaded",
+                showChildren: false,
+                children: [
+                  {
+                    id: generateId(),
+                    name: "barrel",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "endcap",
+                    state: "notLoaded",
+                    showChildren: false,
+                    children: [
+                      {
+                        id: generateId(),
+                        name: "side a",
+                        state: "notLoaded",
+                        showChildren: false,
+                        children: [
+                          {
+                            id: generateId(),
+                            name: "lar emec",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "lar hec",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "lar fcal",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                        ],
+                      },
+                      {
+                        id: generateId(),
+                        name: "side c",
+                        state: "notLoaded",
+                        showChildren: false,
+                        children: [
+                          {
+                            id: generateId(),
+                            name: "lar emec",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "lar hec",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "lar fcal",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                id: generateId(),
+                name: "tile",
+                state: "notLoaded",
+                showChildren: false,
+                children: [
+                  {
+                    id: generateId(),
+                    name: "barrel",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "barrel ext.",
+                    state: "notLoaded",
+                    showChildren: false,
+                    children: [
+                      {
+                        id: generateId(),
+                        name: "side a",
+                        state: "notLoaded",
+                        modelPath: "abc1",
+                      },
+                      {
+                        id: generateId(),
+                        name: "side c",
+                        state: "notLoaded",
+                        modelPath: "abc1",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            id: generateId(),
+            name: "muon spectrometer",
+            state: "notLoaded",
+            showChildren: false,
+            children: [
+              {
+                id: generateId(),
+                name: "barrel",
+                state: "notLoaded",
+                showChildren: false,
+                children: [
+                  {
+                    id: generateId(),
+                    name: "bi inner",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "bi middle",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "bi outer",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                ],
+              },
+              {
+                id: generateId(),
+                name: "endcap",
+                state: "notLoaded",
+                showChildren: false,
+                children: [
+                  {
+                    id: generateId(),
+                    name: "side a",
+                    state: "notLoaded",
+                    showChildren: false,
+                    children: [
+                      {
+                        id: generateId(),
+                        name: "ei small wheel",
+                        state: "notLoaded",
+                        showChildren: false,
+                        children: [
+                          {
+                            id: generateId(),
+                            name: "sw chambers",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "njd shielding",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "hub",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                        ],
+                      },
+                      {
+                        id: generateId(),
+                        name: "em big wheel",
+                        state: "notLoaded",
+                        showChildren: false,
+                        children: [
+                          {
+                            id: generateId(),
+                            name: "tgc1",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "mdt",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "tgc2",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "tgc3",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                        ],
+                      },
+                      {
+                        id: generateId(),
+                        name: "ex extra wheel",
+                        state: "notLoaded",
+                        modelPath: "abc1",
+                      },
+                      {
+                        id: generateId(),
+                        name: "eo outer wheel",
+                        state: "notLoaded",
+                        modelPath: "abc1",
+                      },
+                    ],
+                  },
+                  {
+                    id: generateId(),
+                    name: "side c",
+                    state: "notLoaded",
+                    showChildren: false,
+                    children: [
+                      {
+                        id: generateId(),
+                        name: "ei small wheel",
+                        state: "notLoaded",
+                        showChildren: false,
+                        children: [
+                          {
+                            id: generateId(),
+                            name: "sw chambers",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "njd shielding",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "hub",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                        ],
+                      },
+                      {
+                        id: generateId(),
+                        name: "em big wheel",
+                        state: "notLoaded",
+                        showChildren: false,
+                        children: [
+                          {
+                            id: generateId(),
+                            name: "tgc1",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "mdt",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "tgc2",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                          {
+                            id: generateId(),
+                            name: "tgc3",
+                            state: "notLoaded",
+                            modelPath: "abc1",
+                          },
+                        ],
+                      },
+                      {
+                        id: generateId(),
+                        name: "ex extra wheel",
+                        state: "notLoaded",
+                        modelPath: "abc1",
+                      },
+                      {
+                        id: generateId(),
+                        name: "eo outer wheel",
+                        state: "notLoaded",
+                        modelPath: "abc1",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            id: generateId(),
+            name: "forward shielding",
+            state: "notLoaded",
+            showChildren: false,
+            children: [
+              {
+                id: generateId(),
+                name: "side a",
+                state: "notLoaded",
+                modelPath: "abc1",
+              },
+              {
+                id: generateId(),
+                name: "side c",
+                state: "notLoaded",
+                modelPath: "abc1",
+              },
+            ],
+          },
+          {
+            id: generateId(),
+            name: "services",
+            state: "notLoaded",
+            showChildren: false,
+            children: [
+              {
+                id: generateId(),
+                name: "calorimeter services",
+                state: "notLoaded",
+                showChildren: false,
+                children: [
+                  {
+                    id: generateId(),
+                    name: "flexible chain S.9",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "flexible chain s.11",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "flexible chain s.15",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "gap region",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                ],
+              },
+              {
+                id: generateId(),
+                name: "muon services",
+                state: "notLoaded",
+                showChildren: false,
+                children: [
+                  {
+                    id: generateId(),
+                    name: "patch panels",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "sw services",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "cable trays",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "cable trays inside barrel",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "ele boxes",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                ],
+              },
+              {
+                id: generateId(),
+                name: "z0",
+                state: "notLoaded",
+                showChildren: false,
+                children: [
+                  {
+                    id: generateId(),
+                    name: "sector1",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "sector-3",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "sector-5",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "sector-7",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "sector-9",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "sector-11",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "sector-13",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "sector-15",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                ],
+              },
+              {
+                id: generateId(),
+                name: "ho",
+                state: "notLoaded",
+                showChildren: false,
+                children: [
+                  {
+                    id: generateId(),
+                    name: "side a",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "side c",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                ],
+              },
+              {
+                id: generateId(),
+                name: "hs",
+                state: "notLoaded",
+                showChildren: false,
+                children: [
+                  {
+                    id: generateId(),
+                    name: "us15",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "usa15",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            id: generateId(),
+            name: "platforms",
+            state: "notLoaded",
+            showChildren: false,
+            children: [
+              {
+                id: generateId(),
+                name: "even sectors",
+                state: "notLoaded",
+                modelPath: "abc1",
+              },
+              {
+                id: generateId(),
+                name: "odd sectors",
+                state: "notLoaded",
+                modelPath: "abc1",
+              },
+              {
+                id: generateId(),
+                name: "hs platforms",
+                state: "notLoaded",
+                showChildren: false,
+                children: [
+                  {
+                    id: generateId(),
+                    name: "top platforms",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "central pit platforms",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "us15 platforms",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "usa15 platforms",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                ],
+              },
+              {
+                id: generateId(),
+                name: "ho platforms",
+                state: "notLoaded",
+                showChildren: false,
+                children: [
+                  {
+                    id: generateId(),
+                    name: "side a",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                  {
+                    id: generateId(),
+                    name: "side c",
+                    state: "notLoaded",
+                    modelPath: "abc1",
+                  },
+                ],
+              },
+            ],
+          },
         ],
       },
       {
@@ -239,8 +923,8 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
       {
         id: generateId(),
         name: "cavern",
-        state: "isLoaded",
-        showChildren: true,
+        state: "notLoaded",
+        showChildren: false,
         children: [
           {
             id: generateId(),
