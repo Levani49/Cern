@@ -7,6 +7,9 @@ export interface TreeNode {
   modelPath?: string;
   showChildren?: boolean;
   children?: TreeNode[];
+  root?: boolean;
+  nodeEnd?: boolean;
+  borderImageSlice?: string;
 }
 
 function generateId(): string {
@@ -19,6 +22,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
     name: "atlas detector",
     state: "partialyLoaded",
     showChildren: true,
+    root: true,
     children: [
       {
         id: generateId(),
@@ -108,7 +112,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
             id: generateId(),
             name: "inner_detector",
             state: "isLoaded",
-            showChildren: false,
+            showChildren: true,
             children: [
               {
                 id: generateId(),
@@ -120,7 +124,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                 id: generateId(),
                 name: "sct",
                 state: "isLoaded",
-                showChildren: false,
+                showChildren: true,
                 children: [
                   {
                     id: generateId(),
@@ -132,7 +136,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                     id: generateId(),
                     name: "endcap",
                     state: "isLoaded",
-                    showChildren: false,
+                    showChildren: true,
                     children: [
                       {
                         id: generateId(),
@@ -145,6 +149,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                         name: "side c",
                         state: "isLoaded",
                         modelPath: "abc2",
+                        nodeEnd: true,
                       },
                     ],
                   },
@@ -154,7 +159,8 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                 id: generateId(),
                 name: "trt",
                 state: "isLoaded",
-                showChildren: false,
+                showChildren: true,
+                nodeEnd: true,
                 children: [
                   {
                     id: generateId(),
@@ -166,7 +172,8 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                     id: generateId(),
                     name: "endcap",
                     state: "isLoaded",
-                    showChildren: false,
+                    showChildren: true,
+                    nodeEnd: true,
                     children: [
                       {
                         id: generateId(),
@@ -179,6 +186,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                         name: "side c",
                         state: "isLoaded",
                         modelPath: "abc2",
+                        nodeEnd: true,
                       },
                     ],
                   },
@@ -197,6 +205,8 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                 name: "pixel detector",
                 state: "notLoaded",
                 showChildren: false,
+                nodeEnd: true,
+                borderImageSlice: "4%",
                 children: [
                   {
                     id: generateId(),
@@ -237,6 +247,8 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                     name: "pixel outer system",
                     state: "notLoaded",
                     showChildren: false,
+                    nodeEnd: true,
+                    borderImageSlice: "12%",
                     children: [
                       {
                         id: generateId(),
@@ -248,7 +260,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                         id: generateId(),
                         name: "endcap",
                         state: "notLoaded",
-                        showChildren: false,
+                        showChildren: true,
                         children: [
                           {
                             id: generateId(),
@@ -261,6 +273,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                             name: "side b",
                             state: "notLoaded",
                             modelPath: "abc1",
+                            nodeEnd: true,
                           },
                         ],
                       },
@@ -269,6 +282,8 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                         name: "pixel pp1",
                         state: "notLoaded",
                         showChildren: false,
+                        borderImageSlice: "15%",
+                        nodeEnd: true,
                         children: [
                           {
                             id: generateId(),
@@ -281,6 +296,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                             name: "side c",
                             state: "notLoaded",
                             modelPath: "abc1",
+                            nodeEnd: true,
                           },
                         ],
                       },
@@ -803,6 +819,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
             name: "platforms",
             state: "notLoaded",
             showChildren: false,
+            nodeEnd: true,
             children: [
               {
                 id: generateId(),
@@ -883,6 +900,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
             name: "mechanical structure",
             state: "notLoaded",
             showChildren: false,
+            nodeEnd: true,
             children: [
               {
                 id: generateId(),
@@ -901,6 +919,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                 name: "hf truck",
                 state: "notLoaded",
                 showChildren: false,
+                nodeEnd: true,
                 children: [
                   {
                     id: generateId(),
@@ -913,6 +932,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                     name: "side c",
                     state: "notLoaded",
                     modelPath: "abc2",
+                    nodeEnd: true,
                   },
                 ],
               },
@@ -925,6 +945,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
         name: "cavern",
         state: "notLoaded",
         showChildren: false,
+        nodeEnd: true,
         children: [
           {
             id: generateId(),
@@ -967,6 +988,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
             name: "pm15",
             state: "notLoaded",
             modelPath: "abc3",
+            nodeEnd: true,
           },
         ],
       },

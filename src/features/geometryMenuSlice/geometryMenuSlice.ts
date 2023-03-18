@@ -16,7 +16,8 @@ interface GeometryTreeSlice {
 interface UpdateNodePayload {
   nodeId: string;
   propToChange: string;
-  modelState: GeometryState;
+  value: string | boolean;
+  restrictAncestorsUpdate?: boolean;
 }
 
 type UpdateNodePayloadAction = PayloadAction<UpdateNodePayload>;
@@ -31,24 +32,37 @@ export const geometrySlice = createSlice({
   initialState,
   reducers: {
     updateParentNodeState: (state, action: UpdateNodePayloadAction) => {
-      const { nodeId, propToChange, modelState } = action.payload;
+      const { nodeId, propToChange, value, restrictAncestorsUpdate } =
+        action.payload;
 
       const updatedTree = state.tree.map(
         (node: TreeNode): TreeNode =>
-          updateParentNode(node, nodeId, propToChange, modelState),
+          updateParentNode(node, nodeId, propToChange, value),
       );
 
-      state.tree = updateNodeAndAncestors(updatedTree, nodeId, modelState);
+      if (restrictAncestorsUpdate) {
+        state.tree = updatedTree;
+      } else {
+        state.tree = updateNodeAndAncestors(
+          updatedTree,
+          nodeId,
+          value as GeometryState,
+        );
+      }
     },
     updateChildNodeState: (state, action: UpdateNodePayloadAction) => {
-      const { nodeId, propToChange, modelState } = action.payload;
+      const { nodeId, propToChange, value } = action.payload;
 
       const updatedTree = state.tree.map(
         (node: TreeNode): TreeNode =>
-          updateChildNode(node, nodeId, propToChange, modelState),
+          updateChildNode(node, nodeId, propToChange, value),
       );
 
-      state.tree = updateNodeAndAncestors(updatedTree, nodeId, modelState);
+      state.tree = updateNodeAndAncestors(
+        updatedTree,
+        nodeId,
+        value as GeometryState,
+      );
     },
   },
 });

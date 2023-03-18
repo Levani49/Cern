@@ -6,6 +6,7 @@ interface Props {
   uid: string;
   name: string;
   modelState: GeometryState;
+  nodeEnd?: boolean;
 }
 
 /**
@@ -17,15 +18,15 @@ interface Props {
  * @param root0.uid
  * @param root0.state
  * @param root0.modelState
+ * @param root0.nodeEnd
  */
 export default function ChildNode({
   name,
   uid,
   modelState,
+  nodeEnd,
 }: Props): JSX.Element {
   const dispatch = useAppDispatch();
-
-  // console.log(modelState);
 
   const onClickHandler = (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>,
@@ -38,7 +39,7 @@ export default function ChildNode({
       updateChildNodeState({
         nodeId: uid,
         propToChange: "state",
-        modelState: state,
+        value: state,
       }),
     );
   };
@@ -54,10 +55,14 @@ export default function ChildNode({
   return (
     <li
       role="presentation"
-      className={`ml-4 cursor-pointer select-none flex uppercase ${innerState}`}
+      className={`cursor-pointer mt-[-1px] select-none flex uppercase border-l-[1px] border-white ml-[1.69rem] ${
+        nodeEnd && "last-child-event-line"
+      } ${innerState}`}
       onClick={onClickHandler}
     >
-      {name}
+      <span className="relative overflow-ellipsis whitespace-nowrap text-left align-middle transition before:relative before:inline-block before:w-[15px] left-0 before:align-middle before:border before:border-t-[1px] before:text-white border-white">
+        {name}
+      </span>
     </li>
   );
 }

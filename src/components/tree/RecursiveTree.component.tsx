@@ -14,9 +14,18 @@ interface Props {
  */
 export default function RecursiveTree({ tree }: Props): JSX.Element {
   const elements = tree.map((node: TreeNode): JSX.Element => {
-    const { id, name, state, showChildren } = node;
+    const { id, name, state, showChildren, root, nodeEnd, borderImageSlice } =
+      node;
     if (!node.children) {
-      return <ChildNode key={id} uid={id} name={name} modelState={state} />;
+      return (
+        <ChildNode
+          key={id}
+          uid={id}
+          name={name}
+          modelState={state}
+          nodeEnd={nodeEnd}
+        />
+      );
     } else {
       const show = showChildren
         ? showChildren === true
@@ -30,6 +39,9 @@ export default function RecursiveTree({ tree }: Props): JSX.Element {
           name={name}
           modelState={state}
           showChildren={show}
+          root={root}
+          nodeEnd={nodeEnd}
+          borderImageSlice={borderImageSlice}
         >
           <RecursiveTree tree={node.children} />
         </ParentNode>
@@ -37,5 +49,5 @@ export default function RecursiveTree({ tree }: Props): JSX.Element {
     }
   });
 
-  return <ul className="select-none overflow-y-auto h-4/5">{elements}</ul>;
+  return <>{elements}</>;
 }

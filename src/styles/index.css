@@ -85,12 +85,22 @@ body::backdrop {
   transform: translate(-50%, -50%);
 }
 
-.last-event-line {
+.last-child-event-line {
   border-image: linear-gradient(
     to bottom,
     rgb(223 230 233) 0%,
-    rgb(223 230 233) 53%,
-    rgba(108, 219, 141, 0) 53%
+    rgb(223 230 233) 55%,
+    rgba(108, 219, 141, 0) 75%
+  );
+  border-image-slice: 1;
+}
+
+.last-parent-event-line {
+  border-image: linear-gradient(
+    to bottom,
+    rgb(223 230 233) 1%,
+    rgb(223 230 233) 20%,
+    rgba(108, 219, 141, 0) 0%
   );
   border-image-slice: 1;
 }

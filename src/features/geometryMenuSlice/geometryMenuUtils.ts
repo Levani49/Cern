@@ -4,7 +4,7 @@ type UpdateNodeFunction = (
   node: TreeNode,
   nodeId: string,
   propToChange: string,
-  modelState: string,
+  value: string | boolean,
 ) => TreeNode;
 
 export function updateNodeAndAncestors(
@@ -63,20 +63,20 @@ export function updateNodeAndAncestors(
 const updateDescendandNodes = (
   node: TreeNode,
   propToChange: string,
-  modelState: string,
+  value: string | boolean,
 ): TreeNode => {
   if (node.children) {
     return {
       ...node,
-      [propToChange]: modelState,
+      [propToChange]: value,
       children: node.children.map((node) =>
-        updateDescendandNodes(node, propToChange, modelState),
+        updateDescendandNodes(node, propToChange, value),
       ),
     };
   } else {
     return {
       ...node,
-      [propToChange]: modelState,
+      [propToChange]: value,
     };
   }
 };
