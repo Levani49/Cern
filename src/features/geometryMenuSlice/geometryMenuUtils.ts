@@ -6,6 +6,7 @@ type UpdateNodeFunction = (
   nodeId: string,
   propToChange: string,
   value: string | boolean,
+  updateDescendands?: boolean,
 ) => TreeNode;
 
 export function updateNodeAndAncestors(
@@ -87,25 +88,52 @@ export const updateParentNode: UpdateNodeFunction = (
   nodeId,
   propToChange,
   modelState,
+  updateDescendands,
 ): TreeNode => {
   if (node.id === nodeId) {
-    // Found the node with the matching ID, update its descendants
-    const updatedNode = {
-      ...node,
-      [propToChange]: modelState,
-      children: node.children
-        ? node.children.map((node) =>
-            updateDescendandNodes(node, propToChange, modelState),
-          )
-        : [],
-    };
-    return updatedNode;
+    if (updateDescendands) {
+      // Found the node with the matching ID, update its descendants
+      const updatedNode = {
+        ...node,
+        [propToChange]: modelState,
+        children: node.children
+          ? node.children.map((node) =>
+              updateDescendandNodes(node, propToChange, modelState),
+            )
+          : [],
+      };
+      return updatedNode;
+    } else {
+      // Found the node with the matching ID, update its descendants
+      const updatedNode = {
+        ...node,
+        [propToChange]: modelState,
+        children: node.children
+          ? node.children.map((node) =>
+              updateParentNode(
+                node,
+                nodeId,
+                propToChange,
+                modelState,
+                updateDescendands,
+              ),
+            )
+          : [],
+      };
+      return updatedNode;
+    }
   } else if (node.children) {
     // Node does not have the matching ID, update its children
     return {
       ...node,
       children: node.children.map((node) =>
-        updateParentNode(node, nodeId, propToChange, modelState),
+        updateParentNode(
+          node,
+          nodeId,
+          propToChange,
+          modelState,
+          updateDescendands,
+        ),
       ),
     };
   } else {

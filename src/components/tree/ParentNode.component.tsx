@@ -1,4 +1,5 @@
 import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
+import { useCallback } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { updateParentNodeState } from "../../features/geometryMenuSlice/geometryMenuSlice";
 import { GeometryState } from "../../features/geometryMenuSlice/geometryTree";
@@ -16,6 +17,9 @@ interface Props {
 
 type MouseEv = React.MouseEvent<HTMLElement, MouseEvent>;
 type IconMouseEv = React.MouseEvent<SVGSVGElement, MouseEvent>;
+
+const iconClass =
+  "h-6 w-6 text-white hover:text-blue hover:dark:text-green transition-all";
 
 /**
  *
@@ -43,42 +47,46 @@ export default function ParentNode({
 }: Props): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const onClickHandler = (e: MouseEv): void => {
-    e.stopPropagation();
-    const state = modelState === "isLoaded" ? "notLoaded" : "isLoaded";
-    dispatch(
-      updateParentNodeState({
-        nodeId: uid,
-        propToChange: "state",
-        value: state,
-      }),
-    );
-  };
+  const onClickHandler = useCallback(
+    (e: MouseEv): void => {
+      e.stopPropagation();
+      const state = modelState === "isLoaded" ? "notLoaded" : "isLoaded";
+      dispatch(
+        updateParentNodeState({
+          nodeId: uid,
+          propToChange: "state",
+          value: state,
+          restrictAncestorsUpdate: false,
+        }),
+      );
+    },
+    [dispatch, modelState, uid],
+  );
 
-  const showChildrenHandler = (e: IconMouseEv): void => {
-    e.stopPropagation();
-    dispatch(
-      updateParentNodeState({
-        nodeId: uid,
-        propToChange: "showChildren",
-        value: !showChildren,
-        restrictAncestorsUpdate: true,
-      }),
-    );
-  };
+  const showChildrenHandler = useCallback(
+    (e: IconMouseEv): void => {
+      e.stopPropagation();
+      dispatch(
+        updateParentNodeState({
+          nodeId: uid,
+          propToChange: "showChildren",
+          value: !showChildren,
+          restrictAncestorsUpdate: true,
+        }),
+      );
+    },
+    [dispatch, showChildren, uid],
+  );
 
-  let innerState: string;
+  const innerState =
+    modelState === "isLoaded"
+      ? "text-green"
+      : modelState === "partialyLoaded"
+      ? "text-yellow-500"
+      : "text-white";
 
   let ulStyle: string;
   let ulChildStyle: string;
-
-  if (modelState === "isLoaded") {
-    innerState = "text-green";
-  } else if (modelState === "partialyLoaded") {
-    innerState = "text-yellow-500";
-  } else {
-    innerState = "text-white";
-  }
 
   if (root) {
     ulStyle = "nan";
@@ -103,12 +111,12 @@ export default function ParentNode({
           {showChildren ? (
             <MinusCircleIcon
               onClick={showChildrenHandler}
-              className="h-6 w-6 text-white hover:text-blue hover:dark:text-green transition-all"
+              className={`${iconClass}`}
             />
           ) : (
             <PlusCircleIcon
               onClick={showChildrenHandler}
-              className="h-6 w-6 text-white hover:text-blue hover:dark:text-green transition-all"
+              className={`${iconClass}`}
             />
           )}
 

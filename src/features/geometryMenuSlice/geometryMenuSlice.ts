@@ -47,14 +47,23 @@ export const geometrySlice = createSlice({
       const { nodeId, propToChange, value, restrictAncestorsUpdate } =
         action.payload;
 
-      const updatedTree = state.tree.map(
-        (node: TreeNode): TreeNode =>
-          updateParentNode(node, nodeId, propToChange, value),
-      );
-
       if (restrictAncestorsUpdate) {
-        state.tree = updatedTree;
+        const updatedTree = state.tree.map(
+          (node: TreeNode): TreeNode =>
+            updateParentNode(node, nodeId, propToChange, value, false),
+        );
+
+        state.tree = updateNodeAndAncestors(
+          updatedTree,
+          nodeId,
+          value as GeometryState,
+        );
       } else {
+        const updatedTree = state.tree.map(
+          (node: TreeNode): TreeNode =>
+            updateParentNode(node, nodeId, propToChange, value, true),
+        );
+
         state.tree = updateNodeAndAncestors(
           updatedTree,
           nodeId,
