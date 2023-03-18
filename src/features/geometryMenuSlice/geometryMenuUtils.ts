@@ -1,3 +1,4 @@
+import { ActiveModel } from "./geometryMenuSlice";
 import { GeometryState, TreeNode } from "./geometryTree";
 
 type UpdateNodeFunction = (
@@ -136,3 +137,26 @@ export const updateChildNode: UpdateNodeFunction = (
   }
   return node;
 };
+
+export function updateActiveModels(tree: TreeNode[]): ActiveModel[] {
+  const activeModels: ActiveModel[] = [];
+
+  function traverse(node: TreeNode): void {
+    if (node.children) {
+      node.children.forEach((child) => traverse(child));
+    }
+
+    if (node.state === "isLoaded") {
+      if (node.modelPath) {
+        activeModels.push({
+          uid: node.id,
+          name: node.name,
+          modelPath: node.modelPath,
+        });
+      }
+    }
+  }
+
+  tree.forEach((node) => traverse(node));
+  return activeModels;
+}

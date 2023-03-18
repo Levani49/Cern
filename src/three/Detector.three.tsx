@@ -1,3 +1,6 @@
+import { memo } from "react";
+
+import { useDetectorState } from "../hooks/useDetectorState.hook";
 import GlbLoader from "./GlbLoader.three";
 
 /**
@@ -5,18 +8,19 @@ import GlbLoader from "./GlbLoader.three";
  *
  * @returns { JSX.Element } JSX.Element
  */
-export default function Detector(): JSX.Element {
-  const Models = [
-    "pixel-cut3",
-    "sct-bar-cut3",
-    "sct-sidea-cut3",
-    "sct-sidec-cut3",
-    "trt-bar-cut3",
-    "trt-sidea-cut3",
-    "trt-sidec-cut3",
-  ].map((modelSrc) => {
-    return <GlbLoader key={modelSrc} src={modelSrc} />;
-  });
+const Detector = memo(function Detector(): JSX.Element {
+  const { models, modelCut } = useDetectorState();
 
-  return <>{Models}</>;
-}
+  const activeModels = models
+    .filter((model) => model.modelPath !== "nan")
+    .map((model) => {
+      const { modelPath, uid, name } = model;
+      const path = modelCut ? modelPath + modelCut : modelPath;
+
+      return <GlbLoader key={`${uid}${name}`} src={path} />;
+    });
+
+  return <>{activeModels}</>;
+});
+
+export default Detector;
