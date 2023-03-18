@@ -2,6 +2,7 @@ import { Suspense, lazy } from "react";
 import { NoToneMapping } from "three";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/cannon";
+import { Loader } from "@react-three/drei";
 
 import Lights from "./Light.three";
 import Fog from "./Fog.three";
@@ -32,7 +33,7 @@ export default function Scene(): JSX.Element {
       >
         <Physics gravity={[0, 0, 0]}>
           <Lights />
-          <Suspense>
+          <Suspense fallback={null}>
             <Detector />
           </Suspense>
           <Fog />
@@ -46,6 +47,7 @@ export default function Scene(): JSX.Element {
           <StatsDispatcher />
         </Physics>
       </Canvas>
+      <Loader />
     </>
   );
 }
