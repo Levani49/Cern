@@ -27,9 +27,10 @@ export default function GeometryCutsMenu(): JSX.Element {
 
   const onClickHandler = (modelCut: ModelCut) => {
     if (cutType === modelCut) {
-      return;
+      dispatch(updateModelCut(null));
+    } else {
+      dispatch(updateModelCut(modelCut));
     }
-    dispatch(updateModelCut(modelCut));
   };
 
   return (

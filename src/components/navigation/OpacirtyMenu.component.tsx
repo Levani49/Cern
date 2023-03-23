@@ -1,5 +1,9 @@
-import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { ReactComponent as WaterDropIcon } from "../../assets/svg/water-drop.svg";
+import {
+  selectModelsOpacity,
+  setModelsOpacity,
+} from "../../features/geometryMenuSlice/geometryMenuSlice";
 
 import MenuDropdown from "./MenuDropdown.component";
 import MenuIcon from "./MenuIcon.component";
@@ -10,7 +14,12 @@ import MenuIcon from "./MenuIcon.component";
  * @returns {JSX.Element} ReactElemet
  */
 export default function OpacirtyMenu(): JSX.Element {
-  const [state, setState] = useState<number>(0);
+  const dispatch = useAppDispatch();
+  const opacityLevel = useAppSelector(selectModelsOpacity);
+
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    dispatch(setModelsOpacity(+e.target.value));
+  };
 
   return (
     <div className="inline-flex group">
@@ -18,10 +27,13 @@ export default function OpacirtyMenu(): JSX.Element {
       <MenuDropdown className="ml-[-50px] mt-8">
         <div className="w-auto flex justify-center items-center h-6 p-1">
           <input
+            min={0}
+            max={1}
+            step={0.01}
             type="range"
-            value={state}
+            value={opacityLevel}
             className="w-auto h-[3px] rounded-lg appearance-none cursor-pointer range-sm bg-gray-700"
-            onChange={(e): void => setState(+e.target.value)}
+            onChange={onChangeHandler}
           />
         </div>
       </MenuDropdown>

@@ -25,6 +25,7 @@ interface UpdateNodePayload {
 type UpdateNodePayloadAction = PayloadAction<UpdateNodePayload>;
 export type ModelCut = "-cut1" | "-cut2" | "-cut3" | "-cut4" | null;
 export type ModelLoadingStates = "idle" | "loading" | "failed";
+export type selectedModel = string | null;
 
 interface GeometryTreeSlice {
   show: boolean;
@@ -32,6 +33,8 @@ interface GeometryTreeSlice {
   activeModels: ActiveModel[];
   modelCut: ModelCut;
   modelsLoadingState: ModelLoadingStates;
+  selectedModel: selectedModel;
+  opacity: number;
 }
 
 const initialState: GeometryTreeSlice = {
@@ -40,12 +43,20 @@ const initialState: GeometryTreeSlice = {
   activeModels: updateActiveModels(GEOMETRY_MENU_TREE),
   modelCut: "-cut3",
   modelsLoadingState: "loading",
+  selectedModel: null,
+  opacity: 1,
 };
 
 export const geometrySlice = createSlice({
   name: "tree",
   initialState,
   reducers: {
+    setModelsOpacity: (state, action: PayloadAction<number>) => {
+      state.opacity = action.payload;
+    },
+    setSelectedModel: (state, action: PayloadAction<selectedModel>) => {
+      state.selectedModel = action.payload;
+    },
     updateModelCut: (state, action: PayloadAction<ModelCut>) => {
       state.modelCut = action.payload;
     },
@@ -107,6 +118,8 @@ export const {
   updateParentNodeState,
   updateLoadingState,
   updateModelCut,
+  setSelectedModel,
+  setModelsOpacity,
 } = geometrySlice.actions;
 
 /**
@@ -124,3 +137,9 @@ export const selectGeometriesCutType = (state: RootState): ModelCut =>
 
 export const selectLoadingState = (state: RootState): ModelLoadingStates =>
   state.tree.modelsLoadingState;
+
+export const selectSelectedModel = (state: RootState): selectedModel =>
+  state.tree.selectedModel;
+
+export const selectModelsOpacity = (state: RootState): number =>
+  state.tree.opacity;

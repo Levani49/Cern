@@ -18,7 +18,7 @@ type RendererType = RendererInfo["renderer"];
 
 const initialState: RendererInfo = {
   show: false,
-  showStats: true,
+  showStats: false,
   showAxis: true,
   showGrid: true,
   renderer: {

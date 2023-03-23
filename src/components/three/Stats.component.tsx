@@ -16,7 +16,7 @@ export default function Stats(): JSX.Element {
   }
 
   return (
-    <div className="absolute flex left-1/2 bottom-[1px] gap-3 transform -translate-x-1/2 -translate-y-1/2 text-white font-normal text-xs select-none">
+    <div className="absolute flex left-1/2 bottom-[1px] gap-3 transform -translate-x-1/2 -translate-y-1/2 text-white font-normal text-xs select-none z-[9999]">
       <span>TRIANGLES: {triangles}</span>
       {memory ? <span>MEMORY: {memory} MB</span> : null}
       <span>FPS: {fps} </span>
