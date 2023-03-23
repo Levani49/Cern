@@ -1,5 +1,5 @@
 import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { updateParentNodeState } from "../../features/geometryMenuSlice/geometryMenuSlice";
 import { GeometryState } from "../../features/geometryMenuSlice/geometryTree";
@@ -19,7 +19,7 @@ type MouseEv = React.MouseEvent<HTMLElement, MouseEvent>;
 type IconMouseEv = React.MouseEvent<SVGSVGElement, MouseEvent>;
 
 const iconClass =
-  "h-6 w-6 text-white hover:text-blue hover:dark:text-green transition-all";
+  "h-6 w-6 text-white hover:text-blue hover:dark:text-green transition-all cursor-pointer";
 
 export default function ParentNode({
   uid,
@@ -31,6 +31,7 @@ export default function ParentNode({
   root,
 }: Props): JSX.Element {
   const dispatch = useAppDispatch();
+  const [show, setShow] = useState(showChildren);
 
   const onClickHandler = useCallback(
     (e: MouseEv): void => {
@@ -48,20 +49,10 @@ export default function ParentNode({
     [dispatch, modelState, uid],
   );
 
-  const showChildrenHandler = useCallback(
-    (e: IconMouseEv): void => {
-      e.stopPropagation();
-      dispatch(
-        updateParentNodeState({
-          nodeId: uid,
-          propToChange: "showChildren",
-          value: !showChildren,
-          restrictAncestorsUpdate: true,
-        }),
-      );
-    },
-    [dispatch, showChildren, uid],
-  );
+  const showChildrenHandler = (e: IconMouseEv): void => {
+    e.stopPropagation();
+    setShow((prev) => !prev);
+  };
 
   const innerState =
     modelState === "isLoaded"
@@ -83,7 +74,7 @@ export default function ParentNode({
       <div
         className={`flex items-center text-xs relative whitespace-nowrap py-[1px] ${styles}`}
       >
-        {showChildren ? (
+        {show ? (
           <MinusCircleIcon
             onClick={showChildrenHandler}
             className={`${iconClass}`}
@@ -103,11 +94,7 @@ export default function ParentNode({
           {name}
         </span>
       </div>
-      <ul
-        className={`p-0 ml-[1.7rem] mt-[-2px]  block ${
-          !showChildren && "hidden"
-        }`}
-      >
+      <ul className={`p-0 ml-[1.7rem] mt-[-2px]  block ${!show && "hidden"}`}>
         {children}
       </ul>
     </li>

@@ -31,7 +31,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
         children: [
           {
             id: generateId(),
-            name: "magnet_systems",
+            name: "magnet systems",
             state: "notLoaded",
             showChildren: false,
             children: [
@@ -115,7 +115,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
           },
           {
             id: generateId(),
-            name: "inner_detector",
+            name: "inner detector",
             state: "isLoaded",
             showChildren: false,
             children: [
@@ -129,7 +129,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                 id: generateId(),
                 name: "sct",
                 state: "isLoaded",
-                showChildren: true,
+                showChildren: false,
                 children: [
                   {
                     id: generateId(),
@@ -141,7 +141,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                     id: generateId(),
                     name: "endcap",
                     state: "isLoaded",
-                    showChildren: true,
+                    showChildren: false,
                     children: [
                       {
                         id: generateId(),
@@ -164,7 +164,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                 id: generateId(),
                 name: "trt",
                 state: "isLoaded",
-                showChildren: true,
+                showChildren: false,
                 nodeEnd: true,
                 children: [
                   {
@@ -177,7 +177,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                     id: generateId(),
                     name: "endcap",
                     state: "isLoaded",
-                    showChildren: true,
+                    showChildren: false,
                     nodeEnd: true,
                     children: [
                       {
