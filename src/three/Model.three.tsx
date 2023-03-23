@@ -9,7 +9,7 @@ const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath("/draco/");
 dracoLoader.setDecoderConfig({ type: "js" });
 
-export default function GlbLoader({ src }: { src: string }): JSX.Element {
+export default function Model({ src }: { src: string }): JSX.Element {
   const gltf = useLoader(
     GLTFLoader,
     `${url}/${src}.glb`,

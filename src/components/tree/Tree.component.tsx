@@ -1,18 +1,27 @@
+import { useMemo } from "react";
 import { useAppSelector } from "../../app/hooks";
-import { selectGeometryTree } from "../../features/geometryMenuSlice/geometryMenuSlice";
+import {
+  selectGeometryTree,
+  selectLoadingState,
+} from "../../features/geometryMenuSlice/geometryMenuSlice";
 import RecursiveTree from "./RecursiveTree.component";
 
-/**
- *
- * @param root0
- * @param root0.tree
- */
 export default function Tree(): JSX.Element {
-  const GeometriesTree = useAppSelector(selectGeometryTree);
+  const isLoading = useAppSelector(selectLoadingState);
+  const geometryTree = useAppSelector(selectGeometryTree);
+
+  const disablePointerEvents =
+    isLoading === "loading" ? "pointer-events-none" : null;
+
+  const GeometriesTree = useMemo(() => {
+    return <RecursiveTree tree={geometryTree} />;
+  }, [geometryTree]);
 
   return (
-    <ul className="select-none overflow-y-auto h-[70%]">
-      <RecursiveTree tree={GeometriesTree} />;
+    <ul
+      className={`select-none overflow-y-auto h-[70%] ${disablePointerEvents}`}
+    >
+      {GeometriesTree}
     </ul>
   );
 }

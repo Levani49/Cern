@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { NoToneMapping } from "three";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/cannon";
@@ -7,6 +7,9 @@ import { Loader } from "@react-three/drei";
 import Lights from "./Light.three";
 import Fog from "./Fog.three";
 import StatsDispatcher from "./Stats.three";
+import { useAppDispatch } from "../app/hooks";
+import useLoadingStatus from "../hooks/useLoading.hook";
+import { updateLoadingState } from "../features/geometryMenuSlice/geometryMenuSlice";
 
 const Detector = lazy(() => import("./Detector.three"));
 const Environment = lazy(() => import("./Environment.three"));
@@ -21,6 +24,17 @@ const Grid = lazy(() => import("./Grid.three"));
  * @returns { JSX.Element } JSX.ELement
  */
 export default function Scene(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const { isLoading, hasLoaded } = useLoadingStatus();
+
+  useEffect(() => {
+    if (isLoading) {
+      dispatch(updateLoadingState("loading"));
+    } else if (hasLoaded) {
+      dispatch(updateLoadingState("idle"));
+    }
+  }, [isLoading, hasLoaded, dispatch]);
+
   return (
     <>
       <Canvas

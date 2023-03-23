@@ -54,13 +54,15 @@ export default function ChildNode({
 
   return (
     <li
-      role="presentation"
       className={`flex items-center border-l-[2px] border-white ${
         nodeEnd && "last-event-line border-transparent border-l border-solid"
       } ${innerState}`}
-      onClick={onClickHandler}
     >
-      <span className="relative uppercase text-sm border-white ml-[-2px] overflow-ellipsis whitespace-nowrap text-left align-middle transition before:relative before:inline-block before:w-[15px] left-0 before:align-middle before:border before:border-t-[1px] before:text-white">
+      <span
+        role="presentation"
+        onClick={onClickHandler}
+        className="relative uppercase text-sm cursor-pointer border-white ml-[-2px] overflow-ellipsis whitespace-nowrap text-left align-middle transition before:relative before:inline-block before:w-[15px] left-0 before:align-middle before:border before:border-t-[1px] before:text-white"
+      >
         {name}
       </span>
     </li>

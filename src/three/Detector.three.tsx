@@ -1,7 +1,7 @@
 import { memo } from "react";
 
 import { useDetectorState } from "../hooks/useDetectorState.hook";
-import GlbLoader from "./GlbLoader.three";
+import Model from "./Model.three";
 
 /**
  * Detector
@@ -17,7 +17,7 @@ const Detector = memo(function Detector(): JSX.Element {
       const { modelPath, uid, name } = model;
       const path = modelCut ? modelPath + modelCut : modelPath;
 
-      return <GlbLoader key={`${uid}${name}`} src={path} />;
+      return <Model key={`${uid}${name}`} src={path} />;
     });
 
   return <>{activeModels}</>;

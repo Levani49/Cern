@@ -24,12 +24,14 @@ interface UpdateNodePayload {
 
 type UpdateNodePayloadAction = PayloadAction<UpdateNodePayload>;
 export type ModelCut = "-cut1" | "-cut2" | "-cut3" | "-cut4" | null;
+export type ModelLoadingStates = "idle" | "loading" | "failed";
 
 interface GeometryTreeSlice {
   show: boolean;
   tree: TreeNode[];
   activeModels: ActiveModel[];
   modelCut: ModelCut;
+  modelsLoadingState: ModelLoadingStates;
 }
 
 const initialState: GeometryTreeSlice = {
@@ -37,12 +39,16 @@ const initialState: GeometryTreeSlice = {
   tree: GEOMETRY_MENU_TREE,
   activeModels: updateActiveModels(GEOMETRY_MENU_TREE),
   modelCut: "-cut3",
+  modelsLoadingState: "loading",
 };
 
 export const geometrySlice = createSlice({
   name: "tree",
   initialState,
   reducers: {
+    updateLoadingState: (state, action: PayloadAction<ModelLoadingStates>) => {
+      state.modelsLoadingState = action.payload;
+    },
     updateParentNodeState: (state, action: UpdateNodePayloadAction) => {
       const { nodeId, propToChange, value, restrictAncestorsUpdate } =
         action.payload;
@@ -93,8 +99,11 @@ export const geometrySlice = createSlice({
 
 export default geometrySlice.reducer;
 
-export const { updateChildNodeState, updateParentNodeState } =
-  geometrySlice.actions;
+export const {
+  updateChildNodeState,
+  updateParentNodeState,
+  updateLoadingState,
+} = geometrySlice.actions;
 
 /**
  *
@@ -108,3 +117,6 @@ export const selectActiveGeometries = (state: RootState): ActiveModel[] =>
 
 export const selectGeometriesCutType = (state: RootState): ModelCut =>
   state.tree.modelCut;
+
+export const selectLoadingState = (state: RootState): ModelLoadingStates =>
+  state.tree.modelsLoadingState;

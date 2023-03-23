@@ -21,20 +21,6 @@ type IconMouseEv = React.MouseEvent<SVGSVGElement, MouseEvent>;
 const iconClass =
   "h-6 w-6 text-white hover:text-blue hover:dark:text-green transition-all";
 
-/**
- *
- * @param root0
- * @param root0.name
- * @param root0.parentIsActive
- * @param root0.children
- * @param root0.onClick
- * @param root0.uid
- * @param root0.modelState
- * @param root0.showChildren
- * @param root0.root
- * @param root0.nodeEnd
- * @param root0.borderImageSlice
- */
 export default function ParentNode({
   uid,
   name,
@@ -43,7 +29,6 @@ export default function ParentNode({
   children,
   nodeEnd,
   root,
-  borderImageSlice,
 }: Props): JSX.Element {
   const dispatch = useAppDispatch();
 
@@ -87,16 +72,13 @@ export default function ParentNode({
 
   const styles = `border-l-[2px] border-transparent text-left transition before:relative before:inline-block before:w-[15px] before:left-0 before:align-middle before:border before:border-t-[px] before:text-white before:align-middle ${
     nodeEnd ? "last-event-line" : ""
-  } ${root && "before:text-transparent"}`;
+  } ${root && "before:!text-transparent"}`;
 
   return (
     <li
-      role="presentation"
       className={`border-solid  ${!nodeEnd && "border-l-[2px] border-white"} ${
         root && "border-none"
       }`}
-      onClick={onClickHandler}
-      style={{ borderImageSlice: borderImageSlice }}
     >
       <div
         className={`flex items-center text-xs relative whitespace-nowrap py-[1px] ${styles}`}
@@ -113,7 +95,13 @@ export default function ParentNode({
           />
         )}
 
-        <span className={`${innerState} ml-[2] uppercase`}>{name}</span>
+        <span
+          role="presentation"
+          className={`${innerState} ml-[2] uppercase cursor-pointer`}
+          onClick={onClickHandler}
+        >
+          {name}
+        </span>
       </div>
       <ul
         className={`p-0 ml-[1.7rem] mt-[-2px]  block ${
