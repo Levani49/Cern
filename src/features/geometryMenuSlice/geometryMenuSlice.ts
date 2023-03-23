@@ -46,6 +46,9 @@ export const geometrySlice = createSlice({
   name: "tree",
   initialState,
   reducers: {
+    updateModelCut: (state, action: PayloadAction<ModelCut>) => {
+      state.modelCut = action.payload;
+    },
     updateLoadingState: (state, action: PayloadAction<ModelLoadingStates>) => {
       state.modelsLoadingState = action.payload;
     },
@@ -103,6 +106,7 @@ export const {
   updateChildNodeState,
   updateParentNodeState,
   updateLoadingState,
+  updateModelCut,
 } = geometrySlice.actions;
 
 /**

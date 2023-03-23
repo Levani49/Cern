@@ -7,6 +7,12 @@ import { ReactComponent as GeometryCoreIcon } from "../../assets/svg/geometry-co
 
 import MenuIcon from "./MenuIcon.component";
 import MenuDropdown from "./MenuDropdown.component";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import {
+  ModelCut,
+  selectGeometriesCutType,
+  updateModelCut,
+} from "../../features/geometryMenuSlice/geometryMenuSlice";
 
 /**
  * Renders a GeometryCutsMenu component that displays a dropdown menu of geometry cut options.
@@ -16,6 +22,16 @@ import MenuDropdown from "./MenuDropdown.component";
  * @returns {JSX.Element} - A JSX element representing the GeometryCutsMenu component.
  */
 export default function GeometryCutsMenu(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const cutType = useAppSelector(selectGeometriesCutType);
+
+  const onClickHandler = (modelCut: ModelCut) => {
+    if (cutType === modelCut) {
+      return;
+    }
+    dispatch(updateModelCut(modelCut));
+  };
+
   return (
     <div className="inline-flex group">
       <MenuIcon
@@ -24,11 +40,31 @@ export default function GeometryCutsMenu(): JSX.Element {
         active
       />
       <MenuDropdown>
-        <MenuIcon Icon={LeftWallIcon} title="1'st cut" />
-        <MenuIcon Icon={RightWallIcon} title="2'st cut" />
-        <MenuIcon Icon={StairsIcon} title="3'st cut" />
-        <MenuIcon Icon={GeometryCoreIcon} title="full cut" />
-        <MenuIcon Icon={ScissorIcon} title="Cutom cut" />
+        <MenuIcon
+          Icon={LeftWallIcon}
+          title="1'st cut"
+          onClick={() => onClickHandler("-cut1")}
+        />
+        <MenuIcon
+          Icon={RightWallIcon}
+          title="2'st cut"
+          onClick={() => onClickHandler("-cut2")}
+        />
+        <MenuIcon
+          Icon={StairsIcon}
+          title="3'st cut"
+          onClick={() => onClickHandler("-cut3")}
+        />
+        <MenuIcon
+          Icon={GeometryCoreIcon}
+          title="full cut"
+          onClick={() => onClickHandler("-cut4")}
+        />
+        <MenuIcon
+          Icon={ScissorIcon}
+          title="Cutom cut"
+          onClick={() => onClickHandler(null)}
+        />
       </MenuDropdown>
     </div>
   );
