@@ -14,8 +14,7 @@ interface Props {
  */
 export default function RecursiveTree({ tree }: Props): JSX.Element {
   const elements = tree.map((node: TreeNode): JSX.Element => {
-    const { id, name, state, showChildren, root, nodeEnd, borderImageSlice } =
-      node;
+    const { id, name, state, showChildren, root, nodeEnd } = node;
     if (!node.children) {
       return (
         <ChildNode
@@ -41,7 +40,6 @@ export default function RecursiveTree({ tree }: Props): JSX.Element {
           showChildren={show}
           root={root}
           nodeEnd={nodeEnd}
-          borderImageSlice={borderImageSlice}
         >
           <RecursiveTree tree={node.children} />
         </ParentNode>

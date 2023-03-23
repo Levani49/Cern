@@ -11,8 +11,8 @@ export default function Tree(): JSX.Element {
   const GeometriesTree = useAppSelector(selectGeometryTree);
 
   return (
-    <div className="select-none overflow-y-auto h-[70%]">
+    <ul className="select-none overflow-y-auto h-[70%]">
       <RecursiveTree tree={GeometriesTree} />;
-    </div>
+    </ul>
   );
 }

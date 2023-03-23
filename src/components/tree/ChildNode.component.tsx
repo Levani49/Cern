@@ -55,12 +55,12 @@ export default function ChildNode({
   return (
     <li
       role="presentation"
-      className={`cursor-pointer mt-[-1px] select-none flex uppercase border-l-[1px] border-white ml-[1.69rem] ${
-        nodeEnd && "last-child-event-line"
+      className={`flex items-center border-l-[2px] border-white ${
+        nodeEnd && "last-event-line border-transparent border-l border-solid"
       } ${innerState}`}
       onClick={onClickHandler}
     >
-      <span className="relative overflow-ellipsis whitespace-nowrap text-left align-middle transition before:relative before:inline-block before:w-[15px] left-0 before:align-middle before:border before:border-t-[1px] before:text-white border-white">
+      <span className="relative uppercase text-sm border-white ml-[-2px] overflow-ellipsis whitespace-nowrap text-left align-middle transition before:relative before:inline-block before:w-[15px] left-0 before:align-middle before:border before:border-t-[1px] before:text-white">
         {name}
       </span>
     </li>

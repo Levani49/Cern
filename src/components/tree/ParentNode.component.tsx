@@ -41,8 +41,8 @@ export default function ParentNode({
   modelState,
   showChildren,
   children,
-  root,
   nodeEnd,
+  root,
   borderImageSlice,
 }: Props): JSX.Element {
   const dispatch = useAppDispatch();
@@ -85,51 +85,43 @@ export default function ParentNode({
       ? "text-yellow-500"
       : "text-white";
 
-  let ulStyle: string;
-  let ulChildStyle: string;
-
-  if (root) {
-    ulStyle = "nan";
-    ulChildStyle = "ml-4";
-  } else {
-    ulStyle = "border-l-[1px] border-white ml-[1.69rem]";
-    ulChildStyle =
-      "relative overflow-ellipsis whitespace-nowrap  text-left align-middle transition before:relative before:inline-block before:w-[15px] left-0 before:align-middle before:border before:text-white before:border-t-[1px] border-white";
-  }
+  const styles = `border-l-[2px] border-transparent text-left transition before:relative before:inline-block before:w-[15px] before:left-0 before:align-middle before:border before:border-t-[px] before:text-white before:align-middle ${
+    nodeEnd ? "last-event-line" : ""
+  } ${root && "before:text-transparent"}`;
 
   return (
-    <ul
+    <li
       role="presentation"
-      className={`${innerState} uppercase text-sm flex flex-col mt-[-1px] cursor-pointer ${ulStyle} ${
-        nodeEnd && "last-parent-event-line"
+      className={`border-solid  ${!nodeEnd && "border-l-[2px] border-white"} ${
+        root && "border-none"
       }`}
       onClick={onClickHandler}
       style={{ borderImageSlice: borderImageSlice }}
     >
-      <div className="">
-        <div className={`flex items-center text-xs ${ulChildStyle}`}>
-          {showChildren ? (
-            <MinusCircleIcon
-              onClick={showChildrenHandler}
-              className={`${iconClass}`}
-            />
-          ) : (
-            <PlusCircleIcon
-              onClick={showChildrenHandler}
-              className={`${iconClass}`}
-            />
-          )}
+      <div
+        className={`flex items-center text-xs relative whitespace-nowrap py-[1px] ${styles}`}
+      >
+        {showChildren ? (
+          <MinusCircleIcon
+            onClick={showChildrenHandler}
+            className={`${iconClass}`}
+          />
+        ) : (
+          <PlusCircleIcon
+            onClick={showChildrenHandler}
+            className={`${iconClass}`}
+          />
+        )}
 
-          <span>{name}</span>
-        </div>
-        <div
-          className={`flex flex-col select-none gap-[1px] ${
-            !showChildren && "hidden"
-          }`}
-        >
-          {children}
-        </div>
+        <span className={`${innerState} ml-[2] uppercase`}>{name}</span>
       </div>
-    </ul>
+      <ul
+        className={`p-0 ml-[1.7rem] mt-[-2px]  block ${
+          !showChildren && "hidden"
+        }`}
+      >
+        {children}
+      </ul>
+    </li>
   );
 }

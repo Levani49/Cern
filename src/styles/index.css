@@ -95,12 +95,12 @@ body::backdrop {
   border-image-slice: 1;
 }
 
-.last-parent-event-line {
+.last-event-line {
   border-image: linear-gradient(
     to bottom,
-    rgb(223 230 233) 1%,
-    rgb(223 230 233) 20%,
-    rgba(108, 219, 141, 0) 0%
+    #dfe6e9 0%,
+    #dfe6e9 53%,
+    rgba(108, 219, 141, 0) 53%
   );
   border-image-slice: 1;
 }
