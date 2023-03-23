@@ -1,17 +1,22 @@
-import { Suspense } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { NoToneMapping } from "three";
 import { Canvas } from "@react-three/fiber";
-import { Loader } from "@react-three/drei";
 import { Physics } from "@react-three/cannon";
+import { Loader } from "@react-three/drei";
 
-import Fog from "./Fog.three";
 import Lights from "./Light.three";
-import CustomGrid from "./Grid.three";
-import Controls from "./Controls.three";
-import EnvironmentThree from "./Environment.three";
-import Detector from "./detector-parts/Detector.three";
+import Fog from "./Fog.three";
 import StatsDispatcher from "./Stats.three";
-import Axis from "./Axis.three";
+import { useAppDispatch } from "../app/hooks";
+import useLoadingStatus from "../hooks/useLoading.hook";
+import { updateLoadingState } from "../features/geometryMenuSlice/geometryMenuSlice";
+
+const Detector = lazy(() => import("./Detector.three"));
+const Environment = lazy(() => import("./Environment.three"));
+const ParticleSystem = lazy(() => import("./particle-system/index.three"));
+const Controls = lazy(() => import("./Controls.three"));
+const Axis = lazy(() => import("./Axis.three"));
+const Grid = lazy(() => import("./Grid.three"));
 
 /**
  * Main scene of application
@@ -19,6 +24,17 @@ import Axis from "./Axis.three";
  * @returns { JSX.Element } JSX.ELement
  */
 export default function Scene(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const { isLoading, hasLoaded } = useLoadingStatus();
+
+  useEffect(() => {
+    if (isLoading) {
+      dispatch(updateLoadingState("loading"));
+    } else if (hasLoaded) {
+      dispatch(updateLoadingState("idle"));
+    }
+  }, [isLoading, hasLoaded, dispatch]);
+
   return (
     <>
       <Canvas
@@ -31,16 +47,19 @@ export default function Scene(): JSX.Element {
       >
         <Physics gravity={[0, 0, 0]}>
           <Lights />
-          <Fog />
           <Suspense fallback={null}>
             <Detector />
           </Suspense>
-          <CustomGrid />
-          <Controls />
-          <EnvironmentThree />
+          <Fog />
+          <Suspense>
+            <Grid />
+            <Environment />
+            <ParticleSystem />
+            <Controls />
+            <Axis />
+          </Suspense>
+          <StatsDispatcher />
         </Physics>
-        <Axis />
-        <StatsDispatcher />
       </Canvas>
       <Loader />
     </>

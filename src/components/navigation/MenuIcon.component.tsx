@@ -25,7 +25,11 @@ export default function MenuIcon({
 }: Props): JSX.Element {
   return (
     <Button {...other}>
-      <Icon className={`icon ${active && "text-blue"} transition-all`} />
+      <Icon
+        className={`icon ${
+          active && "text-blue dark:text-green"
+        } transition-all`}
+      />
     </Button>
   );
 }

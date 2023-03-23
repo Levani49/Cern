@@ -25,7 +25,11 @@ export default function Checkbox({ title, className }: Props): JSX.Element {
         checked={checked}
         onChange={(): void => setChecked((prev) => !prev)}
       />
-      <div className="w-8 h-4 rounded-full peer bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[0.085rem] peer-checked:after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-[0.85rem] after:w-[0.85rem] after:transition-all border-gray-600 peer-checked:bg-blue-600"></div>
+      <div
+        className={`${
+          checked ? "bg-blue dark:bg-green" : "bg-transparentGray"
+        } w-8 h-4 rounded-full peer bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[0.085rem] peer-checked:after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-[0.85rem] after:w-[0.85rem] after:transition-all border-gray-600 peer-checked:bg-blue-600`}
+      ></div>
       <span className="ml-2 text-xs text-light">{title}</span>
     </label>
   );

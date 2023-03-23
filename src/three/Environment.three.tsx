@@ -12,7 +12,5 @@ export default function EnvironmentThree(): JSX.Element {
 
   if (show) return <></>;
 
-  return (
-    <Environment background="only" preset="sunset" blur={0.8} far={1000} />
-  );
+  return <Environment background="only" preset="sunset" blur={1} far={1000} />;
 }

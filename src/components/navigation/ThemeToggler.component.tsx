@@ -21,7 +21,11 @@ export default function ThemeToggler(): JSX.Element {
   };
 
   return (
-    <button className="focus:outline-none" onClick={handleClick}>
+    <button
+      className="focus:outline-none"
+      onClick={handleClick}
+      title="Theme switcher"
+    >
       {isSun ? <MoonIcon className="icon" /> : <SunIcon className="icon" />}
     </button>
   );

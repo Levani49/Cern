@@ -3,10 +3,12 @@ import { RootState } from "../app/app.types";
 
 interface GlobalsSlice {
   prefersDarkMode: boolean;
+  startParticleAnimation: boolean;
 }
 
 const initialState: GlobalsSlice = {
-  prefersDarkMode: false,
+  prefersDarkMode: true,
+  startParticleAnimation: true,
 };
 
 const globalsSlice = createSlice({
@@ -26,11 +28,20 @@ const globalsSlice = createSlice({
         document.documentElement.classList.remove("dark");
       }
     },
+
+    /**
+     *
+     * @param state
+     * @param action
+     */
+    setParticleAnimationState: (state, action: PayloadAction<boolean>) => {
+      state.startParticleAnimation = action.payload;
+    },
   },
 });
 
 export default globalsSlice.reducer;
-export const { setDarkMode } = globalsSlice.actions;
+export const { setDarkMode, setParticleAnimationState } = globalsSlice.actions;
 
 /**
  *
@@ -38,3 +49,10 @@ export const { setDarkMode } = globalsSlice.actions;
  */
 export const selectDarkModeState = (state: RootState): boolean =>
   state.globals.prefersDarkMode;
+
+/**
+ *
+ * @param state
+ */
+export const selectParticleAnimationState = (state: RootState): boolean =>
+  state.globals.startParticleAnimation;

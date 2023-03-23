@@ -24,7 +24,7 @@ export default function Slider({ title, className }: Props): JSX.Element {
         type="range"
         value={state}
         onChange={(e): void => setState(+e.target.value)}
-        className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-transparentLight dark:bg-gray-700"
+        className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-blue dark:accent-green bg-transparentLight dark:bg-gray-700"
       />
     </form>
   );

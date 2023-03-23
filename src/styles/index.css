@@ -1,0 +1,134 @@
+@import url("./fonts.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 0 !important; /* Remove scrollbar space */
+  background: transparent !important; /* Optional: just make scrollbar invisible */
+}
+
+body {
+  overflow-y: hidden !important;
+  max-height: 100vh;
+  height: 100vh;
+  background: rgb(28, 28, 28);
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+body::backdrop {
+  background: rgb(28, 28, 28);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--primary);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(23, 23, 23);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(67, 67, 67);
+  border-radius: 16px;
+  /* border: 3px solid var(--primary); */
+}
+
+.modalstyles {
+  background: rgba(8, 8, 8, 0.24);
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: "▼";
+  font-size: 0.52rem;
+  top: 55%;
+  right: 3%;
+  transform: translate(-50%, 50%);
+  position: absolute;
+}
+
+.flex-auto {
+  flex: 0 0 auto;
+}
+
+.info-graph {
+  position: absolute;
+  top: 13.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-center {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  transform: translate(-50%, -50%);
+}
+
+.last-child-event-line {
+  border-image: linear-gradient(
+    to bottom,
+    rgb(223 230 233) 0%,
+    rgb(223 230 233) 55%,
+    rgba(108, 219, 141, 0) 75%
+  );
+  border-image-slice: 1;
+}
+
+.last-event-line {
+  border-image: linear-gradient(
+    to bottom,
+    #dfe6e9 0%,
+    #dfe6e9 53%,
+    rgba(108, 219, 141, 0) 53%
+  );
+  border-image-slice: 1;
+}
+
+@layer base {
+  html {
+    font-family: "Poppins", sans-serif;
+  }
+}
+
+@layer components {
+  .icon {
+    @apply w-[22px] h-[22px] text-light hover:text-blue dark:hover:text-green cursor-pointer;
+  }
+
+  .modal {
+    @apply modal-center min-w-[256px] max-h-[450px] overflow-y-auto modalstyles flex;
+  }
+
+  .focus {
+    @apply text-blue;
+  }
+
+  .cardBackground {
+    background-image: linear-gradient(163deg, #5476ff 0%, #3700ff 100%);
+  }
+
+  .cardShadow {
+    box-shadow: 0px 0px 30px 1px rgba(69, 139, 220, 0.3);
+  }
+}

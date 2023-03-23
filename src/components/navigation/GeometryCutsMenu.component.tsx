@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { ReactComponent as ScissorIcon } from "../../assets/svg/scissor.svg";
 import { ReactComponent as LeftWallIcon } from "../../assets/svg/left-wall.svg";
 import { ReactComponent as RightWallIcon } from "../../assets/svg/right-wall.svg";
@@ -20,6 +21,7 @@ export default function GeometryCutsMenu(): JSX.Element {
       <MenuIcon
         Icon={StairsIcon}
         title="Provides different type of cuts for geometry"
+        active
       />
       <MenuDropdown>
         <MenuIcon Icon={LeftWallIcon} title="1'st cut" />
