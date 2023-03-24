@@ -19,7 +19,7 @@ export default function Tree(): JSX.Element {
 
   return (
     <ul
-      className={`select-none overflow-y-auto h-[50%] ${disablePointerEvents}`}
+      className={`select-none overflow-y-auto h-[60%] ${disablePointerEvents}`}
     >
       {GeometriesTree}
     </ul>

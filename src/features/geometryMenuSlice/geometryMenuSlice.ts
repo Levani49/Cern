@@ -34,7 +34,9 @@ interface GeometryTreeSlice {
   modelCut: ModelCut;
   modelsLoadingState: ModelLoadingStates;
   selectedModel: selectedModel;
-  opacity: number;
+  previousSelectedModel: selectedModel;
+  modelOpacity: number;
+  globalOpacity: number;
 }
 
 const initialState: GeometryTreeSlice = {
@@ -44,18 +46,28 @@ const initialState: GeometryTreeSlice = {
   modelCut: "-cut3",
   modelsLoadingState: "loading",
   selectedModel: null,
-  opacity: 1,
+  previousSelectedModel: null,
+  modelOpacity: 1,
+  globalOpacity: 1,
 };
 
 export const geometrySlice = createSlice({
   name: "tree",
   initialState,
   reducers: {
+    setGlobalOpacity: (state, action: PayloadAction<number>) => {
+      state.globalOpacity = action.payload;
+    },
     setModelsOpacity: (state, action: PayloadAction<number>) => {
-      state.opacity = action.payload;
+      state.modelOpacity = action.payload;
     },
     setSelectedModel: (state, action: PayloadAction<selectedModel>) => {
-      state.selectedModel = action.payload;
+      if (action.payload === null) {
+        state.previousSelectedModel = state.selectedModel;
+        state.selectedModel = action.payload;
+      } else {
+        state.selectedModel = action.payload;
+      }
     },
     updateModelCut: (state, action: PayloadAction<ModelCut>) => {
       state.modelCut = action.payload;
@@ -120,6 +132,7 @@ export const {
   updateModelCut,
   setSelectedModel,
   setModelsOpacity,
+  setGlobalOpacity,
 } = geometrySlice.actions;
 
 /**
@@ -141,5 +154,11 @@ export const selectLoadingState = (state: RootState): ModelLoadingStates =>
 export const selectSelectedModel = (state: RootState): selectedModel =>
   state.tree.selectedModel;
 
+export const selectPreviousSelectedModel = (state: RootState): selectedModel =>
+  state.tree.previousSelectedModel;
+
 export const selectModelsOpacity = (state: RootState): number =>
-  state.tree.opacity;
+  state.tree.modelOpacity;
+
+export const selectGlobalOpacity = (state: RootState): number =>
+  state.tree.globalOpacity;

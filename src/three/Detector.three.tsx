@@ -16,10 +16,14 @@ const Detector = memo(function Detector(): JSX.Element {
     .map((model) => {
       const { modelPath, uid, name } = model;
       const path = modelCut ? modelPath + modelCut : modelPath;
-      const modelName = uid + name;
 
       return (
-        <Model key={`${uid}${name}${modelCut}`} src={path} name={modelName} />
+        <Model
+          key={`${uid}${name}${modelCut}`}
+          src={path}
+          name={modelPath}
+          id={uid}
+        />
       );
     });
 
