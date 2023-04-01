@@ -17,7 +17,7 @@ const Logo = lazy(() => import("./components/logo/Logo.component"));
 function App(): JSX.Element {
   return (
     <>
-      <PreloadImage src="https://tracer-evd-mc.web.cern.ch/css/images/Tracer-Logo2022.png" />
+      <PreloadImage src="https://tracer-evd-mc.web.cern.ch/evd/css/assets/img/Tracer-Logo.png" />
       <div className="flex">
         <Navigation />
       </div>

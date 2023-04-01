@@ -11,6 +11,7 @@ import { useAppDispatch } from "../app/hooks";
 import useLoadingStatus from "../hooks/useLoading.hook";
 import { updateLoadingState } from "../features/geometryMenuSlice/geometryMenuSlice";
 import SceneUtils from "./SceneUtils.three";
+import Background from "./Background.three";
 
 const Detector = lazy(() => import("./Detector.three"));
 const Environment = lazy(() => import("./Environment.three"));
@@ -50,6 +51,7 @@ export default function Scene(): JSX.Element {
           <Lights />
           <Suspense fallback={null}>
             <Detector />
+            <Background />
           </Suspense>
           <Fog />
           <Suspense>

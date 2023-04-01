@@ -6,7 +6,7 @@ export default function Logo(): JSX.Element {
     <div className="absolute bottom-[1px] left-1 select-none">
       <div className="uppercase font-medium text-light cursor-pointer h-16 flex justify-center">
         <img
-          src="https://tracer-evd-mc.web.cern.ch/css/images/Tracer-Logo2022.png"
+          src="https://tracer-evd-mc.web.cern.ch/evd/css/assets/img/Tracer-Logo.png"
           alt="logo"
           height={65}
           width={100}

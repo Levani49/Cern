@@ -94,7 +94,9 @@
                             "visible",
                             "args",
                             "toneMapped",
-                            "object"
+                            "object",
+                            "transparent",
+                            "side"
                         ]
                     }
                 ]

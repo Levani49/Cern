@@ -22,7 +22,7 @@ interface Props {
   id: string;
 }
 
-interface Ev {
+export interface Ev {
   stopPropagation: () => void;
 }
 
