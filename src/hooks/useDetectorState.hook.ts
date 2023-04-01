@@ -4,9 +4,9 @@ import { useAppSelector } from "../app/hooks";
 import {
   selectActiveGeometries,
   selectGeometriesCutType,
-  type ActiveModel,
-  type ModelCut,
 } from "../features/geometryMenuSlice/geometryMenuSlice";
+
+import type { ModelCut, ActiveModel } from "../types/app.types";
 
 interface UseDetectorState {
   models: ActiveModel[];

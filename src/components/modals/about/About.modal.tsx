@@ -7,8 +7,8 @@ import {
 import Modal from "../Modal";
 import Slot from "./Slot.component";
 
-import { TEMP_INFO } from "../../../TEMP_STATIC_DATA";
-import type { Employee } from "../../../app/app.types";
+import { TEMP_INFO } from "../../../constants/TEMP_STATIC_DATA";
+import type { Employee } from "../../../types/app.types";
 
 /**
  * Renders an InfoModal component that displays information about employees in a modal window.

@@ -9,10 +9,11 @@ import MenuIcon from "./MenuIcon.component";
 import MenuDropdown from "./MenuDropdown.component";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
-  ModelCut,
   selectGeometriesCutType,
   updateModelCut,
 } from "../../features/geometryMenuSlice/geometryMenuSlice";
+
+import type { ModelCut } from "../../types/app.types";
 
 /**
  * Renders a GeometryCutsMenu component that displays a dropdown menu of geometry cut options.

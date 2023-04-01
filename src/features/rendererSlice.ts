@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import type { RootState } from "../app/app.types";
+import { RootState } from "../app/store";
 
 interface RendererInfo {
   show: boolean;

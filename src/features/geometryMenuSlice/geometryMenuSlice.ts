@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../app/app.types";
+
+import { RootState } from "../../app/store";
+
 import {
   updateParentNode,
   updateNodeAndAncestors,
@@ -7,13 +9,17 @@ import {
   updateActiveModels,
 } from "./geometryMenuUtils";
 
-import { TreeNode, GeometryState, GEOMETRY_MENU_TREE } from "./geometryTree";
-
-export interface ActiveModel {
-  uid: string;
-  name: string;
-  modelPath: string;
-}
+import {
+  TreeNode,
+  GeometryState,
+  GEOMETRY_MENU_TREE,
+} from "../../constants/geometryTree";
+import {
+  ActiveModel,
+  ModelCut,
+  ModelLoadingStates,
+  selectedModel,
+} from "../../types/app.types";
 
 interface UpdateNodePayload {
   nodeId: string;
@@ -23,9 +29,6 @@ interface UpdateNodePayload {
 }
 
 type UpdateNodePayloadAction = PayloadAction<UpdateNodePayload>;
-export type ModelCut = "-cut1" | "-cut2" | "-cut3" | "-cut4" | null;
-export type ModelLoadingStates = "idle" | "loading" | "failed";
-export type selectedModel = string | null;
 
 interface GeometryTreeSlice {
   show: boolean;

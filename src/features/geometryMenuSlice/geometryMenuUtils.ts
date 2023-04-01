@@ -1,5 +1,6 @@
-import { ActiveModel } from "./geometryMenuSlice";
-import { GeometryState, TreeNode } from "./geometryTree";
+import { GeometryState, TreeNode } from "../../constants/geometryTree";
+
+import type { ActiveModel } from "../../types/app.types";
 
 type UpdateNodeFunction = (
   node: TreeNode,

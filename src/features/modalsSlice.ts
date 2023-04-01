@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../app/app.types";
 
-export type CurrentAnalysisTool = "algorithm" | "filter" | "info";
+import { RootState } from "../app/store";
+
+import { CurrentAnalysisTool } from "../types/app.types";
 
 interface Modals {
   aboutModalIsOpen: boolean;

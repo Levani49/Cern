@@ -1,4 +1,4 @@
-import { ReactChildren } from "../../../../../app/app.types";
+import { ReactChildren } from "../../../../../types/app.types";
 
 interface Props {
   title: string;

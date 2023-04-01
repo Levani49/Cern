@@ -20,7 +20,7 @@ import {
 } from "../../features/cameraSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
-import type { SVGIcon, DroneTypes } from "../../app/app.types";
+import type { SVGIcon, DroneTypes } from "../../types/app.types";
 
 interface MenuItem {
   Icon: SVGIcon;

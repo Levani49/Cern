@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../app/app.types";
+
+import { RootState } from "../app/store";
 
 interface GlobalsSlice {
   prefersDarkMode: boolean;

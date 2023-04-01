@@ -1,4 +1,4 @@
-import { Employee } from "./app/app.types";
+import { Employee } from "../types/app.types";
 
 export const TEMP_INFO: Employee[] = [
   {

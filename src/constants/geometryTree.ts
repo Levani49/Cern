@@ -1,3 +1,5 @@
+import { uid } from "../utils/uid.util";
+
 export type GeometryState = "notLoaded" | "partialyLoaded" | "isLoaded";
 
 export interface TreeNode {
@@ -11,45 +13,41 @@ export interface TreeNode {
   nodeEnd?: boolean;
 }
 
-function generateId(): string {
-  return Math.floor(Math.random() * 1000000).toString();
-}
-
 export const GEOMETRY_MENU_TREE: TreeNode[] = [
   {
-    id: generateId(),
+    id: uid(),
     name: "atlas detector",
     state: "partialyLoaded",
     showChildren: true,
     root: true,
     children: [
       {
-        id: generateId(),
+        id: uid(),
         name: "main components",
         state: "partialyLoaded",
         showChildren: true,
         children: [
           {
-            id: generateId(),
+            id: uid(),
             name: "magnet systems",
             state: "notLoaded",
             showChildren: false,
             children: [
               {
-                id: generateId(),
+                id: uid(),
                 name: "toroid",
                 state: "notLoaded",
                 showChildren: false,
                 nodeEnd: true,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "barrel",
                     state: "notLoaded",
                     showChildren: false,
                     children: [
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "barrel toroid",
                         state: "notLoaded",
                         modelPath: "barrel-toroid",
@@ -58,26 +56,26 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                     ],
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "endcap",
                     state: "notLoaded",
                     showChildren: false,
                     nodeEnd: true,
                     children: [
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "sideA",
                         state: "notLoaded",
                         showChildren: false,
                         children: [
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "endcap toroid",
                             state: "notLoaded",
                             modelPath: "end-cap-toroid-sidea",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "tower & turret",
                             state: "notLoaded",
                             modelPath: "tower-turret-sidea",
@@ -86,20 +84,20 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                         ],
                       },
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "side c",
                         state: "notLoaded",
                         showChildren: false,
                         nodeEnd: true,
                         children: [
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "endcap toroid",
                             state: "notLoaded",
                             modelPath: "end-cap-toroid-sidec",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "tower & turret",
                             state: "notLoaded",
                             modelPath: "tower-turret-sidec",
@@ -114,43 +112,43 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
             ],
           },
           {
-            id: generateId(),
+            id: uid(),
             name: "inner detector",
             state: "isLoaded",
             showChildren: false,
             children: [
               {
-                id: generateId(),
+                id: uid(),
                 name: "pixel",
                 state: "isLoaded",
                 modelPath: "pixel",
               },
               {
-                id: generateId(),
+                id: uid(),
                 name: "sct",
                 state: "isLoaded",
                 showChildren: false,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "barrel",
                     state: "isLoaded",
                     modelPath: "sct-bar",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "endcap",
                     state: "isLoaded",
                     showChildren: false,
                     children: [
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "side a",
                         state: "isLoaded",
                         modelPath: "sct-sidea",
                       },
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "side c",
                         state: "isLoaded",
                         modelPath: "sct-sidec",
@@ -161,33 +159,33 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                 ],
               },
               {
-                id: generateId(),
+                id: uid(),
                 name: "trt",
                 state: "isLoaded",
                 showChildren: false,
                 nodeEnd: true,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "barrel",
                     state: "isLoaded",
                     modelPath: "trt-bar",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "endcap",
                     state: "isLoaded",
                     showChildren: false,
                     nodeEnd: true,
                     children: [
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "side a",
                         state: "isLoaded",
                         modelPath: "trt-sidea",
                       },
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "side c",
                         state: "isLoaded",
                         modelPath: "trt-sidec",
@@ -200,45 +198,45 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
             ],
           },
           {
-            id: generateId(),
+            id: uid(),
             name: "itk",
             state: "notLoaded",
             showChildren: false,
             children: [
               {
-                id: generateId(),
+                id: uid(),
                 name: "pixel detector",
                 state: "notLoaded",
                 showChildren: false,
                 nodeEnd: true,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "pixel inner system",
                     state: "notLoaded",
                     showChildren: false,
                     children: [
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "barrel",
                         state: "notLoaded",
                         modelPath: "itk-pixel-layout-inner-barrel",
                       },
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "endcap",
                         state: "notLoaded",
                         showChildren: false,
                         nodeEnd: true,
                         children: [
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "side a",
                             state: "notLoaded",
                             modelPath: "itk-pixel-layout-inner-endcap-sidea",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "side c",
                             state: "notLoaded",
                             modelPath: "itk-pixel-layout-inner-endcap-sidec",
@@ -249,32 +247,32 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                     ],
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "pixel outer system",
                     state: "notLoaded",
                     showChildren: false,
                     nodeEnd: true,
                     children: [
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "barrel",
                         state: "notLoaded",
                         modelPath: "itk-pixel-layout-outer-barrel",
                       },
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "endcap",
                         state: "notLoaded",
                         showChildren: true,
                         children: [
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "side a",
                             state: "notLoaded",
                             modelPath: "itk-pixel-layout-outer-endcap-sidea",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "side c",
                             state: "notLoaded",
                             modelPath: "itk-pixel-layout-outer-endcap-sidec",
@@ -283,20 +281,20 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                         ],
                       },
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "pixel pp1",
                         state: "notLoaded",
                         showChildren: false,
                         nodeEnd: true,
                         children: [
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "side a",
                             state: "notLoaded",
                             modelPath: "pixel-pp1-side-a",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "side c",
                             state: "notLoaded",
                             modelPath: "pixel-pp1-side-c",
@@ -311,50 +309,50 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
             ],
           },
           {
-            id: generateId(),
+            id: uid(),
             name: "calorimetry",
             state: "notLoaded",
             showChildren: false,
             children: [
               {
-                id: generateId(),
+                id: uid(),
                 name: "lar",
                 state: "notLoaded",
                 showChildren: false,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "barrel",
                     state: "notLoaded",
                     modelPath: "lar-barrel",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "endcap",
                     state: "notLoaded",
                     showChildren: false,
                     nodeEnd: true,
                     children: [
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "side a",
                         state: "notLoaded",
                         showChildren: false,
                         children: [
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "lar emec",
                             state: "notLoaded",
                             modelPath: "lar-emec-sidea",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "lar hec",
                             state: "notLoaded",
                             modelPath: "lar-hec-sidea",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "lar fcal",
                             state: "notLoaded",
                             modelPath: "lar-fcal-sidea",
@@ -363,26 +361,26 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                         ],
                       },
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "side c",
                         state: "notLoaded",
                         showChildren: false,
                         nodeEnd: true,
                         children: [
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "lar emec",
                             state: "notLoaded",
                             modelPath: "lar-emec-sidec",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "lar hec",
                             state: "notLoaded",
                             modelPath: "lar-hec-sidec",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "lar fcal",
                             state: "notLoaded",
                             modelPath: "lar-fcal-sidec",
@@ -395,33 +393,33 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                 ],
               },
               {
-                id: generateId(),
+                id: uid(),
                 name: "tile",
                 state: "notLoaded",
                 showChildren: false,
                 nodeEnd: true,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "barrel",
                     state: "notLoaded",
                     modelPath: "tile-barrel",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "barrel ext.",
                     state: "notLoaded",
                     showChildren: false,
                     nodeEnd: true,
                     children: [
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "side a",
                         state: "notLoaded",
                         modelPath: "tile-end-cap-sidea",
                       },
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "side c",
                         state: "notLoaded",
                         modelPath: "tile-end-cap-sidec",
@@ -434,31 +432,31 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
             ],
           },
           {
-            id: generateId(),
+            id: uid(),
             name: "muon spectrometer",
             state: "notLoaded",
             showChildren: false,
             children: [
               {
-                id: generateId(),
+                id: uid(),
                 name: "barrel",
                 state: "notLoaded",
                 showChildren: false,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "bi inner",
                     state: "notLoaded",
                     modelPath: "muon-barrel-inner",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "bi middle",
                     state: "notLoaded",
                     modelPath: "muon-barrel-middle",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "bi outer",
                     state: "notLoaded",
                     modelPath: "muon-barrel-outer",
@@ -467,38 +465,38 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                 ],
               },
               {
-                id: generateId(),
+                id: uid(),
                 name: "endcap",
                 state: "notLoaded",
                 showChildren: false,
                 nodeEnd: true,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "side a",
                     state: "notLoaded",
                     showChildren: false,
                     children: [
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "ei small wheel",
                         state: "notLoaded",
                         showChildren: false,
                         children: [
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "sw chambers",
                             state: "notLoaded",
                             modelPath: "small-wheel-chambers-sidea",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "njd shielding",
                             state: "notLoaded",
                             modelPath: "small-wheel-njd-sidea",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "hub",
                             state: "notLoaded",
                             modelPath: "small-wheel-hub-sidea",
@@ -507,31 +505,31 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                         ],
                       },
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "em big wheel",
                         state: "notLoaded",
                         showChildren: false,
                         children: [
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "tgc1",
                             state: "notLoaded",
                             modelPath: "tgc-sidea",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "mdt",
                             state: "notLoaded",
                             modelPath: "muon-big-wheel-mdt-sidea",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "tgc2",
                             state: "notLoaded",
                             modelPath: "tgc2-sidea",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "tgc3",
                             state: "notLoaded",
                             modelPath: "tgc3-sidea",
@@ -540,13 +538,13 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                         ],
                       },
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "ex extra wheel",
                         state: "notLoaded",
                         modelPath: "extra-wheel-sidea",
                       },
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "eo outer wheel",
                         state: "notLoaded",
                         modelPath: "outer-wheel-sidea",
@@ -555,32 +553,32 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                     ],
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "side c",
                     state: "notLoaded",
                     showChildren: false,
                     nodeEnd: true,
                     children: [
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "ei small wheel",
                         state: "notLoaded",
                         showChildren: false,
                         children: [
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "sw chambers",
                             state: "notLoaded",
                             modelPath: "small-wheel-chambers-sidec",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "njd shielding",
                             state: "notLoaded",
                             modelPath: "small-wheel-njd-sidec",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "hub",
                             state: "notLoaded",
                             modelPath: "small-wheel-hub-sidec",
@@ -589,31 +587,31 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                         ],
                       },
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "em big wheel",
                         state: "notLoaded",
                         showChildren: false,
                         children: [
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "tgc1",
                             state: "notLoaded",
                             modelPath: "tgc-sidec",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "mdt",
                             state: "notLoaded",
                             modelPath: "muon-big-wheel-mdt-sidec",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "tgc2",
                             state: "notLoaded",
                             modelPath: "tgc2-sidec",
                           },
                           {
-                            id: generateId(),
+                            id: uid(),
                             name: "tgc3",
                             state: "notLoaded",
                             modelPath: "tgc3-sidec",
@@ -622,13 +620,13 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                         ],
                       },
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "ex extra wheel",
                         state: "notLoaded",
                         modelPath: "extra-wheel-sidec",
                       },
                       {
-                        id: generateId(),
+                        id: uid(),
                         name: "eo outer wheel",
                         state: "notLoaded",
                         modelPath: "outer-wheel-sidec",
@@ -641,19 +639,19 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
             ],
           },
           {
-            id: generateId(),
+            id: uid(),
             name: "forward shielding",
             state: "notLoaded",
             showChildren: false,
             children: [
               {
-                id: generateId(),
+                id: uid(),
                 name: "side a",
                 state: "notLoaded",
                 modelPath: "forward-shielding-sidea",
               },
               {
-                id: generateId(),
+                id: uid(),
                 name: "side c",
                 state: "notLoaded",
                 modelPath: "forward-shielding-sidec",
@@ -662,37 +660,37 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
             ],
           },
           {
-            id: generateId(),
+            id: uid(),
             name: "services",
             state: "notLoaded",
             showChildren: false,
             children: [
               {
-                id: generateId(),
+                id: uid(),
                 name: "calorimeter services",
                 state: "notLoaded",
                 showChildren: false,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "flexible chain S.9",
                     state: "notLoaded",
                     modelPath: "flex-chain-sec9",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "flexible chain s.11",
                     state: "notLoaded",
                     modelPath: "flex-chain-sec11",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "flexible chain s.15",
                     state: "notLoaded",
                     modelPath: "flex-chain-sec15",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "gap region",
                     state: "notLoaded",
                     modelPath: "gap-region-serv",
@@ -701,37 +699,37 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                 ],
               },
               {
-                id: generateId(),
+                id: uid(),
                 name: "muon services",
                 state: "notLoaded",
                 showChildren: false,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "patch panels",
                     state: "notLoaded",
                     modelPath: "nan",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "sw services",
                     state: "notLoaded",
                     modelPath: "serv-muon-sw",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "cable trays",
                     state: "notLoaded",
                     modelPath: "serv-muon-cable-trays",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "cable trays inside barrel",
                     state: "notLoaded",
                     modelPath: "serv-muon-cable-trays-inside-barrel",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "ele boxes",
                     state: "notLoaded",
                     modelPath: "serv-muon-barrel-calo-ele-boxes",
@@ -740,55 +738,55 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                 ],
               },
               {
-                id: generateId(),
+                id: uid(),
                 name: "z0",
                 state: "notLoaded",
                 showChildren: false,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "sector1",
                     state: "notLoaded",
                     modelPath: "serv-z0-sec1",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "sector-3",
                     state: "notLoaded",
                     modelPath: "serv-z0-sec3",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "sector-5",
                     state: "notLoaded",
                     modelPath: "serv-z0-sec5",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "sector-7",
                     state: "notLoaded",
                     modelPath: "serv-z0-sec7",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "sector-9",
                     state: "notLoaded",
                     modelPath: "serv-z0-sec9",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "sector-11",
                     state: "notLoaded",
                     modelPath: "serv-z0-sec11",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "sector-13",
                     state: "notLoaded",
                     modelPath: "serv-z0-sec13",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "sector-15",
                     state: "notLoaded",
                     modelPath: "serv-z0-sec15",
@@ -797,19 +795,19 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                 ],
               },
               {
-                id: generateId(),
+                id: uid(),
                 name: "ho",
                 state: "notLoaded",
                 showChildren: false,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "side a",
                     state: "notLoaded",
                     modelPath: "ho-side-a-services",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "side c",
                     state: "notLoaded",
                     modelPath: "ho-side-c-services",
@@ -818,20 +816,20 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                 ],
               },
               {
-                id: generateId(),
+                id: uid(),
                 name: "hs",
                 state: "notLoaded",
                 showChildren: false,
                 nodeEnd: true,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "us15",
                     state: "notLoaded",
                     modelPath: "hs-us15-serv",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "usa15",
                     state: "notLoaded",
                     modelPath: "hs-usa-serv",
@@ -842,50 +840,50 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
             ],
           },
           {
-            id: generateId(),
+            id: uid(),
             name: "platforms",
             state: "notLoaded",
             showChildren: false,
             nodeEnd: false,
             children: [
               {
-                id: generateId(),
+                id: uid(),
                 name: "even sectors",
                 state: "notLoaded",
                 modelPath: "access-platforms-even-sectors",
               },
               {
-                id: generateId(),
+                id: uid(),
                 name: "odd sectors",
                 state: "notLoaded",
                 modelPath: "access-platforms-odd-sectors",
               },
               {
-                id: generateId(),
+                id: uid(),
                 name: "hs platforms",
                 state: "notLoaded",
                 showChildren: false,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "top platforms",
                     state: "notLoaded",
                     modelPath: "hs-arche",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "central pit platforms",
                     state: "notLoaded",
                     modelPath: "hs-central-pit-structure",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "us15 platforms",
                     state: "notLoaded",
                     modelPath: "hs-us",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "usa15 platforms",
                     state: "notLoaded",
                     modelPath: "hs-usa",
@@ -894,20 +892,20 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
                 ],
               },
               {
-                id: generateId(),
+                id: uid(),
                 name: "ho platforms",
                 state: "notLoaded",
                 showChildren: false,
                 nodeEnd: true,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "side a",
                     state: "notLoaded",
                     modelPath: "ho-side-a-platforms",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "side c",
                     state: "notLoaded",
                     modelPath: "ho-side-c-platforms",
@@ -918,7 +916,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
             ],
           },
           {
-            id: generateId(),
+            id: uid(),
             name: "beam pipe",
             state: "notLoaded",
             modelPath: "beam",
@@ -927,45 +925,45 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
         ],
       },
       {
-        id: generateId(),
+        id: uid(),
         name: "support structure",
         state: "notLoaded",
         showChildren: false,
         children: [
           {
-            id: generateId(),
+            id: uid(),
             name: "mechanical structure",
             state: "notLoaded",
             showChildren: false,
             nodeEnd: true,
             children: [
               {
-                id: generateId(),
+                id: uid(),
                 name: "feed and rails",
                 state: "notLoaded",
                 modelPath: "feet",
               },
               {
-                id: generateId(),
+                id: uid(),
                 name: "bt warm structure",
                 state: "notLoaded",
                 modelPath: "warm-structure",
               },
               {
-                id: generateId(),
+                id: uid(),
                 name: "hf truck",
                 state: "notLoaded",
                 showChildren: false,
                 nodeEnd: true,
                 children: [
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "side a",
                     state: "notLoaded",
                     modelPath: "hf-truck-sidea",
                   },
                   {
-                    id: generateId(),
+                    id: uid(),
                     name: "side c",
                     state: "notLoaded",
                     modelPath: "hf-truck-sidec",
@@ -978,50 +976,50 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
         ],
       },
       {
-        id: generateId(),
+        id: uid(),
         name: "cavern",
         state: "notLoaded",
         showChildren: false,
         nodeEnd: true,
         children: [
           {
-            id: generateId(),
+            id: uid(),
             name: "ux15",
             state: "notLoaded",
             modelPath: "ux15",
           },
           {
-            id: generateId(),
+            id: uid(),
             name: "us15",
             state: "notLoaded",
             modelPath: "us15",
           },
           {
-            id: generateId(),
+            id: uid(),
             name: "usa15",
             state: "notLoaded",
             modelPath: "usa15",
           },
           {
-            id: generateId(),
+            id: uid(),
             name: "px14",
             state: "notLoaded",
             modelPath: "px14",
           },
           {
-            id: generateId(),
+            id: uid(),
             name: "px15",
             state: "notLoaded",
             modelPath: "px15",
           },
           {
-            id: generateId(),
+            id: uid(),
             name: "px16",
             state: "notLoaded",
             modelPath: "px16",
           },
           {
-            id: generateId(),
+            id: uid(),
             name: "pm15",
             state: "notLoaded",
             modelPath: "pm15",

@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { TreeNode } from "../../features/geometryMenuSlice/geometryTree";
+import { TreeNode } from "../../constants/geometryTree";
 import ChildNode from "./ChildNode.component";
 import ParentNode from "./ParentNode.component";
 

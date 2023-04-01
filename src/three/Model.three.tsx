@@ -1,8 +1,7 @@
 import { useLoader, useThree } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { useEffect, useRef, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
+
 import {
   selectGlobalOpacity,
   selectGlobalWireframe,
@@ -13,12 +12,13 @@ import {
   setModelWireframe,
   setSelectedModel,
 } from "../features/geometryMenuSlice/geometryMenuSlice";
-import modelDisposeUtil from "../utils/modelDisposeUtil.utils";
-import applyDefaultsToModel from "../utils/modelApplyDefaults.utils";
-import updateOpacity from "../utils/updateOpacity.utils";
-import updateWireframe from "../utils/updateWireframe.utils";
 
-const url = import.meta.env.VITE_MODELS_PROVIDER;
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import ModelService from "../services/Model.service";
+
+export interface Ev {
+  stopPropagation: () => void;
+}
 
 interface Props {
   src: string;
@@ -26,13 +26,7 @@ interface Props {
   id: string;
 }
 
-export interface Ev {
-  stopPropagation: () => void;
-}
-
-const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath("/draco/");
-dracoLoader.setDecoderConfig({ type: "js" });
+const modelService = new ModelService();
 
 /**
  * Model component renders a 3D model using react-three-fiber library.
@@ -67,9 +61,9 @@ export default function Model({ src, id }: Props): JSX.Element {
   // Load the 3D model using the GLTFLoader and DRACOLoader.
   const model = useLoader(
     GLTFLoader,
-    `${url}/${src}.glb`,
+    modelService.generateModelUrl(src),
     (loader: GLTFLoader): void => {
-      loader.setDRACOLoader(dracoLoader);
+      loader.setDRACOLoader(modelService.dracoLoader);
     },
   );
   const ref = useRef<THREE.Object3D>();
@@ -79,12 +73,12 @@ export default function Model({ src, id }: Props): JSX.Element {
     const currentRef = ref.current;
 
     if (currentRef) {
-      applyDefaultsToModel(currentRef, id);
+      modelService.applyDefaults(currentRef, id);
     }
 
     return () => {
       if (currentRef) {
-        modelDisposeUtil(currentRef);
+        modelService.disposeModel(currentRef);
       }
     };
   }, [id]);
@@ -99,11 +93,11 @@ export default function Model({ src, id }: Props): JSX.Element {
       // Check if there is a selected model and if the current model's ID does not match the selected model's ID.
       if (selectedModel && selectedModel !== id) {
         // If another model is selected, update the opacity of the current model to 0.3 (partially transparent).
-        updateOpacity(currentRef, 0.3);
+        modelService.updateOpacity(currentRef, 0.3);
       } else {
         // If the current model is the selected model or no model is selected,
         // update the opacity of the current model to the current opacity value.
-        updateOpacity(currentRef, opacity);
+        modelService.updateOpacity(currentRef, opacity);
       }
     }
   }, [selectedModel, id, opacity, wireframe]);
@@ -113,7 +107,7 @@ export default function Model({ src, id }: Props): JSX.Element {
 
     if (currentRef) {
       if (selectedModel === id) {
-        updateOpacity(currentRef, modelOpacityLevel);
+        modelService.updateOpacity(currentRef, modelOpacityLevel);
         setOpacity(modelOpacityLevel);
       }
     }
@@ -124,7 +118,7 @@ export default function Model({ src, id }: Props): JSX.Element {
 
     if (currentRef) {
       if (selectedModel === id) {
-        updateWireframe(currentRef, modelWireframe);
+        modelService.updateWireframe(currentRef, modelWireframe);
         setWireframe(modelWireframe);
       }
     }
@@ -138,8 +132,8 @@ export default function Model({ src, id }: Props): JSX.Element {
     // Check if the currentRef exists.
     if (currentRef) {
       // Update the opacity of the current model to the global opacity level.
-      updateOpacity(currentRef, globalOpacityLevel);
-      updateWireframe(currentRef, globalWireframe);
+      modelService.updateOpacity(currentRef, globalOpacityLevel);
+      modelService.updateWireframe(currentRef, globalWireframe);
 
       // Update the local opacity state with the global opacity level.
       setOpacity(globalOpacityLevel);

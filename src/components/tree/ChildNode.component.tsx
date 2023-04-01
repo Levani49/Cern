@@ -1,6 +1,6 @@
 import { useAppDispatch } from "../../app/hooks";
 import { updateChildNodeState } from "../../features/geometryMenuSlice/geometryMenuSlice";
-import { GeometryState } from "../../features/geometryMenuSlice/geometryTree";
+import { GeometryState } from "../../constants/geometryTree";
 
 interface Props {
   uid: string;

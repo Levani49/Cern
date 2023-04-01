@@ -5,7 +5,8 @@ import { Camera } from "@react-three/fiber";
 import { startDroneMode, stopDroneMode } from "../utils/handleDrone.utils";
 import ee from "../utils/events.utils";
 
-import type { DroneTypes, RootState } from "../app/app.types";
+import { RootState } from "../app/store";
+import { DroneTypes } from "../types/app.types";
 
 type ViewModes = "default" | "left" | "right";
 

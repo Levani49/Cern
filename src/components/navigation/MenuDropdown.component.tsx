@@ -1,4 +1,4 @@
-import type { ReactChildren } from "../../app/app.types";
+import type { ReactChildren } from "../../types/app.types";
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
   children: ReactChildren;

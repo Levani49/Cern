@@ -1,4 +1,4 @@
-import type { SVGIcon } from "../../app/app.types";
+import type { SVGIcon } from "../../types/app.types";
 import Button from "../Button.component";
 
 interface Props extends React.HTMLAttributes<HTMLButtonElement> {

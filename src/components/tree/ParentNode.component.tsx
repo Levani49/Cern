@@ -2,7 +2,7 @@ import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
 import { useCallback, useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { updateParentNodeState } from "../../features/geometryMenuSlice/geometryMenuSlice";
-import { GeometryState } from "../../features/geometryMenuSlice/geometryTree";
+import { GeometryState } from "../../constants/geometryTree";
 
 interface Props {
   uid: string;

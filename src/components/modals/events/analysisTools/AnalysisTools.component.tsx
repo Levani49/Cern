@@ -1,10 +1,11 @@
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import {
-  CurrentAnalysisTool,
   selectCurrentEventAnalysisTool,
   setEventCurrentAnalysisTool,
 } from "../../../../features/modalsSlice";
 import AnalysisTool from "./AnalysisTool.component";
+
+import type { CurrentAnalysisTool } from "../../../../types/app.types";
 
 /**
  *

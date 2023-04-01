@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import Draggable from "react-draggable";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
-import type { ReactChildren } from "../../app/app.types";
+import type { ReactChildren } from "../../types/app.types";
 
 interface Props {
   show: boolean;
