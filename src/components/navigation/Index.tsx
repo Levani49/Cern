@@ -1,5 +1,4 @@
 import { ReactComponent as MenuLogo } from "../../assets/svg/menu.svg";
-import { ReactComponent as WireframeIcon } from "../../assets/svg/wireframe.svg";
 
 import GeometryCutsMenu from "./GeometryCutsMenu.component";
 import FullScreenMenu from "./FullScreenMenu.component";
@@ -14,6 +13,7 @@ import StatsMenu from "./StatsMenu.component";
 import MenuIcon from "./MenuIcon.component";
 import AxisMenu from "./AxisMenu.component";
 import GridMenu from "./GridMenu.component";
+import WireframeMenu from "./WireframeMenu.component";
 
 /**
  * Renders a Navigation component that displays the app's navigation menu.
@@ -35,7 +35,7 @@ export default function Navigation(): JSX.Element {
         <CameraViewMenu />
         <GeometryCutsMenu />
         <OpacirtyMenu />
-        <MenuIcon Icon={WireframeIcon} title="Wireframe of geometry" />
+        <WireframeMenu />
         <StatsMenu />
         <AxisMenu />
         <GridMenu />

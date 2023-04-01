@@ -5,14 +5,18 @@ import { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   selectGlobalOpacity,
+  selectGlobalWireframe,
   selectModelsOpacity,
+  selectModelWireframe,
   selectSelectedModel,
   setModelsOpacity,
+  setModelWireframe,
   setSelectedModel,
 } from "../features/geometryMenuSlice/geometryMenuSlice";
 import modelDisposeUtil from "../utils/modelDisposeUtil.utils";
 import applyDefaultsToModel from "../utils/modelApplyDefaults.utils";
 import updateOpacity from "../utils/updateOpacity.utils";
+import updateWireframe from "../utils/updateWireframe.utils";
 
 const url = import.meta.env.VITE_MODELS_PROVIDER;
 
@@ -39,15 +43,23 @@ dracoLoader.setDecoderConfig({ type: "js" });
 export default function Model({ src, id }: Props): JSX.Element {
   // State for managing the opacity of the model.
   const [opacity, setOpacity] = useState<number>(1);
+  const [wireframe, setWireframe] = useState<boolean>(false);
 
   // Redux hooks for managing the application state.
   const dispatch = useAppDispatch();
-  const { selectedModel, modelOpacityLevel, globalOpacityLevel } =
-    useAppSelector((state) => ({
-      selectedModel: selectSelectedModel(state),
-      modelOpacityLevel: selectModelsOpacity(state),
-      globalOpacityLevel: selectGlobalOpacity(state),
-    }));
+  const {
+    selectedModel,
+    modelOpacityLevel,
+    globalOpacityLevel,
+    modelWireframe,
+    globalWireframe,
+  } = useAppSelector((state) => ({
+    selectedModel: selectSelectedModel(state),
+    modelOpacityLevel: selectModelsOpacity(state),
+    globalOpacityLevel: selectGlobalOpacity(state),
+    modelWireframe: selectModelWireframe(state),
+    globalWireframe: selectGlobalWireframe(state),
+  }));
 
   // Access the WebGLRenderer and other essential objects in the react-three-fiber scene.
   const { gl } = useThree();
@@ -94,26 +106,29 @@ export default function Model({ src, id }: Props): JSX.Element {
         updateOpacity(currentRef, opacity);
       }
     }
-  }, [selectedModel, id, opacity]);
+  }, [selectedModel, id, opacity, wireframe]);
 
-  // This effect updates the opacity of the current model based on the model-specific opacity level.
   useEffect(() => {
-    // Access the current value of the ref.
     const currentRef = ref.current;
 
-    // Check if the currentRef exists.
     if (currentRef) {
-      // Check if the current model's ID matches the selected model's ID.
       if (selectedModel === id) {
-        // If the current model is the selected model, update the opacity of the current model
-        // to the model-specific opacity level.
         updateOpacity(currentRef, modelOpacityLevel);
-
-        // Update the local opacity state with the model-specific opacity level.
         setOpacity(modelOpacityLevel);
       }
     }
   }, [modelOpacityLevel, selectedModel, id]);
+
+  useEffect(() => {
+    const currentRef = ref.current;
+
+    if (currentRef) {
+      if (selectedModel === id) {
+        updateWireframe(currentRef, modelWireframe);
+        setWireframe(modelWireframe);
+      }
+    }
+  }, [modelWireframe, selectedModel, id]);
 
   // This effect updates the opacity of the current model based on the global opacity level.
   useEffect(() => {
@@ -124,11 +139,13 @@ export default function Model({ src, id }: Props): JSX.Element {
     if (currentRef) {
       // Update the opacity of the current model to the global opacity level.
       updateOpacity(currentRef, globalOpacityLevel);
+      updateWireframe(currentRef, globalWireframe);
 
       // Update the local opacity state with the global opacity level.
       setOpacity(globalOpacityLevel);
+      setWireframe(globalWireframe);
     }
-  }, [globalOpacityLevel]);
+  }, [globalOpacityLevel, globalWireframe]);
 
   // This function handles click events on the model.
   const handleClick = (e: Ev): void => {
@@ -143,6 +160,7 @@ export default function Model({ src, id }: Props): JSX.Element {
 
     // Update the model-specific opacity level to the current model's opacity.
     dispatch(setModelsOpacity(opacity));
+    dispatch(setModelWireframe(wireframe));
   };
 
   // Handle pointer over events on the model.

@@ -29,6 +29,8 @@ export type selectedModel = string | null;
 
 interface GeometryTreeSlice {
   show: boolean;
+  modelWireframe: boolean;
+  globalWireframe: boolean;
   tree: TreeNode[];
   activeModels: ActiveModel[];
   modelCut: ModelCut;
@@ -41,11 +43,13 @@ interface GeometryTreeSlice {
 
 const initialState: GeometryTreeSlice = {
   show: true,
+  modelWireframe: false,
+  globalWireframe: false,
+  selectedModel: null,
   tree: GEOMETRY_MENU_TREE,
   activeModels: updateActiveModels(GEOMETRY_MENU_TREE),
   modelCut: "-cut3",
   modelsLoadingState: "loading",
-  selectedModel: null,
   previousSelectedModel: null,
   modelOpacity: 1,
   globalOpacity: 1,
@@ -55,6 +59,12 @@ export const geometrySlice = createSlice({
   name: "tree",
   initialState,
   reducers: {
+    setModelWireframe: (state, action: PayloadAction<boolean>) => {
+      state.modelWireframe = action.payload;
+    },
+    setGlobalWireframe: (state, action: PayloadAction<boolean>) => {
+      state.globalWireframe = action.payload;
+    },
     setGlobalOpacity: (state, action: PayloadAction<number>) => {
       state.globalOpacity = action.payload;
     },
@@ -133,6 +143,8 @@ export const {
   setSelectedModel,
   setModelsOpacity,
   setGlobalOpacity,
+  setModelWireframe,
+  setGlobalWireframe,
 } = geometrySlice.actions;
 
 /**
@@ -162,3 +174,9 @@ export const selectModelsOpacity = (state: RootState): number =>
 
 export const selectGlobalOpacity = (state: RootState): number =>
   state.tree.globalOpacity;
+
+export const selectModelWireframe = (state: RootState): boolean =>
+  state.tree.modelWireframe;
+
+export const selectGlobalWireframe = (state: RootState): boolean =>
+  state.tree.globalWireframe;
