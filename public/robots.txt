@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /*.js$
+Disallow: /*.jsx$
+Disallow: /*.css$
+Disallow: /*.svg$
+Disallow: /*.png$
+Disallow: /*.jpg$
+Disallow: /*.jpeg$
+Disallow: /*.eot$
+Disallow: /*.ttf$
+Disallow: /*.woff$
+Disallow: /*.woff2$
+Disallow: /*.otf$
