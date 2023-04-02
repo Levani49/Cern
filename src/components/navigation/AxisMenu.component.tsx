@@ -5,9 +5,6 @@ import { selectAxis, showAxis } from '../../features/global/globalsSlice';
 
 import MenuIcon from './MenuIcon.component';
 
-/**
- *
- */
 export default function AxisMenu(): JSX.Element {
   const dispatch = useAppDispatch();
   const show = useAppSelector(selectAxis);

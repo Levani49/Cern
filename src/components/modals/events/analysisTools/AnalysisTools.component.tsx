@@ -1,15 +1,14 @@
-import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
+import AnalysisTool from './AnalysisTool.component';
+
 import {
   selectCurrentEventAnalysisTool,
   setEventCurrentAnalysisTool,
 } from '../../../../features/modals/modalsSlice';
-import AnalysisTool from './AnalysisTool.component';
+
+import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
 
 import type { CurrentAnalysisTool } from '../../../../types/app.types';
 
-/**
- *
- */
 export default function AnalysisTools(): JSX.Element {
   const dispatch = useAppDispatch();
   const currentTool = useAppSelector(selectCurrentEventAnalysisTool);

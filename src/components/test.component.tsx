@@ -1,9 +1,6 @@
 import { useAppDispatch } from '../app/hooks';
 import { setParticleAnimationState } from '../features/global/globalsSlice';
 
-/**
- *
- */
 export default function Test(): JSX.Element {
   const dispatch = useAppDispatch();
 

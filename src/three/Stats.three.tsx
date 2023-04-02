@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 
 import { useAppDispatch } from '../app/hooks';
 import { setRendererStats } from '../features/renderer/rendererSlice';
+
 import StatsUtils from '../utils/stats.utils';
 
 const stats = new StatsUtils();

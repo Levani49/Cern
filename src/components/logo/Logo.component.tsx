@@ -1,6 +1,3 @@
-/**
- *
- */
 export default function Logo(): JSX.Element {
   return (
     <div className="absolute bottom-[1px] left-1 select-none">

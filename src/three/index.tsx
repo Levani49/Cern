@@ -4,12 +4,14 @@ import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import { Loader } from '@react-three/drei';
 
+import { updateModelsLoadingState } from '../features/model/modelSlice';
+
+import { useAppDispatch } from '../app/hooks';
+import useLoadingStatus from '../hooks/useLoading/useLoading';
+
 import Lights from './Light.three';
 import Fog from './Fog.three';
 import StatsDispatcher from './Stats.three';
-import { useAppDispatch } from '../app/hooks';
-import useLoadingStatus from '../hooks/useLoading/useLoading';
-import { updateModelsLoadingState } from '../features/model/modelSlice';
 import Background from './Background.three';
 
 const Detector = lazy(() => import('./Detector.three'));

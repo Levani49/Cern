@@ -3,7 +3,6 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { useEffect, useRef, useState } from 'react';
 
 import { selectGlobalOpacity, selectGlobalWireframe } from '../features/global/globalsSlice';
-
 import {
   selectModelsOpacity,
   selectModelWireframe,
@@ -14,8 +13,8 @@ import {
 } from '../features/model/modelSlice';
 
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import ModelService from '../services/Model.service';
 
+import ModelService from '../services/Model.service';
 export interface Ev {
   stopPropagation: () => void;
 }

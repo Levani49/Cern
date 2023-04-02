@@ -4,10 +4,10 @@ import { useSphere } from '@react-three/cannon';
 import { useFrame, useThree } from '@react-three/fiber';
 import { PointerLockControls } from '@react-three/drei';
 
-import { usePlayerControls } from '../hooks/usePlayercontrols/usePlayerControls';
 import { setDroneMode } from '../features/camera/cameraSlice';
-import store from '../app/store';
+import { usePlayerControls } from '../hooks/usePlayercontrols/usePlayerControls';
 
+import store from '../app/store';
 interface Props {
   currentCameraPosition: [number, number, number];
 }

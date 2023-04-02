@@ -1,5 +1,6 @@
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ReactComponent as WaterDropIcon } from '../../assets/svg/water-drop.svg';
+
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectGlobalOpacity, setGlobalOpacity } from '../../features/global/globalsSlice';
 
 import {

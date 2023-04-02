@@ -79,7 +79,10 @@
                             "transparent",
                             "side",
                             "object",
-                            "visible"
+                            "visible",
+                            "attach",
+                            "intensity",
+                            "position"
                         ]
                     }
                 ]

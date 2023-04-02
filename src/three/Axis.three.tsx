@@ -1,6 +1,7 @@
 import { GizmoHelper, GizmoViewport } from '@react-three/drei';
 
 import { useAppSelector } from '../app/hooks';
+
 import { selectDroneState } from '../features/camera/cameraSlice';
 import { selectAxis } from '../features/global/globalsSlice';
 
@@ -11,8 +12,6 @@ export default function Axis(): JSX.Element {
   }));
 
   const disable = droneType !== 'idle';
-
-  if (!show) return <></>;
 
   return (
     <>

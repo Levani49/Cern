@@ -1,6 +1,7 @@
 import { memo } from 'react';
 
 import { useDetectorState } from '../hooks/useDetectorState/useDetectorState';
+
 import Model from './Model.three';
 
 /**

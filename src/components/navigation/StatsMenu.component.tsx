@@ -5,9 +5,6 @@ import { selectStats, showRendererStats } from '../../features/global/globalsSli
 
 import MenuIcon from './MenuIcon.component';
 
-/**
- *
- */
 export default function StatsMenu(): JSX.Element {
   const dispatch = useAppDispatch();
   const showRendererStatsMenu = useAppSelector(selectStats);

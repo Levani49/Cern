@@ -1,7 +1,7 @@
+import { ReactComponent as InfoIcon } from '../../assets/svg/info.svg';
+
 import { selectAboutModalState, showAboutModal } from '../../features/modals/modalsSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-
-import { ReactComponent as InfoIcon } from '../../assets/svg/info.svg';
 
 import MenuIcon from './MenuIcon.component';
 import AboutModal from '../modals/about/About.modal';

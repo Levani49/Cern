@@ -3,11 +3,8 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   FolderIcon,
-} from "@heroicons/react/24/outline";
+} from '@heroicons/react/24/outline';
 
-/**
- *
- */
 export default function FileActions(): JSX.Element {
   return (
     <div className="w-full flex justify-between px-2 items-center">

@@ -1,4 +1,5 @@
 import { Environment } from '@react-three/drei';
+
 import { useAppSelector } from '../app/hooks';
 import { selectTheme } from '../features/global/globalsSlice';
 
@@ -10,7 +11,5 @@ import { selectTheme } from '../features/global/globalsSlice';
 export default function EnvironmentThree(): JSX.Element {
   const show = useAppSelector(selectTheme);
 
-  if (show) return <></>;
-
-  return <Environment background="only" preset="sunset" blur={1} far={1000} />;
+  return <>{!show && <Environment background="only" preset="sunset" blur={1} far={1000} />}</>;
 }

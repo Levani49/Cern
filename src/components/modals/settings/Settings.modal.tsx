@@ -3,7 +3,6 @@ import { selectSettingsModalState, showSettingsModal } from '../../../features/m
 
 import Modal from '../Modal';
 import Slider from './Slider.component';
-// import AnimateHeight from "../../AnimateHeight.component";
 import OptionsBox from './OptionsBox.component';
 
 /**

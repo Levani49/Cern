@@ -8,19 +8,20 @@ import { ReactComponent as HelixIcon } from '../../assets/svg/helix.svg';
 import { ReactComponent as FilmIcon } from '../../assets/svg/film.svg';
 import { ReactComponent as FlyIcon } from '../../assets/svg/fly.svg';
 
-import MenuDropdown from './MenuDropdown.component';
-import MenuIcon from './MenuIcon.component';
-import SvgIcon from '../SvgIcon.component';
-import Button from '../Button.component';
-
 import {
   setDroneMode,
   selectDroneState,
   setFlyModalState,
 } from '../../features/camera/cameraSlice';
+
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import type { SVGIcon, DroneTypes } from '../../types/app.types';
+
+import MenuDropdown from './MenuDropdown.component';
+import MenuIcon from './MenuIcon.component';
+import SvgIcon from '../SvgIcon.component';
+import Button from '../Button.component';
 
 interface MenuItem {
   Icon: SVGIcon;

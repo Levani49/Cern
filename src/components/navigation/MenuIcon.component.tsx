@@ -1,5 +1,6 @@
-import type { SVGIcon } from "../../types/app.types";
-import Button from "../Button.component";
+import type { SVGIcon } from '../../types/app.types';
+
+import Button from '../Button.component';
 
 interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   Icon: SVGIcon;
@@ -18,18 +19,10 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
  * @param {...object} props.other - Any additional properties to be passed to the Button component.
  * @returns {JSX.Element} - A JSX element representing the MenuIcon component.
  */
-export default function MenuIcon({
-  Icon,
-  active,
-  ...other
-}: Props): JSX.Element {
+export default function MenuIcon({ Icon, active, ...other }: Props): JSX.Element {
   return (
     <Button {...other}>
-      <Icon
-        className={`icon ${
-          active && "text-blue dark:text-green"
-        } transition-all`}
-      />
+      <Icon className={`icon ${active && 'text-blue dark:text-green'} transition-all`} />
     </Button>
   );
 }

@@ -33,16 +33,10 @@ export default function EventsModal(): JSX.Element {
     return currentAnalysisTool;
   }, [currentAnalysisTool]);
 
-  /**
-   *
-   */
   const closeModalHandler = (): void => {
     dispatch(showEventsModal(false));
   };
 
-  /**
-   *
-   */
   const renderCurrentTool = (): JSX.Element => {
     switch (memoizedAnalysisTool) {
       case 'info':

@@ -2,9 +2,6 @@ import { ReactComponent as BoxIcon } from '../../assets/svg/box.svg';
 import { ReactComponent as LeftSideBox } from '../../assets/svg/left-side-box.svg';
 import { ReactComponent as RightSideBox } from '../../assets/svg/right-side-box.svg';
 
-import MenuIcon from './MenuIcon.component';
-import MenuDropdown from './MenuDropdown.component';
-
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   selectCameraViewMode,
@@ -13,6 +10,9 @@ import {
   setLeftCameraView,
   setRightCameraView,
 } from '../../features/camera/cameraSlice';
+
+import MenuIcon from './MenuIcon.component';
+import MenuDropdown from './MenuDropdown.component';
 
 /**
  * Renders a CameraViewMenu component that displays a dropdown menu of camera view options.

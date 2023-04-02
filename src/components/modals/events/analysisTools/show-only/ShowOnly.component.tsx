@@ -1,8 +1,5 @@
-import Checkbox from "../../event-objects/Checkbox.component";
+import Checkbox from '../../event-objects/Checkbox.component';
 
-/**
- *
- */
 export default function ShowOnly(): JSX.Element {
   return (
     <div className="flex flex-col gap-2">

@@ -1,10 +1,10 @@
 import { Cog8ToothIcon } from '@heroicons/react/24/outline';
 
-import MenuIcon from './MenuIcon.component';
-import SettingsModal from '../modals/settings/Settings.modal';
-
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectSettingsModalState, showSettingsModal } from '../../features/modals/modalsSlice';
+
+import MenuIcon from './MenuIcon.component';
+import SettingsModal from '../modals/settings/Settings.modal';
 
 /**
  *

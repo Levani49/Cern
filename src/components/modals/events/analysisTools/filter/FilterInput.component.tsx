@@ -1,6 +1,3 @@
-/**
- *
- */
 export default function FilterInput(): JSX.Element {
   return (
     <div className="relative flex flex-wrap items-center w-full">
