@@ -82,7 +82,8 @@
                             "visible",
                             "attach",
                             "intensity",
-                            "position"
+                            "position",
+                            "toneMapped"
                         ]
                     }
                 ]

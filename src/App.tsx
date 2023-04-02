@@ -1,13 +1,12 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense } from 'react';
 
-import Navigation from "./components/navigation/Index";
-import PreloadImage from "./components/PreloadImage.component";
-import FlyOverlay from "./components/three/FlyGraph.component";
-import Stats from "./components/three/Stats.component";
+import Navigation from './components/navigation/Index';
+import FlyOverlay from './components/three/FlyGraph.component';
+import Stats from './components/three/Stats.component';
 
-const Tree = lazy(() => import("./components/tree/Tree.component"));
-const Scene = lazy(() => import("./three"));
-const Logo = lazy(() => import("./components/logo/Logo.component"));
+const Tree = lazy(() => import('./components/tree/Tree.component'));
+const Scene = lazy(() => import('./three'));
+const Logo = lazy(() => import('./components/logo/Logo.component'));
 
 /**
  * Entry point of the app
@@ -17,7 +16,6 @@ const Logo = lazy(() => import("./components/logo/Logo.component"));
 function App(): JSX.Element {
   return (
     <>
-      <PreloadImage src="https://tracer-evd-mc.web.cern.ch/evd/css/assets/img/Tracer-Logo.png" />
       <div className="flex">
         <Navigation />
       </div>
