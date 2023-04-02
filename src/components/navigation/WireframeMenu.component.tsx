@@ -2,13 +2,14 @@ import { ReactComponent as WireframeIcon } from '../../assets/svg/wireframe.svg'
 
 import MenuIcon from './MenuIcon.component';
 
+import { selectGlobalWireframe, setGlobalWireframe } from '../../features/global/globalsSlice';
+
 import {
-  selectGlobalWireframe,
   selectModelWireframe,
   selectSelectedModel,
-  setGlobalWireframe,
   setModelWireframe,
-} from '../../features/global/globalsSlice';
+} from '../../features/model/modelSlice';
+
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 export default function WireframeMenu(): JSX.Element {

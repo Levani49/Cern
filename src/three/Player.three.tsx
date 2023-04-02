@@ -4,7 +4,7 @@ import { useSphere } from '@react-three/cannon';
 import { useFrame, useThree } from '@react-three/fiber';
 import { PointerLockControls } from '@react-three/drei';
 
-import { usePlayerControls } from '../hooks/usePlayerControls';
+import { usePlayerControls } from '../hooks/usePlayercontrols/usePlayerControls';
 import { setDroneMode } from '../features/camera/cameraSlice';
 import store from '../app/store';
 

@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useProgress } from '@react-three/drei';
 
-interface Loading {
-  isLoading: boolean;
-  hasLoaded: boolean;
-  progress: number;
-}
+import type { Loading } from './useLoading.types';
 
 export default function useLoadingStatus(): Loading {
   const { active, progress } = useProgress();

@@ -1,12 +1,12 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ReactComponent as WaterDropIcon } from '../../assets/svg/water-drop.svg';
+import { selectGlobalOpacity, setGlobalOpacity } from '../../features/global/globalsSlice';
+
 import {
-  selectGlobalOpacity,
   selectModelsOpacity,
   selectSelectedModel,
-  setGlobalOpacity,
   setModelsOpacity,
-} from '../../features/global/globalsSlice';
+} from '../../features/model/modelSlice';
 
 import MenuDropdown from './MenuDropdown.component';
 import MenuIcon from './MenuIcon.component';

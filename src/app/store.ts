@@ -4,14 +4,16 @@ import infoReducer from '../features/renderer/rendererSlice';
 import cameraReducer from '../features/camera/cameraSlice';
 import modalsreducer from '../features/modals/modalsSlice';
 import globalsReducer from '../features/global/globalsSlice';
-import tree from '../features/tree/treeSlice';
+import treeReducer from '../features/tree/treeSlice';
+import modelReducer from '../features/model/modelSlice';
 
 const rootReducer = combineReducers({
   globals: globalsReducer,
   renderer: infoReducer,
   camera: cameraReducer,
   modals: modalsreducer,
-  tree: tree,
+  tree: treeReducer,
+  model: modelReducer,
 });
 
 const store = configureStore({

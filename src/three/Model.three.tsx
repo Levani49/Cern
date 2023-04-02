@@ -2,16 +2,16 @@ import { useLoader, useThree } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { useEffect, useRef, useState } from 'react';
 
+import { selectGlobalOpacity, selectGlobalWireframe } from '../features/global/globalsSlice';
+
 import {
-  selectGlobalOpacity,
-  selectGlobalWireframe,
   selectModelsOpacity,
   selectModelWireframe,
   selectSelectedModel,
   setModelsOpacity,
   setModelWireframe,
   setSelectedModel,
-} from '../features/global/globalsSlice';
+} from '../features/model/modelSlice';
 
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import ModelService from '../services/Model.service';

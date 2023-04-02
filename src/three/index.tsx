@@ -8,8 +8,8 @@ import Lights from './Light.three';
 import Fog from './Fog.three';
 import StatsDispatcher from './Stats.three';
 import { useAppDispatch } from '../app/hooks';
-import useLoadingStatus from '../hooks/useLoading';
-import { updateLoadingState } from '../features/global/globalsSlice';
+import useLoadingStatus from '../hooks/useLoading/useLoading';
+import { updateModelsLoadingState } from '../features/model/modelSlice';
 import Background from './Background.three';
 
 const Detector = lazy(() => import('./Detector.three'));
@@ -30,9 +30,9 @@ export default function Scene(): JSX.Element {
 
   useEffect(() => {
     if (isLoading) {
-      dispatch(updateLoadingState('loading'));
+      dispatch(updateModelsLoadingState('loading'));
     } else if (hasLoaded) {
-      dispatch(updateLoadingState('idle'));
+      dispatch(updateModelsLoadingState('idle'));
     }
   }, [isLoading, hasLoaded, dispatch]);
 

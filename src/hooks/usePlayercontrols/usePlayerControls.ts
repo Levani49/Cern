@@ -1,12 +1,6 @@
 import { useEffect, useState } from 'react';
 
-interface PlayerControls {
-  moveForward: boolean;
-  moveBackward: boolean;
-  moveLeft: boolean;
-  moveRight: boolean;
-  jump: boolean;
-}
+import type { PlayerControls } from './usePlayerControls.types';
 
 /**
  * Gets the corresponding movement control field for a given keyboard key code.

@@ -8,7 +8,7 @@ import { ReactComponent as GeometryCoreIcon } from '../../assets/svg/geometry-co
 import MenuIcon from './MenuIcon.component';
 import MenuDropdown from './MenuDropdown.component';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { selectGeometriesCutType, updateModelCut } from '../../features/global/globalsSlice';
+import { selectGeometriesCutType, updateModelCut } from '../../features/model/modelSlice';
 
 import type { ModelCut } from '../../types/app.types';
 

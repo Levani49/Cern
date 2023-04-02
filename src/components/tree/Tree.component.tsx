@@ -1,13 +1,13 @@
 import { useMemo } from 'react';
 import { useAppSelector } from '../../app/hooks';
-import { selectLoadingState } from '../../features/global/globalsSlice';
+import { selectModelsLoadingState } from '../../features/model/modelSlice';
 
 import { selectGeometryTree } from '../../features/tree/treeSlice';
 
 import RecursiveTree from './RecursiveTree.component';
 
 export default function Tree(): JSX.Element {
-  const isLoading = useAppSelector(selectLoadingState);
+  const isLoading = useAppSelector(selectModelsLoadingState);
   const geometryTree = useAppSelector(selectGeometryTree);
 
   const disablePointerEvents = isLoading === 'loading' ? 'pointer-events-none' : null;
