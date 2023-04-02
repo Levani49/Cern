@@ -1,13 +1,10 @@
-import { Cog8ToothIcon } from "@heroicons/react/24/outline";
+import { Cog8ToothIcon } from '@heroicons/react/24/outline';
 
-import MenuIcon from "./MenuIcon.component";
-import SettingsModal from "../modals/settings/Settings.modal";
+import MenuIcon from './MenuIcon.component';
+import SettingsModal from '../modals/settings/Settings.modal';
 
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import {
-  selectSettingsModalState,
-  showSettingsModal,
-} from "../../features/modalsSlice";
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectSettingsModalState, showSettingsModal } from '../../features/modals/modalsSlice';
 
 /**
  *
@@ -23,18 +20,12 @@ export default function SettingsMenu(): JSX.Element {
    * @returns {void}
    */
   const toggleModal = (): void => {
-    show
-      ? dispatch(showSettingsModal(false))
-      : dispatch(showSettingsModal(true));
+    show ? dispatch(showSettingsModal(false)) : dispatch(showSettingsModal(true));
   };
 
   return (
     <>
-      <MenuIcon
-        Icon={Cog8ToothIcon}
-        onClick={toggleModal}
-        title="Settings Menu"
-      />
+      <MenuIcon Icon={Cog8ToothIcon} onClick={toggleModal} title="Settings Menu" />
       <SettingsModal />
     </>
   );

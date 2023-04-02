@@ -1,15 +1,15 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { ReactComponent as WaterDropIcon } from "../../assets/svg/water-drop.svg";
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { ReactComponent as WaterDropIcon } from '../../assets/svg/water-drop.svg';
 import {
   selectGlobalOpacity,
   selectModelsOpacity,
   selectSelectedModel,
   setGlobalOpacity,
   setModelsOpacity,
-} from "../../features/geometryMenuSlice/geometryMenuSlice";
+} from '../../features/global/globalsSlice';
 
-import MenuDropdown from "./MenuDropdown.component";
-import MenuIcon from "./MenuIcon.component";
+import MenuDropdown from './MenuDropdown.component';
+import MenuIcon from './MenuIcon.component';
 
 /**
  * Provides functionality which controls opacity of geometries
@@ -19,22 +19,17 @@ import MenuIcon from "./MenuIcon.component";
 export default function OpacirtyMenu(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const { globalOpacityLevel, modelOpacityLevel, isModelSelected } =
-    useAppSelector((state) => ({
-      globalOpacityLevel: selectGlobalOpacity(state),
-      modelOpacityLevel: selectModelsOpacity(state),
-      isModelSelected: selectSelectedModel(state),
-    }));
+  const { globalOpacityLevel, modelOpacityLevel, isModelSelected } = useAppSelector((state) => ({
+    globalOpacityLevel: selectGlobalOpacity(state),
+    modelOpacityLevel: selectModelsOpacity(state),
+    isModelSelected: selectSelectedModel(state),
+  }));
 
-  const onChangeHandlerForModelOpacity = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ): void => {
+  const onChangeHandlerForModelOpacity = (e: React.ChangeEvent<HTMLInputElement>): void => {
     dispatch(setModelsOpacity(+e.target.value));
   };
 
-  const onChangeHandlerForGlobalOpacity = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ): void => {
+  const onChangeHandlerForGlobalOpacity = (e: React.ChangeEvent<HTMLInputElement>): void => {
     dispatch(setGlobalOpacity(+e.target.value));
   };
 

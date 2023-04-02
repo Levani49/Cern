@@ -1,12 +1,10 @@
-import { useMemo } from "react";
-import { useAppSelector } from "../app/hooks";
+import { useMemo } from 'react';
+import { useAppSelector } from '../../app/hooks';
 
-import {
-  selectActiveGeometries,
-  selectGeometriesCutType,
-} from "../features/geometryMenuSlice/geometryMenuSlice";
+import { selectActiveGeometries } from '../../features/tree/treeSlice';
+import { selectGeometriesCutType } from '../../features/global/globalsSlice';
 
-import type { ModelCut, ActiveModel } from "../types/app.types";
+import type { ModelCut, ActiveModel } from '../../types/app.types';
 
 interface UseDetectorState {
   models: ActiveModel[];

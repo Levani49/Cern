@@ -4,19 +4,31 @@
         "es2021": true
     },
     "globals": {
-        "React": true,
         "JSX": true
     },
+    "plugins": [
+        "import",
+        "react",
+        "eslint-plugin-jsx-a11y",
+        "@typescript-eslint",
+        "jsdoc"
+    ],
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:import/recommended",
-        "plugin:jsx-a11y/recommended",
         "plugin:react-hooks/recommended",
-        "plugin:@typescript-eslint/recommended",
+        "plugin:jsx-a11y/recommended",
         "plugin:jsdoc/recommended",
-        "eslint-config-prettier"
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/recommended",
+        "eslint-config-prettier",
+        "prettier"
     ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "tsconfigRootDir": "./",
+        "project": "./tsconfig.json"
+    },
     "settings": {
         "react": {
             "version": "detect"
@@ -34,18 +46,6 @@
             }
         }
     },
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "tsconfigRootDir": "./",
-        "project": "./tsconfig.json"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint",
-        "import",
-        "jsdoc",
-        "eslint-plugin-jsx-a11y"
-    ],
     "rules": {
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off",
@@ -68,18 +68,6 @@
     "overrides": [
         {
             "files": [
-                "**/*.model.tsx"
-            ],
-            "rules": {
-                "react/no-unknown-property": "off",
-                "import/named": "off",
-                "@typescript-eslint/no-unused-vars": "off",
-                "@typescript-eslint/explicit-function-return-type": "off",
-                "@typescript-eslint/ban-types": "off"
-            }
-        },
-        {
-            "files": [
                 "**.three.tsx"
             ],
             "rules": {
@@ -87,16 +75,11 @@
                     "error",
                     {
                         "ignore": [
-                            "castShadow",
-                            "position",
-                            "intensity",
-                            "attach",
-                            "visible",
                             "args",
-                            "toneMapped",
-                            "object",
                             "transparent",
-                            "side"
+                            "side",
+                            "object",
+                            "visible"
                         ]
                     }
                 ]

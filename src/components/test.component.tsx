@@ -1,5 +1,5 @@
-import { useAppDispatch } from "../app/hooks";
-import { setParticleAnimationState } from "../features/globalsSlice";
+import { useAppDispatch } from '../app/hooks';
+import { setParticleAnimationState } from '../features/global/globalsSlice';
 
 /**
  *
@@ -15,11 +15,7 @@ export default function Test(): JSX.Element {
   };
 
   return (
-    <div
-      className="absolute text-white top-20 left-10"
-      role="presentation"
-      onClick={onClick}
-    >
+    <div className="absolute text-white top-20 left-10" role="presentation" onClick={onClick}>
       test
     </div>
   );

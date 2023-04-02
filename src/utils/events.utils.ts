@@ -1,10 +1,10 @@
-import EventsEmitter from "events";
-import store from "../app/store";
+import EventsEmitter from 'events';
+import store from '../app/store';
 
-import { setDroneMode } from "../features/cameraSlice";
+import { setDroneMode } from '../features/camera/cameraSlice';
 
 const ee = new EventsEmitter();
 
-ee.on("stop", () => store.dispatch(setDroneMode("idle")));
+ee.on('stop', () => store.dispatch(setDroneMode('idle')));
 
 export default ee;

@@ -1,19 +1,19 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import {
   selectCurrentEventAnalysisTool,
   selectEventsModalState,
   showEventsModal,
-} from "../../../features/modalsSlice";
+} from '../../../features/modals/modalsSlice';
 
-import Modal from "../Modal";
-import AnalysisTools from "./analysisTools/AnalysisTools.component";
-import EventsResultsToggler from "./event-objects/EventsResultsToggler.component";
-import FileActions from "./fileActions/FileActions.component";
-import InfoTool from "./analysisTools/info/InfoTool.component";
-import AlgorithmTool from "./analysisTools/algorithm/AlgorithmTool.component";
-import FilterTool from "./analysisTools/filter/FilterTool.component";
+import Modal from '../Modal';
+import AnalysisTools from './analysisTools/AnalysisTools.component';
+import EventsResultsToggler from './event-objects/EventsResultsToggler.component';
+import FileActions from './fileActions/FileActions.component';
+import InfoTool from './analysisTools/info/InfoTool.component';
+import AlgorithmTool from './analysisTools/algorithm/AlgorithmTool.component';
+import FilterTool from './analysisTools/filter/FilterTool.component';
 
 /**
  * Renders an InfoModal component that displays information about employees in a modal window.
@@ -45,7 +45,7 @@ export default function EventsModal(): JSX.Element {
    */
   const renderCurrentTool = (): JSX.Element => {
     switch (memoizedAnalysisTool) {
-      case "info":
+      case 'info':
         return (
           <InfoTool
             show={true}
@@ -57,9 +57,9 @@ export default function EventsModal(): JSX.Element {
             time="03:38:35"
           />
         );
-      case "algorithm":
+      case 'algorithm':
         return <AlgorithmTool />;
-      case "filter":
+      case 'filter':
         return <FilterTool />;
       default:
         return <></>;

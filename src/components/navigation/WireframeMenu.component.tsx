@@ -1,6 +1,6 @@
-import { ReactComponent as WireframeIcon } from "../../assets/svg/wireframe.svg";
+import { ReactComponent as WireframeIcon } from '../../assets/svg/wireframe.svg';
 
-import MenuIcon from "./MenuIcon.component";
+import MenuIcon from './MenuIcon.component';
 
 import {
   selectGlobalWireframe,
@@ -8,19 +8,17 @@ import {
   selectSelectedModel,
   setGlobalWireframe,
   setModelWireframe,
-} from "../../features/geometryMenuSlice/geometryMenuSlice";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+} from '../../features/global/globalsSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 export default function WireframeMenu(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const { globalWireframe, modelWireframe, isModelSelected } = useAppSelector(
-    (state) => ({
-      globalWireframe: selectGlobalWireframe(state),
-      modelWireframe: selectModelWireframe(state),
-      isModelSelected: selectSelectedModel(state),
-    }),
-  );
+  const { globalWireframe, modelWireframe, isModelSelected } = useAppSelector((state) => ({
+    globalWireframe: selectGlobalWireframe(state),
+    modelWireframe: selectModelWireframe(state),
+    isModelSelected: selectSelectedModel(state),
+  }));
 
   const handleModelWireframe = (): void => {
     dispatch(setModelWireframe(!modelWireframe));
@@ -32,9 +30,7 @@ export default function WireframeMenu(): JSX.Element {
 
   const wireframe = isModelSelected ? modelWireframe : globalWireframe;
 
-  const onClickhandler = isModelSelected
-    ? handleModelWireframe
-    : handleGlobalWireframe;
+  const onClickhandler = isModelSelected ? handleModelWireframe : handleGlobalWireframe;
 
   return (
     <MenuIcon

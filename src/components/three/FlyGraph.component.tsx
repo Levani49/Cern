@@ -1,9 +1,9 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   selectDroneState,
   selectFlyModalState,
   setFlyModalState,
-} from "../../features/cameraSlice";
+} from '../../features/camera/cameraSlice';
 
 /**
  * A component that displays an overlay with instructions for controlling the drone camera
@@ -19,7 +19,7 @@ export default function FlyOverlay(): JSX.Element {
     droneMode: selectDroneState(state),
   }));
 
-  const isFreeFLy = droneMode === "fly";
+  const isFreeFLy = droneMode === 'fly';
 
   /**
    * Handles the user clicking on the overlay. Dispatches an action to set the `showFlyModal`
@@ -39,9 +39,8 @@ export default function FlyOverlay(): JSX.Element {
             Press
             <span className="font-bold text-yellow-500"> W | A | S | D </span>
             to move, use your mouse to rotate
-            <span className="font-bold text-yellow-500"> CAMERA </span>, Press{" "}
-            <span className="font-bold text-yellow-500"> ESC </span> to exit
-            from mode.
+            <span className="font-bold text-yellow-500"> CAMERA </span>, Press{' '}
+            <span className="font-bold text-yellow-500"> ESC </span> to exit from mode.
           </h1>
         )}
         {showFlyModal && (

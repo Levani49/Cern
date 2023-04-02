@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 interface PlayerControls {
   moveForward: boolean;
@@ -16,11 +16,11 @@ interface PlayerControls {
  */
 function moveFieldByKey(key: string): string | undefined {
   const keys: Record<string, string> = {
-    KeyW: "moveForward",
-    KeyS: "moveBackward",
-    KeyA: "moveLeft",
-    KeyD: "moveRight",
-    Space: "jump",
+    KeyW: 'moveForward',
+    KeyS: 'moveBackward',
+    KeyA: 'moveLeft',
+    KeyD: 'moveRight',
+    Space: 'jump',
   };
 
   return keys[key];
@@ -65,12 +65,12 @@ export function usePlayerControls(): PlayerControls {
       }));
     };
 
-    document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("keyup", handleKeyUp);
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keyup', handleKeyUp);
 
     return (): void => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("keyup", handleKeyUp);
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keyup', handleKeyUp);
     };
   }, []);
 

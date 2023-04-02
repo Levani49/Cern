@@ -1,31 +1,21 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { WritableDraft } from "immer/dist/internal";
-import { Camera } from "@react-three/fiber";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { WritableDraft } from 'immer/dist/internal';
+import { Camera } from '@react-three/fiber';
 
-import { startDroneMode, stopDroneMode } from "../utils/handleDrone.utils";
-import ee from "../utils/events.utils";
+import ee from '../../utils/events.utils';
+import { startDroneMode, stopDroneMode } from '../../utils/handleDrone.utils';
 
-import { RootState } from "../app/store";
-import { DroneTypes } from "../types/app.types";
-
-type ViewModes = "default" | "left" | "right";
-
-interface ICameraSettings {
-  position: [number, number, number];
-  currentState: DroneTypes;
-  droneType: DroneTypes;
-  camera: Camera | null;
-  showFlyModal: boolean;
-  viewMode: ViewModes;
-}
+import type { RootState } from '../../app/store';
+import type { DroneTypes } from '../../types/app.types';
+import type { ICameraSettings, ViewModes } from './cameraSlice.types';
 
 const initialState: ICameraSettings = {
   position: [3, 3, 3],
-  currentState: "idle",
-  droneType: "idle",
+  currentState: 'idle',
+  droneType: 'idle',
   camera: null,
   showFlyModal: false,
-  viewMode: "default",
+  viewMode: 'default',
 };
 
 /**
@@ -34,7 +24,7 @@ const initialState: ICameraSettings = {
  * @module infoSlice
  */
 export const cameraSlice = createSlice({
-  name: "camera",
+  name: 'camera',
   initialState,
   reducers: {
     /**
@@ -46,7 +36,7 @@ export const cameraSlice = createSlice({
      */
     setLeftCameraView: (state) => {
       state.position = [0, 0, 5];
-      state.viewMode = "left";
+      state.viewMode = 'left';
     },
     /**
      *
@@ -54,7 +44,7 @@ export const cameraSlice = createSlice({
      */
     setRightCameraView: (state) => {
       state.position = [5, 0.5, 0];
-      state.viewMode = "right";
+      state.viewMode = 'right';
     },
     /**
      *
@@ -62,7 +52,7 @@ export const cameraSlice = createSlice({
      */
     setDefaultView: (state) => {
       state.position = [3, 3, 4];
-      state.viewMode = "default";
+      state.viewMode = 'default';
     },
     /**
      *
@@ -74,15 +64,15 @@ export const cameraSlice = createSlice({
       /**
        *
        */
-      const handleFinish = (): boolean => ee.emit("stop");
+      const handleFinish = (): boolean => ee.emit('stop');
 
       if (state.camera) {
         switch (state.droneType) {
-          case "idle":
+          case 'idle':
             stopDroneMode(state.camera, state.currentState);
             break;
           default:
-            if (state.currentState !== "idle") {
+            if (state.currentState !== 'idle') {
               stopDroneMode(state.camera, state.currentState);
             }
             startDroneMode(state.camera, state.droneType, handleFinish);
@@ -123,26 +113,22 @@ export const {
  *
  * @param state
  */
-export const selectCameraPosition = (
-  state: RootState,
-): [number, number, number] => state.camera.position;
+export const selectCameraPosition = (state: RootState): [number, number, number] =>
+  state.camera.position;
 /**
  *
  * @param state
  */
-export const selectDroneState = (state: RootState): DroneTypes =>
-  state.camera.droneType;
+export const selectDroneState = (state: RootState): DroneTypes => state.camera.droneType;
 
 /**
  *
  * @param state
  */
-export const selectFlyModalState = (state: RootState): boolean =>
-  state.camera.showFlyModal;
+export const selectFlyModalState = (state: RootState): boolean => state.camera.showFlyModal;
 
 /**
  *
  * @param state
  */
-export const selectCameraViewMode = (state: RootState): ViewModes =>
-  state.camera.viewMode;
+export const selectCameraViewMode = (state: RootState): ViewModes => state.camera.viewMode;

@@ -1,24 +1,23 @@
-import { Suspense, lazy, useEffect } from "react";
-import { NoToneMapping } from "three";
-import { Canvas } from "@react-three/fiber";
-import { Physics } from "@react-three/cannon";
-import { Loader } from "@react-three/drei";
+import { Suspense, lazy, useEffect } from 'react';
+import { NoToneMapping } from 'three';
+import { Canvas } from '@react-three/fiber';
+import { Physics } from '@react-three/cannon';
+import { Loader } from '@react-three/drei';
 
-import Lights from "./Light.three";
-import Fog from "./Fog.three";
-import StatsDispatcher from "./Stats.three";
-import { useAppDispatch } from "../app/hooks";
-import useLoadingStatus from "../hooks/useLoading.hook";
-import { updateLoadingState } from "../features/geometryMenuSlice/geometryMenuSlice";
-import SceneUtils from "./SceneUtils.three";
-import Background from "./Background.three";
+import Lights from './Light.three';
+import Fog from './Fog.three';
+import StatsDispatcher from './Stats.three';
+import { useAppDispatch } from '../app/hooks';
+import useLoadingStatus from '../hooks/useLoading';
+import { updateLoadingState } from '../features/global/globalsSlice';
+import Background from './Background.three';
 
-const Detector = lazy(() => import("./Detector.three"));
-const Environment = lazy(() => import("./Environment.three"));
-const ParticleSystem = lazy(() => import("./particle-system/index.three"));
-const Controls = lazy(() => import("./Controls.three"));
-const Axis = lazy(() => import("./Axis.three"));
-const Grid = lazy(() => import("./Grid.three"));
+const Detector = lazy(() => import('./Detector.three'));
+const Environment = lazy(() => import('./Environment.three'));
+const ParticleSystem = lazy(() => import('./particle-system/index.three'));
+const Controls = lazy(() => import('./Controls.three'));
+const Axis = lazy(() => import('./Axis.three'));
+const Grid = lazy(() => import('./Grid.three'));
 
 /**
  * Main scene of application
@@ -31,9 +30,9 @@ export default function Scene(): JSX.Element {
 
   useEffect(() => {
     if (isLoading) {
-      dispatch(updateLoadingState("loading"));
+      dispatch(updateLoadingState('loading'));
     } else if (hasLoaded) {
-      dispatch(updateLoadingState("idle"));
+      dispatch(updateLoadingState('idle'));
     }
   }, [isLoading, hasLoaded, dispatch]);
 
@@ -62,7 +61,6 @@ export default function Scene(): JSX.Element {
             <Axis />
           </Suspense>
           <StatsDispatcher />
-          <SceneUtils />
         </Physics>
       </Canvas>
       <Loader />

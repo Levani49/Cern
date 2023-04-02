@@ -1,6 +1,6 @@
-import { GeometryState, TreeNode } from "../../constants/geometryTree";
+import { GeometryState, TreeNode } from '../../constants/geometryTree';
 
-import type { ActiveModel } from "../../types/app.types";
+import type { ActiveModel } from '../../types/app.types';
 
 type UpdateNodeFunction = (
   node: TreeNode,
@@ -21,36 +21,28 @@ export function updateNodeAndAncestors(
     }
 
     if (node.children) {
-      const updatedChildren = node.children
-        .map(updateNode)
-        .filter(Boolean) as TreeNode[];
+      const updatedChildren = node.children.map(updateNode).filter(Boolean) as TreeNode[];
 
       if (updatedChildren.length > 0) {
         const newChildren = node.children.map((child) => {
-          const updatedChild = updatedChildren.find(
-            (updated) => updated.id === child.id,
-          );
+          const updatedChild = updatedChildren.find((updated) => updated.id === child.id);
           return updatedChild ? updatedChild : child;
         });
 
         const childrenStates = newChildren.map((child) => child.state);
-        const allLoaded = childrenStates.every((state) => state === "isLoaded");
-        const someLoaded = childrenStates.some((state) => state === "isLoaded");
-        const allNotLoaded = childrenStates.every(
-          (state) => state === "notLoaded",
-        );
-        const somePartial = childrenStates.some(
-          (state) => state === "partialyLoaded",
-        );
+        const allLoaded = childrenStates.every((state) => state === 'isLoaded');
+        const someLoaded = childrenStates.some((state) => state === 'isLoaded');
+        const allNotLoaded = childrenStates.every((state) => state === 'notLoaded');
+        const somePartial = childrenStates.some((state) => state === 'partialyLoaded');
 
         let updatedState = node.state;
 
         if (allLoaded) {
-          updatedState = "isLoaded";
+          updatedState = 'isLoaded';
         } else if (someLoaded || somePartial) {
-          updatedState = "partialyLoaded";
+          updatedState = 'partialyLoaded';
         } else if (allNotLoaded) {
-          updatedState = "notLoaded";
+          updatedState = 'notLoaded';
         }
 
         return { ...node, state: updatedState, children: newChildren };
@@ -72,9 +64,7 @@ const updateDescendandNodes = (
     return {
       ...node,
       [propToChange]: value,
-      children: node.children.map((node) =>
-        updateDescendandNodes(node, propToChange, value),
-      ),
+      children: node.children.map((node) => updateDescendandNodes(node, propToChange, value)),
     };
   } else {
     return {
@@ -98,9 +88,7 @@ export const updateParentNode: UpdateNodeFunction = (
         ...node,
         [propToChange]: modelState,
         children: node.children
-          ? node.children.map((node) =>
-              updateDescendandNodes(node, propToChange, modelState),
-            )
+          ? node.children.map((node) => updateDescendandNodes(node, propToChange, modelState))
           : [],
       };
       return updatedNode;
@@ -111,13 +99,7 @@ export const updateParentNode: UpdateNodeFunction = (
         [propToChange]: modelState,
         children: node.children
           ? node.children.map((node) =>
-              updateParentNode(
-                node,
-                nodeId,
-                propToChange,
-                modelState,
-                updateDescendands,
-              ),
+              updateParentNode(node, nodeId, propToChange, modelState, updateDescendands),
             )
           : [],
       };
@@ -128,13 +110,7 @@ export const updateParentNode: UpdateNodeFunction = (
     return {
       ...node,
       children: node.children.map((node) =>
-        updateParentNode(
-          node,
-          nodeId,
-          propToChange,
-          modelState,
-          updateDescendands,
-        ),
+        updateParentNode(node, nodeId, propToChange, modelState, updateDescendands),
       ),
     };
   } else {
@@ -175,7 +151,7 @@ export function updateActiveModels(tree: TreeNode[]): ActiveModel[] {
       node.children.forEach((child) => traverse(child));
     }
 
-    if (node.state === "isLoaded") {
+    if (node.state === 'isLoaded') {
       if (node.modelPath) {
         activeModels.push({
           uid: node.id,

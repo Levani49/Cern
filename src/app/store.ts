@@ -1,10 +1,10 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
-import infoReducer from "../features/rendererSlice";
-import cameraReducer from "../features/cameraSlice";
-import modalsreducer from "../features/modalsSlice";
-import globalsReducer from "../features/globalsSlice";
-import tree from "../features/geometryMenuSlice/geometryMenuSlice";
+import infoReducer from '../features/renderer/rendererSlice';
+import cameraReducer from '../features/camera/cameraSlice';
+import modalsreducer from '../features/modals/modalsSlice';
+import globalsReducer from '../features/global/globalsSlice';
+import tree from '../features/tree/treeSlice';
 
 const rootReducer = combineReducers({
   globals: globalsReducer,
@@ -24,8 +24,7 @@ const store = configureStore({
    * @param {object} getDefaultMiddleware - The default middleware provided by Redux.
    * @returns {Array} - An array of middleware functions to be used in the Redux store.
    */
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

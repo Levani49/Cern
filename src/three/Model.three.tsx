@@ -1,6 +1,6 @@
-import { useLoader, useThree } from "@react-three/fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { useEffect, useRef, useState } from "react";
+import { useLoader, useThree } from '@react-three/fiber';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { useEffect, useRef, useState } from 'react';
 
 import {
   selectGlobalOpacity,
@@ -11,10 +11,10 @@ import {
   setModelsOpacity,
   setModelWireframe,
   setSelectedModel,
-} from "../features/geometryMenuSlice/geometryMenuSlice";
+} from '../features/global/globalsSlice';
 
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import ModelService from "../services/Model.service";
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import ModelService from '../services/Model.service';
 
 export interface Ev {
   stopPropagation: () => void;
@@ -41,19 +41,14 @@ export default function Model({ src, id }: Props): JSX.Element {
 
   // Redux hooks for managing the application state.
   const dispatch = useAppDispatch();
-  const {
-    selectedModel,
-    modelOpacityLevel,
-    globalOpacityLevel,
-    modelWireframe,
-    globalWireframe,
-  } = useAppSelector((state) => ({
-    selectedModel: selectSelectedModel(state),
-    modelOpacityLevel: selectModelsOpacity(state),
-    globalOpacityLevel: selectGlobalOpacity(state),
-    modelWireframe: selectModelWireframe(state),
-    globalWireframe: selectGlobalWireframe(state),
-  }));
+  const { selectedModel, modelOpacityLevel, globalOpacityLevel, modelWireframe, globalWireframe } =
+    useAppSelector((state) => ({
+      selectedModel: selectSelectedModel(state),
+      modelOpacityLevel: selectModelsOpacity(state),
+      globalOpacityLevel: selectGlobalOpacity(state),
+      modelWireframe: selectModelWireframe(state),
+      globalWireframe: selectGlobalWireframe(state),
+    }));
 
   // Access the WebGLRenderer and other essential objects in the react-three-fiber scene.
   const { gl } = useThree();
@@ -148,9 +143,7 @@ export default function Model({ src, id }: Props): JSX.Element {
 
     // If the clicked model is already selected, deselect it by setting selectedModel to null.
     // If not, set the selectedModel to the current model's id.
-    selectedModel === id
-      ? dispatch(setSelectedModel(null))
-      : dispatch(setSelectedModel(id));
+    selectedModel === id ? dispatch(setSelectedModel(null)) : dispatch(setSelectedModel(id));
 
     // Update the model-specific opacity level to the current model's opacity.
     dispatch(setModelsOpacity(opacity));
@@ -159,12 +152,12 @@ export default function Model({ src, id }: Props): JSX.Element {
 
   // Handle pointer over events on the model.
   const handlePointerOver = (): void => {
-    gl.domElement.style.cursor = "pointer";
+    gl.domElement.style.cursor = 'pointer';
   };
 
   // Handle pointer out events on the model.
   const handlePointerOut = (): void => {
-    gl.domElement.style.cursor = "default";
+    gl.domElement.style.cursor = 'default';
   };
 
   return (

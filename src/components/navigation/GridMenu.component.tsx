@@ -1,17 +1,15 @@
-import { GlobeEuropeAfricaIcon } from "@heroicons/react/24/outline";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import {
-  selectRendererGridState,
-  showGrid,
-} from "../../features/rendererSlice";
-import MenuIcon from "./MenuIcon.component";
+import { GlobeEuropeAfricaIcon } from '@heroicons/react/24/outline';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+
+import MenuIcon from './MenuIcon.component';
+import { selectGrid, showGrid } from '../../features/global/globalsSlice';
 
 /**
  *
  */
 export default function GridMenu(): JSX.Element {
   const dispatch = useAppDispatch();
-  const active = useAppSelector(selectRendererGridState);
+  const active = useAppSelector(selectGrid);
 
   /**
    *

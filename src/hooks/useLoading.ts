@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useProgress } from "@react-three/drei";
+import { useState, useEffect } from 'react';
+import { useProgress } from '@react-three/drei';
 
 interface Loading {
   isLoading: boolean;
