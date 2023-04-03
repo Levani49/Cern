@@ -1,15 +1,11 @@
-import { OrbitControls } from "@react-three/drei";
-import { useEffect } from "react";
-import { useThree } from "@react-three/fiber";
+import { OrbitControls } from '@react-three/drei';
+import { useEffect } from 'react';
+import { useThree } from '@react-three/fiber';
 
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import {
-  selectDroneState,
-  setCamera,
-  selectCameraPosition,
-} from "../features/cameraSlice";
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { selectDroneState, setCamera, selectCameraPosition } from '../features/camera/cameraSlice';
 
-import Player from "./Player.three";
+import Player from './Player.three';
 
 /**
  * Renders either an `OrbitControls` or a `Player` component based on the drone type.
@@ -27,19 +23,13 @@ export default function Controls(): JSX.Element {
     camera.position.set(...position);
   }, [camera, dispatch, position]);
 
-  const rotate = droneType === "circle";
-  const isFreeFly = droneType === "fly";
-  const enable = droneType === "circle" || droneType === "idle";
+  const rotate = droneType === 'circle';
+  const isFreeFly = droneType === 'fly';
+  const enable = droneType === 'circle' || droneType === 'idle';
 
   if (isFreeFly) {
     return (
-      <Player
-        currentCameraPosition={[
-          camera.position.x,
-          camera.position.y,
-          camera.position.z,
-        ]}
-      />
+      <Player currentCameraPosition={[camera.position.x, camera.position.y, camera.position.z]} />
     );
   }
 

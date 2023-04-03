@@ -1,26 +1,27 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
-import { ReactComponent as DollyZoomIcon } from "../../assets/svg/zoom.svg";
-import { ReactComponent as CircleIcon } from "../../assets/svg/circle.svg";
-import { ReactComponent as RocketIcon } from "../../assets/svg/rocket.svg";
-import { ReactComponent as DroneIcon } from "../../assets/svg/drone.svg";
-import { ReactComponent as HelixIcon } from "../../assets/svg/helix.svg";
-import { ReactComponent as FilmIcon } from "../../assets/svg/film.svg";
-import { ReactComponent as FlyIcon } from "../../assets/svg/fly.svg";
-
-import MenuDropdown from "./MenuDropdown.component";
-import MenuIcon from "./MenuIcon.component";
-import SvgIcon from "../SvgIcon.component";
-import Button from "../Button.component";
+import { ReactComponent as DollyZoomIcon } from '../../assets/svg/zoom.svg';
+import { ReactComponent as CircleIcon } from '../../assets/svg/circle.svg';
+import { ReactComponent as RocketIcon } from '../../assets/svg/rocket.svg';
+import { ReactComponent as DroneIcon } from '../../assets/svg/drone.svg';
+import { ReactComponent as HelixIcon } from '../../assets/svg/helix.svg';
+import { ReactComponent as FilmIcon } from '../../assets/svg/film.svg';
+import { ReactComponent as FlyIcon } from '../../assets/svg/fly.svg';
 
 import {
   setDroneMode,
   selectDroneState,
   setFlyModalState,
-} from "../../features/cameraSlice";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+} from '../../features/camera/cameraSlice';
 
-import type { SVGIcon, DroneTypes } from "../../app/app.types";
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+
+import type { SVGIcon, DroneTypes } from '../../types/app.types';
+
+import MenuDropdown from './MenuDropdown.component';
+import MenuIcon from './MenuIcon.component';
+import SvgIcon from '../SvgIcon.component';
+import Button from '../Button.component';
 
 interface MenuItem {
   Icon: SVGIcon;
@@ -39,7 +40,7 @@ export default function DroneMenu(): JSX.Element {
   const dispatch = useAppDispatch();
   const currentMode = useAppSelector(selectDroneState);
   const currentModeMemoized = useMemo(() => currentMode, [currentMode]);
-  const isActive = currentModeMemoized !== "idle";
+  const isActive = currentModeMemoized !== 'idle';
 
   /**
    
@@ -52,9 +53,9 @@ export default function DroneMenu(): JSX.Element {
    */
   const handleModeChange = (mode: DroneTypes): void => {
     if (currentModeMemoized === mode) {
-      dispatch(setDroneMode("idle"));
+      dispatch(setDroneMode('idle'));
     } else {
-      if (mode === "fly") {
+      if (mode === 'fly') {
         dispatch(setFlyModalState(true));
       }
       dispatch(setDroneMode(mode));
@@ -62,12 +63,12 @@ export default function DroneMenu(): JSX.Element {
   };
 
   const menuItems: MenuItem[] = [
-    { Icon: CircleIcon, mode: "circle", title: "Circle mode" },
-    { Icon: HelixIcon, mode: "helix", title: "Helix mode" },
-    { Icon: RocketIcon, mode: "rocket", title: "Rocket mode" },
-    { Icon: DollyZoomIcon, mode: "zoom", title: "Zoom mode" },
-    { Icon: FlyIcon, mode: "fly", title: "Fly mode" },
-    { Icon: FilmIcon, mode: "z0", title: "Cinema mode" },
+    { Icon: CircleIcon, mode: 'circle', title: 'Circle mode' },
+    { Icon: HelixIcon, mode: 'helix', title: 'Helix mode' },
+    { Icon: RocketIcon, mode: 'rocket', title: 'Rocket mode' },
+    { Icon: DollyZoomIcon, mode: 'zoom', title: 'Zoom mode' },
+    { Icon: FlyIcon, mode: 'fly', title: 'Fly mode' },
+    { Icon: FilmIcon, mode: 'z0', title: 'Cinema mode' },
   ];
 
   const innerHtml = menuItems.map((item: MenuItem) => (
@@ -81,14 +82,8 @@ export default function DroneMenu(): JSX.Element {
 
   return (
     <div className="inline-flex group">
-      <Button
-        onClick={(): void => handleModeChange("idle")}
-        title="Drone modes"
-      >
-        <SvgIcon
-          className={`${isActive ? "text-red-500 animate-pulse" : ""}`}
-          Icon={DroneIcon}
-        />
+      <Button onClick={(): void => handleModeChange('idle')} title="Drone modes">
+        <SvgIcon className={`${isActive ? 'text-red-500 animate-pulse' : ''}`} Icon={DroneIcon} />
       </Button>
       <MenuDropdown>{innerHtml}</MenuDropdown>
     </div>

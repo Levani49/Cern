@@ -1,16 +1,12 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { ReactComponent as EventsIcon } from "../../assets/svg/events.svg";
-import {
-  selectEventsModalState,
-  showEventsModal,
-} from "../../features/modalsSlice";
+import { ReactComponent as EventsIcon } from '../../assets/svg/events.svg';
 
-import MenuIcon from "./MenuIcon.component";
-import EventsModal from "../modals/events/Events.modal";
+import { selectEventsModalState, showEventsModal } from '../../features/modals/modalsSlice';
 
-/**
- *
- */
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+
+import MenuIcon from './MenuIcon.component';
+import EventsModal from '../modals/events/Events.modal';
+
 export default function EventsMenu(): JSX.Element {
   const dispatch = useAppDispatch();
   const active = useAppSelector(selectEventsModalState);
@@ -24,12 +20,7 @@ export default function EventsMenu(): JSX.Element {
 
   return (
     <>
-      <MenuIcon
-        active={active}
-        onClick={toggleEventsModal}
-        Icon={EventsIcon}
-        title="Events menu"
-      />
+      <MenuIcon active={active} onClick={toggleEventsModal} Icon={EventsIcon} title="Events menu" />
       <EventsModal />
     </>
   );

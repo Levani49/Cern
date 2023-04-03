@@ -1,8 +1,8 @@
-import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
-import { useCallback, useState } from "react";
-import { useAppDispatch } from "../../app/hooks";
-import { updateParentNodeState } from "../../features/geometryMenuSlice/geometryMenuSlice";
-import { GeometryState } from "../../features/geometryMenuSlice/geometryTree";
+import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/24/outline';
+import { useCallback, useState } from 'react';
+import { useAppDispatch } from '../../app/hooks';
+import { updateParentNodeState } from '../../features/tree/treeSlice';
+import { GeometryState } from '../../constants/geometryTree';
 
 interface Props {
   uid: string;
@@ -19,7 +19,7 @@ type MouseEv = React.MouseEvent<HTMLElement, MouseEvent>;
 type IconMouseEv = React.MouseEvent<SVGSVGElement, MouseEvent>;
 
 const iconClass =
-  "h-6 w-6 text-white hover:text-blue hover:dark:text-green transition-all cursor-pointer";
+  'h-6 w-6 text-white hover:text-blue hover:dark:text-green transition-all cursor-pointer';
 
 export default function ParentNode({
   uid,
@@ -36,11 +36,11 @@ export default function ParentNode({
   const onClickHandler = useCallback(
     (e: MouseEv): void => {
       e.stopPropagation();
-      const state = modelState === "isLoaded" ? "notLoaded" : "isLoaded";
+      const state = modelState === 'isLoaded' ? 'notLoaded' : 'isLoaded';
       dispatch(
         updateParentNodeState({
           nodeId: uid,
-          propToChange: "state",
+          propToChange: 'state',
           value: state,
           restrictAncestorsUpdate: false,
         }),
@@ -55,35 +55,27 @@ export default function ParentNode({
   };
 
   const innerState =
-    modelState === "isLoaded"
-      ? "text-green"
-      : modelState === "partialyLoaded"
-      ? "text-yellow-500"
-      : "text-white";
+    modelState === 'isLoaded'
+      ? 'text-green'
+      : modelState === 'partialyLoaded'
+      ? 'text-yellow-500'
+      : 'text-white';
 
   const styles = `border-l-[2px] border-transparent text-left transition before:relative before:inline-block before:w-[15px] before:left-0 before:align-middle before:border before:border-t-[px] before:text-white before:align-middle ${
-    nodeEnd ? "last-event-line" : ""
-  } ${root && "before:!text-transparent"}`;
+    nodeEnd ? 'last-event-line' : ''
+  } ${root && 'before:!text-transparent'}`;
 
   return (
     <li
-      className={`border-solid  ${!nodeEnd && "border-l-[2px] border-white"} ${
-        root && "border-none"
+      className={`border-solid  ${!nodeEnd && 'border-l-[2px] border-white'} ${
+        root && 'border-none'
       }`}
     >
-      <div
-        className={`flex items-center text-xs relative whitespace-nowrap py-[1px] ${styles}`}
-      >
+      <div className={`flex items-center text-xs relative whitespace-nowrap py-[1px] ${styles}`}>
         {show ? (
-          <MinusCircleIcon
-            onClick={showChildrenHandler}
-            className={`${iconClass}`}
-          />
+          <MinusCircleIcon onClick={showChildrenHandler} className={`${iconClass}`} />
         ) : (
-          <PlusCircleIcon
-            onClick={showChildrenHandler}
-            className={`${iconClass}`}
-          />
+          <PlusCircleIcon onClick={showChildrenHandler} className={`${iconClass}`} />
         )}
 
         <span
@@ -94,9 +86,7 @@ export default function ParentNode({
           {name}
         </span>
       </div>
-      <ul className={`p-0 ml-[1.7rem] mt-[-2px]  block ${!show && "hidden"}`}>
-        {children}
-      </ul>
+      <ul className={`p-0 ml-[1.7rem] mt-[-2px]  block ${!show && 'hidden'}`}>{children}</ul>
     </li>
   );
 }

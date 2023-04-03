@@ -1,10 +1,7 @@
-import ShowOnly from "../show-only/ShowOnly.component";
-import FilterContainer from "./FilterContainer.component";
-import FilterInput from "./FilterInput.component";
+import ShowOnly from '../show-only/ShowOnly.component';
+import FilterContainer from './FilterContainer.component';
+import FilterInput from './FilterInput.component';
 
-/**
- *
- */
 export default function FilterTool(): JSX.Element {
   return (
     <div className="flex justify-between flex-col gap-2 p-2">

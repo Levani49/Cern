@@ -1,13 +1,13 @@
-import { useEffect, useRef } from "react";
-import { BufferGeometry, Material, Mesh, Vector3 } from "three";
-import { useSphere } from "@react-three/cannon";
-import { useFrame, useThree } from "@react-three/fiber";
-import { PointerLockControls } from "@react-three/drei";
+import { useEffect, useRef } from 'react';
+import { BufferGeometry, Material, Mesh, Vector3 } from 'three';
+import { useSphere } from '@react-three/cannon';
+import { useFrame, useThree } from '@react-three/fiber';
+import { PointerLockControls } from '@react-three/drei';
 
-import { usePlayerControls } from "../hooks/usePlayerControls.hook";
-import { setDroneMode } from "../features/cameraSlice";
-import store from "../app/store";
+import { setDroneMode } from '../features/camera/cameraSlice';
+import { usePlayerControls } from '../hooks/usePlayercontrols/usePlayerControls';
 
+import store from '../app/store';
 interface Props {
   currentCameraPosition: [number, number, number];
 }
@@ -24,11 +24,10 @@ const SPEED = 5;
 export default function Player({ currentCameraPosition }: Props): JSX.Element {
   // Get the camera and player controls
   const { camera } = useThree();
-  const { moveForward, moveBackward, moveLeft, moveRight } =
-    usePlayerControls();
+  const { moveForward, moveBackward, moveLeft, moveRight } = usePlayerControls();
   const [ref, api] = useSphere(() => ({
     mass: 1,
-    type: "Dynamic",
+    type: 'Dynamic',
     position: [...currentCameraPosition],
   }));
 
@@ -44,11 +43,7 @@ export default function Player({ currentCameraPosition }: Props): JSX.Element {
     }
     const direction = new Vector3();
 
-    const frontVector = new Vector3(
-      0,
-      0,
-      Number(moveBackward) - Number(moveForward),
-    );
+    const frontVector = new Vector3(0, 0, Number(moveBackward) - Number(moveForward));
     const sideVector = new Vector3(Number(moveLeft) - Number(moveRight), 0, 0);
 
     direction
@@ -66,19 +61,13 @@ export default function Player({ currentCameraPosition }: Props): JSX.Element {
    * @returns { void } void
    */
   const hadnelCancel = (): void => {
-    store.dispatch(setDroneMode("idle"));
+    store.dispatch(setDroneMode('idle'));
   };
 
   return (
     <>
       <PointerLockControls onUnlock={hadnelCancel} />
-      <mesh
-        ref={
-          ref as React.MutableRefObject<
-            Mesh<BufferGeometry, Material | Material[]>
-          >
-        }
-      ></mesh>
+      <mesh ref={ref as React.MutableRefObject<Mesh<BufferGeometry, Material | Material[]>>}></mesh>
     </>
   );
 }

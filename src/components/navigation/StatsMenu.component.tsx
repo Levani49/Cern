@@ -1,19 +1,13 @@
-import { ChartBarIcon } from "@heroicons/react/24/solid";
+import { ChartBarIcon } from '@heroicons/react/24/solid';
 
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import {
-  selectRendererStatsState,
-  showRendererStats,
-} from "../../features/rendererSlice";
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectStats, showRendererStats } from '../../features/global/globalsSlice';
 
-import MenuIcon from "./MenuIcon.component";
+import MenuIcon from './MenuIcon.component';
 
-/**
- *
- */
 export default function StatsMenu(): JSX.Element {
   const dispatch = useAppDispatch();
-  const showRendererStatsMenu = useAppSelector(selectRendererStatsState);
+  const showRendererStatsMenu = useAppSelector(selectStats);
 
   /**
    *

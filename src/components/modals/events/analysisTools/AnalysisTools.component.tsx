@@ -1,14 +1,14 @@
-import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+import AnalysisTool from './AnalysisTool.component';
+
 import {
-  CurrentAnalysisTool,
   selectCurrentEventAnalysisTool,
   setEventCurrentAnalysisTool,
-} from "../../../../features/modalsSlice";
-import AnalysisTool from "./AnalysisTool.component";
+} from '../../../../features/modals/modalsSlice';
 
-/**
- *
- */
+import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
+
+import type { CurrentAnalysisTool } from '../../../../types/app.types';
+
 export default function AnalysisTools(): JSX.Element {
   const dispatch = useAppDispatch();
   const currentTool = useAppSelector(selectCurrentEventAnalysisTool);
@@ -22,9 +22,9 @@ export default function AnalysisTools(): JSX.Element {
   };
 
   const tools = {
-    filter: "Filter",
-    algorithm: "Algorithms",
-    info: "Info",
+    filter: 'Filter',
+    algorithm: 'Algorithms',
+    info: 'Info',
   };
 
   const innerHtml = Object.entries(tools).map(([tool, title]) => (

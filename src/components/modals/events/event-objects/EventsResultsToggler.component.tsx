@@ -1,8 +1,5 @@
-import Checkbox from "./Checkbox.component";
+import Checkbox from './Checkbox.component';
 
-/**
- *
- */
 export default function EventsResultsToggler(): JSX.Element {
   return (
     <div className="grid grid-cols-3  gap-2 justify-items-center">

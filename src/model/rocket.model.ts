@@ -1,7 +1,6 @@
 import { Camera } from "@react-three/fiber";
 
-import type { eFn } from "../app/app.types";
-import { emptyFn } from "../utils/emptyFn.utils";
+import { emptyFunc } from "../types/app.types";
 
 /**
  * Rocket class for animating a rocket launch.
@@ -44,7 +43,7 @@ export default class Rocket {
    * @param camera - The camera used in the animation.
    * @param cb - Optional callback function to be called after animation is finished.
    */
-  start(camera: Camera, cb: eFn = emptyFn): void {
+  start(camera: Camera, cb: emptyFunc | undefined = undefined): void {
     this.prepare(camera);
     let cameraX: number;
     let cameraY: number;
@@ -59,7 +58,9 @@ export default class Rocket {
 
       if (y + this.yAxisIterator > this.configuration.maxHeight) {
         this.stop();
-        cb();
+        if (cb) {
+          cb();
+        }
       }
 
       cameraX = x + this.xAxisIterator;

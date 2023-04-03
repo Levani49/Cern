@@ -1,18 +1,18 @@
-import { ReactComponent as BoxIcon } from "../../assets/svg/box.svg";
-import { ReactComponent as LeftSideBox } from "../../assets/svg/left-side-box.svg";
-import { ReactComponent as RightSideBox } from "../../assets/svg/right-side-box.svg";
+import { ReactComponent as BoxIcon } from '../../assets/svg/box.svg';
+import { ReactComponent as LeftSideBox } from '../../assets/svg/left-side-box.svg';
+import { ReactComponent as RightSideBox } from '../../assets/svg/right-side-box.svg';
 
-import MenuIcon from "./MenuIcon.component";
-import MenuDropdown from "./MenuDropdown.component";
-
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   selectCameraViewMode,
   selectDroneState,
   setDefaultView,
   setLeftCameraView,
   setRightCameraView,
-} from "../../features/cameraSlice";
+} from '../../features/camera/cameraSlice';
+
+import MenuIcon from './MenuIcon.component';
+import MenuDropdown from './MenuDropdown.component';
 
 /**
  * Renders a CameraViewMenu component that displays a dropdown menu of camera view options.
@@ -30,11 +30,11 @@ export default function CameraViewMenu(): JSX.Element {
   }));
 
   const Icon =
-    viewType === "default"
+    viewType === 'default'
       ? BoxIcon
-      : viewType === "left"
+      : viewType === 'left'
       ? LeftSideBox
-      : viewType === "right"
+      : viewType === 'right'
       ? RightSideBox
       : BoxIcon;
 
@@ -56,16 +56,16 @@ export default function CameraViewMenu(): JSX.Element {
       <MenuIcon
         key={type}
         Icon={
-          type === "default"
+          type === 'default'
             ? BoxIcon
-            : type === "left"
+            : type === 'left'
             ? LeftSideBox
-            : type === "right"
+            : type === 'right'
             ? RightSideBox
             : BoxIcon
         }
         onClick={onClickHandler}
-        disabled={droneType !== "idle"}
+        disabled={droneType !== 'idle'}
       />
     );
   });

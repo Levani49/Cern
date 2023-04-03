@@ -1,6 +1,7 @@
 import { Camera } from "@react-three/fiber";
 
-import type { DroneTypes, eFn } from "../app/app.types";
+// import type { DroneTypes } from "../app/app.types";
+import { DroneTypes, emptyFunc } from "../types/app.types";
 
 import Helix from "../model/helix.model";
 import Rocket from "../model/rocket.model";
@@ -17,7 +18,7 @@ const cinema = new Cinema();
  *
  * @returns {void} void
  */
-const emptyFn: eFn = (): void => {
+const emptyFn: emptyFunc = (): void => {
   return;
 };
 
@@ -58,7 +59,7 @@ export const stopDroneMode = (camera: Camera, type: DroneTypes): void => {
 export const startDroneMode = (
   camera: Camera,
   type: DroneTypes,
-  cb: eFn = emptyFn,
+  cb: emptyFunc = emptyFn,
 ): void => {
   switch (type) {
     case "helix":

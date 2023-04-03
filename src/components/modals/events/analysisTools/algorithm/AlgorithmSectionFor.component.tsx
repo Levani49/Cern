@@ -1,20 +1,11 @@
-import AlgorithmCheckBox from "./AlgorithmCheckBox.componetn";
+import AlgorithmCheckBox from './AlgorithmCheckBox.componetn';
 
 interface Props {
   title: string;
   algorithmsList: string[];
 }
 
-/**
- *
- * @param root0
- * @param root0.title
- * @param root0.algorithmsList
- */
-export default function AlgorithmSectionFor({
-  title,
-  algorithmsList,
-}: Props): JSX.Element {
+export default function AlgorithmSectionFor({ title, algorithmsList }: Props): JSX.Element {
   const innerHtml = algorithmsList.map((algorithm) => {
     return <AlgorithmCheckBox key={algorithm} label={algorithm} />;
   });

@@ -1,6 +1,6 @@
-import { useAppDispatch } from "../../app/hooks";
-import { updateChildNodeState } from "../../features/geometryMenuSlice/geometryMenuSlice";
-import { GeometryState } from "../../features/geometryMenuSlice/geometryTree";
+import { useAppDispatch } from '../../app/hooks';
+import { updateChildNodeState } from '../../features/tree/treeSlice';
+import { GeometryState } from '../../constants/geometryTree';
 
 interface Props {
   uid: string;
@@ -20,25 +20,17 @@ interface Props {
  * @param root0.modelState
  * @param root0.nodeEnd
  */
-export default function ChildNode({
-  name,
-  uid,
-  modelState,
-  nodeEnd,
-}: Props): JSX.Element {
+export default function ChildNode({ name, uid, modelState, nodeEnd }: Props): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const onClickHandler = (
-    e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-  ): void => {
+  const onClickHandler = (e: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
     e.stopPropagation();
-    const state: GeometryState =
-      modelState === "isLoaded" ? "notLoaded" : "isLoaded";
+    const state: GeometryState = modelState === 'isLoaded' ? 'notLoaded' : 'isLoaded';
 
     dispatch(
       updateChildNodeState({
         nodeId: uid,
-        propToChange: "state",
+        propToChange: 'state',
         value: state,
       }),
     );
@@ -46,16 +38,16 @@ export default function ChildNode({
 
   let innerState: string;
 
-  if (modelState === "isLoaded") {
-    innerState = "text-green";
+  if (modelState === 'isLoaded') {
+    innerState = 'text-green';
   } else {
-    innerState = "text-white";
+    innerState = 'text-white';
   }
 
   return (
     <li
       className={`flex items-center border-l-[2px] border-white ${
-        nodeEnd && "last-event-line border-transparent border-l border-solid"
+        nodeEnd && 'last-event-line border-transparent border-l border-solid'
       } ${innerState}`}
     >
       <span

@@ -1,16 +1,16 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
-  selectParticleAnimationState,
+  selectParticleAnimation,
   setParticleAnimationState,
-} from "../../features/globalsSlice";
-import Particles from "./Particles.three";
+} from '../../features/global/globalsSlice';
+import Particles from './Particles.three';
 
 /**
  *
  */
 export default function ParticleSystem(): JSX.Element {
   const dispatch = useAppDispatch();
-  const startParticleAnimation = useAppSelector(selectParticleAnimationState);
+  const startParticleAnimation = useAppSelector(selectParticleAnimation);
 
   /**
    *
@@ -19,7 +19,5 @@ export default function ParticleSystem(): JSX.Element {
     dispatch(setParticleAnimationState(false));
   };
 
-  return (
-    <>{startParticleAnimation && <Particles onFinish={onFinishHandler} />}</>
-  );
+  return <>{startParticleAnimation && <Particles onFinish={onFinishHandler} />}</>;
 }

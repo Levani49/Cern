@@ -1,19 +1,13 @@
-import { ReactComponent as AxisIcon } from "../../assets/svg/axis.svg";
+import { ReactComponent as AxisIcon } from '../../assets/svg/axis.svg';
 
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import {
-  selectRendererAxisState,
-  showAxis,
-} from "../../features/rendererSlice";
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectAxis, showAxis } from '../../features/global/globalsSlice';
 
-import MenuIcon from "./MenuIcon.component";
+import MenuIcon from './MenuIcon.component';
 
-/**
- *
- */
 export default function AxisMenu(): JSX.Element {
   const dispatch = useAppDispatch();
-  const show = useAppSelector(selectRendererAxisState);
+  const show = useAppSelector(selectAxis);
 
   /**
    *
@@ -22,12 +16,5 @@ export default function AxisMenu(): JSX.Element {
     show ? dispatch(showAxis(false)) : dispatch(showAxis(true));
   };
 
-  return (
-    <MenuIcon
-      Icon={AxisIcon}
-      active={show}
-      onClick={toggler}
-      title="Toggle Axis"
-    />
-  );
+  return <MenuIcon Icon={AxisIcon} active={show} onClick={toggler} title="Toggle Axis" />;
 }

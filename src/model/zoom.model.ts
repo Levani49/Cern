@@ -1,6 +1,6 @@
 import { PerspectiveCamera } from "three";
-import { eFn } from "../app/app.types";
-import { emptyFn } from "../utils/emptyFn.utils";
+import { emptyFunc } from "../types/app.types";
+// import { emptyFn } from "../utils/emptyFn.utils";
 
 /**
  * Zoom class that animates a PerspectiveCamera by moving it closer to the origin and reducing its field of view.
@@ -23,9 +23,12 @@ export default class Zoom {
    * Starts the Zoom animation for the specified camera.
    *
    * @param {PerspectiveCamera} camera - The camera to animate.
-   * @param {eFn} [cb=emptyFn] - Optional callback function to execute when the animation is complete.
+   * @param cb
    */
-  start(camera: PerspectiveCamera, cb: eFn = emptyFn): void {
+  start(
+    camera: PerspectiveCamera,
+    cb: emptyFunc | undefined = undefined,
+  ): void {
     camera.position.set(5, 1, 0);
 
     const { xAxisIterator, fovIterator, fullStep } = this.configuration;
@@ -46,7 +49,10 @@ export default class Zoom {
 
       if (i > fullStep) {
         this.stop(camera);
-        cb();
+
+        if (cb) {
+          cb();
+        }
       }
     };
 

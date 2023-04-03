@@ -1,9 +1,10 @@
-import { useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useFrame, useThree } from '@react-three/fiber';
+import { useEffect, useRef } from 'react';
 
-import { useAppDispatch } from "../app/hooks";
-import { setRendererStats } from "../features/rendererSlice";
-import StatsUtils from "../utils/stats.utils";
+import { useAppDispatch } from '../app/hooks';
+import { setRendererStats } from '../features/renderer/rendererSlice';
+
+import StatsUtils from '../utils/stats.utils';
 
 const stats = new StatsUtils();
 
@@ -27,7 +28,7 @@ export default function StatsDispatcher(): JSX.Element {
     const intervalId = setInterval(() => {
       let triangleCount = 0;
       scene.traverse((object) => {
-        if (object.type === "Mesh") {
+        if (object.type === 'Mesh') {
           const mesh = object as THREE.Mesh;
           const geometry = mesh.geometry as THREE.BufferGeometry;
           const index = geometry.getIndex();

@@ -1,13 +1,9 @@
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import {
-  selectSettingsModalState,
-  showSettingsModal,
-} from "../../../features/modalsSlice";
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { selectSettingsModalState, showSettingsModal } from '../../../features/modals/modalsSlice';
 
-import Modal from "../Modal";
-import Slider from "./Slider.component";
-// import AnimateHeight from "../../AnimateHeight.component";
-import OptionsBox from "./OptionsBox.component";
+import Modal from '../Modal';
+import Slider from './Slider.component';
+import OptionsBox from './OptionsBox.component';
 
 /**
  * Settings component that displays different settings options in a modal.

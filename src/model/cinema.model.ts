@@ -1,8 +1,7 @@
 import { Camera } from "@react-three/fiber";
 import { CatmullRomCurve3, Vector3 } from "three";
 
-import type { eFn } from "../app/app.types";
-import { emptyFn } from "../utils/emptyFn.utils";
+import { emptyFunc } from "../types/app.types";
 
 /**
  * A class for controlling the camera movement in a cinema-style animation.
@@ -22,7 +21,7 @@ export default class Cinema {
    * @param {Camera} camera - The camera object to be controlled.
    * @param {eFn} cb - A callback function to be called when the animation is complete.
    */
-  start(camera: Camera, cb: eFn = emptyFn): void {
+  start(camera: Camera, cb: emptyFunc | undefined = undefined): void {
     const { road } = this.configuration;
 
     let shouldRotationStart = false;
@@ -55,7 +54,9 @@ export default class Cinema {
 
         if (halfRoadIsDone && i === 0) {
           this.stop();
-          cb();
+          if (cb) {
+            cb();
+          }
         }
       }
 

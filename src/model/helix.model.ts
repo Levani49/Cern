@@ -1,8 +1,6 @@
 import { Camera } from "@react-three/fiber";
 
-import { emptyFn } from "../utils/emptyFn.utils";
-
-import type { eFn } from "../app/app.types";
+import { emptyFunc } from "../types/app.types";
 
 /**
  * The `Helix` class provides functionality for animating a camera around a helix-like trajectory.
@@ -39,7 +37,7 @@ export default class Helix {
    * @param camera - The camera object to move along the helix.
    * @param cb - An optional callback function to execute when the animation is complete.
    */
-  start(camera: Camera, cb: eFn = emptyFn): void {
+  start(camera: Camera, cb: emptyFunc | undefined = undefined): void {
     const { angleStep, radius, heightStep, initialHeight, speed, fullCircle } =
       this.configuration;
     let i = 0;
@@ -61,7 +59,9 @@ export default class Helix {
 
       if (i > fullCircle) {
         this.stop();
-        cb();
+        if (cb) {
+          cb();
+        }
       }
     };
 
