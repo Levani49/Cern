@@ -16,9 +16,5 @@ export default function Tree(): JSX.Element {
     return <RecursiveTree tree={geometryTree} />;
   }, [geometryTree]);
 
-  return (
-    <ul className={`select-none overflow-y-auto h-[60%] ${disablePointerEvents}`}>
-      {GeometriesTree}
-    </ul>
-  );
+  return <ul className={`select-none  ${disablePointerEvents}`}>{GeometriesTree}</ul>;
 }
