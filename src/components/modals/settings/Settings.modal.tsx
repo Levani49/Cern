@@ -25,12 +25,10 @@ export default function SettingsModal(): JSX.Element {
   return (
     <Modal title="settings" show={show} onCloseHandler={closeModalHandler}>
       <div className="w-full shadow-md rounded p-1">
-        {/* <AnimateHeight title="Scene"> */}
         <OptionsBox />
         <Slider title="Brightness" />
         <Slider title="Contast" />
         <Slider title="Camera speed" />
-        {/* </AnimateHeight> */}
       </div>
     </Modal>
   );

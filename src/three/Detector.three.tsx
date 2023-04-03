@@ -18,7 +18,15 @@ const Detector = memo(function Detector(): JSX.Element {
       const { modelPath, uid, name } = model;
       const path = modelCut ? modelPath + modelCut : modelPath;
 
-      return <Model key={`${uid}${name}${modelCut}`} src={path} name={modelPath} id={uid} />;
+      return (
+        <Model
+          key={`${uid}${name}${modelCut}`}
+          cutType={modelCut}
+          src={path}
+          name={name}
+          id={uid}
+        />
+      );
     });
 
   return <>{activeModels}</>;

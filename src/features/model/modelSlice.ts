@@ -11,12 +11,16 @@ const initialState: ModelSlice = {
   modelsLoadingState: 'loading',
   previousSelectedModel: null,
   modelOpacity: 1,
+  showModelModal: false,
 };
 
 const modelSlice = createSlice({
   name: 'model',
   initialState,
   reducers: {
+    setModelModal: (state, action: PayloadAction<boolean>) => {
+      state.showModelModal = action.payload;
+    },
     setModelWireframe: (state, action: PayloadAction<boolean>) => {
       state.modelWireframe = action.payload;
     },
@@ -32,9 +36,11 @@ const modelSlice = createSlice({
     setSelectedModel: (state, action: PayloadAction<selectedModel>) => {
       if (action.payload === null) {
         state.previousSelectedModel = state.selectedModel;
-        state.selectedModel = action.payload;
+        state.selectedModel = null;
+        state.showModelModal = false;
       } else {
         state.selectedModel = action.payload;
+        state.showModelModal = true;
       }
     },
   },
@@ -48,13 +54,14 @@ export const {
   setSelectedModel,
   setModelsOpacity,
   setModelWireframe,
+  setModelModal,
 } = modelSlice.actions;
 
 export const selectSelectedModel = (state: RootState): selectedModel => state.model.selectedModel;
 export const selectModelsOpacity = (state: RootState): number => state.model.modelOpacity;
 export const selectModelWireframe = (state: RootState): boolean => state.model.modelWireframe;
 export const selectGeometriesCutType = (state: RootState): ModelCut => state.model.modelCut;
-
+export const selectModelModal = (state: RootState): boolean => state.model.showModelModal;
 export const selectModelsLoadingState = (state: RootState): ModelLoadingStates =>
   state.model.modelsLoadingState;
 

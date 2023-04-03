@@ -7,4 +7,5 @@ export interface ModelSlice {
   previousSelectedModel: selectedModel;
   modelsLoadingState: ModelLoadingStates;
   modelOpacity: number;
+  showModelModal: boolean;
 }
