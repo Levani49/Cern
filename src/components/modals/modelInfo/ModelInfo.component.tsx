@@ -15,9 +15,9 @@ export default function ModelInfo(): JSX.Element {
   };
 
   return (
-    <Modal title="geometry info" show={show} onCloseHandler={handleClick}>
+    <Modal title="model info" show={show} onCloseHandler={handleClick}>
       <div className="flex justify-center flex-col gap-1 p-1">
-        <ModelAttribute title="model name" value={selectedModel?.name} />
+        <ModelAttribute title="name" value={selectedModel?.name} />
         <ModelAttribute title="cut type" value={selectedModel?.cutType?.replace('-', '')} />
         <ModelAttribute title="opacity" value={modelOpacityLevel} />
         <ModelAttribute title="wireframe" value={modelWireframe === true ? 'true' : 'false'} />

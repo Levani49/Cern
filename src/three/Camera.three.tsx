@@ -33,7 +33,7 @@ function calculateOrthoDimensions(camera: Camera, width: number, height: number)
   };
 }
 
-export default function Camera(): JSX.Element {
+export default function CameraOrtho(): JSX.Element {
   const cameraType = useAppSelector(selectCameraType);
   const { size, camera } = useThree();
 
