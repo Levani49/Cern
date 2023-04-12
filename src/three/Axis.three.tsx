@@ -16,7 +16,7 @@ export default function Axis(): JSX.Element {
   return (
     <>
       {show && (
-        <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
+        <GizmoHelper alignment="bottom-right" margin={[70, 55]}>
           <GizmoViewport
             axisColors={['#ff6b53', '#40CF8E', '#5f6af1']}
             disabled={disable}

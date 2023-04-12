@@ -4,7 +4,7 @@ import GeometryCutsMenu from './GeometryCutsMenu.component';
 import FullScreenMenu from './FullScreenMenu.component';
 import CameraViewMenu from './CameraViewMenu.component';
 import OpacirtyMenu from './OpacityMenu.component';
-import SettingsMenu from './SettingsMenu.component';
+// import SettingsMenu from './SettingsMenu.component';
 import ThemeToggler from './ThemeToggler.component';
 import EventsMenu from './EventsMenu.component';
 import DroneMenu from './DroneMenu.component';
@@ -14,6 +14,7 @@ import MenuIcon from './MenuIcon.component';
 import AxisMenu from './AxisMenu.component';
 import GridMenu from './GridMenu.component';
 import WireframeMenu from './WireframeMenu.component';
+import CameraMenu from './CameraMenu.component';
 
 /**
  * Renders a Navigation component that displays the app's navigation menu.
@@ -39,8 +40,8 @@ export default function Navigation(): JSX.Element {
         <StatsMenu />
         <AxisMenu />
         <GridMenu />
+        <CameraMenu />
         <ThemeToggler />
-        <SettingsMenu />
         <FullScreenMenu />
         <AboutMenu />
       </nav>

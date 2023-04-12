@@ -13,6 +13,7 @@ import Lights from './Light.three';
 import Fog from './Fog.three';
 import StatsDispatcher from './Stats.three';
 import Background from './Background.three';
+import Camera from './Camera.three';
 
 const Detector = lazy(() => import('./Detector.three'));
 const Environment = lazy(() => import('./Environment.three'));
@@ -59,13 +60,14 @@ export default function Scene(): JSX.Element {
             <Grid />
             <Environment />
             <ParticleSystem />
+            <Camera />
             <Controls />
             <Axis />
           </Suspense>
           <StatsDispatcher />
         </Physics>
       </Canvas>
-      <Loader />
+      <Loader containerStyles={{ backgroundColor: 'transparent' }} />
     </>
   );
 }

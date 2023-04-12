@@ -13,8 +13,10 @@ import { useAppDispatch } from '../app/hooks';
 import ModelService from '../services/Model.service';
 import { ModelCut } from '../types/app.types';
 import useSelectedModel from '../hooks/useSelectedModel/useSelectedModel';
-export interface Ev {
+export interface Event {
   stopPropagation: () => void;
+  clientX: number;
+  clientY: number;
 }
 
 interface Props {
@@ -33,9 +35,12 @@ const modelService = new ModelService();
  * @returns {JSX.Element} - Model component.
  */
 export default function Model({ src, id, name, cutType }: Props): JSX.Element {
-  // State for managing the opacity of the model.
   const [opacity, setOpacity] = useState<number>(1);
   const [wireframe, setWireframe] = useState<boolean>(false);
+  const [mouseDownPos, setMouseDownPos] = useState<null | {
+    x: number;
+    y: number;
+  }>(null);
 
   // Redux hooks for managing the application state.
   const dispatch = useAppDispatch();
@@ -136,21 +141,6 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     setWireframe(globalWireframe);
   }, [globalWireframe]);
 
-  // This function handles click events on the model.
-  const handleClick = (e: Ev): void => {
-    // Stop the event from propagating further up the event chain.
-    e.stopPropagation();
-
-    const payload = { id, name, cutType, opacity, wireframe };
-    selectedModel?.id === id
-      ? dispatch(setSelectedModel(null))
-      : dispatch(setSelectedModel(payload));
-
-    // Update the model-specific opacity level to the current model's opacity.
-    dispatch(setModelsOpacity(opacity));
-    dispatch(setModelWireframe(wireframe));
-  };
-
   // Handle pointer over events on the model.
   const handlePointerOver = (): void => {
     gl.domElement.style.cursor = 'pointer';
@@ -161,11 +151,38 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     gl.domElement.style.cursor = 'default';
   };
 
+  const handleMouseDown = (e: Event): void => {
+    setMouseDownPos({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleMouseUp = (e: Event): void => {
+    e.stopPropagation();
+
+    const mouseUpPos = { x: e.clientX, y: e.clientY };
+    const movementThreshold = 1;
+
+    if (
+      mouseDownPos &&
+      Math.abs(mouseUpPos.x - mouseDownPos.x) <= movementThreshold &&
+      Math.abs(mouseUpPos.y - mouseDownPos.y) <= movementThreshold
+    ) {
+      const payload = { id, name, cutType, opacity, wireframe };
+      selectedModel?.id === id
+        ? dispatch(setSelectedModel(null))
+        : dispatch(setSelectedModel(payload));
+
+      // Update the model-specific opacity level to the current model's opacity.
+      dispatch(setModelsOpacity(opacity));
+      dispatch(setModelWireframe(wireframe));
+    }
+  };
+
   return (
     <primitive
       ref={ref}
       object={model.scene}
-      onClick={(e: Ev): void => handleClick(e)}
+      onPointerDown={(e: Event): void => handleMouseDown(e)}
+      onPointerUp={(e: Event): void => handleMouseUp(e)}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
       visible={true}

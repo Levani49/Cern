@@ -8,6 +8,7 @@ export interface ICameraSettings {
   currentState: DroneTypes;
   droneType: DroneTypes;
   camera: Camera | null;
+  cameraType: 'perspective' | 'orthographic';
   showFlyModal: boolean;
   viewMode: ViewModes;
 }

@@ -29,11 +29,11 @@ export default function Modal({ show, title, onCloseHandler, children }: Props):
 
   return createPortal(
     <Draggable nodeRef={nodeRef} bounds="parent" handle=".handle">
-      <div ref={nodeRef} className="modal text-white z-50 rounded">
+      <div ref={nodeRef} className="modal text-white z-50 rounded min-w-[250px]">
         <div className="w-full">
           {/* do not remove class 'handle' since it's used by draggable element, which means that drag events will only trigger on elements which will have <<handle>> class */}
-          <div className="handle shadow-md p-2 flex justify-between items-center cursor-move sticky top-0 bg-transparentDark dark:bg-gray z-[2000]">
-            <h4 className="uppercase font-medium text-base pl-2 select-none">{title}</h4>
+          <div className="handle shadow-md p-1 flex justify-between items-center cursor-move sticky top-0 bg-transparentDark dark:bg-gray z-[2000]">
+            <h4 className="uppercase text-sm text-base pl-2 select-none">{title}</h4>
             <XMarkIcon
               className="h-8 w-8 cursor-pointer pr-2 z-[2000]"
               onPointerDown={onCloseHandler}
