@@ -6,17 +6,17 @@ import type { Loading } from './useLoading.types';
 export default function useLoadingStatus(): Loading {
   const { active, progress } = useProgress();
   const [isLoading, setIsLoading] = useState(false);
-  const [hasLoaded, setHasLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     if (active) {
       setIsLoading(true);
-      setHasLoaded(false);
+      setIsLoaded(false);
     } else {
       setIsLoading(false);
-      setHasLoaded(true);
+      setIsLoaded(true);
     }
   }, [active]);
 
-  return { isLoading, hasLoaded, progress };
+  return { isLoading, isLoaded, progress };
 }

@@ -8,13 +8,13 @@ import type { UseDetectorState } from './useDetectorState.types';
 
 export function useDetectorState(): UseDetectorState {
   const models = useAppSelector(selectActiveGeometries);
-  const modelCut = useAppSelector(selectGeometriesCutType);
+  const cutType = useAppSelector(selectGeometriesCutType);
 
   return useMemo(
     () => ({
       models,
-      modelCut,
+      cutType,
     }),
-    [models, modelCut],
+    [models, cutType],
   );
 }

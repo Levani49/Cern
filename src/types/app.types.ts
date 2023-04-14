@@ -1,3 +1,5 @@
+import { SVGProps, ForwardRefExoticComponent, RefAttributes } from 'react';
+
 type ModelInfo = {
   id: string;
   name: string;
@@ -6,7 +8,9 @@ type ModelInfo = {
   wireframe: boolean;
 };
 export type Employee = { id: string; name: string; src: string; role: string };
-export type SVGIcon = React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+export type SVGIcon =
+  | React.FunctionComponent<SVGProps<SVGSVGElement>>
+  | ForwardRefExoticComponent<SVGProps<SVGSVGElement> & RefAttributes<SVGSVGElement>>;
 export type DroneTypes = 'idle' | 'circle' | 'helix' | 'rocket' | 'zoom' | 'fly' | 'z0';
 export type ReactChildren = React.ReactNode | React.ReactNode[];
 export type emptyFunc = () => void;

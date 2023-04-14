@@ -1,5 +1,5 @@
-import { Mesh, Object3D } from "three";
-import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
+import { Mesh, Object3D } from 'three';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 
 export default class ModelService {
   private path = import.meta.env.VITE_MODELS_PROVIDER;
@@ -47,7 +47,7 @@ export default class ModelService {
   }
 
   constructor() {
-    this.dracoLoader.setDecoderPath("/draco/");
-    this.dracoLoader.setDecoderConfig({ type: "js" });
+    this.dracoLoader.setDecoderPath('/draco/');
+    this.dracoLoader.setDecoderConfig({ type: 'js' });
   }
 }

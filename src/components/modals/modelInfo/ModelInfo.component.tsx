@@ -16,7 +16,7 @@ export default function ModelInfo(): JSX.Element {
 
   return (
     <Modal title="model info" show={show} onCloseHandler={handleClick}>
-      <div className="flex justify-center flex-col gap-1 p-1">
+      <div className="flex justify-center flex-col p-1">
         <ModelAttribute title="name" value={selectedModel?.name} />
         <ModelAttribute title="cut type" value={selectedModel?.cutType?.replace('-', '')} />
         <ModelAttribute title="opacity" value={modelOpacityLevel} />

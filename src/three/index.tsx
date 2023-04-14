@@ -22,6 +22,8 @@ const Controls = lazy(() => import('./Controls.three'));
 const Axis = lazy(() => import('./Axis.three'));
 const Grid = lazy(() => import('./Grid.three'));
 
+// import Detector from './Detector.three';
+
 /**
  * Main scene of application
  *
@@ -29,15 +31,15 @@ const Grid = lazy(() => import('./Grid.three'));
  */
 export default function Scene(): JSX.Element {
   const dispatch = useAppDispatch();
-  const { isLoading, hasLoaded } = useLoadingStatus();
+  const { isLoading, isLoaded } = useLoadingStatus();
 
   useEffect(() => {
     if (isLoading) {
       dispatch(updateModelsLoadingState('loading'));
-    } else if (hasLoaded) {
+    } else if (isLoaded) {
       dispatch(updateModelsLoadingState('idle'));
     }
-  }, [isLoading, hasLoaded, dispatch]);
+  }, [isLoading, isLoaded, dispatch]);
 
   return (
     <>
@@ -50,21 +52,25 @@ export default function Scene(): JSX.Element {
         linear
       >
         <Physics gravity={[0, 0, 0]}>
-          <Lights />
           <Suspense fallback={null}>
             <Detector />
-            <Background />
           </Suspense>
-          <Fog />
-          <Suspense>
-            <Grid />
-            <Environment />
-            <ParticleSystem />
-            <Camera />
-            <Controls />
-            <Axis />
-          </Suspense>
-          <StatsDispatcher />
+          {isLoaded && (
+            <>
+              <Background />
+              <Fog />
+              <Suspense>
+                <Controls />
+                <Axis />
+              </Suspense>
+              <StatsDispatcher />
+            </>
+          )}
+          <Lights />
+          <Camera />
+          <Grid />
+          <Environment />
+          <ParticleSystem />
         </Physics>
       </Canvas>
       <Loader containerStyles={{ backgroundColor: 'transparent' }} />

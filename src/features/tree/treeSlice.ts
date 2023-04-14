@@ -59,10 +59,5 @@ export const geometrySlice = createSlice({
 export default geometrySlice.reducer;
 
 export const { updateChildNodeState, updateParentNodeState } = geometrySlice.actions;
-
-/**
- *
- * @param state
- */
 export const selectGeometryTree = (state: RootState): TreeNode[] => state.tree.tree;
 export const selectActiveGeometries = (state: RootState): ActiveModel[] => state.tree.activeModels;

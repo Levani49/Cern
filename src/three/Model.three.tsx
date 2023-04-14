@@ -1,6 +1,6 @@
+import { useEffect, useRef, useState } from 'react';
 import { useLoader, useThree } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { useEffect, useRef, useState } from 'react';
 
 import {
   setModelsOpacity,
@@ -35,6 +35,8 @@ const modelService = new ModelService();
  * @returns {JSX.Element} - Model component.
  */
 export default function Model({ src, id, name, cutType }: Props): JSX.Element {
+  const { gl, scene } = useThree();
+  const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState<number>(1);
   const [wireframe, setWireframe] = useState<boolean>(false);
   const [mouseDownPos, setMouseDownPos] = useState<null | {
@@ -43,12 +45,8 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   }>(null);
 
   // Redux hooks for managing the application state.
-  const dispatch = useAppDispatch();
   const { selectedModel, modelOpacityLevel, globalOpacityLevel, modelWireframe, globalWireframe } =
     useSelectedModel();
-
-  // Access the WebGLRenderer and other essential objects in the react-three-fiber scene.
-  const { gl } = useThree();
 
   // Load the 3D model using the GLTFLoader and DRACOLoader.
   const model = useLoader(
@@ -58,6 +56,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
       loader.setDRACOLoader(modelService.dracoLoader);
     },
   );
+
   const ref = useRef<THREE.Object3D>();
 
   // Apply defaults to the model.
@@ -73,7 +72,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
         modelService.disposeModel(currentRef);
       }
     };
-  }, [id]);
+  }, [id, ref, src]);
 
   // This effect updates the opacity of the current model based on the selectedModel state.
   useEffect(() => {
@@ -92,7 +91,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
         modelService.updateOpacity(currentRef, opacity);
       }
     }
-  }, [selectedModel, id, opacity, wireframe]);
+  }, [selectedModel, id, opacity, ref]);
 
   useEffect(() => {
     const currentRef = ref.current;
@@ -103,7 +102,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
         setOpacity(modelOpacityLevel);
       }
     }
-  }, [modelOpacityLevel, selectedModel?.id, id]);
+  }, [modelOpacityLevel, selectedModel, id, ref]);
 
   useEffect(() => {
     const currentRef = ref.current;
@@ -114,7 +113,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
         setWireframe(modelWireframe);
       }
     }
-  }, [modelWireframe, selectedModel?.id, id]);
+  }, [modelWireframe, selectedModel, id, ref]);
 
   // This effect updates the opacity of the current model based on the global opacity level.
   useEffect(() => {
@@ -129,7 +128,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
       // Update the local opacity state with the global opacity level.
       setOpacity(globalOpacityLevel);
     }
-  }, [globalOpacityLevel, globalWireframe]);
+  }, [globalOpacityLevel, globalWireframe, ref]);
 
   useEffect(() => {
     const currentRef = ref.current;
@@ -139,7 +138,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     }
 
     setWireframe(globalWireframe);
-  }, [globalWireframe]);
+  }, [globalWireframe, ref]);
 
   // Handle pointer over events on the model.
   const handlePointerOver = (): void => {
@@ -152,6 +151,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   };
 
   const handleMouseDown = (e: Event): void => {
+    e.stopPropagation();
     setMouseDownPos({ x: e.clientX, y: e.clientY });
   };
 
@@ -167,6 +167,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
       Math.abs(mouseUpPos.y - mouseDownPos.y) <= movementThreshold
     ) {
       const payload = { id, name, cutType, opacity, wireframe };
+
       selectedModel?.id === id
         ? dispatch(setSelectedModel(null))
         : dispatch(setSelectedModel(payload));
@@ -177,15 +178,21 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     }
   };
 
+  const hoverMethods = {
+    onPointerOver: handlePointerOver,
+    onPointerOut: handlePointerOut,
+  };
+
+  const hoverEffects = scene.children.length < 20 ? hoverMethods : {};
+
   return (
     <primitive
       ref={ref}
       object={model.scene}
       onPointerDown={(e: Event): void => handleMouseDown(e)}
       onPointerUp={(e: Event): void => handleMouseUp(e)}
-      onPointerOver={handlePointerOver}
-      onPointerOut={handlePointerOut}
       visible={true}
+      {...hoverEffects}
     />
   );
 }

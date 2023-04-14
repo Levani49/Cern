@@ -13,9 +13,9 @@ import Player from './Player.three';
  * @returns {JSX.Element} The controls component.
  */
 export default function Controls(): JSX.Element {
-  const droneType = useAppSelector(selectDroneState);
   const dispatch = useAppDispatch();
   const { camera } = useThree();
+  const droneType = useAppSelector(selectDroneState);
   const position = useAppSelector(selectCameraPosition);
 
   useEffect(() => {
