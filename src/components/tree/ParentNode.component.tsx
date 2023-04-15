@@ -19,7 +19,7 @@ type MouseEv = React.MouseEvent<HTMLElement, MouseEvent>;
 type IconMouseEv = React.MouseEvent<SVGSVGElement, MouseEvent>;
 
 const iconClass =
-  'h-6 w-6 text-white hover:text-blue hover:dark:text-green transition-all cursor-pointer';
+  'h-6 w-6 text-white stroke-1 hover:text-blue hover:dark:text-green transition-all cursor-pointer';
 
 export default function ParentNode({
   uid,
@@ -61,13 +61,13 @@ export default function ParentNode({
       ? 'text-yellow-500'
       : 'text-white';
 
-  const styles = `border-l-[2px] border-transparent text-left transition before:relative before:inline-block before:w-[15px] before:left-0 before:align-middle before:border before:border-t-[px] before:text-white before:align-middle ${
+  const styles = `border-l-[1px] border-transparent text-left transition before:relative before:inline-block before:w-[15px] before:left-0 before:align-middle before:border before:border-t-[0.5px] before:text-white before:align-middle ${
     nodeEnd ? 'last-event-line' : ''
   } ${root && 'before:!text-transparent'}`;
 
   return (
     <li
-      className={`border-solid  ${!nodeEnd && 'border-l-[2px] border-white'} ${
+      className={`border-solid  ${!nodeEnd && 'border-l-[1px] border-white'} ${
         root && 'border-none'
       }`}
     >
@@ -80,7 +80,7 @@ export default function ParentNode({
 
         <span
           role="presentation"
-          className={`${innerState} ml-[2] uppercase cursor-pointer`}
+          className={`${innerState} ml-[2] text-xs uppercase cursor-pointer`}
           onClick={onClickHandler}
         >
           {name}

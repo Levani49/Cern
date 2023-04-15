@@ -72,7 +72,7 @@ export const selectTheme = (state: RootState): boolean => state.globals.prefersD
 export const selectStats = (state: RootState): boolean => state.globals.showStats;
 export const selectAxis = (state: RootState): boolean => state.globals.showAxis;
 export const selectGrid = (state: RootState): boolean => state.globals.showGrid;
-export const selectGlobalOpacity = (state: RootState): number => state.globals.globalOpacity;
 export const selectGlobalWireframe = (state: RootState): boolean => state.globals.globalWireframe;
+export const selectGlobalOpacity = (state: RootState): number => state.globals.globalOpacity;
 export const selectParticleAnimation = (state: RootState): boolean =>
   state.globals.startParticleAnimation;

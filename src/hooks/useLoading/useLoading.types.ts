@@ -1,5 +1,5 @@
 export interface Loading {
   isLoading: boolean;
-  hasLoaded: boolean;
+  isLoaded: boolean;
   progress: number;
 }

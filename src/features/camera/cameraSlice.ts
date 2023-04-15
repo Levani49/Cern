@@ -14,6 +14,7 @@ const initialState: ICameraSettings = {
   currentState: 'idle',
   droneType: 'idle',
   camera: null,
+  cameraType: 'perspective',
   showFlyModal: false,
   viewMode: 'default',
 };
@@ -96,6 +97,10 @@ export const cameraSlice = createSlice({
     setFlyModalState: (state, action: PayloadAction<boolean>) => {
       state.showFlyModal = action.payload;
     },
+
+    setCameraType: (state, action: PayloadAction<'perspective' | 'orthographic'>) => {
+      state.cameraType = action.payload;
+    },
   },
 });
 
@@ -107,6 +112,7 @@ export const {
   setCamera,
   setDroneMode,
   setFlyModalState,
+  setCameraType,
 } = cameraSlice.actions;
 
 /**
@@ -132,3 +138,6 @@ export const selectFlyModalState = (state: RootState): boolean => state.camera.s
  * @param state
  */
 export const selectCameraViewMode = (state: RootState): ViewModes => state.camera.viewMode;
+
+export const selectCameraType = (state: RootState): 'perspective' | 'orthographic' =>
+  state.camera.cameraType;

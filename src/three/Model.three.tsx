@@ -1,56 +1,58 @@
+import { useEffect, useRef, useState } from 'react';
 import { useLoader, useThree } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { useEffect, useRef, useState } from 'react';
 
-import { selectGlobalOpacity, selectGlobalWireframe } from '../features/global/globalsSlice';
 import {
-  selectModelsOpacity,
-  selectModelWireframe,
-  selectSelectedModel,
   setModelsOpacity,
   setModelWireframe,
   setSelectedModel,
+  updateLocalModelCut,
 } from '../features/model/modelSlice';
 
-import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { useAppDispatch } from '../app/hooks';
 
 import ModelService from '../services/Model.service';
-export interface Ev {
+import { ModelCut } from '../types/app.types';
+import useSelectedModel from '../hooks/useSelectedModel/useSelectedModel';
+export interface Event {
   stopPropagation: () => void;
+  clientX: number;
+  clientY: number;
 }
 
 interface Props {
+  id: string;
   src: string;
   name: string;
-  id: string;
+  cutType: ModelCut;
 }
 
 const modelService = new ModelService();
-
+const LOW_OPACITY_LEVEL = 0.3;
 /**
  * Model component renders a 3D model using react-three-fiber library.
  *
  * @param {Props} props - Component properties.
  * @returns {JSX.Element} - Model component.
  */
-export default function Model({ src, id }: Props): JSX.Element {
-  // State for managing the opacity of the model.
+export default function Model({ src, id, name, cutType }: Props): JSX.Element {
+  const { gl, scene } = useThree();
+  const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState<number>(1);
   const [wireframe, setWireframe] = useState<boolean>(false);
+  const [mouseDownPos, setMouseDownPos] = useState<null | {
+    x: number;
+    y: number;
+  }>(null);
 
   // Redux hooks for managing the application state.
-  const dispatch = useAppDispatch();
-  const { selectedModel, modelOpacityLevel, globalOpacityLevel, modelWireframe, globalWireframe } =
-    useAppSelector((state) => ({
-      selectedModel: selectSelectedModel(state),
-      modelOpacityLevel: selectModelsOpacity(state),
-      globalOpacityLevel: selectGlobalOpacity(state),
-      modelWireframe: selectModelWireframe(state),
-      globalWireframe: selectGlobalWireframe(state),
-    }));
-
-  // Access the WebGLRenderer and other essential objects in the react-three-fiber scene.
-  const { gl } = useThree();
+  const {
+    selectedModel,
+    modelOpacityLevel,
+    globalOpacityLevel,
+    modelWireframe,
+    globalWireframe,
+  } = useSelectedModel();
 
   // Load the 3D model using the GLTFLoader and DRACOLoader.
   const model = useLoader(
@@ -60,6 +62,7 @@ export default function Model({ src, id }: Props): JSX.Element {
       loader.setDRACOLoader(modelService.dracoLoader);
     },
   );
+
   const ref = useRef<THREE.Object3D>();
 
   // Apply defaults to the model.
@@ -67,7 +70,15 @@ export default function Model({ src, id }: Props): JSX.Element {
     const currentRef = ref.current;
 
     if (currentRef) {
-      modelService.applyDefaults(currentRef, id);
+      if (selectedModel) {
+        if (selectedModel.id !== id) {
+          modelService.applyDefaults(currentRef, id, LOW_OPACITY_LEVEL);
+        } else {
+          modelService.applyDefaults(currentRef, id);
+        }
+      } else {
+        modelService.applyDefaults(currentRef, id, globalOpacityLevel);
+      }
     }
 
     return () => {
@@ -75,7 +86,7 @@ export default function Model({ src, id }: Props): JSX.Element {
         modelService.disposeModel(currentRef);
       }
     };
-  }, [id]);
+  }, [id, ref, src]);
 
   // This effect updates the opacity of the current model based on the selectedModel state.
   useEffect(() => {
@@ -85,38 +96,38 @@ export default function Model({ src, id }: Props): JSX.Element {
     // Check if the currentRef exists.
     if (currentRef) {
       // Check if there is a selected model and if the current model's ID does not match the selected model's ID.
-      if (selectedModel && selectedModel !== id) {
+      if (selectedModel && selectedModel.id !== id) {
         // If another model is selected, update the opacity of the current model to 0.3 (partially transparent).
-        modelService.updateOpacity(currentRef, 0.3);
+        modelService.updateOpacity(currentRef, LOW_OPACITY_LEVEL);
       } else {
         // If the current model is the selected model or no model is selected,
         // update the opacity of the current model to the current opacity value.
         modelService.updateOpacity(currentRef, opacity);
       }
     }
-  }, [selectedModel, id, opacity, wireframe]);
+  }, [selectedModel, id, opacity, ref]);
 
   useEffect(() => {
     const currentRef = ref.current;
 
     if (currentRef) {
-      if (selectedModel === id) {
+      if (selectedModel?.id === id) {
         modelService.updateOpacity(currentRef, modelOpacityLevel);
         setOpacity(modelOpacityLevel);
       }
     }
-  }, [modelOpacityLevel, selectedModel, id]);
+  }, [modelOpacityLevel, selectedModel, id, ref]);
 
   useEffect(() => {
     const currentRef = ref.current;
 
     if (currentRef) {
-      if (selectedModel === id) {
+      if (selectedModel?.id === id) {
         modelService.updateWireframe(currentRef, modelWireframe);
         setWireframe(modelWireframe);
       }
     }
-  }, [modelWireframe, selectedModel, id]);
+  }, [modelWireframe, selectedModel, id, ref]);
 
   // This effect updates the opacity of the current model based on the global opacity level.
   useEffect(() => {
@@ -125,29 +136,19 @@ export default function Model({ src, id }: Props): JSX.Element {
 
     // Check if the currentRef exists.
     if (currentRef) {
-      // Update the opacity of the current model to the global opacity level.
-      modelService.updateOpacity(currentRef, globalOpacityLevel);
-      modelService.updateWireframe(currentRef, globalWireframe);
-
-      // Update the local opacity state with the global opacity level.
       setOpacity(globalOpacityLevel);
-      setWireframe(globalWireframe);
     }
-  }, [globalOpacityLevel, globalWireframe]);
+  }, [globalOpacityLevel]);
 
-  // This function handles click events on the model.
-  const handleClick = (e: Ev): void => {
-    // Stop the event from propagating further up the event chain.
-    e.stopPropagation();
+  useEffect(() => {
+    const currentRef = ref.current;
 
-    // If the clicked model is already selected, deselect it by setting selectedModel to null.
-    // If not, set the selectedModel to the current model's id.
-    selectedModel === id ? dispatch(setSelectedModel(null)) : dispatch(setSelectedModel(id));
+    if (currentRef) {
+      modelService.updateWireframe(currentRef, globalWireframe);
+    }
 
-    // Update the model-specific opacity level to the current model's opacity.
-    dispatch(setModelsOpacity(opacity));
-    dispatch(setModelWireframe(wireframe));
-  };
+    setWireframe(globalWireframe);
+  }, [globalWireframe, ref]);
 
   // Handle pointer over events on the model.
   const handlePointerOver = (): void => {
@@ -159,14 +160,50 @@ export default function Model({ src, id }: Props): JSX.Element {
     gl.domElement.style.cursor = 'default';
   };
 
+  const handleMouseDown = (e: Event): void => {
+    e.stopPropagation();
+    setMouseDownPos({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleMouseUp = (e: Event): void => {
+    e.stopPropagation();
+
+    const mouseUpPos = { x: e.clientX, y: e.clientY };
+    const movementThreshold = 1;
+
+    if (
+      mouseDownPos &&
+      Math.abs(mouseUpPos.x - mouseDownPos.x) <= movementThreshold &&
+      Math.abs(mouseUpPos.y - mouseDownPos.y) <= movementThreshold
+    ) {
+      const payload = { id, name, cutType, opacity, wireframe };
+
+      selectedModel?.id === id
+        ? dispatch(setSelectedModel(null))
+        : dispatch(setSelectedModel(payload));
+
+      // Update the model-specific opacity level to the current model's opacity.
+      dispatch(setModelsOpacity(opacity));
+      dispatch(setModelWireframe(wireframe));
+      dispatch(updateLocalModelCut(cutType));
+    }
+  };
+
+  const hoverMethods = {
+    onPointerOver: handlePointerOver,
+    onPointerOut: handlePointerOut,
+  };
+
+  const hoverEffects = scene.children.length < 20 ? hoverMethods : {};
+
   return (
     <primitive
       ref={ref}
       object={model.scene}
-      onClick={(e: Ev): void => handleClick(e)}
-      onPointerOver={handlePointerOver}
-      onPointerOut={handlePointerOut}
+      onPointerDown={(e: Event): void => handleMouseDown(e)}
+      onPointerUp={(e: Event): void => handleMouseUp(e)}
       visible={true}
+      {...hoverEffects}
     />
   );
 }

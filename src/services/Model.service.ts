@@ -1,5 +1,5 @@
-import { Mesh, Object3D } from "three";
-import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
+import { Mesh, Object3D } from 'three';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 
 export default class ModelService {
   private path = import.meta.env.VITE_MODELS_PROVIDER;
@@ -22,13 +22,14 @@ export default class ModelService {
     });
   }
 
-  applyDefaults(model: Object3D, name: string): void {
+  applyDefaults(model: Object3D, name: string, opacity = 1): void {
     model.name = name;
     model.traverse((child: Object3D): void => {
       if (child instanceof Mesh) {
         child.name = name;
         child.material.metalness = 0;
         child.material.transparent = true;
+        child.material.opacity = opacity;
       }
     });
   }
@@ -47,7 +48,7 @@ export default class ModelService {
   }
 
   constructor() {
-    this.dracoLoader.setDecoderPath("/draco/");
-    this.dracoLoader.setDecoderConfig({ type: "js" });
+    this.dracoLoader.setDecoderPath('/draco/');
+    this.dracoLoader.setDecoderConfig({ type: 'js' });
   }
 }

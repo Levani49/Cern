@@ -13,6 +13,7 @@ import Lights from './Light.three';
 import Fog from './Fog.three';
 import StatsDispatcher from './Stats.three';
 import Background from './Background.three';
+import Camera from './Camera.three';
 
 const Detector = lazy(() => import('./Detector.three'));
 const Environment = lazy(() => import('./Environment.three'));
@@ -21,6 +22,8 @@ const Controls = lazy(() => import('./Controls.three'));
 const Axis = lazy(() => import('./Axis.three'));
 const Grid = lazy(() => import('./Grid.three'));
 
+// import Detector from './Detector.three';
+
 /**
  * Main scene of application
  *
@@ -28,15 +31,15 @@ const Grid = lazy(() => import('./Grid.three'));
  */
 export default function Scene(): JSX.Element {
   const dispatch = useAppDispatch();
-  const { isLoading, hasLoaded } = useLoadingStatus();
+  const { isLoading, isLoaded } = useLoadingStatus();
 
   useEffect(() => {
     if (isLoading) {
       dispatch(updateModelsLoadingState('loading'));
-    } else if (hasLoaded) {
+    } else if (isLoaded) {
       dispatch(updateModelsLoadingState('idle'));
     }
-  }, [isLoading, hasLoaded, dispatch]);
+  }, [isLoading, isLoaded, dispatch]);
 
   return (
     <>
@@ -49,23 +52,28 @@ export default function Scene(): JSX.Element {
         linear
       >
         <Physics gravity={[0, 0, 0]}>
-          <Lights />
           <Suspense fallback={null}>
             <Detector />
-            <Background />
           </Suspense>
-          <Fog />
-          <Suspense>
-            <Grid />
-            <Environment />
-            <ParticleSystem />
-            <Controls />
-            <Axis />
-          </Suspense>
-          <StatsDispatcher />
+          {isLoaded && (
+            <>
+              <Background />
+              <Fog />
+              <Suspense>
+                <Axis />
+              </Suspense>
+              <StatsDispatcher />
+            </>
+          )}
+          <Lights />
+          <Camera />
+          <Grid />
+          <Environment />
+          <Controls />
+          <ParticleSystem />
         </Physics>
       </Canvas>
-      <Loader />
+      <Loader containerStyles={{ backgroundColor: 'transparent' }} />
     </>
   );
 }

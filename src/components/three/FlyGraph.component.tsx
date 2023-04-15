@@ -35,7 +35,7 @@ export default function FlyOverlay(): JSX.Element {
     return (
       <>
         {!showFlyModal && (
-          <h1 className="info-graph text-white text-sm top-1/4">
+          <h1 className="info-graph text-white text-sm top-1/4 z-[5000]">
             Press
             <span className="font-bold text-yellow-500"> W | A | S | D </span>
             to move, use your mouse to rotate

@@ -29,7 +29,7 @@ export default function AboutModal(): JSX.Element {
   return (
     <Modal title="About" show={show} onCloseHandler={closeModalHandler}>
       <div className="w-full shadow-md rounded p-1 ">
-        <div className="grid grid-cols-2 max-h-80 overflow-y-auto md:overflow-y-hidden md:max-h-auto md:grid-cols-3 gap-4 justify-between">
+        <div className="flex flex-col gap-2 justifycenter w-full items-center">
           {TEMP_INFO.map((employee: Employee) => {
             const { id, ...rest } = employee;
             return <Slot key={id} {...rest} />;
