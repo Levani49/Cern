@@ -1,9 +1,13 @@
 import { OrbitControls } from '@react-three/drei';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useThree } from '@react-three/fiber';
 
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { selectDroneState, setCamera, selectCameraPosition } from '../features/camera/cameraSlice';
+import {
+  selectDroneState,
+  setCamera,
+  selectCameraPosition,
+} from '../features/camera/cameraSlice';
 
 import Player from './Player.three';
 
@@ -18,10 +22,14 @@ export default function Controls(): JSX.Element {
   const droneType = useAppSelector(selectDroneState);
   const position = useAppSelector(selectCameraPosition);
 
+  const cameraPosition = useMemo(() => {
+    return position;
+  }, [position]);
+
   useEffect(() => {
     dispatch(setCamera(camera));
-    camera.position.set(...position);
-  }, [camera, dispatch, position]);
+    camera.position.set(...cameraPosition);
+  }, [cameraPosition]);
 
   const rotate = droneType === 'circle';
   const isFreeFly = droneType === 'fly';
@@ -29,7 +37,13 @@ export default function Controls(): JSX.Element {
 
   if (isFreeFly) {
     return (
-      <Player currentCameraPosition={[camera.position.x, camera.position.y, camera.position.z]} />
+      <Player
+        currentCameraPosition={[
+          camera.position.x,
+          camera.position.y,
+          camera.position.z,
+        ]}
+      />
     );
   }
 

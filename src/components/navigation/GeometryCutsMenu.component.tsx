@@ -32,7 +32,6 @@ export default function GeometryCutsMenu(): JSX.Element {
   const selectedModel = useAppSelector(selectSelectedModel);
 
   const onClickHandler = (modelCut: ModelCut): void => {
-    console.log(selectedModel);
     if (selectedModel) {
       if (localCutType === modelCut) {
         dispatch(updateLocalModelCut(null));

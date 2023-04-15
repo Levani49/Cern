@@ -60,7 +60,6 @@ export default function Scene(): JSX.Element {
               <Background />
               <Fog />
               <Suspense>
-                <Controls />
                 <Axis />
               </Suspense>
               <StatsDispatcher />
@@ -70,6 +69,7 @@ export default function Scene(): JSX.Element {
           <Camera />
           <Grid />
           <Environment />
+          <Controls />
           <ParticleSystem />
         </Physics>
       </Canvas>
