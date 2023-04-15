@@ -45,9 +45,6 @@ export default function CameraViewMenu(): JSX.Element {
   };
 
   const innerHtml = Object.entries(handlers).map(([type, handler]) => {
-    /**
-     *
-     */
     const onClickHandler = (): void => {
       dispatch(handler());
     };

@@ -22,13 +22,14 @@ export default class ModelService {
     });
   }
 
-  applyDefaults(model: Object3D, name: string): void {
+  applyDefaults(model: Object3D, name: string, opacity = 1): void {
     model.name = name;
     model.traverse((child: Object3D): void => {
       if (child instanceof Mesh) {
         child.name = name;
         child.material.metalness = 0;
         child.material.transparent = true;
+        child.material.opacity = opacity;
       }
     });
   }

@@ -15,10 +15,9 @@ interface LocalModel extends ActiveModel {
  * @returns { JSX.Element } JSX.Element
  */
 export default function Detector(): JSX.Element {
-  const { models, cutType } = useDetectorState();
+  const { models, cutType, localCutType } = useDetectorState();
   const selectedModel = useAppSelector(selectSelectedModel);
   const [localModels, setLocalModels] = useState<LocalModel[]>([]);
-  console.log(cutType);
 
   useEffect(() => {
     const activeModels = models
@@ -45,15 +44,13 @@ export default function Detector(): JSX.Element {
   }, [models]);
 
   useEffect(() => {
-    console.log('cut type');
-
     if (localModels.length) {
       const activeModels = localModels.map((model: LocalModel): LocalModel => {
         let modelCutType;
 
         if (selectedModel) {
           modelCutType =
-            selectedModel?.id === model.uid ? cutType : model.cutType;
+            selectedModel?.id === model.uid ? localCutType : model.cutType;
         } else {
           modelCutType = cutType;
         }
@@ -65,7 +62,7 @@ export default function Detector(): JSX.Element {
       });
       setLocalModels(activeModels);
     }
-  }, [cutType]);
+  }, [cutType, localCutType]);
 
   const activeModels = localModels.map((model: LocalModel): JSX.Element => {
     const { modelPath, uid, name, cutType: modelCutType } = model;

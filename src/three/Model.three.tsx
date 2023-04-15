@@ -6,6 +6,7 @@ import {
   setModelsOpacity,
   setModelWireframe,
   setSelectedModel,
+  updateLocalModelCut,
 } from '../features/model/modelSlice';
 
 import { useAppDispatch } from '../app/hooks';
@@ -27,7 +28,7 @@ interface Props {
 }
 
 const modelService = new ModelService();
-
+const LOW_OPACITY_LEVEL = 0.3;
 /**
  * Model component renders a 3D model using react-three-fiber library.
  *
@@ -45,8 +46,13 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   }>(null);
 
   // Redux hooks for managing the application state.
-  const { selectedModel, modelOpacityLevel, globalOpacityLevel, modelWireframe, globalWireframe } =
-    useSelectedModel();
+  const {
+    selectedModel,
+    modelOpacityLevel,
+    globalOpacityLevel,
+    modelWireframe,
+    globalWireframe,
+  } = useSelectedModel();
 
   // Load the 3D model using the GLTFLoader and DRACOLoader.
   const model = useLoader(
@@ -64,7 +70,15 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     const currentRef = ref.current;
 
     if (currentRef) {
-      modelService.applyDefaults(currentRef, id);
+      if (selectedModel) {
+        if (selectedModel.id !== id) {
+          modelService.applyDefaults(currentRef, id, LOW_OPACITY_LEVEL);
+        } else {
+          modelService.applyDefaults(currentRef, id);
+        }
+      } else {
+        modelService.applyDefaults(currentRef, id, globalOpacityLevel);
+      }
     }
 
     return () => {
@@ -84,7 +98,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
       // Check if there is a selected model and if the current model's ID does not match the selected model's ID.
       if (selectedModel && selectedModel.id !== id) {
         // If another model is selected, update the opacity of the current model to 0.3 (partially transparent).
-        modelService.updateOpacity(currentRef, 0.3);
+        modelService.updateOpacity(currentRef, LOW_OPACITY_LEVEL);
       } else {
         // If the current model is the selected model or no model is selected,
         // update the opacity of the current model to the current opacity value.
@@ -122,13 +136,9 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
 
     // Check if the currentRef exists.
     if (currentRef) {
-      // Update the opacity of the current model to the global opacity level.
-      modelService.updateOpacity(currentRef, globalOpacityLevel);
-
-      // Update the local opacity state with the global opacity level.
       setOpacity(globalOpacityLevel);
     }
-  }, [globalOpacityLevel, globalWireframe, ref]);
+  }, [globalOpacityLevel]);
 
   useEffect(() => {
     const currentRef = ref.current;
@@ -175,6 +185,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
       // Update the model-specific opacity level to the current model's opacity.
       dispatch(setModelsOpacity(opacity));
       dispatch(setModelWireframe(wireframe));
+      dispatch(updateLocalModelCut(cutType));
     }
   };
 

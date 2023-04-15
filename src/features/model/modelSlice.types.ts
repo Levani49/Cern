@@ -1,8 +1,13 @@
-import { ModelCut, selectedModel, ModelLoadingStates } from '../../types/app.types';
+import {
+  ModelCut,
+  selectedModel,
+  ModelLoadingStates,
+} from '../../types/app.types';
 
 export interface ModelSlice {
   modelWireframe: boolean;
   modelCut: ModelCut;
+  localCut: ModelCut;
   selectedModel: selectedModel;
   previousSelectedModel: selectedModel;
   modelsLoadingState: ModelLoadingStates;
