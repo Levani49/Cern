@@ -1,7 +1,13 @@
-// import { useAppSelector } from '../app/hooks';
-// import { selectSelectedModel } from '../features/model/modelSlice';
+import { useEffect, useState } from 'react';
+import { useAppSelector } from '../app/hooks';
+import { selectSelectedModel } from '../features/model/modelSlice';
 import { useDetectorState } from '../hooks/useDetectorState/useDetectorState';
 import Model from './Model.three';
+import { ActiveModel, ModelCut } from '../types/app.types';
+
+interface LocalModel extends ActiveModel {
+  cutType: ModelCut;
+}
 
 /**
  * Detector
@@ -10,16 +16,65 @@ import Model from './Model.three';
  */
 export default function Detector(): JSX.Element {
   const { models, cutType } = useDetectorState();
-  // const selectedModel = useAppSelector(selectSelectedModel)
+  const selectedModel = useAppSelector(selectSelectedModel);
+  const [localModels, setLocalModels] = useState<LocalModel[]>([]);
+  console.log(cutType);
 
-  const activeModels = models
-    .filter((model) => model.modelPath !== 'nan')
-    .map((model) => {
-      const { modelPath, uid, name } = model;
-      const path = cutType ? modelPath + cutType : modelPath;
+  useEffect(() => {
+    const activeModels = models
+      .filter((model) => model.modelPath !== 'nan')
+      .map((model: ActiveModel): LocalModel => {
+        // Check if a model with the same ID exists in localModels
+        const existingLocalModel = localModels.find(
+          (localModel) => localModel.uid === model.uid,
+        );
 
-      return <Model key={uid} cutType={cutType} src={path} name={name} id={uid} />;
-    });
+        if (existingLocalModel) {
+          // If found, return the existing localModel
+          return existingLocalModel;
+        } else {
+          // Otherwise, return the new model with the cutType
+          return {
+            ...model,
+            cutType,
+          };
+        }
+      });
+
+    setLocalModels(activeModels);
+  }, [models]);
+
+  useEffect(() => {
+    console.log('cut type');
+
+    if (localModels.length) {
+      const activeModels = localModels.map((model: LocalModel): LocalModel => {
+        let modelCutType;
+
+        if (selectedModel) {
+          modelCutType =
+            selectedModel?.id === model.uid ? cutType : model.cutType;
+        } else {
+          modelCutType = cutType;
+        }
+
+        return {
+          ...model,
+          cutType: modelCutType,
+        };
+      });
+      setLocalModels(activeModels);
+    }
+  }, [cutType]);
+
+  const activeModels = localModels.map((model: LocalModel): JSX.Element => {
+    const { modelPath, uid, name, cutType: modelCutType } = model;
+    const path = modelCutType ? modelPath + modelCutType : modelPath;
+
+    return (
+      <Model key={uid} cutType={modelCutType} src={path} name={name} id={uid} />
+    );
+  });
 
   return <>{activeModels}</>;
 }
