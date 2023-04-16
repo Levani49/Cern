@@ -169,7 +169,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     e.stopPropagation();
 
     const mouseUpPos = { x: e.clientX, y: e.clientY };
-    const movementThreshold = 25;
+    const movementThreshold = 5;
 
     if (
       mouseDownPos &&
