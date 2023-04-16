@@ -16,7 +16,7 @@ const Background = (): JSX.Element => {
 
   const handleMouseUp = (e: { clientX: number; clientY: number }): void => {
     const mouseUpPos = { x: e.clientX, y: e.clientY };
-    const movementThreshold = 5;
+    const movementThreshold = 25;
 
     if (
       mouseDownPos &&

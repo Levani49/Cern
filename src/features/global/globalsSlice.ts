@@ -9,13 +9,10 @@ const initialState: GlobalsSlice = {
   showStats: false,
   showAxis: true,
   showGrid: true,
-  modelWireframe: false,
   globalWireframe: false,
   selectedModel: null,
-  modelCut: '-cut3',
   modelsLoadingState: 'loading',
   previousSelectedModel: null,
-  modelOpacity: 1,
   globalOpacity: 1,
 };
 
@@ -68,11 +65,15 @@ export const {
   setGlobalWireframe,
 } = globalsSlice.actions;
 
-export const selectTheme = (state: RootState): boolean => state.globals.prefersDarkMode;
-export const selectStats = (state: RootState): boolean => state.globals.showStats;
+export const selectTheme = (state: RootState): boolean =>
+  state.globals.prefersDarkMode;
+export const selectStats = (state: RootState): boolean =>
+  state.globals.showStats;
 export const selectAxis = (state: RootState): boolean => state.globals.showAxis;
 export const selectGrid = (state: RootState): boolean => state.globals.showGrid;
-export const selectGlobalWireframe = (state: RootState): boolean => state.globals.globalWireframe;
-export const selectGlobalOpacity = (state: RootState): number => state.globals.globalOpacity;
+export const selectGlobalWireframe = (state: RootState): boolean =>
+  state.globals.globalWireframe;
+export const selectGlobalOpacity = (state: RootState): number =>
+  state.globals.globalOpacity;
 export const selectParticleAnimation = (state: RootState): boolean =>
   state.globals.startParticleAnimation;
