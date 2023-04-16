@@ -1,7 +1,8 @@
 export default class EventService {
   private path = import.meta.env.VITE_EVENTS_PROVIDER;
+  private parser = new DOMParser();
 
-  load = async (xmlPath: string): Promise<string> => {
+  fetchXml = async (xmlPath: string): Promise<string> => {
     const response = await fetch(`${this.path}/${xmlPath}`);
     try {
       if (response.ok) {
@@ -12,6 +13,10 @@ export default class EventService {
     } catch (e) {
       throw new Error(`Error fetching XML file: ${e}`);
     }
+  };
+
+  parseXml = (xmlString: string): Document => {
+    return this.parser.parseFromString(xmlString, 'application/xml');
   };
 
   constructor() {

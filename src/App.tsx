@@ -1,9 +1,11 @@
 import { lazy, Suspense } from 'react';
+import { IntlProvider } from 'react-intl';
 
 import Navigation from './components/navigation/Index';
 import FlyOverlay from './components/three/FlyGraph.component';
 import Stats from './components/three/Stats.component';
 import ModelInfo from './components/modals/modelInfo/ModelInfo.component';
+import { messages } from './translations';
 
 const Tree = lazy(() => import('./components/tree/Tree.component'));
 const Scene = lazy(() => import('./three'));
@@ -15,8 +17,13 @@ const Logo = lazy(() => import('./components/logo/Logo.component'));
  * @returns {JSX.Element} JSX Element.
  */
 function App(): JSX.Element {
+  const locale = navigator.language.split('-')[0];
+
+  // Check if the locale exists in the messages object, and if not, use the default locale
+  const localeMessages = messages[locale];
+
   return (
-    <>
+    <IntlProvider locale={locale} messages={localeMessages}>
       <div className="flex">
         <Navigation />
       </div>
@@ -34,7 +41,7 @@ function App(): JSX.Element {
           <Logo />
         </Suspense>
       </div>
-    </>
+    </IntlProvider>
   );
 }
 

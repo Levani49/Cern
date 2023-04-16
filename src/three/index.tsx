@@ -14,6 +14,7 @@ import Fog from './Fog.three';
 import StatsDispatcher from './Stats.three';
 import Background from './Background.three';
 import Camera from './Camera.three';
+import ErrorBoundary from '../components/Error/ErrorBoundary.component';
 
 const Detector = lazy(() => import('./Detector.three'));
 const Environment = lazy(() => import('./Environment.three'));
@@ -42,7 +43,7 @@ export default function Scene(): JSX.Element {
   }, [isLoading, isLoaded, dispatch]);
 
   return (
-    <>
+    <ErrorBoundary>
       <Canvas
         gl={{
           pixelRatio: window.devicePixelRatio * 0.5,
@@ -74,6 +75,6 @@ export default function Scene(): JSX.Element {
         </Physics>
       </Canvas>
       <Loader containerStyles={{ backgroundColor: 'transparent' }} />
-    </>
+    </ErrorBoundary>
   );
 }
