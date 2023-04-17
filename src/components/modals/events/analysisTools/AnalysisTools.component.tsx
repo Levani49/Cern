@@ -1,3 +1,5 @@
+import { useIntl } from 'react-intl';
+
 import AnalysisTool from './AnalysisTool.component';
 
 import {
@@ -13,18 +15,19 @@ export default function AnalysisTools(): JSX.Element {
   const dispatch = useAppDispatch();
   const currentTool = useAppSelector(selectCurrentEventAnalysisTool);
 
-  /**
-   *
-   * @param tool
-   */
+  const intl = useIntl();
+  const filter = intl.formatMessage({ id: 'modal.events.filter' });
+  const algorithm = intl.formatMessage({ id: 'modal.events.algorithms' });
+  const info = intl.formatMessage({ id: 'modal.events.info' });
+
   const handleClick = (tool: CurrentAnalysisTool): void => {
     dispatch(setEventCurrentAnalysisTool(tool));
   };
 
   const tools = {
-    filter: 'Filter',
-    algorithm: 'Algorithms',
-    info: 'Info',
+    filter: filter,
+    algorithm: algorithm,
+    info: info,
   };
 
   const innerHtml = Object.entries(tools).map(([tool, title]) => (

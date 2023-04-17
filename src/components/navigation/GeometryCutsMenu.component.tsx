@@ -1,3 +1,5 @@
+import { useIntl } from 'react-intl';
+
 import { ReactComponent as ScissorIcon } from '../../assets/svg/scissor.svg';
 import { ReactComponent as LeftWallIcon } from '../../assets/svg/left-wall.svg';
 import { ReactComponent as RightWallIcon } from '../../assets/svg/right-wall.svg';
@@ -30,6 +32,9 @@ export default function GeometryCutsMenu(): JSX.Element {
   const cutType = useAppSelector(selectGeometriesCutType);
   const localCutType = useAppSelector(selectLocalGeometryCutType);
   const selectedModel = useAppSelector(selectSelectedModel);
+
+  const intl = useIntl();
+  const title = intl.formatMessage({ id: 'navigation.geometriesCut.title' });
 
   const onClickHandler = (modelCut: ModelCut): void => {
     if (selectedModel) {
@@ -75,11 +80,7 @@ export default function GeometryCutsMenu(): JSX.Element {
 
   return (
     <div className="inline-flex group">
-      <MenuIcon
-        Icon={Icon}
-        title="Provides different type of cuts for geometry"
-        active
-      />
+      <MenuIcon Icon={Icon} title={title} active />
       <MenuDropdown>
         <MenuIcon
           Icon={LeftWallIcon}

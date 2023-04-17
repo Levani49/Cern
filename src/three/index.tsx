@@ -14,7 +14,7 @@ import Fog from './Fog.three';
 import StatsDispatcher from './Stats.three';
 import Background from './Background.three';
 import Camera from './Camera.three';
-import ErrorBoundary from '../components/Error/ErrorBoundary.component';
+import ErrorBoundary from '../components/error/ErrorBoundary.component';
 
 const Detector = lazy(() => import('./Detector.three'));
 const Environment = lazy(() => import('./Environment.three'));

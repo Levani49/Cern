@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useIntl } from 'react-intl';
 
 import { ReactComponent as DollyZoomIcon } from '../../assets/svg/zoom.svg';
 import { ReactComponent as CircleIcon } from '../../assets/svg/circle.svg';
@@ -15,7 +16,6 @@ import {
 } from '../../features/camera/cameraSlice';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-
 import type { SVGIcon, DroneTypes } from '../../types/app.types';
 
 import MenuDropdown from './MenuDropdown.component';
@@ -40,6 +40,10 @@ export default function DroneMenu(): JSX.Element {
   const dispatch = useAppDispatch();
   const currentMode = useAppSelector(selectDroneState);
   const currentModeMemoized = useMemo(() => currentMode, [currentMode]);
+
+  const intl = useIntl();
+  const title = intl.formatMessage({ id: 'navigation.drone.title' });
+
   const isActive = currentModeMemoized !== 'idle';
 
   /**
@@ -82,8 +86,11 @@ export default function DroneMenu(): JSX.Element {
 
   return (
     <div className="inline-flex group">
-      <Button onClick={(): void => handleModeChange('idle')} title="Drone modes">
-        <SvgIcon className={`${isActive ? 'text-red-500 animate-pulse' : ''}`} Icon={DroneIcon} />
+      <Button onClick={(): void => handleModeChange('idle')} title={title}>
+        <SvgIcon
+          className={`${isActive ? 'text-red-500 animate-pulse' : ''}`}
+          Icon={DroneIcon}
+        />
       </Button>
       <MenuDropdown>{innerHtml}</MenuDropdown>
     </div>

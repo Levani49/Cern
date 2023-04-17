@@ -1,6 +1,10 @@
+import { useIntl } from 'react-intl';
 import { ReactComponent as InfoIcon } from '../../assets/svg/info.svg';
 
-import { selectAboutModalState, showAboutModal } from '../../features/modals/modalsSlice';
+import {
+  selectAboutModalState,
+  showAboutModal,
+} from '../../features/modals/modalsSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import MenuIcon from './MenuIcon.component';
@@ -17,6 +21,9 @@ export default function AboutMenu(): JSX.Element {
   const dispatch = useAppDispatch();
   const show = useAppSelector(selectAboutModalState);
 
+  const intl = useIntl();
+  const title = intl.formatMessage({ id: 'navigation.about.title' });
+
   /**
    * Toggles the visibility of the info modal.
    *
@@ -30,7 +37,7 @@ export default function AboutMenu(): JSX.Element {
 
   return (
     <>
-      <MenuIcon Icon={InfoIcon} onClick={toggleModal} title="About" />
+      <MenuIcon Icon={InfoIcon} onClick={toggleModal} title={title} />
       <AboutModal />
     </>
   );

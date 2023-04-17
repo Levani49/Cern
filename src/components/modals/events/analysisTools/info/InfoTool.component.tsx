@@ -1,5 +1,7 @@
-import { PlusCircleIcon } from "@heroicons/react/24/outline";
-import EventLine from "./EventLine.component";
+import { useIntl } from 'react-intl';
+
+import { PlusCircleIcon } from '@heroicons/react/24/outline';
+import EventLine from './EventLine.component';
 
 interface Props {
   show: boolean;
@@ -11,18 +13,6 @@ interface Props {
   time: string;
 }
 
-/**
- *
- * @param root0
- * @param root0.lastEvent
- * @param root0.eventName
- * @param root0.num
- * @param root0.lumiBlocks
- * @param root0.runNumber
- * @param root0.date
- * @param root0.time
- * @param root0.show
- */
 export default function InfoTool({
   show,
   eventName,
@@ -32,18 +22,29 @@ export default function InfoTool({
   date,
   time,
 }: Props): JSX.Element {
+  const intl = useIntl();
+
+  const infoTitle = intl.formatMessage({ id: 'modal.events.info.name' });
+  const infoNumber = intl.formatMessage({ id: 'modal.events.info.number' });
+  const lumiB = intl.formatMessage({ id: 'modal.events.info.lumiB' });
+  const runN = intl.formatMessage({ id: 'modal.events.info.runN' });
+  const eventDate = intl.formatMessage({ id: 'modal.events.info.date' });
+
   return (
-    <div className={`${!show && "hidden"} ml-2`}>
+    <div className={`${!show && 'hidden'} ml-2`}>
       <div className="flex gap-2 items-center">
         <PlusCircleIcon className="icon" />
-        <span className="text-blue text-xs">{eventName}</span>
+        <span className="text-blue text-xs">{`${infoTitle} ${eventName}`}</span>
       </div>
-      <div className={`${!show && "hidden"}`}>
-        <EventLine titleLabel="Num" title={num} />
-        <EventLine titleLabel="LumiB" title={lumiBlocks} />
-        <EventLine titleLabel="RunN" title={runNumber} />
-        <EventLine titleLabel="Date" title={date} />
-        <EventLine titleLabel="Time" title={time} lastEvent />
+      <div className={`${!show && 'hidden'}`}>
+        <EventLine titleLabel={infoNumber} title={num} />
+        <EventLine titleLabel={lumiB} title={lumiBlocks} />
+        <EventLine titleLabel={runN} title={runNumber} />
+        <EventLine
+          titleLabel={eventDate}
+          title={`${date} - ${time}`}
+          lastEvent
+        />
       </div>
     </div>
   );

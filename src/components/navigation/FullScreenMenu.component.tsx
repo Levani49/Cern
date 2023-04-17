@@ -1,13 +1,15 @@
 import { useState } from 'react';
+import { useIntl } from 'react-intl';
 import { ArrowsPointingOutIcon } from '@heroicons/react/24/outline';
 
 import MenuIcon from './MenuIcon.component';
 
 export default function FullScreenMenu(): JSX.Element {
   const [active, setActive] = useState<boolean>(false);
-  /**
-   *
-   */
+
+  const intl = useIntl();
+  const title = intl.formatMessage({ id: 'navigation.fullscreen.title' });
+
   const handleFullScreen = (): void => {
     const element = document.getElementById('fullscreen') as HTMLDivElement;
 
@@ -24,7 +26,7 @@ export default function FullScreenMenu(): JSX.Element {
     <MenuIcon
       active={active}
       Icon={ArrowsPointingOutIcon}
-      title="Enter in fullscreen"
+      title={title}
       onClick={handleFullScreen}
     />
   );

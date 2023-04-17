@@ -7,8 +7,8 @@ import Stats from './components/three/Stats.component';
 import ModelInfo from './components/modals/modelInfo/ModelInfo.component';
 import { messages } from './translations';
 
-const Tree = lazy(() => import('./components/tree/Tree.component'));
 const Scene = lazy(() => import('./three'));
+const Tree = lazy(() => import('./components/tree/Tree.component'));
 const Logo = lazy(() => import('./components/logo/Logo.component'));
 
 /**

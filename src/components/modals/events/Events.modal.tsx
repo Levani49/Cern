@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useIntl } from 'react-intl';
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import {
@@ -33,6 +34,9 @@ export default function EventsModal(): JSX.Element {
     return currentAnalysisTool;
   }, [currentAnalysisTool]);
 
+  const intl = useIntl();
+  const title = intl.formatMessage({ id: 'modal.events.title' });
+
   const closeModalHandler = (): void => {
     dispatch(showEventsModal(false));
   };
@@ -43,7 +47,7 @@ export default function EventsModal(): JSX.Element {
         return (
           <InfoTool
             show={true}
-            eventName="Event E 05/50"
+            eventName="E 05/50"
             num="1659078"
             lumiBlocks="65"
             runNumber="206497"
@@ -63,7 +67,7 @@ export default function EventsModal(): JSX.Element {
   const currentTool = renderCurrentTool();
 
   return (
-    <Modal title="Events" show={show} onCloseHandler={closeModalHandler}>
+    <Modal title={title} show={show} onCloseHandler={closeModalHandler}>
       <div className="flex flex-col gap-6 p-2 rounded  items-centers shadow ">
         <FileActions />
         <EventsResultsToggler />
