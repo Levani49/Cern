@@ -26,7 +26,7 @@ function ErrorText(): JSX.Element {
   );
 }
 
-export default class ErrorBoundary extends Component<Props, State> {
+export default class ErrorHandler extends Component<Props, State> {
   state: State = {
     hasError: false,
   };
