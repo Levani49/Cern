@@ -11,7 +11,7 @@ import {
 
 import { useAppDispatch } from '../app/hooks';
 
-import ModelService from '../services/Model.service';
+import ModelService from '../services/model/Model.service';
 import { ModelCut } from '../types/app.types';
 import useSelectedModel from '../hooks/useSelectedModel/useSelectedModel';
 export interface Event {
@@ -46,13 +46,8 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   }>(null);
 
   // Redux hooks for managing the application state.
-  const {
-    selectedModel,
-    modelOpacityLevel,
-    globalOpacityLevel,
-    modelWireframe,
-    globalWireframe,
-  } = useSelectedModel();
+  const { selectedModel, modelOpacityLevel, globalOpacityLevel, modelWireframe, globalWireframe } =
+    useSelectedModel();
 
   // Load the 3D model using the GLTFLoader and DRACOLoader.
   const model = useLoader(

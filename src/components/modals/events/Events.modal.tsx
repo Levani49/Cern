@@ -15,6 +15,7 @@ import FileActions from './fileActions/FileActions.component';
 import InfoTool from './analysisTools/info/InfoTool.component';
 import AlgorithmTool from './analysisTools/algorithm/AlgorithmTool.component';
 import FilterTool from './analysisTools/filter/FilterTool.component';
+import { selectXmlGeneralInfo } from '../../../features/events/eventsSlice';
 
 /**
  * Renders an InfoModal component that displays information about employees in a modal window.
@@ -27,6 +28,7 @@ export default function EventsModal(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const show = useAppSelector(selectEventsModalState);
+  const info = useAppSelector(selectXmlGeneralInfo);
 
   const currentAnalysisTool = useAppSelector(selectCurrentEventAnalysisTool);
 
@@ -48,11 +50,11 @@ export default function EventsModal(): JSX.Element {
           <InfoTool
             show={true}
             eventName="E 05/50"
-            num="1659078"
-            lumiBlocks="65"
-            runNumber="206497"
-            date="2012-07-06"
-            time="03:38:35"
+            num={info?.eventNumber || ''}
+            lumiBlocks={info?.lumiBlock || ''}
+            runNumber={info?.runNumber || ''}
+            date={info?.date || ''}
+            time={info?.time || ''}
           />
         );
       case 'algorithm':
