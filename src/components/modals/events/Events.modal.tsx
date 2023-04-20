@@ -50,11 +50,11 @@ export default function EventsModal(): JSX.Element {
           <InfoTool
             show={true}
             eventName="E 05/50"
-            num={info?.eventNumber || ''}
-            lumiBlocks={info?.lumiBlock || ''}
-            runNumber={info?.runNumber || ''}
-            date={info?.date || ''}
-            time={info?.time || ''}
+            num={info.eventNumber}
+            lumiBlocks={info.lumiBlock}
+            runNumber={info.runNumber}
+            date={info.date}
+            time={info.time}
           />
         );
       case 'algorithm':

@@ -15,6 +15,8 @@ import StatsDispatcher from './Stats.three';
 import Background from './Background.three';
 import Camera from './Camera.three';
 import ErrorHandler from '../components/error/ErrorHandler.component';
+import XmlService from '../services/xml/Xml.service';
+import { setXmlGeneralInfo } from '../features/events/eventsSlice';
 
 const Detector = lazy(() => import('./Detector.three'));
 const Environment = lazy(() => import('./Environment.three'));
@@ -23,7 +25,7 @@ const Controls = lazy(() => import('./Controls.three'));
 const Axis = lazy(() => import('./Axis.three'));
 const Grid = lazy(() => import('./Grid.three'));
 
-// import Detector from './Detector.three';
+const xmlService = new XmlService();
 
 /**
  * Main scene of application
@@ -41,6 +43,22 @@ export default function Scene(): JSX.Element {
       dispatch(updateModelsLoadingState('idle'));
     }
   }, [isLoading, isLoaded, dispatch]);
+
+  useEffect(() => {
+    const asyncCallback = async (): Promise<void> => {
+      const xml = await xmlService.fetch('groupA/event005');
+      const info = xmlService.getXmlGeneralInfo(xml);
+
+      if (info) {
+        dispatch(setXmlGeneralInfo(info));
+      } else {
+        throw new Error(
+          'Error while fetching events, please refresh the page or try again later...',
+        );
+      }
+    };
+    asyncCallback();
+  }, [dispatch]);
 
   return (
     <ErrorHandler>

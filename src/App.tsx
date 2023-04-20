@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 import { IntlProvider } from 'react-intl';
 
 import Navigation from './components/navigation/Index';
@@ -6,15 +6,10 @@ import FlyOverlay from './components/three/FlyGraph.component';
 import Stats from './components/three/Stats.component';
 import ModelInfo from './components/modals/modelInfo/ModelInfo.component';
 import { messages } from './translations';
-import XmlService from './services/xml/Xml.service';
-import { useAppDispatch } from './app/hooks';
-import { setXmlGeneralInfo } from './features/events/eventsSlice';
 
 const Scene = lazy(() => import('./three'));
 const Tree = lazy(() => import('./components/tree/Tree.component'));
 const Logo = lazy(() => import('./components/logo/Logo.component'));
-
-const xmlService = new XmlService();
 
 /**
  * Entry point of the app
@@ -22,18 +17,6 @@ const xmlService = new XmlService();
  * @returns {JSX.Element} JSX Element.
  */
 function App(): JSX.Element {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    const asyncFunction = async (): Promise<void> => {
-      const xml = await xmlService.fetch('groupA/event005');
-      const info = xmlService.getXmlGeneralInfo(xml);
-
-      dispatch(setXmlGeneralInfo(info));
-    };
-    asyncFunction();
-  }, [dispatch]);
-
   const locale = navigator.language.split('-')[0];
 
   // Check if the locale exists in the messages object, and if not, use the default locale
