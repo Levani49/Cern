@@ -2,7 +2,7 @@ import { Mesh, Object3D } from 'three';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 
 export default class ModelService {
-  private path = import.meta.env.VITE_MODELS_PROVIDER;
+  private base = import.meta.env.VITE_MODELS_PROVIDER;
   public dracoLoader = new DRACOLoader();
 
   updateOpacity(object: Object3D, opacity: number, transparent = true): void {
@@ -43,8 +43,8 @@ export default class ModelService {
     });
   }
 
-  generateModelUrl(modelName: string): string {
-    return `${this.path}/${modelName}.glb`;
+  buildModelUrl(modelName: string): string {
+    return `${this.base}/${modelName}.glb`;
   }
 
   constructor() {

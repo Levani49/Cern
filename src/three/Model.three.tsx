@@ -57,7 +57,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   // Load the 3D model using the GLTFLoader and DRACOLoader.
   const model = useLoader(
     GLTFLoader,
-    modelService.generateModelUrl(src),
+    modelService.buildModelUrl(src),
     (loader: GLTFLoader): void => {
       loader.setDRACOLoader(modelService.dracoLoader);
     },
