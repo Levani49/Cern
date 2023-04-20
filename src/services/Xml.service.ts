@@ -21,36 +21,24 @@ export default class XmlService {
     return `${this.base}/${src}.xml`;
   };
 
-  readEventParametersByName(
-    XML: Document,
-    tagName: string,
-    index: number,
-  ): undefined | Element {
-    const elements = XML.getElementsByTagName(tagName);
-    if (elements[index] !== undefined) {
-      return elements[index];
-    } else {
-      return undefined;
-    }
+  readEventParametersByName(XML: Document, tagName: string, index: number): undefined | Element {
+    return XML.getElementsByTagName(tagName)[index];
   }
 
   readEventAttribute(xmlElement: Element, attrName: string): string | null {
     return xmlElement.getAttribute(attrName);
   }
 
-  readTagText(
-    element: Element,
-    childElement: string,
-    index: number,
-  ): string[] | null {
+  readTagText(element: Element, childElement: string, index: number): string[] | null {
     try {
-      const childNode =
-        element.getElementsByTagName(childElement)[index].childNodes[0];
-      let content = null;
+      const whiteSpaceCharacters = /\s+/;
+      let content: null | string[] = null;
+      const childNode = element.getElementsByTagName(childElement)[index].childNodes[0];
+
       if (childNode.textContent) {
         content = childNode.textContent
           .slice(1, childNode.textContent.length - 2)
-          .split(/\s+/);
+          .split(whiteSpaceCharacters);
       }
 
       return content;
