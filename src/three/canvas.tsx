@@ -21,7 +21,7 @@ const ParticleSystem = lazy(() => import('./particle-system/index.three'));
 const Controls = lazy(() => import('./Controls.three'));
 const Axis = lazy(() => import('./Axis.three'));
 const Grid = lazy(() => import('./Grid.three'));
-const Events = lazy(() => import('./events/events.three'));
+const Events = lazy(() => import('./events/Event.three'));
 
 /**
  * Main scene of application
