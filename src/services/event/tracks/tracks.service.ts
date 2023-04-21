@@ -1,6 +1,6 @@
-import XmlService from '../xml/xml.service';
+import EventService from '../event/event.service';
 
-export default class Tracks extends XmlService {
+export default class Tracks extends EventService {
   constructor() {
     super();
   }

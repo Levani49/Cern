@@ -1,13 +1,10 @@
-export type GeneralInfoType =
-  | {
-      runNumber: string;
-      eventNumber: string;
-      lumiBlock: string;
-      dateTime: string;
-      date: string;
-      time: string;
-    }
-  | undefined;
+export type GeneralInfoType = {
+  runNumber: string;
+  eventNumber: string;
+  lumiBlock: string;
+  date: string;
+  time: string;
+};
 
 export interface XmlEvent {
   Event: {
@@ -27,12 +24,12 @@ type Track = {
   barcode: string;
   chi2: string;
   cotTheta: string;
-  covMatrix: ObjectExtendsProps;
+  covMatrix: AdditionalInfo;
   d0: string;
-  driftSign: ObjectExtendsProps;
-  hits: ObjectExtendsProps;
+  driftSign: AdditionalInfo;
+  hits: AdditionalInfo;
   id: string;
-  isOutlier: ObjectExtendsProps;
+  isOutlier: AdditionalInfo;
   nPixHits: string;
   nSCTHits: string;
   nTRTHits: string;
@@ -40,15 +37,15 @@ type Track = {
   numHits: string;
   numPolyline: string;
   phi0: string;
-  polylineX: ObjectExtendsProps;
-  polylineY: ObjectExtendsProps;
-  polylineZ: ObjectExtendsProps;
+  polylineX: AdditionalInfo;
+  polylineY: AdditionalInfo;
+  polylineZ: AdditionalInfo;
   pt: string;
   trackAuthor: string;
   z0: string;
 };
 
-type ObjectExtendsProps = {
+type AdditionalInfo = {
   '#text': string;
   '@_multiple': string;
 };

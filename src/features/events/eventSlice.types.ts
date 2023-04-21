@@ -1,8 +1,6 @@
-import { GeneralInfoType, XmlEvent } from '../../services/event/xml/xml.service.types';
-
-export type DefinedGeneralInfoType = Exclude<GeneralInfoType, undefined>;
+import { GeneralInfoType, XmlEvent } from '../../services/event/event/event.service.types';
 
 export interface EventsSlice {
-  xmlGeneralInfo: DefinedGeneralInfoType;
+  eventGeneralInfo: GeneralInfoType;
   xmlEvent: XmlEvent | null;
 }

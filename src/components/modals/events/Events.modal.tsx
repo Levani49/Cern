@@ -15,7 +15,7 @@ import FileActions from './fileActions/FileActions.component';
 import InfoTool from './analysisTools/info/InfoTool.component';
 import AlgorithmTool from './analysisTools/algorithm/AlgorithmTool.component';
 import FilterTool from './analysisTools/filter/FilterTool.component';
-import { selectXmlGeneralInfo } from '../../../features/events/eventsSlice';
+import { selectEventGeneralInfo } from '../../../features/events/eventsSlice';
 
 /**
  * Renders an InfoModal component that displays information about employees in a modal window.
@@ -28,7 +28,7 @@ export default function EventsModal(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const show = useAppSelector(selectEventsModalState);
-  const info = useAppSelector(selectXmlGeneralInfo);
+  const info = useAppSelector(selectEventGeneralInfo);
 
   const currentAnalysisTool = useAppSelector(selectCurrentEventAnalysisTool);
 

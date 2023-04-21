@@ -19,8 +19,6 @@ const Logo = lazy(() => import('./components/logo/Logo.component'));
  */
 function App(): JSX.Element {
   const locale = navigator.language.split('-')[0];
-
-  // Check if the locale exists in the messages object, and if not, use the default locale
   const localeMessages = messages[locale];
 
   return (

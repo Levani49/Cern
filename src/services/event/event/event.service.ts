@@ -1,31 +1,18 @@
-import { GeneralInfoType } from './xml.service.types';
+import { GeneralInfoType, XmlEvent } from './event.service.types';
 
 import { XMLParser } from 'fast-xml-parser';
 
-export default class XmlService {
+export default class EventService {
   private base = import.meta.env.VITE_XML_PROVIDER;
-  private parser = new DOMParser();
+  private parser = new XMLParser({
+    ignoreAttributes: false,
+  });
 
   fetch = async (xmlPath: string): Promise<string> => {
     const response = await fetch(this.buildXmlUrl(xmlPath));
     try {
       if (response.ok) {
         const data = await response.text();
-
-        const options = {
-          ignoreAttributes: false,
-        };
-
-        const parser = new XMLParser(options);
-        const jObj = parser.parse(data) as {
-          Event: {
-            '@_dateTime': 'string';
-          };
-        };
-
-        console.log();
-        console.log(jObj.Event['@_dateTime']);
-
         return data;
       } else {
         throw new Error(`Error fetching XML file: ${response.statusText}`);
@@ -61,30 +48,20 @@ export default class XmlService {
     }
   }
 
-  getXmlGeneralInfo = (xml: Document): GeneralInfoType => {
-    const tag = this.readEventParametersByName(xml, 'Event', 0);
+  getEventGeneralInfo = (event: XmlEvent): GeneralInfoType => {
+    const dateTime = event.Event['@_dateTime'];
 
-    if (tag) {
-      const runNumber = this.readEventAttribute(tag, 'runNumber') || '';
-      const eventNumber = this.readEventAttribute(tag, 'eventNumber') || '';
-      const lumiBlock = this.readEventAttribute(tag, 'lumiBlock') || '';
-      const dateTime = this.readEventAttribute(tag, 'dateTime') || '';
-      const date = dateTime?.split(' ')[0] || '';
-      const time = dateTime?.split(' ')[1] || '';
-
-      return {
-        runNumber,
-        eventNumber,
-        lumiBlock,
-        dateTime,
-        date,
-        time,
-      };
-    }
+    return {
+      runNumber: event.Event['@_runNumber'],
+      eventNumber: event.Event['@_eventNumber'],
+      lumiBlock: event.Event['@_lumiBlock'],
+      date: dateTime.split(' ')[0],
+      time: dateTime.split(' ')[1],
+    };
   };
 
-  parseXml = (xmlString: string): Document => {
-    return this.parser.parseFromString(xmlString, 'application/xml');
+  parseXmlAsJSON = (xmlString: string): XmlEvent => {
+    return this.parser.parse(xmlString);
   };
 
   private buildXmlUrl = (src: string): string => {

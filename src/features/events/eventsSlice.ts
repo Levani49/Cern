@@ -1,15 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import type { RootState } from '../../app/store';
-import { DefinedGeneralInfoType, EventsSlice } from './eventSlice.types';
-import { XmlEvent } from '../../services/event/xml/xml.service.types';
+import { EventsSlice } from './eventSlice.types';
+import { GeneralInfoType, XmlEvent } from '../../services/event/event/event.service.types';
+import EventService from '../../services/event/event/event.service';
+
+const eventService = new EventService();
 
 const initialState: EventsSlice = {
-  xmlGeneralInfo: {
+  eventGeneralInfo: {
     runNumber: '',
     eventNumber: '',
     lumiBlock: '',
-    dateTime: '',
     date: '',
     time: '',
   },
@@ -20,18 +22,18 @@ const eventSlice = createSlice({
   name: 'event',
   initialState,
   reducers: {
-    setXmlGeneralInfo: (state, action: PayloadAction<DefinedGeneralInfoType>) => {
-      state.xmlGeneralInfo = action.payload;
-    },
     setXmlEvent: (state, action: PayloadAction<XmlEvent>) => {
       state.xmlEvent = action.payload;
+      state.eventGeneralInfo = eventService.getEventGeneralInfo(action.payload);
     },
   },
 });
 
 export default eventSlice.reducer;
 
-export const { setXmlGeneralInfo } = eventSlice.actions;
+export const { setXmlEvent } = eventSlice.actions;
 
-export const selectXmlGeneralInfo = (state: RootState): DefinedGeneralInfoType =>
-  state.events.xmlGeneralInfo;
+export const selectEventGeneralInfo = (state: RootState): GeneralInfoType =>
+  state.events.eventGeneralInfo;
+
+export const selectXmlEvent = (state: RootState): XmlEvent | null => state.events.xmlEvent;
