@@ -1,13 +1,14 @@
 import { lazy, Suspense } from 'react';
 import { IntlProvider } from 'react-intl';
 
-import Navigation from './components/navigation/Index';
+import Navigation from './components/navigation/navigation';
 import FlyOverlay from './components/three/FlyGraph.component';
 import Stats from './components/three/Stats.component';
 import ModelInfo from './components/modals/modelInfo/ModelInfo.component';
-import { messages } from './translations';
 
-const Scene = lazy(() => import('./three'));
+import { messages } from './translations/translations';
+
+const Canvas = lazy(() => import('./three/canvas'));
 const Tree = lazy(() => import('./components/tree/Tree.component'));
 const Logo = lazy(() => import('./components/logo/Logo.component'));
 
@@ -37,7 +38,7 @@ function App(): JSX.Element {
         <Stats />
         <ModelInfo />
         <Suspense>
-          <Scene />
+          <Canvas />
           <Logo />
         </Suspense>
       </div>

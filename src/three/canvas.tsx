@@ -4,9 +4,8 @@ import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import { Loader } from '@react-three/drei';
 
-import { updateModelsLoadingState } from '../features/model/modelSlice';
-
 import { useAppDispatch } from '../app/hooks';
+import { updateModelsLoadingState } from '../features/model/modelSlice';
 import useLoadingStatus from '../hooks/useLoading/useLoading';
 
 import Lights from './Light.three';
@@ -15,8 +14,6 @@ import StatsDispatcher from './Stats.three';
 import Background from './Background.three';
 import Camera from './Camera.three';
 import ErrorHandler from '../components/error/ErrorHandler.component';
-import XmlService from '../services/xml/Xml.service';
-import { setXmlGeneralInfo } from '../features/events/eventsSlice';
 
 const Detector = lazy(() => import('./Detector.three'));
 const Environment = lazy(() => import('./Environment.three'));
@@ -24,8 +21,7 @@ const ParticleSystem = lazy(() => import('./particle-system/index.three'));
 const Controls = lazy(() => import('./Controls.three'));
 const Axis = lazy(() => import('./Axis.three'));
 const Grid = lazy(() => import('./Grid.three'));
-
-const xmlService = new XmlService();
+const Events = lazy(() => import('./events/events.three'));
 
 /**
  * Main scene of application
@@ -44,22 +40,6 @@ export default function Scene(): JSX.Element {
     }
   }, [isLoading, isLoaded, dispatch]);
 
-  useEffect(() => {
-    const asyncCallback = async (): Promise<void> => {
-      const xml = await xmlService.fetch('groupA/event005');
-      const info = xmlService.getXmlGeneralInfo(xml);
-
-      if (info) {
-        dispatch(setXmlGeneralInfo(info));
-      } else {
-        throw new Error(
-          'Error while fetching events, please refresh the page or try again later...',
-        );
-      }
-    };
-    asyncCallback();
-  }, [dispatch]);
-
   return (
     <ErrorHandler>
       <Canvas
@@ -73,6 +53,7 @@ export default function Scene(): JSX.Element {
         <Physics gravity={[0, 0, 0]}>
           <Suspense fallback={null}>
             <Detector />
+            <Events />
           </Suspense>
           {isLoaded && (
             <>

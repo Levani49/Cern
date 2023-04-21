@@ -19,10 +19,6 @@ export default class XmlService {
     }
   };
 
-  buildXmlUrl = (src: string): string => {
-    return `${this.base}/${src}.xml`;
-  };
-
   readEventParametersByName(XML: Document, tagName: string, index: number): undefined | Element {
     return XML.getElementsByTagName(tagName)[index];
   }
@@ -69,6 +65,10 @@ export default class XmlService {
         time,
       };
     }
+  };
+
+  private buildXmlUrl = (src: string): string => {
+    return `${this.base}/${src}.xml`;
   };
 
   private parseXml = (xmlString: string): Document => {

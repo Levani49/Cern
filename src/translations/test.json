@@ -1,14 +1,3 @@
 {
-  "modal.events.info.name": "event",
-  "modal.events.info.number": "event id",
-  "modal.events.info.lumiB": "lumiB",
-  "modal.events.info.runN": "run number",
-  "modal.events.info.date": "date",
-  "modal.events.algorithms.tracks": "tracks",
-  "modal.events.algorithms.jets": "jets",
-  "modal.events.filter.track": "track value",
-  "modal.events.filter.jet": "jet value",
-  "modal.events.filter.showOnly": "show only",
-  "modal.events.filter.muons": "muons",
-  "modal.events.filter.electrons": "electrons"
+  "test": "test"
 }
