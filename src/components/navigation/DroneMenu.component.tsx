@@ -22,6 +22,7 @@ import MenuDropdown from './MenuDropdown.component';
 import MenuIcon from './MenuIcon.component';
 import SvgIcon from '../SvgIcon.component';
 import Button from '../Button.component';
+import { isDesktop } from '../../utils/isDesktop.utils';
 
 interface MenuItem {
   Icon: SVGIcon;
@@ -75,22 +76,36 @@ export default function DroneMenu(): JSX.Element {
     { Icon: FilmIcon, mode: 'z0', title: 'Cinema mode' },
   ];
 
-  const innerHtml = menuItems.map((item: MenuItem) => (
-    <MenuIcon
-      key={item.mode}
-      Icon={item.Icon}
-      title={item.title}
-      onClick={(): void => handleModeChange(item.mode)}
-    />
-  ));
+  const desktop = isDesktop();
+
+  const innerHtml = menuItems.map((item: MenuItem) => {
+    if (!desktop) {
+      if (item.mode !== 'fly') {
+        return (
+          <MenuIcon
+            key={item.mode}
+            Icon={item.Icon}
+            title={item.title}
+            onClick={(): void => handleModeChange(item.mode)}
+          />
+        );
+      }
+    } else {
+      return (
+        <MenuIcon
+          key={item.mode}
+          Icon={item.Icon}
+          title={item.title}
+          onClick={(): void => handleModeChange(item.mode)}
+        />
+      );
+    }
+  });
 
   return (
     <div className="inline-flex group">
       <Button onClick={(): void => handleModeChange('idle')} title={title}>
-        <SvgIcon
-          className={`${isActive ? 'text-red-500 animate-pulse' : ''}`}
-          Icon={DroneIcon}
-        />
+        <SvgIcon className={`${isActive ? 'text-red-500 animate-pulse' : ''}`} Icon={DroneIcon} />
       </Button>
       <MenuDropdown>{innerHtml}</MenuDropdown>
     </div>

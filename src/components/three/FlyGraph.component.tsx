@@ -46,7 +46,7 @@ export default function FlyOverlay(): JSX.Element {
         {showFlyModal && (
           <div
             role="presentation"
-            className="z-[5000] fixed inset-0 bg-black/70 flex items-center justify-center"
+            className="z-[99999] fixed inset-0 bg-black/70 flex items-center justify-center"
             onClick={handleClick}
           >
             <h1 className="text-white self-center">Click anywhere to start</h1>

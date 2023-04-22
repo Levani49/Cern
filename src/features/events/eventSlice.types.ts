@@ -2,5 +2,5 @@ import { GeneralInfoType, XmlEvent } from '../../services/event/event/event.serv
 
 export interface EventsSlice {
   eventGeneralInfo: GeneralInfoType;
-  xmlEvent: XmlEvent | null;
+  event: XmlEvent | null;
 }

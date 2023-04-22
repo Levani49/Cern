@@ -9,11 +9,12 @@ import {
   updateLocalModelCut,
 } from '../features/model/modelSlice';
 
-import { useAppDispatch } from '../app/hooks';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 
 import ModelService from '../services/model/Model.service';
 import { ModelCut } from '../types/app.types';
 import useSelectedModel from '../hooks/useSelectedModel/useSelectedModel';
+import { selectDroneState } from '../features/camera/cameraSlice';
 export interface Event {
   stopPropagation: () => void;
   clientX: number;
@@ -29,6 +30,11 @@ interface Props {
 
 const modelService = new ModelService();
 const LOW_OPACITY_LEVEL = 0.3;
+const mouse = {
+  x: 0,
+  y: 0,
+};
+
 /**
  * Model component renders a 3D model using react-three-fiber library.
  *
@@ -40,10 +46,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState<number>(1);
   const [wireframe, setWireframe] = useState<boolean>(false);
-  const [mouseDownPos, setMouseDownPos] = useState<null | {
-    x: number;
-    y: number;
-  }>(null);
+  const droneMode = useAppSelector(selectDroneState);
 
   // Redux hooks for managing the application state.
   const { selectedModel, modelOpacityLevel, globalOpacityLevel, modelWireframe, globalWireframe } =
@@ -157,7 +160,8 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
 
   const handleMouseDown = (e: Event): void => {
     e.stopPropagation();
-    setMouseDownPos({ x: e.clientX, y: e.clientY });
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
   };
 
   const handleMouseUp = (e: Event): void => {
@@ -167,9 +171,8 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     const movementThreshold = 5;
 
     if (
-      mouseDownPos &&
-      Math.abs(mouseUpPos.x - mouseDownPos.x) <= movementThreshold &&
-      Math.abs(mouseUpPos.y - mouseDownPos.y) <= movementThreshold
+      Math.abs(mouseUpPos.x - mouse.x) <= movementThreshold &&
+      Math.abs(mouseUpPos.y - mouse.y) <= movementThreshold
     ) {
       const payload = { id, name, cutType, opacity, wireframe };
 
@@ -189,15 +192,15 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     onPointerOut: handlePointerOut,
   };
 
-  const hoverEffects = scene.children.length < 20 ? hoverMethods : {};
+  const hoverEffects = scene.children.length < 20 && droneMode !== 'fly' ? hoverMethods : {};
 
   return (
     <primitive
       ref={ref}
+      visible={true}
       object={model.scene}
       onPointerDown={(e: Event): void => handleMouseDown(e)}
       onPointerUp={(e: Event): void => handleMouseUp(e)}
-      visible={true}
       {...hoverEffects}
     />
   );

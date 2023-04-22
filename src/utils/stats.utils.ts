@@ -1,6 +1,3 @@
-/**
- *
- */
 export default class StatsUtils {
   private beginTime = (performance || Date).now();
   private prevTime = this.beginTime;
@@ -8,9 +5,6 @@ export default class StatsUtils {
   fps = 0;
   memory = 0;
 
-  /**
-   *
-   */
   private end(): number {
     this.frames++;
     const time = (performance || Date).now();
@@ -32,16 +26,10 @@ export default class StatsUtils {
     return time;
   }
 
-  /**
-   *
-   */
   update(): void {
     this.beginTime = this.end();
   }
 
-  /**
-   *
-   */
   constructor() {
     // do nothing
   }

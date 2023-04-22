@@ -15,7 +15,7 @@ const initialState: EventsSlice = {
     date: '',
     time: '',
   },
-  xmlEvent: null,
+  event: null,
 };
 
 const eventSlice = createSlice({
@@ -23,17 +23,16 @@ const eventSlice = createSlice({
   initialState,
   reducers: {
     setXmlEvent: (state, action: PayloadAction<XmlEvent>) => {
-      state.xmlEvent = action.payload;
+      state.event = action.payload;
       state.eventGeneralInfo = eventService.getEventGeneralInfo(action.payload);
     },
   },
 });
 
 export default eventSlice.reducer;
-
 export const { setXmlEvent } = eventSlice.actions;
 
 export const selectEventGeneralInfo = (state: RootState): GeneralInfoType =>
-  state.events.eventGeneralInfo;
+  state.event.eventGeneralInfo;
 
-export const selectXmlEvent = (state: RootState): XmlEvent | null => state.events.xmlEvent;
+export const selectEvent = (state: RootState): XmlEvent | null => state.event.event;
