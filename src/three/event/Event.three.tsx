@@ -6,9 +6,9 @@ import EventService from '../../services/event/event/event.service';
 import TrackService from '../../services/event/track/track.service';
 
 import Jet from './jet/Jet.three';
-import Met from '../met/Met.three';
+import Met from './met/Met.three';
 import Tracks from './tracks/tracks.three';
-import Hits from '../hits/Hits.three';
+import Hits from './hits/Hits.three';
 import Clusters from './clusters/Clusters.three';
 import TileCalCells from './tileCal-cells/TileCalCells.three';
 
