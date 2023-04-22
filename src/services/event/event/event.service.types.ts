@@ -18,7 +18,7 @@ export interface XmlEvent {
   };
 }
 
-type Track = {
+export type Track = {
   '@_count': string;
   '@_storeGateKey': string;
   barcode: string;

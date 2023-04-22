@@ -12,8 +12,7 @@ export default class EventService {
     const response = await fetch(this.buildXmlUrl(xmlPath));
     try {
       if (response.ok) {
-        const data = await response.text();
-        return data;
+        return await response.text();
       } else {
         throw new Error(`Error fetching XML file: ${response.statusText}`);
       }
@@ -28,6 +27,16 @@ export default class EventService {
 
   readEventAttribute(xmlElement: Element, attrName: string): string | null {
     return xmlElement.getAttribute(attrName);
+  }
+
+  getNumbersArrayFromTag(tagText: string): number[] {
+    try {
+      const whiteSpaceCharacters = /\s+/;
+      const content = tagText.split(whiteSpaceCharacters);
+      return content.map((element: string) => parseFloat(element));
+    } catch (err) {
+      throw new Error(`Error while converting tag text to numbers array ${err}`);
+    }
   }
 
   readTagText(element: Element, childElement: string, index: number): string[] | null {
