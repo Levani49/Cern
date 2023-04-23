@@ -1,8 +1,10 @@
-import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/24/outline';
 import { useCallback, useState } from 'react';
 import { useAppDispatch } from '../../app/hooks';
 import { updateParentNodeState } from '../../features/tree/treeSlice';
 import { GeometryState } from '../../constants/geometryTree';
+
+import { ReactComponent as PlusCircleIcon } from '../../assets/svg/plusCircleIcon.svg';
+import { ReactComponent as MinusCircleIcon } from '../../assets/svg/minusCircleIcon.svg';
 
 interface Props {
   uid: string;
