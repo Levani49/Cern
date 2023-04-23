@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import type { RootState } from '../../app/store';
 import { EventsSlice } from './eventSlice.types';
-import { GeneralInfoType, XmlEvent } from '../../services/event/event/event.service.types';
+import { EventOverviewData, EventDetailsXML } from '../../services/event/event/event.service.types';
 import EventService from '../../services/event/event/event.service';
 
 const eventService = new EventService();
@@ -22,7 +22,7 @@ const eventSlice = createSlice({
   name: 'event',
   initialState,
   reducers: {
-    setXmlEvent: (state, action: PayloadAction<XmlEvent>) => {
+    setEventDetailsXML: (state, action: PayloadAction<EventDetailsXML>) => {
       state.event = action.payload;
       state.eventGeneralInfo = eventService.getEventGeneralInfo(action.payload);
     },
@@ -30,9 +30,9 @@ const eventSlice = createSlice({
 });
 
 export default eventSlice.reducer;
-export const { setXmlEvent } = eventSlice.actions;
+export const { setEventDetailsXML } = eventSlice.actions;
 
-export const selectEventGeneralInfo = (state: RootState): GeneralInfoType =>
+export const selectEventGeneralInfo = (state: RootState): EventOverviewData =>
   state.event.eventGeneralInfo;
 
-export const selectEvent = (state: RootState): XmlEvent | null => state.event.event;
+export const selectEvent = (state: RootState): EventDetailsXML | null => state.event.event;

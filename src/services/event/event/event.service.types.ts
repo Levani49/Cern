@@ -1,4 +1,4 @@
-export type GeneralInfoType = {
+export type EventOverviewData = {
   runNumber: string;
   eventNumber: string;
   lumiBlock: string;
@@ -6,7 +6,7 @@ export type GeneralInfoType = {
   time: string;
 };
 
-export interface XmlEvent {
+export interface EventDetailsXML {
   Event: {
     '@_dateTime': string;
     '@_eventNumber': string;
@@ -21,28 +21,28 @@ export interface XmlEvent {
 export type Track = {
   '@_count': string;
   '@_storeGateKey': string;
-  barcode: string;
-  chi2: string;
-  cotTheta: string;
-  covMatrix: AdditionalInfo;
   d0: string;
-  driftSign: AdditionalInfo;
-  hits: AdditionalInfo;
   id: string;
-  isOutlier: AdditionalInfo;
-  nPixHits: string;
+  pt: string;
+  z0: string;
+  chi2: string;
+  phi0: string;
+  numDoF: string;
+  barcode: string;
+  numHits: string;
+  cotTheta: string;
   nSCTHits: string;
   nTRTHits: string;
-  numDoF: string;
-  numHits: string;
+  nPixHits: string;
   numPolyline: string;
-  phi0: string;
+  trackAuthor: string;
+  hits: AdditionalInfo;
+  covMatrix: AdditionalInfo;
+  driftSign: AdditionalInfo;
+  isOutlier: AdditionalInfo;
   polylineX: AdditionalInfo;
   polylineY: AdditionalInfo;
   polylineZ: AdditionalInfo;
-  pt: string;
-  trackAuthor: string;
-  z0: string;
 };
 
 type AdditionalInfo = {

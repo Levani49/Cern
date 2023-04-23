@@ -1,4 +1,4 @@
-import { GeneralInfoType, XmlEvent } from './event.service.types';
+import { EventOverviewData, EventDetailsXML } from './event.service.types';
 
 import { XMLParser } from 'fast-xml-parser';
 
@@ -57,7 +57,7 @@ export default class EventService {
     }
   }
 
-  getEventGeneralInfo = (event: XmlEvent): GeneralInfoType => {
+  getEventGeneralInfo = (event: EventDetailsXML): EventOverviewData => {
     const dateTime = event.Event['@_dateTime'];
 
     return {
@@ -69,7 +69,7 @@ export default class EventService {
     };
   };
 
-  parseXmlAsJSON = (xmlString: string): XmlEvent => {
+  parseXmlAsJSON = (xmlString: string): EventDetailsXML => {
     return this.parser.parse(xmlString);
   };
 

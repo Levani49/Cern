@@ -21,7 +21,7 @@ const ParticleSystem = lazy(() => import('./particle-system/index.three'));
 const Controls = lazy(() => import('./Controls.three'));
 const Axis = lazy(() => import('./Axis.three'));
 const Grid = lazy(() => import('./Grid.three'));
-const Events = lazy(() => import('./event/Event.three'));
+const Event = lazy(() => import('./event/event/Event.three'));
 
 /**
  * Main scene of application
@@ -49,11 +49,12 @@ export default function Scene(): JSX.Element {
           toneMapping: NoToneMapping,
         }}
         linear
+        frameloop="demand"
       >
         <Physics gravity={[0, 0, 0]}>
           <Suspense fallback={null}>
             <Detector />
-            <Events />
+            <Event />
           </Suspense>
           {isLoaded && (
             <>
