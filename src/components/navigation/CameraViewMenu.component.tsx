@@ -1,7 +1,7 @@
+import { useIntl } from 'react-intl';
 import { ReactComponent as BoxIcon } from '../../assets/svg/box.svg';
 import { ReactComponent as LeftSideBox } from '../../assets/svg/left-side-box.svg';
 import { ReactComponent as RightSideBox } from '../../assets/svg/right-side-box.svg';
-import { useIntl } from 'react-intl';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {

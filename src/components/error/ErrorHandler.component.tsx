@@ -1,6 +1,7 @@
-import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { Component, ErrorInfo, ReactNode } from 'react';
 import { useIntl } from 'react-intl';
+
+import { ReactComponent as ArrowPathIcon } from '../../assets/svg/arrowPathIcon.svg';
 
 type Props = {
   children: ReactNode;

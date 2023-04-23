@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { useState } from 'react';
-import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
+import { ReactComponent as MoonIcon } from '../../assets/svg/moon.svg';
+import { ReactComponent as SunIcon } from '../../assets/svg/sun.svg';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectTheme, setDarkMode } from '../../features/global/globalsSlice';

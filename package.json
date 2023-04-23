@@ -12,11 +12,9 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@heroicons/react": "^2.0.14",
     "@react-three/cannon": "^6.5.2",
     "@react-three/drei": "^9.56.24",
     "@react-three/fiber": "^8.11.0",
-    "@react-three/postprocessing": "^2.7.0",
     "@reduxjs/toolkit": "^1.9.2",
     "@types/react-redux": "^7.1.25",
     "events": "^3.3.0",

@@ -1,9 +1,8 @@
 import { useIntl } from 'react-intl';
 
-import { GlobeEuropeAfricaIcon } from '@heroicons/react/24/outline';
+import { ReactComponent as GlobeEuropeAfricaIcon } from '../../assets/svg/globeIcon.svg';
 
 import { selectGrid, showGrid } from '../../features/global/globalsSlice';
-
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import MenuIcon from './MenuIcon.component';
@@ -23,11 +22,6 @@ export default function GridMenu(): JSX.Element {
   };
 
   return (
-    <MenuIcon
-      Icon={GlobeEuropeAfricaIcon}
-      active={active}
-      onClick={handleToggle}
-      title={title}
-    />
+    <MenuIcon Icon={GlobeEuropeAfricaIcon} active={active} onClick={handleToggle} title={title} />
   );
 }

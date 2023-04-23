@@ -1,11 +1,9 @@
 import { useIntl } from 'react-intl';
 
-import {
-  ArrowUpTrayIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  FolderIcon,
-} from '@heroicons/react/24/outline';
+import { ReactComponent as ArrowUpTrayIcon } from '../../../../assets/svg/arrowUpTrayIcon.svg';
+import { ReactComponent as ChevronLeftIcon } from '../../../../assets/svg/chervonLeftIcon.svg';
+import { ReactComponent as ChevronRightIcon } from '../../../../assets/svg/chervonRightIcon.svg';
+import { ReactComponent as FolderIcon } from '../../../../assets/svg/folderIcon.svg';
 
 export default function FileActions(): JSX.Element {
   const intl = useIntl();

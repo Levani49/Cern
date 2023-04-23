@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { ArrowsPointingOutIcon } from '@heroicons/react/24/outline';
+import { ReactComponent as ArrowsPointingOutIcon } from '../../assets/svg/arrowsPointingOut.svg';
 
 import MenuIcon from './MenuIcon.component';
+
 import { useAppSelector } from '../../app/hooks';
 import { selectDroneState } from '../../features/camera/cameraSlice';
 

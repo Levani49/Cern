@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 
-import { PlusCircleIcon } from '@heroicons/react/24/outline';
+import { ReactComponent as PlusCircleIcon } from '../../../../../assets/svg/plusCircleIcon.svg';
 import EventLine from './EventLine.component';
 
 interface Props {
@@ -40,11 +40,7 @@ export default function InfoTool({
         <EventLine titleLabel={infoNumber} title={num} />
         <EventLine titleLabel={lumiB} title={lumiBlocks} />
         <EventLine titleLabel={runN} title={runNumber} />
-        <EventLine
-          titleLabel={eventDate}
-          title={`${date} - ${time}`}
-          lastEvent
-        />
+        <EventLine titleLabel={eventDate} title={`${date} - ${time}`} lastEvent />
       </div>
     </div>
   );

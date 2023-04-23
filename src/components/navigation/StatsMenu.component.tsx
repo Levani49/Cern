@@ -1,12 +1,8 @@
 import { useIntl } from 'react-intl';
 
-import { ChartBarIcon } from '@heroicons/react/24/solid';
-
+import { ReactComponent as ChartBarIcon } from '../../assets/svg/chartBarIcon.svg';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import {
-  selectStats,
-  showRendererStats,
-} from '../../features/global/globalsSlice';
+import { selectStats, showRendererStats } from '../../features/global/globalsSlice';
 
 import MenuIcon from './MenuIcon.component';
 

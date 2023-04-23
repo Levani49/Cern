@@ -4,7 +4,6 @@ import GeometryCutsMenu from './GeometryCutsMenu.component';
 import FullScreenMenu from './FullScreenMenu.component';
 import CameraViewMenu from './CameraViewMenu.component';
 import OpacirtyMenu from './OpacityMenu.component';
-// import SettingsMenu from './SettingsMenu.component';
 import ThemeToggler from './ThemeToggler.component';
 import EventsMenu from './EventsMenu.component';
 import DroneMenu from './DroneMenu.component';

@@ -1,13 +1,10 @@
 import { useIntl } from 'react-intl';
 
-import { VideoCameraIcon } from '@heroicons/react/24/outline';
+import { ReactComponent as VideoCameraIcon } from '../../assets/svg/videoCameraIcon.svg';
 
 import MenuIcon from './MenuIcon.component';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import {
-  selectCameraType,
-  setCameraType,
-} from '../../features/camera/cameraSlice';
+import { selectCameraType, setCameraType } from '../../features/camera/cameraSlice';
 
 export default function CameraMenu(): JSX.Element {
   const dispatch = useAppDispatch();
