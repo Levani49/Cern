@@ -25,7 +25,7 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
         id: uid(),
         name: 'main components',
         state: 'partialyLoaded',
-        showChildren: false,
+        showChildren: true,
         children: [
           {
             id: uid(),
