@@ -21,7 +21,7 @@ type MouseEv = React.MouseEvent<HTMLElement, MouseEvent>;
 type IconMouseEv = React.MouseEvent<SVGSVGElement, MouseEvent>;
 
 const iconClass =
-  'h-6 w-6 text-white stroke-1 hover:text-blue hover:dark:text-green transition-all cursor-pointer';
+  'h-5 w-5 text-white stroke-1 hover:text-blue hover:dark:text-green transition-all cursor-pointer';
 
 export default function ParentNode({
   uid,
@@ -69,7 +69,7 @@ export default function ParentNode({
 
   return (
     <li
-      className={`border-solid  ${!nodeEnd && 'border-l-[1px] border-white'} ${
+      className={`border-solid ${!nodeEnd && 'border-l-[1px] border-white'} ${
         root && 'border-none'
       }`}
     >
@@ -82,13 +82,13 @@ export default function ParentNode({
 
         <span
           role="presentation"
-          className={`${innerState} ml-[2] text-xs uppercase cursor-pointer`}
+          className={`${innerState} ml-[5px] text-xs uppercase cursor-pointer`}
           onClick={onClickHandler}
         >
           {name}
         </span>
       </div>
-      <ul className={`p-0 ml-[1.7rem] mt-[-2px]  block ${!show && 'hidden'}`}>{children}</ul>
+      <ul className={`p-0 ml-[1.6rem] mt-[-2px]  block ${!show && 'hidden'}`}>{children}</ul>
     </li>
   );
 }
