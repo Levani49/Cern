@@ -61,7 +61,7 @@ export default function ParentNode({
       ? 'text-yellow-500'
       : 'text-white';
 
-  const styles = `border-l-[1px] border-transparent text-left transition before:relative before:inline-block before:w-[15px] before:left-0 before:align-middle before:border before:border-t-[0.5px] before:text-white before:align-middle ${
+  const styles = `border-l-[1px] border-transparent text-left transition before:relative before:inline-block before:w-[15px] before:left-[-1px] before:align-middle before:border before:border-t-[0.5px] before:text-white before:align-middle ${
     nodeEnd ? 'last-event-line' : ''
   } ${root && 'before:!text-transparent'}`;
 
