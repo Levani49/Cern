@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../../app/hooks';
-import { selectEvent } from '../../../features/events/eventsSlice';
+import { selectEvent } from '../../../features/event/eventsSlice';
 import TrackService from '../../../services/event/track/track.service';
 
 const trackService = new TrackService();

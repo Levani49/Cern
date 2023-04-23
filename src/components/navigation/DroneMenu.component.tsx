@@ -20,8 +20,8 @@ import type { SVGIcon, DroneTypes } from '../../types/app.types';
 
 import MenuDropdown from './MenuDropdown.component';
 import MenuIcon from './MenuIcon.component';
-import SvgIcon from '../SvgIcon.component';
-import Button from '../Button.component';
+import SvgIcon from '../svg-icon/SvgIcon.component';
+import Button from '../button/Button.component';
 import { isDesktop } from '../../utils/isDesktop.utils';
 
 interface MenuItem {

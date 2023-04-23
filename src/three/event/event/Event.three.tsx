@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { useAppDispatch } from '../../../app/hooks';
-import { setEventDetailsXML } from '../../../features/events/eventsSlice';
+import { setEventDetailsXML } from '../../../features/event/eventsSlice';
 import EventService from '../../../services/event/event/event.service';
 
 import Jet from '../jet/Jet.three';

@@ -1,4 +1,4 @@
-import type { selectedModel } from '../../types/app.types';
+import type { ModelCut, selectedModel } from '../../types/app.types';
 
 export interface UseSelectedModel {
   selectedModel: selectedModel;
@@ -6,4 +6,5 @@ export interface UseSelectedModel {
   globalOpacityLevel: number;
   modelWireframe: boolean;
   globalWireframe: boolean;
+  cutType: ModelCut;
 }

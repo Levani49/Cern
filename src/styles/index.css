@@ -1,4 +1,4 @@
-@import url("./fonts.css");
+@import url('./fonts.css');
 
 @tailwind base;
 @tailwind components;
@@ -20,7 +20,7 @@ body {
   max-height: 100vh;
   height: 100vh;
   background: rgb(28, 28, 28);
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
 }
 
 body::backdrop {
@@ -59,7 +59,7 @@ body::backdrop {
 }
 
 .select-wrapper::after {
-  content: "▼";
+  content: '▼';
   font-size: 0.52rem;
   top: 55%;
   right: 3%;
@@ -96,18 +96,13 @@ body::backdrop {
 }
 
 .last-event-line {
-  border-image: linear-gradient(
-    to bottom,
-    #dfe6e9 0%,
-    #dfe6e9 53%,
-    rgba(108, 219, 141, 0) 53%
-  );
+  border-image: linear-gradient(to bottom, #dfe6e9 0%, #dfe6e9 53%, rgba(108, 219, 141, 0) 53%);
   border-image-slice: 1;
 }
 
 @layer base {
   html {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 }
 
