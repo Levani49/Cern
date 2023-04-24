@@ -78,6 +78,7 @@ export default class TrackService extends EventService {
     //   trackPath.unshift(incident_point);
     // }
     const geo = new BufferGeometry().setFromPoints(trackPath);
+    // TODO:
     // const mat = new LineBasicMaterial({
     //   color: '#ff0000',
     //   // clippingPlanes: clip_planes,
@@ -87,24 +88,6 @@ export default class TrackService extends EventService {
       geometry: geo,
       color: '#ff0000',
     };
-
-    // const line = new Line(geo, mat) as unknown as ExtendedLine;
-    // line.index = propertyIndex;
-    // // line.incident_point = incident_point;
-    // // line.second_point = trackPath[trackPath.length - 1];
-    // return line;
-
-    // return (
-    //   <line geometry={geo}>
-    //     <lineBasicMaterial
-    //       attach="material"
-    //       color="#9c88ff"
-    //       linewidth={10}
-    //       linecap="round"
-    //       linejoin="round"
-    //     />
-    //   </Line>
-    // );
   }
   drawTracksMain(): { geometry: BufferGeometry; color: string }[] | void {
     const tracks = [];
@@ -124,9 +107,6 @@ export default class TrackService extends EventService {
         index += this.trackInfo.numPolyline[i]; //koordinatebis (x,y,z) indexi;
       }
       if (tracks.length > 0) {
-        // group.TRACK = this;
-        // group.visible = this.visibility;
-        // scene.getObjectByName('EGO').getObjectByName('TRACK').add(group);
         return tracks;
       }
     }
