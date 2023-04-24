@@ -3,6 +3,7 @@
 import { Track } from '../event/event.service.types';
 import { TrackInfo } from './track.service.types';
 import EventService from '../event/event.service';
+import { BufferGeometry, Vector3 } from 'three';
 
 export default class TrackService extends EventService {
   trackInfo: TrackInfo = {
@@ -50,6 +51,85 @@ export default class TrackService extends EventService {
     // this.trackColor = [];
 
     console.log(this.trackInfo);
+  }
+  drawTrackWithoutCurve(
+    propertyIndex: number,
+    trackIndex: number,
+  ): {
+    geometry: BufferGeometry;
+    color: string;
+  } {
+    const trackPath = [];
+    for (let j = 0; j < this.trackInfo.numPolyline[propertyIndex]; j++) {
+      trackPath.push(
+        new Vector3(
+          this.trackInfo.polylineX[trackIndex + j],
+          this.trackInfo.polylineY[trackIndex + j],
+          this.trackInfo.polylineZ[trackIndex + j],
+        ),
+      );
+    }
+    // TODO:
+    // try {
+    //   var incident_point = this.track_incident_point(trackPath[0], trackPath[1]);
+    //   trackPath.unshift(incident_point);
+    // } catch {
+    //   var incident_point = this.track_incident_point(trackPath[0], trackPath[2]);
+    //   trackPath.unshift(incident_point);
+    // }
+    const geo = new BufferGeometry().setFromPoints(trackPath);
+    // const mat = new LineBasicMaterial({
+    //   color: '#ff0000',
+    //   // clippingPlanes: clip_planes,
+    // });
+
+    return {
+      geometry: geo,
+      color: '#ff0000',
+    };
+
+    // const line = new Line(geo, mat) as unknown as ExtendedLine;
+    // line.index = propertyIndex;
+    // // line.incident_point = incident_point;
+    // // line.second_point = trackPath[trackPath.length - 1];
+    // return line;
+
+    // return (
+    //   <line geometry={geo}>
+    //     <lineBasicMaterial
+    //       attach="material"
+    //       color="#9c88ff"
+    //       linewidth={10}
+    //       linecap="round"
+    //       linejoin="round"
+    //     />
+    //   </Line>
+    // );
+  }
+  drawTracksMain(): { geometry: BufferGeometry; color: string }[] | void {
+    const tracks = [];
+
+    let index = 0;
+    if (this.trackInfo.count) {
+      for (let i = 0; i < this.trackInfo.count; i++) {
+        switch (this.trackInfo.numPolyline[i]) {
+          case 0:
+            break;
+          case 2:
+            tracks.push(this.drawTrackWithoutCurve(i, index));
+            break;
+          default:
+            tracks.push(this.drawTrackWithoutCurve(i, index));
+        }
+        index += this.trackInfo.numPolyline[i]; //koordinatebis (x,y,z) indexi;
+      }
+      if (tracks.length > 0) {
+        // group.TRACK = this;
+        // group.visible = this.visibility;
+        // scene.getObjectByName('EGO').getObjectByName('TRACK').add(group);
+        return tracks;
+      }
+    }
   }
   constructor() {
     super();

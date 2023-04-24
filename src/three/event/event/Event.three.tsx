@@ -19,9 +19,9 @@ export default function Event(): JSX.Element {
   useEffect(() => {
     const asyncCallback = async (): Promise<void> => {
       const xmlString = await eventService.fetch('groupA/event005');
-      const xml = eventService.parseXmlAsJSON(xmlString);
+      const event = eventService.parseXmlAsJSON(xmlString);
 
-      dispatch(setEventDetailsXML(xml));
+      dispatch(setEventDetailsXML(event));
     };
     asyncCallback();
   }, [dispatch]);
