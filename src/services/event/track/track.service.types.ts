@@ -1,4 +1,4 @@
-import { BufferGeometry, Line, LineBasicMaterial } from 'three';
+import { BufferGeometry } from 'three';
 
 export interface TrackInfo {
   polylineX: number[];
@@ -14,6 +14,7 @@ export interface TrackInfo {
   pt: number[];
 }
 
-export interface ExtendedLine extends Line<BufferGeometry, LineBasicMaterial> {
-  index: number;
+export interface TrackMesh {
+  geometry: BufferGeometry;
+  color: string;
 }

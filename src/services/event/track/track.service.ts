@@ -1,9 +1,8 @@
-// import EventService from '../event/event.service';
+import { BufferGeometry, Vector3 } from 'three';
 
 import { Track } from '../event/event.service.types';
-import { TrackInfo } from './track.service.types';
+import { TrackInfo, TrackMesh } from './track.service.types';
 import EventService from '../event/event.service';
-import { BufferGeometry, Vector3 } from 'three';
 
 export default class TrackService extends EventService {
   trackInfo: TrackInfo = {
@@ -49,16 +48,8 @@ export default class TrackService extends EventService {
     // if (this.muon)
     //   this.muonTracks = this.convertToNums(this.readTagText(this.muon, 'trackIndex', 0)); //eleqtronebisa da muonebis damatebis shemdeg es unda sheicvalos
     // this.trackColor = [];
-
-    console.log(this.trackInfo);
   }
-  drawTrackWithoutCurve(
-    propertyIndex: number,
-    trackIndex: number,
-  ): {
-    geometry: BufferGeometry;
-    color: string;
-  } {
+  drawTrackWithoutCurve(propertyIndex: number, trackIndex: number): TrackMesh {
     const trackPath = [];
     for (let j = 0; j < this.trackInfo.numPolyline[propertyIndex]; j++) {
       trackPath.push(
@@ -77,22 +68,21 @@ export default class TrackService extends EventService {
     //   var incident_point = this.track_incident_point(trackPath[0], trackPath[2]);
     //   trackPath.unshift(incident_point);
     // }
-    const geo = new BufferGeometry().setFromPoints(trackPath);
-    // TODO:
     // const mat = new LineBasicMaterial({
     //   color: '#ff0000',
     //   // clippingPlanes: clip_planes,
     // });
+    const geometry = new BufferGeometry().setFromPoints(trackPath);
 
     return {
-      geometry: geo,
+      geometry,
       color: '#ff0000',
     };
   }
-  drawTracksMain(): { geometry: BufferGeometry; color: string }[] | void {
+  drawTracksMain(): TrackMesh[] | void {
     const tracks = [];
-
     let index = 0;
+
     if (this.trackInfo.count) {
       for (let i = 0; i < this.trackInfo.count; i++) {
         switch (this.trackInfo.numPolyline[i]) {
@@ -102,9 +92,10 @@ export default class TrackService extends EventService {
             tracks.push(this.drawTrackWithoutCurve(i, index));
             break;
           default:
+            // missing second algorithm With CURVE
             tracks.push(this.drawTrackWithoutCurve(i, index));
         }
-        index += this.trackInfo.numPolyline[i]; //koordinatebis (x,y,z) indexi;
+        index += this.trackInfo.numPolyline[i];
       }
       if (tracks.length > 0) {
         return tracks;

@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useAppSelector } from '../../../app/hooks';
 import { selectEvent } from '../../../features/event/eventsSlice';
+import { TrackMesh } from '../../../services/event/track/track.service.types';
 import TrackService from '../../../services/event/track/track.service';
 
 const trackService = new TrackService();
@@ -23,7 +24,7 @@ export default function Track(): JSX.Element {
   if (tracksToDraw) {
     return (
       <group name="tracks">
-        {tracksToDraw.map((track, i) => {
+        {tracksToDraw.map((track: TrackMesh, i: number): JSX.Element => {
           return (
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
@@ -37,23 +38,10 @@ export default function Track(): JSX.Element {
               />
             </line>
           );
-          // return (
-          //   <mesh key={i}>
-          //     <primitive object={line} />
-          //     <meshBasicMaterial attach="material" color="#d1e70e" />
-          //   </mesh>
-          // );
         })}
       </group>
     );
   }
-
-  // const points = [];
-  // points.push(new Vector3(-10, 0, 0));
-  // points.push(new Vector3(0, 10, 0));
-  // points.push(new Vector3(10, 0, 0));
-
-  // const lineGeometry = new BufferGeometry().setFromPoints(points);
 
   return <></>;
 }
