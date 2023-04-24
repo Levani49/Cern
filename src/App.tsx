@@ -1,12 +1,17 @@
 import { lazy, Suspense } from 'react';
+import { IntlProvider } from 'react-intl';
 
-import Navigation from './components/navigation/Index';
+import Navigation from './components/navigation/navigation';
 import FlyOverlay from './components/three/FlyGraph.component';
 import Stats from './components/three/Stats.component';
-import ModelInfo from './components/modals/modelInfo/ModelInfo.component';
+import ModelInfo from './components/modal/modelInfo/ModelInfo.component';
 
+import { messages } from './translations/translations';
+import { useAppSelector } from './app/hooks';
+import { selectDroneState } from './features/camera/cameraSlice';
+
+const Canvas = lazy(() => import('./three/canvas/canvas'));
 const Tree = lazy(() => import('./components/tree/Tree.component'));
-const Scene = lazy(() => import('./three'));
 const Logo = lazy(() => import('./components/logo/Logo.component'));
 
 /**
@@ -15,12 +20,21 @@ const Logo = lazy(() => import('./components/logo/Logo.component'));
  * @returns {JSX.Element} JSX Element.
  */
 function App(): JSX.Element {
+  const droneMode = useAppSelector(selectDroneState);
+
+  const locale = navigator.language.split('-')[0];
+  const localeMessages = messages[locale];
+
   return (
-    <>
+    <IntlProvider locale={locale} messages={localeMessages}>
       <div className="flex">
         <Navigation />
       </div>
-      <div className="absolute z-10 w-full h-full top-0 left-0">
+      <div
+        className={`absolute ${
+          droneMode === 'fly' ? 'z-[99999]' : 'z-10'
+        } w-full h-full top-0 left-0`}
+      >
         <div className="bg-transparent absolute z-[2002] top-14  max-h-[80%] overflow-y-auto">
           <Suspense>
             <Tree />
@@ -30,11 +44,11 @@ function App(): JSX.Element {
         <Stats />
         <ModelInfo />
         <Suspense>
-          <Scene />
+          <Canvas />
           <Logo />
         </Suspense>
       </div>
-    </>
+    </IntlProvider>
   );
 }
 

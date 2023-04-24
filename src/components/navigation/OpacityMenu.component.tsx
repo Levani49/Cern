@@ -1,7 +1,12 @@
+import { useIntl } from 'react-intl';
+
 import { ReactComponent as WaterDropIcon } from '../../assets/svg/water-drop.svg';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { selectGlobalOpacity, setGlobalOpacity } from '../../features/global/globalsSlice';
+import {
+  selectGlobalOpacity,
+  setGlobalOpacity,
+} from '../../features/global/globalsSlice';
 
 import {
   selectModelsOpacity,
@@ -20,17 +25,25 @@ import MenuIcon from './MenuIcon.component';
 export default function OpacirtyMenu(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const { globalOpacityLevel, modelOpacityLevel, isModelSelected } = useAppSelector((state) => ({
-    globalOpacityLevel: selectGlobalOpacity(state),
-    modelOpacityLevel: selectModelsOpacity(state),
-    isModelSelected: selectSelectedModel(state),
-  }));
+  const { globalOpacityLevel, modelOpacityLevel, isModelSelected } =
+    useAppSelector((state) => ({
+      globalOpacityLevel: selectGlobalOpacity(state),
+      modelOpacityLevel: selectModelsOpacity(state),
+      isModelSelected: selectSelectedModel(state),
+    }));
 
-  const onChangeHandlerForModelOpacity = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const intl = useIntl();
+  const title = intl.formatMessage({ id: 'navigation.transparent.title' });
+
+  const onChangeHandlerForModelOpacity = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ): void => {
     dispatch(setModelsOpacity(+e.target.value));
   };
 
-  const onChangeHandlerForGlobalOpacity = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const onChangeHandlerForGlobalOpacity = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ): void => {
     dispatch(setGlobalOpacity(+e.target.value));
   };
 
@@ -41,7 +54,7 @@ export default function OpacirtyMenu(): JSX.Element {
 
   return (
     <div className="inline-flex group">
-      <MenuIcon Icon={WaterDropIcon} title="Transparency of geometries" />
+      <MenuIcon Icon={WaterDropIcon} title={title} />
       <MenuDropdown className="ml-[-50px] mt-8">
         <div className="w-auto flex justify-center items-center h-6 p-1">
           <input

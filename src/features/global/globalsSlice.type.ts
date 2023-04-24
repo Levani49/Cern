@@ -1,4 +1,4 @@
-import type { ModelCut, ModelLoadingStates, selectedModel } from '../../types/app.types';
+import type { ModelLoadingStates, selectedModel } from '../../types/app.types';
 
 export interface GlobalsSlice {
   prefersDarkMode: boolean;
@@ -6,12 +6,9 @@ export interface GlobalsSlice {
   showStats: boolean;
   showAxis: boolean;
   showGrid: boolean;
-  modelWireframe: boolean;
   globalWireframe: boolean;
-  modelCut: ModelCut;
   modelsLoadingState: ModelLoadingStates;
   selectedModel: selectedModel;
   previousSelectedModel: selectedModel;
-  modelOpacity: number;
   globalOpacity: number;
 }

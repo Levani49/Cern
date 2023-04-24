@@ -1,7 +1,8 @@
-import { GlobeEuropeAfricaIcon } from '@heroicons/react/24/outline';
+import { useIntl } from 'react-intl';
+
+import { ReactComponent as GlobeEuropeAfricaIcon } from '../../assets/svg/globeIcon.svg';
 
 import { selectGrid, showGrid } from '../../features/global/globalsSlice';
-
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import MenuIcon from './MenuIcon.component';
@@ -9,6 +10,9 @@ import MenuIcon from './MenuIcon.component';
 export default function GridMenu(): JSX.Element {
   const dispatch = useAppDispatch();
   const active = useAppSelector(selectGrid);
+
+  const intl = useIntl();
+  const title = intl.formatMessage({ id: 'navigation.ground.title' });
 
   /**
    *
@@ -18,11 +22,6 @@ export default function GridMenu(): JSX.Element {
   };
 
   return (
-    <MenuIcon
-      Icon={GlobeEuropeAfricaIcon}
-      active={active}
-      onClick={handleToggle}
-      title="Toggles ground visibility"
-    />
+    <MenuIcon Icon={GlobeEuropeAfricaIcon} active={active} onClick={handleToggle} title={title} />
   );
 }

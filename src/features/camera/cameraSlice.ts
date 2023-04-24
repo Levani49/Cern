@@ -62,9 +62,6 @@ export const cameraSlice = createSlice({
      */
     setDroneMode: (state, action: PayloadAction<DroneTypes>) => {
       state.droneType = action.payload;
-      /**
-       *
-       */
       const handleFinish = (): boolean => ee.emit('stop');
 
       if (state.camera) {
@@ -81,19 +78,11 @@ export const cameraSlice = createSlice({
         }
       }
     },
-    /**
-     *
-     * @param state
-     * @param action
-     */
+
     setCamera: (state, action: PayloadAction<WritableDraft<Camera>>) => {
       state.camera = action.payload as Camera;
     },
-    /**
-     *
-     * @param state
-     * @param action
-     */
+
     setFlyModalState: (state, action: PayloadAction<boolean>) => {
       state.showFlyModal = action.payload;
     },

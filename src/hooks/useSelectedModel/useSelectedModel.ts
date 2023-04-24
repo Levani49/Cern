@@ -1,18 +1,17 @@
 import { useMemo } from 'react';
 import { useAppSelector } from '../../app/hooks';
-import {
-  selectGlobalOpacity,
-  selectGlobalWireframe,
-} from '../../features/global/globalsSlice';
+import { selectGlobalOpacity, selectGlobalWireframe } from '../../features/global/globalsSlice';
 import {
   selectSelectedModel,
   selectModelsOpacity,
   selectModelWireframe,
+  selectLocalGeometryCutType,
 } from '../../features/model/modelSlice';
 import type { UseSelectedModel } from './useSelectedModel.types';
 
 export default function useSelectedModel(): UseSelectedModel {
   const {
+    cutType,
     selectedModel,
     modelOpacityLevel,
     globalOpacityLevel,
@@ -24,6 +23,7 @@ export default function useSelectedModel(): UseSelectedModel {
     globalOpacityLevel: selectGlobalOpacity(state),
     modelWireframe: selectModelWireframe(state),
     globalWireframe: selectGlobalWireframe(state),
+    cutType: selectLocalGeometryCutType(state),
   }));
 
   return useMemo(
@@ -33,8 +33,10 @@ export default function useSelectedModel(): UseSelectedModel {
       globalOpacityLevel,
       modelWireframe,
       globalWireframe,
+      cutType,
     }),
     [
+      cutType,
       selectedModel,
       modelOpacityLevel,
       globalOpacityLevel,

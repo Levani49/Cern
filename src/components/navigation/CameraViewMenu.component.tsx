@@ -1,3 +1,4 @@
+import { useIntl } from 'react-intl';
 import { ReactComponent as BoxIcon } from '../../assets/svg/box.svg';
 import { ReactComponent as LeftSideBox } from '../../assets/svg/left-side-box.svg';
 import { ReactComponent as RightSideBox } from '../../assets/svg/right-side-box.svg';
@@ -28,6 +29,9 @@ export default function CameraViewMenu(): JSX.Element {
     droneType: selectDroneState(state),
     viewType: selectCameraViewMode(state),
   }));
+
+  const intl = useIntl();
+  const title = intl.formatMessage({ id: 'navigation.cameraViews.title' });
 
   const Icon =
     viewType === 'default'
@@ -69,7 +73,7 @@ export default function CameraViewMenu(): JSX.Element {
 
   return (
     <div className="inline-flex group">
-      <MenuIcon Icon={Icon} active title="Camera views" />
+      <MenuIcon Icon={Icon} active title={title} />
       <MenuDropdown>{innerHtml}</MenuDropdown>
     </div>
   );

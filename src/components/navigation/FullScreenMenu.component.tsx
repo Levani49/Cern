@@ -1,13 +1,30 @@
-import { useState } from 'react';
-import { ArrowsPointingOutIcon } from '@heroicons/react/24/outline';
+import { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
+import { ReactComponent as ArrowsPointingOutIcon } from '../../assets/svg/arrowsPointingOut.svg';
 
 import MenuIcon from './MenuIcon.component';
 
+import { useAppSelector } from '../../app/hooks';
+import { selectDroneState } from '../../features/camera/cameraSlice';
+
 export default function FullScreenMenu(): JSX.Element {
   const [active, setActive] = useState<boolean>(false);
-  /**
-   *
-   */
+  const intl = useIntl();
+  const droneMode = useAppSelector(selectDroneState);
+
+  useEffect(() => {
+    const exitFullScreen = (): void => {
+      if (!document.fullscreenElement) {
+        setActive(false);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', exitFullScreen);
+    return () => document.removeEventListener('fullscreenchange', exitFullScreen);
+  }, []);
+
+  const title = intl.formatMessage({ id: 'navigation.fullscreen.title' });
+
   const handleFullScreen = (): void => {
     const element = document.getElementById('fullscreen') as HTMLDivElement;
 
@@ -24,8 +41,9 @@ export default function FullScreenMenu(): JSX.Element {
     <MenuIcon
       active={active}
       Icon={ArrowsPointingOutIcon}
-      title="Enter in fullscreen"
+      title={title}
       onClick={handleFullScreen}
+      disabled={droneMode === 'fly'}
     />
   );
 }

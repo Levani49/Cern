@@ -1,6 +1,11 @@
+import { useIntl } from 'react-intl';
+
 import { ReactComponent as WireframeIcon } from '../../assets/svg/wireframe.svg';
 
-import { selectGlobalWireframe, setGlobalWireframe } from '../../features/global/globalsSlice';
+import {
+  selectGlobalWireframe,
+  setGlobalWireframe,
+} from '../../features/global/globalsSlice';
 import {
   selectModelWireframe,
   selectSelectedModel,
@@ -14,11 +19,16 @@ import MenuIcon from './MenuIcon.component';
 export default function WireframeMenu(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const { globalWireframe, modelWireframe, isModelSelected } = useAppSelector((state) => ({
-    globalWireframe: selectGlobalWireframe(state),
-    modelWireframe: selectModelWireframe(state),
-    isModelSelected: selectSelectedModel(state),
-  }));
+  const { globalWireframe, modelWireframe, isModelSelected } = useAppSelector(
+    (state) => ({
+      globalWireframe: selectGlobalWireframe(state),
+      modelWireframe: selectModelWireframe(state),
+      isModelSelected: selectSelectedModel(state),
+    }),
+  );
+
+  const intl = useIntl();
+  const title = intl.formatMessage({ id: 'navigation.wireframe.title' });
 
   const handleModelWireframe = (): void => {
     dispatch(setModelWireframe(!modelWireframe));
@@ -30,13 +40,15 @@ export default function WireframeMenu(): JSX.Element {
 
   const wireframe = isModelSelected ? modelWireframe : globalWireframe;
 
-  const onClickhandler = isModelSelected ? handleModelWireframe : handleGlobalWireframe;
+  const onClickhandler = isModelSelected
+    ? handleModelWireframe
+    : handleGlobalWireframe;
 
   return (
     <MenuIcon
       onClick={onClickhandler}
       Icon={WireframeIcon}
-      title="Wireframe of geometry"
+      title={title}
       active={wireframe}
     />
   );

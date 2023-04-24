@@ -1,8 +1,10 @@
-import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/24/outline';
 import { useCallback, useState } from 'react';
 import { useAppDispatch } from '../../app/hooks';
 import { updateParentNodeState } from '../../features/tree/treeSlice';
 import { GeometryState } from '../../constants/geometryTree';
+
+import { ReactComponent as PlusCircleIcon } from '../../assets/svg/plusCircleIcon.svg';
+import { ReactComponent as MinusCircleIcon } from '../../assets/svg/minusCircleIcon.svg';
 
 interface Props {
   uid: string;
@@ -19,7 +21,7 @@ type MouseEv = React.MouseEvent<HTMLElement, MouseEvent>;
 type IconMouseEv = React.MouseEvent<SVGSVGElement, MouseEvent>;
 
 const iconClass =
-  'h-6 w-6 text-white stroke-1 hover:text-blue hover:dark:text-green transition-all cursor-pointer';
+  'h-5 w-5 text-white stroke-1 hover:text-blue hover:dark:text-green transition-all cursor-pointer';
 
 export default function ParentNode({
   uid,
@@ -61,13 +63,13 @@ export default function ParentNode({
       ? 'text-yellow-500'
       : 'text-white';
 
-  const styles = `border-l-[1px] border-transparent text-left transition before:relative before:inline-block before:w-[15px] before:left-0 before:align-middle before:border before:border-t-[0.5px] before:text-white before:align-middle ${
+  const styles = `border-l-[1px] border-transparent text-left transition before:relative before:inline-block before:w-[15px] before:left-[-1px] before:align-middle before:border before:border-t-[0.5px] before:text-white before:align-middle ${
     nodeEnd ? 'last-event-line' : ''
   } ${root && 'before:!text-transparent'}`;
 
   return (
     <li
-      className={`border-solid  ${!nodeEnd && 'border-l-[1px] border-white'} ${
+      className={`border-solid ${!nodeEnd && 'border-l-[1px] border-white'} ${
         root && 'border-none'
       }`}
     >
@@ -80,13 +82,13 @@ export default function ParentNode({
 
         <span
           role="presentation"
-          className={`${innerState} ml-[2] text-xs uppercase cursor-pointer`}
+          className={`${innerState} ml-[5px] text-xs uppercase cursor-pointer`}
           onClick={onClickHandler}
         >
           {name}
         </span>
       </div>
-      <ul className={`p-0 ml-[1.7rem] mt-[-2px]  block ${!show && 'hidden'}`}>{children}</ul>
+      <ul className={`p-0 ml-[1.6rem] mt-[-2px]  block ${!show && 'hidden'}`}>{children}</ul>
     </li>
   );
 }

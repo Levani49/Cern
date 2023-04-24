@@ -4,9 +4,6 @@ import { setParticleAnimationState } from '../features/global/globalsSlice';
 export default function Test(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  /**
-   *
-   */
   const onClick = (): void => {
     dispatch(setParticleAnimationState(true));
   };

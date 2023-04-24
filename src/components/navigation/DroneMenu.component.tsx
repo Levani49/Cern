@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useIntl } from 'react-intl';
 
 import { ReactComponent as DollyZoomIcon } from '../../assets/svg/zoom.svg';
 import { ReactComponent as CircleIcon } from '../../assets/svg/circle.svg';
@@ -15,13 +16,13 @@ import {
 } from '../../features/camera/cameraSlice';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-
 import type { SVGIcon, DroneTypes } from '../../types/app.types';
 
 import MenuDropdown from './MenuDropdown.component';
 import MenuIcon from './MenuIcon.component';
-import SvgIcon from '../SvgIcon.component';
-import Button from '../Button.component';
+import SvgIcon from '../svg-icon/SvgIcon.component';
+import Button from '../button/Button.component';
+import { isDesktop } from '../../utils/isDesktop.utils';
 
 interface MenuItem {
   Icon: SVGIcon;
@@ -40,6 +41,10 @@ export default function DroneMenu(): JSX.Element {
   const dispatch = useAppDispatch();
   const currentMode = useAppSelector(selectDroneState);
   const currentModeMemoized = useMemo(() => currentMode, [currentMode]);
+
+  const intl = useIntl();
+  const title = intl.formatMessage({ id: 'navigation.drone.title' });
+
   const isActive = currentModeMemoized !== 'idle';
 
   /**
@@ -71,18 +76,35 @@ export default function DroneMenu(): JSX.Element {
     { Icon: FilmIcon, mode: 'z0', title: 'Cinema mode' },
   ];
 
-  const innerHtml = menuItems.map((item: MenuItem) => (
-    <MenuIcon
-      key={item.mode}
-      Icon={item.Icon}
-      title={item.title}
-      onClick={(): void => handleModeChange(item.mode)}
-    />
-  ));
+  const desktop = isDesktop();
+
+  const innerHtml = menuItems.map((item: MenuItem) => {
+    if (!desktop) {
+      if (item.mode !== 'fly') {
+        return (
+          <MenuIcon
+            key={item.mode}
+            Icon={item.Icon}
+            title={item.title}
+            onClick={(): void => handleModeChange(item.mode)}
+          />
+        );
+      }
+    } else {
+      return (
+        <MenuIcon
+          key={item.mode}
+          Icon={item.Icon}
+          title={item.title}
+          onClick={(): void => handleModeChange(item.mode)}
+        />
+      );
+    }
+  });
 
   return (
     <div className="inline-flex group">
-      <Button onClick={(): void => handleModeChange('idle')} title="Drone modes">
+      <Button onClick={(): void => handleModeChange('idle')} title={title}>
         <SvgIcon className={`${isActive ? 'text-red-500 animate-pulse' : ''}`} Icon={DroneIcon} />
       </Button>
       <MenuDropdown>{innerHtml}</MenuDropdown>
