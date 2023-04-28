@@ -21,8 +21,6 @@ export default function Event(): JSX.Element {
       const xmlString = await eventService.fetch('groupE/event005');
       const event = eventService.parseXmlAsJSON(xmlString);
 
-      console.log(event);
-
       dispatch(setEventDetailsXML(event));
     };
     asyncCallback();
