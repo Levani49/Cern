@@ -1,5 +1,4 @@
 import { BufferGeometry, CubicBezierCurve3, Vector2, Vector3 } from 'three';
-// import * as math from 'mathjs';
 import { Track } from '../event/event.service.types';
 import { TrackInfo, TrackMesh } from './track.service.types';
 import EventService from '../event/event.service';
@@ -60,18 +59,10 @@ export default class TrackService extends EventService {
         ),
       );
     }
-    // TODO:
-    // try {
-    //   var incident_point = this.track_incident_point(trackPath[0], trackPath[1]);
-    //   trackPath.unshift(incident_point);
-    // } catch {
-    //   var incident_point = this.track_incident_point(trackPath[0], trackPath[2]);
-    //   trackPath.unshift(incident_point);
-    // }
-    // const mat = new LineBasicMaterial({
-    //   color: '#ff0000',
-    //   // clippingPlanes: clip_planes,
-    // });
+
+    const incidentPoint = this.calculateIncidentPoint(trackPath[0], trackPath[1]);
+    trackPath.unshift(incidentPoint);
+
     const geometry = new BufferGeometry().setFromPoints(trackPath);
 
     return {
@@ -81,10 +72,22 @@ export default class TrackService extends EventService {
   }
   drawCurvedTracks(propertyIndex: number, trackIndex: number): TrackMesh {
     const trackVector = [];
+    const incidentPoint = this.calculateIncidentPoint(
+      new Vector3(
+        this.trackInfo.polylineX[trackIndex],
+        this.trackInfo.polylineY[trackIndex],
+        this.trackInfo.polylineZ[trackIndex],
+      ),
+      new Vector3(
+        this.trackInfo.polylineX[trackIndex + 1],
+        this.trackInfo.polylineY[trackIndex + 1],
+        this.trackInfo.polylineZ[trackIndex + 1],
+      ),
+    );
     const trackLength = new Vector3(
-      this.trackInfo.polylineX[trackIndex] - this.trackInfo.polylineX[trackIndex + 1],
-      this.trackInfo.polylineY[trackIndex] - this.trackInfo.polylineY[trackIndex + 1],
-      this.trackInfo.polylineZ[trackIndex] - this.trackInfo.polylineZ[trackIndex + 1],
+      incidentPoint.x - this.trackInfo.polylineX[trackIndex + 1],
+      incidentPoint.y - this.trackInfo.polylineY[trackIndex + 1],
+      incidentPoint.z - this.trackInfo.polylineZ[trackIndex + 1],
     ).length();
     const curvatureValue = trackLength / 4;
 
@@ -132,50 +135,11 @@ export default class TrackService extends EventService {
         ((this.trackInfo.polylineZ[trackIndex + 1] - this.trackInfo.polylineZ[trackIndex]) /
           trackLength);
 
-    const incidentPoint = new Vector3(
-      this.trackInfo.polylineX[trackIndex],
-      this.trackInfo.polylineY[trackIndex],
-      this.trackInfo.polylineZ[trackIndex],
-    );
-    // this.calculateIncidentPoint(
-    //   new Vector3(
-    //     this.trackInfo.polylineX[trackIndex],
-    //     this.trackInfo.polylineY[trackIndex],
-    //     this.trackInfo.polylineZ[trackIndex],
-    //   ),
-    //   new Vector3(
-    //     this.trackInfo.polylineX[trackIndex + 1],
-    //     this.trackInfo.polylineY[trackIndex + 1],
-    //     this.trackInfo.polylineZ[trackIndex + 1],
-    //   ),
-    // );
-    //track-is asagebad sachiro veqtorebis sheqmna
-    // try {
-    //   var incident_point = this.track_incident_point(
-    //     new THREE.Vector3(
-    //       thistrackInfo.polylineX[trackIndex],
-    //       this.Y[trackIndex],
-    //       this.Z[trackIndex],
-    //     ),
-    //     new THREE.Vector3(
-    //       thistrackInfo.polylineX[trackIndex + 1],
-    //       this.Y[trackIndex + 1],
-    //       this.Z[trackIndex + 1],
-    //     ),
-    //   );
-    // } catch {
-    //   var incident_point = new THREE.Vector3(
-    //     thistrackInfo.polylineX[trackIndex],
-    //     this.Y[trackIndex],
-    //     this.Z[trackIndex],
-    //   );
-    // }
-
     trackVector.push(
       new CubicBezierCurve3(
         incidentPoint,
-        new Vector3(pointer1X, pointer1Y, pointer1Z), //sivrceshi gafantvis mimartuleba
-        new Vector3(pointer2X, pointer2Y, pointer2Z), //sivrceshi gafantvis mimartuleba saboloo wertiltan
+        new Vector3(pointer1X, pointer1Y, pointer1Z),
+        new Vector3(pointer2X, pointer2Y, pointer2Z),
         new Vector3(
           this.trackInfo.polylineX[trackIndex + 1],
           this.trackInfo.polylineY[trackIndex + 1],
@@ -191,32 +155,19 @@ export default class TrackService extends EventService {
       color: '#ff0000',
     };
   }
-  // calculateIncidentPoint(point1: Vector3, point2: Vector3): void {
-  // const directionalVect = [
-  //   math.fraction(Math.floor(+(point2.x - point1.x).toFixed(3) * 1000), 1000),
-  //   math.fraction(Math.floor(+(point2.y - point1.y).toFixed(3) * 1000), 1000),
-  //   math.fraction(Math.floor(+(point2.z - point1.z).toFixed(3) * 1000), 1000),
-  // ];
+  calculateIncidentPoint(point1: Vector3, point2: Vector3): Vector3 {
+    const direction = new Vector3().subVectors(point2, point1);
+    // Calculate the vector from the origin to point1
+    const originToPoint1 = point1.clone();
+    // Calculate the projection of originToPoint1 onto the direction vector
+    const projectionScalar = originToPoint1.dot(direction) / direction.lengthSq();
+    const projection = direction.clone().multiplyScalar(projectionScalar);
 
-  // console.log(math.fraction(+(point2.x - point1.x).toFixed(3) * 1000, 1000));
-  // vect.x = vect.x.multiply(direc_vect.x);
-  // vect.x = vect.x.add(new algebra.Fraction(parseInt((point1.x * 1000).toFixed(0)), 1000));
-  // vect.y = vect.y.multiply(direc_vect.y);
-  // vect.y = vect.y.add(new algebra.Fraction(parseInt((point1.y * 1000).toFixed(0)), 1000));
-  // vect.z = vect.z.multiply(direc_vect.z);
-  // vect.z = vect.z.add(new algebra.Fraction(parseInt((point1.z * 1000).toFixed(0)), 1000));
+    // Subtract the projection from point1 to find the point on the line closest to the origin
+    const incidentPoint = point1.clone().sub(projection);
 
-  // let expr = vect.x.multiply(direc_vect.x).add(vect.y.multiply(direc_vect.y));
-  // expr = expr.add(vect.z.multiply(direc_vect.z));
-  // const eq = new algebra.Equation(expr, 0);
-  // const sol = eq.solveFor('t');
-  // const incident_point = new THREE.Vector3(
-  //   eval(vect.x.eval({ t: new algebra.Fraction(sol.numer, sol.denom) }).toString()),
-  //   eval(vect.y.eval({ t: new algebra.Fraction(sol.numer, sol.denom) }).toString()),
-  //   eval(vect.z.eval({ t: new algebra.Fraction(sol.numer, sol.denom) }).toString()),
-  // );
-  // return incident_point;
-  // }
+    return incidentPoint;
+  }
   drawTracksMain(): TrackMesh[] | void {
     const tracks = [];
     let index = 0;
