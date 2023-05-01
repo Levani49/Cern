@@ -8,6 +8,10 @@ import EventService from '../../services/event/event/event.service';
 const eventService = new EventService();
 
 const initialState: EventsSlice = {
+  eventNumber: {
+    eventGroup: 'E',
+    eventIndex: 6,
+  },
   eventGeneralInfo: {
     runNumber: '',
     eventNumber: '',
@@ -26,13 +30,18 @@ const eventSlice = createSlice({
       state.event = action.payload;
       state.eventGeneralInfo = eventService.getEventGeneralInfo(action.payload);
     },
+    setEventNumber: (state, action: PayloadAction<EventsSlice['eventNumber']>) => {
+      state.eventNumber = action.payload;
+    },
   },
 });
 
 export default eventSlice.reducer;
-export const { setEventDetailsXML } = eventSlice.actions;
+export const { setEventDetailsXML, setEventNumber } = eventSlice.actions;
 
 export const selectEventGeneralInfo = (state: RootState): EventOverviewData =>
   state.event.eventGeneralInfo;
 
 export const selectEvent = (state: RootState): EventDetailsXML | null => state.event.event;
+export const selectEventNumber = (state: RootState): EventsSlice['eventNumber'] =>
+  state.event.eventNumber;

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
-import { useAppDispatch } from '../../../app/hooks';
-import { setEventDetailsXML } from '../../../features/event/eventsSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { selectEventNumber, setEventDetailsXML } from '../../../features/event/eventsSlice';
 import EventService from '../../../services/event/event/event.service';
 
 import Jet from '../jet/Jet.three';
@@ -15,16 +15,19 @@ const eventService = new EventService();
 
 export default function Event(): JSX.Element {
   const dispatch = useAppDispatch();
+  const eventNumber = useAppSelector(selectEventNumber);
 
   useEffect(() => {
     const asyncCallback = async (): Promise<void> => {
-      const xmlString = await eventService.fetch('groupE/event005');
+      const xmlString = await eventService.fetch(
+        `group${eventNumber.eventGroup}/event${eventNumber.eventIndex.toString().padStart(3, '0')}`,
+      );
       const event = eventService.parseXmlAsJSON(xmlString);
 
       dispatch(setEventDetailsXML(event));
     };
     asyncCallback();
-  }, [dispatch]);
+  }, [dispatch, eventNumber]);
 
   return (
     <>
