@@ -19,7 +19,16 @@ const initialState: EventsSlice = {
     date: '',
     time: '',
   },
+  eventsToShow: {
+    tracks: true,
+    jets: false,
+    met: false,
+    cells: false,
+    clusters: false,
+    hits: false,
+  },
   event: null,
+  isLoading: false,
 };
 
 const eventSlice = createSlice({
@@ -32,16 +41,26 @@ const eventSlice = createSlice({
     },
     setEventNumber: (state, action: PayloadAction<EventsSlice['eventNumber']>) => {
       state.eventNumber = action.payload;
+      state.isLoading = true;
+    },
+    setEventParameters: (state, action: PayloadAction<EventsSlice['eventsToShow']>) => {
+      state.eventsToShow = action.payload;
+    },
+    setEventLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
     },
   },
 });
 
 export default eventSlice.reducer;
-export const { setEventDetailsXML, setEventNumber } = eventSlice.actions;
-
+export const { setEventDetailsXML, setEventNumber, setEventLoading, setEventParameters } =
+  eventSlice.actions;
 export const selectEventGeneralInfo = (state: RootState): EventOverviewData =>
   state.event.eventGeneralInfo;
 
+export const selectEventIsLoading = (state: RootState): boolean => state.event.isLoading;
 export const selectEvent = (state: RootState): EventDetailsXML | null => state.event.event;
+export const selectEventParameters = (state: RootState): EventsSlice['eventsToShow'] =>
+  state.event.eventsToShow;
 export const selectEventNumber = (state: RootState): EventsSlice['eventNumber'] =>
   state.event.eventNumber;

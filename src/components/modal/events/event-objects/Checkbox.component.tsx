@@ -1,22 +1,14 @@
-import { useState } from 'react';
-
 interface Props {
+  checked: boolean;
+  onClick: () => void;
   title: string;
   className?: string;
 }
 
-export default function Checkbox({ title, className }: Props): JSX.Element {
-  const [checked, setChecked] = useState<boolean>(false);
-
+export default function Checkbox({ checked, onClick, title, className }: Props): JSX.Element {
   return (
     <label className={`relative inline-flex items-center cursor-pointer ${className}`}>
-      <input
-        type="checkbox"
-        value=""
-        className="sr-only peer"
-        checked={checked}
-        onChange={(): void => setChecked((prev) => !prev)}
-      />
+      <input type="checkbox" className="sr-only peer" checked={checked} onChange={onClick} />
       <div
         className={`${
           checked ? 'bg-blue dark:bg-green' : 'bg-transparentGray'

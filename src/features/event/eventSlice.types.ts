@@ -6,5 +6,14 @@ export interface EventsSlice {
     eventIndex: number;
   };
   eventGeneralInfo: EventOverviewData;
+  eventsToShow: {
+    tracks: boolean;
+    jets: boolean;
+    met: boolean;
+    cells: boolean;
+    clusters: boolean;
+    hits: boolean;
+  };
   event: EventDetailsXML | null;
+  isLoading: boolean;
 }

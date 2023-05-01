@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 
 import AlgorithmSectionFor from './AlgorithmSectionFor.component';
 
-import { TRACK_ALGORITHMS, JET_ALGORITHMS, Hits_Algorithms } from '../../../../../constants/events';
+import { TRACK_ALGORITHMS, JET_ALGORITHMS, Hits_Algorithms } from '../../../../../constants/event';
 
 export default function AlgorithmTool(): JSX.Element {
   const intl = useIntl();
