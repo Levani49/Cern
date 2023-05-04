@@ -85,9 +85,6 @@ export default function EventsResultsToggler(): JSX.Element {
     { key: 'tracks', label: 'modal.events.tracks' },
     { key: 'jets', label: 'modal.events.jets' },
     { key: 'met', label: 'modal.events.met' },
-    { key: 'cells', label: 'modal.events.cells' },
-    { key: 'clusters', label: 'modal.events.clusters' },
-    { key: 'hits', label: 'modal.events.hits' },
   ];
 
   const handleEventToggle = (key: string) => () => {

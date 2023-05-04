@@ -17,7 +17,6 @@ export default function AnalysisTools(): JSX.Element {
 
   const intl = useIntl();
   const filter = intl.formatMessage({ id: 'modal.events.filter' });
-  const algorithm = intl.formatMessage({ id: 'modal.events.algorithms' });
   const info = intl.formatMessage({ id: 'modal.events.info' });
 
   const handleClick = (tool: CurrentAnalysisTool): void => {
@@ -26,7 +25,6 @@ export default function AnalysisTools(): JSX.Element {
 
   const tools = {
     filter: filter,
-    algorithm: algorithm,
     info: info,
   };
 

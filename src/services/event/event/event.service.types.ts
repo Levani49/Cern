@@ -15,6 +15,7 @@ export interface EventDetailsXML {
     '@_runNumber': string;
     '@_version': string;
     Track: Track | Track[];
+    Jet: Jet | Jet[];
   };
 }
 
@@ -43,6 +44,17 @@ export type Track = {
   polylineX: AdditionalInfo;
   polylineY: AdditionalInfo;
   polylineZ: AdditionalInfo;
+};
+
+export type Jet = {
+  '@_count': string;
+  '@_storeGateKey': string;
+  et: number | string;
+  eta: number | string;
+  phi: number | string;
+  px: number | string;
+  py: number | string;
+  pz: number | string;
 };
 
 type AdditionalInfo = {
