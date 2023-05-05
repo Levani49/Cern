@@ -1,7 +1,7 @@
-import { Vector3, ConeGeometry, Matrix4 } from 'three';
+import { Vector3, ConeGeometry, Matrix4, Quaternion } from 'three';
 import EventService from '../event/event.service';
 import { Jet } from '../event/event.service.types';
-import { JetInfo } from './jet.service.types';
+import { JetCone, JetInfo } from './jet.service.types';
 
 export default class JetService extends EventService {
   jetInfo: JetInfo = {
@@ -33,12 +33,12 @@ export default class JetService extends EventService {
 
     this.jetInfo.count = +jet['@_count'];
     this.jetInfo.SGK = jet['@_storeGateKey'];
-    console.log(this.jetInfo);
   }
-  drawJetCone(): void {
+  drawJetCone(): JetCone[] {
     if (!this.jetInfo.count) {
       throw new Error('Can not draw Jet!!!');
     }
+    const jetConeArray: JetCone[] = [];
     const radialSegments = 32;
     for (let i = 0; i < this.jetInfo.count; i++) {
       const jetDistance = new Vector3(
@@ -56,6 +56,21 @@ export default class JetService extends EventService {
       // const adjSideX = Math.sqrt(Math.pow(this.Y[i], 2) + Math.pow(this.Z[i], 2));
       // const adjSideTheta = Math.asin(adjSideX / this.h[i]);
 
+      // const adjSideZ = Math.sqrt(Math.pow(this.jetInfo.pX[i], 2) + Math.pow(this.jetInfo.pY[i], 2));
+      // const adjSidePhi = Math.asin(adjSideZ / jetHeight);
+      // const adjSideX = Math.sqrt(Math.pow(this.jetInfo.pY[i], 2) + Math.pow(this.jetInfo.pZ[i], 2));
+      // const adjSideTheta = Math.asin(adjSideX / jetHeight);
+
+      const vector = new Vector3(
+        Math.sin(this.jetInfo.theta[i]) * Math.cos(this.jetInfo.phi[i]),
+        Math.sin(this.jetInfo.theta[i]) * Math.sin(this.jetInfo.phi[i]),
+        Math.cos(this.jetInfo.theta[i]),
+      );
+      const quaternion = new Quaternion();
+      quaternion.setFromUnitVectors(new Vector3(0, 1, 0), vector);
+
+      jetConeArray.push({ quaternion, geo });
+
       /*
       this.mat[i] = new THREE.MeshToonMaterial({
         color: colorOfOriginalJet,
@@ -65,6 +80,7 @@ export default class JetService extends EventService {
       })
       */
     }
+    return jetConeArray;
   }
   constructor() {
     super();

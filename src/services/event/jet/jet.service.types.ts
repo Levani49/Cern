@@ -1,3 +1,5 @@
+import { ConeGeometry, Quaternion } from 'three';
+
 export interface JetInfo {
   pX: number[];
   pY: number[];
@@ -8,4 +10,9 @@ export interface JetInfo {
   count: null | number;
   SGK: string;
   et: number[];
+}
+
+export interface JetCone {
+  quaternion: Quaternion;
+  geo: ConeGeometry;
 }

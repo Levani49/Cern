@@ -10,7 +10,7 @@ const eventService = new EventService();
 const initialState: EventsSlice = {
   eventNumber: {
     eventGroup: 'E',
-    eventIndex: 6,
+    eventIndex: 5,
   },
   eventGeneralInfo: {
     runNumber: '',
