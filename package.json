@@ -62,13 +62,14 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npx vitest"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
       "bash -c tsc",
       "eslint",
+      "vitest --run",
       "prettier --write"
     ]
   }
