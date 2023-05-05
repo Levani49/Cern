@@ -3,7 +3,7 @@ import { test } from 'vitest';
 import Logo from './Logo.component';
 
 describe('Logo component', () => {
-  test('renders without crashing', () => {
+  test('renders without crashing!', () => {
     render(<Logo />);
   });
 
