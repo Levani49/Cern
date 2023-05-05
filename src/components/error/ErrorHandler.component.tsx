@@ -2,14 +2,7 @@ import { Component, ErrorInfo, ReactNode } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ReactComponent as ArrowPathIcon } from '../../assets/svg/arrowPathIcon.svg';
-
-type Props = {
-  children: ReactNode;
-};
-
-type State = {
-  hasError: boolean;
-};
+import { ErrorHandlerProps, ErrorHandlerState } from './errorHandler.types';
 
 function ErrorText(): JSX.Element {
   const intl = useIntl();
@@ -27,12 +20,12 @@ function ErrorText(): JSX.Element {
   );
 }
 
-export default class ErrorHandler extends Component<Props, State> {
-  state: State = {
+export default class ErrorHandler extends Component<ErrorHandlerProps, ErrorHandlerState> {
+  state: ErrorHandlerState = {
     hasError: false,
   };
 
-  static getDerivedStateFromError(_: Error): State {
+  static getDerivedStateFromError(_: Error): ErrorHandlerState {
     return { hasError: true };
   }
 
