@@ -8,7 +8,6 @@
     "build": "tsc && vite build",
     "start": "node server.js",
     "test": "vitest",
-    "test-coverage": "npx vitest --coverage",
     "preview": "vite preview",
     "prepare": "husky install"
   },
@@ -64,8 +63,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm test-coverage"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
