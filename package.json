@@ -71,7 +71,6 @@
     "**/*.{ts,tsx}": [
       "bash -c tsc",
       "eslint",
-      "vitest --run",
       "prettier --write"
     ]
   }
