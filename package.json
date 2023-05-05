@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --m .env.local --host",
+    "dev": "vite --host",
     "build": "tsc && vite build",
     "start": "node server.js",
     "test": "vitest",
@@ -37,6 +37,7 @@
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
     "@vitejs/plugin-react-swc": "^3.0.0",
+    "@vitest/coverage-c8": "^0.31.0",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
@@ -58,11 +59,12 @@
     "vite": "^4.0.0",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-svgr": "^2.4.0",
-    "vitest": "^0.28.3"
+    "vitest": "^0.31.0"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "npx vitest --coverage"
     }
   },
   "lint-staged": {

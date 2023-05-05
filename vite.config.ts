@@ -9,6 +9,17 @@ import viteCompression from 'vite-plugin-compression';
 export default defineConfig({
   plugins: [viteCompression(), react(), svgr()],
   test: {
+    coverage: {
+      all: false,
+      provider: 'c8',
+      reporter: ['text', 'json', 'html'],
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['**/node_modules/**', '**/dist/**', '**/coverage/**', '**/public/**'],
+      lines: 90,
+      functions: 90,
+      branches: 90,
+      statements: 90,
+    },
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/setup-tests.ts',

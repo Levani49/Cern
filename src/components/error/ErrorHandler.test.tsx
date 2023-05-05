@@ -5,20 +5,18 @@ import { render, screen } from '@testing-library/react';
 import ErrorHandler from './ErrorHandler.component';
 import { messages } from './errorHandlerMockedData';
 
-const TEST_CASE = true;
-
 const MockedErrorHandler = ({ children }: { children: ReactNode | ReactNode[] }): JSX.Element => (
   <IntlProvider locale="en" messages={messages}>
     <ErrorHandler>{children}</ErrorHandler>
   </IntlProvider>
 );
 
-function ThrowErrorComponent(): JSX.Element {
-  if (TEST_CASE) {
+function ThrowErrorComponent({ test }: { test: boolean }): JSX.Element {
+  if (test) {
     throw new Error('Test error');
   }
 
-  return <h1>Test</h1>;
+  return <h1>No Error</h1>;
 }
 
 describe('ErrorHandler component', () => {
@@ -26,16 +24,16 @@ describe('ErrorHandler component', () => {
     // Wrap the ErrorThrowingComponent with the ErrorHandler component and IntlProvider
     render(
       <MockedErrorHandler>
-        <h1>test</h1>
+        <ThrowErrorComponent test={false} />
       </MockedErrorHandler>,
     );
-    expect(screen.getByText('test')).toBeInTheDocument();
+    expect(screen.getByText('No Error')).toBeInTheDocument();
   });
 
   test('renders error text when an error occurs', async () => {
     render(
       <MockedErrorHandler>
-        <ThrowErrorComponent />
+        <ThrowErrorComponent test={true} />
       </MockedErrorHandler>,
     );
 
