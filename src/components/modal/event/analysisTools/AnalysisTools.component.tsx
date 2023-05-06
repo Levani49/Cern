@@ -37,9 +37,5 @@ export default function AnalysisTools(): JSX.Element {
     />
   ));
 
-  return (
-    <div className="flex border-b-[1px] border-transparentLight justify-between items-center text-xs">
-      {innerHtml}
-    </div>
-  );
+  return <div className="flex justify-between items-center gap-2 text-xs">{innerHtml}</div>;
 }

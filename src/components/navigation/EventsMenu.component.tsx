@@ -5,7 +5,7 @@ import { selectEventsModalState, showEventsModal } from '../../features/modal/mo
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import MenuIcon from './MenuIcon.component';
-import EventsModal from '../modal/events/Event.modal';
+import EventsModal from '../modal/event/Event.modal';
 
 export default function EventsMenu(): JSX.Element {
   const dispatch = useAppDispatch();

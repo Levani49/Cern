@@ -69,7 +69,7 @@ export default function EventsModal(): JSX.Element {
 
   return (
     <Modal title={title} show={show} onCloseHandler={closeModalHandler}>
-      <div className="flex flex-col gap-6 p-2 rounded  items-centers shadow ">
+      <div className="flex flex-col gap-6 rounded py-2 items-centers shadow">
         <FileActions />
         <EventsResultsToggler />
         <AnalysisTools />

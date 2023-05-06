@@ -75,7 +75,7 @@ export default function FileActions(): JSX.Element {
   };
 
   return (
-    <div className="w-full flex justify-between px-2 items-center">
+    <div className="w-full flex justify-between items-center">
       <input hidden type="file" accept=".xml" id="handleFileUpload" onChange={handleFileUpload} />
       <ArrowUpTrayIcon
         className="icon"

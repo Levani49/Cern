@@ -99,8 +99,8 @@ export default function EventsResultsToggler(): JSX.Element {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-2 justify-items-center">
-      {eventLabels.map(({ key, label }, index) => (
+    <div className="flex gap-4 justify-between">
+      {eventLabels.map(({ key, label }) => (
         <Checkbox
           key={key}
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -108,9 +108,6 @@ export default function EventsResultsToggler(): JSX.Element {
           checked={eventParameters[key]}
           onClick={handleEventToggle(key)}
           title={intl.formatMessage({ id: label })}
-          className={
-            index === 1 ? 'relative left-[-12px]' : index === 3 ? 'relative left-[-5px]' : ''
-          }
         />
       ))}
     </div>
