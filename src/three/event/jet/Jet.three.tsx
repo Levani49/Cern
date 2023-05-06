@@ -1,12 +1,13 @@
 import { useMemo } from 'react';
 import { useAppSelector } from '../../../app/hooks';
-import { selectEvent } from '../../../features/event/eventSlice';
+import { selectEvent, selectEventParameters } from '../../../features/event/eventSlice';
 import JetService from '../../../model/event/jet/jet.model';
 
 const jetService = new JetService();
 
 export default function Jet(): JSX.Element {
   const event = useAppSelector(selectEvent);
+  const eventParameters = useAppSelector(selectEventParameters);
 
   const jetConesToDraw = useMemo(() => {
     if (event) {
@@ -20,7 +21,7 @@ export default function Jet(): JSX.Element {
     return null;
   }, [event]);
 
-  if (jetConesToDraw && event?.Event.Jet) {
+  if (jetConesToDraw && eventParameters.jets) {
     return (
       <>
         {jetConesToDraw.map((jetCone, i) => {
