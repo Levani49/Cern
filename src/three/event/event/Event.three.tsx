@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import {
@@ -14,7 +14,7 @@ import Tracks from '../track/track.three';
 
 const eventService = new EventService();
 
-export default function Event(): JSX.Element {
+function Event(): JSX.Element {
   const dispatch = useAppDispatch();
   const eventNumber = useAppSelector(selectEventNumber);
 
@@ -38,3 +38,5 @@ export default function Event(): JSX.Element {
     </>
   );
 }
+
+export default memo(Event);

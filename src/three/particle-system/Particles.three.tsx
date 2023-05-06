@@ -34,7 +34,7 @@ export default function Particles({ onFinish }: Props): JSX.Element {
         />
       );
     });
-  }, []);
+  }, [onFinish]);
 
   useFrame(() => {
     if (explode) {

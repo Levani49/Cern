@@ -17,7 +17,7 @@ import ErrorHandler from '../../components/error/ErrorHandler.component';
 
 const Detector = lazy(() => import('../controls/Detector.three'));
 const Environment = lazy(() => import('../environment/Environment.three'));
-const ParticleSystem = lazy(() => import('../particle-system/index.three'));
+const ParticleSystem = lazy(() => import('../particle-system/ParticleSystem'));
 const Controls = lazy(() => import('../controls/Controls.three'));
 const Axis = lazy(() => import('../axis/Axis.three'));
 const Grid = lazy(() => import('../grid/Grid.three'));
@@ -54,18 +54,12 @@ export default function Scene(): JSX.Element {
         <Physics gravity={[0, 0, 0]}>
           <Suspense fallback={null}>
             <Detector />
-            <Event />
+            <Axis />
           </Suspense>
-          {isLoaded && (
-            <>
-              <Background />
-              <Fog />
-              <Suspense>
-                <Axis />
-              </Suspense>
-              <StatsDispatcher />
-            </>
-          )}
+          <Background />
+          <Fog />
+          <StatsDispatcher />
+          <Event />
           <Lights />
           <Camera />
           <Grid />

@@ -10,7 +10,7 @@ import { messages } from './translations/translations';
 import { useAppSelector } from './app/hooks';
 import { selectDroneState } from './features/camera/cameraSlice';
 
-const Canvas = lazy(() => import('./three/canvas/canvas'));
+const Canvas = lazy(() => import('./three/canvas/canvas.three'));
 const Tree = lazy(() => import('./components/tree/tree/Tree.component'));
 const Logo = lazy(() => import('./components/logo/Logo.component'));
 
