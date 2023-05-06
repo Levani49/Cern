@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
-import { useAppSelector } from '../../app/hooks';
-import { selectModelsLoadingState } from '../../features/model/modelSlice';
+import { useAppSelector } from '../../../app/hooks';
+import { selectModelsLoadingState } from '../../../features/model/modelSlice';
 
-import { selectGeometryTree } from '../../features/tree/treeSlice';
+import { selectGeometryTree } from '../../../features/tree/treeSlice';
 
-import RecursiveTree from './RecursiveTree.component';
+import RecursiveTree from '../recursiveTree/RecursiveTree.component';
 
 export default function Tree(): JSX.Element {
   const isLoading = useAppSelector(selectModelsLoadingState);

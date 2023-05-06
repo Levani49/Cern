@@ -1,4 +1,4 @@
-import { EventOverviewData, EventDetailsXML } from '../../services/event/event/event.service.types';
+import { EventOverviewData, EventDetailsXML } from '../../services/event/event.service.types';
 
 export interface EventsSlice {
   eventNumber: {

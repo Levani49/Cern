@@ -1,7 +1,7 @@
 import { Vector3, ConeGeometry, Matrix4, Quaternion } from 'three';
-import EventService from '../event/event.service';
-import { Jet } from '../event/event.service.types';
-import { JetCone, JetInfo } from './jet.service.types';
+import EventService from '../../../services/event/event.service';
+import { Jet } from '../../../services/event/event.service.types';
+import { JetCone, JetInfo } from './jet.model.types';
 
 export default class JetService extends EventService {
   jetInfo: JetInfo = {
@@ -40,6 +40,7 @@ export default class JetService extends EventService {
     }
     const jetConeArray: JetCone[] = [];
     const radialSegments = 32;
+
     for (let i = 0; i < this.jetInfo.count; i++) {
       const jetDistance = new Vector3(
         this.jetInfo.pX[i],
@@ -50,16 +51,6 @@ export default class JetService extends EventService {
       const jetRadius = jetHeight * Math.tan(0.2);
       const geo = new ConeGeometry(jetRadius, jetHeight, radialSegments);
       geo.applyMatrix4(new Matrix4().makeTranslation(0, -(jetHeight / 2), 0));
-
-      // const adjSideZ = Math.sqrt(Math.pow(this.X[i], 2) + Math.pow(this.Y[i], 2));
-      // const adjSidePhi = Math.asin(adjSideZ / this.h[i]);
-      // const adjSideX = Math.sqrt(Math.pow(this.Y[i], 2) + Math.pow(this.Z[i], 2));
-      // const adjSideTheta = Math.asin(adjSideX / this.h[i]);
-
-      // const adjSideZ = Math.sqrt(Math.pow(this.jetInfo.pX[i], 2) + Math.pow(this.jetInfo.pY[i], 2));
-      // const adjSidePhi = Math.asin(adjSideZ / jetHeight);
-      // const adjSideX = Math.sqrt(Math.pow(this.jetInfo.pY[i], 2) + Math.pow(this.jetInfo.pZ[i], 2));
-      // const adjSideTheta = Math.asin(adjSideX / jetHeight);
 
       const vector = new Vector3(
         Math.sin(this.jetInfo.theta[i]) * Math.cos(this.jetInfo.phi[i]),

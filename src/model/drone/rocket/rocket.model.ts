@@ -1,6 +1,6 @@
-import { Camera } from "@react-three/fiber";
+import { Camera } from '@react-three/fiber';
 
-import { emptyFunc } from "../types/app.types";
+import { emptyFunc } from '../../../types/app.types';
 
 /**
  * Rocket class for animating a rocket launch.

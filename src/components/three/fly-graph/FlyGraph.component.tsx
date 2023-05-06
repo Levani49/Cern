@@ -1,9 +1,9 @@
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import {
   selectDroneState,
   selectFlyModalState,
   setFlyModalState,
-} from '../../features/camera/cameraSlice';
+} from '../../../features/camera/cameraSlice';
 
 /**
  * A component that displays an overlay with instructions for controlling the drone camera

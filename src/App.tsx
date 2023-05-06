@@ -2,8 +2,8 @@ import { lazy, Suspense } from 'react';
 import { IntlProvider } from 'react-intl';
 
 import Navigation from './components/navigation/navigation';
-import FlyOverlay from './components/three/FlyGraph.component';
-import Stats from './components/three/Stats.component';
+import FlyOverlay from './components/three/fly-graph/FlyGraph.component';
+import Stats from './components/three/stats/Stats.component';
 import ModelInfo from './components/modal/modelInfo/ModelInfo.component';
 
 import { messages } from './translations/translations';
@@ -11,7 +11,7 @@ import { useAppSelector } from './app/hooks';
 import { selectDroneState } from './features/camera/cameraSlice';
 
 const Canvas = lazy(() => import('./three/canvas/canvas'));
-const Tree = lazy(() => import('./components/tree/Tree.component'));
+const Tree = lazy(() => import('./components/tree/tree/Tree.component'));
 const Logo = lazy(() => import('./components/logo/Logo.component'));
 
 /**

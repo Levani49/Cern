@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import type { RootState } from '../../app/store';
 import { EventsSlice } from './eventSlice.types';
-import { EventOverviewData, EventDetailsXML } from '../../services/event/event/event.service.types';
-import EventService from '../../services/event/event/event.service';
+import { EventOverviewData, EventDetailsXML } from '../../services/event/event.service.types';
+import EventService from '../../services/event/event.service';
 
 const eventService = new EventService();
 

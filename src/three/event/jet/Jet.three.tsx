@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useAppSelector } from '../../../app/hooks';
 import { selectEvent } from '../../../features/event/eventSlice';
-import JetService from '../../../services/event/jet/jet.service';
+import JetService from '../../../model/event/jet/jet.model';
 
 const jetService = new JetService();
 

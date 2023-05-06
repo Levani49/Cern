@@ -12,7 +12,7 @@ import {
   setEventNumber,
 } from '../../../../features/event/eventSlice';
 import { ChangeEvent } from 'react';
-import EventService from '../../../../services/event/event/event.service';
+import EventService from '../../../../services/event/event.service';
 
 const eventService = new EventService();
 

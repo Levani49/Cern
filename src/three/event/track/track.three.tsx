@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { useAppSelector } from '../../../app/hooks';
 import { selectEvent, selectEventParameters } from '../../../features/event/eventSlice';
-import { TrackMesh } from '../../../services/event/track/track.service.types';
-import TrackService from '../../../services/event/track/track.service';
+import { TrackMesh } from '../../../model/event/track/track.model.types';
+import TrackService from '../../../model/event/track/track.model';
 
 const trackService = new TrackService();
 

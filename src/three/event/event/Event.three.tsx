@@ -6,7 +6,7 @@ import {
   setEventDetailsXML,
   setEventLoading,
 } from '../../../features/event/eventSlice';
-import EventService from '../../../services/event/event/event.service';
+import EventService from '../../../services/event/event.service';
 
 import Jet from '../jet/Jet.three';
 import Met from '../met/Met.three';
