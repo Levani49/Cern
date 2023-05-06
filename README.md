@@ -24,11 +24,20 @@ To get started with this project, follow these steps:
 
 - git clone https://gitlab.cern.ch/tracer/tracer-core-new.git
 
-2. Go to the cloned repository and install dependencies
+2. Go to the cloned repository, open terminal and install dependencies
 
 - npm i
 
 This will install all the necessary packages listed in the package.json file.
+
+## Available scripts
+
+1. npm run dev
+2. npm run preview
+3. npm run start
+4. npm run test
+5. npm run coverage
+6. npm run show-test-results
 
 ## Development
 
@@ -42,9 +51,33 @@ This will start the development server on PORT : 5173 most of the time, if it do
 
 When you're ready to run this project in production mode, use the following command:
 
+- npm run build
+
+This will build your project.
+
 - npm run start
 
-This will build and start the production server, making your project accessible to the world.
+This will start the production server, making your project accessible to the world.
+
+## Running Tests
+
+To run tests, execute the following command:
+
+- npm run test
+
+You can also see detailed information about coverage.
+
+### For more detailed information about test coverage, follow these steps:
+
+1. Run the test coverage command:
+
+- npm run coverage
+
+2. After the coverage is generated, display the test results in your browser by running:
+
+- npm run show-test-results
+
+This will provide you with an in-depth overview of the test coverage in a user-friendly format.
 
 ## Conclusion
 

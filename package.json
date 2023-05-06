@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "start": "node server.js",
     "test": "vitest",
-    "test-results": "serve coverage",
+    "coverage": "npx vitest --coverage --run",
+    "show-test-results": "serve coverage",
     "preview": "vite preview",
     "prepare": "husky install"
   },
