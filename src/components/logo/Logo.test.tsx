@@ -11,6 +11,6 @@ describe('Logo component', () => {
     render(<Logo />);
     const logoImage = screen.getByAltText('tracer logo');
     expect(logoImage).toBeInTheDocument();
-    expect(logoImage).toHaveAttribute('src', '/assets/tracer-logo.png');
+    expect(logoImage).toHaveAttribute('src', '/assets/tracer-logo.webp');
   });
 });
