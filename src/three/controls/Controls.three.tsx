@@ -10,6 +10,7 @@ import {
 
 import Player from '../player/Player.three';
 import CustomOrbitControl from '../lib/modified_orbit_controls/CustomOrbitControl';
+import { OrbitControlsProps } from '@react-three/drei';
 
 /**
  * Renders either an `OrbitControls` or a `Player` component based on the drone type.
@@ -21,7 +22,7 @@ export default function Controls(): JSX.Element {
   const { camera } = useThree();
   const droneType = useAppSelector(selectDroneState);
   const position = useAppSelector(selectCameraPosition);
-  const controlsRef = useRef(null);
+  const controlsRef = useRef<OrbitControlsProps>(null);
 
   const cameraPosition = useMemo(() => {
     return position;
@@ -35,20 +36,12 @@ export default function Controls(): JSX.Element {
   useEffect(() => {
     const stopDampingEffect = (): void => {
       if (controlsRef.current) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         controlsRef.current.enabled = false;
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         controlsRef.current.enableDamping = false;
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        controlsRef.current.update();
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        if (controlsRef.current.update) {
+          controlsRef.current.update();
+        }
         controlsRef.current.enableDamping = true;
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         controlsRef.current.enabled = true;
       }
     };
