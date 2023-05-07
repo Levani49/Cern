@@ -1,21 +1,15 @@
-import { useMemo, useRef, useState } from "react";
-import { MathUtils, Object3D } from "three";
-import { useFrame } from "@react-three/fiber";
-import { Float } from "@react-three/drei";
+import { useMemo, useRef, useState } from 'react';
+import { MathUtils, Object3D } from 'three';
+import { useFrame } from '@react-three/fiber';
+import { Float } from '@react-three/drei';
 
-import Electron from "./Electron.three";
-import Collision from "./Collision.three";
+import Electron from './Electron.three';
+import Collision from './Collision.three';
 
 interface Props {
   onFinish: () => void;
 }
 
-/**
- *
- * @param root0
- * @param root0.cb
- * @param root0.onFinish
- */
 export default function Particles({ onFinish }: Props): JSX.Element {
   const [explode, setExplode] = useState(false);
   const electronRefs = useRef<Array<Object3D | null>>([]);
@@ -36,13 +30,11 @@ export default function Particles({ onFinish }: Props): JSX.Element {
           key={index}
           position={[x, y, z]}
           size={[0.005]}
-          ref={(ref: Object3D | null): Object3D | null =>
-            (electronRefs.current[index] = ref)
-          }
+          ref={(ref: Object3D | null): Object3D | null => (electronRefs.current[index] = ref)}
         />
       );
     });
-  }, []);
+  }, [onFinish]);
 
   useFrame(() => {
     if (explode) {

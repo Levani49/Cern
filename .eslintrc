@@ -1,102 +1,96 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "globals": {
+    "JSX": true,
+    "process": "readonly"
+  },
+  "plugins": ["import", "react", "eslint-plugin-jsx-a11y", "@typescript-eslint", "jsdoc"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:jsdoc/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "eslint-config-prettier",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "tsconfigRootDir": "./",
+    "project": "./tsconfig.json"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
     },
-    "globals": {
-        "JSX": true,
-        "process": "readonly"
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     },
-    "plugins": [
-        "import",
-        "react",
-        "eslint-plugin-jsx-a11y",
-        "@typescript-eslint",
-        "jsdoc"
-    ],
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:react-hooks/recommended",
-        "plugin:jsx-a11y/recommended",
-        "plugin:jsdoc/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:import/recommended",
-        "eslint-config-prettier",
-        "prettier"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "tsconfigRootDir": "./",
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
         "project": "./tsconfig.json"
-    },
-    "settings": {
-        "react": {
-            "version": "detect"
-        },
-        "import/parsers": {
-            "@typescript-eslint/parser": [
-                ".ts",
-                ".tsx"
-            ]
-        },
-        "import/resolver": {
-            "typescript": {
-                "alwaysTryTypes": true,
-                "project": "./tsconfig.json"
-            }
+      }
+    }
+  },
+  "rules": {
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": true,
+        "argsIgnorePattern": "^_$"
+      }
+    ],
+    "@typescript-eslint/explicit-function-return-type": "error",
+    "import/no-unresolved": "error",
+    "jsdoc/require-jsdoc": [
+      "off",
+      {
+        "require": {
+          "ArrowFunctionExpression": true,
+          "ClassDeclaration": true,
+          "ClassExpression": true,
+          "FunctionDeclaration": true,
+          "MethodDefinition": true
         }
-    },
-    "rules": {
-        "react/jsx-uses-react": "off",
-        "react/react-in-jsx-scope": "off",
-        "@typescript-eslint/no-unused-vars": [
-            "error",
-            {
-                "vars": "all",
-                "args": "after-used",
-                "ignoreRestSiblings": true,
-                "argsIgnorePattern": "^_$"
-            }
-        ],
-        "@typescript-eslint/explicit-function-return-type": "error",
-        "import/no-unresolved": "error",
-        "jsdoc/require-jsdoc": [
-            "off",
-            {
-                "require": {
-                    "ArrowFunctionExpression": true,
-                    "ClassDeclaration": true,
-                    "ClassExpression": true,
-                    "FunctionDeclaration": true,
-                    "MethodDefinition": true
-                }
-            }
-        ]
-    },
-    "overrides": [
-        {
-            "files": [
-                "**.three.tsx"
-            ],
-            "rules": {
-                "react/no-unknown-property": [
-                    "error",
-                    {
-                        "ignore": [
-                            "args",
-                            "transparent",
-                            "side",
-                            "object",
-                            "visible",
-                            "attach",
-                            "intensity",
-                            "position",
-                            "toneMapped"
-                        ]
-                    }
-                ]
-            }
-        }
+      }
     ]
+  },
+  "overrides": [
+    {
+      "files": ["**.three.tsx"],
+      "rules": {
+        "react/no-unknown-property": [
+          "error",
+          {
+            "ignore": [
+              "args",
+              "transparent",
+              "side",
+              "object",
+              "visible",
+              "attach",
+              "intensity",
+              "position",
+              "toneMapped",
+              "linewidth",
+              "linecap",
+              "linejoin",
+              "geometry",
+              "quaternion"
+            ]
+          }
+        ]
+      }
+    }
+  ]
 }

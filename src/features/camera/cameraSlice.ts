@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { WritableDraft } from 'immer/dist/internal';
 import { Camera } from '@react-three/fiber';
 
-import ee from '../../utils/events.utils';
+import ee from '../../utils/droneEvent.utils';
 import { startDroneMode, stopDroneMode } from '../../utils/handleDrone.utils';
 
 import type { RootState } from '../../app/store';
