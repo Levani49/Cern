@@ -9,8 +9,8 @@ describe('Logo component', () => {
 
   test('displays the logo image with correct alt attribute', () => {
     render(<Logo />);
-    const logoImage = screen.getByAltText('logo');
+    const logoImage = screen.getByAltText('tracer logo');
     expect(logoImage).toBeInTheDocument();
-    expect(logoImage).toHaveAttribute('src', '/src/assets/images/tracer-logo.png');
+    expect(logoImage).toHaveAttribute('src', '/assets/tracer-logo.png');
   });
 });
