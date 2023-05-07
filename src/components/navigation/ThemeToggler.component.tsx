@@ -20,6 +20,10 @@ export default function ThemeToggler(): JSX.Element {
     dispatch(setDarkMode(!prefersDarkMode));
   };
 
+  isSun
+    ? (document.body.style.background = 'rgb(210, 210, 210)')
+    : (document.body.style.background = 'rgb(28, 28, 28)');
+
   return (
     <button className="focus:outline-none" onClick={handleClick} title={title}>
       {isSun ? <MoonIcon className="icon" /> : <SunIcon className="icon" />}

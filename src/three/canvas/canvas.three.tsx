@@ -16,7 +16,7 @@ import Camera from '../camera/Camera.three';
 import ErrorHandler from '../../components/error/ErrorHandler.component';
 
 const Detector = lazy(() => import('../controls/Detector.three'));
-const Environment = lazy(() => import('../environment/Environment.three'));
+// const Environment = lazy(() => import('../environment/Environment.three'));
 const ParticleSystem = lazy(() => import('../particle-system/ParticleSystem'));
 const Controls = lazy(() => import('../controls/Controls.three'));
 const Axis = lazy(() => import('../axis/Axis.three'));
@@ -63,7 +63,7 @@ export default function Scene(): JSX.Element {
           <Lights />
           <Camera />
           <Grid />
-          <Environment />
+          {/* <Environment /> */}
           <Controls />
           <ParticleSystem />
         </Physics>
