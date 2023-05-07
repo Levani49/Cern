@@ -9,24 +9,24 @@ import { selectTheme, setDarkMode } from '../../features/global/globalsSlice';
 
 export default function ThemeToggler(): JSX.Element {
   const dispatch = useAppDispatch();
-  const prefersDarkMode = useAppSelector(selectTheme);
-  const [isSun, setIsSun] = useState(!prefersDarkMode);
+  const theme = useAppSelector(selectTheme);
+  const [isDarkMode, setIsDarkMode] = useState(theme);
 
   const intl = useIntl();
   const title = intl.formatMessage({ id: 'navigation.theme.title' });
 
-  const handleClick = (): void => {
-    setIsSun((prevState) => !prevState);
-    dispatch(setDarkMode(!prefersDarkMode));
+  const handleThemeSwitch = (): void => {
+    setIsDarkMode((prevState) => !prevState);
+    dispatch(setDarkMode(!theme));
   };
 
-  isSun
-    ? (document.body.style.background = 'rgb(171, 171, 171)')
-    : (document.body.style.background = 'rgb(28, 28, 28)');
+  isDarkMode
+    ? (document.body.style.background = 'rgb(28, 28, 28)')
+    : (document.body.style.background = 'rgb(171, 171, 171)');
 
   return (
-    <button className="focus:outline-none" onClick={handleClick} title={title}>
-      {isSun ? <MoonIcon className="icon" /> : <SunIcon className="icon" />}
+    <button className="focus:outline-none" onClick={handleThemeSwitch} title={title}>
+      {isDarkMode ? <SunIcon className="icon" /> : <MoonIcon className="icon" />}
     </button>
   );
 }
