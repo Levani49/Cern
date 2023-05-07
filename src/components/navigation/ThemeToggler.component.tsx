@@ -21,7 +21,7 @@ export default function ThemeToggler(): JSX.Element {
   };
 
   isSun
-    ? (document.body.style.background = 'rgb(210, 210, 210)')
+    ? (document.body.style.background = 'rgb(171, 171, 171)')
     : (document.body.style.background = 'rgb(28, 28, 28)');
 
   return (
