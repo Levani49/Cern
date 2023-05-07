@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ReactComponent as MoonIcon } from '../../assets/svg/moon.svg';
@@ -9,15 +8,13 @@ import { selectTheme, setDarkMode } from '../../features/global/globalsSlice';
 
 export default function ThemeToggler(): JSX.Element {
   const dispatch = useAppDispatch();
-  const theme = useAppSelector(selectTheme);
-  const [isDarkMode, setIsDarkMode] = useState(theme);
+  const isDarkMode = useAppSelector(selectTheme);
 
   const intl = useIntl();
   const title = intl.formatMessage({ id: 'navigation.theme.title' });
 
   const handleThemeSwitch = (): void => {
-    setIsDarkMode((prevState) => !prevState);
-    dispatch(setDarkMode(!theme));
+    dispatch(setDarkMode(!isDarkMode));
   };
 
   isDarkMode
