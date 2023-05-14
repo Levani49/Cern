@@ -10,9 +10,6 @@ export interface EventsSlice {
     tracks: boolean;
     jets: boolean;
     met: boolean;
-    cells: boolean;
-    clusters: boolean;
-    hits: boolean;
   };
   event: EventDetailsXML | null;
   isLoading: boolean;

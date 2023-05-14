@@ -22,10 +22,7 @@ const initialState: EventsSlice = {
   eventsToShow: {
     tracks: true,
     jets: true,
-    met: false,
-    cells: false,
-    clusters: false,
-    hits: false,
+    met: true,
   },
   event: null,
   isLoading: false,

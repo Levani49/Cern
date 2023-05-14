@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useAppSelector } from '../../../app/hooks';
-import { selectEvent } from '../../../features/event/eventSlice';
+import { selectEvent, selectEventParameters } from '../../../features/event/eventSlice';
 import MetService from '../../../model/event/met/met.model';
 
 const metService = new MetService();
 
 export default function Met(): JSX.Element {
   const event = useAppSelector(selectEvent);
+  const eventParameters = useAppSelector(selectEventParameters);
   const lineRef = useRef(null);
 
   useEffect(() => {
@@ -15,7 +16,7 @@ export default function Met(): JSX.Element {
       // @ts-ignore
       lineRef.current.computeLineDistances();
     }
-  }, []);
+  }, [lineRef, event]);
 
   const metToDraw = useMemo(() => {
     if (event) {
@@ -29,7 +30,7 @@ export default function Met(): JSX.Element {
     return null;
   }, [event]);
 
-  if (metToDraw) {
+  if (metToDraw && eventParameters.met) {
     return (
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
