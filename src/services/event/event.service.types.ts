@@ -16,6 +16,7 @@ export interface EventDetailsXML {
     '@_version': string;
     Track: Track | Track[];
     Jet: Jet | Jet[];
+    ETMis: Met | Met[];
   };
 }
 
@@ -55,6 +56,14 @@ export type Jet = {
   px: number | string;
   py: number | string;
   pz: number | string;
+};
+
+export type Met = {
+  '@_count': number;
+  '@_storeGateKey': string;
+  et: number;
+  etx: number;
+  ety: number;
 };
 
 type AdditionalInfo = {

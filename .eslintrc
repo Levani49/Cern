@@ -86,7 +86,9 @@
               "linecap",
               "linejoin",
               "geometry",
-              "quaternion"
+              "quaternion",
+              "dashSize",
+              "gapSize"
             ]
           }
         ]
