@@ -15,7 +15,7 @@ import FileActions from './fileActions/FileActions.component';
 import InfoTool from './analysisTools/info/InfoTool.component';
 import AlgorithmTool from './analysisTools/algorithm/AlgorithmTool.component';
 import FilterTool from './analysisTools/filter/FilterTool.component';
-import { selectEventGeneralInfo } from '../../../features/event/eventSlice';
+import { selectLoadedEvents } from '../../../features/event/eventSlice';
 
 /**
  * Renders an InfoModal component that displays information about employees in a modal window.
@@ -27,7 +27,7 @@ import { selectEventGeneralInfo } from '../../../features/event/eventSlice';
 export default function EventsModal(): JSX.Element {
   const dispatch = useAppDispatch();
   const show = useAppSelector(selectEventsModalState);
-  const info = useAppSelector(selectEventGeneralInfo);
+  const loadedEvents = useAppSelector(selectLoadedEvents);
 
   const currentAnalysisTool = useAppSelector(selectCurrentEventAnalysisTool);
 
@@ -42,19 +42,27 @@ export default function EventsModal(): JSX.Element {
     dispatch(showEventsModal(false));
   };
 
-  const renderCurrentTool = (): JSX.Element => {
+  const renderCurrentTool = (): JSX.Element | JSX.Element[] => {
     switch (memoizedAnalysisTool) {
       case 'info':
         return (
-          <InfoTool
-            show={true}
-            eventName="E 05/50"
-            num={info.eventNumber}
-            lumiBlocks={info.lumiBlock}
-            runNumber={info.runNumber}
-            date={info.date}
-            time={info.time}
-          />
+          <div className="flex flex-col gap-1">
+            {[...loadedEvents].reverse().map((event, index): JSX.Element => {
+              return (
+                <InfoTool
+                  showEventDetails={index === 0}
+                  key={index}
+                  eventName={event.eventName}
+                  num={event.eventNumber}
+                  lumiBlocks={event.lumiBlock}
+                  runNumber={event.runNumber}
+                  date={event.date}
+                  time={event.time}
+                />
+              );
+            })}
+            <span className="text-right text-xs mr-3">Loaded events {loadedEvents.length}</span>
+          </div>
         );
       case 'algorithm':
         return <AlgorithmTool />;

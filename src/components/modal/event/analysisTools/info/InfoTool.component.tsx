@@ -2,10 +2,11 @@ import { useIntl } from 'react-intl';
 
 import { ReactComponent as PlusCircleIcon } from '../../../../../assets/svg/plusCircleIcon.svg';
 import EventLine from './EventLine.component';
+import { useEffect, useState } from 'react';
 
 interface Props {
-  show: boolean;
   eventName: string;
+  showEventDetails: boolean;
   num: string;
   lumiBlocks: string;
   runNumber: string;
@@ -14,15 +15,22 @@ interface Props {
 }
 
 export default function InfoTool({
-  show,
   eventName,
+  showEventDetails,
   num,
   lumiBlocks,
   runNumber,
   date,
   time,
 }: Props): JSX.Element {
+  const [show, setShow] = useState(false);
   const intl = useIntl();
+
+  useEffect(() => {
+    if (showEventDetails) {
+      setShow(true);
+    }
+  }, [showEventDetails]);
 
   const infoTitle = intl.formatMessage({ id: 'modal.events.info.name' });
   const infoNumber = intl.formatMessage({ id: 'modal.events.info.number' });
@@ -31,9 +39,9 @@ export default function InfoTool({
   const eventDate = intl.formatMessage({ id: 'modal.events.info.date' });
 
   return (
-    <div className={`${!show && 'hidden'} ml-2`}>
+    <div className="mt-1">
       <div className="flex gap-2 items-center">
-        <PlusCircleIcon className="icon" />
+        <PlusCircleIcon className="icon" onClick={(): void => setShow((prev) => !prev)} />
         <span className="text-blue text-xs">{`${infoTitle} ${eventName}`}</span>
       </div>
       <div className={`${!show && 'hidden'}`}>
