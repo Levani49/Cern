@@ -42,7 +42,7 @@ export default function InfoTool({
     <div className="mt-1">
       <div className="flex gap-2 items-center">
         <PlusCircleIcon className="icon" onClick={(): void => setShow((prev) => !prev)} />
-        <span className="text-blue text-xs">{`${infoTitle} ${eventName}`}</span>
+        <span className="dark:text-green text-blue text-xs">{`${infoTitle} ${eventName}`}</span>
       </div>
       <div className={`${!show && 'hidden'}`}>
         <EventLine titleLabel={infoNumber} title={num} />
