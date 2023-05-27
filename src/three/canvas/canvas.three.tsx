@@ -12,11 +12,10 @@ import Lights from '../light/Light.three';
 import Fog from '../fog/Fog.three';
 import StatsDispatcher from '../stats/Stats.three';
 import Background from '../background/Background.three';
-import Camera from '../camera/Camera.three';
+import Camera from '../camera/OrthographicCamera.three';
 import ErrorHandler from '../../components/error/ErrorHandler.component';
 
 const Detector = lazy(() => import('../controls/Detector.three'));
-// const Environment = lazy(() => import('../environment/Environment.three'));
 const ParticleSystem = lazy(() => import('../particle-system/ParticleSystem'));
 const Controls = lazy(() => import('../controls/Controls.three'));
 const Axis = lazy(() => import('../axis/Axis.three'));
@@ -50,6 +49,7 @@ export default function Scene(): JSX.Element {
         }}
         linear
         frameloop="demand"
+        id="canvas"
       >
         <Physics gravity={[0, 0, 0]}>
           <Suspense fallback={null}>
