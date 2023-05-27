@@ -14,16 +14,16 @@ export default function FilterTool(): JSX.Element {
     <div className="flex justify-between flex-col gap-2 p-2">
       <div className="flex flex-col w-full gap-2 md:flex-row md:justify-between">
         <FilterContainer title={tracks}>
-          <FilterInput />
-          <FilterInput />
-          <FilterInput />
-          <FilterInput />
+          <FilterInput filterProp="φ" />
+          <FilterInput filterProp="η" />
+          <FilterInput filterProp="Pt" />
+          <FilterInput filterProp="θ" />
         </FilterContainer>
         <FilterContainer title={jets}>
-          <FilterInput />
-          <FilterInput />
-          <FilterInput />
-          <FilterInput />
+          <FilterInput filterProp="φ" />
+          <FilterInput filterProp="η" />
+          <FilterInput filterProp="Et" />
+          <FilterInput filterProp="θ" />
         </FilterContainer>
       </div>
       <ShowOnly />
