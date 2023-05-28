@@ -27,12 +27,30 @@ const initialState: EventsSlice = {
   },
   event: null,
   isLoading: false,
+  trackFilter: {
+    phi: undefined,
+    eta: undefined,
+    theta: undefined,
+    pt: undefined,
+  },
+  jetFilter: {
+    phi: undefined,
+    eta: undefined,
+    theta: undefined,
+    et: undefined,
+  },
 };
 
 const eventSlice = createSlice({
   name: 'event',
   initialState,
   reducers: {
+    setTrackFilters: (state, action: PayloadAction<EventsSlice['trackFilter']>) => {
+      state.trackFilter = action.payload;
+    },
+    setJetFilters: (state, action: PayloadAction<EventsSlice['jetFilter']>) => {
+      state.jetFilter = action.payload;
+    },
     setEventDetailsXML: (state, action: PayloadAction<EventDetailsXML>) => {
       const eventGeneralInfo = eventService.getEventGeneralInfo(action.payload);
       const eventName = `${state.eventNumber.eventGroup} ${state.eventNumber.eventIndex}/50`;
@@ -54,8 +72,14 @@ const eventSlice = createSlice({
 });
 
 export default eventSlice.reducer;
-export const { setEventDetailsXML, setEventNumber, setEventLoading, setEventParameters } =
-  eventSlice.actions;
+export const {
+  setEventDetailsXML,
+  setEventNumber,
+  setEventLoading,
+  setEventParameters,
+  setTrackFilters,
+  setJetFilters,
+} = eventSlice.actions;
 export const selectEventGeneralInfo = (state: RootState): EventOverviewData =>
   state.event.eventGeneralInfo;
 
@@ -67,3 +91,8 @@ export const selectEventNumber = (state: RootState): EventsSlice['eventNumber'] 
   state.event.eventNumber;
 
 export const selectLoadedEvents = (state: RootState): LoadedEvents[] => state.event.loadedEvents;
+
+export const selectTrackFilter = (state: RootState): EventsSlice['trackFilter'] =>
+  state.event.trackFilter;
+export const selectJetFilter = (state: RootState): EventsSlice['jetFilter'] =>
+  state.event.jetFilter;

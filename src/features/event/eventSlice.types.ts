@@ -18,4 +18,16 @@ export interface EventsSlice {
   };
   event: EventDetailsXML | null;
   isLoading: boolean;
+  trackFilter: {
+    phi: string | undefined;
+    eta: string | undefined;
+    pt: string | undefined;
+    theta: string | undefined;
+  };
+  jetFilter: {
+    phi: string | undefined;
+    eta: string | undefined;
+    et: string | undefined;
+    theta: string | undefined;
+  };
 }

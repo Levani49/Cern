@@ -1,13 +1,21 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 
 interface Props {
   filterProp: string;
+  onChangeHandler: (key: string, value: string) => void;
+  filter: string;
+  value: string | undefined;
 }
 
-const numberPattern = /^[0-9]*\.?[0-9]*$/;
+const numberPattern = /^-?[0-9]*\.?[0-9]*$/;
 
-export default function FilterInput({ filterProp }: Props): JSX.Element {
-  const [value, setValue] = useState<undefined | string>('');
+export default function FilterInput({
+  filterProp,
+  filter,
+  value,
+  onChangeHandler,
+}: Props): JSX.Element {
+  // const [value, setValue] = useState<undefined | string>('');
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const inputValue = event.target.value;
@@ -15,9 +23,9 @@ export default function FilterInput({ filterProp }: Props): JSX.Element {
 
     if (isValid) {
       if (inputValue.indexOf('.') === 0) {
-        setValue('0' + inputValue);
+        onChangeHandler(filter, '0' + inputValue);
       } else {
-        setValue(inputValue);
+        onChangeHandler(filter, inputValue);
       }
     }
   };
@@ -30,7 +38,7 @@ export default function FilterInput({ filterProp }: Props): JSX.Element {
       <input
         className="text-light flex-grow ml-[-3px] mt-[1px] w-24 rounded-t-sm text-sm border border-transparentGray bg-transparentLight py-[0.1rem] px-[0.25rem] outline-none md:flex-grow-0"
         onChange={handleInputChange}
-        value={value}
+        value={value ? value : ''}
       />
     </div>
   );
