@@ -1,5 +1,3 @@
-import { ReactComponent as MenuLogo } from '../../assets/svg/menu.svg';
-
 import GeometryCutsMenu from './GeometryCutsMenu.component';
 import FullScreenMenu from './FullScreenMenu.component';
 import CameraViewMenu from './CameraViewMenu.component';
@@ -9,11 +7,11 @@ import EventsMenu from './EventsMenu.component';
 import DroneMenu from './DroneMenu.component';
 import AboutMenu from './AboutMenu.component';
 import StatsMenu from './StatsMenu.component';
-import MenuIcon from './MenuIcon.component';
 import AxisMenu from './AxisMenu.component';
 import GridMenu from './GridMenu.component';
 import WireframeMenu from './WireframeMenu.component';
 import CameraMenu from './CameraMenu.component';
+import GeometryMenu from './GeometryMenu.component';
 
 /**
  * Renders a Navigation component that displays the app's navigation menu.
@@ -29,7 +27,7 @@ export default function Navigation(): JSX.Element {
         <h1 className="text-light font-medium text-base">
           <span className="text-blue  dark:text-green text-lg">T</span>CORE
         </h1>
-        <MenuIcon Icon={MenuLogo} title="Geometry menu" />
+        <GeometryMenu />
         <EventsMenu />
         <DroneMenu />
         <CameraViewMenu />
