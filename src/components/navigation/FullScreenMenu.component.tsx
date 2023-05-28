@@ -7,6 +7,12 @@ import MenuIcon from './MenuIcon.component';
 import { useAppSelector } from '../../app/hooks';
 import { selectDroneState } from '../../features/camera/cameraSlice';
 
+function isFullscreenSupported(): boolean {
+  const bodyElement = document.documentElement as HTMLElement;
+
+  return !!bodyElement.requestFullscreen;
+}
+
 export default function FullScreenMenu(): JSX.Element {
   const [active, setActive] = useState<boolean>(false);
   const intl = useIntl();
@@ -36,6 +42,10 @@ export default function FullScreenMenu(): JSX.Element {
       setActive(false);
     }
   };
+
+  if (!isFullscreenSupported()) {
+    return <></>;
+  }
 
   return (
     <MenuIcon
