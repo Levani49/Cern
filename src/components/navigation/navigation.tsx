@@ -12,6 +12,7 @@ import GridMenu from './GridMenu.component';
 import WireframeMenu from './WireframeMenu.component';
 import CameraMenu from './CameraMenu.component';
 import GeometryMenu from './GeometryMenu.component';
+import SnapMenu from './SnapMenu.component';
 
 /**
  * Renders a Navigation component that displays the app's navigation menu.
@@ -39,6 +40,7 @@ export default function Navigation(): JSX.Element {
         <GridMenu />
         <CameraMenu />
         <ThemeToggler />
+        <SnapMenu />
         <FullScreenMenu />
         <AboutMenu />
       </nav>
