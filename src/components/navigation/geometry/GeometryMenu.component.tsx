@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { ReactComponent as MenuLogo } from '../../../assets/svg/menu.svg';
 import { selectGeometryMenu, setGeometryMenu } from '../../../features/global/globalsSlice';
 
-import NavIcon from '../navIcon/navIcon.component';
+import NavIcon from '../navIcon/navIcon';
 
 export default function GeometryMenu(): JSX.Element {
   const dispatch = useAppDispatch();

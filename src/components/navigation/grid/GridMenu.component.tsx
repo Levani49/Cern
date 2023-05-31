@@ -3,7 +3,7 @@ import { ReactComponent as GlobeEuropeAfricaIcon } from '../../../assets/svg/glo
 import { selectGrid, showGrid } from '../../../features/global/globalsSlice';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
-import NavIcon from '../navIcon/navIcon.component';
+import NavIcon from '../navIcon/navIcon';
 
 export default function GridMenu(): JSX.Element {
   const dispatch = useAppDispatch();

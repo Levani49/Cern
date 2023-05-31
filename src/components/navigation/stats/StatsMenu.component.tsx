@@ -3,7 +3,7 @@ import { ReactComponent as ChartBarIcon } from '../../../assets/svg/chartBarIcon
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { selectStats, showRendererStats } from '../../../features/global/globalsSlice';
 
-import NavIcon from '../navIcon/navIcon.component';
+import NavIcon from '../navIcon/navIcon';
 
 export default function StatsMenu(): JSX.Element {
   const dispatch = useAppDispatch();

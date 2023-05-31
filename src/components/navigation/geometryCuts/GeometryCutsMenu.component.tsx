@@ -13,7 +13,7 @@ import {
   updateModelCut,
 } from '../../../features/model/modelSlice';
 
-import NavIcon from '../navIcon/NavIcon.component';
+import NavIcon from '../navIcon/navIcon';
 import MenuDropdown from '../dropdown/MenuDropdown.component';
 
 import type { ModelCut } from '../../../types/app.types';

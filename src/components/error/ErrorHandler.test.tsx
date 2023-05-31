@@ -1,14 +1,10 @@
 import { ReactNode } from 'react';
-import { IntlProvider } from 'react-intl';
 import { render, screen } from '@testing-library/react';
 
 import ErrorHandler from './ErrorHandler.component';
-import { messages } from './errorHandlerMockedData';
 
 const MockedErrorHandler = ({ children }: { children: ReactNode | ReactNode[] }): JSX.Element => (
-  <IntlProvider locale="en" messages={messages}>
-    <ErrorHandler>{children}</ErrorHandler>
-  </IntlProvider>
+  <ErrorHandler>{children}</ErrorHandler>
 );
 
 function ThrowErrorComponent({ test }: { test: boolean }): JSX.Element {

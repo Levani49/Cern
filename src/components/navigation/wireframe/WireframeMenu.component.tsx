@@ -9,7 +9,7 @@ import {
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
-import NavIcon from '../navIcon/navIcon.component';
+import NavIcon from '../navIcon/navIcon';
 
 export default function WireframeMenu(): JSX.Element {
   const dispatch = useAppDispatch();

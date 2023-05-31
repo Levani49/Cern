@@ -10,7 +10,7 @@ import {
 } from '../../../features/model/modelSlice';
 
 import MenuDropdown from '../dropdown/MenuDropdown.component';
-import NavIcon from '../navIcon/navIcon.component';
+import NavIcon from '../navIcon/navIcon';
 
 export default function OpacirtyMenu(): JSX.Element {
   const dispatch = useAppDispatch();

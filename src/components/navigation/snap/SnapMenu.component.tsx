@@ -1,4 +1,4 @@
-import NavIcon from '../navIcon/navIcon.component';
+import NavIcon from '../navIcon/navIcon';
 
 import { ReactComponent as SnapIcon } from '../../../assets/svg/snap.svg';
 import SnapModal from '../../modal/snap/Snap.modal';

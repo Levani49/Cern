@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ReactComponent as ArrowsPointingOutIcon } from '../../../assets/svg/arrowsPointingOut.svg';
 
-import NavIcon from '../navIcon/navIcon.component';
+import NavIcon from '../navIcon/navIcon';
 
 import { useAppSelector } from '../../../app/hooks';
 import { selectDroneState } from '../../../features/camera/cameraSlice';

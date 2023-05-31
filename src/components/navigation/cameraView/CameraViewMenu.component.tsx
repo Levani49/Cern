@@ -11,7 +11,7 @@ import {
   setRightCameraView,
 } from '../../../features/camera/cameraSlice';
 
-import NavIcon from '../navIcon/navIcon.component';
+import NavIcon from '../navIcon/navIcon';
 import MenuDropdown from '../dropdown/MenuDropdown.component';
 
 export default function CameraViewMenu(): JSX.Element {

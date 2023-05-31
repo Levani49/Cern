@@ -18,7 +18,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import type { SVGIcon, DroneTypes } from '../../../types/app.types';
 
 import MenuDropdown from '../dropdown/MenuDropdown.component';
-import NavIcon from '../navIcon/navIcon.component';
+import NavIcon from '../navIcon/navIcon';
 import SvgIcon from '../../svg-icon/SvgIcon.component';
 import Button from '../../button/Button.component';
 import { isDesktop } from '../../../utils/isDesktop.utils';
