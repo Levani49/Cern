@@ -37,14 +37,12 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
         const stateJSON = reader.result as string;
         const newState = JSON.parse(stateJSON);
 
-        store.dispatch({ type: 'globals/rehydrate', payload: newState });
-        store.dispatch({ type: 'renderer/rehydrate', payload: newState });
-        store.dispatch({ type: 'camera/rehydrate', payload: newState });
-        store.dispatch({ type: 'modal/rehydrate', payload: newState });
-        store.dispatch({ type: 'tree/rehydrate', payload: newState });
-        store.dispatch({ type: 'model/rehydrate', payload: newState });
-        store.dispatch({ type: 'event/rehydrate', payload: newState });
+        for (const [key] of Object.entries(newState)) {
+          // rehydrate each slice of store
+          store.dispatch({ type: `${key}/rehydrate`, payload: newState });
+        }
       };
+
       reader.readAsText(file);
     }
     event.target.value = '';

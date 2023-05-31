@@ -22,7 +22,7 @@ export default class ModelService {
     });
   }
 
-  applyDefaults(model: Object3D, name: string, opacity = 1): void {
+  applyDefaults(model: Object3D, name: string, opacity = 1, wireframe = false): void {
     model.name = name;
     model.traverse((child: Object3D): void => {
       if (child instanceof Mesh) {
@@ -30,6 +30,7 @@ export default class ModelService {
         child.material.metalness = 0;
         child.material.transparent = true;
         child.material.opacity = opacity;
+        child.material.wireframe = wireframe;
       }
     });
   }
