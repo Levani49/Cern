@@ -15,12 +15,16 @@ const initialState: GlobalsSlice = {
   previousSelectedModel: null,
   globalOpacity: 1,
   showGeometryMenu: true,
+  showSnapModal: false,
 };
 
 const globalsSlice = createSlice({
   name: 'globals',
   initialState,
   reducers: {
+    setSnapModal: (state, action: PayloadAction<boolean>) => {
+      state.showSnapModal = action.payload;
+    },
     setGeometryMenu: (state, action: PayloadAction<boolean>) => {
       state.showGeometryMenu = action.payload;
     },
@@ -68,8 +72,10 @@ export const {
   setGlobalOpacity,
   setGlobalWireframe,
   setGeometryMenu,
+  setSnapModal,
 } = globalsSlice.actions;
 
+export const selectSnapModal = (state: RootState): boolean => state.globals.showSnapModal;
 export const selectGeometryMenu = (state: RootState): boolean => state.globals.showGeometryMenu;
 export const selectTheme = (state: RootState): boolean => state.globals.prefersDarkMode;
 export const selectStats = (state: RootState): boolean => state.globals.showStats;
