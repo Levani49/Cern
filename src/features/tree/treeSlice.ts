@@ -24,6 +24,9 @@ export const geometrySlice = createSlice({
   name: 'tree',
   initialState,
   reducers: {
+    rehydrate: (state, action) => {
+      return action.payload.tree || state;
+    },
     updateParentNodeState: (state, action: UpdateNodePayloadAction) => {
       const { nodeId, propToChange, value, restrictAncestorsUpdate } = action.payload;
 

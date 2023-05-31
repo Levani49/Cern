@@ -45,6 +45,9 @@ const eventSlice = createSlice({
   name: 'event',
   initialState,
   reducers: {
+    rehydrate: (state, action) => {
+      return action.payload.event || state;
+    },
     setTrackFilters: (state, action: PayloadAction<EventsSlice['trackFilter']>) => {
       state.trackFilter = action.payload;
     },
@@ -79,6 +82,7 @@ export const {
   setEventParameters,
   setTrackFilters,
   setJetFilters,
+  rehydrate,
 } = eventSlice.actions;
 export const selectEventGeneralInfo = (state: RootState): EventOverviewData =>
   state.event.eventGeneralInfo;

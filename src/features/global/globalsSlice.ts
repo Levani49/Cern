@@ -22,6 +22,9 @@ const globalsSlice = createSlice({
   name: 'globals',
   initialState,
   reducers: {
+    rehydrate: (state, action) => {
+      return action.payload.globals || state;
+    },
     setSnapModal: (state, action: PayloadAction<boolean>) => {
       state.showSnapModal = action.payload;
     },

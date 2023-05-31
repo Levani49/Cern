@@ -8,7 +8,7 @@ import treeReducer from '../features/tree/treeSlice';
 import modelReducer from '../features/model/modelSlice';
 import eventReducer from '../features/event/eventSlice';
 
-export const rootReducer = combineReducers({
+const combinedReducers = {
   globals: globalsReducer,
   renderer: infoReducer,
   camera: cameraReducer,
@@ -16,7 +16,9 @@ export const rootReducer = combineReducers({
   tree: treeReducer,
   model: modelReducer,
   event: eventReducer,
-});
+};
+
+export const rootReducer = combineReducers(combinedReducers);
 
 const store = configureStore({
   reducer: rootReducer,
@@ -25,5 +27,4 @@ const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
 export default store;

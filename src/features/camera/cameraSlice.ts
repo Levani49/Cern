@@ -19,47 +19,29 @@ const initialState: ICameraSettings = {
   viewMode: 'default',
 };
 
-/**
- * A Redux slice that manages the state of the Camera.
- *
- * @module infoSlice
- */
 export const cameraSlice = createSlice({
   name: 'camera',
   initialState,
   reducers: {
-    /**
-     * The shape of the settings state.
-     *
-     * @param state
-     * @typedef {object} SettingsState
-     * @property {boolean} show - Whether the settings modal is shown or not.
-     */
+    rehydrate: (state, action) => {
+      return action.payload.camera || state;
+    },
+
     setLeftCameraView: (state) => {
       state.position = [0, 0, 5];
       state.viewMode = 'left';
     },
-    /**
-     *
-     * @param state
-     */
+
     setRightCameraView: (state) => {
       state.position = [5, 0.5, 0];
       state.viewMode = 'right';
     },
-    /**
-     *
-     * @param state
-     */
+
     setDefaultView: (state) => {
       state.position = [3, 3, 4];
       state.viewMode = 'default';
     },
-    /**
-     *
-     * @param state
-     * @param action
-     */
+
     setDroneMode: (state, action: PayloadAction<DroneTypes>) => {
       state.droneType = action.payload;
       const handleFinish = (): boolean => ee.emit('stop');
