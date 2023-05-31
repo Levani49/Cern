@@ -5,12 +5,6 @@ import {
   setFlyModalState,
 } from '../../../features/camera/cameraSlice';
 
-/**
- * A component that displays an overlay with instructions for controlling the drone camera
- * when in free-fly mode.
- *
- * @returns {JSX.Element} A JSX element that displays the overlay.
- */
 export default function FlyOverlay(): JSX.Element {
   const dispatch = useAppDispatch();
 
@@ -21,12 +15,6 @@ export default function FlyOverlay(): JSX.Element {
 
   const isFreeFLy = droneMode === 'fly';
 
-  /**
-   * Handles the user clicking on the overlay. Dispatches an action to set the `showFlyModal`
-   * state to false.
-   *
-   * @returns {void} void
-   */
   const handleClick = (): void => {
     dispatch(setFlyModalState(false));
   };

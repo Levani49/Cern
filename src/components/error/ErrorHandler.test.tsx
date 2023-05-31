@@ -37,6 +37,8 @@ describe('ErrorHandler component', () => {
       </MockedErrorHandler>,
     );
 
-    expect(await screen.findByText('Error occurred')).toBeInTheDocument();
+    expect(
+      await screen.findByText("Oops! Something went wrong. We're working to fix it."),
+    ).toBeInTheDocument();
   });
 });

@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { selectModelModal, setModelModal } from '../../../features/model/modelSlice';
 import useSelectedModel from '../../../hooks/useSelectedModel/useSelectedModel';
-import Modal from '../Modal';
+import Modal from '../Modal.component';
 import ModelAttribute from './ModelAttribute.component';
 
 export default function ModelInfo(): JSX.Element {

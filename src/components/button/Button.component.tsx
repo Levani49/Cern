@@ -1,12 +1,10 @@
-import { ButtonProps } from './button.types';
+import type { ReactChildren } from '../../types/app.types';
 
-/**
- * Renders a button component with hover and transition effects.
- *
- * @param {object} props - The component props.
- * @param {React.ReactNode} props.children - The content to display inside the button.
- * @returns {JSX.Element} A React component for the button.
- */
+export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+  children: ReactChildren;
+  disabled?: boolean;
+}
+
 export default function Button({ children, ...props }: ButtonProps): JSX.Element {
   return (
     <button

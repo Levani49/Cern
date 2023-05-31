@@ -1,12 +1,10 @@
 import { lazy, Suspense } from 'react';
-import { IntlProvider } from 'react-intl';
 
 import Navigation from './components/navigation/navigation';
 import FlyOverlay from './components/three/fly-graph/FlyGraph.component';
 import Stats from './components/three/stats/Stats.component';
 import ModelInfo from './components/modal/modelInfo/ModelInfo.component';
 
-import { messages } from './translations/translations';
 import { useAppSelector } from './app/hooks';
 import { selectDroneState } from './features/camera/cameraSlice';
 
@@ -14,19 +12,11 @@ const Canvas = lazy(() => import('./three/canvas/canvas.three'));
 const Tree = lazy(() => import('./components/tree/tree/Tree.component'));
 const Logo = lazy(() => import('./components/logo/Logo.component'));
 
-/**
- * Entry point of the app
- *
- * @returns {JSX.Element} JSX Element.
- */
 function App(): JSX.Element {
   const droneMode = useAppSelector(selectDroneState);
 
-  const locale = navigator.language.split('-')[0];
-  const localeMessages = messages[locale];
-
   return (
-    <IntlProvider locale={locale} messages={localeMessages}>
+    <>
       <div className="flex">
         <Navigation />
       </div>
@@ -48,7 +38,7 @@ function App(): JSX.Element {
           <Logo />
         </Suspense>
       </div>
-    </IntlProvider>
+    </>
   );
 }
 

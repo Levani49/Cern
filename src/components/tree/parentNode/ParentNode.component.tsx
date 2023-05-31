@@ -1,10 +1,25 @@
 import { useCallback, useState } from 'react';
+
 import { useAppDispatch } from '../../../app/hooks';
 import { updateParentNodeState } from '../../../features/tree/treeSlice';
 
 import { ReactComponent as PlusCircleIcon } from '../../../assets/svg/plusCircleIcon.svg';
 import { ReactComponent as MinusCircleIcon } from '../../../assets/svg/minusCircleIcon.svg';
-import { IconMouseEv, MouseEv, ParentNodeProps } from './parentNode.types';
+
+import { GeometryState } from '../../../constants/geometryTree';
+
+export interface ParentNodeProps {
+  root?: boolean | undefined;
+  showChildren: boolean;
+  uid: string;
+  name: string;
+  modelState: GeometryState;
+  children: JSX.Element | JSX.Element[];
+  nodeEnd?: boolean | undefined;
+}
+
+export type MouseEv = React.MouseEvent<HTMLElement, MouseEvent>;
+export type IconMouseEv = React.MouseEvent<SVGSVGElement, MouseEvent>;
 
 const iconClass =
   'h-5 w-5 text-white stroke-1 hover:text-blue hover:dark:text-green transition-all cursor-pointer';

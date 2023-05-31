@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { useIntl } from 'react-intl';
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import {
@@ -7,23 +6,16 @@ import {
   selectEventsModalState,
   showEventsModal,
 } from '../../../features/modal/modalSlice';
-
-import Modal from '../Modal';
-import AnalysisTools from './analysisTools/AnalysisTools.component';
-import EventsResultsToggler from './event-objects/EventsResultsToggler.component';
-import FileActions from './fileActions/FileActions.component';
-import InfoTool from './analysisTools/info/InfoTool.component';
-import AlgorithmTool from './analysisTools/algorithm/AlgorithmTool.component';
-import FilterTool from './analysisTools/filter/FilterTool.component';
 import { selectLoadedEvents } from '../../../features/event/eventSlice';
 
-/**
- * Renders an InfoModal component that displays information about employees in a modal window.
- *
- * @function
- * @name InfoModal
- * @returns {JSX.Element} - A JSX element representing the InfoModal component.
- */
+import Modal from '../Modal.component';
+import FileActions from './fileActions/FileActions.component';
+import InfoTool from './analysisTools/info/InfoTool.component';
+import AnalysisTools from './analysisTools/AnalysisTools.component';
+import FilterTool from './analysisTools/filter/FilterTool.component';
+import AlgorithmTool from './analysisTools/algorithm/AlgorithmTool.component';
+import EventsResultsToggler from './event-objects/EventsResultsToggler.component';
+
 export default function EventsModal(): JSX.Element {
   const dispatch = useAppDispatch();
   const show = useAppSelector(selectEventsModalState);
@@ -34,9 +26,6 @@ export default function EventsModal(): JSX.Element {
   const memoizedAnalysisTool = useMemo(() => {
     return currentAnalysisTool;
   }, [currentAnalysisTool]);
-
-  const intl = useIntl();
-  const title = intl.formatMessage({ id: 'modal.events.title' });
 
   const closeModalHandler = (): void => {
     dispatch(showEventsModal(false));
@@ -76,7 +65,7 @@ export default function EventsModal(): JSX.Element {
   const currentTool = renderCurrentTool();
 
   return (
-    <Modal title={title} show={show} onCloseHandler={closeModalHandler}>
+    <Modal title="Events" show={show} onCloseHandler={closeModalHandler}>
       <div className="flex flex-col gap-6 rounded py-2 items-centers shadow">
         <FileActions />
         <EventsResultsToggler />

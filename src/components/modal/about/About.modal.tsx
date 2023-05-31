@@ -1,27 +1,16 @@
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { selectAboutModalState, showAboutModal } from '../../../features/modal/modalSlice';
 
-import Modal from '../Modal';
+import Modal from '../Modal.component';
 import Slot from './Slot.component';
 
 import { TEMP_INFO } from '../../../constants/TEMP_STATIC_DATA';
 import type { Employee } from '../../../types/app.types';
 
-/**
- * Renders an InfoModal component that displays information about employees in a modal window.
- *
- * @function
- * @name InfoModal
- * @returns {JSX.Element} - A JSX element representing the InfoModal component.
- */
 export default function AboutModal(): JSX.Element {
   const dispatch = useAppDispatch();
   const show = useAppSelector(selectAboutModalState);
 
-  /**
-   * @function
-   * handles to close modal
-   */
   const closeModalHandler = (): void => {
     dispatch(showAboutModal(false));
   };

@@ -1,18 +1,20 @@
-import { useIntl } from 'react-intl';
+import { ChangeEvent, useState } from 'react';
 
 import { ReactComponent as ArrowUpTrayIcon } from '../../../../assets/svg/arrowUpTrayIcon.svg';
 import { ReactComponent as ChevronLeftIcon } from '../../../../assets/svg/chervonLeftIcon.svg';
 import { ReactComponent as ChevronRightIcon } from '../../../../assets/svg/chervonRightIcon.svg';
 import { ReactComponent as FolderIcon } from '../../../../assets/svg/folderIcon.svg';
+
+import EventService from '../../../../services/event/event.service';
+
 import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
+
 import {
   selectEventIsLoading,
   selectEventNumber,
   setEventDetailsXML,
   setEventNumber,
 } from '../../../../features/event/eventSlice';
-import { ChangeEvent, useState } from 'react';
-import EventService from '../../../../services/event/event.service';
 
 import Select, { StylesConfig } from 'react-select';
 
@@ -98,9 +100,6 @@ export default function FileActions(): JSX.Element {
   const [eventNum, setEventNum] = useState({ eventGroup: 'F', eventIndex: 5 });
   const [showGroupSelection, setShowGroupSelection] = useState(false);
 
-  const intl = useIntl();
-  const group = intl.formatMessage({ id: 'modal.events.groupName' });
-
   const loadPreviousEvent = (): void => {
     const index = eventNumber.eventIndex === 1 ? 50 : eventNumber.eventIndex - 1;
 
@@ -178,7 +177,7 @@ export default function FileActions(): JSX.Element {
             <ChevronLeftIcon className="icon" />
           </button>
           <span className="text-xs text-light font-medium select-none">
-            {group} {eventNumber.eventGroup} {eventNumber.eventIndex.toString().padStart(2, '0')}/50
+            group {eventNumber.eventGroup} {eventNumber.eventIndex.toString().padStart(2, '0')}/50
           </span>
           <button disabled={isLoading} onClick={loadNextEvent}>
             <ChevronRightIcon className="icon" />

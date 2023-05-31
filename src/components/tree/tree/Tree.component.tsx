@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
+
 import { useAppSelector } from '../../../app/hooks';
 import { selectModelsLoadingState } from '../../../features/model/modelSlice';
-
 import { selectGeometryTree } from '../../../features/tree/treeSlice';
+import { selectGeometryMenu } from '../../../features/global/globalsSlice';
 
 import RecursiveTree from '../recursiveTree/RecursiveTree.component';
-import { selectGeometryMenu } from '../../../features/global/globalsSlice';
 
 export default function Tree(): JSX.Element {
   const isLoading = useAppSelector(selectModelsLoadingState);

@@ -7,13 +7,16 @@
     "JSX": true,
     "process": "readonly"
   },
-  "plugins": ["import", "react", "eslint-plugin-jsx-a11y", "@typescript-eslint", "jsdoc"],
+  "plugins": [
+    "import",
+    "react",
+    "eslint-plugin-jsx-a11y"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:jsdoc/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "eslint-config-prettier",
@@ -29,7 +32,10 @@
       "version": "detect"
     },
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
+      "@typescript-eslint/parser": [
+        ".ts",
+        ".tsx"
+      ]
     },
     "import/resolver": {
       "typescript": {
@@ -51,23 +57,13 @@
       }
     ],
     "@typescript-eslint/explicit-function-return-type": "error",
-    "import/no-unresolved": "error",
-    "jsdoc/require-jsdoc": [
-      "off",
-      {
-        "require": {
-          "ArrowFunctionExpression": true,
-          "ClassDeclaration": true,
-          "ClassExpression": true,
-          "FunctionDeclaration": true,
-          "MethodDefinition": true
-        }
-      }
-    ]
+    "import/no-unresolved": "error"
   },
   "overrides": [
     {
-      "files": ["**.three.tsx"],
+      "files": [
+        "**.three.tsx"
+      ],
       "rules": {
         "react/no-unknown-property": [
           "error",
