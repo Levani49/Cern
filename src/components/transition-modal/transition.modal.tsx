@@ -1,6 +1,6 @@
-import { Fragment, useRef } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import { ReactComponent as XMarkIcon } from '../../assets/svg/xMarkIcon.svg';
+import { Fragment, useRef } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import { ReactComponent as XMarkIcon } from "../../assets/svg/xMarkIcon.svg";
 
 interface Props {
   open: boolean;
@@ -9,7 +9,7 @@ interface Props {
   onClose: (e: boolean) => void;
 }
 
-export default function TestModal({ open, title, children, onClose }: Props): JSX.Element {
+export default function TransitionModal({ open, title, children, onClose }: Props): JSX.Element {
   const cancelButtonRef = useRef(null);
 
   return (
@@ -45,21 +45,23 @@ export default function TestModal({ open, title, children, onClose }: Props): JS
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-gray text-left shadow-xl transition-all sm:w-full sm:max-w-lg">
-                <div className="bg-gray px-4 pb-4 pt-5 sm:p-4 sm:pb-2 text-white">
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-customGray text-left shadow-xl transition-all sm:w-full sm:max-w-lg">
+                <div className="bg-customGray px-4 pb-4 pt-5 sm:p-4 sm:pb-2 text-white">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 sm:mt-0 sm:text-left w-full">
                       <div className="flex justify-center w-full">
                         <Dialog.Title
                           as="h3"
-                          className="text-base font-semibold leading-6 text-lg text-center text-gray-500  text-gray-900"
+                          className="text-base font-semibold leading-6 text-lg text-center text-white"
                         >
                           {title}
                         </Dialog.Title>
-                        <XMarkIcon
-                          className="h-6 ml-auto cursor-pointer"
-                          onClick={(): void => onClose(false)}
-                        />
+                        <div className="ml-auto p-1 bg-[#3d3d3d] rounded hover:bg-[#4d4d4d] transition-all">
+                          <XMarkIcon
+                            className="h-6 cursor-pointer"
+                            onClick={(): void => onClose(false)}
+                          />
+                        </div>
                       </div>
                       {children}
                     </div>

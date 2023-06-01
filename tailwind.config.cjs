@@ -10,7 +10,7 @@ module.exports = {
         light: "#dfe6e9",
         blue: "#6ea8fe",
         green: "rgb(64, 207, 142)",
-        gray: "rgb(38,38,38)",
+        customGray: "rgb(38,38,38)",
         transparentLight: "rgb(8 8 8 / 24%)",
         transparentDark: "#0e0e0e78",
         transparentBackground: "rgba(8, 8, 8, 0.24)",

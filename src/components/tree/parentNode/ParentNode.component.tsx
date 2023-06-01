@@ -1,12 +1,12 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 
-import { useAppDispatch } from '../../../app/hooks';
-import { updateParentNodeState } from '../../../features/tree/treeSlice';
+import { useAppDispatch } from "../../../app/hooks";
+import { updateParentNodeState } from "../../../features/tree/treeSlice";
 
-import { ReactComponent as PlusCircleIcon } from '../../../assets/svg/plusCircleIcon.svg';
-import { ReactComponent as MinusCircleIcon } from '../../../assets/svg/minusCircleIcon.svg';
+import { ReactComponent as PlusCircleIcon } from "../../../assets/svg/plusCircleIcon.svg";
+import { ReactComponent as MinusCircleIcon } from "../../../assets/svg/minusCircleIcon.svg";
 
-import { GeometryState } from '../../../constants/geometryTree';
+import { GeometryState } from "../../../constants/geometryTree";
 
 export interface ParentNodeProps {
   root?: boolean | undefined;
@@ -22,7 +22,7 @@ export type MouseEv = React.MouseEvent<HTMLElement, MouseEvent>;
 export type IconMouseEv = React.MouseEvent<SVGSVGElement, MouseEvent>;
 
 const iconClass =
-  'h-5 w-5 text-white stroke-1 hover:text-blue hover:dark:text-green transition-all cursor-pointer';
+  "h-5 w-5 text-white stroke-1 hover:text-blue hover:dark:text-green transition-all cursor-pointer";
 
 export default function ParentNode({
   uid,
@@ -39,11 +39,11 @@ export default function ParentNode({
   const onClickHandler = useCallback(
     (e: MouseEv): void => {
       e.stopPropagation();
-      const state = modelState === 'isLoaded' ? 'notLoaded' : 'isLoaded';
+      const state = modelState === "isLoaded" ? "notLoaded" : "isLoaded";
       dispatch(
         updateParentNodeState({
           nodeId: uid,
-          propToChange: 'state',
+          propToChange: "state",
           value: state,
           restrictAncestorsUpdate: false,
         }),
@@ -58,20 +58,20 @@ export default function ParentNode({
   };
 
   const innerState =
-    modelState === 'isLoaded'
-      ? 'text-green'
-      : modelState === 'partialyLoaded'
-      ? 'text-yellow-500'
-      : 'text-white';
+    modelState === "isLoaded"
+      ? "text-green"
+      : modelState === "partialyLoaded"
+      ? "text-yellow-500"
+      : "text-white";
 
   const styles = `border-l-[1px] border-transparent text-left transition before:relative before:inline-block before:w-[15px] before:left-[-1px] before:align-middle before:border before:border-t-[0.5px] before:text-white before:align-middle ${
-    nodeEnd ? 'last-event-line' : ''
-  } ${root && 'before:!text-transparent'}`;
+    nodeEnd ? "last-event-line" : ""
+  } ${root && "before:opacity-0"}`;
 
   return (
     <li
-      className={`border-solid ${!nodeEnd && 'border-l-[1px] border-white'} ${
-        root && 'border-none'
+      className={`border-solid ${!nodeEnd && "border-l-[1px] border-white"} ${
+        root && "border-none"
       }`}
     >
       <div className={`flex items-center text-xs relative whitespace-nowrap py-[1px] ${styles}`}>
@@ -89,7 +89,7 @@ export default function ParentNode({
           {name}
         </span>
       </div>
-      <ul className={`p-0 ml-[1.6rem] mt-[-2px]  block ${!show && 'hidden'}`}>{children}</ul>
+      <ul className={`p-0 ml-[1.6rem] mt-[-2px]  block ${!show && "hidden"}`}>{children}</ul>
     </li>
   );
 }

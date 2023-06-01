@@ -25,7 +25,6 @@ export default function Controls(): JSX.Element {
 
   useEffect(() => {
     dispatch(setCamera(camera));
-    camera.position.set(...cameraPosition);
   }, [cameraPosition, camera, dispatch]);
 
   useEffect(() => {

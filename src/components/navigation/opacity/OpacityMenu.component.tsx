@@ -1,16 +1,16 @@
-import { ReactComponent as WaterDropIcon } from '../../../assets/svg/water-drop.svg';
+import { ReactComponent as WaterDropIcon } from "../../../assets/svg/water-drop.svg";
 
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { selectGlobalOpacity, setGlobalOpacity } from '../../../features/global/globalsSlice';
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { selectGlobalOpacity, setGlobalOpacity } from "../../../features/global/globalsSlice";
 
 import {
   selectModelsOpacity,
   selectSelectedModel,
   setModelsOpacity,
-} from '../../../features/model/modelSlice';
+} from "../../../features/model/modelSlice";
 
-import MenuDropdown from '../dropdown/MenuDropdown.component';
-import NavIcon from '../navIcon/navIcon';
+import MenuDropdown from "../dropdown/MenuDropdown.component";
+import NavIcon from "../navIcon/navIcon";
 
 export default function OpacirtyMenu(): JSX.Element {
   const dispatch = useAppDispatch();
