@@ -1,7 +1,7 @@
-import { useRef } from 'react';
+import { useRef } from "react";
 
-import store from '../../../app/store';
-import TestModal from '../../test-modal/test.modal';
+import store from "../../../app/store";
+import TestModal from "../../test-modal/test.modal";
 
 type Props = { open: boolean; onClose: (e: boolean) => void };
 
@@ -18,11 +18,11 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
     onClose(false);
     const state = store.getState();
     const stateJSON = JSON.stringify(state);
-    const blob = new Blob([stateJSON], { type: 'application/json' });
+    const blob = new Blob([stateJSON], { type: "application/json" });
     const timestamp = new Date().toISOString();
     const filename = `${timestamp}-tracer-snapshot.json`;
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
     link.download = filename;
     link.click();
@@ -38,14 +38,13 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
         const newState = JSON.parse(stateJSON);
 
         for (const [key] of Object.entries(newState)) {
-          // rehydrate each slice of store
           store.dispatch({ type: `${key}/rehydrate`, payload: newState });
         }
       };
 
       reader.readAsText(file);
     }
-    event.target.value = '';
+    event.target.value = "";
   };
 
   return (
