@@ -1,20 +1,20 @@
-import { render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
+import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
 
-import ParentNode, { ParentNodeProps } from './ParentNode.component';
-import store from '../../../app/store';
+import ParentNode, { ParentNodeProps } from "./ParentNode.component";
+import store from "../../../app/store";
 
-describe('ParentNode component', () => {
+describe("ParentNode component", () => {
   const mockProps: ParentNodeProps = {
-    name: 'Test Node',
-    uid: '12345',
-    modelState: 'notLoaded',
+    name: "Test Node",
+    uid: "12345",
+    modelState: "notLoaded",
     nodeEnd: false,
     showChildren: true,
     children: <h1>Test child</h1>,
   };
 
-  test('renders children correctly', () => {
+  test("renders children correctly", () => {
     render(
       <Provider store={store}>
         <ParentNode {...mockProps} />
