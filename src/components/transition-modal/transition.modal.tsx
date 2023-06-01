@@ -6,7 +6,7 @@ interface Props {
   open: boolean;
   title: string;
   children: JSX.Element | JSX.Element[];
-  onClose: (e: boolean) => void;
+  onClose?: (e: boolean) => void;
 }
 
 export default function TransitionModal({ open, title, children, onClose }: Props): JSX.Element {
@@ -31,11 +31,11 @@ export default function TransitionModal({ open, title, children, onClose }: Prop
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          <div className=" fixed inset-0 bg-[#0b0a0a] bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div className=" flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -56,12 +56,14 @@ export default function TransitionModal({ open, title, children, onClose }: Prop
                         >
                           {title}
                         </Dialog.Title>
-                        <div className="ml-auto p-1 bg-[#3d3d3d] rounded hover:bg-[#4d4d4d] transition-all">
-                          <XMarkIcon
-                            className="h-6 cursor-pointer"
-                            onClick={(): void => onClose(false)}
-                          />
-                        </div>
+                        {onClose && (
+                          <div className="ml-auto p-1 bg-[#3d3d3d] rounded hover:bg-[#4d4d4d] transition-all">
+                            <XMarkIcon
+                              className="h-6 cursor-pointer"
+                              onClick={(): void => onClose(false)}
+                            />
+                          </div>
+                        )}
                       </div>
                       {children}
                     </div>
