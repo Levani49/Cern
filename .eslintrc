@@ -7,11 +7,7 @@
     "JSX": true,
     "process": "readonly"
   },
-  "plugins": [
-    "import",
-    "react",
-    "eslint-plugin-jsx-a11y"
-  ],
+  "plugins": ["import", "react", "eslint-plugin-jsx-a11y"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -32,10 +28,7 @@
       "version": "detect"
     },
     "import/parsers": {
-      "@typescript-eslint/parser": [
-        ".ts",
-        ".tsx"
-      ]
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
       "typescript": {
@@ -61,9 +54,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "**.three.tsx"
-      ],
+      "files": ["**.three.tsx"],
       "rules": {
         "react/no-unknown-property": [
           "error",

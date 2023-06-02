@@ -16,7 +16,7 @@ export default function NavIcon({
 }: Props): JSX.Element {
   return (
     <button
-      className={`p-1 border-2 border-transparent hover:border-[#dfe6e926] rounded transition-all z-50 ${className}`}
+      className={`z-50 rounded border-2 border-transparent p-1 transition-all hover:border-[#dfe6e926] ${className}`}
       {...other}
     >
       <Icon
