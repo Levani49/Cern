@@ -1,41 +1,65 @@
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { selectAboutModalState, showAboutModal } from '../../../features/modal/modalSlice';
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { selectAboutModalState, showAboutModal } from "../../../features/modal/modalSlice";
 
-import Modal from '../Modal';
-import Slot from './Slot.component';
+// import Modal from "../Modal.component";
+import Slot from "./Slot.component";
 
-import { TEMP_INFO } from '../../../constants/TEMP_STATIC_DATA';
-import type { Employee } from '../../../types/app.types';
+import { TEMP_INFO } from "../../../constants/TEMP_STATIC_DATA";
+import type { Employee } from "../../../types/app.types";
+import TransitionModal from "../../transition-modal/transition.modal";
 
-/**
- * Renders an InfoModal component that displays information about employees in a modal window.
- *
- * @function
- * @name InfoModal
- * @returns {JSX.Element} - A JSX element representing the InfoModal component.
- */
 export default function AboutModal(): JSX.Element {
   const dispatch = useAppDispatch();
   const show = useAppSelector(selectAboutModalState);
 
-  /**
-   * @function
-   * handles to close modal
-   */
-  const closeModalHandler = (): void => {
-    dispatch(showAboutModal(false));
+  const closeModalHandler = (e: boolean): void => {
+    dispatch(showAboutModal(e));
   };
 
   return (
-    <Modal title="About" show={show} onCloseHandler={closeModalHandler}>
-      <div className="w-full shadow-md rounded p-1 ">
-        <div className="flex flex-col gap-2 justifycenter w-full items-center">
-          {TEMP_INFO.map((employee: Employee) => {
+    <TransitionModal
+      title="Meet Our Team"
+      className="sm:max-w-3xl"
+      open={show}
+      onClose={closeModalHandler}
+    >
+      <div className="flex w-full flex-col gap-2 p-1">
+        <h3 className="text-center text-lg font-bold">Tracer Core</h3>
+        <h6 className="text-center text-xs font-bold text-gray-500">Version: @latest</h6>
+        <div className="mt-2 flex justify-center gap-2">
+          {TEMP_INFO.managers.map((employee: Employee) => {
+            const { id, ...rest } = employee;
+            return <Slot className="w-[200px]" key={id} {...rest} />;
+          })}
+        </div>
+        <div className="grid grid-cols-3 gap-1 sm:grid-cols-4">
+          {TEMP_INFO.developers.map((employee: Employee) => {
             const { id, ...rest } = employee;
             return <Slot key={id} {...rest} />;
           })}
         </div>
+        <div className="mt-2 flex flex-col items-center gap-2 text-xs">
+          <div className="flex">
+            <span className="text-gray-300">Read more about us</span>
+            <a href="http://cadcam.ge/" className="ml-1 text-green underline">
+              @Nuclear Engineering Center
+            </a>
+          </div>
+          <div className="flex">
+            <span className="text-gray-300">Our university</span>
+            <a href="https://gtu.ge/Eng/" className="ml-1 text-green underline">
+              @Georgian Technical University
+            </a>
+          </div>
+
+          <div className="flex">
+            <span className="text-gray-300">In collaboration with</span>
+            <a href="https://cern.ch/" className="ml-[2px] text-green underline">
+              @CERN
+            </a>
+          </div>
+        </div>
       </div>
-    </Modal>
+    </TransitionModal>
   );
 }

@@ -1,11 +1,10 @@
-import { SvgIconProps } from './svgIcon.types';
+import type { SVGIcon } from '../../types/app.types';
 
-/**
- *A component that displays an SVG icon.
- *
- *@param {SvgIconProps} props - The props object containing the Icon and optional className.
- *@returns {JSX.Element} A JSX Element representing the SVG icon.
- */
+export interface SvgIconProps {
+  Icon: SVGIcon;
+  className?: string;
+}
+
 export default function SvgIcon({ Icon, className }: SvgIconProps): JSX.Element {
   return <Icon className={`icon transition-all ${className}`} data-testid="svg-icon" />;
 }

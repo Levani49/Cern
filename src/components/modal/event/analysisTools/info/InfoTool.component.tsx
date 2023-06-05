@@ -1,11 +1,11 @@
-import { useIntl } from 'react-intl';
+import { useEffect, useState } from 'react';
 
-import { ReactComponent as PlusCircleIcon } from '../../../../../assets/svg/plusCircleIcon.svg';
 import EventLine from './EventLine.component';
+import { ReactComponent as PlusCircleIcon } from '../../../../../assets/svg/plusCircleIcon.svg';
 
 interface Props {
-  show: boolean;
   eventName: string;
+  showEventDetails: boolean;
   num: string;
   lumiBlocks: string;
   runNumber: string;
@@ -14,33 +14,33 @@ interface Props {
 }
 
 export default function InfoTool({
-  show,
   eventName,
+  showEventDetails,
   num,
   lumiBlocks,
   runNumber,
   date,
   time,
 }: Props): JSX.Element {
-  const intl = useIntl();
+  const [show, setShow] = useState(false);
 
-  const infoTitle = intl.formatMessage({ id: 'modal.events.info.name' });
-  const infoNumber = intl.formatMessage({ id: 'modal.events.info.number' });
-  const lumiB = intl.formatMessage({ id: 'modal.events.info.lumiB' });
-  const runN = intl.formatMessage({ id: 'modal.events.info.runN' });
-  const eventDate = intl.formatMessage({ id: 'modal.events.info.date' });
+  useEffect(() => {
+    if (showEventDetails) {
+      setShow(true);
+    }
+  }, [showEventDetails]);
 
   return (
-    <div className={`${!show && 'hidden'} ml-2`}>
+    <div className="mt-1">
       <div className="flex gap-2 items-center">
-        <PlusCircleIcon className="icon" />
-        <span className="text-blue text-xs">{`${infoTitle} ${eventName}`}</span>
+        <PlusCircleIcon className="icon" onClick={(): void => setShow((prev) => !prev)} />
+        <span className="dark:text-green text-blue text-xs">{`event ${eventName}`}</span>
       </div>
       <div className={`${!show && 'hidden'}`}>
-        <EventLine titleLabel={infoNumber} title={num} />
-        <EventLine titleLabel={lumiB} title={lumiBlocks} />
-        <EventLine titleLabel={runN} title={runNumber} />
-        <EventLine titleLabel={eventDate} title={`${date} - ${time}`} lastEvent />
+        <EventLine titleLabel="event id" title={num} />
+        <EventLine titleLabel="lumiB" title={lumiBlocks} />
+        <EventLine titleLabel="runN" title={runNumber} />
+        <EventLine titleLabel="date" title={`${date} - ${time}`} lastEvent />
       </div>
     </div>
   );

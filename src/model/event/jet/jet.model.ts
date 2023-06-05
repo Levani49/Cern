@@ -2,6 +2,7 @@ import { Vector3, ConeGeometry, Matrix4, Quaternion } from 'three';
 import EventService from '../../../services/event/event.service';
 import { Jet } from '../../../services/event/event.service.types';
 import { JetCone, JetInfo } from './jet.model.types';
+import { EventsSlice } from '../../../features/event/eventSlice.types';
 
 export default class JetService extends EventService {
   jetInfo: JetInfo = {
@@ -34,14 +35,23 @@ export default class JetService extends EventService {
     this.jetInfo.count = +jet['@_count'];
     this.jetInfo.SGK = jet['@_storeGateKey'];
   }
-  drawJetCone(): JetCone[] {
+  drawJetCone(jetFilterValues: EventsSlice['jetFilter']): JetCone[] {
     if (!this.jetInfo.count) {
       throw new Error('Can not draw Jet!!!');
     }
+
     const jetConeArray: JetCone[] = [];
     const radialSegments = 32;
 
     for (let i = 0; i < this.jetInfo.count; i++) {
+      if (
+        (jetFilterValues.phi && this.jetInfo.phi[i] < +jetFilterValues.phi) ||
+        (jetFilterValues.eta && this.jetInfo.eta[i] < +jetFilterValues.eta) ||
+        (jetFilterValues.et && this.jetInfo.et[i] < +jetFilterValues.et) ||
+        (jetFilterValues.theta && this.jetInfo.theta[i] < +jetFilterValues.theta)
+      ) {
+        continue;
+      }
       const jetDistance = new Vector3(
         this.jetInfo.pX[i],
         this.jetInfo.pY[i],
@@ -61,15 +71,6 @@ export default class JetService extends EventService {
       quaternion.setFromUnitVectors(new Vector3(0, 1, 0), vector);
 
       jetConeArray.push({ quaternion, geo });
-
-      /*
-      this.mat[i] = new THREE.MeshToonMaterial({
-        color: colorOfOriginalJet,
-        transparent: true,
-        opacity: 0.7,
-        clippingPlanes: clip_planes,
-      })
-      */
     }
     return jetConeArray;
   }

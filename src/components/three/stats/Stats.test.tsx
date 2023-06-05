@@ -1,12 +1,12 @@
-import { act, render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
+import { act, render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
 
-import store from '../../../app/store';
+import store from "../../../app/store";
 
-import Stats from './Stats.component';
-import { showRendererStats } from '../../../features/global/globalsSlice';
+import Stats from "./Stats.component";
+import { showRendererStats } from "../../../features/global/globalsSlice";
 
-test('renders stats component', () => {
+test("renders stats component", () => {
   render(
     <Provider store={store}>
       <Stats />

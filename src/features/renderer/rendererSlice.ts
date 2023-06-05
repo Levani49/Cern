@@ -21,6 +21,9 @@ export const infoSlice = createSlice({
   name: 'info',
   initialState,
   reducers: {
+    rehydrate: (state, action) => {
+      return action.payload.info || state;
+    },
     setRendererStats: (state, action: PayloadAction<RendererType>) => {
       state.renderer = {
         ...state.renderer,

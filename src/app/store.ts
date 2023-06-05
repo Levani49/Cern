@@ -8,7 +8,7 @@ import treeReducer from '../features/tree/treeSlice';
 import modelReducer from '../features/model/modelSlice';
 import eventReducer from '../features/event/eventSlice';
 
-const rootReducer = combineReducers({
+const combinedReducers = {
   globals: globalsReducer,
   renderer: infoReducer,
   camera: cameraReducer,
@@ -16,22 +16,15 @@ const rootReducer = combineReducers({
   tree: treeReducer,
   model: modelReducer,
   event: eventReducer,
-});
+};
+
+export const rootReducer = combineReducers(combinedReducers);
 
 const store = configureStore({
   reducer: rootReducer,
-  /**
-   * Middleware function for Redux store configuration that disables serializable action checking.
-   *
-   * @function
-   * @name getDefaultMiddleware
-   * @param {object} getDefaultMiddleware - The default middleware provided by Redux.
-   * @returns {Array} - An array of middleware functions to be used in the Redux store.
-   */
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
 export default store;

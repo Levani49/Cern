@@ -29,18 +29,13 @@ interface Props {
 }
 
 const modelService = new ModelService();
+
 const LOW_OPACITY_LEVEL = 0.3;
 const mouse = {
   x: 0,
   y: 0,
 };
 
-/**
- * Model component renders a 3D model using react-three-fiber library.
- *
- * @param {Props} props - Component properties.
- * @returns {JSX.Element} - Model component.
- */
 export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   const { gl, scene } = useThree();
   const dispatch = useAppDispatch();
@@ -75,7 +70,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
           modelService.applyDefaults(currentRef, id);
         }
       } else {
-        modelService.applyDefaults(currentRef, id, globalOpacityLevel);
+        modelService.applyDefaults(currentRef, id, globalOpacityLevel, globalWireframe);
       }
     }
 

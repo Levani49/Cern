@@ -1,27 +1,38 @@
+import { useRef } from "react";
+import { ReactComponent as EmailIcon } from "../../../assets/svg/emailIcon.svg";
+
 interface Props {
   name: string;
   src: string;
+  email: string;
   role: string;
+  className?: string;
 }
 
-/**
- * Renders a Slot component that displays an image, name, and role.
- *
- * @function
- * @name Slot
- * @param {object} props - The properties to be passed to the component.
- * @param {string} props.name - The name to be displayed in the component.
- * @param {string} props.src - The image source URL to be displayed in the component.
- * @param {string} props.role - The role to be displayed in the component.
- * @returns {JSX.Element} - A JSX element representing the Slot component.
- */
-export default function Slot({ name, role }: Props): JSX.Element {
+export default function Slot({ name, className, email, src, role }: Props): JSX.Element {
+  const linkRef = useRef<null | HTMLAnchorElement>(null);
+
   return (
-    <div className="cursor-pointer flex gap-2 items-center">
-      <a className="text-sm text-blue dark:text-green underline" href="https://cern.ch">
-        {name}
-      </a>{' '}
-      -<h3 className="text-xs">{role}</h3>
+    <div
+      role="presentation"
+      className={`flex w-[150px] cursor-pointer flex-col items-center gap-1 rounded bg-transparent px-1 py-2 transition-all ease-in-out hover:bg-transparentDark ${className}`}
+      onClick={(): void => linkRef.current?.click()}
+    >
+      <div className="h-12 w-12 overflow-hidden rounded-full">
+        <img className="h-full w-full object-cover" src={src} alt="Personal" />
+      </div>
+      <h3 className="text-center text-xs font-bold text-blue dark:text-green">{name}</h3>
+      <span className="w-full text-center text-xs text-gray-500">{role}</span>
+      <div className="flex items-center">
+        <EmailIcon className="mt-[2px] h-3 w-3 text-blue dark:text-green" />
+        <a
+          className="text-graay-400 ml-1 cursor-pointer text-xs underline"
+          href={`mailto:${email}`}
+          ref={linkRef}
+        >
+          Email
+        </a>
+      </div>
     </div>
   );
 }

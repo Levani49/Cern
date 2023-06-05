@@ -1,6 +1,10 @@
 import { useMemo } from 'react';
 import { useAppSelector } from '../../../app/hooks';
-import { selectEvent, selectEventParameters } from '../../../features/event/eventSlice';
+import {
+  selectEvent,
+  selectEventParameters,
+  selectTrackFilter,
+} from '../../../features/event/eventSlice';
 import { TrackMesh } from '../../../model/event/track/track.model.types';
 import TrackService from '../../../model/event/track/track.model';
 
@@ -9,6 +13,7 @@ const trackService = new TrackService();
 export default function Track(): JSX.Element {
   const event = useAppSelector(selectEvent);
   const eventParameters = useAppSelector(selectEventParameters);
+  const trackFilterValues = useAppSelector(selectTrackFilter);
 
   const tracksToDraw = useMemo(() => {
     if (event) {
@@ -17,10 +22,10 @@ export default function Track(): JSX.Element {
       } else {
         trackService.init(event.Event.Track);
       }
-      return trackService.drawTracksMain();
+      return trackService.drawTracksMain(trackFilterValues);
     }
     return null;
-  }, [event]);
+  }, [event, trackFilterValues]);
 
   if (tracksToDraw && eventParameters.tracks) {
     return (

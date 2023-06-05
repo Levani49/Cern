@@ -15,51 +15,25 @@ const initialState: Modal = {
   },
 };
 
-/**
- * Redux slice for managing modal state.
- *
- * @typedef {object} ModalsSlice
- * @property {boolean} aboutModalIsOpen - Whether the about modal is currently open.
- * @property {boolean} settingsModalIsOpen - Whether the settings modal is currently open.
- * @property {boolean} eventsModalIsOpen - Whether the events modal is currently open.
- */
 export const modalsSlice = createSlice({
   name: 'modals',
   initialState,
   reducers: {
-    /**
-     * Sets the state of the about modal.
-     *
-     * @param {ModalsSlice} state - The current state of the modals slice.
-     * @param {PayloadAction<boolean>} action - The action to update the state of the about modal.
-     */
+    rehydrate: (state, action) => {
+      return action.payload.modals || state;
+    },
     showAboutModal: (state, action: PayloadAction<boolean>) => {
       state.aboutModalIsOpen = action.payload;
     },
-    /**
-     * Sets the state of the settings modal.
-     *
-     * @param {ModalsSlice} state - The current state of the modals slice.
-     * @param {PayloadAction<boolean>} action - The action to update the state of the settings modal.
-     */
+
     showSettingsModal: (state, action: PayloadAction<boolean>) => {
       state.settingsModalIsOpen = action.payload;
     },
-    /**
-     * Sets the state of the events modal.
-     *
-     * @param {ModalsSlice} state - The current state of the modals slice.
-     * @param {PayloadAction<boolean>} action - The action to update the state of the events modal.
-     */
+
     showEventsModal: (state, action: PayloadAction<boolean>) => {
       state.eventsModalIsOpen = action.payload;
     },
 
-    /**
-     *
-     * @param state
-     * @param action
-     */
     setEventCurrentAnalysisTool: (state, action: PayloadAction<CurrentAnalysisTool>) => {
       state.events.analysisTools.currentTool = action.payload;
     },

@@ -11,4 +11,6 @@ export interface GlobalsSlice {
   selectedModel: selectedModel;
   previousSelectedModel: selectedModel;
   globalOpacity: number;
+  showSnapModal: boolean;
+  showGeometryMenu: boolean;
 }

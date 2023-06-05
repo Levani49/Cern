@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import type { RootState } from '../../app/store';
-import { EventsSlice } from './eventSlice.types';
+import { EventsSlice, LoadedEvents } from './eventSlice.types';
 import { EventOverviewData, EventDetailsXML } from '../../services/event/event.service.types';
 import EventService from '../../services/event/event.service';
 
@@ -12,6 +12,7 @@ const initialState: EventsSlice = {
     eventGroup: 'E',
     eventIndex: 5,
   },
+  loadedEvents: [],
   eventGeneralInfo: {
     runNumber: '',
     eventNumber: '',
@@ -22,22 +23,43 @@ const initialState: EventsSlice = {
   eventsToShow: {
     tracks: true,
     jets: true,
-    met: false,
-    cells: false,
-    clusters: false,
-    hits: false,
+    met: true,
   },
   event: null,
   isLoading: false,
+  trackFilter: {
+    phi: undefined,
+    eta: undefined,
+    theta: undefined,
+    pt: undefined,
+  },
+  jetFilter: {
+    phi: undefined,
+    eta: undefined,
+    theta: undefined,
+    et: undefined,
+  },
 };
 
 const eventSlice = createSlice({
   name: 'event',
   initialState,
   reducers: {
+    rehydrate: (state, action) => {
+      return action.payload.event || state;
+    },
+    setTrackFilters: (state, action: PayloadAction<EventsSlice['trackFilter']>) => {
+      state.trackFilter = action.payload;
+    },
+    setJetFilters: (state, action: PayloadAction<EventsSlice['jetFilter']>) => {
+      state.jetFilter = action.payload;
+    },
     setEventDetailsXML: (state, action: PayloadAction<EventDetailsXML>) => {
+      const eventGeneralInfo = eventService.getEventGeneralInfo(action.payload);
+      const eventName = `${state.eventNumber.eventGroup} ${state.eventNumber.eventIndex}/50`;
       state.event = action.payload;
-      state.eventGeneralInfo = eventService.getEventGeneralInfo(action.payload);
+      state.eventGeneralInfo = eventGeneralInfo;
+      state.loadedEvents.push({ ...eventGeneralInfo, eventName });
     },
     setEventNumber: (state, action: PayloadAction<EventsSlice['eventNumber']>) => {
       state.eventNumber = action.payload;
@@ -53,8 +75,15 @@ const eventSlice = createSlice({
 });
 
 export default eventSlice.reducer;
-export const { setEventDetailsXML, setEventNumber, setEventLoading, setEventParameters } =
-  eventSlice.actions;
+export const {
+  setEventDetailsXML,
+  setEventNumber,
+  setEventLoading,
+  setEventParameters,
+  setTrackFilters,
+  setJetFilters,
+  rehydrate,
+} = eventSlice.actions;
 export const selectEventGeneralInfo = (state: RootState): EventOverviewData =>
   state.event.eventGeneralInfo;
 
@@ -64,3 +93,10 @@ export const selectEventParameters = (state: RootState): EventsSlice['eventsToSh
   state.event.eventsToShow;
 export const selectEventNumber = (state: RootState): EventsSlice['eventNumber'] =>
   state.event.eventNumber;
+
+export const selectLoadedEvents = (state: RootState): LoadedEvents[] => state.event.loadedEvents;
+
+export const selectTrackFilter = (state: RootState): EventsSlice['trackFilter'] =>
+  state.event.trackFilter;
+export const selectJetFilter = (state: RootState): EventsSlice['jetFilter'] =>
+  state.event.jetFilter;

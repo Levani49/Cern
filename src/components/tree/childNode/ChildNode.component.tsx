@@ -1,7 +1,13 @@
 import { useAppDispatch } from '../../../app/hooks';
 import { updateChildNodeState } from '../../../features/tree/treeSlice';
-import type { ChildNodeProps } from './childNode.types';
-import type { GeometryState } from '../../../constants/geometryTree';
+import { GeometryState } from '../../../constants/geometryTree';
+
+export interface ChildNodeProps {
+  uid: string;
+  name: string;
+  modelState: GeometryState;
+  nodeEnd?: boolean;
+}
 
 export default function ChildNode({ name, uid, modelState, nodeEnd }: ChildNodeProps): JSX.Element {
   const dispatch = useAppDispatch();

@@ -7,13 +7,12 @@
     "JSX": true,
     "process": "readonly"
   },
-  "plugins": ["import", "react", "eslint-plugin-jsx-a11y", "@typescript-eslint", "jsdoc"],
+  "plugins": ["import", "react", "eslint-plugin-jsx-a11y"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:jsdoc/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "eslint-config-prettier",
@@ -51,19 +50,7 @@
       }
     ],
     "@typescript-eslint/explicit-function-return-type": "error",
-    "import/no-unresolved": "error",
-    "jsdoc/require-jsdoc": [
-      "off",
-      {
-        "require": {
-          "ArrowFunctionExpression": true,
-          "ClassDeclaration": true,
-          "ClassExpression": true,
-          "FunctionDeclaration": true,
-          "MethodDefinition": true
-        }
-      }
-    ]
+    "import/no-unresolved": "error"
   },
   "overrides": [
     {
@@ -86,7 +73,9 @@
               "linecap",
               "linejoin",
               "geometry",
-              "quaternion"
+              "quaternion",
+              "dashSize",
+              "gapSize"
             ]
           }
         ]

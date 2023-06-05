@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { selectSettingsModalState, showSettingsModal } from '../../../features/modal/modalSlice';
 
-import Modal from '../Modal';
+import Modal from '../Modal.component';
 import Slider from './Slider.component';
 import OptionsBox from './OptionsBox.component';
 

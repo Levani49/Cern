@@ -2,6 +2,7 @@ import { BufferGeometry, CubicBezierCurve3, Vector2, Vector3 } from 'three';
 import { Track } from '../../../services/event/event.service.types';
 import { TrackInfo, TrackMesh } from './track.model.types';
 import EventService from '../../../services/event/event.service';
+import { EventsSlice } from '../../../features/event/eventSlice.types';
 
 export default class TrackService extends EventService {
   trackInfo: TrackInfo = {
@@ -155,6 +156,7 @@ export default class TrackService extends EventService {
       color: '#ff0000',
     };
   }
+
   calculateIncidentPoint(point1: Vector3, point2: Vector3): Vector3 {
     const direction = new Vector3().subVectors(point2, point1);
     // Calculate the vector from the origin to point1
@@ -168,12 +170,21 @@ export default class TrackService extends EventService {
 
     return incidentPoint;
   }
-  drawTracksMain(): TrackMesh[] | void {
+
+  drawTracksMain(trackFilterValues: EventsSlice['trackFilter']): TrackMesh[] | void {
     const tracks = [];
     let index = 0;
 
     if (this.trackInfo.count) {
       for (let i = 0; i < this.trackInfo.count; i++) {
+        if (
+          (trackFilterValues.phi && this.trackInfo.phi[i] < +trackFilterValues.phi) ||
+          (trackFilterValues.eta && this.trackInfo.eta[i] < +trackFilterValues.eta) ||
+          (trackFilterValues.pt && this.trackInfo.pt[i] < +trackFilterValues.pt) ||
+          (trackFilterValues.theta && this.trackInfo.theta[i] < +trackFilterValues.theta)
+        ) {
+          continue;
+        }
         switch (this.trackInfo.numPolyline[i]) {
           case 0:
             break;
@@ -190,6 +201,7 @@ export default class TrackService extends EventService {
       }
     }
   }
+
   constructor() {
     super();
   }
