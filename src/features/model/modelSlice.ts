@@ -1,11 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import type { RootState } from "../../store/store";
-import {
-  ModelCut,
-  ModelLoadingStates,
-  selectedModel
-} from "../../types/app.types";
+import { ModelCut, ModelLoadingStates, selectedModel } from "@type/app.types";
+
+import type { RootState } from "@store/store";
+
 import type { ModelSlice } from "./modelSlice.types";
 
 const initialState: ModelSlice = {

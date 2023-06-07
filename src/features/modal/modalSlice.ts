@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import type { RootState } from "../../store/store";
-import type { CurrentAnalysisTool } from "../../types/app.types";
+import type { CurrentAnalysisTool } from "@type/app.types";
+
+import type { RootState } from "@store/store";
+
 import type { Modal } from "./modalSlice.types";
 
 const initialState: Modal = {

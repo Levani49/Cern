@@ -3,10 +3,13 @@ import { Camera } from "@react-three/fiber";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { WritableDraft } from "immer/dist/internal";
 
-import type { RootState } from "../../store/store";
-import type { DroneTypes } from "../../types/app.types";
-import ee from "../../utils/droneEvent.utils";
-import { startDroneMode, stopDroneMode } from "../../utils/handleDrone.utils";
+import type { DroneTypes } from "@type/app.types";
+
+import type { RootState } from "@store/store";
+
+import ee from "@utils/droneEvent.utils";
+import { startDroneMode, stopDroneMode } from "@utils/handleDrone.utils";
+
 import type { ICameraSettings, ViewModes } from "./cameraSlice.types";
 
 const initialState: ICameraSettings = {

@@ -45,6 +45,8 @@ module.exports = {
     "",
     "^@utils/(.*)$",
     "",
+    "^@constants/(.*)$",
+    "",
     "^[./]"
   ]
 };

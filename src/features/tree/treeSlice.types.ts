@@ -1,7 +1,8 @@
-import { PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction } from "@reduxjs/toolkit";
 
-import type { TreeNode } from '../../constants/geometryTree';
-import { ActiveModel } from '../../types/app.types';
+import { ActiveModel } from "@type/app.types";
+
+import type { TreeNode } from "@constants/geometryTree";
 
 export interface UpdateNodePayload {
   nodeId: string;

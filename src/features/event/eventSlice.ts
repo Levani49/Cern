@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import EventService from "../../services/event/event.service";
+import type { RootState } from "@store/store";
+
+import EventService from "@services/event/event.service";
 import {
   EventDetailsXML,
   EventOverviewData
-} from "../../services/event/event.service.types";
-import type { RootState } from "../../store/store";
+} from "@services/event/event.service.types";
+
 import { EventsSlice, LoadedEvents } from "./eventSlice.types";
 
 const eventService = new EventService();

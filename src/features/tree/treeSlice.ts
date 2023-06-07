@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import type { ActiveModel } from "@type/app.types";
+
+import type { RootState } from "@store/store";
+
 import {
   GEOMETRY_MENU_TREE,
   GeometryState,
   TreeNode
-} from "../../constants/geometryTree";
-import type { RootState } from "../../store/store";
-import type { ActiveModel } from "../../types/app.types";
+} from "@constants/geometryTree";
+
 import {
   updateActiveModels,
   updateChildNode,
