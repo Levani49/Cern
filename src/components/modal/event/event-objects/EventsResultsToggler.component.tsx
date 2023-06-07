@@ -1,8 +1,10 @@
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectEventParameters,
   setEventParameters
-} from "../../../../features/event/eventSlice";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+} from "@features/event/eventSlice";
+
 import Checkbox from "./Checkbox.component";
 
 export default function EventsResultsToggler(): JSX.Element {

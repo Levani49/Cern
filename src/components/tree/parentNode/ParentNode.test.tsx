@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 
-import store from "../../../store/store";
+import store from "@store/store";
+
 import ParentNode, { ParentNodeProps } from "./ParentNode.component";
 
 describe("ParentNode component", () => {

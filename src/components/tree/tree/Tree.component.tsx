@@ -1,9 +1,11 @@
 import { useMemo } from "react";
 
-import { selectGeometryMenu } from "../../../features/global/globalsSlice";
-import { selectModelsLoadingState } from "../../../features/model/modelSlice";
-import { selectGeometryTree } from "../../../features/tree/treeSlice";
-import { useAppSelector } from "../../../store/hooks";
+import { useAppSelector } from "@store/hooks";
+
+import { selectGeometryMenu } from "@features/global/globalsSlice";
+import { selectModelsLoadingState } from "@features/model/modelSlice";
+import { selectGeometryTree } from "@features/tree/treeSlice";
+
 import RecursiveTree from "../recursiveTree/RecursiveTree.component";
 
 export default function Tree(): JSX.Element {

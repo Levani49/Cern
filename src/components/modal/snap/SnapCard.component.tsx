@@ -1,5 +1,6 @@
 import React from "react";
-import { ReactChildren } from "../../../types/app.types";
+
+import { ReactChildren } from "@type/app.types";
 
 interface Props {
   text: string;
@@ -9,10 +10,10 @@ interface Props {
 
 export default function SnapCard({ text, Icon, children }: Props): JSX.Element {
   return (
-    <div className="flex flex-col gap-4 flex-1 justify-between">
-      <div className="flex flex-col gap-4 items-center hover:bg-transparentDark rounded p-2 transition-all cursor-pointer h-full">
+    <div className="flex flex-1 flex-col justify-between gap-4">
+      <div className="flex h-full cursor-pointer flex-col items-center gap-4 rounded p-2 transition-all hover:bg-transparentDark">
         <Icon />
-        <p className="text-sm text-gray-300 text-center">{text}</p>
+        <p className="text-center text-sm text-gray-300">{text}</p>
       </div>
       {children}
     </div>

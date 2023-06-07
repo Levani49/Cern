@@ -1,20 +1,25 @@
 import { useMemo } from "react";
 
-import { ReactComponent as CircleIcon } from "../../../assets/svg/circle.svg";
-import { ReactComponent as DroneIcon } from "../../../assets/svg/drone.svg";
-import { ReactComponent as FilmIcon } from "../../../assets/svg/film.svg";
-import { ReactComponent as FlyIcon } from "../../../assets/svg/fly.svg";
-import { ReactComponent as HelixIcon } from "../../../assets/svg/helix.svg";
-import { ReactComponent as RocketIcon } from "../../../assets/svg/rocket.svg";
-import { ReactComponent as DollyZoomIcon } from "../../../assets/svg/zoom.svg";
+import type { DroneTypes, SVGIcon } from "@type/app.types";
+
+import { ReactComponent as CircleIcon } from "@assets/svg/circle.svg";
+import { ReactComponent as DroneIcon } from "@assets/svg/drone.svg";
+import { ReactComponent as FilmIcon } from "@assets/svg/film.svg";
+import { ReactComponent as FlyIcon } from "@assets/svg/fly.svg";
+import { ReactComponent as HelixIcon } from "@assets/svg/helix.svg";
+import { ReactComponent as RocketIcon } from "@assets/svg/rocket.svg";
+import { ReactComponent as DollyZoomIcon } from "@assets/svg/zoom.svg";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectDroneState,
   setDroneMode,
   setFlyModalState
-} from "../../../features/camera/cameraSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import type { DroneTypes, SVGIcon } from "../../../types/app.types";
-import { isDesktop } from "../../../utils/isDesktop.utils";
+} from "@features/camera/cameraSlice";
+
+import { isDesktop } from "@utils/isDesktop.utils";
+
 import MenuDropdown from "../dropdown/MenuDropdown.component";
 import NavIcon from "../navIcon/navIcon";
 

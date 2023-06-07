@@ -1,10 +1,12 @@
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectJetFilter,
   selectTrackFilter,
   setJetFilters,
   setTrackFilters
-} from "../../../../../features/event/eventSlice";
-import { useAppDispatch, useAppSelector } from "../../../../../store/hooks";
+} from "@features/event/eventSlice";
+
 import ShowOnly from "../show-only/ShowOnly.component";
 import FilterContainer from "./FilterContainer.component";
 import FilterInput from "./FilterInput.component";

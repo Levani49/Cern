@@ -1,9 +1,12 @@
+import type { CurrentAnalysisTool } from "@type/app.types";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectCurrentEventAnalysisTool,
   setEventCurrentAnalysisTool
-} from "../../../../features/modal/modalSlice";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import type { CurrentAnalysisTool } from "../../../../types/app.types";
+} from "@features/modal/modalSlice";
+
 import AnalysisTool from "./AnalysisTool.component";
 
 export default function AnalysisTools(): JSX.Element {

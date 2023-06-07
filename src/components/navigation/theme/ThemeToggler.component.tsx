@@ -1,10 +1,9 @@
-import { ReactComponent as MoonIcon } from "../../../assets/svg/moon.svg";
-import { ReactComponent as SunIcon } from "../../../assets/svg/sun.svg";
-import {
-  selectTheme,
-  setDarkMode
-} from "../../../features/global/globalsSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { ReactComponent as MoonIcon } from "@assets/svg/moon.svg";
+import { ReactComponent as SunIcon } from "@assets/svg/sun.svg";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
+import { selectTheme, setDarkMode } from "@features/global/globalsSlice";
 
 export default function ThemeToggler(): JSX.Element {
   const dispatch = useAppDispatch();

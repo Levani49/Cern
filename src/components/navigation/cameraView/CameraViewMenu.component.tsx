@@ -1,14 +1,17 @@
-import { ReactComponent as BoxIcon } from "../../../assets/svg/box.svg";
-import { ReactComponent as LeftSideBox } from "../../../assets/svg/left-side-box.svg";
-import { ReactComponent as RightSideBox } from "../../../assets/svg/right-side-box.svg";
+import { ReactComponent as BoxIcon } from "@assets/svg/box.svg";
+import { ReactComponent as LeftSideBox } from "@assets/svg/left-side-box.svg";
+import { ReactComponent as RightSideBox } from "@assets/svg/right-side-box.svg";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectCameraViewMode,
   selectDroneState,
   setDefaultView,
   setLeftCameraView,
   setRightCameraView
-} from "../../../features/camera/cameraSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+} from "@features/camera/cameraSlice";
+
 import MenuDropdown from "../dropdown/MenuDropdown.component";
 import NavIcon from "../navIcon/navIcon";
 

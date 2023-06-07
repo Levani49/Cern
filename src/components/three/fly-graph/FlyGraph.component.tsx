@@ -1,9 +1,10 @@
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectDroneState,
   selectFlyModalState,
   setFlyModalState
-} from "../../../features/camera/cameraSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+} from "@features/camera/cameraSlice";
 
 export default function FlyOverlay(): JSX.Element {
   const dispatch = useAppDispatch();

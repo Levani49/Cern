@@ -1,18 +1,21 @@
 import { ChangeEvent, useState } from "react";
 import Select, { StylesConfig } from "react-select";
 
-import { ReactComponent as ArrowUpTrayIcon } from "../../../../assets/svg/arrowUpTrayIcon.svg";
-import { ReactComponent as ChevronLeftIcon } from "../../../../assets/svg/chervonLeftIcon.svg";
-import { ReactComponent as ChevronRightIcon } from "../../../../assets/svg/chervonRightIcon.svg";
-import { ReactComponent as FolderIcon } from "../../../../assets/svg/folderIcon.svg";
+import { ReactComponent as ArrowUpTrayIcon } from "@assets/svg/arrowUpTrayIcon.svg";
+import { ReactComponent as ChevronLeftIcon } from "@assets/svg/chervonLeftIcon.svg";
+import { ReactComponent as ChevronRightIcon } from "@assets/svg/chervonRightIcon.svg";
+import { ReactComponent as FolderIcon } from "@assets/svg/folderIcon.svg";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectEventIsLoading,
   selectEventNumber,
   setEventDetailsXML,
   setEventNumber
-} from "../../../../features/event/eventSlice";
-import EventService from "../../../../services/event/event.service";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+} from "@features/event/eventSlice";
+
+import EventService from "@services/event/event.service";
 
 type HandleOptionChange = {
   value: string;

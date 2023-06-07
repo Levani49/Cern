@@ -1,17 +1,21 @@
-import { ReactComponent as GeometryCoreIcon } from "../../../assets/svg/geometry-core.svg";
-import { ReactComponent as LeftWallIcon } from "../../../assets/svg/left-wall.svg";
-import { ReactComponent as RightWallIcon } from "../../../assets/svg/right-wall.svg";
-import { ReactComponent as ScissorIcon } from "../../../assets/svg/scissor.svg";
-import { ReactComponent as StairsIcon } from "../../../assets/svg/stairs.svg";
+import type { ModelCut } from "@type/app.types";
+
+import { ReactComponent as GeometryCoreIcon } from "@assets/svg/geometry-core.svg";
+import { ReactComponent as LeftWallIcon } from "@assets/svg/left-wall.svg";
+import { ReactComponent as RightWallIcon } from "@assets/svg/right-wall.svg";
+import { ReactComponent as ScissorIcon } from "@assets/svg/scissor.svg";
+import { ReactComponent as StairsIcon } from "@assets/svg/stairs.svg";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectGeometriesCutType,
   selectLocalGeometryCutType,
   selectSelectedModel,
   updateLocalModelCut,
   updateModelCut
-} from "../../../features/model/modelSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import type { ModelCut } from "../../../types/app.types";
+} from "@features/model/modelSlice";
+
 import MenuDropdown from "../dropdown/MenuDropdown.component";
 import NavIcon from "../navIcon/navIcon";
 

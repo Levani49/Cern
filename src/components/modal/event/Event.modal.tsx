@@ -1,12 +1,14 @@
 import { useMemo } from "react";
 
-import { selectLoadedEvents } from "../../../features/event/eventSlice";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
+import { selectLoadedEvents } from "@features/event/eventSlice";
 import {
   selectCurrentEventAnalysisTool,
   selectEventsModalState,
   showEventsModal
-} from "../../../features/modal/modalSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+} from "@features/modal/modalSlice";
+
 import Modal from "../Modal.component";
 import AlgorithmTool from "./analysisTools/algorithm/AlgorithmTool.component";
 import AnalysisTools from "./analysisTools/AnalysisTools.component";

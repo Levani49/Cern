@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { ReactComponent as ArrowsPointingOutIcon } from "../../../assets/svg/arrowsPointingOut.svg";
-import { selectDroneState } from "../../../features/camera/cameraSlice";
-import { useAppSelector } from "../../../store/hooks";
+import { ReactComponent as ArrowsPointingOutIcon } from "@assets/svg/arrowsPointingOut.svg";
+
+import { useAppSelector } from "@store/hooks";
+
+import { selectDroneState } from "@features/camera/cameraSlice";
+
 import NavIcon from "../navIcon/navIcon";
 
 function isFullscreenSupported(): boolean {

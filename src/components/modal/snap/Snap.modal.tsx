@@ -1,10 +1,13 @@
 import { useRef } from "react";
 
-import { ReactComponent as DownloadFileIcon } from "../../../assets/svg/downloadFileIcon.svg";
-import { ReactComponent as UploadFileIcon } from "../../../assets/svg/uploadFileIcon.svg";
-import store from "../../../store/store";
-import Button from "../../button/Button.component";
-import TransitionModal from "../../transition-modal/transition.modal";
+import { ReactComponent as DownloadFileIcon } from "@assets/svg/downloadFileIcon.svg";
+import { ReactComponent as UploadFileIcon } from "@assets/svg/uploadFileIcon.svg";
+
+import store from "@store/store";
+
+import Button from "@components/button/Button.component";
+import TransitionModal from "@components/transition-modal/transition.modal";
+
 import SnapCard from "./SnapCard.component";
 
 type Props = { open: boolean; onClose: (e: boolean) => void };

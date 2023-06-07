@@ -1,6 +1,6 @@
 import type { ActiveModel } from "@type/app.types";
 
-import { GeometryState, TreeNode } from "../../constants/geometryTree";
+import { GeometryState, TreeNode } from "@constants/geometryTree";
 
 type UpdateNodeFunction = (
   node: TreeNode,

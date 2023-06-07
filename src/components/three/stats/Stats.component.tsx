@@ -1,6 +1,7 @@
-import { selectStats } from "../../../features/global/globalsSlice";
-import { selectRendererStats } from "../../../features/renderer/rendererSlice";
-import { useAppSelector } from "../../../store/hooks";
+import { useAppSelector } from "@store/hooks";
+
+import { selectStats } from "@features/global/globalsSlice";
+import { selectRendererStats } from "@features/renderer/rendererSlice";
 
 export default function Stats(): JSX.Element {
   const { triangles, fps, memory } = useAppSelector(selectRendererStats);

@@ -1,14 +1,17 @@
-import { ReactComponent as WaterDropIcon } from "../../../assets/svg/water-drop.svg";
+import { ReactComponent as WaterDropIcon } from "@assets/svg/water-drop.svg";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectGlobalOpacity,
   setGlobalOpacity
-} from "../../../features/global/globalsSlice";
+} from "@features/global/globalsSlice";
 import {
   selectModelsOpacity,
   selectSelectedModel,
   setModelsOpacity
-} from "../../../features/model/modelSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+} from "@features/model/modelSlice";
+
 import MenuDropdown from "../dropdown/MenuDropdown.component";
 import NavIcon from "../navIcon/navIcon";
 

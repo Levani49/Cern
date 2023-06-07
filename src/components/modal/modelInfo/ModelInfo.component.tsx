@@ -1,9 +1,9 @@
-import {
-  selectModelModal,
-  setModelModal
-} from "../../../features/model/modelSlice";
-import useSelectedModel from "../../../hooks/useSelectedModel/useSelectedModel";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
+import { selectModelModal, setModelModal } from "@features/model/modelSlice";
+
+import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
+
 import Modal from "../Modal.component";
 import ModelAttribute from "./ModelAttribute.component";
 

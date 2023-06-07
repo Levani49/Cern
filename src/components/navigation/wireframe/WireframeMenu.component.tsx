@@ -1,14 +1,17 @@
-import { ReactComponent as WireframeIcon } from "../../../assets/svg/wireframe.svg";
+import { ReactComponent as WireframeIcon } from "@assets/svg/wireframe.svg";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectGlobalWireframe,
   setGlobalWireframe
-} from "../../../features/global/globalsSlice";
+} from "@features/global/globalsSlice";
 import {
   selectModelWireframe,
   selectSelectedModel,
   setModelWireframe
-} from "../../../features/model/modelSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+} from "@features/model/modelSlice";
+
 import NavIcon from "../navIcon/navIcon";
 
 export default function WireframeMenu(): JSX.Element {

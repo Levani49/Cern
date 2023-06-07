@@ -1,6 +1,9 @@
-import { ReactComponent as AxisIcon } from "../../../assets/svg/axis.svg";
-import { selectAxis, showAxis } from "../../../features/global/globalsSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { ReactComponent as AxisIcon } from "@assets/svg/axis.svg";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
+import { selectAxis, showAxis } from "@features/global/globalsSlice";
+
 import NavIcon from "../navIcon/navIcon";
 
 export default function AxisMenu(): JSX.Element {

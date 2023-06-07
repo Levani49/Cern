@@ -1,12 +1,16 @@
-import { TEMP_INFO } from "../../../constants/TEMP_STATIC_DATA";
+import type { Employee } from "@type/app.types";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectAboutModalState,
   showAboutModal
-} from "../../../features/modal/modalSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import type { Employee } from "../../../types/app.types";
-import TransitionModal from "../../transition-modal/transition.modal";
-// import Modal from "../Modal.component";
+} from "@features/modal/modalSlice";
+
+import TransitionModal from "@components/transition-modal/transition.modal";
+
+import { TEMP_INFO } from "@constants/TEMP_STATIC_DATA";
+
 import Slot from "./Slot.component";
 
 export default function AboutModal(): JSX.Element {

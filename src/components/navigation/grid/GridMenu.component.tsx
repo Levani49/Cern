@@ -1,6 +1,9 @@
-import { ReactComponent as GlobeEuropeAfricaIcon } from "../../../assets/svg/globeIcon.svg";
-import { selectGrid, showGrid } from "../../../features/global/globalsSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { ReactComponent as GlobeEuropeAfricaIcon } from "@assets/svg/globeIcon.svg";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
+import { selectGrid, showGrid } from "@features/global/globalsSlice";
+
 import NavIcon from "../navIcon/navIcon";
 
 export default function GridMenu(): JSX.Element {

@@ -1,9 +1,12 @@
-import { ReactComponent as MenuLogo } from "../../../assets/svg/menu.svg";
+import { ReactComponent as MenuLogo } from "@assets/svg/menu.svg";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectGeometryMenu,
   setGeometryMenu
-} from "../../../features/global/globalsSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+} from "@features/global/globalsSlice";
+
 import NavIcon from "../navIcon/navIcon";
 
 export default function GeometryMenu(): JSX.Element {
