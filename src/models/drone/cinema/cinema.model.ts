@@ -2,7 +2,7 @@ import { Camera } from "@react-three/fiber";
 
 import { CatmullRomCurve3, Vector3 } from "three";
 
-import { emptyFunc } from "../../../types/app.types";
+import { emptyFunc } from "@type/app.types";
 
 /**
  * A class for controlling the camera movement in a cinema-style animation.

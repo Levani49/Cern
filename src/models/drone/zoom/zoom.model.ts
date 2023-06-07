@@ -1,6 +1,6 @@
 import { PerspectiveCamera } from "three";
 
-import { emptyFunc } from "../../../types/app.types";
+import { emptyFunc } from "@type/app.types";
 
 /**
  * Zoom class that animates a PerspectiveCamera by moving it closer to the origin and reducing its field of view.

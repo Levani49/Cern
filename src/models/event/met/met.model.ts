@@ -1,6 +1,7 @@
 import { BufferAttribute, BufferGeometry, Vector3 } from "three";
 
-import { Met } from "../../../services/event/event.service.types";
+import { Met } from "@services/event/event.service.types";
+
 import { MetInfo } from "./met.model.types";
 
 // import { MeshLineGeometry } from '@react-three/drei';

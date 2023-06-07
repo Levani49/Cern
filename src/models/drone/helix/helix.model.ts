@@ -1,6 +1,6 @@
 import { Camera } from "@react-three/fiber";
 
-import { emptyFunc } from "../../../types/app.types";
+import { emptyFunc } from "@type/app.types";
 
 /**
  * The `Helix` class provides functionality for animating a camera around a helix-like trajectory.

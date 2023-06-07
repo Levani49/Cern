@@ -1,16 +1,18 @@
 import { useMemo } from "react";
 
+import { useAppSelector } from "@store/hooks";
+
 import {
   selectGlobalOpacity,
   selectGlobalWireframe
-} from "../../features/global/globalsSlice";
+} from "@features/global/globalsSlice";
 import {
   selectLocalGeometryCutType,
   selectModelsOpacity,
   selectModelWireframe,
   selectSelectedModel
-} from "../../features/model/modelSlice";
-import { useAppSelector } from "../../store/hooks";
+} from "@features/model/modelSlice";
+
 import type { UseSelectedModel } from "./useSelectedModel.types";
 
 export default function useSelectedModel(): UseSelectedModel {

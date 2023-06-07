@@ -1,8 +1,10 @@
 import { BufferGeometry, CubicBezierCurve3, Vector2, Vector3 } from "three";
 
-import { EventsSlice } from "../../../features/event/eventSlice.types";
-import EventService from "../../../services/event/event.service";
-import { Track } from "../../../services/event/event.service.types";
+import { EventsSlice } from "@features/event/eventSlice.types";
+
+import EventService from "@services/event/event.service";
+import { Track } from "@services/event/event.service.types";
+
 import { TrackInfo, TrackMesh } from "./track.model.types";
 
 export default class TrackService extends EventService {

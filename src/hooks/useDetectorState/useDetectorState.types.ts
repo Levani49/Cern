@@ -1,4 +1,4 @@
-import type { ModelCut, ActiveModel } from '../../types/app.types';
+import type { ActiveModel, ModelCut } from "@type/app.types";
 
 export interface UseDetectorState {
   models: ActiveModel[];

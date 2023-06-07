@@ -1,11 +1,11 @@
-import { EventOverviewData, EventDetailsXML } from './event.service.types';
+import { XMLParser } from "fast-xml-parser";
 
-import { XMLParser } from 'fast-xml-parser';
+import { EventDetailsXML, EventOverviewData } from "./event.service.types";
 
 export default class EventService {
   private base = import.meta.env.VITE_XML_PROVIDER;
   private parser = new XMLParser({
-    ignoreAttributes: false,
+    ignoreAttributes: false
   });
 
   fetch = async (xmlPath: string): Promise<string> => {
@@ -27,19 +27,21 @@ export default class EventService {
       const content = tagText.split(whiteSpaceCharacters);
       return content.map((element: string) => parseFloat(element));
     } catch (err) {
-      throw new Error(`Error while converting tag text to numbers array ${err}`);
+      throw new Error(
+        `Error while converting tag text to numbers array ${err}`
+      );
     }
   }
 
   getEventGeneralInfo = (event: EventDetailsXML): EventOverviewData => {
-    const dateTime = event.Event['@_dateTime'];
+    const dateTime = event.Event["@_dateTime"];
 
     return {
-      runNumber: event.Event['@_runNumber'],
-      eventNumber: event.Event['@_eventNumber'],
-      lumiBlock: event.Event['@_lumiBlock'],
-      date: dateTime.split(' ')[0],
-      time: dateTime.split(' ')[1],
+      runNumber: event.Event["@_runNumber"],
+      eventNumber: event.Event["@_eventNumber"],
+      lumiBlock: event.Event["@_lumiBlock"],
+      date: dateTime.split(" ")[0],
+      time: dateTime.split(" ")[1]
     };
   };
 
