@@ -5,27 +5,27 @@ import { lazy, Suspense, useEffect } from "react";
 
 import { NoToneMapping } from "three";
 
-import { updateModelsLoadingState } from "../../features/model/modelSlice";
-import useLoadingStatus from "../../hooks/useLoading/useLoading";
-import { useAppDispatch } from "../../store/hooks";
-import Background from "../background/Background.three";
-import Camera from "../camera/OrthographicCamera.three";
-import Fog from "../fog/Fog.three";
-import Lights from "../light/Light.three";
-import StatsDispatcher from "../stats/Stats.three";
+import { useAppDispatch } from "@store/hooks";
 
-const Detector = lazy(() => import("../controls/Detector.three"));
-const ParticleSystem = lazy(() => import("../particle-system/ParticleSystem"));
-const Controls = lazy(() => import("../controls/Controls.three"));
-const Axis = lazy(() => import("../axis/Axis.three"));
-const Grid = lazy(() => import("../grid/Grid.three"));
-const Event = lazy(() => import("../event/event/Event.three"));
+import { updateModelsLoadingState } from "@features/model/modelSlice";
 
-/**
- * Main scene of application
- *
- * @returns { JSX.Element } JSX.ELement
- */
+import Background from "@three/background/Background.three";
+import Camera from "@three/camera/OrthographicCamera.three";
+import Fog from "@three/fog/Fog.three";
+import Lights from "@three/light/Light.three";
+import StatsDispatcher from "@three/stats/Stats.three";
+
+import useLoadingStatus from "@hooks/useLoading/useLoading";
+
+const Detector = lazy(() => import("@three/controls/Detector.three"));
+const Controls = lazy(() => import("@three/controls/Controls.three"));
+const Axis = lazy(() => import("@three/axis/Axis.three"));
+const Grid = lazy(() => import("@three/grid/Grid.three"));
+const Event = lazy(() => import("@three/event/event/Event.three"));
+const ParticleSystem = lazy(
+  () => import("@three/particle-system/ParticleSystem")
+);
+
 export default function Scene(): JSX.Element {
   const dispatch = useAppDispatch();
   const { isLoading, isLoaded } = useLoadingStatus();

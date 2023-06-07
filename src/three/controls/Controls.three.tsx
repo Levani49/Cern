@@ -5,14 +5,16 @@ import { OrbitControlsProps } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef } from "react";
 
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectCameraPosition,
   selectDroneState,
   setCamera
-} from "../../features/camera/cameraSlice";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import CustomOrbitControl from "../lib/modified_orbit_controls/CustomOrbitControl";
-import Player from "../player/Player.three";
+} from "@features/camera/cameraSlice";
+
+import CustomOrbitControl from "@three/lib/modified_orbit_controls/CustomOrbitControl";
+import Player from "@three/player/Player.three";
 
 export default function Controls(): JSX.Element {
   const dispatch = useAppDispatch();

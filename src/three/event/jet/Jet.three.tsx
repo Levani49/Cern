@@ -1,12 +1,14 @@
 import { useMemo } from "react";
 
+import { useAppSelector } from "@store/hooks";
+
 import {
   selectEvent,
   selectEventParameters,
   selectJetFilter
-} from "../../../features/event/eventSlice";
-import JetService from "../../../models/event/jet/jet.model";
-import { useAppSelector } from "../../../store/hooks";
+} from "@features/event/eventSlice";
+
+import JetService from "@models/event/jet/jet.model";
 
 const jetService = new JetService();
 

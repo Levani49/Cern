@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 
-import { selectSelectedModel } from "../../features/model/modelSlice";
-import { useDetectorState } from "../../hooks/useDetectorState/useDetectorState";
-import { useAppSelector } from "../../store/hooks";
-import { ActiveModel, ModelCut } from "../../types/app.types";
-import Model from "../model/Model.three";
+import { ActiveModel, ModelCut } from "@type/app.types";
+
+import { useAppSelector } from "@store/hooks";
+
+import { selectSelectedModel } from "@features/model/modelSlice";
+
+import Model from "@three/model/Model.three";
+
+import { useDetectorState } from "@hooks/useDetectorState/useDetectorState";
 
 interface LocalModel extends ActiveModel {
   cutType: ModelCut;

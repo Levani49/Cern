@@ -1,11 +1,13 @@
 import { memo, useEffect, useMemo } from "react";
 
-import { selectEventNumber } from "../../features/event/eventSlice";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
+import { selectEventNumber } from "@features/event/eventSlice";
 import {
   selectParticleAnimation,
   setParticleAnimationState
-} from "../../features/global/globalsSlice";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+} from "@features/global/globalsSlice";
+
 import Particles from "./Particles.three";
 
 const ParticleSystem = (): JSX.Element => {

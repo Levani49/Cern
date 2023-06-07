@@ -3,17 +3,21 @@ import { useEffect, useRef, useState } from "react";
 
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-import { selectDroneState } from "../../features/camera/cameraSlice";
+import { ModelCut } from "@type/app.types";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
+import { selectDroneState } from "@features/camera/cameraSlice";
 import {
   setModelsOpacity,
   setModelWireframe,
   setSelectedModel,
   updateLocalModelCut
-} from "../../features/model/modelSlice";
-import useSelectedModel from "../../hooks/useSelectedModel/useSelectedModel";
-import ModelService from "../../services/model/Model.service";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { ModelCut } from "../../types/app.types";
+} from "@features/model/modelSlice";
+
+import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
+
+import ModelService from "@services/model/Model.service";
 
 export interface Event {
   stopPropagation: () => void;

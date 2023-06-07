@@ -5,9 +5,11 @@ import { useEffect, useRef } from "react";
 
 import { BufferGeometry, Material, Mesh, Vector3 } from "three";
 
-import { setDroneMode } from "../../features/camera/cameraSlice";
-import { usePlayerControls } from "../../hooks/usePlayercontrols/usePlayerControls";
-import store from "../../store/store";
+import store from "@store/store";
+
+import { setDroneMode } from "@features/camera/cameraSlice";
+
+import { usePlayerControls } from "@hooks/usePlayercontrols/usePlayerControls";
 
 interface Props {
   currentCameraPosition: [number, number, number];

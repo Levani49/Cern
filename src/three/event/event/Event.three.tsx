@@ -1,12 +1,15 @@
 import { memo, useEffect } from "react";
 
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectEventNumber,
   setEventDetailsXML,
   setEventLoading
-} from "../../../features/event/eventSlice";
-import EventService from "../../../services/event/event.service";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+} from "@features/event/eventSlice";
+
+import EventService from "@services/event/event.service";
+
 import Jet from "../jet/Jet.three";
 import Met from "../met/Met.three";
 import Tracks from "../track/track.three";

@@ -1,8 +1,9 @@
 import { GizmoHelper, GizmoViewport } from "@react-three/drei";
 
-import { selectDroneState } from "../../features/camera/cameraSlice";
-import { selectAxis } from "../../features/global/globalsSlice";
-import { useAppSelector } from "../../store/hooks";
+import { useAppSelector } from "@store/hooks";
+
+import { selectDroneState } from "@features/camera/cameraSlice";
+import { selectAxis } from "@features/global/globalsSlice";
 
 export default function Axis(): JSX.Element {
   const { droneType, show } = useAppSelector((state) => ({

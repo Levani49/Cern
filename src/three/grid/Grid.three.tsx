@@ -1,7 +1,8 @@
 import { Grid } from "@react-three/drei";
 
-import { selectGrid, selectTheme } from "../../features/global/globalsSlice";
-import { useAppSelector } from "../../store/hooks";
+import { useAppSelector } from "@store/hooks";
+
+import { selectGrid, selectTheme } from "@features/global/globalsSlice";
 
 /**
  * Renders a custom grid.

@@ -4,11 +4,12 @@ import { useEffect, useMemo, useRef } from "react";
 
 import { Camera, Euler, Matrix4, Spherical, Vector3 } from "three";
 
+import { useAppSelector } from "@store/hooks";
+
 import {
   selectCameraPosition,
   selectCameraType
-} from "../../features/camera/cameraSlice";
-import { useAppSelector } from "../../store/hooks";
+} from "@features/camera/cameraSlice";
 
 interface OrthographicReturnType {
   left: number;

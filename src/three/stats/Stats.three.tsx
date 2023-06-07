@@ -1,9 +1,11 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 
-import { setRendererStats } from "../../features/renderer/rendererSlice";
-import { useAppDispatch } from "../../store/hooks";
-import StatsUtils from "../../utils/stats.utils";
+import { useAppDispatch } from "@store/hooks";
+
+import { setRendererStats } from "@features/renderer/rendererSlice";
+
+import StatsUtils from "@utils/stats.utils";
 
 const stats = new StatsUtils();
 

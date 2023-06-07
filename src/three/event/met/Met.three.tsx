@@ -1,13 +1,12 @@
 import { useEffect, useMemo, useRef } from "react";
 
-import {
-  selectEvent,
-  selectEventParameters
-} from "../../../features/event/eventSlice";
-import MetService from "../../../models/event/met/met.model";
-import { useAppSelector } from "../../../store/hooks";
+import { useAppSelector } from "@store/hooks";
 
-const metService = new MetService();
+import { selectEvent, selectEventParameters } from "@features/event/eventSlice";
+
+import MetModel from "@models/event/met/met.model";
+
+const metModel = new MetModel();
 
 export default function Met(): JSX.Element {
   const event = useAppSelector(selectEvent);
@@ -25,11 +24,11 @@ export default function Met(): JSX.Element {
   const metToDraw = useMemo(() => {
     if (event) {
       if (Array.isArray(event.Event.ETMis)) {
-        metService.init(event.Event.ETMis[0]);
+        metModel.init(event.Event.ETMis[0]);
       } else {
-        metService.init(event.Event.ETMis);
+        metModel.init(event.Event.ETMis);
       }
-      return metService.drawMet();
+      return metModel.drawMet();
     }
     return null;
   }, [event]);
