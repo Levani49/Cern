@@ -1,18 +1,18 @@
-import { Suspense, lazy, useEffect } from "react";
-import { NoToneMapping } from "three";
-import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/cannon";
 import { Loader } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { lazy, Suspense, useEffect } from "react";
 
-import { useAppDispatch } from "../../app/hooks";
+import { NoToneMapping } from "three";
+
 import { updateModelsLoadingState } from "../../features/model/modelSlice";
 import useLoadingStatus from "../../hooks/useLoading/useLoading";
-
-import Lights from "../light/Light.three";
-import Fog from "../fog/Fog.three";
-import StatsDispatcher from "../stats/Stats.three";
+import { useAppDispatch } from "../../store/hooks";
 import Background from "../background/Background.three";
 import Camera from "../camera/OrthographicCamera.three";
+import Fog from "../fog/Fog.three";
+import Lights from "../light/Light.three";
+import StatsDispatcher from "../stats/Stats.three";
 
 const Detector = lazy(() => import("../controls/Detector.three"));
 const ParticleSystem = lazy(() => import("../particle-system/ParticleSystem"));
@@ -44,7 +44,7 @@ export default function Scene(): JSX.Element {
         gl={{
           pixelRatio: window.devicePixelRatio * 0.5,
           alpha: true,
-          toneMapping: NoToneMapping,
+          toneMapping: NoToneMapping
         }}
         linear
         frameloop="demand"

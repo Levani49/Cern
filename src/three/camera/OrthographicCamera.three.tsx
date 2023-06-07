@@ -1,10 +1,14 @@
-import { useEffect, useMemo, useRef } from "react";
-import { Camera, Vector3, Matrix4, Euler, Spherical } from "three";
 import { OrthographicCamera, PerspectiveCamera } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
+import { useEffect, useMemo, useRef } from "react";
 
-import { selectCameraPosition, selectCameraType } from "../../features/camera/cameraSlice";
-import { useAppSelector } from "../../app/hooks";
+import { Camera, Euler, Matrix4, Spherical, Vector3 } from "three";
+
+import {
+  selectCameraPosition,
+  selectCameraType
+} from "../../features/camera/cameraSlice";
+import { useAppSelector } from "../../store/hooks";
 
 interface OrthographicReturnType {
   left: number;
@@ -37,12 +41,12 @@ export default function OrthographicCam(): JSX.Element {
 
   const orthoDimensions = useMemo(
     () => calculateOrthoDimensions(camera, size.width, size.height),
-    [camera, size],
+    [camera, size]
   );
 
   const perspectiveDimensions = useMemo(
     () => calculatePerspectiveDimesnions(camera, size.width, size.height),
-    [camera, size],
+    [camera, size]
   );
 
   const perspectiveCameraRef = useRef<Camera | null>(null);
@@ -60,7 +64,11 @@ export default function OrthographicCam(): JSX.Element {
       {cameraType === "orthographic" ? (
         <OrthographicCamera zoom={1} {...orthoDimensions} makeDefault />
       ) : (
-        <PerspectiveCamera ref={perspectiveCameraRef} {...perspectiveDimensions} makeDefault />
+        <PerspectiveCamera
+          ref={perspectiveCameraRef}
+          {...perspectiveDimensions}
+          makeDefault
+        />
       )}
     </>
   );
@@ -69,7 +77,7 @@ export default function OrthographicCam(): JSX.Element {
 function calculatePerspectiveDimesnions(
   camera: OrthoCamera,
   width: number,
-  height: number,
+  height: number
 ): PerspectiveReturnType {
   const pos = camera.position;
   const radius = pos.distanceTo(new Vector3(0, 0, 0)) / camera.zoom;
@@ -78,7 +86,7 @@ function calculatePerspectiveDimesnions(
   const position = new Vector3(
     radius * Math.sin(sphere.theta) * Math.sin(sphere.phi),
     radius * Math.cos(sphere.phi),
-    radius * Math.cos(sphere.theta) * Math.sin(sphere.phi),
+    radius * Math.cos(sphere.theta) * Math.sin(sphere.phi)
   );
 
   return {
@@ -86,14 +94,14 @@ function calculatePerspectiveDimesnions(
     position,
     aspect: width / height,
     near: 0.01,
-    far: 1000,
+    far: 1000
   };
 }
 
 function calculateOrthoDimensions(
   camera: Camera,
   width: number,
-  height: number,
+  height: number
 ): OrthographicReturnType {
   const cameraMatrix = camera.matrix.clone();
   const cameraPosition = camera.position;
@@ -117,6 +125,6 @@ function calculateOrthoDimensions(
     matrix: cameraMatrix,
     rotation: camera.rotation,
     near: 0.01,
-    far: 1000,
+    far: 1000
   };
 }

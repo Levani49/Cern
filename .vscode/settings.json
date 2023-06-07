@@ -1,9 +1,12 @@
 {
+  "eslint.workingDirectories": ["./tracer-core-new"],
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.fixAll.format": true
-  }
+  },
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "json.schemaDownload.enable": true
 }

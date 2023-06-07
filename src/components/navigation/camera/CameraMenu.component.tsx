@@ -1,12 +1,10 @@
 import { ReactComponent as VideoCameraIcon } from "../../../assets/svg/videoCameraIcon.svg";
-
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
   selectCameraType,
   selectDroneState,
-  setCameraType,
+  setCameraType
 } from "../../../features/camera/cameraSlice";
-
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import NavIcon from "../navIcon/navIcon";
 
 export default function CameraMenu(): JSX.Element {

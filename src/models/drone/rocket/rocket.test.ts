@@ -1,6 +1,7 @@
-import { test } from 'vitest';
-import { PerspectiveCamera, Vector3 } from 'three';
-import Rocket from './rocket.model';
+import { PerspectiveCamera, Vector3 } from "three";
+import { test } from "vitest";
+
+import Rocket from "./rocket.model";
 
 // Mock the Camera class
 class MockCamera extends PerspectiveCamera {
@@ -8,8 +9,8 @@ class MockCamera extends PerspectiveCamera {
   lookAt = jest.fn();
 }
 
-test('Rocket class', async () => {
-  test('prepare() method', () => {
+test("Rocket class", async () => {
+  test("prepare() method", () => {
     const rocket = new Rocket();
     const camera = new MockCamera(75, 16 / 9, 0.1, 1000);
 
@@ -19,7 +20,7 @@ test('Rocket class', async () => {
     expect(camera.lookAt).toHaveBeenCalledWith(0, 0, 0);
   });
 
-  test('start() and stop() methods', () => {
+  test("start() and stop() methods", () => {
     const rocket = new Rocket();
     const camera = new MockCamera(75, 16 / 9, 0.1, 1000);
     const callback = jest.fn();
@@ -29,10 +30,10 @@ test('Rocket class', async () => {
     rocket.stop();
 
     // Check if the animation stopped
-    expect(rocket['animationRef']).toBeUndefined();
+    expect(rocket["animationRef"]).toBeUndefined();
   });
 
-  test('start() method with a callback', async () => {
+  test("start() method with a callback", async () => {
     const rocket = new Rocket();
     const camera = new MockCamera(75, 16 / 9, 0.1, 1000);
     const callback = jest.fn();

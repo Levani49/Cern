@@ -1,9 +1,11 @@
-import NavIcon from '../navIcon/navIcon';
-
-import { ReactComponent as SnapIcon } from '../../../assets/svg/snap.svg';
-import SnapModal from '../../modal/snap/Snap.modal';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { selectSnapModal, setSnapModal } from '../../../features/global/globalsSlice';
+import { ReactComponent as SnapIcon } from "../../../assets/svg/snap.svg";
+import {
+  selectSnapModal,
+  setSnapModal
+} from "../../../features/global/globalsSlice";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import SnapModal from "../../modal/snap/Snap.modal";
+import NavIcon from "../navIcon/navIcon";
 
 export default function SnapMenu(): JSX.Element {
   const showModal = useAppSelector(selectSnapModal);
@@ -15,7 +17,11 @@ export default function SnapMenu(): JSX.Element {
 
   return (
     <>
-      <NavIcon Icon={SnapIcon} active={showModal} onClick={(): void => handleToggle(!showModal)} />
+      <NavIcon
+        Icon={SnapIcon}
+        active={showModal}
+        onClick={(): void => handleToggle(!showModal)}
+      />
       <SnapModal open={showModal} onClose={handleToggle} />
     </>
   );

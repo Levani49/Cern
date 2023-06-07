@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import { BackSide } from 'three';
-import { useAppDispatch } from '../../app/hooks';
-import { setSelectedModel } from '../../features/model/modelSlice';
+import { useState } from "react";
+
+import { BackSide } from "three";
+
+import { setSelectedModel } from "../../features/model/modelSlice";
+import { useAppDispatch } from "../../store/hooks";
 
 const Background = (): JSX.Element => {
   const dispatch = useAppDispatch();

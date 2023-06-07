@@ -1,6 +1,6 @@
-import { useAppDispatch } from '../../../app/hooks';
-import { updateChildNodeState } from '../../../features/tree/treeSlice';
-import { GeometryState } from '../../../constants/geometryTree';
+import { GeometryState } from "../../../constants/geometryTree";
+import { updateChildNodeState } from "../../../features/tree/treeSlice";
+import { useAppDispatch } from "../../../store/hooks";
 
 export interface ChildNodeProps {
   uid: string;
@@ -9,40 +9,48 @@ export interface ChildNodeProps {
   nodeEnd?: boolean;
 }
 
-export default function ChildNode({ name, uid, modelState, nodeEnd }: ChildNodeProps): JSX.Element {
+export default function ChildNode({
+  name,
+  uid,
+  modelState,
+  nodeEnd
+}: ChildNodeProps): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const onClickHandler = (e: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
+  const onClickHandler = (
+    e: React.MouseEvent<HTMLLIElement, MouseEvent>
+  ): void => {
     e.stopPropagation();
-    const state: GeometryState = modelState === 'isLoaded' ? 'notLoaded' : 'isLoaded';
+    const state: GeometryState =
+      modelState === "isLoaded" ? "notLoaded" : "isLoaded";
 
     dispatch(
       updateChildNodeState({
         nodeId: uid,
-        propToChange: 'state',
-        value: state,
-      }),
+        propToChange: "state",
+        value: state
+      })
     );
   };
 
   let innerState: string;
 
-  if (modelState === 'isLoaded') {
-    innerState = 'text-green';
+  if (modelState === "isLoaded") {
+    innerState = "text-green";
   } else {
-    innerState = 'text-white';
+    innerState = "text-white";
   }
 
   return (
     <li
       className={`flex items-center border-l-[1px] border-white ${
-        nodeEnd && 'last-event-line border-transparent border-l border-solid'
+        nodeEnd && "last-event-line border-l border-solid border-transparent"
       } ${innerState}`}
     >
       <span
         role="presentation"
         onClick={onClickHandler}
-        className="relative uppercase text-xs cursor-pointer border-white ml-[-0.5px] overflow-ellipsis whitespace-nowrap text-left align-middle transition before:relative before:inline-block before:w-[15px] left-0 before:align-middle before:border before:border-t-[0.5px] before:text-white before:mr-[2px]"
+        className="relative left-0 ml-[-0.5px] cursor-pointer overflow-ellipsis whitespace-nowrap border-white text-left align-middle text-xs uppercase transition before:relative before:mr-[2px] before:inline-block before:w-[15px] before:border before:border-t-[0.5px] before:align-middle before:text-white"
       >
         {name}
       </span>

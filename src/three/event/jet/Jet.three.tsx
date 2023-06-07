@@ -1,11 +1,12 @@
-import { useMemo } from 'react';
-import { useAppSelector } from '../../../app/hooks';
+import { useMemo } from "react";
+
 import {
   selectEvent,
   selectEventParameters,
-  selectJetFilter,
-} from '../../../features/event/eventSlice';
-import JetService from '../../../model/event/jet/jet.model';
+  selectJetFilter
+} from "../../../features/event/eventSlice";
+import JetService from "../../../models/event/jet/jet.model";
+import { useAppSelector } from "../../../store/hooks";
 
 const jetService = new JetService();
 
@@ -31,7 +32,11 @@ export default function Jet(): JSX.Element {
       <>
         {jetConesToDraw.map((jetCone, i) => {
           return (
-            <mesh key={i} geometry={jetCone.geo} quaternion={jetCone.quaternion}>
+            <mesh
+              key={i}
+              geometry={jetCone.geo}
+              quaternion={jetCone.quaternion}
+            >
               <meshToonMaterial
                 attach="material"
                 color="#e40cf0"

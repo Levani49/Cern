@@ -1,6 +1,6 @@
-import { Camera } from '@react-three/fiber';
+import { Camera } from "@react-three/fiber";
 
-import { emptyFunc } from '../../../types/app.types';
+import { emptyFunc } from "../../../types/app.types";
 
 /**
  * Rocket class for animating a rocket launch.
@@ -10,10 +10,10 @@ export default class Rocket {
     startingPoint: {
       x: 3,
       y: 3,
-      z: 3,
+      z: 3
     },
     maxHeight: 18,
-    maxIteration: 1000,
+    maxIteration: 1000
   };
 
   private yAxisIterator = 0;

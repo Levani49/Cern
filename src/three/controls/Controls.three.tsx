@@ -1,16 +1,18 @@
-import { useEffect, useMemo, useRef } from "react";
-import { useThree } from "@react-three/fiber";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import {
-  selectDroneState,
-  setCamera,
-  selectCameraPosition,
-} from "../../features/camera/cameraSlice";
-
-import Player from "../player/Player.three";
-import CustomOrbitControl from "../lib/modified_orbit_controls/CustomOrbitControl";
 import { OrbitControlsProps } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+import { useEffect, useMemo, useRef } from "react";
+
+import {
+  selectCameraPosition,
+  selectDroneState,
+  setCamera
+} from "../../features/camera/cameraSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import CustomOrbitControl from "../lib/modified_orbit_controls/CustomOrbitControl";
+import Player from "../player/Player.three";
 
 export default function Controls(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -50,10 +52,22 @@ export default function Controls(): JSX.Element {
 
   if (isFreeFly) {
     return (
-      <Player currentCameraPosition={[camera.position.x, camera.position.y, camera.position.z]} />
+      <Player
+        currentCameraPosition={[
+          camera.position.x,
+          camera.position.y,
+          camera.position.z
+        ]}
+      />
     );
   }
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  return <CustomOrbitControl ref={controlsRef} makeDefault autoRotate={rotate} enabled={enable} />;
+
+  return (
+    <CustomOrbitControl
+      ref={controlsRef}
+      makeDefault
+      autoRotate={rotate}
+      enabled={enable}
+    />
+  );
 }

@@ -1,7 +1,6 @@
-import { useAppSelector } from '../../../app/hooks';
-
-import { selectRendererStats } from '../../../features/renderer/rendererSlice';
-import { selectStats } from '../../../features/global/globalsSlice';
+import { selectStats } from "../../../features/global/globalsSlice";
+import { selectRendererStats } from "../../../features/renderer/rendererSlice";
+import { useAppSelector } from "../../../store/hooks";
 
 export default function Stats(): JSX.Element {
   const { triangles, fps, memory } = useAppSelector(selectRendererStats);
@@ -10,7 +9,7 @@ export default function Stats(): JSX.Element {
   return (
     <>
       {show && (
-        <div className="absolute flex left-1/2 bottom-[1px] gap-3 transform -translate-x-1/2 -translate-y-1/2 text-white font-normal text-xs select-none z-[9999]">
+        <div className="absolute bottom-[1px] left-1/2 z-[9999] flex -translate-x-1/2 -translate-y-1/2 transform select-none gap-3 text-xs font-normal text-white">
           <span>TRIANGLES: {triangles}</span>
           {memory ? <span>MEMORY: {memory} MB</span> : null}
           <span>FPS: {fps} </span>

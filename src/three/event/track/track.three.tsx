@@ -1,12 +1,13 @@
-import { useMemo } from 'react';
-import { useAppSelector } from '../../../app/hooks';
+import { useMemo } from "react";
+
 import {
   selectEvent,
   selectEventParameters,
-  selectTrackFilter,
-} from '../../../features/event/eventSlice';
-import { TrackMesh } from '../../../model/event/track/track.model.types';
-import TrackService from '../../../model/event/track/track.model';
+  selectTrackFilter
+} from "../../../features/event/eventSlice";
+import TrackService from "../../../models/event/track/track.model";
+import { TrackMesh } from "../../../models/event/track/track.model.types";
+import { useAppSelector } from "../../../store/hooks";
 
 const trackService = new TrackService();
 

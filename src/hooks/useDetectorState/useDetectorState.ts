@@ -1,13 +1,12 @@
-import { useMemo } from 'react';
-import { useAppSelector } from '../../app/hooks';
+import { useMemo } from "react";
 
-import { selectActiveGeometries } from '../../features/tree/treeSlice';
 import {
   selectGeometriesCutType,
-  selectLocalGeometryCutType,
-} from '../../features/model/modelSlice';
-
-import type { UseDetectorState } from './useDetectorState.types';
+  selectLocalGeometryCutType
+} from "../../features/model/modelSlice";
+import { selectActiveGeometries } from "../../features/tree/treeSlice";
+import { useAppSelector } from "../../store/hooks";
+import type { UseDetectorState } from "./useDetectorState.types";
 
 export function useDetectorState(): UseDetectorState {
   const models = useAppSelector(selectActiveGeometries);
@@ -18,8 +17,8 @@ export function useDetectorState(): UseDetectorState {
     () => ({
       models,
       cutType,
-      localCutType,
+      localCutType
     }),
-    [models, cutType, localCutType],
+    [models, cutType, localCutType]
   );
 }

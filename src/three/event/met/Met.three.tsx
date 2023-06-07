@@ -1,7 +1,11 @@
-import { useEffect, useMemo, useRef } from 'react';
-import { useAppSelector } from '../../../app/hooks';
-import { selectEvent, selectEventParameters } from '../../../features/event/eventSlice';
-import MetService from '../../../model/event/met/met.model';
+import { useEffect, useMemo, useRef } from "react";
+
+import {
+  selectEvent,
+  selectEventParameters
+} from "../../../features/event/eventSlice";
+import MetService from "../../../models/event/met/met.model";
+import { useAppSelector } from "../../../store/hooks";
 
 const metService = new MetService();
 
@@ -35,7 +39,12 @@ export default function Met(): JSX.Element {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       <line ref={lineRef} geometry={metToDraw.geometry}>
-        <lineDashedMaterial attach="material" color="#ff0000" dashSize={0.5} gapSize={0.1} />
+        <lineDashedMaterial
+          attach="material"
+          color="#ff0000"
+          dashSize={0.5}
+          gapSize={0.1}
+        />
       </line>
     );
   }

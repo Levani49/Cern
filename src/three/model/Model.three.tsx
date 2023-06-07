@@ -1,20 +1,20 @@
-import { useEffect, useRef, useState } from 'react';
-import { useLoader, useThree } from '@react-three/fiber';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { useLoader, useThree } from "@react-three/fiber";
+import { useEffect, useRef, useState } from "react";
 
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+
+import { selectDroneState } from "../../features/camera/cameraSlice";
 import {
   setModelsOpacity,
   setModelWireframe,
   setSelectedModel,
-  updateLocalModelCut,
-} from '../../features/model/modelSlice';
+  updateLocalModelCut
+} from "../../features/model/modelSlice";
+import useSelectedModel from "../../hooks/useSelectedModel/useSelectedModel";
+import ModelService from "../../services/model/Model.service";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { ModelCut } from "../../types/app.types";
 
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-
-import ModelService from '../../services/model/Model.service';
-import { ModelCut } from '../../types/app.types';
-import useSelectedModel from '../../hooks/useSelectedModel/useSelectedModel';
-import { selectDroneState } from '../../features/camera/cameraSlice';
 export interface Event {
   stopPropagation: () => void;
   clientX: number;
@@ -33,7 +33,7 @@ const modelService = new ModelService();
 const LOW_OPACITY_LEVEL = 0.3;
 const mouse = {
   x: 0,
-  y: 0,
+  y: 0
 };
 
 export default function Model({ src, id, name, cutType }: Props): JSX.Element {
@@ -44,8 +44,13 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   const droneMode = useAppSelector(selectDroneState);
 
   // Redux hooks for managing the application state.
-  const { selectedModel, modelOpacityLevel, globalOpacityLevel, modelWireframe, globalWireframe } =
-    useSelectedModel();
+  const {
+    selectedModel,
+    modelOpacityLevel,
+    globalOpacityLevel,
+    modelWireframe,
+    globalWireframe
+  } = useSelectedModel();
 
   // Load the 3D model using the GLTFLoader and DRACOLoader.
   const model = useLoader(
@@ -53,7 +58,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     modelService.buildModelUrl(src),
     (loader: GLTFLoader): void => {
       loader.setDRACOLoader(modelService.dracoLoader);
-    },
+    }
   );
 
   const ref = useRef<THREE.Object3D>();
@@ -70,7 +75,12 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
           modelService.applyDefaults(currentRef, id);
         }
       } else {
-        modelService.applyDefaults(currentRef, id, globalOpacityLevel, globalWireframe);
+        modelService.applyDefaults(
+          currentRef,
+          id,
+          globalOpacityLevel,
+          globalWireframe
+        );
       }
     }
 
@@ -145,12 +155,12 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
 
   // Handle pointer over events on the model.
   const handlePointerOver = (): void => {
-    gl.domElement.style.cursor = 'pointer';
+    gl.domElement.style.cursor = "pointer";
   };
 
   // Handle pointer out events on the model.
   const handlePointerOut = (): void => {
-    gl.domElement.style.cursor = 'default';
+    gl.domElement.style.cursor = "default";
   };
 
   const handleMouseDown = (e: Event): void => {
@@ -184,10 +194,11 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
 
   const hoverMethods = {
     onPointerOver: handlePointerOver,
-    onPointerOut: handlePointerOut,
+    onPointerOut: handlePointerOut
   };
 
-  const hoverEffects = scene.children.length < 20 && droneMode !== 'fly' ? hoverMethods : {};
+  const hoverEffects =
+    scene.children.length < 20 && droneMode !== "fly" ? hoverMethods : {};
 
   return (
     <primitive

@@ -1,15 +1,15 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import type { RootState } from '../../app/store';
-import type { RendererInfo, RendererType } from './rendererSlice.types';
+import type { RootState } from "../../store/store";
+import type { RendererInfo, RendererType } from "./rendererSlice.types";
 
 const initialState: RendererInfo = {
   show: false,
   renderer: {
     triangles: 0,
     fps: 0,
-    memory: 0,
-  },
+    memory: 0
+  }
 };
 
 /**
@@ -18,7 +18,7 @@ const initialState: RendererInfo = {
  * @module infoSlice
  */
 export const infoSlice = createSlice({
-  name: 'info',
+  name: "info",
   initialState,
   reducers: {
     rehydrate: (state, action) => {
@@ -27,13 +27,15 @@ export const infoSlice = createSlice({
     setRendererStats: (state, action: PayloadAction<RendererType>) => {
       state.renderer = {
         ...state.renderer,
-        ...action.payload,
+        ...action.payload
       };
-    },
-  },
+    }
+  }
 });
 
 export default infoSlice.reducer;
 export const { setRendererStats } = infoSlice.actions;
-export const selectInfoSettingsStatus = (state: RootState): boolean => state.renderer.show;
-export const selectRendererStats = (state: RootState): RendererType => state.renderer.renderer;
+export const selectInfoSettingsStatus = (state: RootState): boolean =>
+  state.renderer.show;
+export const selectRendererStats = (state: RootState): RendererType =>
+  state.renderer.renderer;

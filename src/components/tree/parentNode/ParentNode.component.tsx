@@ -1,12 +1,10 @@
 import { useCallback, useState } from "react";
 
-import { useAppDispatch } from "../../../app/hooks";
-import { updateParentNodeState } from "../../../features/tree/treeSlice";
-
-import { ReactComponent as PlusCircleIcon } from "../../../assets/svg/plusCircleIcon.svg";
 import { ReactComponent as MinusCircleIcon } from "../../../assets/svg/minusCircleIcon.svg";
-
+import { ReactComponent as PlusCircleIcon } from "../../../assets/svg/plusCircleIcon.svg";
 import { GeometryState } from "../../../constants/geometryTree";
+import { updateParentNodeState } from "../../../features/tree/treeSlice";
+import { useAppDispatch } from "../../../store/hooks";
 
 export interface ParentNodeProps {
   root?: boolean | undefined;
@@ -31,7 +29,7 @@ export default function ParentNode({
   showChildren,
   children,
   nodeEnd,
-  root,
+  root
 }: ParentNodeProps): JSX.Element {
   const dispatch = useAppDispatch();
   const [show, setShow] = useState(showChildren);
@@ -45,11 +43,11 @@ export default function ParentNode({
           nodeId: uid,
           propToChange: "state",
           value: state,
-          restrictAncestorsUpdate: false,
-        }),
+          restrictAncestorsUpdate: false
+        })
       );
     },
-    [dispatch, modelState, uid],
+    [dispatch, modelState, uid]
   );
 
   const showChildrenHandler = (e: IconMouseEv): void => {
@@ -74,22 +72,32 @@ export default function ParentNode({
         root && "border-none"
       }`}
     >
-      <div className={`flex items-center text-xs relative whitespace-nowrap py-[1px] ${styles}`}>
+      <div
+        className={`relative flex items-center whitespace-nowrap py-[1px] text-xs ${styles}`}
+      >
         {show ? (
-          <MinusCircleIcon onClick={showChildrenHandler} className={`${iconClass}`} />
+          <MinusCircleIcon
+            onClick={showChildrenHandler}
+            className={`${iconClass}`}
+          />
         ) : (
-          <PlusCircleIcon onClick={showChildrenHandler} className={`${iconClass}`} />
+          <PlusCircleIcon
+            onClick={showChildrenHandler}
+            className={`${iconClass}`}
+          />
         )}
 
         <span
           role="presentation"
-          className={`${innerState} ml-[5px] text-xs uppercase cursor-pointer`}
+          className={`${innerState} ml-[5px] cursor-pointer text-xs uppercase`}
           onClick={onClickHandler}
         >
           {name}
         </span>
       </div>
-      <ul className={`p-0 ml-[1.6rem] mt-[-2px]  block ${!show && "hidden"}`}>{children}</ul>
+      <ul className={`ml-[1.6rem] mt-[-2px] block  p-0 ${!show && "hidden"}`}>
+        {children}
+      </ul>
     </li>
   );
 }

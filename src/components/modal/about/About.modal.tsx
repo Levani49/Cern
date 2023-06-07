@@ -1,12 +1,13 @@
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { selectAboutModalState, showAboutModal } from "../../../features/modal/modalSlice";
-
-// import Modal from "../Modal.component";
-import Slot from "./Slot.component";
-
 import { TEMP_INFO } from "../../../constants/TEMP_STATIC_DATA";
+import {
+  selectAboutModalState,
+  showAboutModal
+} from "../../../features/modal/modalSlice";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import type { Employee } from "../../../types/app.types";
 import TransitionModal from "../../transition-modal/transition.modal";
+// import Modal from "../Modal.component";
+import Slot from "./Slot.component";
 
 export default function AboutModal(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -25,7 +26,9 @@ export default function AboutModal(): JSX.Element {
     >
       <div className="flex w-full flex-col gap-2 p-1">
         <h3 className="text-center text-lg font-bold">Tracer Core</h3>
-        <h6 className="text-center text-xs font-bold text-gray-500">Version: @latest</h6>
+        <h6 className="text-center text-xs font-bold text-gray-500">
+          Version: @latest
+        </h6>
         <div className="mt-2 flex justify-center gap-2">
           {TEMP_INFO.managers.map((employee: Employee) => {
             const { id, ...rest } = employee;
@@ -54,7 +57,10 @@ export default function AboutModal(): JSX.Element {
 
           <div className="flex">
             <span className="text-gray-300">In collaboration with</span>
-            <a href="https://cern.ch/" className="ml-[2px] text-green underline">
+            <a
+              href="https://cern.ch/"
+              className="ml-[2px] text-green underline"
+            >
               @CERN
             </a>
           </div>

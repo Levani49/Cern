@@ -1,13 +1,14 @@
-import { useEffect, useRef } from 'react';
-import { BufferGeometry, Material, Mesh, Vector3 } from 'three';
-import { useSphere } from '@react-three/cannon';
-import { useFrame, useThree } from '@react-three/fiber';
-import { PointerLockControls } from '@react-three/drei';
+import { useSphere } from "@react-three/cannon";
+import { PointerLockControls } from "@react-three/drei";
+import { useFrame, useThree } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
 
-import { setDroneMode } from '../../features/camera/cameraSlice';
-import { usePlayerControls } from '../../hooks/usePlayercontrols/usePlayerControls';
+import { BufferGeometry, Material, Mesh, Vector3 } from "three";
 
-import store from '../../app/store';
+import { setDroneMode } from "../../features/camera/cameraSlice";
+import { usePlayerControls } from "../../hooks/usePlayercontrols/usePlayerControls";
+import store from "../../store/store";
+
 interface Props {
   currentCameraPosition: [number, number, number];
 }
@@ -24,11 +25,12 @@ const SPEED = 5;
 export default function Player({ currentCameraPosition }: Props): JSX.Element {
   // Get the camera and player controls
   const { camera } = useThree();
-  const { moveForward, moveBackward, moveLeft, moveRight } = usePlayerControls();
+  const { moveForward, moveBackward, moveLeft, moveRight } =
+    usePlayerControls();
   const [ref, api] = useSphere(() => ({
     mass: 1,
-    type: 'Dynamic',
-    position: [...currentCameraPosition],
+    type: "Dynamic",
+    position: [...currentCameraPosition]
   }));
 
   // Set the player's velocity based on the movement controls
@@ -43,7 +45,11 @@ export default function Player({ currentCameraPosition }: Props): JSX.Element {
     }
     const direction = new Vector3();
 
-    const frontVector = new Vector3(0, 0, Number(moveBackward) - Number(moveForward));
+    const frontVector = new Vector3(
+      0,
+      0,
+      Number(moveBackward) - Number(moveForward)
+    );
     const sideVector = new Vector3(Number(moveLeft) - Number(moveRight), 0, 0);
 
     direction
@@ -61,13 +67,19 @@ export default function Player({ currentCameraPosition }: Props): JSX.Element {
    * @returns { void } void
    */
   const hadnelCancel = (): void => {
-    store.dispatch(setDroneMode('idle'));
+    store.dispatch(setDroneMode("idle"));
   };
 
   return (
     <>
       <PointerLockControls onUnlock={hadnelCancel} />
-      <mesh ref={ref as React.MutableRefObject<Mesh<BufferGeometry, Material | Material[]>>}></mesh>
+      <mesh
+        ref={
+          ref as React.MutableRefObject<
+            Mesh<BufferGeometry, Material | Material[]>
+          >
+        }
+      ></mesh>
     </>
   );
 }

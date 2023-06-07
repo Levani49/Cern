@@ -1,4 +1,4 @@
-import { BufferGeometry } from 'three';
+import { BufferGeometry } from "three";
 
 export interface TrackInfo {
   polylineX: number[];

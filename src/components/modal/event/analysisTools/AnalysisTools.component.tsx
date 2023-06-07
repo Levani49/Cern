@@ -1,13 +1,10 @@
-import AnalysisTool from './AnalysisTool.component';
-
 import {
   selectCurrentEventAnalysisTool,
-  setEventCurrentAnalysisTool,
-} from '../../../../features/modal/modalSlice';
-
-import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
-
-import type { CurrentAnalysisTool } from '../../../../types/app.types';
+  setEventCurrentAnalysisTool
+} from "../../../../features/modal/modalSlice";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import type { CurrentAnalysisTool } from "../../../../types/app.types";
+import AnalysisTool from "./AnalysisTool.component";
 
 export default function AnalysisTools(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -18,8 +15,8 @@ export default function AnalysisTools(): JSX.Element {
   };
 
   const tools = {
-    filter: 'filter',
-    info: 'info',
+    filter: "filter",
+    info: "info"
   };
 
   const innerHtml = Object.entries(tools).map(([tool, title]) => (
@@ -31,5 +28,9 @@ export default function AnalysisTools(): JSX.Element {
     />
   ));
 
-  return <div className="flex justify-between items-center gap-2 text-xs">{innerHtml}</div>;
+  return (
+    <div className="flex items-center justify-between gap-2 text-xs">
+      {innerHtml}
+    </div>
+  );
 }

@@ -1,11 +1,10 @@
 import { useRef } from "react";
 
-import store from "../../../app/store";
-import TransitionModal from "../../transition-modal/transition.modal";
-
 import { ReactComponent as DownloadFileIcon } from "../../../assets/svg/downloadFileIcon.svg";
 import { ReactComponent as UploadFileIcon } from "../../../assets/svg/uploadFileIcon.svg";
+import store from "../../../store/store";
 import Button from "../../button/Button.component";
+import TransitionModal from "../../transition-modal/transition.modal";
 import SnapCard from "./SnapCard.component";
 
 type Props = { open: boolean; onClose: (e: boolean) => void };
@@ -15,7 +14,7 @@ const SnapTexts = {
               progress. This file can be used later to restore the application exactly as it was.`,
   upload: `Load a previously saved file to restore your application to its previous state,
               including all data, settings, and progress. This allows you to pick up where you left
-              off or continue from a specific point.`,
+              off or continue from a specific point.`
 };
 
 export default function SnapModal({ open, onClose }: Props): JSX.Element {
@@ -42,7 +41,9 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
     URL.revokeObjectURL(url);
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleFileChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -62,7 +63,7 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
 
   return (
     <TransitionModal open={open} onClose={onClose} title="Snapshot">
-      <div className="mt-8 flex pb-2 gap-6">
+      <div className="mt-8 flex gap-6 pb-2">
         <SnapCard Icon={DownloadFileIcon} text={SnapTexts.download}>
           <Button className="w-full" onClick={handleSaveSnapshot}>
             Export
@@ -73,7 +74,13 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
             Import
           </Button>
         </SnapCard>
-        <input onChange={handleFileChange} ref={inputRef} type="file" hidden accept=".json" />
+        <input
+          onChange={handleFileChange}
+          ref={inputRef}
+          type="file"
+          hidden
+          accept=".json"
+        />
       </div>
     </TransitionModal>
   );

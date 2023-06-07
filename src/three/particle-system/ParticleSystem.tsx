@@ -1,11 +1,12 @@
-import { memo, useEffect, useMemo } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { memo, useEffect, useMemo } from "react";
+
+import { selectEventNumber } from "../../features/event/eventSlice";
 import {
   selectParticleAnimation,
-  setParticleAnimationState,
-} from '../../features/global/globalsSlice';
-import Particles from './Particles.three';
-import { selectEventNumber } from '../../features/event/eventSlice';
+  setParticleAnimationState
+} from "../../features/global/globalsSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import Particles from "./Particles.three";
 
 const ParticleSystem = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -22,7 +23,13 @@ const ParticleSystem = (): JSX.Element => {
     };
   }, [dispatch, eventNumber]);
 
-  return <>{startParticleAnimation && <Particles onFinish={memoizedOnFinishHandler} />}</>;
+  return (
+    <>
+      {startParticleAnimation && (
+        <Particles onFinish={memoizedOnFinishHandler} />
+      )}
+    </>
+  );
 };
 
 export default memo(ParticleSystem);

@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
-import { ReactComponent as ArrowsPointingOutIcon } from '../../../assets/svg/arrowsPointingOut.svg';
+import { useEffect, useState } from "react";
 
-import NavIcon from '../navIcon/navIcon';
-
-import { useAppSelector } from '../../../app/hooks';
-import { selectDroneState } from '../../../features/camera/cameraSlice';
+import { ReactComponent as ArrowsPointingOutIcon } from "../../../assets/svg/arrowsPointingOut.svg";
+import { selectDroneState } from "../../../features/camera/cameraSlice";
+import { useAppSelector } from "../../../store/hooks";
+import NavIcon from "../navIcon/navIcon";
 
 function isFullscreenSupported(): boolean {
   const bodyElement = document.documentElement as HTMLElement;
@@ -23,12 +22,13 @@ export default function FullScreenMenu(): JSX.Element {
       }
     };
 
-    document.addEventListener('fullscreenchange', exitFullScreen);
-    return () => document.removeEventListener('fullscreenchange', exitFullScreen);
+    document.addEventListener("fullscreenchange", exitFullScreen);
+    return () =>
+      document.removeEventListener("fullscreenchange", exitFullScreen);
   }, []);
 
   const handleFullScreen = (): void => {
-    const element = document.getElementById('fullscreen') as HTMLDivElement;
+    const element = document.getElementById("fullscreen") as HTMLDivElement;
 
     if (!document.fullscreenElement) {
       element.requestFullscreen();
@@ -49,7 +49,7 @@ export default function FullScreenMenu(): JSX.Element {
       Icon={ArrowsPointingOutIcon}
       title="Fullscreen Mode"
       onClick={handleFullScreen}
-      disabled={droneMode === 'fly'}
+      disabled={droneMode === "fly"}
     />
   );
 }

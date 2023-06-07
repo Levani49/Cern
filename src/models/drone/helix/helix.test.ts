@@ -1,6 +1,7 @@
-import { test } from 'vitest';
-import { PerspectiveCamera, Vector3 } from 'three';
-import Helix from './helix.model';
+import { PerspectiveCamera, Vector3 } from "three";
+import { test } from "vitest";
+
+import Helix from "./helix.model";
 
 // Mock the Camera class
 class MockCamera extends PerspectiveCamera {
@@ -8,8 +9,8 @@ class MockCamera extends PerspectiveCamera {
   lookAt = jest.fn();
 }
 
-test('Helix class', async () => {
-  test('start() and stop() methods', () => {
+test("Helix class", async () => {
+  test("start() and stop() methods", () => {
     const helix = new Helix();
     const camera = new MockCamera(75, 16 / 9, 0.1, 1000);
     const callback = jest.fn();
@@ -19,10 +20,10 @@ test('Helix class', async () => {
     helix.stop();
 
     // Check if the animation stopped
-    expect(helix['animationRef']).toBeUndefined();
+    expect(helix["animationRef"]).toBeUndefined();
   });
 
-  test('start() method with a callback', async () => {
+  test("start() method with a callback", async () => {
     const helix = new Helix();
     const camera = new MockCamera(75, 16 / 9, 0.1, 1000);
     const callback = jest.fn();
