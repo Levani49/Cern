@@ -2,10 +2,16 @@ import { Camera } from "@react-three/fiber";
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { WritableDraft } from "immer/dist/internal";
+import { Camera as OriginCamera } from "three";
 
 import type { DroneTypes } from "@type/app.types";
 
 import type { RootState } from "@store/store";
+
+import {
+  calculateOrthographicDimensions,
+  calculatePerspectiveDimesnions
+} from "@three/camera/OrthographicCamera.three";
 
 import ee from "@utils/droneEvent.utils";
 import { startDroneMode, stopDroneMode } from "@utils/handleDrone.utils";
@@ -19,8 +25,26 @@ const initialState: ICameraSettings = {
   camera: null,
   cameraType: "perspective",
   showFlyModal: false,
-  viewMode: "default"
+  viewMode: "default",
+  orthographicCameraProps: undefined,
+  perspectiveCameraProps: {
+    fov: 75,
+    position: [0, 0, 0],
+    aspect: 1,
+    near: 0.1,
+    far: 200
+  }
 };
+
+interface OrthoCamera extends OriginCamera {
+  zoom: number;
+}
+
+export interface SetOrthoArgs {
+  camera: OrthoCamera;
+  width: number;
+  height: number;
+}
 
 export const cameraSlice = createSlice({
   name: "camera",
@@ -28,6 +52,35 @@ export const cameraSlice = createSlice({
   reducers: {
     rehydrate: (state, action) => {
       return action.payload.camera || state;
+    },
+
+    setCameraPosition: (
+      state,
+      action: PayloadAction<[x: number, y: number, z: number]>
+    ) => {
+      if (state.perspectiveCameraProps?.position) {
+        state.perspectiveCameraProps.position = action.payload;
+      }
+      if (state.orthographicCameraProps?.position) {
+        state.orthographicCameraProps.position = action.payload;
+      }
+    },
+
+    setOrthographicCameraDimensions: (
+      state,
+      action: PayloadAction<SetOrthoArgs>
+    ) => {
+      state.orthographicCameraProps = calculateOrthographicDimensions(
+        action.payload
+      );
+    },
+    setPerspectiveCameraDimensions: (
+      state,
+      action: PayloadAction<SetOrthoArgs>
+    ) => {
+      state.perspectiveCameraProps = calculatePerspectiveDimesnions(
+        action.payload
+      );
     },
 
     setLeftCameraView: (state) => {
@@ -89,12 +142,24 @@ export const {
   setCamera,
   setDroneMode,
   setFlyModalState,
-  setCameraType
+  setCameraType,
+  setOrthographicCameraDimensions,
+  setPerspectiveCameraDimensions,
+  setCameraPosition
 } = cameraSlice.actions;
 
 export const selectCameraPosition = (
   state: RootState
 ): [number, number, number] => state.camera.position;
+
+export const selectOrthographicCameraProps = (
+  state: RootState
+): ICameraSettings["orthographicCameraProps"] =>
+  state.camera.orthographicCameraProps;
+export const selectPerspectiveCameraProps = (
+  state: RootState
+): ICameraSettings["perspectiveCameraProps"] =>
+  state.camera.perspectiveCameraProps;
 
 export const selectDroneState = (state: RootState): DroneTypes =>
   state.camera.droneType;

@@ -1,14 +1,19 @@
 import { OrthographicCamera, PerspectiveCamera } from "@react-three/drei";
-import { useThree } from "@react-three/fiber";
-import { useEffect, useMemo, useRef } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
+import { useEffect } from "react";
 
-import { Camera, Euler, Matrix4, Spherical, Vector3 } from "three";
+import { Euler, Matrix4, Spherical, Vector3 } from "three";
 
-import { useAppSelector } from "@store/hooks";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import {
-  selectCameraPosition,
-  selectCameraType
+  selectCameraType,
+  selectOrthographicCameraProps,
+  selectPerspectiveCameraProps,
+  setCameraPosition,
+  SetOrthoArgs,
+  setOrthographicCameraDimensions,
+  setPerspectiveCameraDimensions
 } from "@features/camera/cameraSlice";
 
 interface OrthographicReturnType {
@@ -16,7 +21,7 @@ interface OrthographicReturnType {
   right: number;
   top: number;
   bottom: number;
-  position: Vector3;
+  position: [x: number, y: number, z: number];
   matrix: Matrix4;
   rotation: Euler;
   near: number;
@@ -28,67 +33,77 @@ interface PerspectiveReturnType {
   aspect: number;
   near: number;
   far: number;
-  position: Vector3;
-}
-
-interface OrthoCamera extends Camera {
-  zoom: number;
+  position: [x: number, y: number, z: number];
 }
 
 export default function OrthographicCam(): JSX.Element {
-  const cameraType = useAppSelector(selectCameraType);
+  const dispatch = useAppDispatch();
   const { size, camera } = useThree();
-  const cameraPosition = useAppSelector(selectCameraPosition);
 
-  const orthoDimensions = useMemo(
-    () => calculateOrthoDimensions(camera, size.width, size.height),
-    [camera, size]
-  );
-
-  const perspectiveDimensions = useMemo(
-    () => calculatePerspectiveDimesnions(camera, size.width, size.height),
-    [camera, size]
-  );
-
-  const perspectiveCameraRef = useRef<Camera | null>(null);
+  const cameraType = useAppSelector(selectCameraType);
+  const orthographicCameraProps = useAppSelector(selectOrthographicCameraProps);
+  const perspectiveCameraProps = useAppSelector(selectPerspectiveCameraProps);
 
   useEffect(() => {
-    if (perspectiveCameraRef.current && cameraPosition) {
-      perspectiveCameraRef.current.position.set(...cameraPosition);
-    }
-  }, [cameraPosition]);
+    dispatch(
+      setOrthographicCameraDimensions({
+        camera,
+        width: size.width,
+        height: size.height
+      })
+    );
+  }, [camera, size]);
+
+  useEffect(() => {
+    dispatch(
+      setPerspectiveCameraDimensions({
+        camera,
+        width: size.width,
+        height: size.height
+      })
+    );
+  }, [camera, size]);
+
+  useFrame(({ camera }) => {
+    dispatch(
+      setCameraPosition([
+        camera.position.x,
+        camera.position.y,
+        camera.position.z
+      ])
+    );
+  });
+
+  useEffect(() => {
+    dispatch(setCameraPosition([3, 3, 3]));
+  }, []);
 
   camera.lookAt(0, 0, 0);
 
   return (
     <>
       {cameraType === "orthographic" ? (
-        <OrthographicCamera zoom={1} {...orthoDimensions} makeDefault />
+        <OrthographicCamera zoom={1} {...orthographicCameraProps} makeDefault />
       ) : (
-        <PerspectiveCamera
-          ref={perspectiveCameraRef}
-          {...perspectiveDimensions}
-          makeDefault
-        />
+        <PerspectiveCamera {...perspectiveCameraProps} makeDefault />
       )}
     </>
   );
 }
 
-function calculatePerspectiveDimesnions(
-  camera: OrthoCamera,
-  width: number,
-  height: number
+export function calculatePerspectiveDimesnions(
+  args: SetOrthoArgs
 ): PerspectiveReturnType {
+  const { camera, width, height } = args;
   const pos = camera.position;
   const radius = pos.distanceTo(new Vector3(0, 0, 0)) / camera.zoom;
   const sphere = new Spherical();
   sphere.setFromVector3(pos);
-  const position = new Vector3(
+  const position = [
     radius * Math.sin(sphere.theta) * Math.sin(sphere.phi),
     radius * Math.cos(sphere.phi),
     radius * Math.cos(sphere.theta) * Math.sin(sphere.phi)
-  );
+  ] as [x: number, y: number, z: number];
 
   return {
     fov: 75,
@@ -99,11 +114,11 @@ function calculatePerspectiveDimesnions(
   };
 }
 
-function calculateOrthoDimensions(
-  camera: Camera,
-  width: number,
-  height: number
+export function calculateOrthographicDimensions(
+  args: SetOrthoArgs
 ): OrthographicReturnType {
+  const { camera, width, height } = args;
+
   const cameraMatrix = camera.matrix.clone();
   const cameraPosition = camera.position;
   const lineOfSight = new Vector3();
@@ -122,7 +137,7 @@ function calculateOrthoDimensions(
     right: widthOrtho / 2,
     top: heightOrtho / 2,
     bottom: heightOrtho / -2,
-    position: cameraPosition,
+    position: [cameraPosition.x, cameraPosition.y, cameraPosition.z],
     matrix: cameraMatrix,
     rotation: camera.rotation,
     near: 0.01,
