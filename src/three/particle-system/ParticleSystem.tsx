@@ -19,6 +19,18 @@ const ParticleSystem = (): JSX.Element => {
     dispatch(setParticleAnimationState(true));
   }, [dispatch, eventNumber]);
 
+  useEffect(() => {
+    const cancelAnimation = (e: KeyboardEvent): void => {
+      if (e.key === "27" || e.key === "Escape") {
+        dispatch(setParticleAnimationState(false));
+      }
+    };
+
+    window.addEventListener("keydown", cancelAnimation);
+
+    return () => window.removeEventListener("keydown", cancelAnimation);
+  }, [dispatch]);
+
   const memoizedOnFinishHandler = useMemo(() => {
     return (): void => {
       dispatch(setParticleAnimationState(false));
