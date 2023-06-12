@@ -1,3 +1,5 @@
+import { Plane } from "three";
+
 import { ModelCut, ModelLoadingStates, selectedModel } from "@type/app.types";
 
 export interface ModelSlice {
@@ -9,4 +11,6 @@ export interface ModelSlice {
   modelsLoadingState: ModelLoadingStates;
   modelOpacity: number;
   showModelModal: boolean;
+  clippingPlanesNormal: number;
+  clippingPlanes: Plane[];
 }

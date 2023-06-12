@@ -1,6 +1,7 @@
 import { useLoader, useThree } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 
+import { Mesh, Object3D } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 import { ModelCut } from "@type/app.types";
@@ -9,6 +10,8 @@ import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import { selectDroneState } from "@features/camera/cameraSlice";
 import {
+  selectClippingPlanes,
+  selectClippingPlanesNormal,
   setModelsOpacity,
   setModelWireframe,
   setSelectedModel,
@@ -40,12 +43,24 @@ const mouse = {
   y: 0
 };
 
+const geometriesNotAffectedByClippingPlanes = [
+  "ux15",
+  "us15",
+  "usa15",
+  "px14",
+  "px15",
+  "px15",
+  "pm15"
+];
+
 export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   const { gl, scene } = useThree();
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState<number>(1);
   const [wireframe, setWireframe] = useState<boolean>(false);
   const droneMode = useAppSelector(selectDroneState);
+  const clippingPlanes = useAppSelector(selectClippingPlanes);
+  const clippingPlanesNormal = useAppSelector(selectClippingPlanesNormal);
 
   // Redux hooks for managing the application state.
   const {
@@ -74,14 +89,14 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     if (currentRef) {
       if (selectedModel) {
         if (selectedModel.id !== id) {
-          modelService.applyDefaults(currentRef, id, LOW_OPACITY_LEVEL);
+          modelService.applyDefaults(currentRef, name, LOW_OPACITY_LEVEL);
         } else {
-          modelService.applyDefaults(currentRef, id);
+          modelService.applyDefaults(currentRef, name);
         }
       } else {
         modelService.applyDefaults(
           currentRef,
-          id,
+          name,
           globalOpacityLevel,
           globalWireframe
         );
@@ -156,6 +171,24 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
 
     setWireframe(globalWireframe);
   }, [globalWireframe, ref]);
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.traverse((child: Object3D): void => {
+        if (child instanceof Mesh) {
+          if (clippingPlanesNormal > 0) {
+            child.material.clipIntersection = true;
+          } else {
+            child.material.clipIntersection = false;
+          }
+
+          if (!geometriesNotAffectedByClippingPlanes.includes(name)) {
+            child.material.clippingPlanes = clippingPlanes;
+          }
+        }
+      });
+    }
+  }, [JSON.stringify(clippingPlanes)]);
 
   // Handle pointer over events on the model.
   const handlePointerOver = (): void => {

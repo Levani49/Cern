@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Plane, Vector3 } from "three";
 
 import { ModelCut, ModelLoadingStates, selectedModel } from "@type/app.types";
 
@@ -14,7 +15,12 @@ const initialState: ModelSlice = {
   modelsLoadingState: "loading",
   previousSelectedModel: null,
   modelOpacity: 1,
-  showModelModal: false
+  showModelModal: false,
+  clippingPlanesNormal: 3.14159265,
+  clippingPlanes: [
+    new Plane(new Vector3(1, 0, 0), 0),
+    new Plane(new Vector3(-1, 0, 0), 0)
+  ]
 };
 
 const modelSlice = createSlice({
@@ -23,6 +29,22 @@ const modelSlice = createSlice({
   reducers: {
     rehydrate: (state, action) => {
       return action.payload.model || state;
+    },
+    setClippingPlanesNormal: (state, action: PayloadAction<number>) => {
+      state.clippingPlanesNormal = action.payload;
+      if (action.payload > 3.14139264) {
+        state.clippingPlanes[0].normal = new Vector3(
+          -1 * Math.cos(Math.PI),
+          -1 * Math.sin(Math.PI),
+          0
+        );
+      } else {
+        state.clippingPlanes[0].normal = new Vector3(
+          -1 * Math.cos(action.payload),
+          -1 * Math.sin(action.payload),
+          0
+        );
+      }
     },
     setModelModal: (state, action: PayloadAction<boolean>) => {
       state.showModelModal = action.payload;
@@ -67,7 +89,8 @@ export const {
   setModelsOpacity,
   setModelWireframe,
   setModelModal,
-  updateLocalModelCut
+  updateLocalModelCut,
+  setClippingPlanesNormal
 } = modelSlice.actions;
 
 export const selectSelectedModel = (state: RootState): selectedModel =>
@@ -88,3 +111,9 @@ export const selectModelsLoadingState = (
 
 export const selectPreviousSelectedModel = (state: RootState): selectedModel =>
   state.model.previousSelectedModel;
+export const selectClippingPlanesNormal = (state: RootState): number =>
+  state.model.clippingPlanesNormal;
+
+export const selectClippingPlanes = (
+  state: RootState
+): ModelSlice["clippingPlanes"] => state.model.clippingPlanes;

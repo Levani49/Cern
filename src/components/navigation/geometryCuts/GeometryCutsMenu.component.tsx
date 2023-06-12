@@ -9,9 +9,11 @@ import { ReactComponent as StairsIcon } from "@assets/svg/stairs.svg";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import {
+  selectClippingPlanesNormal,
   selectGeometriesCutType,
   selectLocalGeometryCutType,
   selectSelectedModel,
+  setClippingPlanesNormal,
   updateLocalModelCut,
   updateModelCut
 } from "@features/model/modelSlice";
@@ -24,6 +26,7 @@ export default function GeometryCutsMenu(): JSX.Element {
   const cutType = useAppSelector(selectGeometriesCutType);
   const localCutType = useAppSelector(selectLocalGeometryCutType);
   const selectedModel = useAppSelector(selectSelectedModel);
+  const clippingPlanesVal = useAppSelector(selectClippingPlanesNormal);
 
   const onClickHandler = (modelCut: ModelCut): void => {
     if (selectedModel) {
@@ -39,6 +42,12 @@ export default function GeometryCutsMenu(): JSX.Element {
         dispatch(updateModelCut(modelCut));
       }
     }
+  };
+
+  const handleClippingPlanes = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    dispatch(setClippingPlanesNormal(+e.target.value));
   };
 
   let Icon;
@@ -68,35 +77,50 @@ export default function GeometryCutsMenu(): JSX.Element {
   }
 
   return (
-    <div className="group inline-flex">
-      <NavIcon Icon={Icon} title="Geometry Cut Options" active />
-      <MenuDropdown>
-        <NavIcon
-          Icon={LeftWallIcon}
-          title="1'st cut"
-          onClick={(): void => onClickHandler("-cut1")}
-        />
-        <NavIcon
-          Icon={RightWallIcon}
-          title="2'nd cut"
-          onClick={(): void => onClickHandler("-cut2")}
-        />
-        <NavIcon
-          Icon={StairsIcon}
-          title="3'rd cut"
-          onClick={(): void => onClickHandler("-cut3")}
-        />
-        <NavIcon
-          Icon={GeometryCoreIcon}
-          title="full cut"
-          onClick={(): void => onClickHandler("-cut4")}
-        />
-        <NavIcon
-          Icon={ScissorIcon}
-          title="Cutom cut"
-          onClick={(): void => onClickHandler(null)}
-        />
-      </MenuDropdown>
-    </div>
+    <>
+      <div className="group inline-flex">
+        <NavIcon Icon={Icon} title="Geometry Cut Options" active />
+        <MenuDropdown>
+          <NavIcon
+            Icon={LeftWallIcon}
+            title="1'st cut"
+            onClick={(): void => onClickHandler("-cut1")}
+          />
+          <NavIcon
+            Icon={RightWallIcon}
+            title="2'nd cut"
+            onClick={(): void => onClickHandler("-cut2")}
+          />
+          <NavIcon
+            Icon={StairsIcon}
+            title="3'rd cut"
+            onClick={(): void => onClickHandler("-cut3")}
+          />
+          <NavIcon
+            Icon={GeometryCoreIcon}
+            title="full cut"
+            onClick={(): void => onClickHandler("-cut4")}
+          />
+          <NavIcon
+            Icon={ScissorIcon}
+            title="Cutom cut"
+            onClick={(): void => onClickHandler(null)}
+          />
+        </MenuDropdown>
+      </div>
+      {cutType === null && (
+        <div className="absolute left-1/2 top-20 flex -translate-x-1/2 -translate-y-1/2 transform items-center rounded bg-customGray p-6 ">
+          <input
+            min={-3.14159265}
+            max={3.14159265}
+            step={0.0001}
+            value={clippingPlanesVal}
+            onChange={handleClippingPlanes}
+            type="range"
+            className="range-sm h-[3px] w-auto cursor-pointer appearance-none rounded-lg bg-gray-700"
+          />
+        </div>
+      )}
+    </>
   );
 }

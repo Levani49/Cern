@@ -5,9 +5,12 @@ import { lazy, Suspense, useEffect } from "react";
 
 import { NoToneMapping } from "three";
 
-import { useAppDispatch } from "@store/hooks";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
 
-import { updateModelsLoadingState } from "@features/model/modelSlice";
+import {
+  selectGeometriesCutType,
+  updateModelsLoadingState
+} from "@features/model/modelSlice";
 
 import Background from "@three/background/Background.three";
 import Camera from "@three/camera/OrthographicCamera.three";
@@ -29,6 +32,7 @@ const ParticleSystem = lazy(
 export default function Scene(): JSX.Element {
   const dispatch = useAppDispatch();
   const { isLoading, isLoaded } = useLoadingStatus();
+  const cutType = useAppSelector(selectGeometriesCutType);
 
   useEffect(() => {
     if (isLoading) {
@@ -38,13 +42,16 @@ export default function Scene(): JSX.Element {
     }
   }, [isLoading, isLoaded, dispatch]);
 
+  const localClippingEnabled = cutType === null;
+
   return (
     <>
       <Canvas
         gl={{
           pixelRatio: window.devicePixelRatio * 0.5,
           alpha: true,
-          toneMapping: NoToneMapping
+          toneMapping: NoToneMapping,
+          localClippingEnabled
         }}
         linear
         frameloop="demand"
