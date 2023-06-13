@@ -11,24 +11,16 @@ interface Props {
 
 const RecursiveTree = memo(
   function RecursiveT({ tree }: Props): JSX.Element {
+    if (!tree) {
+      return <></>;
+    }
+
     const elements = tree.map((node: TreeNode): JSX.Element => {
       const { id, name, state, showChildren, root, nodeEnd } = node;
       if (!node.children) {
-        return (
-          <ChildNode
-            key={id}
-            uid={id}
-            name={name}
-            modelState={state}
-            nodeEnd={nodeEnd}
-          />
-        );
+        return <ChildNode key={id} uid={id} name={name} modelState={state} nodeEnd={nodeEnd} />;
       } else {
-        const show = showChildren
-          ? showChildren === true
-            ? true
-            : false
-          : false;
+        const show = showChildren ? (showChildren === true ? true : false) : false;
         return (
           <ParentNode
             key={id}

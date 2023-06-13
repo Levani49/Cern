@@ -13,4 +13,5 @@ export interface ModelSlice {
   showModelModal: boolean;
   clippingPlanesNormal: number;
   clippingPlanes: Plane[];
+  snapIsLoading: boolean;
 }

@@ -1,5 +1,8 @@
 import { useRef } from "react";
 
+import { hydrateClippingPlanes, setSnapIsLoading } from "@/features/model/modelSlice";
+import { useAppDispatch } from "@/store/hooks";
+
 import { ReactComponent as DownloadFileIcon } from "@assets/svg/downloadFileIcon.svg";
 import { ReactComponent as UploadFileIcon } from "@assets/svg/uploadFileIcon.svg";
 
@@ -21,6 +24,7 @@ const SnapTexts = {
 };
 
 export default function SnapModal({ open, onClose }: Props): JSX.Element {
+  const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleLoadSnapshot = (): void => {
@@ -44,12 +48,12 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
     URL.revokeObjectURL(url);
   };
 
-  const handleFileChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
+
+      dispatch(setSnapIsLoading(true));
       reader.onload = (): void => {
         const stateJSON = reader.result as string;
         const newState = JSON.parse(stateJSON);
@@ -57,6 +61,9 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
         for (const [key] of Object.entries(newState)) {
           store.dispatch({ type: `${key}/rehydrate`, payload: newState });
         }
+
+        dispatch(setSnapIsLoading(false));
+        dispatch(hydrateClippingPlanes());
       };
 
       reader.readAsText(file);
@@ -77,13 +84,7 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
             Import
           </Button>
         </SnapCard>
-        <input
-          onChange={handleFileChange}
-          ref={inputRef}
-          type="file"
-          hidden
-          accept=".json"
-        />
+        <input onChange={handleFileChange} ref={inputRef} type="file" hidden accept=".json" />
       </div>
     </TransitionModal>
   );

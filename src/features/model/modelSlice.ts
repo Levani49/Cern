@@ -17,10 +17,8 @@ const initialState: ModelSlice = {
   modelOpacity: 1,
   showModelModal: false,
   clippingPlanesNormal: 3.14159265,
-  clippingPlanes: [
-    new Plane(new Vector3(1, 0, 0), 0),
-    new Plane(new Vector3(-1, 0, 0), 0)
-  ]
+  clippingPlanes: [new Plane(new Vector3(1, 0, 0), 0), new Plane(new Vector3(-1, 0, 0), 0)],
+  snapIsLoading: false
 };
 
 const modelSlice = createSlice({
@@ -30,6 +28,22 @@ const modelSlice = createSlice({
     rehydrate: (state, action) => {
       return action.payload.model || state;
     },
+    hydrateClippingPlanes: (state) => {
+      if (state.clippingPlanesNormal > 3.14139264) {
+        state.clippingPlanes[0].normal = new Vector3(
+          -1 * Math.cos(Math.PI),
+          -1 * Math.sin(Math.PI),
+          0
+        );
+      } else {
+        state.clippingPlanes[0].normal = new Vector3(
+          -1 * Math.cos(state.clippingPlanesNormal),
+          -1 * Math.sin(state.clippingPlanesNormal),
+          0
+        );
+      }
+    },
+
     setClippingPlanesNormal: (state, action: PayloadAction<number>) => {
       state.clippingPlanesNormal = action.payload;
       if (action.payload > 3.14139264) {
@@ -40,11 +54,14 @@ const modelSlice = createSlice({
         );
       } else {
         state.clippingPlanes[0].normal = new Vector3(
-          -1 * Math.cos(action.payload),
-          -1 * Math.sin(action.payload),
+          -1 * Math.cos(state.clippingPlanesNormal),
+          -1 * Math.sin(state.clippingPlanesNormal),
           0
         );
       }
+    },
+    setSnapIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.snapIsLoading = action.payload;
     },
     setModelModal: (state, action: PayloadAction<boolean>) => {
       state.showModelModal = action.payload;
@@ -61,10 +78,7 @@ const modelSlice = createSlice({
     updateLocalModelCut: (state, action: PayloadAction<ModelCut>) => {
       state.localCut = action.payload;
     },
-    updateModelsLoadingState: (
-      state,
-      action: PayloadAction<ModelLoadingStates>
-    ) => {
+    updateModelsLoadingState: (state, action: PayloadAction<ModelLoadingStates>) => {
       state.modelsLoadingState = action.payload;
     },
     setSelectedModel: (state, action: PayloadAction<selectedModel>) => {
@@ -90,30 +104,26 @@ export const {
   setModelWireframe,
   setModelModal,
   updateLocalModelCut,
-  setClippingPlanesNormal
+  setClippingPlanesNormal,
+  hydrateClippingPlanes,
+  setSnapIsLoading
 } = modelSlice.actions;
 
-export const selectSelectedModel = (state: RootState): selectedModel =>
-  state.model.selectedModel;
-export const selectModelsOpacity = (state: RootState): number =>
-  state.model.modelOpacity;
-export const selectModelWireframe = (state: RootState): boolean =>
-  state.model.modelWireframe;
-export const selectGeometriesCutType = (state: RootState): ModelCut =>
-  state.model.modelCut;
-export const selectLocalGeometryCutType = (state: RootState): ModelCut =>
-  state.model.localCut;
-export const selectModelModal = (state: RootState): boolean =>
-  state.model.showModelModal;
-export const selectModelsLoadingState = (
-  state: RootState
-): ModelLoadingStates => state.model.modelsLoadingState;
+export const selectSelectedModel = (state: RootState): selectedModel => state.model.selectedModel;
+export const selectModelsOpacity = (state: RootState): number => state.model.modelOpacity;
+export const selectModelWireframe = (state: RootState): boolean => state.model.modelWireframe;
+export const selectGeometriesCutType = (state: RootState): ModelCut => state.model.modelCut;
+export const selectLocalGeometryCutType = (state: RootState): ModelCut => state.model.localCut;
+export const selectModelModal = (state: RootState): boolean => state.model.showModelModal;
+export const selectModelsLoadingState = (state: RootState): ModelLoadingStates =>
+  state.model.modelsLoadingState;
 
 export const selectPreviousSelectedModel = (state: RootState): selectedModel =>
   state.model.previousSelectedModel;
 export const selectClippingPlanesNormal = (state: RootState): number =>
   state.model.clippingPlanesNormal;
 
-export const selectClippingPlanes = (
-  state: RootState
-): ModelSlice["clippingPlanes"] => state.model.clippingPlanes;
+export const selectClippingPlanes = (state: RootState): ModelSlice["clippingPlanes"] =>
+  state.model.clippingPlanes;
+
+export const selectSnapIsLoading = (state: RootState): boolean => state.model.snapIsLoading;

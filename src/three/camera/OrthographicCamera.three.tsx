@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import {
   selectCameraType,
+  selectDroneState,
   selectOrthographicCameraProps,
   selectPerspectiveCameraProps,
   setCameraPosition,
@@ -43,6 +44,7 @@ export default function OrthographicCam(): JSX.Element {
   const cameraType = useAppSelector(selectCameraType);
   const orthographicCameraProps = useAppSelector(selectOrthographicCameraProps);
   const perspectiveCameraProps = useAppSelector(selectPerspectiveCameraProps);
+  const droneType = useAppSelector(selectDroneState);
 
   useEffect(() => {
     dispatch(
@@ -65,13 +67,9 @@ export default function OrthographicCam(): JSX.Element {
   }, [camera, size]);
 
   useFrame(({ camera }) => {
-    dispatch(
-      setCameraPosition([
-        camera.position.x,
-        camera.position.y,
-        camera.position.z
-      ])
-    );
+    if (droneType !== "fly") {
+      dispatch(setCameraPosition([camera.position.x, camera.position.y, camera.position.z]));
+    }
   });
 
   useEffect(() => {
@@ -91,9 +89,7 @@ export default function OrthographicCam(): JSX.Element {
   );
 }
 
-export function calculatePerspectiveDimesnions(
-  args: SetOrthoArgs
-): PerspectiveReturnType {
+export function calculatePerspectiveDimesnions(args: SetOrthoArgs): PerspectiveReturnType {
   const { camera, width, height } = args;
   const pos = camera.position;
   const radius = pos.distanceTo(new Vector3(0, 0, 0)) / camera.zoom;
@@ -114,9 +110,7 @@ export function calculatePerspectiveDimesnions(
   };
 }
 
-export function calculateOrthographicDimensions(
-  args: SetOrthoArgs
-): OrthographicReturnType {
+export function calculateOrthographicDimensions(args: SetOrthoArgs): OrthographicReturnType {
   const { camera, width, height } = args;
 
   const cameraMatrix = camera.matrix.clone();

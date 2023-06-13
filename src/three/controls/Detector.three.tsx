@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 import { ActiveModel, ModelCut } from "@type/app.types";
 
@@ -14,7 +14,7 @@ interface LocalModel extends ActiveModel {
   cutType: ModelCut;
 }
 
-export default function Detector(): JSX.Element {
+function Detector(): JSX.Element {
   const { models, cutType, localCutType } = useDetectorState();
   const selectedModel = useAppSelector(selectSelectedModel);
   const [localModels, setLocalModels] = useState<LocalModel[]>([]);
@@ -24,9 +24,7 @@ export default function Detector(): JSX.Element {
       .filter((model) => model.modelPath !== "nan")
       .map((model: ActiveModel): LocalModel => {
         // Check if a model with the same ID exists in localModels
-        const existingLocalModel = localModels.find(
-          (localModel) => localModel.uid === model.uid
-        );
+        const existingLocalModel = localModels.find((localModel) => localModel.uid === model.uid);
 
         if (existingLocalModel) {
           // If found, return the existing localModel
@@ -45,23 +43,20 @@ export default function Detector(): JSX.Element {
 
   useEffect(() => {
     if (localModels.length) {
-      const updatedLocalModels = localModels.map(
-        (model: LocalModel): LocalModel => {
-          let modelCutType;
+      const updatedLocalModels = localModels.map((model: LocalModel): LocalModel => {
+        let modelCutType;
 
-          if (selectedModel) {
-            modelCutType =
-              selectedModel?.id === model.uid ? localCutType : model.cutType;
-          } else {
-            modelCutType = cutType;
-          }
-
-          return {
-            ...model,
-            cutType: modelCutType
-          };
+        if (selectedModel) {
+          modelCutType = selectedModel?.id === model.uid ? localCutType : model.cutType;
+        } else {
+          modelCutType = cutType;
         }
-      );
+
+        return {
+          ...model,
+          cutType: modelCutType
+        };
+      });
 
       setLocalModels(updatedLocalModels);
     }
@@ -71,10 +66,10 @@ export default function Detector(): JSX.Element {
     const { modelPath, uid, name, cutType: modelCutType } = model;
     const path = modelCutType ? modelPath + modelCutType : modelPath;
 
-    return (
-      <Model key={uid} cutType={modelCutType} src={path} name={name} id={uid} />
-    );
+    return <Model key={uid} cutType={modelCutType} src={path} name={name} id={uid} />;
   });
 
   return <>{activeModels}</>;
 }
+
+export default memo(Detector);

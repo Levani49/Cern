@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import {
   selectGeometriesCutType,
+  selectSnapIsLoading,
   updateModelsLoadingState
 } from "@features/model/modelSlice";
 
@@ -25,9 +26,7 @@ const Controls = lazy(() => import("@three/controls/Controls.three"));
 const Axis = lazy(() => import("@three/axis/Axis.three"));
 const Grid = lazy(() => import("@three/grid/Grid.three"));
 const Event = lazy(() => import("@three/event/event/Event.three"));
-const ParticleSystem = lazy(
-  () => import("@three/particle-system/ParticleSystem")
-);
+const ParticleSystem = lazy(() => import("@three/particle-system/ParticleSystem"));
 
 export default function Scene(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -42,6 +41,7 @@ export default function Scene(): JSX.Element {
     }
   }, [isLoading, isLoaded, dispatch]);
 
+  const snapIsLoading = useAppSelector(selectSnapIsLoading);
   const localClippingEnabled = cutType === null;
 
   return (
@@ -59,7 +59,7 @@ export default function Scene(): JSX.Element {
       >
         <Physics gravity={[0, 0, 0]}>
           <Suspense fallback={null}>
-            <Detector />
+            {!snapIsLoading && <Detector />}
             <Axis />
           </Suspense>
           <Background />
