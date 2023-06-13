@@ -71,12 +71,12 @@ export default function ParentNode({
 
   return (
     <li
-      className={`border-solid ${!nodeEnd && "border-l-[1px] border-white"} ${
-        root && "border-none"
-      }`}
+      className={`border-solid ${
+        !nodeEnd && "relative left-[-1px] border-l-[1px] border-white"
+      } ${root && "border-none"}`}
     >
       <div
-        className={`relative flex items-center whitespace-nowrap py-[1px] text-xs ${styles}`}
+        className={`relative flex items-center whitespace-nowrap py-[1px] text-xs ${styles} left-[-1px]`}
       >
         {show ? (
           <MinusCircleIcon

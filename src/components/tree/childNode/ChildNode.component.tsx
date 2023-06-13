@@ -45,7 +45,7 @@ export default function ChildNode({
 
   return (
     <li
-      className={`flex items-center border-l-[1px] border-white ${
+      className={`relative left-[-1px] flex items-center border-l-[1px] border-white ${
         nodeEnd &&
         "last-child-event-line border-l border-solid border-transparent"
       } ${innerState}`}
