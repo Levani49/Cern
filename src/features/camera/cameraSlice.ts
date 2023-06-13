@@ -84,17 +84,32 @@ export const cameraSlice = createSlice({
     },
 
     setLeftCameraView: (state) => {
-      state.position = [0, 0, 5];
+      if (state.perspectiveCameraProps?.position) {
+        state.perspectiveCameraProps.position = [0, 0, 5];
+      }
+      if (state.orthographicCameraProps?.position) {
+        state.orthographicCameraProps.position = [0, 0, 5];
+      }
       state.viewMode = "left";
     },
 
     setRightCameraView: (state) => {
-      state.position = [5, 0.5, 0];
+      if (state.perspectiveCameraProps?.position) {
+        state.perspectiveCameraProps.position = [5, 0.5, 0];
+      }
+      if (state.orthographicCameraProps?.position) {
+        state.orthographicCameraProps.position = [5, 0.5, 0];
+      }
       state.viewMode = "right";
     },
 
     setDefaultView: (state) => {
-      state.position = [3, 3, 4];
+      if (state.perspectiveCameraProps?.position) {
+        state.perspectiveCameraProps.position = [3, 3, 4];
+      }
+      if (state.orthographicCameraProps?.position) {
+        state.orthographicCameraProps.position = [3, 3, 4];
+      }
       state.viewMode = "default";
     },
 
