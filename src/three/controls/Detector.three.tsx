@@ -14,11 +14,6 @@ interface LocalModel extends ActiveModel {
   cutType: ModelCut;
 }
 
-/**
- * Detector
- *
- * @returns { JSX.Element } JSX.Element
- */
 export default function Detector(): JSX.Element {
   const { models, cutType, localCutType } = useDetectorState();
   const selectedModel = useAppSelector(selectSelectedModel);
@@ -50,22 +45,25 @@ export default function Detector(): JSX.Element {
 
   useEffect(() => {
     if (localModels.length) {
-      const activeModels = localModels.map((model: LocalModel): LocalModel => {
-        let modelCutType;
+      const updatedLocalModels = localModels.map(
+        (model: LocalModel): LocalModel => {
+          let modelCutType;
 
-        if (selectedModel) {
-          modelCutType =
-            selectedModel?.id === model.uid ? localCutType : model.cutType;
-        } else {
-          modelCutType = cutType;
+          if (selectedModel) {
+            modelCutType =
+              selectedModel?.id === model.uid ? localCutType : model.cutType;
+          } else {
+            modelCutType = cutType;
+          }
+
+          return {
+            ...model,
+            cutType: modelCutType
+          };
         }
+      );
 
-        return {
-          ...model,
-          cutType: modelCutType
-        };
-      });
-      setLocalModels(activeModels);
+      setLocalModels(updatedLocalModels);
     }
   }, [cutType, localCutType]);
 
@@ -80,59 +78,3 @@ export default function Detector(): JSX.Element {
 
   return <>{activeModels}</>;
 }
-
-/* 
-
-interface LocalModelProps {
-  key: string;
-  cutType: ModelCut;
-  src: string;
-  name: string;
-  id: string;
-}
-
-export default function Detector(): JSX.Element {
-  const { models, cutType } = useDetectorState();
-  const [localeModels, setLocaleModels] = useState<LocalModelProps[]>([]);
-  const selectedModel = useAppSelector(selectSelectedModel)
-  const [localCutType, setLocalCutType] = useState<ModelCut>(cutType)
-
-  useEffect(() => {
-    const activeModels = models
-      .filter((model) => model.modelPath !== 'nan')
-      .map((model) => {
-        const { modelPath, uid, name } = model;
-        const path = modelPath + cutType;
-
-        return {
-          key: uid,
-          cutType: cutType,
-          src: path,
-          name: name,
-          id: uid
-        }
-
-      });
-
-    setLocaleModels(activeModels)
-
-  }, [models, selectedModel])
-
-  const activeModels = localeModels.map((model) => {
-    const { key, cutType, src, name, id } = model;
-
-    return (
-      <Model
-        key={key}
-        cutType={cutType}
-        src={src}
-        name={name}
-        id={id}
-      />
-    );
-  });
-
-  return <>{activeModels}</>;
-};
-
-*/
