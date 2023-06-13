@@ -1,16 +1,17 @@
 import { act, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 
-import store from "../../../app/store";
+import store from "@store/store";
+
+import { showRendererStats } from "@features/global/globalsSlice";
 
 import Stats from "./Stats.component";
-import { showRendererStats } from "../../../features/global/globalsSlice";
 
 test("renders stats component", () => {
   render(
     <Provider store={store}>
       <Stats />
-    </Provider>,
+    </Provider>
   );
 
   expect(screen.queryByText(/TRIANGLES:/i)).not.toBeInTheDocument();

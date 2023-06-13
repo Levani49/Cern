@@ -1,13 +1,15 @@
-import ShowOnly from '../show-only/ShowOnly.component';
-import FilterContainer from './FilterContainer.component';
-import FilterInput from './FilterInput.component';
-import { useAppDispatch, useAppSelector } from '../../../../../app/hooks';
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
-  selectTrackFilter,
-  setTrackFilters,
   selectJetFilter,
+  selectTrackFilter,
   setJetFilters,
-} from '../../../../../features/event/eventSlice';
+  setTrackFilters
+} from "@features/event/eventSlice";
+
+import ShowOnly from "../show-only/ShowOnly.component";
+import FilterContainer from "./FilterContainer.component";
+import FilterInput from "./FilterInput.component";
 
 const testing = false;
 
@@ -20,22 +22,22 @@ export default function FilterTool(): JSX.Element {
     dispatch(
       setTrackFilters({
         ...trackFilterValues,
-        [key]: value,
-      }),
+        [key]: value
+      })
     );
   };
   const jetFilter = (key: string, value: string): void => {
     dispatch(
       setJetFilters({
         ...jetFilterValues,
-        [key]: value,
-      }),
+        [key]: value
+      })
     );
   };
 
   return (
-    <div className="flex justify-between flex-col gap-2 p-2">
-      <div className="flex flex-col w-full gap-2 md:flex-row md:justify-between">
+    <div className="flex flex-col justify-between gap-2 p-2">
+      <div className="flex w-full flex-col gap-2 md:flex-row md:justify-between">
         <FilterContainer title="Tracks">
           <FilterInput
             filterProp="φ"

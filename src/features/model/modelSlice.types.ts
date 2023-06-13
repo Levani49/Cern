@@ -1,8 +1,6 @@
-import {
-  ModelCut,
-  selectedModel,
-  ModelLoadingStates,
-} from '../../types/app.types';
+import { Plane } from "three";
+
+import { ModelCut, ModelLoadingStates, selectedModel } from "@type/app.types";
 
 export interface ModelSlice {
   modelWireframe: boolean;
@@ -13,4 +11,7 @@ export interface ModelSlice {
   modelsLoadingState: ModelLoadingStates;
   modelOpacity: number;
   showModelModal: boolean;
+  clippingPlanesNormal: number;
+  clippingPlanes: Plane[];
+  snapIsLoading: boolean;
 }

@@ -1,30 +1,24 @@
-import { useMemo } from 'react';
-import { useAppSelector } from '../../app/hooks';
-import { selectGlobalOpacity, selectGlobalWireframe } from '../../features/global/globalsSlice';
+import { useMemo } from "react";
+
+import { useAppSelector } from "@store/hooks";
+
+import { selectGlobalOpacity, selectGlobalWireframe } from "@features/global/globalsSlice";
 import {
-  selectSelectedModel,
+  selectLocalGeometryCutType,
   selectModelsOpacity,
   selectModelWireframe,
-  selectLocalGeometryCutType,
-} from '../../features/model/modelSlice';
-import type { UseSelectedModel } from './useSelectedModel.types';
+  selectSelectedModel
+} from "@features/model/modelSlice";
+
+import type { UseSelectedModel } from "./useSelectedModel.types";
 
 export default function useSelectedModel(): UseSelectedModel {
-  const {
-    cutType,
-    selectedModel,
-    modelOpacityLevel,
-    globalOpacityLevel,
-    modelWireframe,
-    globalWireframe,
-  } = useAppSelector((state) => ({
-    selectedModel: selectSelectedModel(state),
-    modelOpacityLevel: selectModelsOpacity(state),
-    globalOpacityLevel: selectGlobalOpacity(state),
-    modelWireframe: selectModelWireframe(state),
-    globalWireframe: selectGlobalWireframe(state),
-    cutType: selectLocalGeometryCutType(state),
-  }));
+  const selectedModel = useAppSelector(selectSelectedModel);
+  const modelOpacityLevel = useAppSelector(selectModelsOpacity);
+  const globalOpacityLevel = useAppSelector(selectGlobalOpacity);
+  const modelWireframe = useAppSelector(selectModelWireframe);
+  const globalWireframe = useAppSelector(selectGlobalWireframe);
+  const cutType = useAppSelector(selectLocalGeometryCutType);
 
   return useMemo(
     () => ({
@@ -33,15 +27,8 @@ export default function useSelectedModel(): UseSelectedModel {
       globalOpacityLevel,
       modelWireframe,
       globalWireframe,
-      cutType,
+      cutType
     }),
-    [
-      cutType,
-      selectedModel,
-      modelOpacityLevel,
-      globalOpacityLevel,
-      modelWireframe,
-      globalWireframe,
-    ],
+    [cutType, selectedModel, modelOpacityLevel, globalOpacityLevel, modelWireframe, globalWireframe]
   );
 }

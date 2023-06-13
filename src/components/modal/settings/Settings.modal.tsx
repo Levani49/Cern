@@ -1,9 +1,13 @@
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { selectSettingsModalState, showSettingsModal } from '../../../features/modal/modalSlice';
+import { useAppDispatch, useAppSelector } from "@store/hooks";
 
-import Modal from '../Modal.component';
-import Slider from './Slider.component';
-import OptionsBox from './OptionsBox.component';
+import {
+  selectSettingsModalState,
+  showSettingsModal
+} from "@features/modal/modalSlice";
+
+import Modal from "../Modal.component";
+import OptionsBox from "./OptionsBox.component";
+import Slider from "./Slider.component";
 
 /**
  * Settings component that displays different settings options in a modal.
@@ -24,7 +28,7 @@ export default function SettingsModal(): JSX.Element {
 
   return (
     <Modal title="settings" show={show} onCloseHandler={closeModalHandler}>
-      <div className="w-full shadow-md rounded p-1">
+      <div className="w-full rounded p-1 shadow-md">
         <OptionsBox />
         <Slider title="Brightness" />
         <Slider title="Contast" />

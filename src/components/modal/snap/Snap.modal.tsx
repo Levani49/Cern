@@ -1,11 +1,16 @@
 import { useRef } from "react";
 
-import store from "../../../app/store";
-import TransitionModal from "../../transition-modal/transition.modal";
+import { hydrateClippingPlanes, setSnapIsLoading } from "@/features/model/modelSlice";
+import { useAppDispatch } from "@/store/hooks";
 
-import { ReactComponent as DownloadFileIcon } from "../../../assets/svg/downloadFileIcon.svg";
-import { ReactComponent as UploadFileIcon } from "../../../assets/svg/uploadFileIcon.svg";
-import Button from "../../button/Button.component";
+import { ReactComponent as DownloadFileIcon } from "@assets/svg/downloadFileIcon.svg";
+import { ReactComponent as UploadFileIcon } from "@assets/svg/uploadFileIcon.svg";
+
+import store from "@store/store";
+
+import Button from "@components/button/Button.component";
+import TransitionModal from "@components/transition-modal/transition.modal";
+
 import SnapCard from "./SnapCard.component";
 
 type Props = { open: boolean; onClose: (e: boolean) => void };
@@ -15,10 +20,11 @@ const SnapTexts = {
               progress. This file can be used later to restore the application exactly as it was.`,
   upload: `Load a previously saved file to restore your application to its previous state,
               including all data, settings, and progress. This allows you to pick up where you left
-              off or continue from a specific point.`,
+              off or continue from a specific point.`
 };
 
 export default function SnapModal({ open, onClose }: Props): JSX.Element {
+  const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleLoadSnapshot = (): void => {
@@ -46,6 +52,8 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
+
+      dispatch(setSnapIsLoading(true));
       reader.onload = (): void => {
         const stateJSON = reader.result as string;
         const newState = JSON.parse(stateJSON);
@@ -53,6 +61,9 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
         for (const [key] of Object.entries(newState)) {
           store.dispatch({ type: `${key}/rehydrate`, payload: newState });
         }
+
+        dispatch(setSnapIsLoading(false));
+        dispatch(hydrateClippingPlanes());
       };
 
       reader.readAsText(file);
@@ -62,7 +73,7 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
 
   return (
     <TransitionModal open={open} onClose={onClose} title="Snapshot">
-      <div className="mt-8 flex pb-2 gap-6">
+      <div className="mt-8 flex gap-6 pb-2">
         <SnapCard Icon={DownloadFileIcon} text={SnapTexts.download}>
           <Button className="w-full" onClick={handleSaveSnapshot}>
             Export

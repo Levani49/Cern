@@ -1,5 +1,6 @@
 import { useRef } from "react";
-import { ReactComponent as EmailIcon } from "../../../assets/svg/emailIcon.svg";
+
+import { ReactComponent as EmailIcon } from "@assets/svg/emailIcon.svg";
 
 interface Props {
   name: string;
@@ -9,7 +10,13 @@ interface Props {
   className?: string;
 }
 
-export default function Slot({ name, className, email, src, role }: Props): JSX.Element {
+export default function Slot({
+  name,
+  className,
+  email,
+  src,
+  role
+}: Props): JSX.Element {
   const linkRef = useRef<null | HTMLAnchorElement>(null);
 
   return (
@@ -21,7 +28,9 @@ export default function Slot({ name, className, email, src, role }: Props): JSX.
       <div className="h-12 w-12 overflow-hidden rounded-full">
         <img className="h-full w-full object-cover" src={src} alt="Personal" />
       </div>
-      <h3 className="text-center text-xs font-bold text-blue dark:text-green">{name}</h3>
+      <h3 className="text-center text-xs font-bold text-blue dark:text-green">
+        {name}
+      </h3>
       <span className="w-full text-center text-xs text-gray-500">{role}</span>
       <div className="flex items-center">
         <EmailIcon className="mt-[2px] h-3 w-3 text-blue dark:text-green" />

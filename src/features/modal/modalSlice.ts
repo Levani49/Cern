@@ -1,8 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import type { RootState } from '../../app/store';
-import type { CurrentAnalysisTool } from '../../types/app.types';
-import type { Modal } from './modalSlice.types';
+import type { CurrentAnalysisTool } from "@type/app.types";
+
+import type { RootState } from "@store/store";
+
+import type { Modal } from "./modalSlice.types";
 
 const initialState: Modal = {
   aboutModalIsOpen: false,
@@ -10,13 +12,13 @@ const initialState: Modal = {
   eventsModalIsOpen: false,
   events: {
     analysisTools: {
-      currentTool: 'info',
-    },
-  },
+      currentTool: "info"
+    }
+  }
 };
 
 export const modalsSlice = createSlice({
-  name: 'modals',
+  name: "modals",
   initialState,
   reducers: {
     rehydrate: (state, action) => {
@@ -34,16 +36,23 @@ export const modalsSlice = createSlice({
       state.eventsModalIsOpen = action.payload;
     },
 
-    setEventCurrentAnalysisTool: (state, action: PayloadAction<CurrentAnalysisTool>) => {
+    setEventCurrentAnalysisTool: (
+      state,
+      action: PayloadAction<CurrentAnalysisTool>
+    ) => {
       state.events.analysisTools.currentTool = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export default modalsSlice.reducer;
 
-export const { showSettingsModal, showAboutModal, showEventsModal, setEventCurrentAnalysisTool } =
-  modalsSlice.actions;
+export const {
+  showSettingsModal,
+  showAboutModal,
+  showEventsModal,
+  setEventCurrentAnalysisTool
+} = modalsSlice.actions;
 
 /**
  * Selects the state of the settings modal from the Redux store.
@@ -60,7 +69,8 @@ export const selectSettingsModalState = (state: RootState): boolean =>
  * @param {RootState} state - The current state of the Redux store.
  * @returns {boolean} - Whether the about modal is currently open.
  */
-export const selectAboutModalState = (state: RootState): boolean => state.modal.aboutModalIsOpen;
+export const selectAboutModalState = (state: RootState): boolean =>
+  state.modal.aboutModalIsOpen;
 
 /**
  * Selects the state of the events modal from the Redux store.
@@ -68,11 +78,13 @@ export const selectAboutModalState = (state: RootState): boolean => state.modal.
  * @param {RootState} state - The current state of the Redux store.
  * @returns {boolean} - Whether the events modal is currently open.
  */
-export const selectEventsModalState = (state: RootState): boolean => state.modal.eventsModalIsOpen;
+export const selectEventsModalState = (state: RootState): boolean =>
+  state.modal.eventsModalIsOpen;
 
 /**
  *
  * @param state
  */
-export const selectCurrentEventAnalysisTool = (state: RootState): CurrentAnalysisTool =>
-  state.modal.events.analysisTools.currentTool;
+export const selectCurrentEventAnalysisTool = (
+  state: RootState
+): CurrentAnalysisTool => state.modal.events.analysisTools.currentTool;

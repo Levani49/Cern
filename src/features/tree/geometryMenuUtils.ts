@@ -1,19 +1,19 @@
-import { GeometryState, TreeNode } from '../../constants/geometryTree';
+import type { ActiveModel } from "@type/app.types";
 
-import type { ActiveModel } from '../../types/app.types';
+import { GeometryState, TreeNode } from "@constants/geometryTree";
 
 type UpdateNodeFunction = (
   node: TreeNode,
   nodeId: string,
   propToChange: string,
   value: string | boolean,
-  updateDescendands?: boolean,
+  updateDescendands?: boolean
 ) => TreeNode;
 
 export function updateNodeAndAncestors(
   tree: TreeNode[],
   nodeId: string,
-  modelState: GeometryState,
+  modelState: GeometryState
 ): TreeNode[] {
   const updateNode = (node: TreeNode): TreeNode | null => {
     if (node.id === nodeId) {
@@ -30,19 +30,19 @@ export function updateNodeAndAncestors(
         });
 
         const childrenStates = newChildren.map((child) => child.state);
-        const allLoaded = childrenStates.every((state) => state === 'isLoaded');
-        const someLoaded = childrenStates.some((state) => state === 'isLoaded');
-        const allNotLoaded = childrenStates.every((state) => state === 'notLoaded');
-        const somePartial = childrenStates.some((state) => state === 'partialyLoaded');
+        const allLoaded = childrenStates.every((state) => state === "isLoaded");
+        const someLoaded = childrenStates.some((state) => state === "isLoaded");
+        const allNotLoaded = childrenStates.every((state) => state === "notLoaded");
+        const somePartial = childrenStates.some((state) => state === "partialyLoaded");
 
         let updatedState = node.state;
 
         if (allLoaded) {
-          updatedState = 'isLoaded';
+          updatedState = "isLoaded";
         } else if (someLoaded || somePartial) {
-          updatedState = 'partialyLoaded';
+          updatedState = "partialyLoaded";
         } else if (allNotLoaded) {
-          updatedState = 'notLoaded';
+          updatedState = "notLoaded";
         }
 
         return { ...node, state: updatedState, children: newChildren };
@@ -58,18 +58,18 @@ export function updateNodeAndAncestors(
 const updateDescendandNodes = (
   node: TreeNode,
   propToChange: string,
-  value: string | boolean,
+  value: string | boolean
 ): TreeNode => {
   if (node.children) {
     return {
       ...node,
       [propToChange]: value,
-      children: node.children.map((node) => updateDescendandNodes(node, propToChange, value)),
+      children: node.children.map((node) => updateDescendandNodes(node, propToChange, value))
     };
   } else {
     return {
       ...node,
-      [propToChange]: value,
+      [propToChange]: value
     };
   }
 };
@@ -79,7 +79,7 @@ export const updateParentNode: UpdateNodeFunction = (
   nodeId,
   propToChange,
   modelState,
-  updateDescendands,
+  updateDescendands
 ): TreeNode => {
   if (node.id === nodeId) {
     if (updateDescendands) {
@@ -89,7 +89,7 @@ export const updateParentNode: UpdateNodeFunction = (
         [propToChange]: modelState,
         children: node.children
           ? node.children.map((node) => updateDescendandNodes(node, propToChange, modelState))
-          : [],
+          : []
       };
       return updatedNode;
     } else {
@@ -99,9 +99,9 @@ export const updateParentNode: UpdateNodeFunction = (
         [propToChange]: modelState,
         children: node.children
           ? node.children.map((node) =>
-              updateParentNode(node, nodeId, propToChange, modelState, updateDescendands),
+              updateParentNode(node, nodeId, propToChange, modelState, updateDescendands)
             )
-          : [],
+          : []
       };
       return updatedNode;
     }
@@ -110,8 +110,8 @@ export const updateParentNode: UpdateNodeFunction = (
     return {
       ...node,
       children: node.children.map((node) =>
-        updateParentNode(node, nodeId, propToChange, modelState, updateDescendands),
-      ),
+        updateParentNode(node, nodeId, propToChange, modelState, updateDescendands)
+      )
     };
   } else {
     // Node does not have children, return it without any changes
@@ -123,21 +123,19 @@ export const updateChildNode: UpdateNodeFunction = (
   node,
   nodeId,
   propToChange,
-  modelState,
+  modelState
 ): TreeNode => {
   if (node.children) {
     return {
       ...node,
-      children: node.children.map((node) =>
-        updateChildNode(node, nodeId, propToChange, modelState),
-      ),
+      children: node.children.map((node) => updateChildNode(node, nodeId, propToChange, modelState))
     };
   }
 
   if (node.id === nodeId) {
     return {
       ...node,
-      [propToChange]: modelState,
+      [propToChange]: modelState
     };
   }
   return node;
@@ -151,12 +149,12 @@ export function updateActiveModels(tree: TreeNode[]): ActiveModel[] {
       node.children.forEach((child) => traverse(child));
     }
 
-    if (node.state === 'isLoaded') {
+    if (node.state === "isLoaded") {
       if (node.modelPath) {
         activeModels.push({
           uid: node.id,
           name: node.name,
-          modelPath: node.modelPath,
+          modelPath: node.modelPath
         });
       }
     }

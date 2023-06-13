@@ -1,8 +1,13 @@
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { ReactComponent as MenuLogo } from '../../../assets/svg/menu.svg';
-import { selectGeometryMenu, setGeometryMenu } from '../../../features/global/globalsSlice';
+import { ReactComponent as MenuLogo } from "@assets/svg/menu.svg";
 
-import NavIcon from '../navIcon/navIcon';
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
+import {
+  selectGeometryMenu,
+  setGeometryMenu
+} from "@features/global/globalsSlice";
+
+import NavIcon from "../navIcon/navIcon";
 
 export default function GeometryMenu(): JSX.Element {
   const dispatch = useAppDispatch();

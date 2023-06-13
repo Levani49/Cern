@@ -1,4 +1,4 @@
-import { CurrentAnalysisTool } from '../../types/app.types';
+import { CurrentAnalysisTool } from "@type/app.types";
 
 export interface Modal {
   aboutModalIsOpen: boolean;

@@ -1,20 +1,27 @@
-import { useEffect, useRef, useState } from 'react';
-import { useLoader, useThree } from '@react-three/fiber';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { useLoader, useThree } from "@react-three/fiber";
+import { useEffect, useRef, useState } from "react";
 
+import { Mesh, Object3D } from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+
+import { ModelCut } from "@type/app.types";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
+import { selectDroneState } from "@features/camera/cameraSlice";
 import {
+  selectClippingPlanes,
+  selectClippingPlanesNormal,
   setModelsOpacity,
   setModelWireframe,
   setSelectedModel,
-  updateLocalModelCut,
-} from '../../features/model/modelSlice';
+  updateLocalModelCut
+} from "@features/model/modelSlice";
 
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
 
-import ModelService from '../../services/model/Model.service';
-import { ModelCut } from '../../types/app.types';
-import useSelectedModel from '../../hooks/useSelectedModel/useSelectedModel';
-import { selectDroneState } from '../../features/camera/cameraSlice';
+import ModelService from "@services/model/Model.service";
+
 export interface Event {
   stopPropagation: () => void;
   clientX: number;
@@ -33,8 +40,18 @@ const modelService = new ModelService();
 const LOW_OPACITY_LEVEL = 0.3;
 const mouse = {
   x: 0,
-  y: 0,
+  y: 0
 };
+
+const geometriesNotAffectedByClippingPlanes = [
+  "ux15",
+  "us15",
+  "usa15",
+  "px14",
+  "px15",
+  "px15",
+  "pm15"
+];
 
 export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   const { gl, scene } = useThree();
@@ -42,10 +59,17 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   const [opacity, setOpacity] = useState<number>(1);
   const [wireframe, setWireframe] = useState<boolean>(false);
   const droneMode = useAppSelector(selectDroneState);
+  const clippingPlanes = useAppSelector(selectClippingPlanes);
+  const clippingPlanesNormal = useAppSelector(selectClippingPlanesNormal);
 
   // Redux hooks for managing the application state.
-  const { selectedModel, modelOpacityLevel, globalOpacityLevel, modelWireframe, globalWireframe } =
-    useSelectedModel();
+  const {
+    selectedModel,
+    modelOpacityLevel,
+    globalOpacityLevel,
+    modelWireframe,
+    globalWireframe
+  } = useSelectedModel();
 
   // Load the 3D model using the GLTFLoader and DRACOLoader.
   const model = useLoader(
@@ -53,7 +77,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     modelService.buildModelUrl(src),
     (loader: GLTFLoader): void => {
       loader.setDRACOLoader(modelService.dracoLoader);
-    },
+    }
   );
 
   const ref = useRef<THREE.Object3D>();
@@ -65,12 +89,17 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     if (currentRef) {
       if (selectedModel) {
         if (selectedModel.id !== id) {
-          modelService.applyDefaults(currentRef, id, LOW_OPACITY_LEVEL);
+          modelService.applyDefaults(currentRef, name, LOW_OPACITY_LEVEL);
         } else {
-          modelService.applyDefaults(currentRef, id);
+          modelService.applyDefaults(currentRef, name);
         }
       } else {
-        modelService.applyDefaults(currentRef, id, globalOpacityLevel, globalWireframe);
+        modelService.applyDefaults(
+          currentRef,
+          name,
+          globalOpacityLevel,
+          globalWireframe
+        );
       }
     }
 
@@ -143,14 +172,32 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     setWireframe(globalWireframe);
   }, [globalWireframe, ref]);
 
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.traverse((child: Object3D): void => {
+        if (child instanceof Mesh) {
+          if (clippingPlanesNormal > 0) {
+            child.material.clipIntersection = true;
+          } else {
+            child.material.clipIntersection = false;
+          }
+
+          if (!geometriesNotAffectedByClippingPlanes.includes(name)) {
+            child.material.clippingPlanes = clippingPlanes;
+          }
+        }
+      });
+    }
+  }, [JSON.stringify(clippingPlanes)]);
+
   // Handle pointer over events on the model.
   const handlePointerOver = (): void => {
-    gl.domElement.style.cursor = 'pointer';
+    gl.domElement.style.cursor = "pointer";
   };
 
   // Handle pointer out events on the model.
   const handlePointerOut = (): void => {
-    gl.domElement.style.cursor = 'default';
+    gl.domElement.style.cursor = "default";
   };
 
   const handleMouseDown = (e: Event): void => {
@@ -184,10 +231,11 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
 
   const hoverMethods = {
     onPointerOver: handlePointerOver,
-    onPointerOut: handlePointerOut,
+    onPointerOut: handlePointerOut
   };
 
-  const hoverEffects = scene.children.length < 20 && droneMode !== 'fly' ? hoverMethods : {};
+  const hoverEffects =
+    scene.children.length < 20 && droneMode !== "fly" ? hoverMethods : {};
 
   return (
     <primitive

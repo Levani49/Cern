@@ -1,4 +1,4 @@
-import type { ModelCut, selectedModel } from '../../types/app.types';
+import type { ModelCut, selectedModel } from "@type/app.types";
 
 export interface UseSelectedModel {
   selectedModel: selectedModel;

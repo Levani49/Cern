@@ -1,4 +1,4 @@
-@import url('./fonts.css');
+@import url("./fonts.css");
 
 @tailwind base;
 @tailwind components;
@@ -20,8 +20,7 @@ body {
   max-height: 100vh;
   height: 100vh;
   background: rgb(28, 28, 28);
-  /* background: rgb(220, 220, 220); */
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-family: "Roboto", sans-serif;
 }
 
 body::backdrop {
@@ -60,7 +59,7 @@ body::backdrop {
 }
 
 .select-wrapper::after {
-  content: '▼';
+  content: "▼";
   font-size: 0.52rem;
   top: 55%;
   right: 3%;
@@ -89,31 +88,36 @@ body::backdrop {
 .last-child-event-line {
   border-image: linear-gradient(
     to bottom,
-    rgb(223 230 233) 0%,
-    rgb(223 230 233) 55%,
-    rgba(108, 219, 141, 0) 75%
+    #dfe6e9 55%,
+    #dfe6e9 50%,
+    rgba(108, 219, 141, 0) 50%
   );
   border-image-slice: 1;
 }
 
 .last-event-line {
-  border-image: linear-gradient(to bottom, #dfe6e9 0%, #dfe6e9 53%, rgba(108, 219, 141, 0) 53%);
+  border-image: linear-gradient(
+    to bottom,
+    #dfe6e9 50%,
+    #dfe6e9 50%,
+    rgba(108, 219, 141, 0) 50%
+  );
   border-image-slice: 1;
 }
 
 @layer base {
   html {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
   }
 }
 
 @layer components {
   .icon {
-    @apply w-[22px] h-[22px] text-light hover:text-blue dark:hover:text-green cursor-pointer;
+    @apply h-[22px] w-[22px] cursor-pointer text-light hover:text-blue dark:hover:text-green;
   }
 
   .modal {
-    @apply modal-center min-w-[256px] max-h-[450px] overflow-y-auto modalstyles flex;
+    @apply modal-center modalstyles flex max-h-[450px] min-w-[256px] overflow-y-auto;
   }
 
   .focus {

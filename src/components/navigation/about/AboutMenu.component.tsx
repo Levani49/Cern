@@ -1,10 +1,15 @@
-import { ReactComponent as InfoIcon } from '../../../assets/svg/info.svg';
+import { ReactComponent as InfoIcon } from "@assets/svg/info.svg";
 
-import { selectAboutModalState, showAboutModal } from '../../../features/modal/modalSlice';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from "@store/hooks";
 
-import NavIcon from '../navIcon/navIcon';
-import AboutModal from '../../modal/about/About.modal';
+import {
+  selectAboutModalState,
+  showAboutModal
+} from "@features/modal/modalSlice";
+
+import AboutModal from "@components/modal/about/About.modal";
+
+import NavIcon from "../navIcon/navIcon";
 
 export default function AboutMenu(): JSX.Element {
   const dispatch = useAppDispatch();

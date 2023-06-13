@@ -1,4 +1,4 @@
-import type { ModelLoadingStates, selectedModel } from '../../types/app.types';
+import type { ModelLoadingStates, selectedModel } from "@type/app.types";
 
 export interface GlobalsSlice {
   prefersDarkMode: boolean;

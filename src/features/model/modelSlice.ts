@@ -1,26 +1,67 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Plane, Vector3 } from "three";
 
-import type { RootState } from '../../app/store';
-import type { ModelSlice } from './modelSlice.types';
-import { ModelCut, ModelLoadingStates, selectedModel } from '../../types/app.types';
+import { ModelCut, ModelLoadingStates, selectedModel } from "@type/app.types";
+
+import type { RootState } from "@store/store";
+
+import type { ModelSlice } from "./modelSlice.types";
 
 const initialState: ModelSlice = {
   modelWireframe: false,
   selectedModel: null,
-  modelCut: '-cut3',
-  localCut: '-cut3',
-  modelsLoadingState: 'loading',
+  modelCut: "-cut3",
+  localCut: "-cut3",
+  modelsLoadingState: "loading",
   previousSelectedModel: null,
   modelOpacity: 1,
   showModelModal: false,
+  clippingPlanesNormal: 3.14159265,
+  clippingPlanes: [new Plane(new Vector3(1, 0, 0), 0), new Plane(new Vector3(-1, 0, 0), 0)],
+  snapIsLoading: false
 };
 
 const modelSlice = createSlice({
-  name: 'model',
+  name: "model",
   initialState,
   reducers: {
     rehydrate: (state, action) => {
       return action.payload.model || state;
+    },
+    hydrateClippingPlanes: (state) => {
+      if (state.clippingPlanesNormal > 3.14139264) {
+        state.clippingPlanes[0].normal = new Vector3(
+          -1 * Math.cos(Math.PI),
+          -1 * Math.sin(Math.PI),
+          0
+        );
+      } else {
+        state.clippingPlanes[0].normal = new Vector3(
+          -1 * Math.cos(state.clippingPlanesNormal),
+          -1 * Math.sin(state.clippingPlanesNormal),
+          0
+        );
+      }
+    },
+
+    setClippingPlanesNormal: (state, action: PayloadAction<number>) => {
+      state.clippingPlanesNormal = action.payload;
+      if (action.payload > 3.14139264) {
+        state.clippingPlanes[0].normal = new Vector3(
+          -1 * Math.cos(Math.PI),
+          -1 * Math.sin(Math.PI),
+          0
+        );
+      } else {
+        state.clippingPlanes[0].normal = new Vector3(
+          -1 * Math.cos(state.clippingPlanesNormal),
+          -1 * Math.sin(state.clippingPlanesNormal),
+          0
+        );
+      }
+    },
+    setSnapIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.snapIsLoading = action.payload;
     },
     setModelModal: (state, action: PayloadAction<boolean>) => {
       state.showModelModal = action.payload;
@@ -49,8 +90,8 @@ const modelSlice = createSlice({
         state.selectedModel = action.payload;
         state.showModelModal = true;
       }
-    },
-  },
+    }
+  }
 });
 
 export default modelSlice.reducer;
@@ -63,6 +104,9 @@ export const {
   setModelWireframe,
   setModelModal,
   updateLocalModelCut,
+  setClippingPlanesNormal,
+  hydrateClippingPlanes,
+  setSnapIsLoading
 } = modelSlice.actions;
 
 export const selectSelectedModel = (state: RootState): selectedModel => state.model.selectedModel;
@@ -76,3 +120,10 @@ export const selectModelsLoadingState = (state: RootState): ModelLoadingStates =
 
 export const selectPreviousSelectedModel = (state: RootState): selectedModel =>
   state.model.previousSelectedModel;
+export const selectClippingPlanesNormal = (state: RootState): number =>
+  state.model.clippingPlanesNormal;
+
+export const selectClippingPlanes = (state: RootState): ModelSlice["clippingPlanes"] =>
+  state.model.clippingPlanes;
+
+export const selectSnapIsLoading = (state: RootState): boolean => state.model.snapIsLoading;

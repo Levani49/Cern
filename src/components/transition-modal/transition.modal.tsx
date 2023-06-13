@@ -1,6 +1,7 @@
-import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { ReactComponent as XMarkIcon } from "../../assets/svg/xMarkIcon.svg";
+import { Fragment, useRef } from "react";
+
+import { ReactComponent as XMarkIcon } from "@assets/svg/xMarkIcon.svg";
 
 interface Props {
   open: boolean;
@@ -15,7 +16,7 @@ export default function TransitionModal({
   className,
   title,
   children,
-  onClose,
+  onClose
 }: Props): JSX.Element {
   const cancelButtonRef = useRef(null);
 

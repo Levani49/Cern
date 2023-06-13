@@ -1,4 +1,4 @@
-import type { ReactChildren } from "../../types/app.types";
+import type { ReactChildren } from "@type/app.types";
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   children: ReactChildren;
@@ -6,10 +6,14 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-export default function Button({ children, className, ...props }: ButtonProps): JSX.Element {
+export default function Button({
+  children,
+  className,
+  ...props
+}: ButtonProps): JSX.Element {
   return (
     <button
-      className={`px-4 py-2 outline-none rounded bg-green hover:bg-transparentDark transition-all ease-in-out ${className}`}
+      className={`rounded bg-green px-4 py-2 outline-none transition-all ease-in-out hover:bg-transparentDark ${className}`}
       {...props}
     >
       {children}

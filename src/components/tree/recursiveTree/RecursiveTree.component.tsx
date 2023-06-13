@@ -1,9 +1,9 @@
-import { memo } from 'react';
+import { memo } from "react";
 
-import { TreeNode } from '../../../constants/geometryTree';
+import { TreeNode } from "@constants/geometryTree";
 
-import ChildNode from '../childNode/ChildNode.component';
-import ParentNode from '../parentNode/ParentNode.component';
+import ChildNode from "../childNode/ChildNode.component";
+import ParentNode from "../parentNode/ParentNode.component";
 
 interface Props {
   tree: TreeNode[];
@@ -11,6 +11,10 @@ interface Props {
 
 const RecursiveTree = memo(
   function RecursiveT({ tree }: Props): JSX.Element {
+    if (!tree) {
+      return <></>;
+    }
+
     const elements = tree.map((node: TreeNode): JSX.Element => {
       const { id, name, state, showChildren, root, nodeEnd } = node;
       if (!node.children) {
@@ -37,7 +41,7 @@ const RecursiveTree = memo(
   },
   (prevProps, nextProps) => {
     return prevProps.tree === nextProps.tree;
-  },
+  }
 );
 
 export default RecursiveTree;

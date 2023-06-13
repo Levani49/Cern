@@ -1,7 +1,9 @@
-import { Grid } from '@react-three/drei';
+import { Grid } from "@react-three/drei";
 
-import { useAppSelector } from '../../app/hooks';
-import { selectTheme, selectGrid } from '../../features/global/globalsSlice';
+import { useAppSelector } from "@store/hooks";
+
+import { selectGrid, selectTheme } from "@features/global/globalsSlice";
+
 /**
  * Renders a custom grid.
  *
@@ -10,7 +12,7 @@ import { selectTheme, selectGrid } from '../../features/global/globalsSlice';
 export default function CustomGrid(): JSX.Element {
   const { show } = useAppSelector((state) => ({
     show: selectGrid(state),
-    prefersDarkMode: selectTheme(state),
+    prefersDarkMode: selectTheme(state)
   }));
 
   if (!show) {

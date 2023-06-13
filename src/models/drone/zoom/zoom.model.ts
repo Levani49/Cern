@@ -1,5 +1,6 @@
-import { PerspectiveCamera } from 'three';
-import { emptyFunc } from '../../../types/app.types';
+import { PerspectiveCamera } from "three";
+
+import { emptyFunc } from "@type/app.types";
 
 /**
  * Zoom class that animates a PerspectiveCamera by moving it closer to the origin and reducing its field of view.
@@ -15,7 +16,7 @@ export default class Zoom {
   public configuration = {
     fovIterator: -0.09,
     xAxisIterator: -0.005,
-    fullStep: 450,
+    fullStep: 450
   };
 
   /**
@@ -24,7 +25,10 @@ export default class Zoom {
    * @param {PerspectiveCamera} camera - The camera to animate.
    * @param cb
    */
-  start(camera: PerspectiveCamera, cb: emptyFunc | undefined = undefined): void {
+  start(
+    camera: PerspectiveCamera,
+    cb: emptyFunc | undefined = undefined
+  ): void {
     camera.position.set(5, 1, 0);
 
     const { xAxisIterator, fovIterator, fullStep } = this.configuration;

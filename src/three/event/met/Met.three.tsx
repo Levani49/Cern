@@ -1,9 +1,12 @@
-import { useEffect, useMemo, useRef } from 'react';
-import { useAppSelector } from '../../../app/hooks';
-import { selectEvent, selectEventParameters } from '../../../features/event/eventSlice';
-import MetService from '../../../model/event/met/met.model';
+import { useEffect, useMemo, useRef } from "react";
 
-const metService = new MetService();
+import { useAppSelector } from "@store/hooks";
+
+import { selectEvent, selectEventParameters } from "@features/event/eventSlice";
+
+import MetModel from "@models/event/met/met.model";
+
+const metModel = new MetModel();
 
 export default function Met(): JSX.Element {
   const event = useAppSelector(selectEvent);
@@ -21,11 +24,11 @@ export default function Met(): JSX.Element {
   const metToDraw = useMemo(() => {
     if (event) {
       if (Array.isArray(event.Event.ETMis)) {
-        metService.init(event.Event.ETMis[0]);
+        metModel.init(event.Event.ETMis[0]);
       } else {
-        metService.init(event.Event.ETMis);
+        metModel.init(event.Event.ETMis);
       }
-      return metService.drawMet();
+      return metModel.drawMet();
     }
     return null;
   }, [event]);
@@ -35,7 +38,12 @@ export default function Met(): JSX.Element {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       <line ref={lineRef} geometry={metToDraw.geometry}>
-        <lineDashedMaterial attach="material" color="#ff0000" dashSize={0.5} gapSize={0.1} />
+        <lineDashedMaterial
+          attach="material"
+          color="#ff0000"
+          dashSize={0.5}
+          gapSize={0.1}
+        />
       </line>
     );
   }

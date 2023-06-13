@@ -1,12 +1,21 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { WritableDraft } from "immer/dist/internal";
 import { Camera } from "@react-three/fiber";
 
-import ee from "../../utils/droneEvent.utils";
-import { startDroneMode, stopDroneMode } from "../../utils/handleDrone.utils";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { WritableDraft } from "immer/dist/internal";
+import { Camera as OriginCamera } from "three";
 
-import type { RootState } from "../../app/store";
-import type { DroneTypes } from "../../types/app.types";
+import type { DroneTypes } from "@type/app.types";
+
+import type { RootState } from "@store/store";
+
+import {
+  calculateOrthographicDimensions,
+  calculatePerspectiveDimesnions
+} from "@three/camera/OrthographicCamera.three";
+
+import ee from "@utils/droneEvent.utils";
+import { startDroneMode, stopDroneMode } from "@utils/handleDrone.utils";
+
 import type { ICameraSettings, ViewModes } from "./cameraSlice.types";
 
 const initialState: ICameraSettings = {
@@ -17,7 +26,25 @@ const initialState: ICameraSettings = {
   cameraType: "perspective",
   showFlyModal: false,
   viewMode: "default",
+  orthographicCameraProps: undefined,
+  perspectiveCameraProps: {
+    fov: 75,
+    position: [0, 0, 0],
+    aspect: 1,
+    near: 0.1,
+    far: 200
+  }
 };
+
+interface OrthoCamera extends OriginCamera {
+  zoom: number;
+}
+
+export interface SetOrthoArgs {
+  camera: OrthoCamera;
+  width: number;
+  height: number;
+}
 
 export const cameraSlice = createSlice({
   name: "camera",
@@ -27,18 +54,62 @@ export const cameraSlice = createSlice({
       return action.payload.camera || state;
     },
 
+    setCameraPosition: (
+      state,
+      action: PayloadAction<[x: number, y: number, z: number]>
+    ) => {
+      if (state.perspectiveCameraProps?.position) {
+        state.perspectiveCameraProps.position = action.payload;
+      }
+      if (state.orthographicCameraProps?.position) {
+        state.orthographicCameraProps.position = action.payload;
+      }
+    },
+
+    setOrthographicCameraDimensions: (
+      state,
+      action: PayloadAction<SetOrthoArgs>
+    ) => {
+      state.orthographicCameraProps = calculateOrthographicDimensions(
+        action.payload
+      );
+    },
+    setPerspectiveCameraDimensions: (
+      state,
+      action: PayloadAction<SetOrthoArgs>
+    ) => {
+      state.perspectiveCameraProps = calculatePerspectiveDimesnions(
+        action.payload
+      );
+    },
+
     setLeftCameraView: (state) => {
-      state.position = [0, 0, 5];
+      if (state.perspectiveCameraProps?.position) {
+        state.perspectiveCameraProps.position = [0, 0, 5];
+      }
+      if (state.orthographicCameraProps?.position) {
+        state.orthographicCameraProps.position = [0, 0, 5];
+      }
       state.viewMode = "left";
     },
 
     setRightCameraView: (state) => {
-      state.position = [5, 0.5, 0];
+      if (state.perspectiveCameraProps?.position) {
+        state.perspectiveCameraProps.position = [5, 0.5, 0];
+      }
+      if (state.orthographicCameraProps?.position) {
+        state.orthographicCameraProps.position = [5, 0.5, 0];
+      }
       state.viewMode = "right";
     },
 
     setDefaultView: (state) => {
-      state.position = [3, 3, 4];
+      if (state.perspectiveCameraProps?.position) {
+        state.perspectiveCameraProps.position = [3, 3, 4];
+      }
+      if (state.orthographicCameraProps?.position) {
+        state.orthographicCameraProps.position = [3, 3, 4];
+      }
       state.viewMode = "default";
     },
 
@@ -69,10 +140,13 @@ export const cameraSlice = createSlice({
       state.showFlyModal = action.payload;
     },
 
-    setCameraType: (state, action: PayloadAction<"perspective" | "orthographic">) => {
+    setCameraType: (
+      state,
+      action: PayloadAction<"perspective" | "orthographic">
+    ) => {
       state.cameraType = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export default cameraSlice.reducer;
@@ -84,13 +158,30 @@ export const {
   setDroneMode,
   setFlyModalState,
   setCameraType,
+  setOrthographicCameraDimensions,
+  setPerspectiveCameraDimensions,
+  setCameraPosition
 } = cameraSlice.actions;
 
-export const selectCameraPosition = (state: RootState): [number, number, number] =>
-  state.camera.position;
+export const selectCameraPosition = (
+  state: RootState
+): [number, number, number] => state.camera.position;
 
-export const selectDroneState = (state: RootState): DroneTypes => state.camera.droneType;
-export const selectFlyModalState = (state: RootState): boolean => state.camera.showFlyModal;
-export const selectCameraViewMode = (state: RootState): ViewModes => state.camera.viewMode;
-export const selectCameraType = (state: RootState): "perspective" | "orthographic" =>
-  state.camera.cameraType;
+export const selectOrthographicCameraProps = (
+  state: RootState
+): ICameraSettings["orthographicCameraProps"] =>
+  state.camera.orthographicCameraProps;
+export const selectPerspectiveCameraProps = (
+  state: RootState
+): ICameraSettings["perspectiveCameraProps"] =>
+  state.camera.perspectiveCameraProps;
+
+export const selectDroneState = (state: RootState): DroneTypes =>
+  state.camera.droneType;
+export const selectFlyModalState = (state: RootState): boolean =>
+  state.camera.showFlyModal;
+export const selectCameraViewMode = (state: RootState): ViewModes =>
+  state.camera.viewMode;
+export const selectCameraType = (
+  state: RootState
+): "perspective" | "orthographic" => state.camera.cameraType;

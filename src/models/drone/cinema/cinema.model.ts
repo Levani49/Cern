@@ -1,7 +1,8 @@
-import { Camera } from '@react-three/fiber';
-import { CatmullRomCurve3, Vector3 } from 'three';
+import { Camera } from "@react-three/fiber";
 
-import { emptyFunc } from '../../../types/app.types';
+import { CatmullRomCurve3, Vector3 } from "three";
+
+import { emptyFunc } from "@type/app.types";
 
 /**
  * A class for controlling the camera movement in a cinema-style animation.
@@ -11,8 +12,8 @@ export default class Cinema {
     road: new CatmullRomCurve3([
       new Vector3(22, 16, 14),
       new Vector3(12, 3, 28),
-      new Vector3(0, 0, 22),
-    ]).getPoints(700),
+      new Vector3(0, 0, 22)
+    ]).getPoints(700)
   };
 
   /**

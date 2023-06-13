@@ -1,6 +1,7 @@
-import { test } from 'vitest';
-import { Vector3, PerspectiveCamera } from 'three';
-import Cinema from './cinema.model';
+import { PerspectiveCamera, Vector3 } from "three";
+import { test } from "vitest";
+
+import Cinema from "./cinema.model";
 
 // Mock the Camera class
 class MockCamera extends PerspectiveCamera {
@@ -8,8 +9,8 @@ class MockCamera extends PerspectiveCamera {
   lookAt = jest.fn();
 }
 
-test('Cinema class', async () => {
-  test('start() and stop() methods', () => {
+test("Cinema class", async () => {
+  test("start() and stop() methods", () => {
     const cinema = new Cinema();
     const camera = new MockCamera();
     const callback = jest.fn();
@@ -19,10 +20,10 @@ test('Cinema class', async () => {
     cinema.stop();
 
     // Check if the animation stopped
-    expect(cinema['animationRef']).toBeUndefined();
+    expect(cinema["animationRef"]).toBeUndefined();
   });
 
-  test('start() method with a callback', async () => {
+  test("start() method with a callback", async () => {
     const cinema = new Cinema();
     const camera = new MockCamera();
     const callback = jest.fn();
