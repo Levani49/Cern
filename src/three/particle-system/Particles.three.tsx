@@ -1,10 +1,11 @@
-import { useMemo, useRef, useState } from 'react';
-import { MathUtils, Object3D } from 'three';
-import { useFrame } from '@react-three/fiber';
-import { Float } from '@react-three/drei';
+import { Float } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { useMemo, useRef, useState } from "react";
 
-import Electron from './Electron.three';
-import Collision from './Collision.three';
+import { MathUtils, Object3D } from "three";
+
+import Collision from "./Collision.three";
+import Electron from "./Electron.three";
 
 interface Props {
   onFinish: () => void;
@@ -57,7 +58,7 @@ export default function Particles({ onFinish }: Props): JSX.Element {
 
   return (
     <>
-      <Float speed={0.2} rotationIntensity={0.5} floatIntensity={0.5}>
+      <Float speed={0.07} rotationIntensity={0.5} floatIntensity={0.5}>
         <Collision onCollision={(): void => setExplode(true)} />
         <group visible={explode ? true : false}>{electronArray}</group>
       </Float>
