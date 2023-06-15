@@ -73,7 +73,7 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
 
   return (
     <TransitionModal open={open} onClose={onClose} title="Snapshot">
-      <div className="mt-8 flex gap-6 pb-2">
+      <div className="mt-8 flex flex-col gap-6 pb-2 sm:flex-row">
         <SnapCard Icon={DownloadFileIcon} text={SnapTexts.download}>
           <Button className="w-full" onClick={handleSaveSnapshot}>
             Export
