@@ -2,10 +2,7 @@ import type { Employee } from "@type/app.types";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
-import {
-  selectAboutModalState,
-  showAboutModal
-} from "@features/modal/modalSlice";
+import { selectAboutModalState, showAboutModal } from "@features/modal/modalSlice";
 
 import TransitionModal from "@components/transition-modal/transition.modal";
 
@@ -30,9 +27,7 @@ export default function AboutModal(): JSX.Element {
     >
       <div className="flex w-full flex-col gap-2 p-1">
         <h3 className="text-center text-lg font-bold">Tracer Core</h3>
-        <h6 className="text-center text-xs font-bold text-gray-500">
-          Version: @latest
-        </h6>
+        <h6 className="text-center text-xs font-bold text-gray-500">Version: @latest</h6>
         <div className="mt-2 flex justify-center gap-2">
           {TEMP_INFO.managers.map((employee: Employee) => {
             const { id, ...rest } = employee;
@@ -61,10 +56,7 @@ export default function AboutModal(): JSX.Element {
 
           <div className="flex">
             <span className="text-gray-300">In collaboration with</span>
-            <a
-              href="https://cern.ch/"
-              className="ml-[2px] text-green underline"
-            >
+            <a href="https://cern.ch/" className="ml-[2px] text-green underline">
               @CERN
             </a>
           </div>
