@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 import type { DroneTypes, SVGIcon } from "@type/app.types";
 
@@ -29,6 +29,18 @@ export default function DroneMenu(): JSX.Element {
   const dispatch = useAppDispatch();
   const currentMode = useAppSelector(selectDroneState);
   const currentModeMemoized = useMemo(() => currentMode, [currentMode]);
+
+  useEffect(() => {
+    const cancelDroneMode = (e: KeyboardEvent): void => {
+      if (e.key === "27" || e.key === "Escape") {
+        dispatch(setDroneMode("idle"));
+      }
+    };
+
+    window.addEventListener("keydown", cancelDroneMode);
+
+    return (): void => window.removeEventListener("keydown", cancelDroneMode);
+  }, [currentMode, dispatch]);
 
   const isActive = currentModeMemoized !== "idle";
 
