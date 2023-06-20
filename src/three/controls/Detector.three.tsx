@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ActiveModel, ModelCut } from "@type/app.types";
 
@@ -14,7 +14,7 @@ interface LocalModel extends ActiveModel {
   cutType: ModelCut;
 }
 
-function Detector(): JSX.Element {
+export default function Detector(): JSX.Element {
   const { models, cutType, localCutType } = useDetectorState();
   const selectedModel = useAppSelector(selectSelectedModel);
   const [localModels, setLocalModels] = useState<LocalModel[]>([]);
@@ -71,5 +71,3 @@ function Detector(): JSX.Element {
 
   return <>{activeModels}</>;
 }
-
-export default memo(Detector);
