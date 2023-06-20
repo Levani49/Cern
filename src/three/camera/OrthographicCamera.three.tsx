@@ -67,7 +67,7 @@ export default function Camera(): JSX.Element {
   }, [camera, size]);
 
   useFrame(({ camera }) => {
-    if (droneType !== "fly") {
+    if (droneType !== "idle") {
       dispatch(setCameraPosition([camera.position.x, camera.position.y, camera.position.z]));
     }
   });

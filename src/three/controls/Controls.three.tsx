@@ -46,7 +46,7 @@ export default function Controls(): JSX.Element {
 
   const rotate = droneType === "circle";
   const isFreeFly = droneType === "fly";
-  const enable = droneType === "circle" || droneType === "idle";
+  const enableControls = droneType === "circle" || droneType === "idle";
 
   if (isFreeFly) {
     return (
@@ -54,5 +54,5 @@ export default function Controls(): JSX.Element {
     );
   }
 
-  return <CustomOrbitControl ref={controlsRef} makeDefault autoRotate={rotate} enabled={enable} />;
+  return enableControls && <CustomOrbitControl ref={controlsRef} makeDefault autoRotate={rotate} />;
 }

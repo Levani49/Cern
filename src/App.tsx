@@ -15,16 +15,14 @@ const Logo = lazy(() => import("./components/logo/Logo.component"));
 function App(): JSX.Element {
   const droneMode = useAppSelector(selectDroneState);
 
+  const zIndex = droneMode === "fly" ? "z-[99999]" : "z-10";
+
   return (
     <ErrorHandler>
       <div className="flex">
         <Navigation />
       </div>
-      <div
-        className={`absolute ${
-          droneMode === "fly" ? "z-[99999]" : "z-10"
-        } left-0 top-0 h-full w-full`}
-      >
+      <div className={`absolute ${zIndex} left-0 top-0 h-full w-full`}>
         <div className="absolute top-14 z-[2002] max-h-[80%]  overflow-y-auto bg-transparent">
           <Suspense>
             <Tree />
