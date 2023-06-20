@@ -63,13 +63,8 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   const clippingPlanesNormal = useAppSelector(selectClippingPlanesNormal);
 
   // Redux hooks for managing the application state.
-  const {
-    selectedModel,
-    modelOpacityLevel,
-    globalOpacityLevel,
-    modelWireframe,
-    globalWireframe
-  } = useSelectedModel();
+  const { selectedModel, modelOpacityLevel, globalOpacityLevel, modelWireframe, globalWireframe } =
+    useSelectedModel();
 
   // Load the 3D model using the GLTFLoader and DRACOLoader.
   const model = useLoader(
@@ -94,12 +89,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
           modelService.applyDefaults(currentRef, name);
         }
       } else {
-        modelService.applyDefaults(
-          currentRef,
-          name,
-          globalOpacityLevel,
-          globalWireframe
-        );
+        modelService.applyDefaults(currentRef, name, globalOpacityLevel, globalWireframe);
       }
     }
 
@@ -234,8 +224,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     onPointerOut: handlePointerOut
   };
 
-  const hoverEffects =
-    scene.children.length < 20 && droneMode !== "fly" ? hoverMethods : {};
+  const hoverEffects = scene.children.length < 20 && droneMode !== "fly" ? hoverMethods : {};
 
   return (
     <primitive

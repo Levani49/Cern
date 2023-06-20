@@ -1,12 +1,8 @@
-import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { DirectionalLight } from 'three';
+import { useFrame } from "@react-three/fiber";
+import { useRef } from "react";
 
-/**
- * Renders ambient and directional lights in a 3D scene.
- *
- * @returns {JSX.Element} JSX.Element
- */
+import { DirectionalLight } from "three";
+
 export default function Lights(): JSX.Element {
   const dirLight = useRef<DirectionalLight>(null);
 
@@ -15,7 +11,7 @@ export default function Lights(): JSX.Element {
       dirLight.current.position.set(
         camera.position.x + camera.position.x * 0.5,
         camera.position.y + camera.position.y * 0.1,
-        camera.position.z + camera.position.z * -0.5,
+        camera.position.z + camera.position.z * -0.5
       );
     }
   });

@@ -15,7 +15,6 @@ import {
 
 import Background from "@three/background/Background.three";
 import Camera from "@three/camera/OrthographicCamera.three";
-import Fog from "@three/fog/Fog.three";
 import Lights from "@three/light/Light.three";
 import StatsDispatcher from "@three/stats/Stats.three";
 
@@ -63,13 +62,11 @@ export default function Scene(): JSX.Element {
             <Axis />
           </Suspense>
           <Background />
-          <Fog />
           <StatsDispatcher />
           <Event />
           <Lights />
           <Camera />
           <Grid />
-          {/* <Environment /> */}
           <Controls />
           <ParticleSystem />
         </Physics>

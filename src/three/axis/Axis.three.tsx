@@ -1,15 +1,14 @@
 import { GizmoHelper, GizmoViewport } from "@react-three/drei";
+import { memo } from "react";
 
 import { useAppSelector } from "@store/hooks";
 
 import { selectDroneState } from "@features/camera/cameraSlice";
 import { selectAxis } from "@features/global/globalsSlice";
 
-export default function Axis(): JSX.Element {
-  const { droneType, show } = useAppSelector((state) => ({
-    droneType: selectDroneState(state),
-    show: selectAxis(state)
-  }));
+function Axis(): JSX.Element {
+  const droneType = useAppSelector(selectDroneState);
+  const show = useAppSelector(selectAxis);
 
   const disable = droneType !== "idle";
 
@@ -28,3 +27,5 @@ export default function Axis(): JSX.Element {
     </>
   );
 }
+
+export default memo(Axis);

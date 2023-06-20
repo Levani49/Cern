@@ -13,8 +13,7 @@ export default function Tree(): JSX.Element {
   const geometryTree = useAppSelector(selectGeometryTree);
   const showGeometryMenu = useAppSelector(selectGeometryMenu);
 
-  const disablePointerEvents =
-    isLoading === "loading" ? "pointer-events-none" : null;
+  const disablePointerEvents = isLoading === "loading" ? "pointer-events-none" : null;
 
   const GeometriesTree = useMemo(() => {
     return <RecursiveTree tree={geometryTree} />;
@@ -23,9 +22,7 @@ export default function Tree(): JSX.Element {
   return (
     <>
       {showGeometryMenu && (
-        <ul className={`select-none ${disablePointerEvents}`}>
-          {GeometriesTree}
-        </ul>
+        <ul className={`select-none ${disablePointerEvents}`}>{GeometriesTree}</ul>
       )}
     </>
   );

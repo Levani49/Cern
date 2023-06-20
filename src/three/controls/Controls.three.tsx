@@ -7,11 +7,7 @@ import { useEffect, useMemo, useRef } from "react";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
-import {
-  selectCameraPosition,
-  selectDroneState,
-  setCamera
-} from "@features/camera/cameraSlice";
+import { selectCameraPosition, selectDroneState, setCamera } from "@features/camera/cameraSlice";
 
 import CustomOrbitControl from "@three/lib/modified_orbit_controls/CustomOrbitControl";
 import Player from "@three/player/Player.three";
@@ -54,22 +50,9 @@ export default function Controls(): JSX.Element {
 
   if (isFreeFly) {
     return (
-      <Player
-        currentCameraPosition={[
-          camera.position.x,
-          camera.position.y,
-          camera.position.z
-        ]}
-      />
+      <Player currentCameraPosition={[camera.position.x, camera.position.y, camera.position.z]} />
     );
   }
 
-  return (
-    <CustomOrbitControl
-      ref={controlsRef}
-      makeDefault
-      autoRotate={rotate}
-      enabled={enable}
-    />
-  );
+  return <CustomOrbitControl ref={controlsRef} makeDefault autoRotate={rotate} enabled={enable} />;
 }
