@@ -57,7 +57,9 @@ export default function GeometryCutsMenu(): JSX.Element {
         dispatch(updateLocalModelCut(modelCut));
       }
     } else {
-      if (cutType === modelCut) {
+      if (cutType === null && modelCut === null) {
+        dispatch(updateModelCut("-cut3"));
+      } else if (cutType === modelCut) {
         dispatch(updateModelCut(null));
       } else {
         dispatch(updateModelCut(modelCut));
