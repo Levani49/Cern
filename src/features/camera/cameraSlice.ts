@@ -1,5 +1,9 @@
 import { Camera } from "@react-three/fiber";
 
+import {
+  calculateOrthographicDimensions,
+  calculatePerspectiveDimesnions
+} from "@/three/camera/Camera.three";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { WritableDraft } from "immer/dist/internal";
 import { Camera as OriginCamera } from "three";
@@ -7,11 +11,6 @@ import { Camera as OriginCamera } from "three";
 import type { DroneTypes } from "@type/app.types";
 
 import type { RootState } from "@store/store";
-
-import {
-  calculateOrthographicDimensions,
-  calculatePerspectiveDimesnions
-} from "@three/camera/OrthographicCamera.three";
 
 import ee from "@utils/droneEvent.utils";
 import { startDroneMode, stopDroneMode } from "@utils/handleDrone.utils";
@@ -29,7 +28,7 @@ const initialState: ICameraSettings = {
   orthographicCameraProps: undefined,
   perspectiveCameraProps: {
     fov: 75,
-    position: [3, 3, 3],
+    position: [0, 0, 0],
     aspect: 1,
     near: 0.1,
     far: 200
@@ -55,6 +54,10 @@ export const cameraSlice = createSlice({
     },
 
     setCameraPosition: (state, action: PayloadAction<[x: number, y: number, z: number]>) => {
+      if (state.droneType !== "idle") {
+        return;
+      }
+
       if (state.perspectiveCameraProps?.position) {
         state.perspectiveCameraProps.position = action.payload;
       }

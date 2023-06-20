@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import {
   selectCameraType,
-  selectDroneState,
   selectOrthographicCameraProps,
   selectPerspectiveCameraProps,
   setCameraPosition,
@@ -44,7 +43,6 @@ export default function Camera(): JSX.Element {
   const cameraType = useAppSelector(selectCameraType);
   const orthographicCameraProps = useAppSelector(selectOrthographicCameraProps);
   const perspectiveCameraProps = useAppSelector(selectPerspectiveCameraProps);
-  const droneType = useAppSelector(selectDroneState);
 
   useEffect(() => {
     dispatch(
@@ -67,9 +65,7 @@ export default function Camera(): JSX.Element {
   }, [camera, size]);
 
   useFrame(({ camera }) => {
-    if (droneType !== "idle") {
-      dispatch(setCameraPosition([camera.position.x, camera.position.y, camera.position.z]));
-    }
+    dispatch(setCameraPosition([camera.position.x, camera.position.y, camera.position.z]));
   });
 
   useEffect(() => {
