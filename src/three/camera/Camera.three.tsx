@@ -52,9 +52,6 @@ export default function Camera(): JSX.Element {
         height: size.height
       })
     );
-  }, [camera, size]);
-
-  useEffect(() => {
     dispatch(
       setPerspectiveCameraDimensions({
         camera,
@@ -62,7 +59,8 @@ export default function Camera(): JSX.Element {
         height: size.height
       })
     );
-  }, [camera, size]);
+    camera.updateProjectionMatrix();
+  }, [camera, size, dispatch]);
 
   useFrame(({ camera }) => {
     dispatch(setCameraPosition([camera.position.x, camera.position.y, camera.position.z]));
@@ -77,7 +75,7 @@ export default function Camera(): JSX.Element {
   return (
     <>
       {cameraType === "orthographic" ? (
-        <OrthographicCamera zoom={1} {...orthographicCameraProps} makeDefault />
+        <OrthographicCamera {...orthographicCameraProps} makeDefault />
       ) : (
         <PerspectiveCamera {...perspectiveCameraProps} makeDefault />
       )}
@@ -105,7 +103,6 @@ export function calculatePerspectiveDimesnions(args: SetOrthoArgs): PerspectiveR
     far: 1000
   };
 }
-
 export function calculateOrthographicDimensions(args: SetOrthoArgs): OrthographicReturnType {
   const { camera, width, height } = args;
 
@@ -118,15 +115,14 @@ export function calculateOrthographicDimensions(args: SetOrthoArgs): Orthographi
   const distance = new Vector3(0, 0, 0).clone().sub(cameraPosition);
   const depth = distance.dot(lineOfSight);
 
-  const aspect = width / height;
-  const heightOrtho = depth * 2 * Math.atan((75 * (Math.PI / 180)) / 2);
-  const widthOrtho = heightOrtho * aspect;
+  const frustumHeight = 2 * Math.tan((75 * (Math.PI / 180)) / 2) * depth;
+  const frustumWidth = frustumHeight * (width / height);
 
   return {
-    left: widthOrtho / -2,
-    right: widthOrtho / 2,
-    top: heightOrtho / 2,
-    bottom: heightOrtho / -2,
+    left: -frustumWidth / 2,
+    right: frustumWidth / 2,
+    top: frustumHeight / 2,
+    bottom: -frustumHeight / 2,
     position: [cameraPosition.x, cameraPosition.y, cameraPosition.z],
     matrix: cameraMatrix,
     rotation: camera.rotation,

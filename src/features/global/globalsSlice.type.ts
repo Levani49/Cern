@@ -13,4 +13,5 @@ export interface GlobalsSlice {
   globalOpacity: number;
   showSnapModal: boolean;
   showGeometryMenu: boolean;
+  fullScreen: boolean;
 }

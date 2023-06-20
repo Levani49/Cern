@@ -16,7 +16,8 @@ const initialState: GlobalsSlice = {
   previousSelectedModel: null,
   globalOpacity: 1,
   showGeometryMenu: true,
-  showSnapModal: false
+  showSnapModal: false,
+  fullScreen: false
 };
 
 const globalsSlice = createSlice({
@@ -28,6 +29,9 @@ const globalsSlice = createSlice({
     },
     setSnapModal: (state, action: PayloadAction<boolean>) => {
       state.showSnapModal = action.payload;
+    },
+    setFullscreen: (state, action: PayloadAction<boolean>) => {
+      state.fullScreen = action.payload;
     },
     setGlobalWireframe: (state, action: PayloadAction<boolean>) => {
       state.globalWireframe = action.payload;
@@ -72,9 +76,11 @@ export const {
   showGrid,
   setGlobalOpacity,
   setGlobalWireframe,
-  setSnapModal
+  setSnapModal,
+  setFullscreen
 } = globalsSlice.actions;
 
+export const selectIsFullscreen = (state: RootState): boolean => state.globals.fullScreen;
 export const selectSnapModal = (state: RootState): boolean => state.globals.showSnapModal;
 export const selectTheme = (state: RootState): boolean => state.globals.prefersDarkMode;
 export const selectStats = (state: RootState): boolean => state.globals.showStats;
