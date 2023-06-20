@@ -43,16 +43,6 @@ const mouse = {
   y: 0
 };
 
-const geometriesNotAffectedByClippingPlanes = [
-  "ux15",
-  "us15",
-  "usa15",
-  "px14",
-  "px15",
-  "px15",
-  "pm15"
-];
-
 export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   const { gl, scene } = useThree();
   const dispatch = useAppDispatch();
@@ -62,11 +52,9 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   const clippingPlanes = useAppSelector(selectClippingPlanes);
   const clippingPlanesNormal = useAppSelector(selectClippingPlanesNormal);
 
-  // Redux hooks for managing the application state.
   const { selectedModel, modelOpacityLevel, globalOpacityLevel, modelWireframe, globalWireframe } =
     useSelectedModel();
 
-  // Load the 3D model using the GLTFLoader and DRACOLoader.
   const model = useLoader(
     GLTFLoader,
     modelService.buildModelUrl(src),
@@ -77,7 +65,6 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
 
   const ref = useRef<THREE.Object3D>();
 
-  // Apply defaults to the model.
   useEffect(() => {
     const currentRef = ref.current;
 
@@ -100,20 +87,13 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     };
   }, [id, ref, src]);
 
-  // This effect updates the opacity of the current model based on the selectedModel state.
   useEffect(() => {
-    // Access the current value of the ref.
     const currentRef = ref.current;
 
-    // Check if the currentRef exists.
     if (currentRef) {
-      // Check if there is a selected model and if the current model's ID does not match the selected model's ID.
       if (selectedModel && selectedModel.id !== id) {
-        // If another model is selected, update the opacity of the current model to 0.3 (partially transparent).
         modelService.updateOpacity(currentRef, LOW_OPACITY_LEVEL);
       } else {
-        // If the current model is the selected model or no model is selected,
-        // update the opacity of the current model to the current opacity value.
         modelService.updateOpacity(currentRef, opacity);
       }
     }
@@ -141,12 +121,9 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     }
   }, [modelWireframe, selectedModel, id, ref]);
 
-  // This effect updates the opacity of the current model based on the global opacity level.
   useEffect(() => {
-    // Access the current value of the ref.
     const currentRef = ref.current;
 
-    // Check if the currentRef exists.
     if (currentRef) {
       setOpacity(globalOpacityLevel);
     }
@@ -172,20 +149,16 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
             child.material.clipIntersection = false;
           }
 
-          if (!geometriesNotAffectedByClippingPlanes.includes(name)) {
-            child.material.clippingPlanes = clippingPlanes;
-          }
+          child.material.clippingPlanes = clippingPlanes;
         }
       });
     }
   }, [JSON.stringify(clippingPlanes)]);
 
-  // Handle pointer over events on the model.
   const handlePointerOver = (): void => {
     gl.domElement.style.cursor = "pointer";
   };
 
-  // Handle pointer out events on the model.
   const handlePointerOut = (): void => {
     gl.domElement.style.cursor = "default";
   };
@@ -212,7 +185,6 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
         ? dispatch(setSelectedModel(null))
         : dispatch(setSelectedModel(payload));
 
-      // Update the model-specific opacity level to the current model's opacity.
       dispatch(setModelsOpacity(opacity));
       dispatch(setModelWireframe(wireframe));
       dispatch(updateLocalModelCut(cutType));

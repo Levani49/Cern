@@ -22,12 +22,7 @@ export default class ModelService {
     });
   }
 
-  applyDefaults(
-    model: Object3D,
-    name: string,
-    opacity = 1,
-    wireframe = false
-  ): void {
+  applyDefaults(model: Object3D, name: string, opacity = 1, wireframe = false): void {
     model.name = name;
     model.traverse((child: Object3D): void => {
       if (child instanceof Mesh) {
