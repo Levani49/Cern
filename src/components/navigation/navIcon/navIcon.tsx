@@ -20,9 +20,7 @@ export default function NavIcon({
       {...other}
     >
       <Icon
-        className={`icon ${
-          active && "text-blue dark:text-green"
-        } transition-all ${iconColor}`}
+        className={`icon ${active && "text-blue dark:text-green"} transition-all ${iconColor}`}
       />
     </button>
   );
