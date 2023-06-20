@@ -55,6 +55,7 @@ export default function Scene(): JSX.Element {
         linear
         frameloop="demand"
         id="canvas"
+        camera={{ manual: true }}
       >
         <Physics gravity={[0, 0, 0]}>
           <Suspense fallback={null}>
