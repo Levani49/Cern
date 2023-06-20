@@ -13,9 +13,15 @@ export default function ThemeToggler(): JSX.Element {
     dispatch(setDarkMode(!isDarkMode));
   };
 
-  isDarkMode
-    ? (document.body.style.background = "rgb(28, 28, 28)")
-    : (document.body.style.background = "rgb(171, 171, 171)");
+  if (isDarkMode) {
+    document.body.style.background = "rgb(28, 28, 28)";
+    document.body.classList.add("bgDark");
+    document.body.classList.remove("bgLight");
+  } else {
+    document.body.style.background = "rgb(171, 171, 171)";
+    document.body.classList.add("bgLight");
+    document.body.classList.remove("bgDark");
+  }
 
   return (
     <button

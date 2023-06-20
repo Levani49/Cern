@@ -26,8 +26,7 @@ export default function FullScreenMenu(): JSX.Element {
     };
 
     document.addEventListener("fullscreenchange", exitFullScreen);
-    return () =>
-      document.removeEventListener("fullscreenchange", exitFullScreen);
+    return () => document.removeEventListener("fullscreenchange", exitFullScreen);
   }, []);
 
   const handleFullScreen = (): void => {
