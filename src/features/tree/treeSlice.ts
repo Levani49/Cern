@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import type { ActiveModel } from "@type/app.types";
 
@@ -17,7 +17,8 @@ import type { GeometryTreeSlice, UpdateNodePayloadAction } from "./treeSlice.typ
 const initialState: GeometryTreeSlice = {
   show: true,
   tree: GEOMETRY_MENU_TREE,
-  activeModels: updateActiveModels(GEOMETRY_MENU_TREE)
+  activeModels: updateActiveModels(GEOMETRY_MENU_TREE),
+  showGeometryMenu: true
 };
 
 export const geometrySlice = createSlice({
@@ -55,12 +56,17 @@ export const geometrySlice = createSlice({
       state.tree = updateNodeAndAncestors(updatedTree, nodeId, value as GeometryState);
 
       state.activeModels = updateActiveModels(state.tree);
+    },
+    setGeometryMenuVisibility: (state, action: PayloadAction<boolean>) => {
+      state.showGeometryMenu = action.payload;
     }
   }
 });
 
 export default geometrySlice.reducer;
 
-export const { updateChildNodeState, updateParentNodeState } = geometrySlice.actions;
+export const { updateChildNodeState, updateParentNodeState, setGeometryMenuVisibility } =
+  geometrySlice.actions;
 export const selectGeometryTree = (state: RootState): TreeNode[] => state.tree.tree;
 export const selectActiveGeometries = (state: RootState): ActiveModel[] => state.tree.activeModels;
+export const selectGeometryMenu = (state: RootState): boolean => state.tree.showGeometryMenu;

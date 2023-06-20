@@ -22,7 +22,9 @@ export default function StatsDispatcher(): JSX.Element {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (!showStats) return;
+      if (!showStats) {
+        return;
+      }
       let triangleCount = 0;
       scene.traverse((object) => {
         if (object.type === "Mesh") {
@@ -48,10 +50,10 @@ export default function StatsDispatcher(): JSX.Element {
           memory: statsRef.current.memory
         })
       );
-    }, 3000);
+    }, 1000);
 
     return () => clearInterval(intervalId);
-  }, [dispatch, scene]);
+  }, [dispatch, scene, showStats]);
 
   useFrame(() => {
     stats.update();
