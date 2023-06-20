@@ -1,3 +1,5 @@
+import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
+
 import { ReactComponent as BoxIcon } from "@assets/svg/box.svg";
 import { ReactComponent as LeftSideBox } from "@assets/svg/left-side-box.svg";
 import { ReactComponent as RightSideBox } from "@assets/svg/right-side-box.svg";
@@ -18,44 +20,40 @@ import NavIcon from "../navIcon/navIcon";
 export default function CameraViewMenu(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const { droneType, viewType } = useAppSelector((state) => ({
-    droneType: selectDroneState(state),
-    viewType: selectCameraViewMode(state)
-  }));
+  const droneType = useAppSelector(selectDroneState);
+  const viewType = useAppSelector(selectCameraViewMode);
 
-  const Icon =
-    viewType === "default"
-      ? BoxIcon
-      : viewType === "left"
-      ? LeftSideBox
-      : viewType === "right"
-      ? RightSideBox
-      : BoxIcon;
+  let Icon;
 
-  const handlers = {
-    default: setDefaultView,
-    left: setLeftCameraView,
-    right: setRightCameraView
+  switch (viewType) {
+    case "default":
+      Icon = BoxIcon;
+      break;
+    case "left":
+      Icon = LeftSideBox;
+      break;
+    default:
+      Icon = RightSideBox;
+  }
+
+  const handleModeChange = (handler: ActionCreatorWithoutPayload): void => {
+    dispatch(handler());
   };
 
-  const innerHtml = Object.entries(handlers).map(([type, handler]) => {
-    const onClickHandler = (): void => {
-      dispatch(handler());
-    };
+  const menuItems = [
+    { Icon: BoxIcon, action: setDefaultView, title: "Default view", mode: "default" },
+    { Icon: LeftSideBox, action: setLeftCameraView, title: "Left view", mode: "left" },
+    { Icon: RightSideBox, action: setRightCameraView, title: "Right view", mode: "right" }
+  ];
 
+  const innerHtml = menuItems.map((item) => {
     return (
       <NavIcon
-        key={type}
-        Icon={
-          type === "default"
-            ? BoxIcon
-            : type === "left"
-            ? LeftSideBox
-            : type === "right"
-            ? RightSideBox
-            : BoxIcon
-        }
-        onClick={onClickHandler}
+        active={viewType === item.mode}
+        key={item.title}
+        Icon={item.Icon}
+        title={item.title}
+        onClick={(): void => handleModeChange(item.action)}
         disabled={droneType !== "idle"}
       />
     );
