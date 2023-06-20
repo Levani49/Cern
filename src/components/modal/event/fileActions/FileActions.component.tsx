@@ -50,15 +50,14 @@ const groupSelectOptions = [
   };
 });
 
-const eventSelectOptions = Array.from(
-  { length: 50 },
-  (_, index) => index + 1
-).map((eventNumber) => {
-  return {
-    value: eventNumber,
-    label: `Event #${eventNumber}`
-  };
-});
+const eventSelectOptions = Array.from({ length: 50 }, (_, index) => index + 1).map(
+  (eventNumber) => {
+    return {
+      value: eventNumber,
+      label: `Event #${eventNumber}`
+    };
+  }
+);
 
 const customStyles: StylesConfig = {
   control: (provided) => ({
@@ -101,8 +100,7 @@ export default function FileActions(): JSX.Element {
   const [showGroupSelection, setShowGroupSelection] = useState(false);
 
   const loadPreviousEvent = (): void => {
-    const index =
-      eventNumber.eventIndex === 1 ? 50 : eventNumber.eventIndex - 1;
+    const index = eventNumber.eventIndex === 1 ? 50 : eventNumber.eventIndex - 1;
 
     dispatch(
       setEventNumber({
@@ -112,8 +110,7 @@ export default function FileActions(): JSX.Element {
     );
   };
   const loadNextEvent = (): void => {
-    const index =
-      eventNumber.eventIndex === 50 ? 1 : eventNumber.eventIndex + 1;
+    const index = eventNumber.eventIndex === 50 ? 1 : eventNumber.eventIndex + 1;
 
     dispatch(
       setEventNumber({
@@ -169,35 +166,30 @@ export default function FileActions(): JSX.Element {
   return (
     <>
       <div className="flex w-full items-center justify-between">
-        <input
-          hidden
-          type="file"
-          accept=".xml"
-          id="handleFileUpload"
-          onChange={handleFileUpload}
-        />
-        <ArrowUpTrayIcon
-          className="icon"
-          onClick={(): void =>
-            document.getElementById("handleFileUpload")?.click()
-          }
-        />
+        <input hidden type="file" accept=".xml" id="handleFileUpload" onChange={handleFileUpload} />
+        <button
+          title="Upload file"
+          onClick={(): void => document.getElementById("handleFileUpload")?.click()}
+        >
+          <ArrowUpTrayIcon className="icon" />
+        </button>
         <div className="flex items-center gap-2">
-          <button disabled={isLoading} onClick={loadPreviousEvent}>
+          <button title="Load previous event" disabled={isLoading} onClick={loadPreviousEvent}>
             <ChevronLeftIcon className="icon" />
           </button>
           <span className="select-none text-xs font-medium text-light">
-            group {eventNumber.eventGroup}{" "}
-            {eventNumber.eventIndex.toString().padStart(2, "0")}/50
+            group {eventNumber.eventGroup} {eventNumber.eventIndex.toString().padStart(2, "0")}/50
           </span>
-          <button disabled={isLoading} onClick={loadNextEvent}>
+          <button title="Load Next event" disabled={isLoading} onClick={loadNextEvent}>
             <ChevronRightIcon className="icon" />
           </button>
         </div>
-        <FolderIcon
-          className="icon"
+        <button
+          title="Load event from database"
           onClick={(): void => setShowGroupSelection((prev) => !prev)}
-        />
+        >
+          <FolderIcon className="icon" />
+        </button>
       </div>
       <div className={`flex gap-2 ${showGroupSelection ? "" : "hidden"}`}>
         <Select
@@ -212,10 +204,7 @@ export default function FileActions(): JSX.Element {
           styles={customStyles}
           onChange={handleEventChange}
         />
-        <button
-          className="rounded bg-green px-2 py-1 text-xs uppercase"
-          onClick={handleLoad}
-        >
+        <button className="rounded bg-green px-2 py-1 text-xs uppercase" onClick={handleLoad}>
           Load
         </button>
       </div>

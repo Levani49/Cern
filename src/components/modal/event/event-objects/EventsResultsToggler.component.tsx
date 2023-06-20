@@ -1,9 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
-import {
-  selectEventParameters,
-  setEventParameters
-} from "@features/event/eventSlice";
+import { selectEventParameters, setEventParameters } from "@features/event/eventSlice";
 
 import Checkbox from "./Checkbox.component";
 
@@ -37,7 +34,7 @@ export default function EventsResultsToggler(): JSX.Element {
           // @ts-ignore
           checked={eventParameters[key]}
           onClick={handleEventToggle(key)}
-          title={label}
+          title={label.toUpperCase()}
         />
       ))}
     </div>

@@ -40,6 +40,7 @@ export default function EventsModal(): JSX.Element {
             {[...loadedEvents].reverse().map((event, index): JSX.Element => {
               return (
                 <InfoTool
+                  active={index === 0}
                   showEventDetails={index === 0}
                   key={index}
                   eventName={event.eventName}

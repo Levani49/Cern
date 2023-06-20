@@ -12,6 +12,7 @@ interface Props {
   runNumber: string;
   date: string;
   time: string;
+  active?: boolean;
 }
 
 export default function InfoTool({
@@ -21,7 +22,8 @@ export default function InfoTool({
   lumiBlocks,
   runNumber,
   date,
-  time
+  time,
+  active = false
 }: Props): JSX.Element {
   const [show, setShow] = useState(false);
 
@@ -34,11 +36,10 @@ export default function InfoTool({
   return (
     <div className="mt-1">
       <div className="flex items-center gap-2">
-        <PlusCircleIcon
-          className="icon"
-          onClick={(): void => setShow((prev) => !prev)}
-        />
-        <span className="text-xs text-blue dark:text-green">{`event ${eventName}`}</span>
+        <PlusCircleIcon className="icon" onClick={(): void => setShow((prev) => !prev)} />
+        <span
+          className={`text-xs ${active && "text-blue"} ${active && "dark:text-green"}`}
+        >{`event ${eventName}`}</span>
       </div>
       <div className={`${!show && "hidden"}`}>
         <EventLine titleLabel="event id" title={num} />
