@@ -12,11 +12,7 @@ import { ReactComponent as DollyZoomIcon } from "@assets/svg/zoom.svg";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
-import {
-  selectDroneState,
-  setDroneMode,
-  setFlyModalState
-} from "@features/camera/cameraSlice";
+import { selectDroneState, setDroneMode, setFlyModalState } from "@features/camera/cameraSlice";
 
 import { isDesktop } from "@utils/isDesktop.utils";
 
@@ -59,6 +55,8 @@ export default function DroneMenu(): JSX.Element {
   const desktop = isDesktop();
 
   const innerHtml = menuItems.map((item: MenuItem) => {
+    const isActive = currentMode !== "idle";
+
     if (!desktop) {
       if (item.mode !== "fly") {
         return (
@@ -73,6 +71,7 @@ export default function DroneMenu(): JSX.Element {
     } else {
       return (
         <NavIcon
+          active={isActive && currentMode === item.mode}
           key={item.mode}
           Icon={item.Icon}
           title={item.title}
