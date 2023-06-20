@@ -3,10 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "@store/store";
 
 import EventService from "@services/event/event.service";
-import {
-  EventDetailsXML,
-  EventOverviewData
-} from "@services/event/event.service.types";
+import { EventDetailsXML, EventOverviewData } from "@services/event/event.service.types";
 
 import { EventsSlice, LoadedEvents } from "./eventSlice.types";
 
@@ -36,7 +33,7 @@ const initialState: EventsSlice = {
     phi: undefined,
     eta: undefined,
     theta: undefined,
-    pt: undefined
+    pt: "0.7"
   },
   jetFilter: {
     phi: undefined,
@@ -53,10 +50,7 @@ const eventSlice = createSlice({
     rehydrate: (state, action) => {
       return action.payload.event || state;
     },
-    setTrackFilters: (
-      state,
-      action: PayloadAction<EventsSlice["trackFilter"]>
-    ) => {
+    setTrackFilters: (state, action: PayloadAction<EventsSlice["trackFilter"]>) => {
       state.trackFilter = action.payload;
     },
     setJetFilters: (state, action: PayloadAction<EventsSlice["jetFilter"]>) => {
@@ -69,17 +63,11 @@ const eventSlice = createSlice({
       state.eventGeneralInfo = eventGeneralInfo;
       state.loadedEvents.push({ ...eventGeneralInfo, eventName });
     },
-    setEventNumber: (
-      state,
-      action: PayloadAction<EventsSlice["eventNumber"]>
-    ) => {
+    setEventNumber: (state, action: PayloadAction<EventsSlice["eventNumber"]>) => {
       state.eventNumber = action.payload;
       state.isLoading = true;
     },
-    setEventParameters: (
-      state,
-      action: PayloadAction<EventsSlice["eventsToShow"]>
-    ) => {
+    setEventParameters: (state, action: PayloadAction<EventsSlice["eventsToShow"]>) => {
       state.eventsToShow = action.payload;
     },
     setEventLoading: (state, action: PayloadAction<boolean>) => {
@@ -101,22 +89,16 @@ export const {
 export const selectEventGeneralInfo = (state: RootState): EventOverviewData =>
   state.event.eventGeneralInfo;
 
-export const selectEventIsLoading = (state: RootState): boolean =>
-  state.event.isLoading;
-export const selectEvent = (state: RootState): EventDetailsXML | null =>
-  state.event.event;
-export const selectEventParameters = (
-  state: RootState
-): EventsSlice["eventsToShow"] => state.event.eventsToShow;
-export const selectEventNumber = (
-  state: RootState
-): EventsSlice["eventNumber"] => state.event.eventNumber;
+export const selectEventIsLoading = (state: RootState): boolean => state.event.isLoading;
+export const selectEvent = (state: RootState): EventDetailsXML | null => state.event.event;
+export const selectEventParameters = (state: RootState): EventsSlice["eventsToShow"] =>
+  state.event.eventsToShow;
+export const selectEventNumber = (state: RootState): EventsSlice["eventNumber"] =>
+  state.event.eventNumber;
 
-export const selectLoadedEvents = (state: RootState): LoadedEvents[] =>
-  state.event.loadedEvents;
+export const selectLoadedEvents = (state: RootState): LoadedEvents[] => state.event.loadedEvents;
 
-export const selectTrackFilter = (
-  state: RootState
-): EventsSlice["trackFilter"] => state.event.trackFilter;
+export const selectTrackFilter = (state: RootState): EventsSlice["trackFilter"] =>
+  state.event.trackFilter;
 export const selectJetFilter = (state: RootState): EventsSlice["jetFilter"] =>
   state.event.jetFilter;

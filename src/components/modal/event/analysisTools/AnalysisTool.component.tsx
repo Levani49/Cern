@@ -8,9 +8,9 @@ export default function AnalysisTool({ title, active, ...rest }: Props): JSX.Ele
     <button
       {...rest}
       className={`border ${
-        !active && 'border-transparent'
-      } w-full py-[4px] rounded-md cursor-pointer uppercase ${
-        active && 'border-light'
+        !active && "border-transparent"
+      } w-full cursor-pointer rounded-md py-[4px] uppercase ${
+        active && "border-light"
       } hover:border-light`}
     >
       {title}
