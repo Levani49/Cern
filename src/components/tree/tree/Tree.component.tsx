@@ -2,9 +2,8 @@ import { useMemo } from "react";
 
 import { useAppSelector } from "@store/hooks";
 
-import { selectGeometryMenu } from "@features/global/globalsSlice";
 import { selectModelsLoadingState } from "@features/model/modelSlice";
-import { selectGeometryTree } from "@features/tree/treeSlice";
+import { selectGeometryMenu, selectGeometryTree } from "@features/tree/treeSlice";
 
 import RecursiveTree from "../recursiveTree/RecursiveTree.component";
 
@@ -13,8 +12,7 @@ export default function Tree(): JSX.Element {
   const geometryTree = useAppSelector(selectGeometryTree);
   const showGeometryMenu = useAppSelector(selectGeometryMenu);
 
-  const disablePointerEvents =
-    isLoading === "loading" ? "pointer-events-none" : null;
+  const disablePointerEvents = isLoading === "loading" ? "pointer-events-none" : null;
 
   const GeometriesTree = useMemo(() => {
     return <RecursiveTree tree={geometryTree} />;
@@ -23,9 +21,7 @@ export default function Tree(): JSX.Element {
   return (
     <>
       {showGeometryMenu && (
-        <ul className={`select-none ${disablePointerEvents}`}>
-          {GeometriesTree}
-        </ul>
+        <ul className={`select-none ${disablePointerEvents}`}>{GeometriesTree}</ul>
       )}
     </>
   );

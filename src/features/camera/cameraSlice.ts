@@ -29,7 +29,7 @@ const initialState: ICameraSettings = {
   orthographicCameraProps: undefined,
   perspectiveCameraProps: {
     fov: 75,
-    position: [0, 0, 0],
+    position: [3, 3, 3],
     aspect: 1,
     near: 0.1,
     far: 200
@@ -54,10 +54,7 @@ export const cameraSlice = createSlice({
       return action.payload.camera || state;
     },
 
-    setCameraPosition: (
-      state,
-      action: PayloadAction<[x: number, y: number, z: number]>
-    ) => {
+    setCameraPosition: (state, action: PayloadAction<[x: number, y: number, z: number]>) => {
       if (state.perspectiveCameraProps?.position) {
         state.perspectiveCameraProps.position = action.payload;
       }
@@ -66,21 +63,11 @@ export const cameraSlice = createSlice({
       }
     },
 
-    setOrthographicCameraDimensions: (
-      state,
-      action: PayloadAction<SetOrthoArgs>
-    ) => {
-      state.orthographicCameraProps = calculateOrthographicDimensions(
-        action.payload
-      );
+    setOrthographicCameraDimensions: (state, action: PayloadAction<SetOrthoArgs>) => {
+      state.orthographicCameraProps = calculateOrthographicDimensions(action.payload);
     },
-    setPerspectiveCameraDimensions: (
-      state,
-      action: PayloadAction<SetOrthoArgs>
-    ) => {
-      state.perspectiveCameraProps = calculatePerspectiveDimesnions(
-        action.payload
-      );
+    setPerspectiveCameraDimensions: (state, action: PayloadAction<SetOrthoArgs>) => {
+      state.perspectiveCameraProps = calculatePerspectiveDimesnions(action.payload);
     },
 
     setLeftCameraView: (state) => {
@@ -140,10 +127,7 @@ export const cameraSlice = createSlice({
       state.showFlyModal = action.payload;
     },
 
-    setCameraType: (
-      state,
-      action: PayloadAction<"perspective" | "orthographic">
-    ) => {
+    setCameraType: (state, action: PayloadAction<"perspective" | "orthographic">) => {
       state.cameraType = action.payload;
     }
   }
@@ -163,25 +147,18 @@ export const {
   setCameraPosition
 } = cameraSlice.actions;
 
-export const selectCameraPosition = (
-  state: RootState
-): [number, number, number] => state.camera.position;
+export const selectCameraPosition = (state: RootState): [number, number, number] =>
+  state.camera.position;
 
 export const selectOrthographicCameraProps = (
   state: RootState
-): ICameraSettings["orthographicCameraProps"] =>
-  state.camera.orthographicCameraProps;
+): ICameraSettings["orthographicCameraProps"] => state.camera.orthographicCameraProps;
 export const selectPerspectiveCameraProps = (
   state: RootState
-): ICameraSettings["perspectiveCameraProps"] =>
-  state.camera.perspectiveCameraProps;
+): ICameraSettings["perspectiveCameraProps"] => state.camera.perspectiveCameraProps;
 
-export const selectDroneState = (state: RootState): DroneTypes =>
-  state.camera.droneType;
-export const selectFlyModalState = (state: RootState): boolean =>
-  state.camera.showFlyModal;
-export const selectCameraViewMode = (state: RootState): ViewModes =>
-  state.camera.viewMode;
-export const selectCameraType = (
-  state: RootState
-): "perspective" | "orthographic" => state.camera.cameraType;
+export const selectDroneState = (state: RootState): DroneTypes => state.camera.droneType;
+export const selectFlyModalState = (state: RootState): boolean => state.camera.showFlyModal;
+export const selectCameraViewMode = (state: RootState): ViewModes => state.camera.viewMode;
+export const selectCameraType = (state: RootState): "perspective" | "orthographic" =>
+  state.camera.cameraType;

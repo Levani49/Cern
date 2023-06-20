@@ -37,7 +37,7 @@ interface PerspectiveReturnType {
   position: [x: number, y: number, z: number];
 }
 
-export default function OrthographicCam(): JSX.Element {
+export default function Camera(): JSX.Element {
   const dispatch = useAppDispatch();
   const { size, camera } = useThree();
 

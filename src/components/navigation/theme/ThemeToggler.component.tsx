@@ -23,11 +23,7 @@ export default function ThemeToggler(): JSX.Element {
       onClick={handleThemeSwitch}
       title="Switch Between Light and Dark Modes"
     >
-      {isDarkMode ? (
-        <SunIcon className="icon" />
-      ) : (
-        <MoonIcon className="icon" />
-      )}
+      {isDarkMode ? <SunIcon className="icon" /> : <MoonIcon className="icon" />}
     </button>
   );
 }
