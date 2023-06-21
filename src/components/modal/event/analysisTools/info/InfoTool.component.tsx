@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { ReactComponent as MinusCircleIcon } from "@assets/svg/minusCircleIcon.svg";
 import { ReactComponent as PlusCircleIcon } from "@assets/svg/plusCircleIcon.svg";
 
 import EventLine from "./EventLine.component";
@@ -36,9 +37,14 @@ export default function InfoTool({
   return (
     <div className="mt-1">
       <div className="flex items-center gap-2">
-        <PlusCircleIcon className="icon" onClick={(): void => setShow((prev) => !prev)} />
+        {show ? (
+          <MinusCircleIcon className="icon" onClick={(): void => setShow((prev) => !prev)} />
+        ) : (
+          <PlusCircleIcon className="icon" onClick={(): void => setShow((prev) => !prev)} />
+        )}
+
         <span
-          className={`text-xs ${active && "text-blue"} ${active && "dark:text-green"}`}
+          className={`select-none text-xs ${active && "text-blue"} ${active && "dark:text-green"}`}
         >{`event ${eventName}`}</span>
       </div>
       <div className={`${!show && "hidden"}`}>

@@ -7,7 +7,7 @@ export default function AnalysisTool({ title, active, ...rest }: Props): JSX.Ele
   return (
     <button
       {...rest}
-      className={`border ${
+      className={`select-none border ${
         !active && "border-transparent"
       } w-full cursor-pointer rounded-md py-[4px] uppercase ${
         active && "border-light"

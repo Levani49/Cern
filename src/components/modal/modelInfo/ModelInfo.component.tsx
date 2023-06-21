@@ -11,8 +11,7 @@ export default function ModelInfo(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const show = useAppSelector(selectModelModal);
-  const { selectedModel, modelOpacityLevel, modelWireframe } =
-    useSelectedModel();
+  const { selectedModel, modelOpacityLevel, modelWireframe } = useSelectedModel();
 
   const handleClick = (): void => {
     dispatch(setModelModal(false));
@@ -22,15 +21,9 @@ export default function ModelInfo(): JSX.Element {
     <Modal title="model info" show={show} onCloseHandler={handleClick}>
       <div className="flex flex-col justify-center">
         <ModelAttribute title="name" value={selectedModel?.name} />
-        <ModelAttribute
-          title="cut type"
-          value={selectedModel?.cutType?.replace("-", "")}
-        />
+        <ModelAttribute title="cut type" value={selectedModel?.cutType?.replace("-", "")} />
         <ModelAttribute title="opacity" value={modelOpacityLevel} />
-        <ModelAttribute
-          title="wireframe"
-          value={modelWireframe === true ? "true" : "false"}
-        />
+        <ModelAttribute title="wireframe" value={modelWireframe === true ? "true" : "false"} />
       </div>
     </Modal>
   );
