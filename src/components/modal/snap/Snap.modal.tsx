@@ -39,7 +39,7 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
     const stateJSON = JSON.stringify(state);
     const blob = new Blob([stateJSON], { type: "application/json" });
     const timestamp = new Date().toISOString();
-    const filename = `${timestamp}-tracer-snapshot.json`;
+    const filename = `${timestamp}-tracer-snapshot.snap`;
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
@@ -84,7 +84,7 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
             Import
           </Button>
         </SnapCard>
-        <input onChange={handleFileChange} ref={inputRef} type="file" hidden accept=".json" />
+        <input onChange={handleFileChange} ref={inputRef} type="file" hidden accept=".snap" />
       </div>
     </TransitionModal>
   );
