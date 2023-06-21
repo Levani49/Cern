@@ -72,35 +72,27 @@ export default function ParentNode({
   return (
     <li
       className={`border-solid ${
-        !nodeEnd && "relative left-[-1px] border-l-[1px] border-white"
+        !nodeEnd && "relative left-[-1px] border-l-[0.5px] border-white"
       } ${root && "border-none"}`}
     >
       <div
         className={`relative flex items-center whitespace-nowrap py-[1px] text-xs ${styles} left-[-1px]`}
       >
         {show ? (
-          <MinusCircleIcon
-            onClick={showChildrenHandler}
-            className={`${iconClass}`}
-          />
+          <MinusCircleIcon onClick={showChildrenHandler} className={`${iconClass}`} />
         ) : (
-          <PlusCircleIcon
-            onClick={showChildrenHandler}
-            className={`${iconClass}`}
-          />
+          <PlusCircleIcon onClick={showChildrenHandler} className={`${iconClass}`} />
         )}
 
         <span
           role="presentation"
-          className={`${innerState} ml-[5px] cursor-pointer text-xs uppercase`}
+          className={`${innerState} ml-[5px] cursor-pointer text-xs font-light uppercase`}
           onClick={onClickHandler}
         >
           {name}
         </span>
       </div>
-      <ul className={`ml-[1.6rem] mt-[-2px] block  p-0 ${!show && "hidden"}`}>
-        {children}
-      </ul>
+      <ul className={`ml-[1.6rem] mt-[-2px] block  p-0 ${!show && "hidden"}`}>{children}</ul>
     </li>
   );
 }

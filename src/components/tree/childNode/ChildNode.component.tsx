@@ -11,20 +11,12 @@ export interface ChildNodeProps {
   nodeEnd?: boolean;
 }
 
-export default function ChildNode({
-  name,
-  uid,
-  modelState,
-  nodeEnd
-}: ChildNodeProps): JSX.Element {
+export default function ChildNode({ name, uid, modelState, nodeEnd }: ChildNodeProps): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const onClickHandler = (
-    e: React.MouseEvent<HTMLLIElement, MouseEvent>
-  ): void => {
+  const onClickHandler = (e: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
     e.stopPropagation();
-    const state: GeometryState =
-      modelState === "isLoaded" ? "notLoaded" : "isLoaded";
+    const state: GeometryState = modelState === "isLoaded" ? "notLoaded" : "isLoaded";
 
     dispatch(
       updateChildNodeState({
@@ -46,14 +38,13 @@ export default function ChildNode({
   return (
     <li
       className={`relative left-[-1px] flex items-center border-l-[1px] border-white ${
-        nodeEnd &&
-        "last-child-event-line border-l border-solid border-transparent"
+        nodeEnd && "last-child-event-line border-l border-solid border-transparent"
       } ${innerState}`}
     >
       <span
         role="presentation"
         onClick={onClickHandler}
-        className="relative left-0 ml-[-0.5px] cursor-pointer overflow-ellipsis whitespace-nowrap border-white text-left align-middle text-xs uppercase transition before:relative before:mr-[2px] before:inline-block before:w-[15px]  before:border-0 before:border-t-[0.5px] before:align-middle before:text-white"
+        className="relative left-0 ml-[-0.5px] cursor-pointer overflow-ellipsis whitespace-nowrap border-white text-left align-middle text-xs font-light uppercase transition before:relative before:mr-[2px] before:inline-block before:w-[15px]  before:border-0 before:border-t-[0.5px] before:align-middle before:text-white"
       >
         {name}
       </span>
