@@ -1,4 +1,4 @@
-import { useLoader, useThree } from "@react-three/fiber";
+import { useLoader } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 
 import { Mesh, Object3D } from "three";
@@ -6,17 +6,9 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 import { ModelCut } from "@type/app.types";
 
-import { useAppDispatch, useAppSelector } from "@store/hooks";
+import { useAppSelector } from "@store/hooks";
 
-import { selectDroneState } from "@features/camera/cameraSlice";
-import {
-  selectClippingPlanes,
-  selectClippingPlanesNormal,
-  setModelsOpacity,
-  setModelWireframe,
-  setSelectedModel,
-  updateLocalModelCut
-} from "@features/model/modelSlice";
+import { selectClippingPlanes, selectClippingPlanesNormal } from "@features/model/modelSlice";
 
 import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
 
@@ -38,17 +30,10 @@ interface Props {
 const modelService = new ModelService();
 
 const LOW_OPACITY_LEVEL = 0.3;
-const mouse = {
-  x: 0,
-  y: 0
-};
 
 export default function Model({ src, id, name, cutType }: Props): JSX.Element {
-  const { gl, scene } = useThree();
-  const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState<number>(1);
   const [wireframe, setWireframe] = useState<boolean>(false);
-  const droneMode = useAppSelector(selectDroneState);
   const clippingPlanes = useAppSelector(selectClippingPlanes);
   const clippingPlanesNormal = useAppSelector(selectClippingPlanesNormal);
 
@@ -68,15 +53,17 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   useEffect(() => {
     const currentRef = ref.current;
 
+    const userData = { id, name, cutType, opacity, wireframe };
+
     if (currentRef) {
       if (selectedModel) {
         if (selectedModel.id !== id) {
-          modelService.applyDefaults(currentRef, name, LOW_OPACITY_LEVEL);
+          modelService.applyDefaults(currentRef, userData, LOW_OPACITY_LEVEL);
         } else {
-          modelService.applyDefaults(currentRef, name);
+          modelService.applyDefaults(currentRef, userData);
         }
       } else {
-        modelService.applyDefaults(currentRef, name, globalOpacityLevel, globalWireframe);
+        modelService.applyDefaults(currentRef, userData, globalOpacityLevel, globalWireframe);
       }
     }
 
@@ -155,57 +142,5 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     }
   }, [JSON.stringify(clippingPlanes)]);
 
-  const handlePointerOver = (): void => {
-    gl.domElement.style.cursor = "pointer";
-  };
-
-  const handlePointerOut = (): void => {
-    gl.domElement.style.cursor = "default";
-  };
-
-  const handleMouseDown = (e: Event): void => {
-    e.stopPropagation();
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  };
-
-  const handleMouseUp = (e: Event): void => {
-    e.stopPropagation();
-
-    const mouseUpPos = { x: e.clientX, y: e.clientY };
-    const movementThreshold = 5;
-
-    if (
-      Math.abs(mouseUpPos.x - mouse.x) <= movementThreshold &&
-      Math.abs(mouseUpPos.y - mouse.y) <= movementThreshold
-    ) {
-      const payload = { id, name, cutType, opacity, wireframe };
-
-      selectedModel?.id === id
-        ? dispatch(setSelectedModel(null))
-        : dispatch(setSelectedModel(payload));
-
-      dispatch(setModelsOpacity(opacity));
-      dispatch(setModelWireframe(wireframe));
-      dispatch(updateLocalModelCut(cutType));
-    }
-  };
-
-  const hoverMethods = {
-    onPointerOver: handlePointerOver,
-    onPointerOut: handlePointerOut
-  };
-
-  const hoverEffects = scene.children.length < 20 && droneMode !== "fly" ? hoverMethods : {};
-
-  return (
-    <primitive
-      ref={ref}
-      visible={true}
-      object={model.scene}
-      onPointerDown={(e: Event): void => handleMouseDown(e)}
-      onPointerUp={(e: Event): void => handleMouseUp(e)}
-      {...hoverEffects}
-    />
-  );
+  return <primitive ref={ref} visible={true} object={model.scene} />;
 }

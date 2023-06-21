@@ -13,7 +13,7 @@ import {
   updateModelsLoadingState
 } from "@features/model/modelSlice";
 
-import Background from "@three/background/Background.three";
+import Raycast from "@three/background/Background.three";
 import Camera from "@three/camera/Camera.three";
 import Lights from "@three/light/Light.three";
 import StatsDispatcher from "@three/stats/Stats.three";
@@ -62,7 +62,7 @@ export default function Scene(): JSX.Element {
             {!snapIsLoading && <Detector />}
             <Axis />
           </Suspense>
-          <Background />
+          <Raycast />
           <StatsDispatcher />
           <Event />
           <Lights />

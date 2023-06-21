@@ -1,6 +1,16 @@
 import { Mesh, Object3D } from "three";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
+import { ModelCut } from "@type/app.types";
+
+export interface UserData {
+  id: string;
+  name: string;
+  cutType: ModelCut;
+  opacity: number;
+  wireframe: boolean;
+}
+
 export default class ModelService {
   private base = import.meta.env.VITE_MODELS_PROVIDER;
   public dracoLoader = new DRACOLoader();
@@ -22,11 +32,11 @@ export default class ModelService {
     });
   }
 
-  applyDefaults(model: Object3D, name: string, opacity = 1, wireframe = false): void {
-    model.name = name;
+  applyDefaults(model: Object3D, userData: UserData, opacity = 1, wireframe = false): void {
+    model.userData = userData;
     model.traverse((child: Object3D): void => {
       if (child instanceof Mesh) {
-        child.name = name;
+        child.userData = userData;
         child.material.metalness = 0;
         child.material.transparent = true;
         child.material.opacity = opacity;
