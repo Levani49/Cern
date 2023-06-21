@@ -3,6 +3,7 @@ import { Loader } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { lazy, Suspense, useEffect } from "react";
 
+import Raycast from "@/three/raycast/Raycast.three";
 import { NoToneMapping } from "three";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
@@ -13,7 +14,6 @@ import {
   updateModelsLoadingState
 } from "@features/model/modelSlice";
 
-import Raycast from "@three/background/Background.three";
 import Camera from "@three/camera/Camera.three";
 import Lights from "@three/light/Light.three";
 import StatsDispatcher from "@three/stats/Stats.three";

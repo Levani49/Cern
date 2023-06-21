@@ -10,6 +10,7 @@ import { EventsSlice, LoadedEvents } from "./eventSlice.types";
 const eventService = new EventService();
 
 const initialState: EventsSlice = {
+  drawEvents: false,
   eventNumber: {
     eventGroup: "E",
     eventIndex: 5
@@ -50,6 +51,9 @@ const eventSlice = createSlice({
     rehydrate: (state, action) => {
       return action.payload.event || state;
     },
+    setDrawEvents: (state, action: PayloadAction<boolean>) => {
+      state.drawEvents = action.payload;
+    },
     setTrackFilters: (state, action: PayloadAction<EventsSlice["trackFilter"]>) => {
       state.trackFilter = action.payload;
     },
@@ -84,6 +88,7 @@ export const {
   setEventParameters,
   setTrackFilters,
   setJetFilters,
+  setDrawEvents,
   rehydrate
 } = eventSlice.actions;
 export const selectEventGeneralInfo = (state: RootState): EventOverviewData =>
@@ -102,3 +107,5 @@ export const selectTrackFilter = (state: RootState): EventsSlice["trackFilter"] 
   state.event.trackFilter;
 export const selectJetFilter = (state: RootState): EventsSlice["jetFilter"] =>
   state.event.jetFilter;
+
+export const selectDrawEvents = (state: RootState): boolean => state.event.drawEvents;

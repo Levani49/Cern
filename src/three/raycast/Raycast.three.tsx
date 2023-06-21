@@ -1,7 +1,7 @@
-import { Camera, useThree } from "@react-three/fiber";
+import { useThree } from "@react-three/fiber";
 
 import { selectedModel } from "@/types/app.types";
-import { BackSide, Raycaster, Scene, Vector2 } from "three";
+import { BackSide } from "three";
 
 import { useAppDispatch } from "@store/hooks";
 
@@ -16,45 +16,14 @@ import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
 
 import { UserData } from "@services/model/Model.service";
 
+import { raycast } from "@utils/raycast.utils";
+
 type Ev = { clientX: number; clientY: number };
 
 const mouseDown = {
   x: 0,
   y: 0
 };
-
-interface Props {
-  mouse: Vector2;
-  e: Ev;
-  width: number;
-  height: number;
-  camera: Camera;
-  scene: Scene;
-  raycaster: Raycaster;
-}
-
-function raycast({
-  mouse,
-  e,
-  width,
-  height,
-  camera,
-  scene,
-  raycaster
-}: Props): UserData | undefined {
-  mouse.x = (e.clientX / width) * 2 - 1;
-  mouse.y = -(e.clientY / height) * 2 + 1;
-
-  raycaster.setFromCamera(mouse, camera);
-  const models = scene.children.filter((model) => model.userData.name);
-
-  const intersects = raycaster.intersectObjects(models, true);
-  if (intersects.length > 0) {
-    return intersects[0].object.userData as UserData;
-  } else {
-    return undefined;
-  }
-}
 
 const Raycast = (): JSX.Element => {
   const { mouse, raycaster, camera, scene, size } = useThree();

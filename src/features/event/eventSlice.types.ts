@@ -1,13 +1,11 @@
-import {
-  EventDetailsXML,
-  EventOverviewData
-} from "@services/event/event.service.types";
+import { EventDetailsXML, EventOverviewData } from "@services/event/event.service.types";
 
 export interface LoadedEvents extends EventOverviewData {
   eventName: string;
 }
 
 export interface EventsSlice {
+  drawEvents: boolean;
   eventNumber: {
     eventGroup: string;
     eventIndex: number;

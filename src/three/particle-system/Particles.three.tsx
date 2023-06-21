@@ -1,7 +1,9 @@
 import { Float } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
+import { setDrawEvents } from "@/features/event/eventSlice";
+import { useAppDispatch } from "@/store/hooks";
 import { MathUtils, Object3D } from "three";
 
 import Collision from "./Collision.three";
@@ -13,8 +15,19 @@ interface Props {
 
 export default function Particles({ onFinish }: Props): JSX.Element {
   const [explode, setExplode] = useState(false);
+  const dispatch = useAppDispatch();
   const electronRefs = useRef<Array<Object3D | null>>([]);
   const iterationRef = useRef(1);
+
+  useEffect(() => {
+    dispatch(setDrawEvents(false));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (explode) {
+      dispatch(setDrawEvents(true));
+    }
+  }, [explode, dispatch]);
 
   const electronArray = useMemo(() => {
     return new Array(500).fill(0, 0).map((_, index) => {
