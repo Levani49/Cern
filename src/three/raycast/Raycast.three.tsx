@@ -1,7 +1,8 @@
 import { useThree } from "@react-three/fiber";
 
-import { selectedModel } from "@/types/app.types";
 import { BackSide } from "three";
+
+import { selectedModel } from "@type/app.types";
 
 import { useAppDispatch } from "@store/hooks";
 
