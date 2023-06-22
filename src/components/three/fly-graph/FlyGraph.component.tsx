@@ -9,10 +9,8 @@ import {
 export default function FlyOverlay(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const { showFlyModal, droneMode } = useAppSelector((state) => ({
-    showFlyModal: selectFlyModalState(state),
-    droneMode: selectDroneState(state)
-  }));
+  const showFlyModal = useAppSelector(selectFlyModalState);
+  const droneMode = useAppSelector(selectDroneState);
 
   const isFreeFLy = droneMode === "fly";
 
@@ -29,8 +27,7 @@ export default function FlyOverlay(): JSX.Element {
             <span className="font-bold text-yellow-500"> W | A | S | D </span>
             to move, use your mouse to rotate
             <span className="font-bold text-yellow-500"> CAMERA </span>, Press{" "}
-            <span className="font-bold text-yellow-500"> ESC </span> to exit
-            from mode.
+            <span className="font-bold text-yellow-500"> ESC </span> to exit from mode.
           </h1>
         )}
         {showFlyModal && (
