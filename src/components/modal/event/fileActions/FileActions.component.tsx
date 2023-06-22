@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import Select, { StylesConfig } from "react-select";
 
 import { ReactComponent as ArrowUpTrayIcon } from "@assets/svg/arrowUpTrayIcon.svg";
@@ -16,6 +16,8 @@ import {
 } from "@features/event/eventSlice";
 
 import EventService from "@services/event/event.service";
+
+import { eventFileIsValid } from "@utils/eventFileIsValid.utils";
 
 type HandleOptionChange = {
   value: string;
@@ -95,9 +97,14 @@ const eventService = new EventService();
 export default function FileActions(): JSX.Element {
   const dispatch = useAppDispatch();
   const eventNumber = useAppSelector(selectEventNumber);
+  const [error, setError] = useState(false);
   const isLoading = useAppSelector(selectEventIsLoading);
   const [eventNum, setEventNum] = useState({ eventGroup: "F", eventIndex: 5 });
   const [showGroupSelection, setShowGroupSelection] = useState(false);
+
+  useEffect(() => {
+    setError(false);
+  }, []);
 
   const loadPreviousEvent = (): void => {
     const index = eventNumber.eventIndex === 1 ? 50 : eventNumber.eventIndex - 1;
@@ -131,7 +138,13 @@ export default function FileActions(): JSX.Element {
           if (e.target) {
             const xmlContent = e.target.result as string;
             const parsedXmlData = eventService.parseXmlAsJSON(xmlContent);
-            dispatch(setEventDetailsXML(parsedXmlData));
+
+            if (eventFileIsValid(parsedXmlData)) {
+              dispatch(setEventDetailsXML(parsedXmlData));
+              setError(false);
+            } else {
+              setError(true);
+            }
           }
         };
 
@@ -208,6 +221,7 @@ export default function FileActions(): JSX.Element {
           Load
         </button>
       </div>
+      {error && <p className="text-xs text-red-500">Unsupported file</p>}
     </>
   );
 }
