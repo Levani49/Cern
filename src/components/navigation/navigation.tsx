@@ -1,4 +1,4 @@
-import Utils from "@/components/navigation/utils/utils";
+import Utils from "@components/navigation/utils/utils";
 
 import AboutMenu from "./about/AboutMenu.component";
 import CameraViewMenu from "./cameraView/CameraViewMenu.component";

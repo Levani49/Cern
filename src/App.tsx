@@ -1,5 +1,7 @@
 import { lazy, Suspense } from "react";
 
+import VideoPulse from "@/components/screen-recording/screenRecording.component";
+
 import ErrorHandler from "./components/error/ErrorHandler.component";
 import ModelInfo from "./components/modal/modelInfo/ModelInfo.component";
 import Navigation from "./components/navigation/navigation";
@@ -36,6 +38,7 @@ function App(): JSX.Element {
           <Logo />
         </Suspense>
       </div>
+      <VideoPulse />
     </ErrorHandler>
   );
 }

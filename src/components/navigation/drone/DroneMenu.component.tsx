@@ -12,7 +12,11 @@ import { ReactComponent as DollyZoomIcon } from "@assets/svg/zoom.svg";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
-import { selectDroneState, setDroneMode, setFlyModalState } from "@features/camera/cameraSlice";
+import {
+  selectDroneState,
+  setDroneMode,
+  setFlyModalState
+} from "@features/camera/cameraSlice";
 
 import { isDesktop } from "@utils/isDesktop.utils";
 
@@ -99,7 +103,7 @@ export default function DroneMenu(): JSX.Element {
         title="Camera modes"
         onClick={(): void => handleModeChange("idle")}
         Icon={DroneIcon}
-        iconColor={`${isActive ? "text-red-500 animate-pulse" : ""}`}
+        iconClass={`${isActive ? "text-red-500 animate-pulse" : ""}`}
       />
       <MenuDropdown>{innerHtml}</MenuDropdown>
     </div>
