@@ -6,7 +6,7 @@ import {
 } from "@/three/camera/Camera.three";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { WritableDraft } from "immer/dist/internal";
-import { Camera as OriginCamera } from "three";
+import { Camera as OriginCamera, Vector3 } from "three";
 
 import type { DroneTypes } from "@type/app.types";
 
@@ -75,30 +75,45 @@ export const cameraSlice = createSlice({
 
     setLeftCameraView: (state) => {
       if (state.perspectiveCameraProps?.position) {
-        state.perspectiveCameraProps.position = [0, 0, 5];
+        const position = new Vector3(...state.perspectiveCameraProps.position);
+        const d = position.distanceTo(new Vector3(0, 0, 0));
+
+        state.perspectiveCameraProps.position = [0, 0, d];
       }
       if (state.orthographicCameraProps?.position) {
-        state.orthographicCameraProps.position = [0, 0, 5];
+        const position = new Vector3(...state.orthographicCameraProps.position);
+        const d = position.distanceTo(new Vector3(0, 0, 0));
+
+        state.orthographicCameraProps.position = [0, 0, d];
       }
       state.viewMode = "left";
     },
 
     setRightCameraView: (state) => {
       if (state.perspectiveCameraProps?.position) {
-        state.perspectiveCameraProps.position = [5, 0.5, 0];
+        const position = new Vector3(...state.perspectiveCameraProps.position);
+        const d = position.distanceTo(new Vector3(0, 0, 0));
+        state.perspectiveCameraProps.position = [d, 0, 0];
       }
       if (state.orthographicCameraProps?.position) {
-        state.orthographicCameraProps.position = [5, 0.5, 0];
+        const position = new Vector3(...state.orthographicCameraProps.position);
+        const d = position.distanceTo(new Vector3(0, 0, 0));
+        state.orthographicCameraProps.position = [d, 0, 0];
       }
       state.viewMode = "right";
     },
 
     setDefaultView: (state) => {
-      if (state.perspectiveCameraProps?.position) {
-        state.perspectiveCameraProps.position = [3, 3, 4];
+      if (state.perspectiveCameraProps) {
+        const position = new Vector3(...state.perspectiveCameraProps.position);
+        const d = position.distanceTo(new Vector3(0, 0, 0)) / 1.732;
+
+        state.perspectiveCameraProps.position = [d, d, d];
       }
       if (state.orthographicCameraProps?.position) {
-        state.orthographicCameraProps.position = [3, 3, 4];
+        const position = new Vector3(...state.orthographicCameraProps.position);
+        const d = position.distanceTo(new Vector3(0, 0, 0)) / 1.732;
+        state.orthographicCameraProps.position = [d, d, d];
       }
       state.viewMode = "default";
     },
