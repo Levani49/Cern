@@ -14,6 +14,8 @@ import {
   setRightCameraView
 } from "@features/camera/cameraSlice";
 
+import CameraMenu from "@components/navigation/camera/CameraMenu.component";
+
 import MenuDropdown from "../dropdown/MenuDropdown.component";
 import NavIcon from "../navIcon/navIcon";
 
@@ -62,7 +64,10 @@ export default function CameraViewMenu(): JSX.Element {
   return (
     <div className="group inline-flex">
       <NavIcon Icon={Icon} active title="Camera Perspectives" />
-      <MenuDropdown>{innerHtml}</MenuDropdown>
+      <MenuDropdown>
+        {innerHtml}
+        <CameraMenu />
+      </MenuDropdown>
     </div>
   );
 }

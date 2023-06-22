@@ -50,7 +50,8 @@ export default function Scene(): JSX.Element {
           pixelRatio: window.devicePixelRatio * 0.5,
           alpha: true,
           toneMapping: NoToneMapping,
-          localClippingEnabled
+          localClippingEnabled,
+          preserveDrawingBuffer: true
         }}
         linear
         frameloop="demand"

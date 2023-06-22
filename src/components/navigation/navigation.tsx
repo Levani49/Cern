@@ -1,17 +1,15 @@
+import Utils from "@/components/navigation/utils/utils";
+
 import AboutMenu from "./about/AboutMenu.component";
-import AxisMenu from "./axis/AxisMenu.component";
-import CameraMenu from "./camera/CameraMenu.component";
 import CameraViewMenu from "./cameraView/CameraViewMenu.component";
 import DroneMenu from "./drone/DroneMenu.component";
 import EventsMenu from "./events/EventsMenu.component";
 import FullScreenMenu from "./fullscreen/FullScreenMenu.component";
 import GeometryMenu from "./geometry/GeometryMenu.component";
 import GeometryCutsMenu from "./geometryCuts/GeometryCutsMenu.component";
-import GridMenu from "./grid/GridMenu.component";
 import NavTitle from "./navTitle/navTitle.component";
 import OpacirtyMenu from "./opacity/OpacityMenu.component";
 import SnapMenu from "./snap/SnapMenu.component";
-import StatsMenu from "./stats/StatsMenu.component";
 import ThemeToggler from "./theme/ThemeToggler.component";
 import WireframeMenu from "./wireframe/WireframeMenu.component";
 
@@ -27,10 +25,7 @@ export default function Navigation(): JSX.Element {
         <GeometryCutsMenu />
         <OpacirtyMenu />
         <WireframeMenu />
-        <StatsMenu />
-        <AxisMenu />
-        <GridMenu />
-        <CameraMenu />
+        <Utils />
         <ThemeToggler />
         <SnapMenu />
         <FullScreenMenu />
