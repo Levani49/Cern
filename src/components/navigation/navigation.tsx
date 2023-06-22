@@ -9,7 +9,6 @@ import GeometryMenu from "./geometry/GeometryMenu.component";
 import GeometryCutsMenu from "./geometryCuts/GeometryCutsMenu.component";
 import NavTitle from "./navTitle/navTitle.component";
 import OpacirtyMenu from "./opacity/OpacityMenu.component";
-import SnapMenu from "./snap/SnapMenu.component";
 import ThemeToggler from "./theme/ThemeToggler.component";
 import WireframeMenu from "./wireframe/WireframeMenu.component";
 
@@ -26,9 +25,8 @@ export default function Navigation(): JSX.Element {
         <OpacirtyMenu />
         <WireframeMenu />
         <Utils />
-        <ThemeToggler />
-        <SnapMenu />
         <FullScreenMenu />
+        <ThemeToggler />
         <AboutMenu />
       </nav>
     </div>

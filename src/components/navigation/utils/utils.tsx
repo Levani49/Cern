@@ -5,6 +5,7 @@ import MenuDropdown from "@components/navigation/dropdown/MenuDropdown.component
 import GridMenu from "@components/navigation/grid/GridMenu.component";
 import NavIcon from "@components/navigation/navIcon/navIcon";
 import Screenshot from "@components/navigation/screenshot/screenshot";
+import SnapMenu from "@components/navigation/snap/SnapMenu.component";
 import StatsMenu from "@components/navigation/stats/StatsMenu.component";
 
 export default function Utils(): JSX.Element {
@@ -15,6 +16,7 @@ export default function Utils(): JSX.Element {
         <StatsMenu />
         <AxisMenu />
         <GridMenu />
+        <SnapMenu />
         <Screenshot />
       </MenuDropdown>
     </div>
