@@ -1,3 +1,5 @@
+import { supportsScreenRecording } from "@/utils/supportsScreenRecording.utils";
+
 import { ReactComponent as UtilsIcon } from "@assets/svg/utils.svg";
 
 import AxisMenu from "@components/navigation/axis/AxisMenu.component";
@@ -19,7 +21,7 @@ export default function Utils(): JSX.Element {
         <GridMenu />
         <SnapMenu />
         <Screenshot />
-        <RecordScreen />
+        {supportsScreenRecording() && <RecordScreen />}
       </MenuDropdown>
     </div>
   );

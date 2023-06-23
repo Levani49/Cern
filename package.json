@@ -35,7 +35,7 @@
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.5",
     "react-lazy-load": "^4.0.1",
-    "react-media-recorder": "^1.6.5",
+    "react-media-recorder-2": "^1.6.23",
     "react-redux": "^8.0.5",
     "react-select": "^5.7.3",
     "three": "^0.148.0"

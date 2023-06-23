@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import { selectDroneState } from "@features/camera/cameraSlice";
 
-import { isFullscreenSupported } from "@utils/isFullscreenSupported.utils";
+import { supportsFullscreen } from "@utils/supportsFullscreen.utils";
 
 import NavIcon from "../navIcon/navIcon";
 
@@ -41,17 +41,17 @@ export default function FullScreenMenu(): JSX.Element {
     }
   };
 
-  if (!isFullscreenSupported()) {
-    return <></>;
-  }
-
   return (
-    <NavIcon
-      active={isFullscreen}
-      Icon={ArrowsPointingOutIcon}
-      title="Fullscreen Mode"
-      onClick={handleFullScreen}
-      disabled={droneMode === "fly"}
-    />
+    <>
+      {supportsFullscreen() && (
+        <NavIcon
+          active={isFullscreen}
+          Icon={ArrowsPointingOutIcon}
+          title="Fullscreen Mode"
+          onClick={handleFullScreen}
+          disabled={droneMode === "fly"}
+        />
+      )}
+    </>
   );
 }

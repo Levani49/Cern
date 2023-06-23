@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import type { Employee } from "@type/app.types";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
@@ -14,6 +16,17 @@ export default function AboutModal(): JSX.Element {
   const dispatch = useAppDispatch();
   const show = useAppSelector(selectAboutModalState);
 
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent): void => {
+      if (e.key === "27" || e.key === "Escape") {
+        dispatch(showAboutModal(false));
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [dispatch]);
+
   const closeModalHandler = (e: boolean): void => {
     dispatch(showAboutModal(e));
   };
@@ -27,7 +40,9 @@ export default function AboutModal(): JSX.Element {
     >
       <div className="flex w-full flex-col gap-2 p-1">
         <h3 className="text-center text-lg font-bold">Tracer Core</h3>
-        <h6 className="text-center text-xs font-bold text-gray-500">Version: @latest</h6>
+        <h6 className="text-center text-xs font-bold text-gray-500">
+          Version: @latest
+        </h6>
         <div className="mt-2 flex justify-center gap-2">
           {TEMP_INFO.managers.map((employee: Employee) => {
             const { id, ...rest } = employee;

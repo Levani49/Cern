@@ -1,6 +1,9 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
-import { hydrateClippingPlanes, setSnapIsLoading } from "@/features/model/modelSlice";
+import {
+  hydrateClippingPlanes,
+  setSnapIsLoading
+} from "@/features/model/modelSlice";
 import { useAppDispatch } from "@/store/hooks";
 
 import { ReactComponent as DownloadFileIcon } from "@assets/svg/downloadFileIcon.svg";
@@ -26,6 +29,17 @@ const SnapTexts = {
 export default function SnapModal({ open, onClose }: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent): void => {
+      if (e.key === "27" || e.key === "Escape") {
+        onClose(false);
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [onClose]);
 
   const handleLoadSnapshot = (): void => {
     if (inputRef.current) {
@@ -84,7 +98,13 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
             Import
           </Button>
         </SnapCard>
-        <input onChange={handleFileChange} ref={inputRef} type="file" hidden accept=".snap" />
+        <input
+          onChange={handleFileChange}
+          ref={inputRef}
+          type="file"
+          hidden
+          accept=".snap"
+        />
       </div>
     </TransitionModal>
   );

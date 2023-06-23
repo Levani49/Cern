@@ -16,8 +16,8 @@ function ErrorText(): JSX.Element {
     <TransitionModal open={true} title="ERROR">
       <div className="mt-8 flex flex-col items-center justify-center gap-8 pb-2">
         <p className="text-center text-xl text-white">
-          Something went wrong. We&apos;re working on it. Please refresh the page or try again
-          later.
+          Something went wrong. We&apos;re working on it. Please refresh the page or
+          try again later.
         </p>
         <Button className="px-6 py-2" onClick={(): void => location.reload()}>
           Refresh
@@ -27,7 +27,10 @@ function ErrorText(): JSX.Element {
   );
 }
 
-export default class ErrorHandler extends Component<ErrorHandlerProps, ErrorHandlerState> {
+export default class ErrorHandler extends Component<
+  ErrorHandlerProps,
+  ErrorHandlerState
+> {
   state: ErrorHandlerState = {
     hasError: false
   };

@@ -18,12 +18,9 @@ import NavIcon from "../navIcon/navIcon";
 export default function OpacirtyMenu(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const { globalOpacityLevel, modelOpacityLevel, isModelSelected } =
-    useAppSelector((state) => ({
-      globalOpacityLevel: selectGlobalOpacity(state),
-      modelOpacityLevel: selectModelsOpacity(state),
-      isModelSelected: selectSelectedModel(state)
-    }));
+  const globalOpacityLevel = useAppSelector(selectGlobalOpacity);
+  const modelOpacityLevel = useAppSelector(selectModelsOpacity);
+  const isModelSelected = useAppSelector(selectSelectedModel);
 
   const onChangeHandlerForModelOpacity = (
     e: React.ChangeEvent<HTMLInputElement>

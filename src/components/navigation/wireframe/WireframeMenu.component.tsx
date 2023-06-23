@@ -17,13 +17,9 @@ import NavIcon from "../navIcon/navIcon";
 export default function WireframeMenu(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const { globalWireframe, modelWireframe, isModelSelected } = useAppSelector(
-    (state) => ({
-      globalWireframe: selectGlobalWireframe(state),
-      modelWireframe: selectModelWireframe(state),
-      isModelSelected: selectSelectedModel(state)
-    })
-  );
+  const globalWireframe = useAppSelector(selectGlobalWireframe);
+  const modelWireframe = useAppSelector(selectModelWireframe);
+  const isModelSelected = useAppSelector(selectSelectedModel);
 
   const handleModelWireframe = (): void => {
     dispatch(setModelWireframe(!modelWireframe));
