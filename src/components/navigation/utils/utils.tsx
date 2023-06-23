@@ -1,3 +1,6 @@
+import AboutMenu from "@/components/navigation/about/AboutMenu.component";
+import ThemeToggler from "@/components/navigation/theme/ThemeToggler.component";
+import { isDesktop } from "@/utils/isDesktop.utils";
 import { supportsScreenRecording } from "@/utils/supportsScreenRecording.utils";
 
 import { ReactComponent as UtilsIcon } from "@assets/svg/utils.svg";
@@ -22,6 +25,13 @@ export default function Utils(): JSX.Element {
         <SnapMenu />
         <Screenshot />
         {supportsScreenRecording() && <RecordScreen />}
+
+        {!isDesktop() && (
+          <>
+            <ThemeToggler />
+            <AboutMenu />
+          </>
+        )}
       </MenuDropdown>
     </div>
   );

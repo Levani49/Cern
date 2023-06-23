@@ -1,3 +1,5 @@
+import { isDesktop } from "@/utils/isDesktop.utils";
+
 import Utils from "@components/navigation/utils/utils";
 
 import AboutMenu from "./about/AboutMenu.component";
@@ -26,8 +28,12 @@ export default function Navigation(): JSX.Element {
         <WireframeMenu />
         <Utils />
         <FullScreenMenu />
-        <ThemeToggler />
-        <AboutMenu />
+        {isDesktop() && (
+          <>
+            <ThemeToggler />
+            <AboutMenu />
+          </>
+        )}
       </nav>
     </div>
   );
