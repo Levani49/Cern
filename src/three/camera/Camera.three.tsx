@@ -10,6 +10,7 @@ import {
   selectCameraType,
   selectOrthographicCameraProps,
   selectPerspectiveCameraProps,
+  setCamera,
   setCameraPosition,
   SetOrthoArgs,
   setOrthographicCameraDimensions,
@@ -45,6 +46,10 @@ export default function Camera(): JSX.Element {
   const perspectiveCameraProps = useAppSelector(selectPerspectiveCameraProps);
 
   useEffect(() => {
+    dispatch(setCamera(camera));
+  }, [camera, dispatch]);
+
+  useEffect(() => {
     dispatch(
       setOrthographicCameraDimensions({
         camera,
@@ -60,15 +65,13 @@ export default function Camera(): JSX.Element {
       })
     );
     camera.updateProjectionMatrix();
-  }, [camera, size, dispatch]);
+  }, [camera, size.height, size.width, dispatch]);
 
   useFrame(({ camera }) => {
-    dispatch(setCameraPosition([camera.position.x, camera.position.y, camera.position.z]));
+    dispatch(
+      setCameraPosition([camera.position.x, camera.position.y, camera.position.z])
+    );
   });
-
-  useEffect(() => {
-    dispatch(setCameraPosition([3, 3, 3]));
-  }, []);
 
   camera.lookAt(0, 0, 0);
 
@@ -83,7 +86,9 @@ export default function Camera(): JSX.Element {
   );
 }
 
-export function calculatePerspectiveDimesnions(args: SetOrthoArgs): PerspectiveReturnType {
+export function calculatePerspectiveDimesnions(
+  args: SetOrthoArgs
+): PerspectiveReturnType {
   const { camera, width, height } = args;
   const pos = camera.position;
   const radius = pos.distanceTo(new Vector3(0, 0, 0)) / camera.zoom;
@@ -103,7 +108,9 @@ export function calculatePerspectiveDimesnions(args: SetOrthoArgs): PerspectiveR
     far: 1000
   };
 }
-export function calculateOrthographicDimensions(args: SetOrthoArgs): OrthographicReturnType {
+export function calculateOrthographicDimensions(
+  args: SetOrthoArgs
+): OrthographicReturnType {
   const { camera, width, height } = args;
 
   const cameraMatrix = camera.matrix.clone();

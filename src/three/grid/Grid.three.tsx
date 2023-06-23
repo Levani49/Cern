@@ -4,20 +4,11 @@ import { useAppSelector } from "@store/hooks";
 
 import { selectGrid, selectTheme } from "@features/global/globalsSlice";
 
-/**
- * Renders a custom grid.
- *
- * @returns {JSX.Element} JSX.Element
- */
 export default function CustomGrid(): JSX.Element {
   const { show } = useAppSelector((state) => ({
     show: selectGrid(state),
     prefersDarkMode: selectTheme(state)
   }));
-
-  if (!show) {
-    return <></>;
-  }
 
   return (
     <>

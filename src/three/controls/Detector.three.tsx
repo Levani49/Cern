@@ -15,16 +15,18 @@ interface LocalModel extends ActiveModel {
 }
 
 export default function Detector(): JSX.Element {
+  const [localModels, setLocalModels] = useState<LocalModel[]>([]);
   const { models, cutType, localCutType } = useDetectorState();
   const selectedModel = useAppSelector(selectSelectedModel);
-  const [localModels, setLocalModels] = useState<LocalModel[]>([]);
 
   useEffect(() => {
     const activeModels = models
       .filter((model) => model.modelPath !== "nan")
       .map((model: ActiveModel): LocalModel => {
         // Check if a model with the same ID exists in localModels
-        const existingLocalModel = localModels.find((localModel) => localModel.uid === model.uid);
+        const existingLocalModel = localModels.find(
+          (localModel) => localModel.uid === model.uid
+        );
 
         if (existingLocalModel) {
           // If found, return the existing localModel
@@ -47,7 +49,8 @@ export default function Detector(): JSX.Element {
         let modelCutType;
 
         if (selectedModel) {
-          modelCutType = selectedModel?.id === model.uid ? localCutType : model.cutType;
+          modelCutType =
+            selectedModel?.id === model.uid ? localCutType : model.cutType;
         } else {
           modelCutType = cutType;
         }
@@ -66,7 +69,9 @@ export default function Detector(): JSX.Element {
     const { modelPath, uid, name, cutType: modelCutType } = model;
     const path = modelCutType ? modelPath + modelCutType : modelPath;
 
-    return <Model key={uid} cutType={modelCutType} src={path} name={name} id={uid} />;
+    return (
+      <Model key={uid} cutType={modelCutType} src={path} name={name} id={uid} />
+    );
   });
 
   return <>{activeModels}</>;

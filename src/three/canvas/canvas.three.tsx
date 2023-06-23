@@ -54,15 +54,12 @@ export default function Scene(): JSX.Element {
           preserveDrawingBuffer: true
         }}
         linear
-        frameloop="demand"
         id="canvas"
-        camera={{ manual: true }}
+        camera={{ manual: true, position: [3, 3, 3] }}
       >
         <Physics gravity={[0, 0, 0]}>
-          <Suspense fallback={null}>
-            {!snapIsLoading && <Detector />}
-            <Axis />
-          </Suspense>
+          <Suspense fallback={null}>{!snapIsLoading && <Detector />}</Suspense>
+          <Axis />
           <Raycast />
           <StatsDispatcher />
           <Event />
