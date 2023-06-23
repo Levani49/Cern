@@ -25,7 +25,7 @@ export default function ThemeToggler(): JSX.Element {
 
   return (
     <button
-      className="focus:outline-none"
+      className="flex items-center justify-center focus:outline-none"
       onClick={handleThemeSwitch}
       title="Switch Between Light and Dark Modes"
     >
