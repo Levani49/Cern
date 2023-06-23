@@ -15,7 +15,8 @@ import {
 import Camera from "@three/camera/Camera.three";
 import Lights from "@three/light/Light.three";
 import Raycast from "@three/raycast/Raycast.three";
-import StatsDispatcher from "@three/stats/Stats.three";
+
+// import StatsDispatcher from "@three/stats/Stats.three";
 
 const Detector = lazy(() => import("@three/controls/Detector.three"));
 const Controls = lazy(() => import("@three/controls/Controls.three"));
@@ -23,6 +24,7 @@ const Axis = lazy(() => import("@three/axis/Axis.three"));
 const Grid = lazy(() => import("@three/grid/Grid.three"));
 const Event = lazy(() => import("@three/event/event/Event.three"));
 const ParticleSystem = lazy(() => import("@three/particle-system/ParticleSystem"));
+const StatsDispatcher = lazy(() => import("@three/stats/Stats.three"));
 
 export default function Scene(): JSX.Element {
   const cutType = useAppSelector(selectGeometriesCutType);
@@ -46,15 +48,17 @@ export default function Scene(): JSX.Element {
       >
         <Physics gravity={[0, 0, 0]}>
           <Suspense fallback={null}>{!snapIsLoading && <Detector />}</Suspense>
-          <Axis />
+          <Suspense fallback={null}>
+            <Axis />
+            <Event />
+            <Grid />
+            <ParticleSystem />
+            <StatsDispatcher />
+          </Suspense>
           <Raycast />
-          <StatsDispatcher />
-          <Event />
           <Lights />
           <Camera />
-          <Grid />
           <Controls />
-          <ParticleSystem />
         </Physics>
       </Canvas>
       <Loader containerStyles={{ backgroundColor: "transparent" }} />
