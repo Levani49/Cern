@@ -6,11 +6,12 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 import { ModelCut } from "@type/app.types";
 
-import { useAppSelector } from "@store/hooks";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import {
   selectClippingPlanes,
-  selectClippingPlanesNormal
+  selectClippingPlanesNormal,
+  setSelectedModel
 } from "@features/model/modelSlice";
 
 import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
@@ -35,6 +36,7 @@ const modelService = new ModelService();
 const LOW_OPACITY_LEVEL = 0.3;
 
 export default function Model({ src, id, name, cutType }: Props): JSX.Element {
+  const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState<number>(1);
   const [wireframe, setWireframe] = useState<boolean>(false);
   const clippingPlanes = useAppSelector(selectClippingPlanes);
@@ -154,6 +156,17 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
       });
     }
   }, [JSON.stringify(clippingPlanes)]);
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent): void => {
+      if (e.key === "27" || e.key === "Escape") {
+        dispatch(setSelectedModel(null));
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [dispatch]);
 
   return <primitive ref={ref} visible={true} object={model.scene} />;
 }
