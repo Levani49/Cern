@@ -4,7 +4,13 @@ import type { ActiveModel } from "@type/app.types";
 
 import type { RootState } from "@store/store";
 
-import { GEOMETRY_MENU_TREE, GeometryState, TreeNode } from "@constants/geometryTree";
+import { isDesktop } from "@utils/isDesktop.utils";
+
+import {
+  GEOMETRY_MENU_TREE,
+  GeometryState,
+  TreeNode
+} from "@constants/geometryTree";
 
 import {
   updateActiveModels,
@@ -14,8 +20,10 @@ import {
 } from "./geometryMenuUtils";
 import type { GeometryTreeSlice, UpdateNodePayloadAction } from "./treeSlice.types";
 
+const showTree = isDesktop();
+
 const initialState: GeometryTreeSlice = {
-  show: true,
+  show: showTree,
   tree: GEOMETRY_MENU_TREE,
   activeModels: updateActiveModels(GEOMETRY_MENU_TREE),
   showGeometryMenu: true
@@ -29,20 +37,31 @@ export const geometrySlice = createSlice({
       return action.payload.tree || state;
     },
     updateParentNodeState: (state, action: UpdateNodePayloadAction) => {
-      const { nodeId, propToChange, value, restrictAncestorsUpdate } = action.payload;
+      const { nodeId, propToChange, value, restrictAncestorsUpdate } =
+        action.payload;
 
       if (restrictAncestorsUpdate) {
         const updatedTree = state.tree.map(
-          (node: TreeNode): TreeNode => updateParentNode(node, nodeId, propToChange, value, false)
+          (node: TreeNode): TreeNode =>
+            updateParentNode(node, nodeId, propToChange, value, false)
         );
 
-        state.tree = updateNodeAndAncestors(updatedTree, nodeId, value as GeometryState);
+        state.tree = updateNodeAndAncestors(
+          updatedTree,
+          nodeId,
+          value as GeometryState
+        );
       } else {
         const updatedTree = state.tree.map(
-          (node: TreeNode): TreeNode => updateParentNode(node, nodeId, propToChange, value, true)
+          (node: TreeNode): TreeNode =>
+            updateParentNode(node, nodeId, propToChange, value, true)
         );
 
-        state.tree = updateNodeAndAncestors(updatedTree, nodeId, value as GeometryState);
+        state.tree = updateNodeAndAncestors(
+          updatedTree,
+          nodeId,
+          value as GeometryState
+        );
       }
       state.activeModels = updateActiveModels(state.tree);
     },
@@ -50,10 +69,15 @@ export const geometrySlice = createSlice({
       const { nodeId, propToChange, value } = action.payload;
 
       const updatedTree = state.tree.map(
-        (node: TreeNode): TreeNode => updateChildNode(node, nodeId, propToChange, value)
+        (node: TreeNode): TreeNode =>
+          updateChildNode(node, nodeId, propToChange, value)
       );
 
-      state.tree = updateNodeAndAncestors(updatedTree, nodeId, value as GeometryState);
+      state.tree = updateNodeAndAncestors(
+        updatedTree,
+        nodeId,
+        value as GeometryState
+      );
 
       state.activeModels = updateActiveModels(state.tree);
     },
@@ -65,8 +89,13 @@ export const geometrySlice = createSlice({
 
 export default geometrySlice.reducer;
 
-export const { updateChildNodeState, updateParentNodeState, setGeometryMenuVisibility } =
-  geometrySlice.actions;
+export const {
+  updateChildNodeState,
+  updateParentNodeState,
+  setGeometryMenuVisibility
+} = geometrySlice.actions;
 export const selectGeometryTree = (state: RootState): TreeNode[] => state.tree.tree;
-export const selectActiveGeometries = (state: RootState): ActiveModel[] => state.tree.activeModels;
-export const selectGeometryMenu = (state: RootState): boolean => state.tree.showGeometryMenu;
+export const selectActiveGeometries = (state: RootState): ActiveModel[] =>
+  state.tree.activeModels;
+export const selectGeometryMenu = (state: RootState): boolean =>
+  state.tree.showGeometryMenu;
