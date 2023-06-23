@@ -1,3 +1,4 @@
+import Link from "@components/navigation/link/link.component";
 import Settings from "@components/navigation/settings/settings";
 
 import { isDesktop } from "@utils/isDesktop.utils";
@@ -30,6 +31,7 @@ export default function Navigation(): JSX.Element {
         <FullScreenMenu />
         {isDesktop() && (
           <>
+            <Link />
             <ThemeToggler />
             <AboutMenu />
           </>

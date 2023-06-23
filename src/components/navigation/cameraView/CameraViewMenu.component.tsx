@@ -1,6 +1,6 @@
 import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 
-import { ReactComponent as BoxIcon } from "@assets/svg/box.svg";
+import { ReactComponent as EyeIcon } from "@assets/svg/eye.svg";
 import { ReactComponent as LeftSideBox } from "@assets/svg/left-side-box.svg";
 import { ReactComponent as RightSideBox } from "@assets/svg/right-side-box.svg";
 
@@ -29,7 +29,7 @@ export default function CameraViewMenu(): JSX.Element {
 
   switch (viewType) {
     case "default":
-      Icon = BoxIcon;
+      Icon = EyeIcon;
       break;
     case "left":
       Icon = LeftSideBox;
@@ -43,9 +43,24 @@ export default function CameraViewMenu(): JSX.Element {
   };
 
   const menuItems = [
-    { Icon: BoxIcon, action: setDefaultView, title: "Default view", mode: "default" },
-    { Icon: LeftSideBox, action: setLeftCameraView, title: "Left view", mode: "left" },
-    { Icon: RightSideBox, action: setRightCameraView, title: "Right view", mode: "right" }
+    {
+      Icon: EyeIcon,
+      action: setDefaultView,
+      title: "Default view",
+      mode: "default"
+    },
+    {
+      Icon: LeftSideBox,
+      action: setLeftCameraView,
+      title: "Left view",
+      mode: "left"
+    },
+    {
+      Icon: RightSideBox,
+      action: setRightCameraView,
+      title: "Right view",
+      mode: "right"
+    }
   ];
 
   const innerHtml = menuItems.map((item) => {
@@ -63,7 +78,7 @@ export default function CameraViewMenu(): JSX.Element {
 
   return (
     <div className="group inline-flex">
-      <NavIcon Icon={Icon} active title="Camera Perspectives" />
+      <NavIcon Icon={Icon} active title="View options" />
       <MenuDropdown>
         {innerHtml}
         <CameraMenu />

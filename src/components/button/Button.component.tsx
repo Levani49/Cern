@@ -6,7 +6,11 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-export default function Button({ children, className, ...props }: ButtonProps): JSX.Element {
+export default function Button({
+  children,
+  className,
+  ...props
+}: ButtonProps): JSX.Element {
   return (
     <button
       className={`rounded bg-green px-4 py-2 outline-none transition-all ease-in-out hover:bg-transparentDark ${className}`}
