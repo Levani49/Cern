@@ -20,6 +20,10 @@ export default class ModelService {
       if (child instanceof Mesh) {
         child.material.transparent = transparent;
         child.material.opacity = opacity;
+        child.userData = {
+          ...child.userData,
+          opacity
+        };
       }
     });
   }
@@ -28,11 +32,20 @@ export default class ModelService {
     object.traverse((child: Object3D): void => {
       if (child instanceof Mesh) {
         child.material.wireframe = wireframe;
+        child.userData = {
+          ...child.userData,
+          wireframe
+        };
       }
     });
   }
 
-  applyDefaults(model: Object3D, userData: UserData, opacity = 1, wireframe = false): void {
+  applyDefaults(
+    model: Object3D,
+    userData: UserData,
+    opacity = 1,
+    wireframe = false
+  ): void {
     model.userData = userData;
     model.traverse((child: Object3D): void => {
       if (child instanceof Mesh) {
