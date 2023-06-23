@@ -1,4 +1,4 @@
-@import url("./fonts.css");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -94,12 +94,22 @@ body::backdrop {
 }
 
 .last-child-event-line {
-  border-image: linear-gradient(to bottom, #dfe6e9 55%, #dfe6e9 50%, rgba(108, 219, 141, 0) 50%);
+  border-image: linear-gradient(
+    to bottom,
+    #dfe6e9 55%,
+    #dfe6e9 50%,
+    rgba(108, 219, 141, 0) 50%
+  );
   border-image-slice: 1;
 }
 
 .last-event-line {
-  border-image: linear-gradient(to bottom, #dfe6e9 50%, #dfe6e9 50%, rgba(108, 219, 141, 0) 50%);
+  border-image: linear-gradient(
+    to bottom,
+    #dfe6e9 50%,
+    #dfe6e9 50%,
+    rgba(108, 219, 141, 0) 50%
+  );
   border-image-slice: 1;
 }
 

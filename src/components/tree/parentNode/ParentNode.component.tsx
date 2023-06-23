@@ -79,7 +79,10 @@ export default function ParentNode({
         className={`relative flex items-center whitespace-nowrap py-[1px] text-xs ${styles} left-[-1px]`}
       >
         {show ? (
-          <MinusCircleIcon onClick={showChildrenHandler} className={`${iconClass}`} />
+          <MinusCircleIcon
+            onClick={showChildrenHandler}
+            className={`${iconClass}`}
+          />
         ) : (
           <PlusCircleIcon onClick={showChildrenHandler} className={`${iconClass}`} />
         )}
@@ -92,7 +95,9 @@ export default function ParentNode({
           {name}
         </span>
       </div>
-      <ul className={`ml-[1.6rem] mt-[-2px] block  p-0 ${!show && "hidden"}`}>{children}</ul>
+      <ul className={`ml-[1.6rem] mt-[-2px] block  p-0 ${!show && "hidden"}`}>
+        {children}
+      </ul>
     </li>
   );
 }
