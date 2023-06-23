@@ -18,7 +18,7 @@ import Raycast from "@three/raycast/Raycast.three";
 
 // import StatsDispatcher from "@three/stats/Stats.three";
 
-const Detector = lazy(() => import("@three/controls/Detector.three"));
+const Detector = lazy(() => import("@/three/detector/Detector.three"));
 const Controls = lazy(() => import("@three/controls/Controls.three"));
 const Axis = lazy(() => import("@three/axis/Axis.three"));
 const Grid = lazy(() => import("@three/grid/Grid.three"));
