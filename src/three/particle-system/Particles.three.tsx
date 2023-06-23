@@ -11,11 +11,17 @@ import Electron from "./Electron.three";
 
 interface Props {
   onFinish: () => void;
+  electronSpeed: number;
+  explosionSpeed: number;
 }
 
 const NUMBER_OF_ITERATION = 200;
 
-export default function Particles({ onFinish }: Props): JSX.Element {
+export default function Particles({
+  onFinish,
+  electronSpeed,
+  explosionSpeed
+}: Props): JSX.Element {
   const [explode, setExplode] = useState(false);
   const dispatch = useAppDispatch();
   const electronRefs = useRef<Array<Object3D | null>>([]);
@@ -60,7 +66,7 @@ export default function Particles({ onFinish }: Props): JSX.Element {
         if (electron) {
           const relativePosition = electron.position.clone();
           const direction = relativePosition.normalize();
-          electron.position.addScaledVector(direction, 0.25);
+          electron.position.addScaledVector(direction, explosionSpeed);
         }
       });
 
@@ -75,7 +81,10 @@ export default function Particles({ onFinish }: Props): JSX.Element {
   return (
     <>
       <Float speed={0.07} rotationIntensity={0.5} floatIntensity={0.5}>
-        <Collision onCollision={(): void => setExplode(true)} />
+        <Collision
+          onCollision={(): void => setExplode(true)}
+          speed={electronSpeed}
+        />
         <group visible={explode ? true : false}>{electronArray}</group>
       </Float>
     </>

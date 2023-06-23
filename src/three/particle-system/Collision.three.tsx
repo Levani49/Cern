@@ -27,13 +27,14 @@ import Electron from "./Electron.three";
 
 interface Props {
   onCollision: () => void;
+  speed: number;
 }
 
-export default function Collision({ onCollision }: Props): JSX.Element {
+export default function Collision({ onCollision, speed }: Props): JSX.Element {
   const [show, setShow] = useState(true);
   const electron1Ref = useRef<Group>(null);
   const electron2Ref = useRef<Group>(null);
-  let speed = 0.345;
+  // let speed = 0.295;
 
   useFrame(() => {
     if (electron1Ref.current && electron2Ref.current && show) {
