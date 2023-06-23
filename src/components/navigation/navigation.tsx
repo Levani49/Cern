@@ -31,8 +31,8 @@ export default function Navigation(): JSX.Element {
         <FullScreenMenu />
         {isDesktop() && (
           <>
-            <Link />
             <ThemeToggler />
+            <Link />
             <AboutMenu />
           </>
         )}
