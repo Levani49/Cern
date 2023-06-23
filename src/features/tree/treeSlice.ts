@@ -20,13 +20,12 @@ import {
 } from "./geometryMenuUtils";
 import type { GeometryTreeSlice, UpdateNodePayloadAction } from "./treeSlice.types";
 
-const showTree = isDesktop();
+const showGeometryMenu = isDesktop();
 
 const initialState: GeometryTreeSlice = {
-  show: showTree,
   tree: GEOMETRY_MENU_TREE,
   activeModels: updateActiveModels(GEOMETRY_MENU_TREE),
-  showGeometryMenu: true
+  showGeometryMenu
 };
 
 export const geometrySlice = createSlice({
