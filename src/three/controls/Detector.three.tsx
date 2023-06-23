@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import { ActiveModel, ModelCut } from "@type/app.types";
 
@@ -65,14 +65,18 @@ export default function Detector(): JSX.Element {
     }
   }, [cutType, localCutType]);
 
-  const activeModels = localModels.map((model: LocalModel): JSX.Element => {
-    const { modelPath, uid, name, cutType: modelCutType } = model;
-    const path = modelCutType ? modelPath + modelCutType : modelPath;
+  return (
+    <>
+      {localModels.map((model: LocalModel): JSX.Element => {
+        const { modelPath, uid, name, cutType: modelCutType } = model;
+        const path = modelCutType ? modelPath + modelCutType : modelPath;
 
-    return (
-      <Model key={uid} cutType={modelCutType} src={path} name={name} id={uid} />
-    );
-  });
-
-  return <>{activeModels}</>;
+        return (
+          <Suspense key={uid} fallback={null}>
+            <Model cutType={modelCutType} src={path} name={name} id={uid} />
+          </Suspense>
+        );
+      })}
+    </>
+  );
 }
