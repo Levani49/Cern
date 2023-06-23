@@ -26,7 +26,7 @@ type PerspectiveProps = {
 };
 
 export interface ICameraSettings {
-  position: [number, number, number];
+  defaultPosition: [number, number, number];
   currentState: DroneTypes;
   droneType: DroneTypes;
   camera: Camera | null;

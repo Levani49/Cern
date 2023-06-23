@@ -1,12 +1,13 @@
 import { Camera } from "@react-three/fiber";
 
+import CameraViews from "@/models/cameraViews/cameraViews.model";
 import {
   calculateOrthographicDimensions,
   calculatePerspectiveDimesnions
 } from "@/three/camera/Camera.three";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { WritableDraft } from "immer/dist/internal";
-import { Camera as OriginCamera, Vector3 } from "three";
+import { Camera as OriginCamera } from "three";
 
 import type { DroneTypes } from "@type/app.types";
 
@@ -17,8 +18,10 @@ import { startDroneMode, stopDroneMode } from "@utils/handleDrone.utils";
 
 import type { ICameraSettings, ViewModes } from "./cameraSlice.types";
 
+const cameraViews = new CameraViews();
+
 const initialState: ICameraSettings = {
-  position: [3, 3, 3],
+  defaultPosition: [3, 3, 3],
   currentState: "idle",
   droneType: "idle",
   camera: null,
@@ -57,7 +60,7 @@ export const cameraSlice = createSlice({
       state,
       action: PayloadAction<[x: number, y: number, z: number]>
     ) => {
-      if (state.droneType !== "idle") {
+      if (state.droneType !== "idle" || cameraViews.isActive) {
         return;
       }
 
@@ -82,47 +85,26 @@ export const cameraSlice = createSlice({
     },
 
     setLeftCameraView: (state) => {
-      if (state.perspectiveCameraProps?.position) {
-        const position = new Vector3(...state.perspectiveCameraProps.position);
-        const d = position.distanceTo(new Vector3(0, 0, 0));
-
-        state.perspectiveCameraProps.position = [0, 0, d];
+      if (cameraViews.isActive) {
+        return;
       }
-      if (state.orthographicCameraProps?.position) {
-        const position = new Vector3(...state.orthographicCameraProps.position);
-        const d = position.distanceTo(new Vector3(0, 0, 0));
-
-        state.orthographicCameraProps.position = [0, 0, d];
-      }
+      cameraViews.leftView(state.camera as Camera);
       state.viewMode = "left";
     },
 
-    setRightCameraView: (state) => {
-      if (state.perspectiveCameraProps?.position) {
-        const position = new Vector3(...state.perspectiveCameraProps.position);
-        const d = position.distanceTo(new Vector3(0, 0, 0));
-        state.perspectiveCameraProps.position = [d, 0, 0];
+    setFrontView: (state) => {
+      if (cameraViews.isActive) {
+        return;
       }
-      if (state.orthographicCameraProps?.position) {
-        const position = new Vector3(...state.orthographicCameraProps.position);
-        const d = position.distanceTo(new Vector3(0, 0, 0));
-        state.orthographicCameraProps.position = [d, 0, 0];
-      }
+      cameraViews.frontView(state.camera as Camera);
       state.viewMode = "right";
     },
 
-    setDefaultView: (state) => {
-      if (state.perspectiveCameraProps) {
-        const position = new Vector3(...state.perspectiveCameraProps.position);
-        const d = position.distanceTo(new Vector3(0, 0, 0)) / 1.732;
-
-        state.perspectiveCameraProps.position = [d, d, d];
+    setIsoView: (state) => {
+      if (cameraViews.isActive) {
+        return;
       }
-      if (state.orthographicCameraProps?.position) {
-        const position = new Vector3(...state.orthographicCameraProps.position);
-        const d = position.distanceTo(new Vector3(0, 0, 0)) / 1.732;
-        state.orthographicCameraProps.position = [d, d, d];
-      }
+      cameraViews.isoView(state.camera as Camera);
       state.viewMode = "default";
     },
 
@@ -165,8 +147,8 @@ export const cameraSlice = createSlice({
 export default cameraSlice.reducer;
 export const {
   setLeftCameraView,
-  setRightCameraView,
-  setDefaultView,
+  setFrontView,
+  setIsoView,
   setCamera,
   setDroneMode,
   setFlyModalState,
@@ -176,8 +158,9 @@ export const {
   setCameraPosition
 } = cameraSlice.actions;
 
-export const selectCameraPosition = (state: RootState): [number, number, number] =>
-  state.camera.position;
+export const selectDefaultCameraPosition = (
+  state: RootState
+): [number, number, number] => state.camera.defaultPosition;
 
 export const selectOrthographicCameraProps = (
   state: RootState

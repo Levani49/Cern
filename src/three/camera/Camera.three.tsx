@@ -67,6 +67,7 @@ export default function Camera(): JSX.Element {
     camera.updateProjectionMatrix();
   }, [camera, size.width, size.height, dispatch]);
 
+  // TODO fix position issue on snapfile
   useFrame(({ camera }) => {
     dispatch(
       setCameraPosition([camera.position.x, camera.position.y, camera.position.z])

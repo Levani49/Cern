@@ -13,7 +13,8 @@ export default class Helix {
   };
 
   start(camera: Camera, cb: emptyFunc | undefined = undefined): void {
-    const { angleStep, radius, heightStep, initialHeight, speed, fullCircle } = this.configuration;
+    const { angleStep, radius, heightStep, initialHeight, speed, fullCircle } =
+      this.configuration;
     let i = 0;
 
     const s = (): void => {

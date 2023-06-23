@@ -1,17 +1,18 @@
 import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 
 import { ReactComponent as EyeIcon } from "@assets/svg/eye.svg";
+import { ReactComponent as FrontSideBox } from "@assets/svg/front-side-box.svg";
+import { ReactComponent as IsoBox } from "@assets/svg/isoBox.svg";
 import { ReactComponent as LeftSideBox } from "@assets/svg/left-side-box.svg";
-import { ReactComponent as RightSideBox } from "@assets/svg/right-side-box.svg";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import {
   selectCameraViewMode,
   selectDroneState,
-  setDefaultView,
-  setLeftCameraView,
-  setRightCameraView
+  setFrontView,
+  setIsoView,
+  setLeftCameraView
 } from "@features/camera/cameraSlice";
 
 import CameraMenu from "@components/navigation/camera/CameraMenu.component";
@@ -25,28 +26,15 @@ export default function CameraViewMenu(): JSX.Element {
   const droneType = useAppSelector(selectDroneState);
   const viewType = useAppSelector(selectCameraViewMode);
 
-  let Icon;
-
-  switch (viewType) {
-    case "default":
-      Icon = EyeIcon;
-      break;
-    case "left":
-      Icon = LeftSideBox;
-      break;
-    default:
-      Icon = RightSideBox;
-  }
-
   const handleModeChange = (handler: ActionCreatorWithoutPayload): void => {
     dispatch(handler());
   };
 
   const menuItems = [
     {
-      Icon: EyeIcon,
-      action: setDefaultView,
-      title: "Default view",
+      Icon: IsoBox,
+      action: setIsoView,
+      title: "Iso view",
       mode: "default"
     },
     {
@@ -56,9 +44,9 @@ export default function CameraViewMenu(): JSX.Element {
       mode: "left"
     },
     {
-      Icon: RightSideBox,
-      action: setRightCameraView,
-      title: "Right view",
+      Icon: FrontSideBox,
+      action: setFrontView,
+      title: "Front view",
       mode: "right"
     }
   ];
@@ -78,7 +66,7 @@ export default function CameraViewMenu(): JSX.Element {
 
   return (
     <div className="group inline-flex">
-      <NavIcon Icon={Icon} active title="View options" />
+      <NavIcon Icon={EyeIcon} active title="View options" />
       <MenuDropdown>
         {innerHtml}
         <CameraMenu />

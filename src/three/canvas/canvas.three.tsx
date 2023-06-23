@@ -7,6 +7,7 @@ import { NoToneMapping } from "three";
 
 import { useAppSelector } from "@store/hooks";
 
+import { selectDefaultCameraPosition } from "@features/camera/cameraSlice";
 import {
   selectGeometriesCutType,
   selectSnapIsLoading
@@ -15,8 +16,6 @@ import {
 import Camera from "@three/camera/Camera.three";
 import Lights from "@three/light/Light.three";
 import Raycast from "@three/raycast/Raycast.three";
-
-// import StatsDispatcher from "@three/stats/Stats.three";
 
 const Detector = lazy(() => import("@/three/detector/Detector.three"));
 const Controls = lazy(() => import("@three/controls/Controls.three"));
@@ -29,6 +28,7 @@ const StatsDispatcher = lazy(() => import("@three/stats/Stats.three"));
 export default function Scene(): JSX.Element {
   const cutType = useAppSelector(selectGeometriesCutType);
   const snapIsLoading = useAppSelector(selectSnapIsLoading);
+  const defaultPosition = useAppSelector(selectDefaultCameraPosition);
   const localClippingEnabled = cutType === null;
 
   return (
@@ -44,7 +44,7 @@ export default function Scene(): JSX.Element {
         linear
         id="canvas"
         frameloop="demand"
-        camera={{ manual: true, position: [3, 3, 3] }}
+        camera={{ manual: true, position: defaultPosition }}
       >
         <Physics gravity={[0, 0, 0]}>
           <Suspense fallback={null}>{!snapIsLoading && <Detector />}</Suspense>
