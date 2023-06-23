@@ -39,7 +39,11 @@ export default function Player({ currentCameraPosition }: Props): JSX.Element {
     }
     const direction = new Vector3();
 
-    const frontVector = new Vector3(0, 0, Number(moveBackward) - Number(moveForward));
+    const frontVector = new Vector3(
+      0,
+      0,
+      Number(moveBackward) - Number(moveForward)
+    );
     const sideVector = new Vector3(Number(moveLeft) - Number(moveRight), 0, 0);
 
     direction
@@ -51,11 +55,6 @@ export default function Player({ currentCameraPosition }: Props): JSX.Element {
     api.velocity.set(direction.x, direction.y, direction.z);
   });
 
-  /**
-   * Handle palyer cancelation
-   *
-   * @returns { void } void
-   */
   const hadnelCancel = (): void => {
     store.dispatch(setDroneMode("idle"));
   };
@@ -63,7 +62,11 @@ export default function Player({ currentCameraPosition }: Props): JSX.Element {
   return (
     <>
       <PointerLockControls onUnlock={hadnelCancel} />
-      <mesh ref={ref as React.MutableRefObject<Mesh<BufferGeometry, Material | Material[]>>}></mesh>
+      <mesh
+        ref={
+          ref as React.MutableRefObject<Mesh<BufferGeometry, Material | Material[]>>
+        }
+      ></mesh>
     </>
   );
 }

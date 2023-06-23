@@ -13,6 +13,8 @@ interface Props {
   onFinish: () => void;
 }
 
+const NUMBER_OF_ITERATION = 200;
+
 export default function Particles({ onFinish }: Props): JSX.Element {
   const [explode, setExplode] = useState(false);
   const dispatch = useAppDispatch();
@@ -44,7 +46,9 @@ export default function Particles({ onFinish }: Props): JSX.Element {
           key={index}
           position={[x, y, z]}
           size={[0.005]}
-          ref={(ref: Object3D | null): Object3D | null => (electronRefs.current[index] = ref)}
+          ref={(ref: Object3D | null): Object3D | null =>
+            (electronRefs.current[index] = ref)
+          }
         />
       );
     });
@@ -62,8 +66,7 @@ export default function Particles({ onFinish }: Props): JSX.Element {
 
       iterationRef.current += 1;
 
-      // NUMBER OF ITERATION
-      if (iterationRef.current === 200) {
+      if (iterationRef.current === NUMBER_OF_ITERATION) {
         onFinish();
       }
     }

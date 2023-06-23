@@ -65,7 +65,7 @@ export default function Camera(): JSX.Element {
       })
     );
     camera.updateProjectionMatrix();
-  }, [camera, size.height, size.width, dispatch]);
+  }, [camera, size.width, size.height, dispatch]);
 
   useFrame(({ camera }) => {
     dispatch(

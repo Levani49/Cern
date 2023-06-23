@@ -8,7 +8,10 @@ import { ModelCut } from "@type/app.types";
 
 import { useAppSelector } from "@store/hooks";
 
-import { selectClippingPlanes, selectClippingPlanesNormal } from "@features/model/modelSlice";
+import {
+  selectClippingPlanes,
+  selectClippingPlanesNormal
+} from "@features/model/modelSlice";
 
 import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
 
@@ -37,8 +40,13 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   const clippingPlanes = useAppSelector(selectClippingPlanes);
   const clippingPlanesNormal = useAppSelector(selectClippingPlanesNormal);
 
-  const { selectedModel, modelOpacityLevel, globalOpacityLevel, modelWireframe, globalWireframe } =
-    useSelectedModel();
+  const {
+    selectedModel,
+    modelOpacityLevel,
+    globalOpacityLevel,
+    modelWireframe,
+    globalWireframe
+  } = useSelectedModel();
 
   const model = useLoader(
     GLTFLoader,
@@ -63,7 +71,12 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
           modelService.applyDefaults(currentRef, userData);
         }
       } else {
-        modelService.applyDefaults(currentRef, userData, globalOpacityLevel, globalWireframe);
+        modelService.applyDefaults(
+          currentRef,
+          userData,
+          globalOpacityLevel,
+          globalWireframe
+        );
       }
     }
 

@@ -1,15 +1,10 @@
-import { useRef, useState } from "react";
-import { Group } from "three";
 import { useFrame } from "@react-three/fiber";
+import { useRef, useState } from "react";
+
+import { Group } from "three";
 
 import Electron from "./Electron.three";
 
-// import { useRef } from 'react'
-// import { useFrame } from '@react-three/fiber'
-
-/**
- *
- */
 // export function Ship(): JSX.Element {
 //   const exhaust = useRef()
 
@@ -34,12 +29,6 @@ interface Props {
   onCollision: () => void;
 }
 
-/**
- *
- * @param root0
- * @param root0.cb
- * @param root0.onCollision
- */
 export default function Collision({ onCollision }: Props): JSX.Element {
   const [show, setShow] = useState(true);
   const electron1Ref = useRef<Group>(null);
