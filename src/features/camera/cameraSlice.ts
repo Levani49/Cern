@@ -1,10 +1,5 @@
 import { Camera } from "@react-three/fiber";
 
-import CameraViews from "@/models/cameraViews/cameraViews.model";
-import {
-  calculateOrthographicDimensions,
-  calculatePerspectiveDimesnions
-} from "@/three/camera/Camera.three";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { WritableDraft } from "immer/dist/internal";
 import { Camera as OriginCamera } from "three";
@@ -13,15 +8,25 @@ import type { DroneTypes } from "@type/app.types";
 
 import type { RootState } from "@store/store";
 
+import {
+  calculateOrthographicDimensions,
+  calculatePerspectiveDimesnions
+} from "@three/camera/Camera.three";
+
+import CameraViews from "@models/cameraViews/cameraViews.model";
+
 import ee from "@utils/droneEvent.utils";
 import { startDroneMode, stopDroneMode } from "@utils/handleDrone.utils";
+import { isDesktop } from "@utils/isDesktop.utils";
 
 import type { ICameraSettings, ViewModes } from "./cameraSlice.types";
 
 const cameraViews = new CameraViews();
 
+const defaultPosition = isDesktop() ? [3, 3, 3] : [4, 4, 4];
+
 const initialState: ICameraSettings = {
-  defaultPosition: [3, 3, 3],
+  defaultPosition: defaultPosition as [number, number, number],
   currentState: "idle",
   droneType: "idle",
   camera: null,

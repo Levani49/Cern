@@ -7,7 +7,7 @@ interface Props extends React.HTMLAttributes<HTMLElement> {
 export default function MenuDropdown({ children, className }: Props): JSX.Element {
   return (
     <div
-      className={`absolute mt-8 hidden h-auto w-auto flex-col rounded border border-gray-600 bg-transparentDark group-hover:flex group-active:flex dark:bg-customGray ${className}`}
+      className={`absolute mt-8 hidden h-auto w-auto flex-col rounded border border-gray-600 bg-dark group-hover:flex group-active:flex dark:bg-customGray ${className} z-50`}
     >
       {children}
     </div>

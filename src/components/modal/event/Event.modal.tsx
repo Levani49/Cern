@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
@@ -27,6 +27,17 @@ export default function EventsModal(): JSX.Element {
   const memoizedAnalysisTool = useMemo(() => {
     return currentAnalysisTool;
   }, [currentAnalysisTool]);
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent): void => {
+      if (e.key === "27" || e.key === "Escape") {
+        dispatch(showEventsModal(false));
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [dispatch]);
 
   const closeModalHandler = (): void => {
     dispatch(showEventsModal(false));
