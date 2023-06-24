@@ -19,7 +19,7 @@ export default function Utils(): JSX.Element {
   return (
     <div className="group relative inline-flex">
       <NavIcon Icon={SettingsIcon} title="Settings" />
-      <MenuDropdown>
+      <MenuDropdown className="flex-col sm:flex-row">
         <StatsMenu />
         <AxisMenu />
         <GridMenu />
