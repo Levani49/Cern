@@ -38,19 +38,6 @@ export default function CameraViewMenu(): JSX.Element {
 
   const menuItems = [
     {
-      Icon: IsoBox,
-      action: setIsoView,
-      title: "Iso view",
-      mode: "default"
-    },
-
-    {
-      Icon: BottomViewIcon,
-      action: setBottomView,
-      title: "Bottom view",
-      mode: "bottom"
-    },
-    {
       Icon: TopViewIcon,
       action: setTopView,
       title: "Top view",
@@ -61,6 +48,12 @@ export default function CameraViewMenu(): JSX.Element {
       action: setLeftCameraView,
       title: "Left view",
       mode: "left"
+    },
+    {
+      Icon: IsoBox,
+      action: setIsoView,
+      title: "Iso view",
+      mode: "default"
     },
     {
       Icon: FrontSideBox,
@@ -79,6 +72,12 @@ export default function CameraViewMenu(): JSX.Element {
       action: setBackView,
       title: "Back view",
       mode: "back"
+    },
+    {
+      Icon: BottomViewIcon,
+      action: setBottomView,
+      title: "Bottom view",
+      mode: "bottom"
     }
   ];
 
