@@ -93,7 +93,7 @@ export default function GeometryCutsMenu(): JSX.Element {
 
   return (
     <>
-      <div className="group inline-flex">
+      <div className="group relative inline-flex">
         <NavIcon Icon={Icon} title="Geometry Cut Options" active />
         <MenuDropdown>{innerHtml}</MenuDropdown>
       </div>
