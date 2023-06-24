@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
@@ -8,6 +8,8 @@ import {
   selectEventsModalState,
   showEventsModal
 } from "@features/modal/modalSlice";
+
+import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import Modal from "../Modal.component";
 import AlgorithmTool from "./analysisTools/algorithm/AlgorithmTool.component";
@@ -28,16 +30,7 @@ export default function EventsModal(): JSX.Element {
     return currentAnalysisTool;
   }, [currentAnalysisTool]);
 
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent): void => {
-      if (e.key === "27" || e.key === "Escape") {
-        dispatch(showEventsModal(false));
-      }
-    };
-    window.addEventListener("keydown", handleEscape);
-
-    return () => window.removeEventListener("keydown", handleEscape);
-  }, [dispatch]);
+  useEscapeKeydown(() => dispatch(showEventsModal(false)));
 
   const closeModalHandler = (): void => {
     dispatch(showEventsModal(false));

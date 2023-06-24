@@ -14,6 +14,7 @@ import {
   setSelectedModel
 } from "@features/model/modelSlice";
 
+import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
 
 import ModelService from "@services/model/Model.service";
@@ -157,16 +158,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     }
   }, [JSON.stringify(clippingPlanes)]);
 
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent): void => {
-      if (e.key === "27" || e.key === "Escape") {
-        dispatch(setSelectedModel(null));
-      }
-    };
-    window.addEventListener("keydown", handleEscape);
-
-    return () => window.removeEventListener("keydown", handleEscape);
-  }, [dispatch]);
+  useEscapeKeydown(() => dispatch(setSelectedModel(null)));
 
   return <primitive ref={ref} visible={true} object={model.scene} />;
 }

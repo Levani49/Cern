@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 
 import type { DroneTypes, SVGIcon } from "@type/app.types";
 
@@ -18,6 +18,8 @@ import {
   setFlyModalState
 } from "@features/camera/cameraSlice";
 
+import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
+
 import { isDesktop } from "@utils/isDesktop.utils";
 
 import MenuDropdown from "../dropdown/MenuDropdown.component";
@@ -34,17 +36,7 @@ export default function DroneMenu(): JSX.Element {
   const currentMode = useAppSelector(selectDroneState);
   const currentModeMemoized = useMemo(() => currentMode, [currentMode]);
 
-  useEffect(() => {
-    const cancelDroneMode = (e: KeyboardEvent): void => {
-      if (e.key === "27" || e.key === "Escape") {
-        dispatch(setDroneMode("idle"));
-      }
-    };
-
-    window.addEventListener("keydown", cancelDroneMode);
-
-    return (): void => window.removeEventListener("keydown", cancelDroneMode);
-  }, [currentMode, dispatch]);
+  useEscapeKeydown(() => dispatch(setDroneMode("idle")));
 
   const isActive = currentModeMemoized !== "idle";
 

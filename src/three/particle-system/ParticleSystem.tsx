@@ -8,6 +8,8 @@ import {
   setParticleAnimationState
 } from "@features/global/globalsSlice";
 
+import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
+
 import Particles from "./Particles.three";
 
 const ParticleSystem = (): JSX.Element => {
@@ -19,17 +21,7 @@ const ParticleSystem = (): JSX.Element => {
     dispatch(setParticleAnimationState(true));
   }, [dispatch, eventNumber]);
 
-  useEffect(() => {
-    const cancelAnimation = (e: KeyboardEvent): void => {
-      if (e.key === "27" || e.key === "Escape") {
-        dispatch(setParticleAnimationState(false));
-      }
-    };
-
-    window.addEventListener("keydown", cancelAnimation);
-
-    return () => window.removeEventListener("keydown", cancelAnimation);
-  }, [dispatch]);
+  useEscapeKeydown(() => dispatch(setParticleAnimationState(false)));
 
   const memoizedOnFinishHandler = useMemo(() => {
     return (): void => {

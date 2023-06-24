@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import type { Employee } from "@type/app.types";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
@@ -7,6 +5,8 @@ import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { selectAboutModalState, showAboutModal } from "@features/modal/modalSlice";
 
 import TransitionModal from "@components/transition-modal/transition.modal";
+
+import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import { TEMP_INFO } from "@constants/TEMP_STATIC_DATA";
 
@@ -16,16 +16,7 @@ export default function AboutModal(): JSX.Element {
   const dispatch = useAppDispatch();
   const show = useAppSelector(selectAboutModalState);
 
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent): void => {
-      if (e.key === "27" || e.key === "Escape") {
-        dispatch(showAboutModal(false));
-      }
-    };
-    window.addEventListener("keydown", handleEscape);
-
-    return () => window.removeEventListener("keydown", handleEscape);
-  }, [dispatch]);
+  useEscapeKeydown(() => dispatch(showAboutModal(false)));
 
   const closeModalHandler = (e: boolean): void => {
     dispatch(showAboutModal(e));

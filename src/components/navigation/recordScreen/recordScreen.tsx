@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useReactMediaRecorder } from "react-media-recorder-2";
 
-import Button from "@/components/button/Button.component";
-import TransitionModal from "@/components/transition-modal/transition.modal";
+import useEscapeKeydown from "@/hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import { ReactComponent as PlayIcon } from "@assets/svg/play.svg";
 
@@ -13,7 +12,9 @@ import {
   setScreenRecording
 } from "@features/global/globalsSlice";
 
+import Button from "@components/button/Button.component";
 import NavIcon from "@components/navigation/navIcon/navIcon";
+import TransitionModal from "@components/transition-modal/transition.modal";
 
 export default function RecordScreen(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -28,17 +29,10 @@ export default function RecordScreen(): JSX.Element {
       audio: recordAudio
     });
 
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent): void => {
-      if (e.key === "27" || e.key === "Escape") {
-        setShowResults(false);
-        setShowOptions(false);
-      }
-    };
-    window.addEventListener("keydown", handleEscape);
-
-    return () => window.removeEventListener("keydown", handleEscape);
-  }, []);
+  useEscapeKeydown(() => {
+    setShowResults(false);
+    setShowOptions(false);
+  });
 
   useEffect(() => {
     if (recording === "stop") {

@@ -1,18 +1,17 @@
-import { useEffect, useRef } from "react";
-
-import {
-  hydrateClippingPlanes,
-  setSnapIsLoading
-} from "@/features/model/modelSlice";
-import { useAppDispatch } from "@/store/hooks";
+import { useRef } from "react";
 
 import { ReactComponent as DownloadFileIcon } from "@assets/svg/downloadFileIcon.svg";
 import { ReactComponent as UploadFileIcon } from "@assets/svg/uploadFileIcon.svg";
 
+import { useAppDispatch } from "@store/hooks";
 import store from "@store/store";
+
+import { hydrateClippingPlanes, setSnapIsLoading } from "@features/model/modelSlice";
 
 import Button from "@components/button/Button.component";
 import TransitionModal from "@components/transition-modal/transition.modal";
+
+import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import SnapCard from "./SnapCard.component";
 
@@ -30,16 +29,7 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent): void => {
-      if (e.key === "27" || e.key === "Escape") {
-        onClose(false);
-      }
-    };
-    window.addEventListener("keydown", handleEscape);
-
-    return () => window.removeEventListener("keydown", handleEscape);
-  }, [onClose]);
+  useEscapeKeydown(() => onClose(false));
 
   const handleLoadSnapshot = (): void => {
     if (inputRef.current) {
