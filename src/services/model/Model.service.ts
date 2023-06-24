@@ -11,31 +11,56 @@ export interface UserData {
   wireframe: boolean;
 }
 
+interface OpacityProps {
+  model: Object3D;
+  opacity: number;
+  updateUserData?: boolean;
+  transparent?: boolean;
+}
+
+interface WireframeProps {
+  model: Object3D;
+  wireframe: boolean;
+  updateUserData?: boolean;
+}
+
 export default class ModelService {
   private base = import.meta.env.VITE_MODELS_PROVIDER;
   public dracoLoader = new DRACOLoader();
 
-  updateOpacity(object: Object3D, opacity: number, transparent = true): void {
-    object.traverse((child: Object3D): void => {
+  updateOpacity({
+    model,
+    opacity,
+    transparent,
+    updateUserData
+  }: OpacityProps): void {
+    model.traverse((child: Object3D): void => {
       if (child instanceof Mesh) {
-        child.material.transparent = transparent;
+        if (!transparent) {
+          child.material.transparent = transparent;
+        }
         child.material.opacity = opacity;
-        child.userData = {
-          ...child.userData,
-          opacity
-        };
+        if (updateUserData) {
+          child.userData = {
+            ...child.userData,
+            opacity
+          };
+        }
       }
     });
   }
 
-  updateWireframe(object: Object3D, wireframe: boolean): void {
-    object.traverse((child: Object3D): void => {
+  updateWireframe({ model, wireframe, updateUserData }: WireframeProps): void {
+    model.traverse((child: Object3D): void => {
       if (child instanceof Mesh) {
         child.material.wireframe = wireframe;
-        child.userData = {
-          ...child.userData,
-          wireframe
-        };
+
+        if (updateUserData) {
+          child.userData = {
+            ...child.userData,
+            wireframe
+          };
+        }
       }
     });
   }

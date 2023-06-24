@@ -95,9 +95,16 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
 
     if (currentRef) {
       if (selectedModel && selectedModel.id !== id) {
-        modelService.updateOpacity(currentRef, LOW_OPACITY_LEVEL);
+        modelService.updateOpacity({
+          model: currentRef,
+          opacity: LOW_OPACITY_LEVEL
+        });
       } else {
-        modelService.updateOpacity(currentRef, opacity);
+        modelService.updateOpacity({
+          model: currentRef,
+          opacity: opacity,
+          updateUserData: true
+        });
       }
     }
   }, [selectedModel, id, opacity, ref]);
@@ -107,7 +114,11 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
 
     if (currentRef) {
       if (selectedModel?.id === id) {
-        modelService.updateOpacity(currentRef, modelOpacityLevel);
+        modelService.updateOpacity({
+          model: currentRef,
+          opacity: modelOpacityLevel,
+          updateUserData: true
+        });
         setOpacity(modelOpacityLevel);
       }
     }
@@ -118,7 +129,11 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
 
     if (currentRef) {
       if (selectedModel?.id === id) {
-        modelService.updateWireframe(currentRef, modelWireframe);
+        modelService.updateWireframe({
+          model: currentRef,
+          wireframe: modelWireframe,
+          updateUserData: true
+        });
         setWireframe(modelWireframe);
       }
     }
@@ -136,7 +151,11 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
     const currentRef = ref.current;
 
     if (currentRef) {
-      modelService.updateWireframe(currentRef, globalWireframe);
+      modelService.updateWireframe({
+        model: currentRef,
+        wireframe: globalWireframe,
+        updateUserData: true
+      });
     }
 
     setWireframe(globalWireframe);
