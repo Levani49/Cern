@@ -1,5 +1,7 @@
 import { useMemo } from "react";
 
+import type { ActiveModel, ModelCut } from "@type/app.types";
+
 import { useAppSelector } from "@store/hooks";
 
 import {
@@ -8,19 +10,23 @@ import {
 } from "@features/model/modelSlice";
 import { selectActiveGeometries } from "@features/tree/treeSlice";
 
-import type { UseDetectorState } from "./useDetectorState.types";
-
 export function useDetectorState(): UseDetectorState {
   const models = useAppSelector(selectActiveGeometries);
   const cutType = useAppSelector(selectGeometriesCutType);
   const localCutType = useAppSelector(selectLocalGeometryCutType);
 
   return useMemo(
-    () => ({
+    (): UseDetectorState => ({
       models,
       cutType,
       localCutType
     }),
     [models, cutType, localCutType]
   );
+}
+
+interface UseDetectorState {
+  models: ActiveModel[];
+  cutType: ModelCut;
+  localCutType: ModelCut;
 }

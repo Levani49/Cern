@@ -1,19 +1,5 @@
 import { useEffect, useState } from "react";
 
-import type { PlayerControls } from "./usePlayerControls.types";
-
-function moveFieldByKey(key: string): string | undefined {
-  const keys: Record<string, string> = {
-    KeyW: "moveForward",
-    KeyS: "moveBackward",
-    KeyA: "moveLeft",
-    KeyD: "moveRight",
-    Space: "jump"
-  };
-
-  return keys[key];
-}
-
 export function usePlayerControls(): PlayerControls {
   const [movement, setMovement] = useState<PlayerControls>({
     moveForward: false,
@@ -48,4 +34,24 @@ export function usePlayerControls(): PlayerControls {
   }, []);
 
   return movement;
+}
+
+function moveFieldByKey(key: string): string | undefined {
+  const keys: Record<string, string> = {
+    KeyW: "moveForward",
+    KeyS: "moveBackward",
+    KeyA: "moveLeft",
+    KeyD: "moveRight",
+    Space: "jump"
+  };
+
+  return keys[key];
+}
+
+interface PlayerControls {
+  moveForward: boolean;
+  moveBackward: boolean;
+  moveLeft: boolean;
+  moveRight: boolean;
+  jump: boolean;
 }
