@@ -11,7 +11,7 @@ import type { RootState } from "@store/store";
 import {
   calculateOrthographicDimensions,
   calculatePerspectiveDimesnions
-} from "@three/camera/Camera.three";
+} from "@three/camera/camera.utils";
 
 import CameraViews from "@models/cameraViews/cameraViews.model";
 
@@ -19,7 +19,13 @@ import ee from "@utils/droneEvent.utils";
 import { startDroneMode, stopDroneMode } from "@utils/handleDrone.utils";
 import { isDesktop } from "@utils/isDesktop.utils";
 
-import type { ICameraSettings, ViewModes } from "./cameraSlice.types";
+import type {
+  CameraTypes,
+  ICameraSettings,
+  OrthographicProps,
+  PerspectiveProps,
+  ViewModes
+} from "./cameraSlice.types";
 
 const cameraViews = new CameraViews();
 
@@ -167,13 +173,10 @@ export const selectDefaultCameraPosition = (
   state: RootState
 ): [number, number, number] => state.camera.defaultPosition;
 
-export const selectOrthographicCameraProps = (
-  state: RootState
-): ICameraSettings["orthographicCameraProps"] =>
+export const selectOrthographicCameraProps = (state: RootState): OrthographicProps =>
   state.camera.orthographicCameraProps;
-export const selectPerspectiveCameraProps = (
-  state: RootState
-): ICameraSettings["perspectiveCameraProps"] => state.camera.perspectiveCameraProps;
+export const selectPerspectiveCameraProps = (state: RootState): PerspectiveProps =>
+  state.camera.perspectiveCameraProps;
 
 export const selectDroneState = (state: RootState): DroneTypes =>
   state.camera.droneType;
@@ -181,5 +184,5 @@ export const selectFlyModalState = (state: RootState): boolean =>
   state.camera.showFlyModal;
 export const selectCameraViewMode = (state: RootState): ViewModes =>
   state.camera.viewMode;
-export const selectCameraType = (state: RootState): "perspective" | "orthographic" =>
+export const selectCameraType = (state: RootState): CameraTypes =>
   state.camera.cameraType;

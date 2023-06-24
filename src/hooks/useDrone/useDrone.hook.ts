@@ -1,9 +1,5 @@
 import { useMemo } from "react";
 
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-
-import { DroneTypes } from "@type/app.types";
-
 import { useAppSelector } from "@store/hooks";
 
 import {
@@ -13,12 +9,7 @@ import {
   setFlyModalState
 } from "@features/camera/cameraSlice";
 
-interface UseDrone {
-  currentMode: DroneTypes;
-  showFlyModal: boolean;
-  setDroneMode: ActionCreatorWithPayload<DroneTypes, "camera/setDroneMode">;
-  setFlyModalState: ActionCreatorWithPayload<boolean, "camera/setFlyModalState">;
-}
+import { UseDrone } from "@hooks/useDrone/useDrone.types";
 
 export default function useDrone(): UseDrone {
   const currentMode = useAppSelector(selectDroneState);
