@@ -9,7 +9,6 @@ import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import {
   selectCameraViewMode,
-  selectDroneState,
   setFrontView,
   setIsoView,
   setLeftCameraView
@@ -17,14 +16,15 @@ import {
 
 import CameraMenu from "@components/navigation/camera/CameraMenu.component";
 
+import useDrone from "@hooks/useDrone/useDrone.hook";
+
 import MenuDropdown from "../dropdown/MenuDropdown.component";
 import NavIcon from "../navIcon/navIcon";
 
 export default function CameraViewMenu(): JSX.Element {
   const dispatch = useAppDispatch();
-
-  const droneType = useAppSelector(selectDroneState);
   const viewType = useAppSelector(selectCameraViewMode);
+  const { currentMode } = useDrone();
 
   const handleModeChange = (handler: ActionCreatorWithoutPayload): void => {
     dispatch(handler());
@@ -59,7 +59,7 @@ export default function CameraViewMenu(): JSX.Element {
         Icon={item.Icon}
         title={item.title}
         onClick={(): void => handleModeChange(item.action)}
-        disabled={droneType !== "idle"}
+        disabled={currentMode !== "idle"}
       />
     );
   });

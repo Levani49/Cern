@@ -3,14 +3,16 @@ import { memo } from "react";
 
 import { useAppSelector } from "@store/hooks";
 
-import { selectDroneState } from "@features/camera/cameraSlice";
 import { selectAxis } from "@features/global/globalsSlice";
 
+import useDrone from "@hooks/useDrone/useDrone.hook";
+
 function Axis(): JSX.Element {
-  const droneType = useAppSelector(selectDroneState);
+  const { currentMode } = useDrone();
+
   const show = useAppSelector(selectAxis);
 
-  const disable = droneType !== "idle";
+  const disable = currentMode !== "idle";
 
   return (
     <>

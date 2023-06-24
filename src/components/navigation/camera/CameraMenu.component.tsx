@@ -2,17 +2,19 @@ import { ReactComponent as VideoCameraIcon } from "@assets/svg/videoCameraIcon.s
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
-import { selectCameraType, selectDroneState, setCameraType } from "@features/camera/cameraSlice";
+import { selectCameraType, setCameraType } from "@features/camera/cameraSlice";
+
+import useDrone from "@hooks/useDrone/useDrone.hook";
 
 import NavIcon from "../navIcon/navIcon";
 
 export default function CameraMenu(): JSX.Element {
   const dispatch = useAppDispatch();
   const cameraType = useAppSelector(selectCameraType);
-  const droneType = useAppSelector(selectDroneState);
+  const { currentMode } = useDrone();
 
   const onClickHandler = (): void => {
-    if (droneType !== "idle") {
+    if (currentMode !== "idle") {
       return;
     }
     cameraType === "perspective"

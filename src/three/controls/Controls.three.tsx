@@ -5,16 +5,15 @@ import { OrbitControlsProps } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 
-import { useAppSelector } from "@store/hooks";
-
-import { selectDroneState } from "@features/camera/cameraSlice";
-
 import CustomOrbitControl from "@three/lib/modified_orbit_controls/CustomOrbitControl";
 import Player from "@three/player/Player.three";
 
+import useDrone from "@hooks/useDrone/useDrone.hook";
+
 export default function Controls(): JSX.Element {
   const { camera } = useThree();
-  const droneType = useAppSelector(selectDroneState);
+  const { currentMode } = useDrone();
+
   const controlsRef = useRef<OrbitControlsProps>(null);
 
   useEffect(() => {
@@ -34,9 +33,9 @@ export default function Controls(): JSX.Element {
     return () => window.removeEventListener("pointerdown", stopDampingEffect);
   }, []);
 
-  const enableControls = droneType === "circle" || droneType === "idle";
+  const enableControls = currentMode === "circle" || currentMode === "idle";
 
-  if (droneType === "fly") {
+  if (currentMode === "fly") {
     return (
       <Player
         currentCameraPosition={[
@@ -53,7 +52,7 @@ export default function Controls(): JSX.Element {
       <CustomOrbitControl
         ref={controlsRef}
         makeDefault
-        autoRotate={droneType === "circle"}
+        autoRotate={currentMode === "circle"}
       />
     )
   );

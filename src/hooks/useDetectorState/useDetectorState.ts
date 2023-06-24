@@ -2,7 +2,10 @@ import { useMemo } from "react";
 
 import { useAppSelector } from "@store/hooks";
 
-import { selectGeometriesCutType, selectLocalGeometryCutType } from "@features/model/modelSlice";
+import {
+  selectGeometriesCutType,
+  selectLocalGeometryCutType
+} from "@features/model/modelSlice";
 import { selectActiveGeometries } from "@features/tree/treeSlice";
 
 import type { UseDetectorState } from "./useDetectorState.types";

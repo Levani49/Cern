@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 
 import { selectIsFullscreen, setFullscreen } from "@/features/global/globalsSlice";
+import useDrone from "@/hooks/useDrone/useDrone.hook";
 
 import { ReactComponent as ArrowsPointingOutIcon } from "@assets/svg/arrowsPointingOut.svg";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
-
-import { selectDroneState } from "@features/camera/cameraSlice";
 
 import { supportsFullscreen } from "@utils/supportsFullscreen.utils";
 
@@ -16,7 +15,7 @@ export default function FullScreenMenu(): JSX.Element {
   const dispatch = useAppDispatch();
   const isFullscreen = useAppSelector(selectIsFullscreen);
 
-  const droneMode = useAppSelector(selectDroneState);
+  const { currentMode } = useDrone();
 
   useEffect(() => {
     const exitFullScreen = (): void => {
@@ -49,7 +48,7 @@ export default function FullScreenMenu(): JSX.Element {
           Icon={ArrowsPointingOutIcon}
           title="Fullscreen Mode"
           onClick={handleFullScreen}
-          disabled={droneMode === "fly"}
+          disabled={currentMode === "fly"}
         />
       )}
     </>

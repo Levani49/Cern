@@ -1,18 +1,12 @@
-import { useAppDispatch, useAppSelector } from "@store/hooks";
+import { useAppDispatch } from "@store/hooks";
 
-import {
-  selectDroneState,
-  selectFlyModalState,
-  setFlyModalState
-} from "@features/camera/cameraSlice";
+import useDrone from "@hooks/useDrone/useDrone.hook";
 
 export default function FlyOverlay(): JSX.Element {
   const dispatch = useAppDispatch();
+  const { currentMode, setFlyModalState, showFlyModal } = useDrone();
 
-  const showFlyModal = useAppSelector(selectFlyModalState);
-  const droneMode = useAppSelector(selectDroneState);
-
-  const isFreeFLy = droneMode === "fly";
+  const isFreeFLy = currentMode === "fly";
 
   const handleClick = (): void => {
     dispatch(setFlyModalState(false));
@@ -22,13 +16,14 @@ export default function FlyOverlay(): JSX.Element {
     return (
       <>
         {!showFlyModal && (
-          <h1 className="info-graph top-1/4 z-[5000] text-sm text-white">
+          <h5 className="info-graph top-1/4 z-[5000] text-sm text-white">
             Press
             <span className="font-bold text-yellow-500"> W | A | S | D </span>
             to move, use your mouse to rotate
             <span className="font-bold text-yellow-500"> CAMERA </span>, Press{" "}
-            <span className="font-bold text-yellow-500"> ESC </span> to exit from mode.
-          </h1>
+            <span className="font-bold text-yellow-500"> ESC </span> to exit from
+            mode.
+          </h5>
         )}
         {showFlyModal && (
           <div

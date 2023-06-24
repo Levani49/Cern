@@ -1,5 +1,3 @@
-import { useMemo } from "react";
-
 import type { DroneTypes, SVGIcon } from "@type/app.types";
 
 import { ReactComponent as CircleIcon } from "@assets/svg/circle.svg";
@@ -10,14 +8,9 @@ import { ReactComponent as HelixIcon } from "@assets/svg/helix.svg";
 import { ReactComponent as RocketIcon } from "@assets/svg/rocket.svg";
 import { ReactComponent as DollyZoomIcon } from "@assets/svg/zoom.svg";
 
-import { useAppDispatch, useAppSelector } from "@store/hooks";
+import { useAppDispatch } from "@store/hooks";
 
-import {
-  selectDroneState,
-  setDroneMode,
-  setFlyModalState
-} from "@features/camera/cameraSlice";
-
+import useDrone from "@hooks/useDrone/useDrone.hook";
 import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import { isDesktop } from "@utils/isDesktop.utils";
@@ -33,15 +26,14 @@ interface MenuItem {
 
 export default function DroneMenu(): JSX.Element {
   const dispatch = useAppDispatch();
-  const currentMode = useAppSelector(selectDroneState);
-  const currentModeMemoized = useMemo(() => currentMode, [currentMode]);
+  const { currentMode, setDroneMode, setFlyModalState } = useDrone();
 
   useEscapeKeydown(() => dispatch(setDroneMode("idle")));
 
-  const isActive = currentModeMemoized !== "idle";
+  const isActive = currentMode !== "idle";
 
   const handleModeChange = (mode: DroneTypes): void => {
-    if (currentModeMemoized === mode) {
+    if (currentMode === mode) {
       dispatch(setDroneMode("idle"));
     } else {
       if (mode === "fly") {
