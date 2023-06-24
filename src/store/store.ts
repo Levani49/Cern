@@ -22,6 +22,7 @@ export const rootReducer = combineReducers(combinedReducers);
 
 const store = configureStore({
   reducer: rootReducer,
+  devTools: import.meta.env.VITE_ENV === "development",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false })
 });
