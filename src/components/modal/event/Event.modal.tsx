@@ -52,7 +52,9 @@ export default function EventsModal(): JSX.Element {
                 />
               );
             })}
-            <span className="mr-3 text-right text-xs">Loaded events {loadedEvents.length}</span>
+            <span className="mr-3 text-right text-xs">
+              Loaded events {loadedEvents.length}
+            </span>
           </div>
         );
       case "algorithm":
