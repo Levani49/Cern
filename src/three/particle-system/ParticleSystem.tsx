@@ -42,8 +42,8 @@ const ParticleSystem = (): JSX.Element => {
       {startParticleAnimation && (
         <Particles
           onFinish={memoizedOnFinishHandler}
-          explosionSpeed={0.095}
-          electronSpeed={0.295}
+          explosionSpeed={0.25}
+          electronSpeed={0.435}
         />
       )}
     </>
