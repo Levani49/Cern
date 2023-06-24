@@ -15,4 +15,5 @@ export interface GlobalsSlice {
   showGeometryMenu: boolean;
   fullScreen: boolean;
   screenRecording: "idle" | "recording" | "stop";
+  showMenu: boolean;
 }

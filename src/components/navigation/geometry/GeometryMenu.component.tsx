@@ -1,7 +1,10 @@
 // import { selectGeometryMenu, setGeometryMenu } from "@features/global/globalsSlice";
-import { selectGeometryMenu, setGeometryMenuVisibility } from "@/features/tree/treeSlice";
+import {
+  selectGeometryMenu,
+  setGeometryMenuVisibility
+} from "@/features/tree/treeSlice";
 
-import { ReactComponent as MenuLogo } from "@assets/svg/menu.svg";
+import { ReactComponent as GeometryMenuLogo } from "@assets/svg/share.svg";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
@@ -17,7 +20,7 @@ export default function GeometryMenu(): JSX.Element {
 
   return (
     <NavIcon
-      Icon={MenuLogo}
+      Icon={GeometryMenuLogo}
       title="Geometry menu"
       onClick={handleClick}
       active={showGeometryMenu}

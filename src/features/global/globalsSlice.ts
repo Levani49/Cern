@@ -6,6 +6,7 @@ import type { GlobalsSlice } from "./globalsSlice.type";
 
 const initialState: GlobalsSlice = {
   prefersDarkMode: true,
+  showMenu: true,
   startParticleAnimation: true,
   showStats: false,
   showAxis: true,
@@ -36,6 +37,9 @@ const globalsSlice = createSlice({
     },
     setSnapModal: (state, action: PayloadAction<boolean>) => {
       state.showSnapModal = action.payload;
+    },
+    setMenuBar: (state, action: PayloadAction<boolean>) => {
+      state.showMenu = action.payload;
     },
     setFullscreen: (state, action: PayloadAction<boolean>) => {
       state.fullScreen = action.payload;
@@ -85,7 +89,8 @@ export const {
   setGlobalWireframe,
   setSnapModal,
   setFullscreen,
-  setScreenRecording
+  setScreenRecording,
+  setMenuBar
 } = globalsSlice.actions;
 
 export const selectIsFullscreen = (state: RootState): boolean =>
@@ -103,6 +108,7 @@ export const selectGlobalOpacity = (state: RootState): number =>
   state.globals.globalOpacity;
 export const selectParticleAnimation = (state: RootState): boolean =>
   state.globals.startParticleAnimation;
+export const selectMenuBar = (state: RootState): boolean => state.globals.showMenu;
 export const selectScreenRecording = (
   state: RootState
 ): GlobalsSlice["screenRecording"] => state.globals.screenRecording;

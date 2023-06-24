@@ -1,5 +1,11 @@
+import { useAppSelector } from "@store/hooks";
+
+import { selectMenuBar } from "@features/global/globalsSlice";
+
 import Link from "@components/navigation/link/link.component";
+import NavigationBar from "@components/navigation/navigationBar/navigationToggler";
 import Settings from "@components/navigation/settings/settings";
+import ShowMenuBar from "@components/navigation/showMenuBar/showMenuBar";
 
 import { isDesktop } from "@utils/isDesktop.utils";
 
@@ -16,27 +22,33 @@ import ThemeToggler from "./theme/ThemeToggler.component";
 import WireframeMenu from "./wireframe/WireframeMenu.component";
 
 export default function Navigation(): JSX.Element {
+  const showMenuBar = useAppSelector(selectMenuBar);
+
   return (
-    <div className="fixed top-0 z-50 flex w-full flex-auto select-none items-center justify-center">
-      <nav className="flex w-auto items-center gap-2 overflow-x-auto rounded-sm bg-customGray py-2 pl-4 pr-4">
-        <NavTitle />
-        <GeometryMenu />
-        <EventsMenu />
-        <DroneMenu />
-        <CameraViewMenu />
-        <GeometryCutsMenu />
-        <OpacirtyMenu />
-        <WireframeMenu />
-        <Settings />
-        <FullScreenMenu />
-        {isDesktop() && (
-          <>
-            <ThemeToggler />
-            <Link />
-            <AboutMenu />
-          </>
-        )}
-      </nav>
+    <div className="fixed top-0 z-50 flex w-full flex-auto select-none flex-col items-center justify-center">
+      {showMenuBar && (
+        <nav className="flex w-auto items-center gap-2 overflow-x-auto rounded-sm bg-customGray py-2 pl-4 pr-4">
+          <NavTitle />
+          <NavigationBar />
+          <GeometryMenu />
+          <EventsMenu />
+          <DroneMenu />
+          <CameraViewMenu />
+          <GeometryCutsMenu />
+          <OpacirtyMenu />
+          <WireframeMenu />
+          <Settings />
+          <FullScreenMenu />
+          {isDesktop() && (
+            <>
+              <ThemeToggler />
+              <Link />
+              <AboutMenu />
+            </>
+          )}
+        </nav>
+      )}
+      <ShowMenuBar />
     </div>
   );
 }
