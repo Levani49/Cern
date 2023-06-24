@@ -72,7 +72,7 @@ export default class ModelService {
   }
 
   constructor() {
-    this.dracoLoader.setDecoderPath("/draco/");
+    this.dracoLoader.setDecoderPath("node_modules/three/examples/jsm/libs/draco/");
     this.dracoLoader.setDecoderConfig({ type: "js" });
   }
 }
