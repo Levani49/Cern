@@ -48,8 +48,8 @@ export default function DroneMenu(): JSX.Element {
     { Icon: HelixIcon, mode: "helix", title: "Helix mode" },
     { Icon: RocketIcon, mode: "rocket", title: "Rocket mode" },
     { Icon: DollyZoomIcon, mode: "zoom", title: "Zoom mode" },
-    { Icon: FlyIcon, mode: "fly", title: "Fly mode" },
-    { Icon: FilmIcon, mode: "z0", title: "Cinema mode" }
+    { Icon: FilmIcon, mode: "z0", title: "Cinema mode" },
+    { Icon: FlyIcon, mode: "fly", title: "Fly mode" }
   ];
 
   const desktop = isDesktop();
@@ -82,7 +82,7 @@ export default function DroneMenu(): JSX.Element {
   });
 
   return (
-    <div className="group inline-flex">
+    <div className="group relative inline-flex">
       <NavIcon
         title="Camera modes"
         onClick={(): void => handleModeChange("idle")}

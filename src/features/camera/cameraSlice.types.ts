@@ -4,7 +4,14 @@ import { Euler } from "three";
 
 import { DroneTypes } from "@type/app.types";
 
-export type ViewModes = "default" | "left" | "right";
+export type ViewModes =
+  | "iso"
+  | "left"
+  | "right"
+  | "front"
+  | "bottom"
+  | "back"
+  | "top";
 
 export type CameraTypes = "perspective" | "orthographic";
 

@@ -40,9 +40,9 @@ export default function OpacirtyMenu(): JSX.Element {
     : onChangeHandlerForGlobalOpacity;
 
   return (
-    <div className="group inline-flex">
+    <div className="group relative inline-flex">
       <NavIcon Icon={WaterDropIcon} title="Adjust Geometry Transparency" />
-      <MenuDropdown className="ml-[-50px] mt-8">
+      <MenuDropdown>
         <div className="flex h-6 w-auto items-center justify-center p-1">
           <input
             min={0}

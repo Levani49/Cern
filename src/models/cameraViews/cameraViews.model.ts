@@ -5,88 +5,71 @@ import { Vector3 } from "three";
 export default class CameraViews {
   public isActive = false;
   private lerpSpeed = 0.0825;
+  private animationRef = 0;
+  private threshold = 0.01;
 
   leftView(camera: Camera): void {
-    if (this.isActive) {
-      return;
-    }
     const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
     const targetPosition = new Vector3(0, 0, distance);
-    const threshold = 0.01;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    let animationRef: number;
-
-    const start = (): void => {
-      this.isActive = true;
-      animationRef = requestAnimationFrame(start);
-      const newPosition = camera.position
-        .clone()
-        .lerp(targetPosition, this.lerpSpeed);
-      camera.position.copy(newPosition);
-
-      if (camera.position.distanceTo(targetPosition) <= threshold) {
-        cancelAnimationFrame(animationRef);
-        this.isActive = false;
-      }
-    };
-
-    start();
+    this.start(camera, targetPosition);
   }
 
   frontView(camera: Camera): void {
-    if (this.isActive) {
-      return;
-    }
     const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
     const targetPosition = new Vector3(distance, 0, 0);
-    const threshold = 0.01;
+    this.start(camera, targetPosition);
+  }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    let animationRef: number;
+  bottomView(camera: Camera): void {
+    const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
+    const targetPosition = new Vector3(0, -distance, 0);
+    this.start(camera, targetPosition);
+  }
 
-    const start = (): void => {
-      this.isActive = true;
-      animationRef = requestAnimationFrame(start);
-      const newPosition = camera.position
-        .clone()
-        .lerp(targetPosition, this.lerpSpeed);
-      camera.position.copy(newPosition);
+  rightView(camera: Camera): void {
+    const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
+    const targetPosition = new Vector3(0, 0, -distance);
+    this.start(camera, targetPosition);
+  }
 
-      if (camera.position.distanceTo(targetPosition) <= threshold) {
-        cancelAnimationFrame(animationRef);
-        this.isActive = false;
-      }
-    };
+  backView(camera: Camera): void {
+    const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
+    const targetPosition = new Vector3(-distance, 0, 0);
+    this.start(camera, targetPosition);
+  }
 
-    start();
+  topView(camera: Camera): void {
+    const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
+    const targetPosition = new Vector3(0, distance, 0);
+    this.start(camera, targetPosition);
   }
 
   isoView(camera: Camera): void {
+    const distance = camera.position.distanceTo(new Vector3(0, 0, 0)) / 1.732;
+    const targetPosition = new Vector3(distance, distance, distance);
+    this.start(camera, targetPosition);
+  }
+
+  start(camera: Camera, targetPosition: Vector3): void {
     if (this.isActive) {
       return;
     }
-    const distance = camera.position.distanceTo(new Vector3(0, 0, 0)) / 1.732;
-    const targetPosition = new Vector3(distance, distance, distance);
-    const threshold = 0.01;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    let animationRef: number;
-
-    const start = (): void => {
+    const s = (): void => {
       this.isActive = true;
-      animationRef = requestAnimationFrame(start);
+      this.animationRef = requestAnimationFrame(s);
       const newPosition = camera.position
         .clone()
         .lerp(targetPosition, this.lerpSpeed);
       camera.position.copy(newPosition);
 
-      if (camera.position.distanceTo(targetPosition) <= threshold) {
-        cancelAnimationFrame(animationRef);
+      if (camera.position.distanceTo(targetPosition) <= this.threshold) {
+        cancelAnimationFrame(this.animationRef);
         this.isActive = false;
       }
     };
 
-    start();
+    s();
   }
 }

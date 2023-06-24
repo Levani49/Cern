@@ -17,7 +17,7 @@ import { supportsScreenRecording } from "@utils/supportsScreenRecording.utils";
 
 export default function Utils(): JSX.Element {
   return (
-    <div className="group inline-flex">
+    <div className="group relative inline-flex">
       <NavIcon Icon={SettingsIcon} title="Settings" />
       <MenuDropdown>
         <StatsMenu />

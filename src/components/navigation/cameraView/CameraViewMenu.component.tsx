@@ -1,17 +1,24 @@
 import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 
+import { ReactComponent as BackViewIcon } from "@assets/svg/back-side.svg";
+import { ReactComponent as BottomViewIcon } from "@assets/svg/bottom-view.svg";
 import { ReactComponent as EyeIcon } from "@assets/svg/eye.svg";
 import { ReactComponent as FrontSideBox } from "@assets/svg/front-side-box.svg";
 import { ReactComponent as IsoBox } from "@assets/svg/isoBox.svg";
 import { ReactComponent as LeftSideBox } from "@assets/svg/left-side-box.svg";
+import { ReactComponent as RightIcon } from "@assets/svg/rightSide.svg";
+import { ReactComponent as TopViewIcon } from "@assets/svg/top-view.svg";
 
-import { useAppDispatch, useAppSelector } from "@store/hooks";
+import { useAppDispatch } from "@store/hooks";
 
 import {
-  selectCameraViewMode,
+  setBackView,
+  setBottomView,
   setFrontView,
   setIsoView,
-  setLeftCameraView
+  setLeftCameraView,
+  setRightView,
+  setTopView
 } from "@features/camera/cameraSlice";
 
 import CameraMenu from "@components/navigation/camera/CameraMenu.component";
@@ -23,7 +30,6 @@ import NavIcon from "../navIcon/navIcon";
 
 export default function CameraViewMenu(): JSX.Element {
   const dispatch = useAppDispatch();
-  const viewType = useAppSelector(selectCameraViewMode);
   const { currentMode } = useDrone();
 
   const handleModeChange = (handler: ActionCreatorWithoutPayload): void => {
@@ -37,6 +43,19 @@ export default function CameraViewMenu(): JSX.Element {
       title: "Iso view",
       mode: "default"
     },
+
+    {
+      Icon: BottomViewIcon,
+      action: setBottomView,
+      title: "Bottom view",
+      mode: "bottom"
+    },
+    {
+      Icon: TopViewIcon,
+      action: setTopView,
+      title: "Top view",
+      mode: "top"
+    },
     {
       Icon: LeftSideBox,
       action: setLeftCameraView,
@@ -47,14 +66,25 @@ export default function CameraViewMenu(): JSX.Element {
       Icon: FrontSideBox,
       action: setFrontView,
       title: "Front view",
+      mode: "front"
+    },
+    {
+      Icon: RightIcon,
+      action: setRightView,
+      title: "Right view",
       mode: "right"
+    },
+    {
+      Icon: BackViewIcon,
+      action: setBackView,
+      title: "Back view",
+      mode: "back"
     }
   ];
 
   const innerHtml = menuItems.map((item) => {
     return (
       <NavIcon
-        active={viewType === item.mode}
         key={item.title}
         Icon={item.Icon}
         title={item.title}
@@ -65,7 +95,7 @@ export default function CameraViewMenu(): JSX.Element {
   });
 
   return (
-    <div className="group inline-flex">
+    <div className="group relative inline-flex">
       <NavIcon Icon={EyeIcon} active title="View options" />
       <MenuDropdown>
         {innerHtml}

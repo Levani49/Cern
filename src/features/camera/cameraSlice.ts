@@ -38,7 +38,7 @@ const initialState: ICameraSettings = {
   camera: null,
   cameraType: "perspective",
   showFlyModal: false,
-  viewMode: "default",
+  viewMode: "iso",
   orthographicCameraProps: undefined,
   perspectiveCameraProps: {
     fov: 75,
@@ -108,6 +108,30 @@ export const cameraSlice = createSlice({
         return;
       }
       cameraViews.frontView(state.camera as Camera);
+      state.viewMode = "front";
+    },
+
+    setTopView: (state) => {
+      if (cameraViews.isActive) {
+        return;
+      }
+      cameraViews.topView(state.camera as Camera);
+      state.viewMode = "top";
+    },
+
+    setBottomView: (state) => {
+      if (cameraViews.isActive) {
+        return;
+      }
+      cameraViews.bottomView(state.camera as Camera);
+      state.viewMode = "bottom";
+    },
+
+    setRightView: (state) => {
+      if (cameraViews.isActive) {
+        return;
+      }
+      cameraViews.rightView(state.camera as Camera);
       state.viewMode = "right";
     },
 
@@ -116,7 +140,15 @@ export const cameraSlice = createSlice({
         return;
       }
       cameraViews.isoView(state.camera as Camera);
-      state.viewMode = "default";
+      state.viewMode = "iso";
+    },
+
+    setBackView: (state) => {
+      if (cameraViews.isActive) {
+        return;
+      }
+      cameraViews.backView(state.camera as Camera);
+      state.viewMode = "iso";
     },
 
     setDroneMode: (state, action: PayloadAction<DroneTypes>) => {
@@ -166,7 +198,11 @@ export const {
   setCameraType,
   setOrthographicCameraDimensions,
   setPerspectiveCameraDimensions,
-  setCameraPosition
+  setCameraPosition,
+  setBottomView,
+  setRightView,
+  setBackView,
+  setTopView
 } = cameraSlice.actions;
 
 export const selectDefaultCameraPosition = (
