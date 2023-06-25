@@ -32,9 +32,9 @@ export default function AboutModal(): JSX.Element {
       <div className="flex h-full w-full flex-col justify-between gap-2 p-1">
         <div className="flex flex-col justify-center gap-2 text-center">
           <h1 className="text-center text-lg font-bold">Tracer Core</h1>
-          <h6 className="text-center text-xs font-bold text-gray-500">
-            Version: @latest
-          </h6>
+          <span className="items-center text-center text-xs font-bold text-gray-500">
+            Version: @6.0.0
+          </span>
         </div>
 
         <div className="flex flex-col gap-2 ">

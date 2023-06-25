@@ -7,6 +7,7 @@ type ModelInfo = {
   opacity: number;
   wireframe: boolean;
 };
+
 export type Employee = {
   id: string;
   name: string;
