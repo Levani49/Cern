@@ -1,5 +1,7 @@
 import { Grid } from "@react-three/drei";
 
+import { DoubleSide } from "three";
+
 import { useAppSelector } from "@store/hooks";
 
 import { selectGrid } from "@features/global/globalsSlice";
@@ -11,6 +13,7 @@ export default function CustomGrid(): JSX.Element {
     <>
       {show && (
         <Grid
+          side={DoubleSide}
           renderOrder={-1}
           position={[0, -18.5, 0]}
           infiniteGrid
