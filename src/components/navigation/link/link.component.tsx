@@ -11,7 +11,7 @@ import NavIcon from "@components/navigation/navIcon/navIcon";
 import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 const HOST = import.meta.env.VITE_HOST;
-const EMBED_TEXT = `<iframe src="${HOST}/?embed=true"></iframe>`;
+const EMBED_TEXT = `<iframe src="${HOST}/?embed=true" style="width: 560px; height: 560px"></iframe>`;
 
 export default function Link(): JSX.Element {
   const [embedCopied, setEmbedCopied] = useState(false);
