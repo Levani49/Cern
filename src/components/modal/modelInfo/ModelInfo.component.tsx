@@ -20,6 +20,8 @@ import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
 import Modal from "../Modal.component";
 import ModelAttribute from "./ModelAttribute.component";
 
+const cutTypes = ["-cut1", "-cut2", "-cut3", "-cut4", "No cut"];
+
 export default function ModelInfo(): JSX.Element {
   const dispatch = useAppDispatch();
 
@@ -44,10 +46,16 @@ export default function ModelInfo(): JSX.Element {
   };
 
   const handleCutTypeUpdate = (e: ChangeEvent<HTMLSelectElement>): void => {
-    dispatch(updateLocalModelCut(e.target.value as ModelCut));
+    if (e.target.value === "No cut") {
+      dispatch(updateLocalModelCut(""));
+    } else {
+      dispatch(updateLocalModelCut(e.target.value as ModelCut));
+    }
   };
 
-  const sortedCutTypes = sortCutTypes(cutType);
+  const sortedCutTypes = cutType
+    ? sortCutTypes(cutType)
+    : [...cutTypes.slice(0, cutTypes.length - 1), "No cut"];
 
   const cutTypeOptions = sortedCutTypes?.map((cutType) => (
     <option key={cutType} value={cutType}>
@@ -102,8 +110,6 @@ export default function ModelInfo(): JSX.Element {
     </Modal>
   );
 }
-
-const cutTypes = ["-cut1", "-cut2", "-cut3", "-cut4", ""];
 
 function sortCutTypes(currentCutType: ModelCut | undefined): ModelCut[] | void {
   if (!currentCutType) {
