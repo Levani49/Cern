@@ -13,5 +13,12 @@ export default function NavigationBar(): JSX.Element {
     dispatch(setMenuBar(false));
   };
 
-  return <NavIcon Icon={MenuLogo} active={show} onClick={handleClick} />;
+  return (
+    <NavIcon
+      Icon={MenuLogo}
+      active={show}
+      onClick={handleClick}
+      title="Toggle navigation bar"
+    />
+  );
 }

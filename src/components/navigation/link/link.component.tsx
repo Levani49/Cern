@@ -32,7 +32,11 @@ export default function Link(): JSX.Element {
 
   return (
     <>
-      <NavIcon Icon={LinkIcon} onClick={(): void => setOpen(true)} />
+      <NavIcon
+        Icon={LinkIcon}
+        onClick={(): void => setOpen(true)}
+        title="Create shareable link"
+      />
       <TransitionModal
         className="pb-4"
         title="Shareable links"
