@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Button from "@/components/button/Button.component";
 import TransitionModal from "@/components/transition-modal/transition.modal";
+import { saveAs } from "file-saver";
 
 import { ReactComponent as LinkIcon } from "@assets/svg/link.svg";
 import { ReactComponent as QrCode } from "@assets/svg/qrCode.svg";
@@ -28,6 +29,17 @@ export default function Link(): JSX.Element {
   const handleLinkCopy = (): void => {
     setLinkCopied(true);
     navigator.clipboard.writeText(HOST);
+  };
+
+  const handleDownload = (): void => {
+    const svgElement = document.getElementById("qrCode"); // Get the SVG element from the ref
+
+    if (svgElement) {
+      const svgXml = new XMLSerializer().serializeToString(svgElement);
+      const svgBlob = new Blob([svgXml], { type: "image/svg+xml;charset=utf-8" });
+      const fileName = "tracer-core-QRcode.svg";
+      saveAs(svgBlob, fileName);
+    }
   };
 
   return (
@@ -78,7 +90,13 @@ export default function Link(): JSX.Element {
             <div className="flex flex-col gap-2">
               <h4 className="ml-1">QR Code</h4>
               <div className="relative w-full  rounded bg-transparentDark px-4 py-4">
-                <QrCode className="w-full" />
+                <Button
+                  onClick={handleDownload}
+                  className="absolute right-0 top-0 z-10 bg-transparentDark hover:bg-green"
+                >
+                  Download
+                </Button>
+                <QrCode id="qrCode" className="w-full" />
               </div>
             </div>
           </div>

@@ -1,5 +1,7 @@
 import { useRef } from "react";
 
+import { saveAs } from "file-saver";
+
 import { ReactComponent as DownloadFileIcon } from "@assets/svg/downloadFileIcon.svg";
 import { ReactComponent as UploadFileIcon } from "@assets/svg/uploadFileIcon.svg";
 
@@ -44,12 +46,7 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
     const blob = new Blob([stateJSON], { type: "application/json" });
     const timestamp = new Date().toISOString();
     const filename = `${timestamp}-tracer-snapshot.snap`;
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = filename;
-    link.click();
-    URL.revokeObjectURL(url);
+    saveAs(blob, filename);
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
