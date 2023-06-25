@@ -15,7 +15,6 @@ interface OpacityProps {
   model: Object3D;
   opacity: number;
   updateUserData?: boolean;
-  transparent?: boolean;
 }
 
 interface WireframeProps {
@@ -28,17 +27,10 @@ export default class ModelService {
   private base = import.meta.env.VITE_MODELS_PROVIDER;
   public dracoLoader = new DRACOLoader();
 
-  updateOpacity({
-    model,
-    opacity,
-    transparent,
-    updateUserData
-  }: OpacityProps): void {
+  updateOpacity({ model, opacity, updateUserData }: OpacityProps): void {
     model.traverse((child: Object3D): void => {
       if (child instanceof Mesh) {
-        if (!transparent) {
-          child.material.transparent = transparent;
-        }
+        child.material.transparent = true;
         child.material.opacity = opacity;
         if (updateUserData) {
           child.userData = {

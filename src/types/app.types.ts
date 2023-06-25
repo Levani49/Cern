@@ -36,7 +36,7 @@ export type DroneTypes =
 export type ReactChildren = React.ReactNode | React.ReactNode[];
 export type emptyFunc = () => void;
 export type CurrentAnalysisTool = "algorithm" | "filter" | "info";
-export type ModelCut = "-cut1" | "-cut2" | "-cut3" | "-cut4" | null;
+export type ModelCut = "-cut1" | "-cut2" | "-cut3" | "-cut4" | "";
 export type ModelLoadingStates = "idle" | "loading" | "failed";
 export type selectedModel = ModelInfo | null;
 

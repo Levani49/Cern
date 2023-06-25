@@ -52,7 +52,7 @@ export default function GeometryCutsMenu(): JSX.Element {
   const handleModeChange = (modelCut: ModelCut): void => {
     if (selectedModel) {
       if (localCutType === modelCut) {
-        dispatch(updateLocalModelCut(null));
+        dispatch(updateLocalModelCut(""));
       } else {
         dispatch(updateLocalModelCut(modelCut));
       }
@@ -60,7 +60,7 @@ export default function GeometryCutsMenu(): JSX.Element {
       if (cutType === null && modelCut === null) {
         dispatch(updateModelCut("-cut3"));
       } else if (cutType === modelCut) {
-        dispatch(updateModelCut(null));
+        dispatch(updateModelCut(""));
       } else {
         dispatch(updateModelCut(modelCut));
       }
