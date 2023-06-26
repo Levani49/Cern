@@ -12,7 +12,6 @@ export interface UpdateNodePayload {
 }
 
 export interface GeometryTreeSlice {
-  show: boolean;
   tree: TreeNode[];
   activeModels: ActiveModel[];
   showGeometryMenu: boolean;

@@ -38,12 +38,7 @@ export default function Met(): JSX.Element {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       <line ref={lineRef} geometry={metToDraw.geometry}>
-        <lineDashedMaterial
-          attach="material"
-          color="#ff0000"
-          dashSize={0.5}
-          gapSize={0.1}
-        />
+        <lineDashedMaterial attach="material" color="#ff0000" dashSize={0.5} gapSize={0.1} />
       </line>
     );
   }

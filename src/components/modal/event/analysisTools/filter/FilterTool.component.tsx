@@ -7,11 +7,8 @@ import {
   setTrackFilters
 } from "@features/event/eventSlice";
 
-import ShowOnly from "../show-only/ShowOnly.component";
 import FilterContainer from "./FilterContainer.component";
 import FilterInput from "./FilterInput.component";
-
-const testing = false;
 
 export default function FilterTool(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -91,7 +88,6 @@ export default function FilterTool(): JSX.Element {
           />
         </FilterContainer>
       </div>
-      {testing && <ShowOnly />}
     </div>
   );
 }

@@ -13,4 +13,7 @@ export interface GlobalsSlice {
   globalOpacity: number;
   showSnapModal: boolean;
   showGeometryMenu: boolean;
+  fullScreen: boolean;
+  screenRecording: "idle" | "recording" | "stop";
+  showMenu: boolean;
 }

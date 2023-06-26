@@ -22,6 +22,7 @@ export default function SnapMenu(): JSX.Element {
         Icon={SnapIcon}
         active={showModal}
         onClick={(): void => handleToggle(!showModal)}
+        title="Import export snap file"
       />
       <SnapModal open={showModal} onClose={handleToggle} />
     </>

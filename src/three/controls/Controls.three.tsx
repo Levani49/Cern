@@ -3,29 +3,18 @@
 
 import { OrbitControlsProps } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
-import { useEffect, useMemo, useRef } from "react";
-
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
-import { selectCameraPosition, selectDroneState, setCamera } from "@features/camera/cameraSlice";
+import { useEffect, useRef } from "react";
 
 import CustomOrbitControl from "@three/lib/modified_orbit_controls/CustomOrbitControl";
 import Player from "@three/player/Player.three";
 
+import useDrone from "@hooks/useDrone/useDrone.hook";
+
 export default function Controls(): JSX.Element {
-  const dispatch = useAppDispatch();
   const { camera } = useThree();
-  const droneType = useAppSelector(selectDroneState);
-  const position = useAppSelector(selectCameraPosition);
+  const { currentMode } = useDrone();
+
   const controlsRef = useRef<OrbitControlsProps>(null);
-
-  const cameraPosition = useMemo(() => {
-    return position;
-  }, [position]);
-
-  useEffect(() => {
-    dispatch(setCamera(camera));
-  }, [cameraPosition, camera, dispatch]);
 
   useEffect(() => {
     const stopDampingEffect = (): void => {
@@ -44,15 +33,27 @@ export default function Controls(): JSX.Element {
     return () => window.removeEventListener("pointerdown", stopDampingEffect);
   }, []);
 
-  const rotate = droneType === "circle";
-  const isFreeFly = droneType === "fly";
-  const enable = droneType === "circle" || droneType === "idle";
+  const enableControls = currentMode === "circle" || currentMode === "idle";
 
-  if (isFreeFly) {
+  if (currentMode === "fly") {
     return (
-      <Player currentCameraPosition={[camera.position.x, camera.position.y, camera.position.z]} />
+      <Player
+        currentCameraPosition={[
+          camera.position.x,
+          camera.position.y,
+          camera.position.z
+        ]}
+      />
     );
   }
 
-  return <CustomOrbitControl ref={controlsRef} makeDefault autoRotate={rotate} enabled={enable} />;
+  return (
+    enableControls && (
+      <CustomOrbitControl
+        ref={controlsRef}
+        makeDefault
+        autoRotate={currentMode === "circle"}
+      />
+    )
+  );
 }

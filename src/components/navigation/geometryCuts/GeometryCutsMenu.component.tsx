@@ -28,88 +28,77 @@ export default function GeometryCutsMenu(): JSX.Element {
   const selectedModel = useAppSelector(selectSelectedModel);
   const clippingPlanesVal = useAppSelector(selectClippingPlanesNormal);
 
-  const onClickHandler = (modelCut: ModelCut): void => {
+  let Icon;
+
+  const switchExpression = selectedModel ? localCutType : cutType;
+
+  switch (switchExpression) {
+    case "-cut1":
+      Icon = LeftWallIcon;
+      break;
+    case "-cut2":
+      Icon = RightWallIcon;
+      break;
+    case "-cut3":
+      Icon = StairsIcon;
+      break;
+    case "-cut4":
+      Icon = GeometryCoreIcon;
+      break;
+    default:
+      Icon = ScissorIcon;
+  }
+
+  const handleModeChange = (modelCut: ModelCut): void => {
     if (selectedModel) {
       if (localCutType === modelCut) {
-        dispatch(updateLocalModelCut(null));
+        dispatch(updateLocalModelCut(""));
       } else {
         dispatch(updateLocalModelCut(modelCut));
       }
     } else {
-      if (cutType === modelCut) {
-        dispatch(updateModelCut(null));
+      if (cutType === null && modelCut === null) {
+        dispatch(updateModelCut("-cut3"));
+      } else if (cutType === modelCut) {
+        dispatch(updateModelCut(""));
       } else {
         dispatch(updateModelCut(modelCut));
       }
     }
   };
 
-  const handleClippingPlanes = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void => {
+  const handleClippingPlanes = (e: React.ChangeEvent<HTMLInputElement>): void => {
     dispatch(setClippingPlanesNormal(+e.target.value));
   };
 
-  let Icon;
+  const menuItems = [
+    { Icon: LeftWallIcon, mode: "-cut1", title: "1'st cut" },
+    { Icon: RightWallIcon, mode: "-cut2", title: "2'nd cut" },
+    { Icon: StairsIcon, mode: "-cut3", title: "2'rd cut" },
+    { Icon: GeometryCoreIcon, mode: "-cut4", title: "Full cut" },
+    { Icon: ScissorIcon, mode: null, title: "Custom cut" }
+  ];
 
-  if (selectedModel) {
-    Icon =
-      localCutType === "-cut1"
-        ? LeftWallIcon
-        : localCutType === "-cut2"
-        ? RightWallIcon
-        : localCutType === "-cut3"
-        ? StairsIcon
-        : localCutType === "-cut4"
-        ? GeometryCoreIcon
-        : ScissorIcon;
-  } else {
-    Icon =
-      cutType === "-cut1"
-        ? LeftWallIcon
-        : cutType === "-cut2"
-        ? RightWallIcon
-        : cutType === "-cut3"
-        ? StairsIcon
-        : cutType === "-cut4"
-        ? GeometryCoreIcon
-        : ScissorIcon;
-  }
+  const innerHtml = menuItems.map((item) => {
+    return (
+      <NavIcon
+        active={switchExpression === item.mode}
+        key={item.title}
+        Icon={item.Icon}
+        title={item.title}
+        onClick={(): void => handleModeChange(item.mode as ModelCut)}
+      />
+    );
+  });
 
   return (
     <>
-      <div className="group inline-flex">
+      <div className="group relative inline-flex">
         <NavIcon Icon={Icon} title="Geometry Cut Options" active />
-        <MenuDropdown>
-          <NavIcon
-            Icon={LeftWallIcon}
-            title="1'st cut"
-            onClick={(): void => onClickHandler("-cut1")}
-          />
-          <NavIcon
-            Icon={RightWallIcon}
-            title="2'nd cut"
-            onClick={(): void => onClickHandler("-cut2")}
-          />
-          <NavIcon
-            Icon={StairsIcon}
-            title="3'rd cut"
-            onClick={(): void => onClickHandler("-cut3")}
-          />
-          <NavIcon
-            Icon={GeometryCoreIcon}
-            title="full cut"
-            onClick={(): void => onClickHandler("-cut4")}
-          />
-          <NavIcon
-            Icon={ScissorIcon}
-            title="Cutom cut"
-            onClick={(): void => onClickHandler(null)}
-          />
-        </MenuDropdown>
+        <MenuDropdown>{innerHtml}</MenuDropdown>
       </div>
       {cutType === null && (
-        <div className="absolute left-1/2 top-20 flex -translate-x-1/2 -translate-y-1/2 transform items-center rounded bg-customGray p-6 ">
+        <div className="absolute left-1/2 top-[68px] flex -translate-x-1/2 -translate-y-1/2 transform items-center rounded bg-customGray p-4 ">
           <input
             min={-3.14159265}
             max={3.14159265}

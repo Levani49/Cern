@@ -2,10 +2,7 @@ import { ReactComponent as InfoIcon } from "@assets/svg/info.svg";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
-import {
-  selectAboutModalState,
-  showAboutModal
-} from "@features/modal/modalSlice";
+import { selectAboutModalState, showAboutModal } from "@features/modal/modalSlice";
 
 import AboutModal from "@components/modal/about/About.modal";
 

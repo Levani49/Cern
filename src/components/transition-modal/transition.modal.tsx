@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useRef } from "react";
+import { CSSProperties, Fragment, useRef } from "react";
 
 import { ReactComponent as XMarkIcon } from "@assets/svg/xMarkIcon.svg";
 
@@ -8,6 +8,7 @@ interface Props {
   title: string;
   className?: string;
   children: JSX.Element | JSX.Element[];
+  style?: CSSProperties;
   onClose?: (e: boolean) => void;
 }
 
@@ -16,7 +17,8 @@ export default function TransitionModal({
   className,
   title,
   children,
-  onClose
+  onClose,
+  style
 }: Props): JSX.Element {
   const cancelButtonRef = useRef(null);
 
@@ -55,14 +57,15 @@ export default function TransitionModal({
             >
               <Dialog.Panel
                 className={`relative transform overflow-hidden rounded-lg bg-customGray text-left shadow-xl transition-all sm:w-full sm:max-w-2xl ${className}`}
+                style={style}
               >
-                <div className="bg-customGray px-4 pb-4 pt-5 text-white sm:p-4 sm:pb-2">
+                <div className="w-full bg-customGray px-4 pb-4 pt-5 text-white sm:p-4 sm:pb-2">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 w-full sm:mt-0 sm:text-left">
-                      <div className="flex w-full justify-center">
+                      <div className="flex w-full items-center justify-center">
                         <Dialog.Title
                           as="h3"
-                          className="text-center text-base text-lg font-semibold leading-6 text-white"
+                          className="text-center text-lg font-semibold leading-6 text-white"
                         >
                           {title}
                         </Dialog.Title>

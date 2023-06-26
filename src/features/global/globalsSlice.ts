@@ -6,6 +6,7 @@ import type { GlobalsSlice } from "./globalsSlice.type";
 
 const initialState: GlobalsSlice = {
   prefersDarkMode: true,
+  showMenu: true,
   startParticleAnimation: true,
   showStats: false,
   showAxis: true,
@@ -16,7 +17,9 @@ const initialState: GlobalsSlice = {
   previousSelectedModel: null,
   globalOpacity: 1,
   showGeometryMenu: true,
-  showSnapModal: false
+  showSnapModal: false,
+  fullScreen: false,
+  screenRecording: "idle"
 };
 
 const globalsSlice = createSlice({
@@ -26,8 +29,20 @@ const globalsSlice = createSlice({
     rehydrate: (state, action) => {
       return action.payload.globals || state;
     },
+    setScreenRecording: (
+      state,
+      action: PayloadAction<GlobalsSlice["screenRecording"]>
+    ) => {
+      state.screenRecording = action.payload;
+    },
     setSnapModal: (state, action: PayloadAction<boolean>) => {
       state.showSnapModal = action.payload;
+    },
+    setMenuBar: (state, action: PayloadAction<boolean>) => {
+      state.showMenu = action.payload;
+    },
+    setFullscreen: (state, action: PayloadAction<boolean>) => {
+      state.fullScreen = action.payload;
     },
     setGlobalWireframe: (state, action: PayloadAction<boolean>) => {
       state.globalWireframe = action.payload;
@@ -72,15 +87,28 @@ export const {
   showGrid,
   setGlobalOpacity,
   setGlobalWireframe,
-  setSnapModal
+  setSnapModal,
+  setFullscreen,
+  setScreenRecording,
+  setMenuBar
 } = globalsSlice.actions;
 
-export const selectSnapModal = (state: RootState): boolean => state.globals.showSnapModal;
-export const selectTheme = (state: RootState): boolean => state.globals.prefersDarkMode;
+export const selectIsFullscreen = (state: RootState): boolean =>
+  state.globals.fullScreen;
+export const selectSnapModal = (state: RootState): boolean =>
+  state.globals.showSnapModal;
+export const selectTheme = (state: RootState): boolean =>
+  state.globals.prefersDarkMode;
 export const selectStats = (state: RootState): boolean => state.globals.showStats;
 export const selectAxis = (state: RootState): boolean => state.globals.showAxis;
 export const selectGrid = (state: RootState): boolean => state.globals.showGrid;
-export const selectGlobalWireframe = (state: RootState): boolean => state.globals.globalWireframe;
-export const selectGlobalOpacity = (state: RootState): number => state.globals.globalOpacity;
+export const selectGlobalWireframe = (state: RootState): boolean =>
+  state.globals.globalWireframe;
+export const selectGlobalOpacity = (state: RootState): number =>
+  state.globals.globalOpacity;
 export const selectParticleAnimation = (state: RootState): boolean =>
   state.globals.startParticleAnimation;
+export const selectMenuBar = (state: RootState): boolean => state.globals.showMenu;
+export const selectScreenRecording = (
+  state: RootState
+): GlobalsSlice["screenRecording"] => state.globals.screenRecording;

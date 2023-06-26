@@ -27,9 +27,7 @@ export default class EventService {
       const content = tagText.split(whiteSpaceCharacters);
       return content.map((element: string) => parseFloat(element));
     } catch (err) {
-      throw new Error(
-        `Error while converting tag text to numbers array ${err}`
-      );
+      throw new Error(`Error while converting tag text to numbers array ${err}`);
     }
   }
 

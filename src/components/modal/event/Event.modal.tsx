@@ -9,6 +9,8 @@ import {
   showEventsModal
 } from "@features/modal/modalSlice";
 
+import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
+
 import Modal from "../Modal.component";
 import AlgorithmTool from "./analysisTools/algorithm/AlgorithmTool.component";
 import AnalysisTools from "./analysisTools/AnalysisTools.component";
@@ -28,6 +30,8 @@ export default function EventsModal(): JSX.Element {
     return currentAnalysisTool;
   }, [currentAnalysisTool]);
 
+  useEscapeKeydown(() => dispatch(showEventsModal(false)));
+
   const closeModalHandler = (): void => {
     dispatch(showEventsModal(false));
   };
@@ -40,6 +44,7 @@ export default function EventsModal(): JSX.Element {
             {[...loadedEvents].reverse().map((event, index): JSX.Element => {
               return (
                 <InfoTool
+                  active={index === 0}
                   showEventDetails={index === 0}
                   key={index}
                   eventName={event.eventName}

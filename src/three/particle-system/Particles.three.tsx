@@ -1,7 +1,9 @@
 import { Float } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
+import { setDrawEvents } from "@/features/event/eventSlice";
+import { useAppDispatch } from "@/store/hooks";
 import { MathUtils, Object3D } from "three";
 
 import Collision from "./Collision.three";
@@ -9,12 +11,31 @@ import Electron from "./Electron.three";
 
 interface Props {
   onFinish: () => void;
+  electronSpeed: number;
+  explosionSpeed: number;
 }
 
-export default function Particles({ onFinish }: Props): JSX.Element {
+const NUMBER_OF_ITERATION = 200;
+
+export default function Particles({
+  onFinish,
+  electronSpeed,
+  explosionSpeed
+}: Props): JSX.Element {
   const [explode, setExplode] = useState(false);
+  const dispatch = useAppDispatch();
   const electronRefs = useRef<Array<Object3D | null>>([]);
   const iterationRef = useRef(1);
+
+  useEffect(() => {
+    dispatch(setDrawEvents(false));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (explode) {
+      dispatch(setDrawEvents(true));
+    }
+  }, [explode, dispatch]);
 
   const electronArray = useMemo(() => {
     return new Array(500).fill(0, 0).map((_, index) => {
@@ -31,7 +52,9 @@ export default function Particles({ onFinish }: Props): JSX.Element {
           key={index}
           position={[x, y, z]}
           size={[0.005]}
-          ref={(ref: Object3D | null): Object3D | null => (electronRefs.current[index] = ref)}
+          ref={(ref: Object3D | null): Object3D | null =>
+            (electronRefs.current[index] = ref)
+          }
         />
       );
     });
@@ -43,14 +66,13 @@ export default function Particles({ onFinish }: Props): JSX.Element {
         if (electron) {
           const relativePosition = electron.position.clone();
           const direction = relativePosition.normalize();
-          electron.position.addScaledVector(direction, 0.25);
+          electron.position.addScaledVector(direction, explosionSpeed);
         }
       });
 
       iterationRef.current += 1;
 
-      // NUMBER OF ITERATION
-      if (iterationRef.current === 200) {
+      if (iterationRef.current === NUMBER_OF_ITERATION) {
         onFinish();
       }
     }
@@ -59,7 +81,10 @@ export default function Particles({ onFinish }: Props): JSX.Element {
   return (
     <>
       <Float speed={0.07} rotationIntensity={0.5} floatIntensity={0.5}>
-        <Collision onCollision={(): void => setExplode(true)} />
+        <Collision
+          onCollision={(): void => setExplode(true)}
+          speed={electronSpeed}
+        />
         <group visible={explode ? true : false}>{electronArray}</group>
       </Float>
     </>

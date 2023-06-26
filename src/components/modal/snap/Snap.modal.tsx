@@ -1,15 +1,19 @@
 import { useRef } from "react";
 
-import { hydrateClippingPlanes, setSnapIsLoading } from "@/features/model/modelSlice";
-import { useAppDispatch } from "@/store/hooks";
+import { saveAs } from "file-saver";
 
 import { ReactComponent as DownloadFileIcon } from "@assets/svg/downloadFileIcon.svg";
 import { ReactComponent as UploadFileIcon } from "@assets/svg/uploadFileIcon.svg";
 
+import { useAppDispatch } from "@store/hooks";
 import store from "@store/store";
+
+import { hydrateClippingPlanes, setSnapIsLoading } from "@features/model/modelSlice";
 
 import Button from "@components/button/Button.component";
 import TransitionModal from "@components/transition-modal/transition.modal";
+
+import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import SnapCard from "./SnapCard.component";
 
@@ -27,6 +31,8 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
+  useEscapeKeydown(() => onClose(false));
+
   const handleLoadSnapshot = (): void => {
     if (inputRef.current) {
       inputRef.current.click();
@@ -39,13 +45,8 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
     const stateJSON = JSON.stringify(state);
     const blob = new Blob([stateJSON], { type: "application/json" });
     const timestamp = new Date().toISOString();
-    const filename = `${timestamp}-tracer-snapshot.json`;
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = filename;
-    link.click();
-    URL.revokeObjectURL(url);
+    const filename = `${timestamp}-tracer-snapshot.snap`;
+    saveAs(blob, filename);
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -84,7 +85,13 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
             Import
           </Button>
         </SnapCard>
-        <input onChange={handleFileChange} ref={inputRef} type="file" hidden accept=".json" />
+        <input
+          onChange={handleFileChange}
+          ref={inputRef}
+          type="file"
+          hidden
+          accept=".snap"
+        />
       </div>
     </TransitionModal>
   );

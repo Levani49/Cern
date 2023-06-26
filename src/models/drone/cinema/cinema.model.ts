@@ -4,9 +4,6 @@ import { CatmullRomCurve3, Vector3 } from "three";
 
 import { emptyFunc } from "@type/app.types";
 
-/**
- * A class for controlling the camera movement in a cinema-style animation.
- */
 export default class Cinema {
   public configuration = {
     road: new CatmullRomCurve3([
@@ -16,12 +13,6 @@ export default class Cinema {
     ]).getPoints(700)
   };
 
-  /**
-   * Starts the cinema-style animation.
-   *
-   * @param {Camera} camera - The camera object to be controlled.
-   * @param {eFn} cb - A callback function to be called when the animation is complete.
-   */
   start(camera: Camera, cb: emptyFunc | undefined = undefined): void {
     const { road } = this.configuration;
 
@@ -33,9 +24,6 @@ export default class Cinema {
     let distance = 0;
     let reverse = 1;
 
-    /**
-     * A callback function for the animation loop.
-     */
     const s = (): void => {
       this.animationRef = requestAnimationFrame(s);
       camera.lookAt(0, 0.01, 0);
@@ -92,19 +80,11 @@ export default class Cinema {
     s();
   }
 
-  /**
-   * Stops the cinema-style animation.
-   */
   stop(): void {
     if (this.animationRef) {
       cancelAnimationFrame(this.animationRef);
     }
   }
 
-  /**
-   * Creates a new instance of the `Cinema` class.
-   *
-   * @param {number} animationRef - The animation reference ID.
-   */
   constructor(private animationRef: number = 0) {}
 }

@@ -1,4 +1,4 @@
-@import url("./fonts.css");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -21,6 +21,14 @@ body {
   height: 100vh;
   background: rgb(28, 28, 28);
   font-family: "Roboto", sans-serif;
+}
+
+.bgDark::backdrop {
+  background: rgb(28, 28, 28);
+}
+
+.bgLight::backdrop {
+  background: rgb(171, 171, 171);
 }
 
 body::backdrop {
@@ -47,6 +55,13 @@ body::backdrop {
   background-color: rgb(67, 67, 67);
   border-radius: 16px;
   /* border: 3px solid var(--primary); */
+}
+
+/*! DO NOT REMOVE */
+#headlessui-portal-root {
+  position: relative;
+  z-index: 9999;
+  width: 100vw;
 }
 
 .modalstyles {

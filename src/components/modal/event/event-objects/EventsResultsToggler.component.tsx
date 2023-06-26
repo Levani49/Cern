@@ -29,17 +29,23 @@ export default function EventsResultsToggler(): JSX.Element {
   };
 
   return (
-    <div className="flex justify-between gap-4">
-      {eventLabels.map(({ key, label }) => (
-        <Checkbox
-          key={key}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          checked={eventParameters[key]}
-          onClick={handleEventToggle(key)}
-          title={label}
-        />
-      ))}
+    <div className="flex justify-between gap-2">
+      {eventLabels.map(({ key, label }) => {
+        return (
+          <div className="flex items-center gap-2" key={key + label}>
+            <Checkbox
+              id={label}
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              checked={eventParameters[key]}
+              onClick={handleEventToggle(key)}
+            />
+            <label htmlFor={label} className="text-xs text-light">
+              {label.toUpperCase()}
+            </label>
+          </div>
+        );
+      })}
     </div>
   );
 }

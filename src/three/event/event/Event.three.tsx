@@ -2,7 +2,12 @@ import { memo, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
-import { selectEventNumber, setEventDetailsXML, setEventLoading } from "@features/event/eventSlice";
+import {
+  selectDrawEvents,
+  selectEventNumber,
+  setEventDetailsXML,
+  setEventLoading
+} from "@features/event/eventSlice";
 
 import EventService from "@services/event/event.service";
 
@@ -15,6 +20,7 @@ const eventService = new EventService();
 function Event(): JSX.Element {
   const dispatch = useAppDispatch();
   const eventNumber = useAppSelector(selectEventNumber);
+  const drawEvents = useAppSelector(selectDrawEvents);
 
   useEffect(() => {
     const asyncCallback = async (): Promise<void> => {
@@ -30,9 +36,13 @@ function Event(): JSX.Element {
 
   return (
     <>
-      <Tracks />
-      <Jet />
-      <Met />
+      {drawEvents && (
+        <>
+          <Tracks />
+          <Jet />
+          <Met />
+        </>
+      )}
     </>
   );
 }

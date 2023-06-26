@@ -1,5 +1,3 @@
-import { useMemo } from "react";
-
 import type { DroneTypes, SVGIcon } from "@type/app.types";
 
 import { ReactComponent as CircleIcon } from "@assets/svg/circle.svg";
@@ -10,13 +8,10 @@ import { ReactComponent as HelixIcon } from "@assets/svg/helix.svg";
 import { ReactComponent as RocketIcon } from "@assets/svg/rocket.svg";
 import { ReactComponent as DollyZoomIcon } from "@assets/svg/zoom.svg";
 
-import { useAppDispatch, useAppSelector } from "@store/hooks";
+import { useAppDispatch } from "@store/hooks";
 
-import {
-  selectDroneState,
-  setDroneMode,
-  setFlyModalState
-} from "@features/camera/cameraSlice";
+import useDrone from "@hooks/useDrone/useDrone.hook";
+import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import { isDesktop } from "@utils/isDesktop.utils";
 
@@ -31,13 +26,14 @@ interface MenuItem {
 
 export default function DroneMenu(): JSX.Element {
   const dispatch = useAppDispatch();
-  const currentMode = useAppSelector(selectDroneState);
-  const currentModeMemoized = useMemo(() => currentMode, [currentMode]);
+  const { currentMode, setDroneMode, setFlyModalState } = useDrone();
 
-  const isActive = currentModeMemoized !== "idle";
+  useEscapeKeydown(() => dispatch(setDroneMode("idle")));
+
+  const isActive = currentMode !== "idle";
 
   const handleModeChange = (mode: DroneTypes): void => {
-    if (currentModeMemoized === mode) {
+    if (currentMode === mode) {
       dispatch(setDroneMode("idle"));
     } else {
       if (mode === "fly") {
@@ -52,13 +48,15 @@ export default function DroneMenu(): JSX.Element {
     { Icon: HelixIcon, mode: "helix", title: "Helix mode" },
     { Icon: RocketIcon, mode: "rocket", title: "Rocket mode" },
     { Icon: DollyZoomIcon, mode: "zoom", title: "Zoom mode" },
-    { Icon: FlyIcon, mode: "fly", title: "Fly mode" },
-    { Icon: FilmIcon, mode: "z0", title: "Cinema mode" }
+    { Icon: FilmIcon, mode: "z0", title: "Cinema mode" },
+    { Icon: FlyIcon, mode: "fly", title: "Fly mode" }
   ];
 
   const desktop = isDesktop();
 
   const innerHtml = menuItems.map((item: MenuItem) => {
+    const isActive = currentMode !== "idle";
+
     if (!desktop) {
       if (item.mode !== "fly") {
         return (
@@ -73,6 +71,7 @@ export default function DroneMenu(): JSX.Element {
     } else {
       return (
         <NavIcon
+          active={isActive && currentMode === item.mode}
           key={item.mode}
           Icon={item.Icon}
           title={item.title}
@@ -83,12 +82,12 @@ export default function DroneMenu(): JSX.Element {
   });
 
   return (
-    <div className="group inline-flex">
+    <div className="group relative inline-flex">
       <NavIcon
         title="Camera modes"
         onClick={(): void => handleModeChange("idle")}
         Icon={DroneIcon}
-        iconColor={`${isActive ? "text-red-500 animate-pulse" : ""}`}
+        iconClass={`${isActive ? "text-red-500 animate-pulse" : ""}`}
       />
       <MenuDropdown>{innerHtml}</MenuDropdown>
     </div>

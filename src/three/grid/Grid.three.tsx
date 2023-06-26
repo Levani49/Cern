@@ -1,28 +1,19 @@
 import { Grid } from "@react-three/drei";
 
+import { DoubleSide } from "three";
+
 import { useAppSelector } from "@store/hooks";
 
-import { selectGrid, selectTheme } from "@features/global/globalsSlice";
+import { selectGrid } from "@features/global/globalsSlice";
 
-/**
- * Renders a custom grid.
- *
- * @returns {JSX.Element} JSX.Element
- */
 export default function CustomGrid(): JSX.Element {
-  const { show } = useAppSelector((state) => ({
-    show: selectGrid(state),
-    prefersDarkMode: selectTheme(state)
-  }));
-
-  if (!show) {
-    return <></>;
-  }
+  const show = useAppSelector(selectGrid);
 
   return (
     <>
       {show && (
         <Grid
+          side={DoubleSide}
           renderOrder={-1}
           position={[0, -18.5, 0]}
           infiniteGrid

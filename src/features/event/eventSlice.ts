@@ -13,6 +13,7 @@ import { EventsSlice, LoadedEvents } from "./eventSlice.types";
 const eventService = new EventService();
 
 const initialState: EventsSlice = {
+  drawEvents: false,
   eventNumber: {
     eventGroup: "E",
     eventIndex: 5
@@ -36,7 +37,7 @@ const initialState: EventsSlice = {
     phi: undefined,
     eta: undefined,
     theta: undefined,
-    pt: undefined
+    pt: "0.7"
   },
   jetFilter: {
     phi: undefined,
@@ -53,10 +54,10 @@ const eventSlice = createSlice({
     rehydrate: (state, action) => {
       return action.payload.event || state;
     },
-    setTrackFilters: (
-      state,
-      action: PayloadAction<EventsSlice["trackFilter"]>
-    ) => {
+    setDrawEvents: (state, action: PayloadAction<boolean>) => {
+      state.drawEvents = action.payload;
+    },
+    setTrackFilters: (state, action: PayloadAction<EventsSlice["trackFilter"]>) => {
       state.trackFilter = action.payload;
     },
     setJetFilters: (state, action: PayloadAction<EventsSlice["jetFilter"]>) => {
@@ -69,10 +70,7 @@ const eventSlice = createSlice({
       state.eventGeneralInfo = eventGeneralInfo;
       state.loadedEvents.push({ ...eventGeneralInfo, eventName });
     },
-    setEventNumber: (
-      state,
-      action: PayloadAction<EventsSlice["eventNumber"]>
-    ) => {
+    setEventNumber: (state, action: PayloadAction<EventsSlice["eventNumber"]>) => {
       state.eventNumber = action.payload;
       state.isLoading = true;
     },
@@ -96,6 +94,7 @@ export const {
   setEventParameters,
   setTrackFilters,
   setJetFilters,
+  setDrawEvents,
   rehydrate
 } = eventSlice.actions;
 export const selectEventGeneralInfo = (state: RootState): EventOverviewData =>
@@ -108,15 +107,16 @@ export const selectEvent = (state: RootState): EventDetailsXML | null =>
 export const selectEventParameters = (
   state: RootState
 ): EventsSlice["eventsToShow"] => state.event.eventsToShow;
-export const selectEventNumber = (
-  state: RootState
-): EventsSlice["eventNumber"] => state.event.eventNumber;
+export const selectEventNumber = (state: RootState): EventsSlice["eventNumber"] =>
+  state.event.eventNumber;
 
 export const selectLoadedEvents = (state: RootState): LoadedEvents[] =>
   state.event.loadedEvents;
 
-export const selectTrackFilter = (
-  state: RootState
-): EventsSlice["trackFilter"] => state.event.trackFilter;
+export const selectTrackFilter = (state: RootState): EventsSlice["trackFilter"] =>
+  state.event.trackFilter;
 export const selectJetFilter = (state: RootState): EventsSlice["jetFilter"] =>
   state.event.jetFilter;
+
+export const selectDrawEvents = (state: RootState): boolean =>
+  state.event.drawEvents;

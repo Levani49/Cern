@@ -72,7 +72,7 @@ export default function ParentNode({
   return (
     <li
       className={`border-solid ${
-        !nodeEnd && "relative left-[-1px] border-l-[1px] border-white"
+        !nodeEnd && "relative left-[-1px] border-l-[0.5px] border-white"
       } ${root && "border-none"}`}
     >
       <div
@@ -84,15 +84,12 @@ export default function ParentNode({
             className={`${iconClass}`}
           />
         ) : (
-          <PlusCircleIcon
-            onClick={showChildrenHandler}
-            className={`${iconClass}`}
-          />
+          <PlusCircleIcon onClick={showChildrenHandler} className={`${iconClass}`} />
         )}
 
         <span
           role="presentation"
-          className={`${innerState} ml-[5px] cursor-pointer text-xs uppercase`}
+          className={`${innerState} ml-[5px] cursor-pointer text-xs font-light uppercase`}
           onClick={onClickHandler}
         >
           {name}

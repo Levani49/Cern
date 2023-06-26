@@ -2,7 +2,7 @@ import type { SVGIcon } from "@type/app.types";
 
 interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   Icon: SVGIcon;
-  iconColor?: string;
+  iconClass?: string;
   disabled?: boolean;
   active?: boolean;
 }
@@ -11,7 +11,7 @@ export default function NavIcon({
   Icon,
   className,
   active,
-  iconColor,
+  iconClass,
   ...other
 }: Props): JSX.Element {
   return (
@@ -22,7 +22,7 @@ export default function NavIcon({
       <Icon
         className={`icon ${
           active && "text-blue dark:text-green"
-        } transition-all ${iconColor}`}
+        } transition-all ${iconClass}`}
       />
     </button>
   );

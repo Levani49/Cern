@@ -1,33 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+
+import { selectIsFullscreen, setFullscreen } from "@/features/global/globalsSlice";
+import useDrone from "@/hooks/useDrone/useDrone.hook";
 
 import { ReactComponent as ArrowsPointingOutIcon } from "@assets/svg/arrowsPointingOut.svg";
 
-import { useAppSelector } from "@store/hooks";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
 
-import { selectDroneState } from "@features/camera/cameraSlice";
+import { supportsFullscreen } from "@utils/supportsFullscreen.utils";
 
 import NavIcon from "../navIcon/navIcon";
 
-function isFullscreenSupported(): boolean {
-  const bodyElement = document.documentElement as HTMLElement;
-
-  return !!bodyElement.requestFullscreen;
-}
-
 export default function FullScreenMenu(): JSX.Element {
-  const [active, setActive] = useState<boolean>(false);
-  const droneMode = useAppSelector(selectDroneState);
+  const dispatch = useAppDispatch();
+  const isFullscreen = useAppSelector(selectIsFullscreen);
+
+  const { currentMode } = useDrone();
 
   useEffect(() => {
     const exitFullScreen = (): void => {
       if (!document.fullscreenElement) {
-        setActive(false);
+        dispatch(setFullscreen(false));
       }
     };
 
     document.addEventListener("fullscreenchange", exitFullScreen);
-    return () =>
-      document.removeEventListener("fullscreenchange", exitFullScreen);
+    return () => document.removeEventListener("fullscreenchange", exitFullScreen);
   }, []);
 
   const handleFullScreen = (): void => {
@@ -35,24 +33,24 @@ export default function FullScreenMenu(): JSX.Element {
 
     if (!document.fullscreenElement) {
       element.requestFullscreen();
-      setActive(true);
+      dispatch(setFullscreen(true));
     } else {
       document.exitFullscreen();
-      setActive(false);
+      dispatch(setFullscreen(false));
     }
   };
 
-  if (!isFullscreenSupported()) {
-    return <></>;
-  }
-
   return (
-    <NavIcon
-      active={active}
-      Icon={ArrowsPointingOutIcon}
-      title="Fullscreen Mode"
-      onClick={handleFullScreen}
-      disabled={droneMode === "fly"}
-    />
+    <>
+      {supportsFullscreen() && (
+        <NavIcon
+          active={isFullscreen}
+          Icon={ArrowsPointingOutIcon}
+          title="Fullscreen Mode"
+          onClick={handleFullScreen}
+          disabled={currentMode === "fly"}
+        />
+      )}
+    </>
   );
 }

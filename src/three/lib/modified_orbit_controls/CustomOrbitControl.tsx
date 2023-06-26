@@ -8,10 +8,12 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 /* eslint-disable */
-import React, { forwardRef } from 'react';
-import { useThree, useFrame } from '@react-three/fiber';
-import { OrbitControls as OrbitControls$1 } from './modified_orbit_controls.js';
-import _extends from '@babel/runtime/helpers/esm/extends';
+import { useFrame, useThree } from "@react-three/fiber";
+import React, { forwardRef } from "react";
+
+import _extends from "@babel/runtime/helpers/esm/extends";
+
+import { OrbitControls as OrbitControls$1 } from "./modified_orbit_controls.js";
 
 const CustomOrbitControl = forwardRef(
   (
@@ -26,7 +28,7 @@ const CustomOrbitControl = forwardRef(
       onEnd,
       ...restProps
     },
-    ref,
+    ref
   ) => {
     const invalidate = useThree((state) => state.invalidate);
     const defaultCamera = useThree((state) => state.camera);
@@ -41,7 +43,9 @@ const CustomOrbitControl = forwardRef(
     const controls = React.useMemo(() => new OrbitControls$1(explCamera), [explCamera]);
 
     useFrame(() => {
-      if (controls.enabled) controls.update();
+      if (controls.enabled) {
+        controls.update();
+      }
     }, -1);
     React.useEffect(() => {
       controls.connect(explDomElement);
@@ -62,39 +66,39 @@ const CustomOrbitControl = forwardRef(
         if (onEnd) onEnd(e);
       };
 
-      controls.addEventListener('change', callback);
-      controls.addEventListener('start', onStartCb);
-      controls.addEventListener('end', onEndCb);
+      controls.addEventListener("change", callback);
+      controls.addEventListener("start", onStartCb);
+      controls.addEventListener("end", onEndCb);
       return () => {
-        controls.removeEventListener('start', onStartCb);
-        controls.removeEventListener('end', onEndCb);
-        controls.removeEventListener('change', callback);
+        controls.removeEventListener("start", onStartCb);
+        controls.removeEventListener("end", onEndCb);
+        controls.removeEventListener("change", callback);
       };
     }, [onChange, onStart, onEnd, controls, invalidate, setEvents]);
     React.useEffect(() => {
       if (makeDefault) {
         const old = get().controls;
         set({
-          controls,
+          controls
         });
         return () =>
           set({
-            controls: old,
+            controls: old
           });
       }
     }, [makeDefault, controls]);
     return /*#__PURE__*/ React.createElement(
-      'primitive',
+      "primitive",
       _extends(
         {
           ref: ref,
           object: controls,
-          enableDamping: enableDamping,
+          enableDamping: enableDamping
         },
-        restProps,
-      ),
+        restProps
+      )
     );
-  },
+  }
 );
 
 export default CustomOrbitControl;

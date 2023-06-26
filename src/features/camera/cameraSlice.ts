@@ -11,25 +11,38 @@ import type { RootState } from "@store/store";
 import {
   calculateOrthographicDimensions,
   calculatePerspectiveDimesnions
-} from "@three/camera/OrthographicCamera.three";
+} from "@three/camera/camera.utils";
+
+import CameraViews from "@models/cameraViews/cameraViews.model";
 
 import ee from "@utils/droneEvent.utils";
 import { startDroneMode, stopDroneMode } from "@utils/handleDrone.utils";
+import { isDesktop } from "@utils/isDesktop.utils";
 
-import type { ICameraSettings, ViewModes } from "./cameraSlice.types";
+import type {
+  CameraTypes,
+  ICameraSettings,
+  OrthographicProps,
+  PerspectiveProps,
+  ViewModes
+} from "./cameraSlice.types";
+
+const cameraViews = new CameraViews();
+
+const defaultPosition = isDesktop() ? [3, 3, 3] : [4, 4, 4];
 
 const initialState: ICameraSettings = {
-  position: [3, 3, 3],
+  defaultPosition: defaultPosition as [number, number, number],
   currentState: "idle",
   droneType: "idle",
   camera: null,
   cameraType: "perspective",
   showFlyModal: false,
-  viewMode: "default",
+  viewMode: "iso",
   orthographicCameraProps: undefined,
   perspectiveCameraProps: {
     fov: 75,
-    position: [3, 3, 3],
+    position: [0, 0, 0],
     aspect: 1,
     near: 0.1,
     far: 200
@@ -54,7 +67,14 @@ export const cameraSlice = createSlice({
       return action.payload.camera || state;
     },
 
-    setCameraPosition: (state, action: PayloadAction<[x: number, y: number, z: number]>) => {
+    setCameraPosition: (
+      state,
+      action: PayloadAction<[x: number, y: number, z: number]>
+    ) => {
+      if (state.droneType !== "idle" || cameraViews.isActive) {
+        return;
+      }
+
       if (state.perspectiveCameraProps?.position) {
         state.perspectiveCameraProps.position = action.payload;
       }
@@ -63,41 +83,72 @@ export const cameraSlice = createSlice({
       }
     },
 
-    setOrthographicCameraDimensions: (state, action: PayloadAction<SetOrthoArgs>) => {
-      state.orthographicCameraProps = calculateOrthographicDimensions(action.payload);
+    setOrthographicCameraDimensions: (
+      state,
+      action: PayloadAction<SetOrthoArgs>
+    ) => {
+      state.orthographicCameraProps = calculateOrthographicDimensions(
+        action.payload
+      );
     },
     setPerspectiveCameraDimensions: (state, action: PayloadAction<SetOrthoArgs>) => {
       state.perspectiveCameraProps = calculatePerspectiveDimesnions(action.payload);
     },
 
     setLeftCameraView: (state) => {
-      if (state.perspectiveCameraProps?.position) {
-        state.perspectiveCameraProps.position = [0, 0, 5];
+      if (cameraViews.isActive) {
+        return;
       }
-      if (state.orthographicCameraProps?.position) {
-        state.orthographicCameraProps.position = [0, 0, 5];
-      }
+      cameraViews.leftView(state.camera as Camera);
       state.viewMode = "left";
     },
 
-    setRightCameraView: (state) => {
-      if (state.perspectiveCameraProps?.position) {
-        state.perspectiveCameraProps.position = [5, 0.5, 0];
+    setFrontView: (state) => {
+      if (cameraViews.isActive) {
+        return;
       }
-      if (state.orthographicCameraProps?.position) {
-        state.orthographicCameraProps.position = [5, 0.5, 0];
+      cameraViews.frontView(state.camera as Camera);
+      state.viewMode = "front";
+    },
+
+    setTopView: (state) => {
+      if (cameraViews.isActive) {
+        return;
       }
+      cameraViews.topView(state.camera as Camera);
+      state.viewMode = "top";
+    },
+
+    setBottomView: (state) => {
+      if (cameraViews.isActive) {
+        return;
+      }
+      cameraViews.bottomView(state.camera as Camera);
+      state.viewMode = "bottom";
+    },
+
+    setRightView: (state) => {
+      if (cameraViews.isActive) {
+        return;
+      }
+      cameraViews.rightView(state.camera as Camera);
       state.viewMode = "right";
     },
 
-    setDefaultView: (state) => {
-      if (state.perspectiveCameraProps?.position) {
-        state.perspectiveCameraProps.position = [3, 3, 4];
+    setIsoView: (state) => {
+      if (cameraViews.isActive) {
+        return;
       }
-      if (state.orthographicCameraProps?.position) {
-        state.orthographicCameraProps.position = [3, 3, 4];
+      cameraViews.isoView(state.camera as Camera);
+      state.viewMode = "iso";
+    },
+
+    setBackView: (state) => {
+      if (cameraViews.isActive) {
+        return;
       }
-      state.viewMode = "default";
+      cameraViews.backView(state.camera as Camera);
+      state.viewMode = "iso";
     },
 
     setDroneMode: (state, action: PayloadAction<DroneTypes>) => {
@@ -127,7 +178,10 @@ export const cameraSlice = createSlice({
       state.showFlyModal = action.payload;
     },
 
-    setCameraType: (state, action: PayloadAction<"perspective" | "orthographic">) => {
+    setCameraType: (
+      state,
+      action: PayloadAction<"perspective" | "orthographic">
+    ) => {
       state.cameraType = action.payload;
     }
   }
@@ -136,29 +190,35 @@ export const cameraSlice = createSlice({
 export default cameraSlice.reducer;
 export const {
   setLeftCameraView,
-  setRightCameraView,
-  setDefaultView,
+  setFrontView,
+  setIsoView,
   setCamera,
   setDroneMode,
   setFlyModalState,
   setCameraType,
   setOrthographicCameraDimensions,
   setPerspectiveCameraDimensions,
-  setCameraPosition
+  setCameraPosition,
+  setBottomView,
+  setRightView,
+  setBackView,
+  setTopView
 } = cameraSlice.actions;
 
-export const selectCameraPosition = (state: RootState): [number, number, number] =>
-  state.camera.position;
-
-export const selectOrthographicCameraProps = (
+export const selectDefaultCameraPosition = (
   state: RootState
-): ICameraSettings["orthographicCameraProps"] => state.camera.orthographicCameraProps;
-export const selectPerspectiveCameraProps = (
-  state: RootState
-): ICameraSettings["perspectiveCameraProps"] => state.camera.perspectiveCameraProps;
+): [number, number, number] => state.camera.defaultPosition;
 
-export const selectDroneState = (state: RootState): DroneTypes => state.camera.droneType;
-export const selectFlyModalState = (state: RootState): boolean => state.camera.showFlyModal;
-export const selectCameraViewMode = (state: RootState): ViewModes => state.camera.viewMode;
-export const selectCameraType = (state: RootState): "perspective" | "orthographic" =>
+export const selectOrthographicCameraProps = (state: RootState): OrthographicProps =>
+  state.camera.orthographicCameraProps;
+export const selectPerspectiveCameraProps = (state: RootState): PerspectiveProps =>
+  state.camera.perspectiveCameraProps;
+
+export const selectDroneState = (state: RootState): DroneTypes =>
+  state.camera.droneType;
+export const selectFlyModalState = (state: RootState): boolean =>
+  state.camera.showFlyModal;
+export const selectCameraViewMode = (state: RootState): ViewModes =>
+  state.camera.viewMode;
+export const selectCameraType = (state: RootState): CameraTypes =>
   state.camera.cameraType;

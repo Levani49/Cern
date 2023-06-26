@@ -15,20 +15,12 @@ interface Props {
   currentCameraPosition: [number, number, number];
 }
 
-const SPEED = 5;
+const SPEED = 2.25;
 
-/**
- * A 3D player object that can move forward, backward, left, and right in 3D space
- *
- * @param {Props} props - Component props
- * @param {Array<number>} props.currentCameraPosition - Current camera position in 3D space
- * @returns {JSX.Element} The player component
- */
 export default function Player({ currentCameraPosition }: Props): JSX.Element {
   // Get the camera and player controls
   const { camera } = useThree();
-  const { moveForward, moveBackward, moveLeft, moveRight } =
-    usePlayerControls();
+  const { moveForward, moveBackward, moveLeft, moveRight } = usePlayerControls();
   const [ref, api] = useSphere(() => ({
     mass: 1,
     type: "Dynamic",
@@ -63,11 +55,6 @@ export default function Player({ currentCameraPosition }: Props): JSX.Element {
     api.velocity.set(direction.x, direction.y, direction.z);
   });
 
-  /**
-   * Handle palyer cancelation
-   *
-   * @returns { void } void
-   */
   const hadnelCancel = (): void => {
     store.dispatch(setDroneMode("idle"));
   };
@@ -77,9 +64,7 @@ export default function Player({ currentCameraPosition }: Props): JSX.Element {
       <PointerLockControls onUnlock={hadnelCancel} />
       <mesh
         ref={
-          ref as React.MutableRefObject<
-            Mesh<BufferGeometry, Material | Material[]>
-          >
+          ref as React.MutableRefObject<Mesh<BufferGeometry, Material | Material[]>>
         }
       ></mesh>
     </>

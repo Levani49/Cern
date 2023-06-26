@@ -2,9 +2,6 @@ import { Camera } from "@react-three/fiber";
 
 import { emptyFunc } from "@type/app.types";
 
-/**
- * Rocket class for animating a rocket launch.
- */
 export default class Rocket {
   public configuration = {
     startingPoint: {
@@ -20,11 +17,6 @@ export default class Rocket {
   private xAxisIterator = 0;
   private zAxisIterator = 0;
 
-  /**
-   * Prepares the camera for rocket animation by setting the starting point and look-at point.
-   *
-   * @param camera - The camera used in the animation.
-   */
   prepare(camera: Camera): void {
     const { maxHeight, startingPoint, maxIteration } = this.configuration;
     const { x, y, z } = startingPoint;
@@ -37,21 +29,12 @@ export default class Rocket {
     camera.lookAt(0, 0, 0);
   }
 
-  /**
-   * Starts the rocket animation.
-   *
-   * @param camera - The camera used in the animation.
-   * @param cb - Optional callback function to be called after animation is finished.
-   */
   start(camera: Camera, cb: emptyFunc | undefined = undefined): void {
     this.prepare(camera);
     let cameraX: number;
     let cameraY: number;
     let cameraZ: number;
 
-    /**
-     * Recursive function that animates the rocket launch.
-     */
     const s = (): void => {
       this.animationRef = requestAnimationFrame(s);
       const { x, y, z } = camera.position;
@@ -74,19 +57,11 @@ export default class Rocket {
     s();
   }
 
-  /**
-   * Stops the rocket animation.
-   */
   stop(): void {
     if (this.animationRef) {
       cancelAnimationFrame(this.animationRef);
     }
   }
 
-  /**
-   * Constructs a new Rocket instance.
-   *
-   * @param animationRef - Optional animation reference value.
-   */
   constructor(private animationRef: number | null = null) {}
 }
