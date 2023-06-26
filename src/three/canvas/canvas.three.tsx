@@ -29,7 +29,7 @@ export default function Scene(): JSX.Element {
   const cutType = useAppSelector(selectGeometriesCutType);
   const snapIsLoading = useAppSelector(selectSnapIsLoading);
   const defaultPosition = useAppSelector(selectDefaultCameraPosition);
-  const localClippingEnabled = cutType === "";
+  const localClippingEnabled = cutType === null;
 
   return (
     <>
