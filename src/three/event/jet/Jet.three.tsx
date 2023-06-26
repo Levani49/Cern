@@ -1,29 +1,21 @@
 import { useMemo } from "react";
 
-import { useAppSelector } from "@store/hooks";
-
-import { selectEvent, selectEventParameters, selectJetFilter } from "@features/event/eventSlice";
-
-import JetService from "@models/event/jet/jet.model";
-
-const jetService = new JetService();
+import useEvent from "@hooks/useEvent/useEvent.hook";
 
 export default function Jet(): JSX.Element {
-  const event = useAppSelector(selectEvent);
-  const eventParameters = useAppSelector(selectEventParameters);
-  const jetFilterValues = useAppSelector(selectJetFilter);
+  const { event, eventParameters, jetFilterValues, JET } = useEvent();
 
   const jetConesToDraw = useMemo(() => {
     if (event) {
       if (Array.isArray(event.Event.Jet)) {
-        jetService.init(event.Event.Jet[0]);
+        JET.init(event.Event.Jet[0]);
       } else {
-        jetService.init(event.Event.Jet);
+        JET.init(event.Event.Jet);
       }
-      return jetService.drawJetCone(jetFilterValues);
+      return JET.drawJetCone(jetFilterValues);
     }
     return null;
-  }, [event, jetFilterValues]);
+  }, [event, jetFilterValues, JET]);
 
   if (jetConesToDraw && eventParameters.jets) {
     return (

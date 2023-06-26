@@ -7,7 +7,7 @@ import { Jet } from "@services/event/event.service.types";
 
 import { JetCone, JetInfo } from "./jet.model.types";
 
-export default class JetService extends EventService {
+export default class JetModel extends EventService {
   jetInfo: JetInfo = {
     pX: [],
     pY: [],
@@ -53,8 +53,7 @@ export default class JetService extends EventService {
         (jetFilterValues.phi && this.jetInfo.phi[i] < +jetFilterValues.phi) ||
         (jetFilterValues.eta && this.jetInfo.eta[i] < +jetFilterValues.eta) ||
         (jetFilterValues.et && this.jetInfo.et[i] < +jetFilterValues.et) ||
-        (jetFilterValues.theta &&
-          this.jetInfo.theta[i] < +jetFilterValues.theta)
+        (jetFilterValues.theta && this.jetInfo.theta[i] < +jetFilterValues.theta)
       ) {
         continue;
       }

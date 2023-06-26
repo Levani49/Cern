@@ -7,7 +7,7 @@ import { Track } from "@services/event/event.service.types";
 
 import { TrackInfo, TrackMesh } from "./track.model.types";
 
-export default class TrackService extends EventService {
+export default class TrackModel extends EventService {
   trackInfo: TrackInfo = {
     polylineX: [],
     polylineY: [],
@@ -68,10 +68,7 @@ export default class TrackService extends EventService {
       );
     }
 
-    const incidentPoint = this.calculateIncidentPoint(
-      trackPath[0],
-      trackPath[1]
-    );
+    const incidentPoint = this.calculateIncidentPoint(trackPath[0], trackPath[1]);
     trackPath.unshift(incidentPoint);
 
     const geometry = new BufferGeometry().setFromPoints(trackPath);
@@ -130,9 +127,7 @@ export default class TrackService extends EventService {
 
     const lengthFromPointer1ToPointer2 =
       trackLength -
-      2 *
-        curvatureValue *
-        Math.cos(this.trackInfo.theta[propertyIndex] - theta0); //mandzili sivrceshi gabnevis 1-lsa da me-2 mimtitebel shoris
+      2 * curvatureValue * Math.cos(this.trackInfo.theta[propertyIndex] - theta0); //mandzili sivrceshi gabnevis 1-lsa da me-2 mimtitebel shoris
 
     //track-ebis saboloo wertilis mimartulebis mimtitebeli
     const pointer2X =
@@ -180,8 +175,7 @@ export default class TrackService extends EventService {
     // Calculate the vector from the origin to point1
     const originToPoint1 = point1.clone();
     // Calculate the projection of originToPoint1 onto the direction vector
-    const projectionScalar =
-      originToPoint1.dot(direction) / direction.lengthSq();
+    const projectionScalar = originToPoint1.dot(direction) / direction.lengthSq();
     const projection = direction.clone().multiplyScalar(projectionScalar);
 
     // Subtract the projection from point1 to find the point on the line closest to the origin
@@ -190,9 +184,7 @@ export default class TrackService extends EventService {
     return incidentPoint;
   }
 
-  drawTracksMain(
-    trackFilterValues: EventsSlice["trackFilter"]
-  ): TrackMesh[] | void {
+  drawTracksMain(trackFilterValues: EventsSlice["trackFilter"]): TrackMesh[] | void {
     const tracks = [];
     let index = 0;
 
@@ -203,8 +195,7 @@ export default class TrackService extends EventService {
             this.trackInfo.phi[i] < +trackFilterValues.phi) ||
           (trackFilterValues.eta &&
             this.trackInfo.eta[i] < +trackFilterValues.eta) ||
-          (trackFilterValues.pt &&
-            this.trackInfo.pt[i] < +trackFilterValues.pt) ||
+          (trackFilterValues.pt && this.trackInfo.pt[i] < +trackFilterValues.pt) ||
           (trackFilterValues.theta &&
             this.trackInfo.theta[i] < +trackFilterValues.theta)
         ) {

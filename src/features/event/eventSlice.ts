@@ -8,7 +8,14 @@ import {
   EventOverviewData
 } from "@services/event/event.service.types";
 
-import { EventsSlice, LoadedEvents } from "./eventSlice.types";
+import {
+  EventNumber,
+  EventsSlice,
+  EventsToShow,
+  JetFilter,
+  LoadedEvents,
+  TrackFilter
+} from "./eventSlice.types";
 
 const eventService = new EventService();
 
@@ -104,18 +111,17 @@ export const selectEventIsLoading = (state: RootState): boolean =>
   state.event.isLoading;
 export const selectEvent = (state: RootState): EventDetailsXML | null =>
   state.event.event;
-export const selectEventParameters = (
-  state: RootState
-): EventsSlice["eventsToShow"] => state.event.eventsToShow;
-export const selectEventNumber = (state: RootState): EventsSlice["eventNumber"] =>
+export const selectEventParameters = (state: RootState): EventsToShow =>
+  state.event.eventsToShow;
+export const selectEventNumber = (state: RootState): EventNumber =>
   state.event.eventNumber;
 
 export const selectLoadedEvents = (state: RootState): LoadedEvents[] =>
   state.event.loadedEvents;
 
-export const selectTrackFilter = (state: RootState): EventsSlice["trackFilter"] =>
+export const selectTrackFilter = (state: RootState): TrackFilter =>
   state.event.trackFilter;
-export const selectJetFilter = (state: RootState): EventsSlice["jetFilter"] =>
+export const selectJetFilter = (state: RootState): JetFilter =>
   state.event.jetFilter;
 
 export const selectDrawEvents = (state: RootState): boolean =>

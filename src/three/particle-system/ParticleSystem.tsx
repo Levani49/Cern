@@ -2,20 +2,20 @@ import { memo, useEffect, useMemo } from "react";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
-import { selectEventNumber } from "@features/event/eventSlice";
 import {
   selectParticleAnimation,
   setParticleAnimationState
 } from "@features/global/globalsSlice";
 
 import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
+import useEvent from "@hooks/useEvent/useEvent.hook";
 
 import Particles from "./Particles.three";
 
 const ParticleSystem = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const startParticleAnimation = useAppSelector(selectParticleAnimation);
-  const eventNumber = useAppSelector(selectEventNumber);
+  const { eventNumber } = useEvent();
 
   useEffect(() => {
     dispatch(setParticleAnimationState(true));
