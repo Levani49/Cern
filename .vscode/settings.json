@@ -1,7 +1,6 @@
 {
-  "eslint.workingDirectories": [
-    "./tracer-core-new"
-  ],
+  "json.schemaDownload.enable": true,
+  "eslint.workingDirectories": ["./tracer-core-new"],
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -10,5 +9,9 @@
     "source.fixAll.format": true
   },
   "typescript.preferences.importModuleSpecifier": "non-relative",
-  "json.schemaDownload.enable": true
+  "tailwindCSS.experimental.classRegex": [
+    ["Classes \\=([^;]*);", "'([^']*)'"],
+    ["Classes \\=([^;]*);", "\"([^\"]*)\""],
+    ["Classes \\=([^;]*);", "\\`([^\\`]*)\\`"]
+  ]
 }
