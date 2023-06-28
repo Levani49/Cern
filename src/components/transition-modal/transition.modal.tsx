@@ -1,6 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { CSSProperties, Fragment, useRef } from "react";
 
+import { twMerge } from "tailwind-merge";
+
 import { ReactComponent as XMarkIcon } from "@assets/svg/xMarkIcon.svg";
 
 interface Props {
@@ -21,6 +23,11 @@ export default function TransitionModal({
   style
 }: Props): JSX.Element {
   const cancelButtonRef = useRef(null);
+
+  const componentClasses = twMerge(
+    "relative transform overflow-hidden rounded-lg bg-customGray text-left shadow-xl transition-all sm:w-full sm:max-w-2xl",
+    className
+  );
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -55,10 +62,7 @@ export default function TransitionModal({
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel
-                className={`relative transform overflow-hidden rounded-lg bg-customGray text-left shadow-xl transition-all sm:w-full sm:max-w-2xl ${className}`}
-                style={style}
-              >
+              <Dialog.Panel className={componentClasses} style={style}>
                 <div className="w-full bg-customGray px-4 pb-4 pt-5 text-white sm:p-4 sm:pb-2">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 w-full sm:mt-0 sm:text-left">

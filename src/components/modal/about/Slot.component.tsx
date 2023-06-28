@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { twMerge } from "tailwind-merge";
+
 import { ReactComponent as EmailIcon } from "@assets/svg/emailIcon.svg";
 
 interface Props {
@@ -24,11 +26,13 @@ export default function Slot({
     navigator.clipboard.writeText(email);
   };
 
+  const componentClasses = twMerge(
+    "flex w-[150px] cursor-pointer flex-col items-center gap-1 rounded bg-transparent px-1 py-2 transition-all ease-in-out hover:bg-transparentDark",
+    className
+  );
+
   return (
-    <div
-      role="presentation"
-      className={`flex w-[150px] cursor-pointer flex-col items-center gap-1 rounded bg-transparent px-1 py-2 transition-all ease-in-out hover:bg-transparentDark ${className}`}
-    >
+    <div role="presentation" className={componentClasses}>
       <div className="h-12 w-12 overflow-hidden rounded-full">
         <img className="h-full w-full object-cover" src={src} alt="Personal" />
       </div>

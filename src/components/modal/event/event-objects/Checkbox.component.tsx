@@ -1,3 +1,5 @@
+import { twMerge } from "tailwind-merge";
+
 interface Props {
   checked: boolean;
   onClick: () => void;
@@ -11,10 +13,13 @@ export default function Checkbox({
   onClick,
   className
 }: Props): JSX.Element {
+  const componentClasses = twMerge(
+    "relative inline-flex cursor-pointer items-cente",
+    className
+  );
+
   return (
-    <label
-      className={`relative inline-flex cursor-pointer items-center ${className}`}
-    >
+    <label className={componentClasses}>
       <input
         id={id}
         type="checkbox"
