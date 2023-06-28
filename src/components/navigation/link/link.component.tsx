@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-import Button from "@/components/button/Button.component";
-import TransitionModal from "@/components/transition-modal/transition.modal";
 import { saveAs } from "file-saver";
 
 import { ReactComponent as LinkIcon } from "@assets/svg/link.svg";
 import { ReactComponent as QrCode } from "@assets/svg/qrCode.svg";
 
+import Button from "@components/button/Button.component";
 import NavIcon from "@components/navigation/navIcon/navIcon";
+import TransitionModal from "@components/transition-modal/transition.modal";
 
 import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 

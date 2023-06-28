@@ -17,7 +17,7 @@ import Camera from "@three/camera/Camera.three";
 import Lights from "@three/light/Light.three";
 import Raycast from "@three/raycast/Raycast.three";
 
-const Detector = lazy(() => import("@/three/detector/Detector.three"));
+const Detector = lazy(() => import("@three/detector/Detector.three"));
 const Controls = lazy(() => import("@three/controls/Controls.three"));
 const Axis = lazy(() => import("@three/axis/Axis.three"));
 const Grid = lazy(() => import("@three/grid/Grid.three"));

@@ -12,7 +12,7 @@ import SnapMenu from "@components/navigation/snap/SnapMenu.component";
 import StatsMenu from "@components/navigation/stats/StatsMenu.component";
 import ThemeToggler from "@components/navigation/theme/ThemeToggler.component";
 
-import { isDesktop } from "@utils/isDesktop.utils";
+import { isMobile } from "@utils/isMobile.utils";
 import { supportsScreenRecording } from "@utils/supportsScreenRecording.utils";
 
 export default function Utils(): JSX.Element {
@@ -26,8 +26,7 @@ export default function Utils(): JSX.Element {
         <SnapMenu />
         <Screenshot />
         {supportsScreenRecording() && <RecordScreen />}
-
-        {!isDesktop() && (
+        {isMobile() && (
           <>
             <ThemeToggler />
             <Link />

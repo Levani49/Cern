@@ -7,7 +7,7 @@ import NavigationBar from "@components/navigation/navigationBar/navigationToggle
 import Settings from "@components/navigation/settings/settings";
 import ShowMenuBar from "@components/navigation/showMenuBar/showMenuBar";
 
-import { isDesktop } from "@utils/isDesktop.utils";
+import { isMobile } from "@utils/isMobile.utils";
 
 import AboutMenu from "./about/AboutMenu.component";
 import CameraViewMenu from "./cameraView/CameraViewMenu.component";
@@ -39,7 +39,7 @@ export default function Navigation(): JSX.Element {
           <WireframeMenu />
           <Settings />
           <FullScreenMenu />
-          {isDesktop() && (
+          {!isMobile() && (
             <>
               <ThemeToggler />
               <Link />

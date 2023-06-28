@@ -1,5 +1,5 @@
-import { isDesktop } from "@utils/isDesktop.utils";
+import { isMobile } from "@utils/isMobile.utils";
 
 export default function NavTitle(): JSX.Element {
-  return <>{isDesktop() && <h1 className="text-base text-light">CORE</h1>}</>;
+  return <>{!isMobile() && <h1 className="text-base text-light">CORE</h1>}</>;
 }

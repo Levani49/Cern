@@ -2,9 +2,11 @@ import { Float } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { setDrawEvents } from "@/features/event/eventSlice";
-import { useAppDispatch } from "@/store/hooks";
 import { MathUtils, Object3D } from "three";
+
+import { useAppDispatch } from "@store/hooks";
+
+import { setDrawEvents } from "@features/event/eventSlice";
 
 import Collision from "./Collision.three";
 import Electron from "./Electron.three";

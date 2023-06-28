@@ -1,9 +1,6 @@
 import { ChangeEvent } from "react";
 
-import Checkbox from "@/components/modal/event/event-objects/Checkbox.component";
-import { ModelCut } from "@/types/app.types";
-
-// import { ModelCut } from "@/types/app.types";
+import { ModelCut } from "@type/app.types";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
@@ -14,6 +11,8 @@ import {
   setModelWireframe,
   updateLocalModelCut
 } from "@features/model/modelSlice";
+
+import Checkbox from "@components/modal/event/event-objects/Checkbox.component";
 
 import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
 

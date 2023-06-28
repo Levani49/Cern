@@ -17,7 +17,7 @@ import CameraViews from "@models/cameraViews/cameraViews.model";
 
 import ee from "@utils/droneEvent.utils";
 import { startDroneMode, stopDroneMode } from "@utils/handleDrone.utils";
-import { isDesktop } from "@utils/isDesktop.utils";
+import { isMobile } from "@utils/isMobile.utils";
 
 import type {
   CameraTypes,
@@ -29,7 +29,7 @@ import type {
 
 const cameraViews = new CameraViews();
 
-const defaultPosition = isDesktop() ? [3, 3, 3] : [4, 4, 4];
+const defaultPosition = isMobile() ? [4, 4, 4] : [3, 3, 3];
 
 const initialState: ICameraSettings = {
   defaultPosition: defaultPosition as [number, number, number],

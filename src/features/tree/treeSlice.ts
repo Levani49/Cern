@@ -4,7 +4,7 @@ import type { ActiveModel } from "@type/app.types";
 
 import type { RootState } from "@store/store";
 
-import { isDesktop } from "@utils/isDesktop.utils";
+import { isMobile } from "@utils/isMobile.utils";
 
 import {
   GEOMETRY_MENU_TREE,
@@ -20,7 +20,7 @@ import {
 } from "./geometryMenuUtils";
 import type { GeometryTreeSlice, UpdateNodePayloadAction } from "./treeSlice.types";
 
-const showGeometryMenu = isDesktop();
+const showGeometryMenu = isMobile() === false;
 
 const initialState: GeometryTreeSlice = {
   tree: GEOMETRY_MENU_TREE,
