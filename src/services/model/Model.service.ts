@@ -73,7 +73,7 @@ export default class ModelService {
       if (child instanceof Mesh) {
         child.userData = userData;
         child.material.metalness = 0;
-        // child.material.transparent = true;
+        child.material.transparent = true;
         child.material.opacity = opacity;
         child.material.wireframe = wireframe;
       }
