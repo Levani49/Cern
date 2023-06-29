@@ -31,8 +31,6 @@ export default class ModelService {
 
   updateOpacity({ model, opacity, updateUserData }: OpacityProps): void {
     model.traverse((child: Object3D): void => {
-      renderOrder++;
-      child.renderOrder = renderOrder;
       if (child instanceof Mesh) {
         child.material.transparent = true;
         child.material.opacity = opacity;
@@ -68,7 +66,10 @@ export default class ModelService {
     wireframe = false
   ): void {
     model.userData = userData;
+
     model.traverse((child: Object3D): void => {
+      renderOrder++;
+      child.renderOrder = renderOrder;
       if (child instanceof Mesh) {
         child.userData = userData;
         child.material.metalness = 0;
