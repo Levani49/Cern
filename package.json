@@ -38,7 +38,7 @@
     "react-redux": "^8.0.5",
     "react-select": "^5.7.3",
     "tailwind-merge": "^1.13.2",
-    "three": "^0.153.0"
+    "three": "^0.154.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",

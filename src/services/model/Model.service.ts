@@ -3,6 +3,8 @@ import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
 import { ModelCut } from "@type/app.types";
 
+let renderOrder = 0;
+
 export interface UserData {
   id: string;
   name: string;
@@ -29,6 +31,8 @@ export default class ModelService {
 
   updateOpacity({ model, opacity, updateUserData }: OpacityProps): void {
     model.traverse((child: Object3D): void => {
+      renderOrder++;
+      child.renderOrder = renderOrder;
       if (child instanceof Mesh) {
         child.material.transparent = true;
         child.material.opacity = opacity;
@@ -68,7 +72,7 @@ export default class ModelService {
       if (child instanceof Mesh) {
         child.userData = userData;
         child.material.metalness = 0;
-        child.material.transparent = true;
+        // child.material.transparent = true;
         child.material.opacity = opacity;
         child.material.wireframe = wireframe;
       }
