@@ -93,12 +93,13 @@ export default class TrackModel extends EventService {
       )
     );
     const trackLength = new Vector3(
-      incidentPoint.x - this.trackInfo.polylineX[trackIndex + 1],
-      incidentPoint.y - this.trackInfo.polylineY[trackIndex + 1],
-      incidentPoint.z - this.trackInfo.polylineZ[trackIndex + 1]
+      this.trackInfo.polylineX[trackIndex] -
+        this.trackInfo.polylineX[trackIndex + 1],
+      this.trackInfo.polylineY[trackIndex] -
+        this.trackInfo.polylineY[trackIndex + 1],
+      this.trackInfo.polylineZ[trackIndex] - this.trackInfo.polylineZ[trackIndex + 1]
     ).length();
     const curvatureValue = trackLength / 4;
-
     const pointer1X =
       this.trackInfo.polylineX[trackIndex] +
       curvatureValue *
@@ -113,22 +114,20 @@ export default class TrackModel extends EventService {
       this.trackInfo.polylineZ[trackIndex] +
       curvatureValue * Math.cos(this.trackInfo.theta[propertyIndex]);
 
-    let theta0 =
+    let theta0 = Math.asin(
       new Vector2(
         this.trackInfo.polylineX[trackIndex] -
           this.trackInfo.polylineX[trackIndex + 1],
         this.trackInfo.polylineY[trackIndex] -
           this.trackInfo.polylineY[trackIndex + 1]
-      ).length() / trackLength;
-
+      ).length() / trackLength
+    );
     if (this.trackInfo.theta[propertyIndex] >= Math.PI / 2) {
       theta0 = Math.PI - theta0;
     }
-
     const lengthFromPointer1ToPointer2 =
       trackLength -
       2 * curvatureValue * Math.cos(this.trackInfo.theta[propertyIndex] - theta0); //mandzili sivrceshi gabnevis 1-lsa da me-2 mimtitebel shoris
-
     //track-ebis saboloo wertilis mimartulebis mimtitebeli
     const pointer2X =
       pointer1X +
@@ -195,10 +194,12 @@ export default class TrackModel extends EventService {
             this.trackInfo.phi[i] < +trackFilterValues.phi) ||
           (trackFilterValues.eta &&
             this.trackInfo.eta[i] < +trackFilterValues.eta) ||
-          (trackFilterValues.pt && this.trackInfo.pt[i] < +trackFilterValues.pt) ||
+          (trackFilterValues.pt &&
+            Math.abs(this.trackInfo.pt[i]) < +trackFilterValues.pt) ||
           (trackFilterValues.theta &&
             this.trackInfo.theta[i] < +trackFilterValues.theta)
         ) {
+          index += this.trackInfo.numPolyline[i];
           continue;
         }
         switch (this.trackInfo.numPolyline[i]) {
