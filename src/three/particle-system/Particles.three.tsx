@@ -17,7 +17,8 @@ interface Props {
   explosionSpeed: number;
 }
 
-const NUMBER_OF_ITERATION = 200;
+const NUMBER_OF_ITERATION = 500;
+const NUMBER_OF_PARTICLES = 500;
 
 export default function Particles({
   onFinish,
@@ -40,7 +41,7 @@ export default function Particles({
   }, [explode, dispatch]);
 
   const electronArray = useMemo(() => {
-    return new Array(500).fill(0, 0).map((_, index) => {
+    return new Array(NUMBER_OF_PARTICLES).fill(0, 0).map((_, index) => {
       const theta = MathUtils.randFloatSpread(360);
       const phi = MathUtils.randFloatSpread(360);
       const distance = 0.001;
@@ -53,7 +54,7 @@ export default function Particles({
         <Electron
           key={index}
           position={[x, y, z]}
-          size={[0.005]}
+          size={[0.00725]}
           ref={(ref: Object3D | null): Object3D | null =>
             (electronRefs.current[index] = ref)
           }
