@@ -37,7 +37,11 @@ export const stopDroneMode = (camera: Camera, type: DroneTypes): void => {
   }
 };
 
-export const startDroneMode = (camera: Camera, type: DroneTypes, cb: emptyFunc = emptyFn): void => {
+export const startDroneMode = (
+  camera: Camera,
+  type: DroneTypes,
+  cb: emptyFunc = emptyFn
+): void => {
   switch (type) {
     case "helix":
       helix.start(camera, cb);

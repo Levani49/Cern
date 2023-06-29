@@ -6,7 +6,7 @@ import { useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 
 import CustomOrbitControl from "@three/lib/modified_orbit_controls/CustomOrbitControl";
-import Player from "@three/player/Player.three";
+import PlayerControl from "@three/player-control/PlayerControl.three";
 
 import useDrone from "@hooks/useDrone/useDrone.hook";
 
@@ -37,7 +37,7 @@ export default function Controls(): JSX.Element {
 
   if (currentMode === "fly") {
     return (
-      <Player
+      <PlayerControl
         currentCameraPosition={[
           camera.position.x,
           camera.position.y,
@@ -48,12 +48,11 @@ export default function Controls(): JSX.Element {
   }
 
   return (
-    enableControls && (
-      <CustomOrbitControl
-        ref={controlsRef}
-        makeDefault
-        autoRotate={currentMode === "circle"}
-      />
-    )
+    <CustomOrbitControl
+      ref={controlsRef}
+      enabled={enableControls}
+      autoRotate={currentMode === "circle"}
+      makeDefault
+    />
   );
 }

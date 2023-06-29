@@ -40,7 +40,14 @@ export default function Camera(): JSX.Element {
       })
     );
     camera.updateProjectionMatrix();
-  }, [camera, size.width, size.height, dispatch]);
+  }, [
+    camera,
+    size.width,
+    size.height,
+    setOrthographicCameraDimensions,
+    setPerspectiveCameraDimensions,
+    dispatch
+  ]);
 
   // TODO fix position issue on snapfile
   useFrame(({ camera }) => {

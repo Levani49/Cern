@@ -10,7 +10,7 @@ export default class Rocket {
       z: 3
     },
     maxHeight: 18,
-    maxIteration: 1000
+    maxIteration: 200
   };
 
   private yAxisIterator = 0;
@@ -39,7 +39,7 @@ export default class Rocket {
       this.animationRef = requestAnimationFrame(s);
       const { x, y, z } = camera.position;
 
-      if (y + this.yAxisIterator > this.configuration.maxHeight) {
+      if (y + this.yAxisIterator > this.configuration.maxHeight - 1) {
         this.stop();
         if (cb) {
           cb();
