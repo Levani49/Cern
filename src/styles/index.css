@@ -19,7 +19,7 @@ body {
   overflow-y: hidden !important;
   max-height: 100vh;
   height: 100vh;
-  background: rgb(28, 28, 28);
+  background: black;
   font-family: "Roboto", sans-serif;
 }
 
@@ -32,7 +32,7 @@ body {
 }
 
 body::backdrop {
-  background: rgb(28, 28, 28);
+  background: black;
 }
 
 /* Firefox */
