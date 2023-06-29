@@ -49,8 +49,12 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
     saveAs(blob, filename);
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const file = event.target.files?.[0];
+  const handleFileChange = (): void => {
+    if (!inputRef.current) {
+      return;
+    }
+
+    const file = inputRef.current.files?.[0];
     if (file) {
       const reader = new FileReader();
 
@@ -69,7 +73,28 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
 
       reader.readAsText(file);
     }
-    event.target.value = "";
+    inputRef.current.value = "";
+  };
+
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>): void => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (event.dataTransfer && event.dataTransfer.files.length > 0) {
+      const file = event.dataTransfer.files[0];
+
+      if (inputRef.current) {
+        const fileList = new DataTransfer();
+        fileList.items.add(file);
+
+        Object.defineProperty(inputRef.current, "files", {
+          value: fileList.files,
+          writable: true
+        });
+
+        handleFileChange();
+      }
+    }
   };
 
   return (
@@ -80,7 +105,12 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
             Export
           </Button>
         </SnapCard>
-        <SnapCard Icon={UploadFileIcon} text={SnapTexts.upload}>
+        <SnapCard
+          Icon={UploadFileIcon}
+          text={SnapTexts.upload}
+          onDragOver={handleDrop}
+          onDrop={handleDrop}
+        >
           <Button className="w-full" onClick={handleLoadSnapshot}>
             Import
           </Button>
