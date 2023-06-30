@@ -4,7 +4,10 @@ import finalhandler from "finalhandler";
 import serveStatic from "serve-static";
 
 const YEAR = 31536000;
-const serve = serveStatic("dist", { cacheControl: `max-age=${YEAR}` });
+const serve = serveStatic("dist", {
+  cacheControl: `max-age=${YEAR}`,
+  compress: true
+});
 
 const server = http.createServer(function (req, res) {
   serve(req, res, finalhandler(req, res));
