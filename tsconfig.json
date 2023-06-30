@@ -41,7 +41,8 @@
     "src/globals.d.ts",
     "vite.config.ts",
     "tailwind.config.cjs",
-    "postcss.config.cjs"
+    "postcss.config.cjs",
+    "server.js"
   ],
   "exclude": ["./models/transform.cjs"],
   "references": [

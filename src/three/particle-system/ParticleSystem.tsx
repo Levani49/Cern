@@ -1,5 +1,7 @@
 import { memo, useEffect, useMemo } from "react";
 
+import { isMobile } from "@/utils/isMobile.utils";
+
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import {
@@ -29,16 +31,20 @@ const ParticleSystem = (): JSX.Element => {
     };
   }, [dispatch, eventNumber]);
 
+  const particleProps = {
+    particlesSize: 0.00525,
+    numberOfParticles: 1000,
+    lifeExpectancy: 600
+  };
+
   return (
     <>
-      {startParticleAnimation && (
+      {isMobile() === false && startParticleAnimation && (
         <Particles
           onComplete={memoizedOnFinishHandler}
           electronSpeed={0.235}
           explosionSpeed={0.045}
-          particlesSize={0.00525}
-          numberOfParticles={1000}
-          lifeExpectancy={600}
+          {...particleProps}
         />
       )}
     </>
