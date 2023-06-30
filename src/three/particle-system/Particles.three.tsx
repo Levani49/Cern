@@ -12,7 +12,7 @@ import Collision from "./Collision.three";
 import Electron from "./Electron.three";
 
 interface Props {
-  onFinish: () => void;
+  onComplete: () => void;
   electronSpeed: number;
   explosionSpeed: number;
   numberOfParticles: number;
@@ -21,7 +21,7 @@ interface Props {
 }
 
 export default function Particles({
-  onFinish,
+  onComplete,
   electronSpeed,
   explosionSpeed,
   numberOfParticles,
@@ -64,7 +64,7 @@ export default function Particles({
         />
       );
     });
-  }, [onFinish]);
+  }, [numberOfParticles, particlesSize]);
 
   useFrame(() => {
     if (explode) {
@@ -79,7 +79,7 @@ export default function Particles({
       iterationRef.current += 1;
 
       if (iterationRef.current === lifeExpectancy) {
-        onFinish();
+        onComplete();
       }
     }
   });
