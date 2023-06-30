@@ -1,5 +1,4 @@
 import { Physics } from "@react-three/cannon";
-import { Loader } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { lazy, Suspense } from "react";
 
@@ -14,6 +13,7 @@ import {
 } from "@features/model/modelSlice";
 
 import Camera from "@three/camera/Camera.three";
+import Loader from "@three/customLoader/customLoader.three";
 import Lights from "@three/light/Light.three";
 import Raycast from "@three/raycast/Raycast.three";
 
@@ -63,7 +63,7 @@ export default function Scene(): JSX.Element {
           </Physics>
         </Suspense>
       </Canvas>
-      <Loader containerStyles={{ backgroundColor: "transparent" }} />
+      <Loader />
     </>
   );
 }
