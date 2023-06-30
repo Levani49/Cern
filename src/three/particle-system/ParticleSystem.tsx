@@ -38,7 +38,7 @@ const ParticleSystem = (): JSX.Element => {
           explosionSpeed={0.045}
           particlesSize={0.00525}
           numberOfParticles={1000}
-          lifeExpectancy={1000}
+          lifeExpectancy={600}
         />
       )}
     </>
