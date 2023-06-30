@@ -18,15 +18,13 @@ import ShowMenuBar from "@components/navigation/showMenuBar/showMenuBar";
 import ThemeToggler from "@components/navigation/theme/ThemeToggler.component";
 import WireframeMenu from "@components/navigation/wireframe/WireframeMenu.component";
 
-import { isMobile } from "@utils/isMobile.utils";
-
 export default function Navigation(): JSX.Element {
   const showMenuBar = useAppSelector(selectMenuBar);
 
   return (
     <div className="fixed top-0 z-50 flex w-full flex-auto select-none flex-col items-center justify-center">
       {showMenuBar && (
-        <nav className="flex w-auto items-center gap-2  rounded-sm bg-customGray py-2 pl-4 pr-4">
+        <nav className="flex w-full items-center justify-center gap-2 rounded-sm  bg-customGray py-2 pl-4 pr-4 sm:w-auto">
           <NavTitle />
           <NavigationBar />
           <GeometryMenu />
@@ -37,14 +35,12 @@ export default function Navigation(): JSX.Element {
           <OpacirtyMenu />
           <WireframeMenu />
           <Settings />
-          {!isMobile() && (
-            <>
-              <ThemeToggler />
-              <FullScreenMenu />
-              <Link />
-              <AboutMenu />
-            </>
-          )}
+          <div className="hidden items-center gap-2 sm:flex">
+            <ThemeToggler />
+            <FullScreenMenu />
+            <Link />
+            <AboutMenu />
+          </div>
         </nav>
       )}
       <ShowMenuBar />

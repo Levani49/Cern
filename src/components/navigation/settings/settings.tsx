@@ -14,7 +14,6 @@ import SnapMenu from "@components/navigation/snap/SnapMenu.component";
 import StatsMenu from "@components/navigation/stats/StatsMenu.component";
 import ThemeToggler from "@components/navigation/theme/ThemeToggler.component";
 
-import { isMobile } from "@utils/isMobile.utils";
 import { supportsScreenRecording } from "@utils/supportsScreenRecording.utils";
 
 const Screenshot = lazy(
@@ -30,7 +29,7 @@ export default function Utils(): JSX.Element {
     <div className="group relative inline-flex">
       <NavIcon Icon={SettingsIcon} title="Settings" />
       <MenuDropdown className="flex-col sm:flex-row">
-        {isMobile() === false && <StatsMenu />}
+        <StatsMenu />
         <AxisMenu />
         <GridMenu />
         <SnapMenu />
@@ -38,14 +37,12 @@ export default function Utils(): JSX.Element {
           <Screenshot />
           {supportsScreenRecording() && <RecordScreen />}
         </Suspense>
-        {isMobile() && (
-          <>
-            <FullScreenMenu />
-            <ThemeToggler />
-            <Link />
-            <AboutMenu />
-          </>
-        )}
+        <div className="flex flex-col sm:hidden">
+          <FullScreenMenu />
+          <ThemeToggler />
+          <Link />
+          <AboutMenu />
+        </div>
       </MenuDropdown>
     </div>
   );

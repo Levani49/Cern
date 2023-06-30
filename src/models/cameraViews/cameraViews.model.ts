@@ -11,7 +11,7 @@ interface TweenProps {
 
 export default class CameraViews {
   public isActive = false;
-  private duration = 3000;
+  private duration = 1000;
   private animationRef = 0;
   private tw: Tween<{
     x: number;
