@@ -66,12 +66,8 @@ export default function ModelInfo(): JSX.Element {
     <Modal title="model info" show={show} onCloseHandler={handleClick}>
       <div className="flex flex-col justify-center gap-1 ">
         <ModelAttribute title="name" value={selectedModel?.name} />
-        {/* <ModelAttribute
-          title="cut type"
-          value={selectedModel?.cutType?.replace("-", "")}
-        /> */}
         <div className="flex items-center justify-between gap-1 rounded bg-transparentDark px-2 py-3 text-xs">
-          <span>Cut type</span>
+          <span className="select-none">Cut type</span>
           {selectedModel && (
             <select
               onChange={handleCutTypeUpdate}
@@ -82,7 +78,9 @@ export default function ModelInfo(): JSX.Element {
           )}
         </div>
         <div className="flex items-center justify-between gap-1 rounded bg-transparentDark px-2 py-3 text-xs">
-          <label htmlFor="modelOpacity">Opacity</label>
+          <label className="select-none" htmlFor="modelOpacity">
+            Opacity
+          </label>
           <input
             id="modelOpacity"
             min={0}
@@ -93,12 +91,14 @@ export default function ModelInfo(): JSX.Element {
             className="range-sm h-[3px] w-[40%] cursor-pointer appearance-none rounded-lg bg-gray-700"
             onChange={handleOpacityChange}
           />
-          <span className="w-8 text-center text-blue dark:text-green">
+          <span className="w-8 select-none text-center text-blue dark:text-green">
             {(modelOpacityLevel * 100).toFixed(0)}%
           </span>
         </div>
         <div className="flex items-center justify-between rounded bg-transparentDark px-2 py-3 text-xs">
-          <label htmlFor="modelWireframe">Wireframe</label>
+          <label className="select-none" htmlFor="modelWireframe">
+            Wireframe
+          </label>
           <Checkbox
             id="modelWireframe"
             checked={modelWireframe}
