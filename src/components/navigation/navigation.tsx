@@ -1,3 +1,5 @@
+import Report from "@/components/navigation/report/report";
+
 import { useAppSelector } from "@store/hooks";
 
 import { selectMenuBar } from "@features/global/globalsSlice";
@@ -35,6 +37,7 @@ export default function Navigation(): JSX.Element {
           <OpacirtyMenu />
           <WireframeMenu />
           <Settings />
+          <Report />
           <div className="hidden items-center gap-2 sm:flex">
             <ThemeToggler />
             <FullScreenMenu />

@@ -1,0 +1,17 @@
+import NavIcon from "@/components/navigation/navIcon/navIcon";
+
+import { ReactComponent as MegaPhone } from "@assets/svg/megaphone.svg";
+
+export default function Report(): JSX.Element {
+  return (
+    <>
+      {import.meta.env.VITE_ENV === "development" && (
+        <NavIcon
+          Icon={MegaPhone}
+          title="Bug Report or Suggestions"
+          className="-scale-x-1"
+        />
+      )}
+    </>
+  );
+}

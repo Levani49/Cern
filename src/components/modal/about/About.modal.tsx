@@ -30,29 +30,30 @@ export default function AboutModal(): JSX.Element {
       onClose={closeModalHandler}
     >
       <div className="flex h-full w-full flex-col justify-between gap-2 p-1">
-        <div className="flex flex-col justify-center gap-2 text-center">
+        <div className="hidden flex-col justify-center gap-2 text-center sm:flex">
           <h1 className="text-center text-lg font-bold">Tracer Core</h1>
           <span className="items-center text-center text-xs font-bold text-gray-500">
             Version: @6.0.0
           </span>
         </div>
 
-        <div className="flex flex-col gap-2 ">
-          <div className="mt-2 flex justify-center gap-2">
-            {TEMP_INFO.managers.map((employee: Employee) => {
-              const { id, ...rest } = employee;
-              return <Slot className="w-[200px]" key={id} {...rest} />;
-            })}
-          </div>
-          <div className="grid grid-cols-3 gap-1 sm:grid-cols-4">
-            {TEMP_INFO.developers.map((employee: Employee) => {
-              const { id, ...rest } = employee;
-              return <Slot key={id} {...rest} />;
-            })}
-          </div>
+        <div className="grid grid-cols-2 place-items-center gap-1 sm:grid-cols-4">
+          {TEMP_INFO.employees.map((employee: Employee, index: number) => {
+            const { id, ...rest } = employee;
+            const isLastTwoColumns = index >= TEMP_INFO.employees.length - 2;
+
+            return (
+              <div
+                className={`col-span-1 ${isLastTwoColumns ? "sm:col-span-2" : ""}`}
+                key={id}
+              >
+                <Slot {...rest} />
+              </div>
+            );
+          })}
         </div>
 
-        <div className="mt-2 flex flex-col items-center gap-2 text-xs">
+        <div className="mt-9 flex flex-col items-center gap-2 text-xs">
           <div className="flex">
             <span className="text-gray-300">Read more about us</span>
             <a
