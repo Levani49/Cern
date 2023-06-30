@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "start": "serve -s dist",
+    "start": "serve -s dist -p 8080",
     "start2": "node server.js",
     "test": "vitest",
     "coverage": "npx vitest --coverage --run",
