@@ -49,7 +49,12 @@ export default function Camera(): JSX.Element {
     dispatch
   ]);
 
-  // TODO fix position issue on snapfile
+  //!!!!!!!!!!! TODO  fix position issue on snapfile
+  //!!!!!!!!!!! TODO  fix position issue on snapfile
+  //!!!!!!!!!!! TODO  fix position issue on snapfile
+  //!!!!!!!!!!! TODO  fix position issue on snapfile
+  //!!!!!!!!!!! TODO  fix position issue on snapfile
+  //!!!!!!!!!!! TODO  fix position issue on snapfile
   useFrame(({ camera }) => {
     dispatch(
       setCameraPosition([camera.position.x, camera.position.y, camera.position.z])

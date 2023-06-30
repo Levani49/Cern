@@ -15,15 +15,18 @@ interface Props {
   onFinish: () => void;
   electronSpeed: number;
   explosionSpeed: number;
+  numberOfParticles: number;
+  lifeExpectancy: number;
+  particlesSize: number;
 }
-
-const NUMBER_OF_ITERATION = 500;
-const NUMBER_OF_PARTICLES = 500;
 
 export default function Particles({
   onFinish,
   electronSpeed,
-  explosionSpeed
+  explosionSpeed,
+  numberOfParticles,
+  lifeExpectancy,
+  particlesSize
 }: Props): JSX.Element {
   const [explode, setExplode] = useState(false);
   const dispatch = useAppDispatch();
@@ -41,7 +44,7 @@ export default function Particles({
   }, [explode, dispatch]);
 
   const electronArray = useMemo(() => {
-    return new Array(NUMBER_OF_PARTICLES).fill(0, 0).map((_, index) => {
+    return new Array(numberOfParticles).fill(0, 0).map((_, index) => {
       const theta = MathUtils.randFloatSpread(360);
       const phi = MathUtils.randFloatSpread(360);
       const distance = 0.001;
@@ -54,7 +57,7 @@ export default function Particles({
         <Electron
           key={index}
           position={[x, y, z]}
-          size={[0.00725]}
+          size={[particlesSize]}
           ref={(ref: Object3D | null): Object3D | null =>
             (electronRefs.current[index] = ref)
           }
@@ -75,7 +78,7 @@ export default function Particles({
 
       iterationRef.current += 1;
 
-      if (iterationRef.current === NUMBER_OF_ITERATION) {
+      if (iterationRef.current === lifeExpectancy) {
         onFinish();
       }
     }

@@ -18,6 +18,9 @@ export default function Controls(): JSX.Element {
 
   useEffect(() => {
     const stopDampingEffect = (): void => {
+      if (currentMode) {
+        return;
+      }
       if (controlsRef.current) {
         controlsRef.current.enabled = false;
         controlsRef.current.enableDamping = false;
@@ -31,7 +34,7 @@ export default function Controls(): JSX.Element {
     window.addEventListener("pointerdown", stopDampingEffect);
 
     return () => window.removeEventListener("pointerdown", stopDampingEffect);
-  }, []);
+  }, [currentMode]);
 
   const enableControls = currentMode === "circle" || currentMode === "idle";
 

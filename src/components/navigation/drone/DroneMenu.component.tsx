@@ -10,6 +10,8 @@ import { ReactComponent as DollyZoomIcon } from "@assets/svg/zoom.svg";
 
 import { useAppDispatch } from "@store/hooks";
 
+import { setParticleAnimationState } from "@features/global/globalsSlice";
+
 import useDrone from "@hooks/useDrone/useDrone.hook";
 import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
@@ -39,6 +41,10 @@ export default function DroneMenu(): JSX.Element {
       if (mode === "fly") {
         dispatch(setFlyModalState(true));
       }
+      if (mode === "z0") {
+        dispatch(setParticleAnimationState(true));
+      }
+
       dispatch(setDroneMode(mode));
     }
   };

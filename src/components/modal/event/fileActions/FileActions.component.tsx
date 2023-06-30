@@ -179,7 +179,13 @@ export default function FileActions(): JSX.Element {
   return (
     <>
       <div className="flex w-full items-center justify-between">
-        <input hidden type="file" accept=".xml" id="handleFileUpload" onChange={handleFileUpload} />
+        <input
+          hidden
+          type="file"
+          accept=".xml"
+          id="handleFileUpload"
+          onChange={handleFileUpload}
+        />
         <button
           title="Upload file"
           onClick={(): void => document.getElementById("handleFileUpload")?.click()}
@@ -187,13 +193,22 @@ export default function FileActions(): JSX.Element {
           <ArrowUpTrayIcon className="icon" />
         </button>
         <div className="flex items-center gap-2">
-          <button title="Load previous event" disabled={isLoading} onClick={loadPreviousEvent}>
+          <button
+            title="Load previous event"
+            disabled={isLoading}
+            onClick={loadPreviousEvent}
+          >
             <ChevronLeftIcon className="icon" />
           </button>
           <span className="select-none text-xs font-medium text-light">
-            group {eventNumber.eventGroup} {eventNumber.eventIndex.toString().padStart(2, "0")}/50
+            group {eventNumber.eventGroup}{" "}
+            {eventNumber.eventIndex.toString().padStart(2, "0")}/50
           </span>
-          <button title="Load Next event" disabled={isLoading} onClick={loadNextEvent}>
+          <button
+            title="Load Next event"
+            disabled={isLoading}
+            onClick={loadNextEvent}
+          >
             <ChevronRightIcon className="icon" />
           </button>
         </div>
@@ -217,7 +232,10 @@ export default function FileActions(): JSX.Element {
           styles={customStyles}
           onChange={handleEventChange}
         />
-        <button className="rounded bg-green px-2 py-1 text-xs uppercase" onClick={handleLoad}>
+        <button
+          className="rounded bg-green px-2 py-1 text-xs uppercase"
+          onClick={handleLoad}
+        >
           Load
         </button>
       </div>

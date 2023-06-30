@@ -36,6 +36,9 @@ const ParticleSystem = (): JSX.Element => {
           onFinish={memoizedOnFinishHandler}
           electronSpeed={0.235}
           explosionSpeed={0.045}
+          particlesSize={0.00525}
+          numberOfParticles={1000}
+          lifeExpectancy={1000}
         />
       )}
     </>

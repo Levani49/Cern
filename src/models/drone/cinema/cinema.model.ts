@@ -1,83 +1,97 @@
 import { Camera } from "@react-three/fiber";
 
-import { CatmullRomCurve3, Vector3 } from "three";
+import { Easing, Tween } from "@tweenjs/tween.js";
+import { Vector3 } from "three";
 
 import { emptyFunc } from "@type/app.types";
 
 export default class Cinema {
-  public configuration = {
-    road: new CatmullRomCurve3([
-      new Vector3(22, 16, 14),
-      new Vector3(12, 3, 28),
-      new Vector3(0, 0, 22)
-    ]).getPoints(700)
-  };
+  animationRef = 0;
 
   start(camera: Camera, cb: emptyFunc | undefined = undefined): void {
-    const { road } = this.configuration;
+    const targetPositions = [
+      new Vector3(22, 16, 14),
+      new Vector3(12, 3, 28),
+      new Vector3(0, 0, 22),
+      new Vector3(0, 0, 0),
+      new Vector3(0, 0, 21),
+      new Vector3(12, 3, 28),
+      new Vector3(22, 16, 14),
+      new Vector3(camera.position.x, camera.position.y, camera.position.z)
+    ];
 
-    let shouldRotationStart = false;
-    let cameraIsOnZ0 = false;
-    let halfRoadIsDone = false;
-    let i = 0;
-    let alpha = Math.PI / 2;
-    let distance = 0;
-    let reverse = 1;
+    let currentIndex = 0;
+    let targetPosition = targetPositions[currentIndex];
 
-    const s = (): void => {
-      this.animationRef = requestAnimationFrame(s);
-      camera.lookAt(0, 0.01, 0);
+    let tw: Tween<{
+      x: number;
+      y: number;
+      z: number;
+    }>;
 
-      if (shouldRotationStart === false && cameraIsOnZ0 === false) {
-        const x = road[i].x;
-        const y = road[i].y;
-        const z = road[i].z;
+    let rotationTween: Tween<{
+      rotationY: number;
+    }>;
 
-        camera.position.set(x, y, z);
-        i += reverse;
+    let startRotate = false;
 
-        if (halfRoadIsDone === false && i === road.length) {
-          cameraIsOnZ0 = true;
-          i--;
-        }
-
-        if (halfRoadIsDone && i === 0) {
-          this.stop();
-          if (cb) {
-            cb();
+    const animateToNextPosition = (): void => {
+      const startPosition = camera.position.clone();
+      tw = new Tween({
+        x: startPosition.x,
+        y: startPosition.y,
+        z: startPosition.z
+      })
+        .to({ x: targetPosition.x, y: targetPosition.y, z: targetPosition.z }, 3500)
+        .easing(Easing.Quadratic.InOut)
+        .onUpdate((position) => {
+          const { x, y, z } = position;
+          camera.position.set(x, y, z);
+          camera.lookAt(0, 0, 0);
+        })
+        .onComplete(() => {
+          currentIndex++;
+          if (currentIndex < targetPositions.length) {
+            targetPosition = targetPositions[currentIndex];
+            if (targetPosition.equals(new Vector3(0, 0, 21))) {
+              startRotate = true;
+              // Perform 360-degree rotation
+              rotationTween = new Tween({ rotationY: camera.rotation.y })
+                .to({ rotationY: camera.rotation.y + Math.PI * 2 }, 8000)
+                .easing(Easing.Linear.None)
+                .onUpdate((obj) => {
+                  camera.rotation.y = obj.rotationY;
+                })
+                .onComplete(() => {
+                  animateToNextPosition();
+                  startRotate = false;
+                })
+                .start();
+            } else {
+              animateToNextPosition();
+            }
+          } else {
+            if (cb) {
+              cb();
+            }
           }
-        }
-      }
+        })
+        .start();
+    };
 
-      if (cameraIsOnZ0) {
-        camera.position.z -= 0.15 * reverse;
-        distance = camera.position.distanceTo(new Vector3(0, 0, 0));
+    animateToNextPosition();
 
-        if (halfRoadIsDone === false && Math.abs(distance) < 0.15) {
-          cameraIsOnZ0 = false;
-          shouldRotationStart = true;
-          reverse = -reverse;
-        }
+    const animate = (): void => {
+      this.animationRef = requestAnimationFrame(animate);
 
-        if (halfRoadIsDone && distance > 22) {
-          cameraIsOnZ0 = false;
-        }
-      }
-
-      if (shouldRotationStart) {
-        camera.position.x = distance * Math.cos(alpha);
-        camera.position.z = distance * Math.sin(alpha);
-        alpha -= 0.01;
-
-        if (alpha < Math.PI * (-3 / 2)) {
-          shouldRotationStart = false;
-          halfRoadIsDone = true;
-          cameraIsOnZ0 = true;
-        }
+      if (startRotate) {
+        rotationTween.update();
+      } else {
+        tw.update();
       }
     };
 
-    s();
+    animate();
   }
 
   stop(): void {
@@ -86,5 +100,7 @@ export default class Cinema {
     }
   }
 
-  constructor(private animationRef: number = 0) {}
+  constructor() {
+    /* init */
+  }
 }
