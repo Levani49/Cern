@@ -46,20 +46,22 @@ export default function Scene(): JSX.Element {
         frameloop="demand"
         camera={{ manual: true, position: defaultPosition }}
       >
-        <Physics gravity={[0, 0, 0]}>
-          <Suspense fallback={null}>{!snapIsLoading && <Detector />}</Suspense>
-          <Suspense fallback={null}>
-            <Axis />
-            <Event />
-            <Grid />
-            <ParticleSystem />
-            <StatsDispatcher />
-          </Suspense>
-          <Raycast />
-          <Lights />
-          <Camera />
-          <Controls />
-        </Physics>
+        <Suspense fallback={null}>{!snapIsLoading && <Detector />}</Suspense>
+        <Suspense fallback={null}>
+          <Axis />
+          <Event />
+          <Grid />
+          <ParticleSystem />
+          <StatsDispatcher />
+        </Suspense>
+        <Raycast />
+        <Lights />
+        <Suspense fallback={null}>
+          <Physics gravity={[0, 0, 0]}>
+            <Camera />
+            <Controls />
+          </Physics>
+        </Suspense>
       </Canvas>
       <Loader containerStyles={{ backgroundColor: "transparent" }} />
     </>
