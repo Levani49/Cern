@@ -4,19 +4,19 @@ export default function CustomLoader(): JSX.Element {
   return (
     <Loader
       containerStyles={{
-        backgroundColor: "white",
+        backgroundColor: "black",
         width: "100vw",
-        height: "3px",
+        height: "5px",
         display: "block",
         bottom: "0px",
         top: "auto"
       }}
       innerStyles={{
         width: "100%",
-        backgroundColor: "white"
+        backgroundColor: "black"
       }}
       barStyles={{
-        background: "rgb(50, 207, 142)"
+        background: "rgb(38, 158, 108)"
       }}
     />
   );
