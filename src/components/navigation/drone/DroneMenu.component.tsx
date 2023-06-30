@@ -10,8 +10,6 @@ import { ReactComponent as DollyZoomIcon } from "@assets/svg/zoom.svg";
 
 import { useAppDispatch } from "@store/hooks";
 
-import { setParticleAnimationState } from "@features/global/globalsSlice";
-
 import useDrone from "@hooks/useDrone/useDrone.hook";
 import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
