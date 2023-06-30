@@ -37,10 +37,10 @@ export default function Navigation(): JSX.Element {
           <OpacirtyMenu />
           <WireframeMenu />
           <Settings />
-          <FullScreenMenu />
           {!isMobile() && (
             <>
               <ThemeToggler />
+              <FullScreenMenu />
               <Link />
               <AboutMenu />
             </>

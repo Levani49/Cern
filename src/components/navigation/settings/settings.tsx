@@ -1,5 +1,7 @@
 import { lazy, Suspense } from "react";
 
+import FullScreenMenu from "@/components/navigation/fullscreen/FullScreenMenu.component";
+
 import { ReactComponent as SettingsIcon } from "@assets/svg/settings.svg";
 
 import AboutMenu from "@components/navigation/about/AboutMenu.component";
@@ -28,7 +30,7 @@ export default function Utils(): JSX.Element {
     <div className="group relative inline-flex">
       <NavIcon Icon={SettingsIcon} title="Settings" />
       <MenuDropdown className="flex-col sm:flex-row">
-        <StatsMenu />
+        {isMobile() === false && <StatsMenu />}
         <AxisMenu />
         <GridMenu />
         <SnapMenu />
@@ -38,6 +40,7 @@ export default function Utils(): JSX.Element {
         </Suspense>
         {isMobile() && (
           <>
+            <FullScreenMenu />
             <ThemeToggler />
             <Link />
             <AboutMenu />
