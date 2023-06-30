@@ -1,16 +1,23 @@
-import http from "http";
+import path from "path";
+import { fileURLToPath } from "url";
 
-import finalhandler from "finalhandler";
-import serveStatic from "serve-static";
+import compression from "compression";
+import express from "express";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+const PORT = process.env.PORT || 8080;
 const YEAR = 31536000;
-const serve = serveStatic("dist", {
-  cacheControl: `max-age=${YEAR}`,
-  compress: true
+
+app.use(compression());
+app.use((_, res, next) => {
+  res.setHeader("Cache-Control", `max-age=${YEAR}`);
+  next();
 });
 
-const server = http.createServer(function (req, res) {
-  serve(req, res, finalhandler(req, res));
+app.use(express.static(path.join(__dirname, "dist")));
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-server.listen(8080);

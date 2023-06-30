@@ -1,18 +1,17 @@
 import { lazy, Suspense } from "react";
 
+import ErrorHandler from "@components/error/ErrorHandler.component";
+import ModelInfo from "@components/modal/modelInfo/ModelInfo.component";
+import Navigation from "@components/navigation/navigation";
 import VideoPulse from "@components/screen-recording/screenRecording.component";
+import FlyOverlay from "@components/three/fly-graph/FlyGraph.component";
+import Stats from "@components/three/stats/Stats.component";
 
 import useDrone from "@hooks/useDrone/useDrone.hook";
 
-import ErrorHandler from "./components/error/ErrorHandler.component";
-import ModelInfo from "./components/modal/modelInfo/ModelInfo.component";
-import Navigation from "./components/navigation/navigation";
-import FlyOverlay from "./components/three/fly-graph/FlyGraph.component";
-import Stats from "./components/three/stats/Stats.component";
-
-const Canvas = lazy(() => import("./three/canvas/canvas.three"));
-const Tree = lazy(() => import("./components/tree/tree/Tree.component"));
-const Logo = lazy(() => import("./components/logo/Logo.component"));
+const Canvas = lazy(() => import("@three/canvas/canvas.three"));
+const Tree = lazy(() => import("@components/tree/tree/Tree.component"));
+const Logo = lazy(() => import("@components/logo/Logo.component"));
 
 function App(): JSX.Element {
   const { currentMode } = useDrone();

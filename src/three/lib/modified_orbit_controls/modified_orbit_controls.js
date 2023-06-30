@@ -1,17 +1,17 @@
 /* eslint-disable */
 
-import _defineProperty from '@babel/runtime/helpers/esm/defineProperty';
+import _defineProperty from "@babel/runtime/helpers/esm/defineProperty";
 import {
   EventDispatcher,
-  Vector3,
   MOUSE,
-  TOUCH,
+  OrthographicCamera,
   PerspectiveCamera,
   Quaternion,
   Spherical,
+  TOUCH,
   Vector2,
-  OrthographicCamera,
-} from 'three';
+  Vector3
+} from "three";
 
 // Unlike TrackballControls, it maintains the "up" direction object.up (+Y by default).
 //
@@ -19,7 +19,8 @@ import {
 //    Zoom - middle mouse, or mousewheel / touch: two-finger spread or squish
 //    Pan - right mouse, or left mouse + ctrl/meta/shiftKey, or arrow keys / touch: two-finger move
 
-const moduloWrapAround = (offset, capacity) => ((offset % capacity) + capacity) % capacity;
+const moduloWrapAround = (offset, capacity) =>
+  ((offset % capacity) + capacity) % capacity;
 
 class OrbitControls extends EventDispatcher {
   // Set to false to disable this control
@@ -53,103 +54,103 @@ class OrbitControls extends EventDispatcher {
   constructor(object, domElement) {
     super();
 
-    _defineProperty(this, 'object', void 0);
+    _defineProperty(this, "object", void 0);
 
-    _defineProperty(this, 'domElement', void 0);
+    _defineProperty(this, "domElement", void 0);
 
-    _defineProperty(this, 'enabled', true);
+    _defineProperty(this, "enabled", true);
 
-    _defineProperty(this, 'target', new Vector3());
+    _defineProperty(this, "target", new Vector3());
 
-    _defineProperty(this, 'minDistance', 0);
+    _defineProperty(this, "minDistance", 0);
 
-    _defineProperty(this, 'maxDistance', Infinity);
+    _defineProperty(this, "maxDistance", Infinity);
 
-    _defineProperty(this, 'minZoom', 0);
+    _defineProperty(this, "minZoom", 0);
 
-    _defineProperty(this, 'maxZoom', Infinity);
+    _defineProperty(this, "maxZoom", Infinity);
 
-    _defineProperty(this, 'minPolarAngle', 0);
+    _defineProperty(this, "minPolarAngle", 0);
 
-    _defineProperty(this, 'maxPolarAngle', Math.PI);
+    _defineProperty(this, "maxPolarAngle", Math.PI);
 
-    _defineProperty(this, 'minAzimuthAngle', -Infinity);
+    _defineProperty(this, "minAzimuthAngle", -Infinity);
 
-    _defineProperty(this, 'maxAzimuthAngle', Infinity);
+    _defineProperty(this, "maxAzimuthAngle", Infinity);
 
-    _defineProperty(this, 'enableDamping', false);
+    _defineProperty(this, "enableDamping", false);
 
-    _defineProperty(this, 'dampingFactor', 0.05);
+    _defineProperty(this, "dampingFactor", 0.05);
 
-    _defineProperty(this, 'enableZoom', true);
+    _defineProperty(this, "enableZoom", true);
 
-    _defineProperty(this, 'zoomSpeed', 1.0);
+    _defineProperty(this, "zoomSpeed", 1.0);
 
-    _defineProperty(this, 'enableRotate', true);
+    _defineProperty(this, "enableRotate", true);
 
-    _defineProperty(this, 'rotateSpeed', 1.0);
+    _defineProperty(this, "rotateSpeed", 1.0);
 
-    _defineProperty(this, 'enablePan', true);
+    _defineProperty(this, "enablePan", true);
 
-    _defineProperty(this, 'panSpeed', 1.0);
+    _defineProperty(this, "panSpeed", 1.0);
 
-    _defineProperty(this, 'screenSpacePanning', true);
+    _defineProperty(this, "screenSpacePanning", true);
 
-    _defineProperty(this, 'keyPanSpeed', 7.0);
+    _defineProperty(this, "keyPanSpeed", 7.0);
 
-    _defineProperty(this, 'autoRotate', false);
+    _defineProperty(this, "autoRotate", false);
 
-    _defineProperty(this, 'autoRotateSpeed', 2.0);
+    _defineProperty(this, "autoRotateSpeed", 2.0);
 
-    _defineProperty(this, 'reverseOrbit', false);
+    _defineProperty(this, "reverseOrbit", false);
 
-    _defineProperty(this, 'keys', {
-      LEFT: 'ArrowLeft',
-      UP: 'ArrowUp',
-      RIGHT: 'ArrowRight',
-      BOTTOM: 'ArrowDown',
+    _defineProperty(this, "keys", {
+      LEFT: "ArrowLeft",
+      UP: "ArrowUp",
+      RIGHT: "ArrowRight",
+      BOTTOM: "ArrowDown"
     });
 
-    _defineProperty(this, 'mouseButtons', {
+    _defineProperty(this, "mouseButtons", {
       LEFT: MOUSE.ROTATE,
       MIDDLE: MOUSE.DOLLY,
-      RIGHT: MOUSE.PAN,
+      RIGHT: MOUSE.PAN
     });
 
-    _defineProperty(this, 'touches', {
+    _defineProperty(this, "touches", {
       ONE: TOUCH.ROTATE,
-      TWO: TOUCH.DOLLY_PAN,
+      TWO: TOUCH.DOLLY_PAN
     });
 
-    _defineProperty(this, 'target0', void 0);
+    _defineProperty(this, "target0", void 0);
 
-    _defineProperty(this, 'position0', void 0);
+    _defineProperty(this, "position0", void 0);
 
-    _defineProperty(this, 'zoom0', void 0);
+    _defineProperty(this, "zoom0", void 0);
 
-    _defineProperty(this, '_domElementKeyEvents', null);
+    _defineProperty(this, "_domElementKeyEvents", null);
 
-    _defineProperty(this, 'getPolarAngle', void 0);
+    _defineProperty(this, "getPolarAngle", void 0);
 
-    _defineProperty(this, 'getAzimuthalAngle', void 0);
+    _defineProperty(this, "getAzimuthalAngle", void 0);
 
-    _defineProperty(this, 'setPolarAngle', void 0);
+    _defineProperty(this, "setPolarAngle", void 0);
 
-    _defineProperty(this, 'setAzimuthalAngle', void 0);
+    _defineProperty(this, "setAzimuthalAngle", void 0);
 
-    _defineProperty(this, 'getDistance', void 0);
+    _defineProperty(this, "getDistance", void 0);
 
-    _defineProperty(this, 'listenToKeyEvents', void 0);
+    _defineProperty(this, "listenToKeyEvents", void 0);
 
-    _defineProperty(this, 'saveState', void 0);
+    _defineProperty(this, "saveState", void 0);
 
-    _defineProperty(this, 'reset', void 0);
+    _defineProperty(this, "reset", void 0);
 
-    _defineProperty(this, 'update', void 0);
+    _defineProperty(this, "update", void 0);
 
-    _defineProperty(this, 'connect', void 0);
+    _defineProperty(this, "connect", void 0);
 
-    _defineProperty(this, 'dispose', void 0);
+    _defineProperty(this, "dispose", void 0);
 
     this.object = object;
     this.domElement = domElement; // for reset
@@ -209,14 +210,15 @@ class OrbitControls extends EventDispatcher {
     this.getDistance = () => scope.object.position.distanceTo(scope.target);
 
     this.listenToKeyEvents = (domElement) => {
-      domElement.addEventListener('keydown', onKeyDown);
+      domElement.addEventListener("keydown", onKeyDown);
       this._domElementKeyEvents = domElement;
     };
 
     this.saveState = () => {
       scope.target0.copy(scope.target);
       scope.position0.copy(scope.object.position);
-      scope.zoom0 = scope.object instanceof PerspectiveCamera ? scope.object.zoom : 1;
+      scope.zoom0 =
+        scope.object instanceof PerspectiveCamera ? scope.object.zoom : 1;
     };
 
     this.reset = () => {
@@ -236,7 +238,10 @@ class OrbitControls extends EventDispatcher {
     this.update = (() => {
       const offset = new Vector3(); // so camera.up is the orbit axis
 
-      const quat = new Quaternion().setFromUnitVectors(object.up, new Vector3(0, 1, 0));
+      const quat = new Quaternion().setFromUnitVectors(
+        object.up,
+        new Vector3(0, 1, 0)
+      );
       const quatInverse = quat.clone().invert();
       const lastPosition = new Vector3();
       const lastQuaternion = new Quaternion();
@@ -280,13 +285,16 @@ class OrbitControls extends EventDispatcher {
           }
         } // restrict phi to be between desired limits
 
-        spherical.phi = Math.max(scope.minPolarAngle, Math.min(scope.maxPolarAngle, spherical.phi));
+        spherical.phi = Math.max(
+          scope.minPolarAngle,
+          Math.min(scope.maxPolarAngle, spherical.phi)
+        );
         spherical.makeSafe();
         spherical.radius *= scale; // restrict radius to be between desired limits
 
         spherical.radius = Math.max(
           scope.minDistance,
-          Math.min(scope.maxDistance, spherical.radius),
+          Math.min(scope.maxDistance, spherical.radius)
         ); // move target to panned location
 
         if (scope.enableDamping === true) {
@@ -333,7 +341,7 @@ class OrbitControls extends EventDispatcher {
     this.connect = (domElement) => {
       if (domElement === document) {
         console.error(
-          'THREE.OrbitControls: "document" should not be used as the target "domElement". Please use "renderer.domElement" instead.',
+          'THREE.OrbitControls: "document" should not be used as the target "domElement". Please use "renderer.domElement" instead.'
         );
       }
 
@@ -341,11 +349,11 @@ class OrbitControls extends EventDispatcher {
       // touch-action needs to be defined for pointer events to work on mobile
       // https://stackoverflow.com/a/48254578
 
-      scope.domElement.style.touchAction = 'none';
-      scope.domElement.addEventListener('contextmenu', onContextMenu);
-      scope.domElement.addEventListener('pointerdown', onPointerDown);
-      scope.domElement.addEventListener('pointercancel', onPointerCancel);
-      scope.domElement.addEventListener('wheel', onMouseWheel);
+      scope.domElement.style.touchAction = "none";
+      scope.domElement.addEventListener("contextmenu", onContextMenu);
+      scope.domElement.addEventListener("pointerdown", onPointerDown);
+      scope.domElement.addEventListener("pointercancel", onPointerCancel);
+      scope.domElement.addEventListener("wheel", onMouseWheel, { passive: false });
     };
 
     this.dispose = () => {
@@ -358,25 +366,36 @@ class OrbitControls extends EventDispatcher {
 
       (_scope$domElement = scope.domElement) === null || _scope$domElement === void 0
         ? void 0
-        : _scope$domElement.removeEventListener('contextmenu', onContextMenu);
-      (_scope$domElement2 = scope.domElement) === null || _scope$domElement2 === void 0
+        : _scope$domElement.removeEventListener("contextmenu", onContextMenu);
+      (_scope$domElement2 = scope.domElement) === null ||
+      _scope$domElement2 === void 0
         ? void 0
-        : _scope$domElement2.removeEventListener('pointerdown', onPointerDown);
-      (_scope$domElement3 = scope.domElement) === null || _scope$domElement3 === void 0
+        : _scope$domElement2.removeEventListener("pointerdown", onPointerDown);
+      (_scope$domElement3 = scope.domElement) === null ||
+      _scope$domElement3 === void 0
         ? void 0
-        : _scope$domElement3.removeEventListener('pointercancel', onPointerCancel);
-      (_scope$domElement4 = scope.domElement) === null || _scope$domElement4 === void 0
+        : _scope$domElement3.removeEventListener("pointercancel", onPointerCancel);
+      (_scope$domElement4 = scope.domElement) === null ||
+      _scope$domElement4 === void 0
         ? void 0
-        : _scope$domElement4.removeEventListener('wheel', onMouseWheel);
-      (_scope$domElement5 = scope.domElement) === null || _scope$domElement5 === void 0
+        : _scope$domElement4.removeEventListener("wheel", onMouseWheel);
+      (_scope$domElement5 = scope.domElement) === null ||
+      _scope$domElement5 === void 0
         ? void 0
-        : _scope$domElement5.ownerDocument.removeEventListener('pointermove', onPointerMove);
-      (_scope$domElement6 = scope.domElement) === null || _scope$domElement6 === void 0
+        : _scope$domElement5.ownerDocument.removeEventListener(
+            "pointermove",
+            onPointerMove
+          );
+      (_scope$domElement6 = scope.domElement) === null ||
+      _scope$domElement6 === void 0
         ? void 0
-        : _scope$domElement6.ownerDocument.removeEventListener('pointerup', onPointerUp);
+        : _scope$domElement6.ownerDocument.removeEventListener(
+            "pointerup",
+            onPointerUp
+          );
 
       if (scope._domElementKeyEvents !== null) {
-        scope._domElementKeyEvents.removeEventListener('keydown', onKeyDown);
+        scope._domElementKeyEvents.removeEventListener("keydown", onKeyDown);
       } //scope.dispatchEvent( { type: 'dispose' } ); // should this be added here?
     }; //
     // internals
@@ -384,13 +403,13 @@ class OrbitControls extends EventDispatcher {
 
     const scope = this;
     const changeEvent = {
-      type: 'change',
+      type: "change"
     };
     const startEvent = {
-      type: 'start',
+      type: "start"
     };
     const endEvent = {
-      type: 'end',
+      type: "end"
     };
     const STATE = {
       NONE: -1,
@@ -400,7 +419,7 @@ class OrbitControls extends EventDispatcher {
       TOUCH_ROTATE: 3,
       TOUCH_PAN: 4,
       TOUCH_DOLLY_PAN: 5,
-      TOUCH_DOLLY_ROTATE: 6,
+      TOUCH_DOLLY_ROTATE: 6
     };
     let state = STATE.NONE;
     const EPS = 0.000001; // current position in spherical coordinates
@@ -488,8 +507,14 @@ class OrbitControls extends EventDispatcher {
 
           targetDistance *= Math.tan(((scope.object.fov / 2) * Math.PI) / 180.0); // we use only clientHeight here so aspect ratio does not distort speed
 
-          panLeft((2 * deltaX * targetDistance) / element.clientHeight, scope.object.matrix);
-          panUp((2 * deltaY * targetDistance) / element.clientHeight, scope.object.matrix);
+          panLeft(
+            (2 * deltaX * targetDistance) / element.clientHeight,
+            scope.object.matrix
+          );
+          panUp(
+            (2 * deltaY * targetDistance) / element.clientHeight,
+            scope.object.matrix
+          );
         } else if (
           element &&
           scope.object instanceof OrthographicCamera &&
@@ -500,18 +525,18 @@ class OrbitControls extends EventDispatcher {
             (deltaX * (scope.object.right - scope.object.left)) /
               scope.object.zoom /
               element.clientWidth,
-            scope.object.matrix,
+            scope.object.matrix
           );
           panUp(
             (deltaY * (scope.object.top - scope.object.bottom)) /
               scope.object.zoom /
               element.clientHeight,
-            scope.object.matrix,
+            scope.object.matrix
           );
         } else {
           // camera neither orthographic nor perspective
           console.warn(
-            'WARNING: OrbitControls.js encountered an unknown camera type - pan disabled.',
+            "WARNING: OrbitControls.js encountered an unknown camera type - pan disabled."
           );
           scope.enablePan = false;
         }
@@ -519,36 +544,48 @@ class OrbitControls extends EventDispatcher {
     })();
 
     function dollyOut(dollyScale) {
-      if (scope.object instanceof PerspectiveCamera && scope.object.isPerspectiveCamera) {
+      if (
+        scope.object instanceof PerspectiveCamera &&
+        scope.object.isPerspectiveCamera
+      ) {
         scale /= dollyScale;
-      } else if (scope.object instanceof OrthographicCamera && scope.object.isOrthographicCamera) {
+      } else if (
+        scope.object instanceof OrthographicCamera &&
+        scope.object.isOrthographicCamera
+      ) {
         scope.object.zoom = Math.max(
           scope.minZoom,
-          Math.min(scope.maxZoom, scope.object.zoom * dollyScale),
+          Math.min(scope.maxZoom, scope.object.zoom * dollyScale)
         );
         scope.object.updateProjectionMatrix();
         zoomChanged = true;
       } else {
         console.warn(
-          'WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.',
+          "WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled."
         );
         scope.enableZoom = false;
       }
     }
 
     function dollyIn(dollyScale) {
-      if (scope.object instanceof PerspectiveCamera && scope.object.isPerspectiveCamera) {
+      if (
+        scope.object instanceof PerspectiveCamera &&
+        scope.object.isPerspectiveCamera
+      ) {
         scale *= dollyScale;
-      } else if (scope.object instanceof OrthographicCamera && scope.object.isOrthographicCamera) {
+      } else if (
+        scope.object instanceof OrthographicCamera &&
+        scope.object.isOrthographicCamera
+      ) {
         scope.object.zoom = Math.max(
           scope.minZoom,
-          Math.min(scope.maxZoom, scope.object.zoom / dollyScale),
+          Math.min(scope.maxZoom, scope.object.zoom / dollyScale)
         );
         scope.object.updateProjectionMatrix();
         zoomChanged = true;
       } else {
         console.warn(
-          'WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.',
+          "WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled."
         );
         scope.enableZoom = false;
       }
@@ -570,7 +607,9 @@ class OrbitControls extends EventDispatcher {
 
     function handleMouseMoveRotate(event) {
       rotateEnd.set(event.clientX, event.clientY);
-      rotateDelta.subVectors(rotateEnd, rotateStart).multiplyScalar(scope.rotateSpeed);
+      rotateDelta
+        .subVectors(rotateEnd, rotateStart)
+        .multiplyScalar(scope.rotateSpeed);
       const element = scope.domElement;
 
       if (element) {
@@ -694,7 +733,9 @@ class OrbitControls extends EventDispatcher {
         rotateEnd.set(x, y);
       }
 
-      rotateDelta.subVectors(rotateEnd, rotateStart).multiplyScalar(scope.rotateSpeed);
+      rotateDelta
+        .subVectors(rotateEnd, rotateStart)
+        .multiplyScalar(scope.rotateSpeed);
       const element = scope.domElement;
 
       if (element) {
@@ -750,17 +791,25 @@ class OrbitControls extends EventDispatcher {
       if (pointers.length === 0) {
         var _scope$domElement7, _scope$domElement8;
 
-        (_scope$domElement7 = scope.domElement) === null || _scope$domElement7 === void 0
+        (_scope$domElement7 = scope.domElement) === null ||
+        _scope$domElement7 === void 0
           ? void 0
-          : _scope$domElement7.ownerDocument.addEventListener('pointermove', onPointerMove);
-        (_scope$domElement8 = scope.domElement) === null || _scope$domElement8 === void 0
+          : _scope$domElement7.ownerDocument.addEventListener(
+              "pointermove",
+              onPointerMove
+            );
+        (_scope$domElement8 = scope.domElement) === null ||
+        _scope$domElement8 === void 0
           ? void 0
-          : _scope$domElement8.ownerDocument.addEventListener('pointerup', onPointerUp);
+          : _scope$domElement8.ownerDocument.addEventListener(
+              "pointerup",
+              onPointerUp
+            );
       }
 
       addPointer(event);
 
-      if (event.pointerType === 'touch') {
+      if (event.pointerType === "touch") {
         onTouchStart(event);
       } else {
         onMouseDown(event);
@@ -770,7 +819,7 @@ class OrbitControls extends EventDispatcher {
     function onPointerMove(event) {
       if (scope.enabled === false) return;
 
-      if (event.pointerType === 'touch') {
+      if (event.pointerType === "touch") {
         onTouchMove(event);
       } else {
         onMouseMove(event);
@@ -783,15 +832,24 @@ class OrbitControls extends EventDispatcher {
       if (pointers.length === 0) {
         var _scope$domElement9, _scope$domElement10, _scope$domElement11;
 
-        (_scope$domElement9 = scope.domElement) === null || _scope$domElement9 === void 0
+        (_scope$domElement9 = scope.domElement) === null ||
+        _scope$domElement9 === void 0
           ? void 0
           : _scope$domElement9.releasePointerCapture(event.pointerId);
-        (_scope$domElement10 = scope.domElement) === null || _scope$domElement10 === void 0
+        (_scope$domElement10 = scope.domElement) === null ||
+        _scope$domElement10 === void 0
           ? void 0
-          : _scope$domElement10.ownerDocument.removeEventListener('pointermove', onPointerMove);
-        (_scope$domElement11 = scope.domElement) === null || _scope$domElement11 === void 0
+          : _scope$domElement10.ownerDocument.removeEventListener(
+              "pointermove",
+              onPointerMove
+            );
+        (_scope$domElement11 = scope.domElement) === null ||
+        _scope$domElement11 === void 0
           ? void 0
-          : _scope$domElement11.ownerDocument.removeEventListener('pointerup', onPointerUp);
+          : _scope$domElement11.ownerDocument.removeEventListener(
+              "pointerup",
+              onPointerUp
+            );
       }
 
       scope.dispatchEvent(endEvent);
@@ -1023,7 +1081,8 @@ class OrbitControls extends EventDispatcher {
     }
 
     function getSecondPointerPosition(event) {
-      const pointer = event.pointerId === pointers[0].pointerId ? pointers[1] : pointers[0];
+      const pointer =
+        event.pointerId === pointers[0].pointerId ? pointers[1] : pointers[0];
       return pointerPositions[pointer.pointerId];
     } // connect events
 
