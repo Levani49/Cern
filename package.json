@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "start": "node server.js",
+    "start": "serve -s dist",
+    "start2": "node server.js",
     "test": "vitest",
     "coverage": "npx vitest --coverage --run",
     "show-test-results": "serve coverage",
@@ -38,6 +39,7 @@
     "react-media-recorder-2": "^1.6.23",
     "react-redux": "^8.0.5",
     "react-select": "^5.7.3",
+    "serve": "^14.2.0",
     "tailwind-merge": "^1.13.2",
     "three": "^0.154.0"
   },
