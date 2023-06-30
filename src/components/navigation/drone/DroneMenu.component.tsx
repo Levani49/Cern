@@ -41,9 +41,6 @@ export default function DroneMenu(): JSX.Element {
       if (mode === "fly") {
         dispatch(setFlyModalState(true));
       }
-      if (mode === "z0") {
-        dispatch(setParticleAnimationState(true));
-      }
 
       dispatch(setDroneMode(mode));
     }
