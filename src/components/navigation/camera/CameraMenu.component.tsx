@@ -1,3 +1,5 @@
+import useEscapeKeydown from "@/hooks/useEscapeKeydown/useEscapeKeydown.hook";
+
 import { ReactComponent as VideoCameraIcon } from "@assets/svg/videoCameraIcon.svg";
 
 import { useAppDispatch } from "@store/hooks";
@@ -11,6 +13,12 @@ export default function CameraMenu(): JSX.Element {
   const dispatch = useAppDispatch();
   const { cameraType, setCameraType } = useCamera();
   const { currentMode } = useDrone();
+
+  useEscapeKeydown(() => {
+    if (cameraType === "orthographic") {
+      dispatch(setCameraType("perspective"));
+    }
+  });
 
   const onClickHandler = (): void => {
     if (currentMode !== "idle") {
