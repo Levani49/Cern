@@ -48,8 +48,8 @@ export default function DroneMenu(): JSX.Element {
     { Icon: CircleIcon, mode: "circle", title: "Circle mode" },
     { Icon: HelixIcon, mode: "helix", title: "Helix mode" },
     { Icon: RocketIcon, mode: "rocket", title: "Rocket mode" },
-    { Icon: DollyZoomIcon, mode: "zoom", title: "Zoom mode" },
     { Icon: FilmIcon, mode: "z0", title: "Cinema mode" },
+    { Icon: DollyZoomIcon, mode: "zoom", title: "Zoom mode" },
     { Icon: FlyIcon, mode: "fly", title: "Fly mode" }
   ];
 
