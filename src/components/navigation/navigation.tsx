@@ -24,7 +24,7 @@ export default function Navigation(): JSX.Element {
   const showMenuBar = useAppSelector(selectMenuBar);
 
   return (
-    <div className="fixed top-0 z-50 flex w-full flex-auto select-none flex-col items-center justify-center">
+    <>
       {showMenuBar && (
         <nav className="flex w-full items-center justify-center gap-2 rounded-sm  bg-customGray py-2 pl-4 pr-4 sm:w-auto">
           <NavTitle />
@@ -47,6 +47,6 @@ export default function Navigation(): JSX.Element {
         </nav>
       )}
       <ShowMenuBar />
-    </div>
+    </>
   );
 }

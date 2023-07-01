@@ -35,10 +35,10 @@ export default function Tree(): JSX.Element {
   }, [geometryTree]);
 
   return (
-    <>
+    <div className="absolute top-14 z-[2002] max-h-[80%]  overflow-y-auto bg-transparent">
       {showGeometryMenu && (
         <ul className={`select-none ${disablePointerEvents}`}>{GeometriesTree}</ul>
       )}
-    </>
+    </div>
   );
 }

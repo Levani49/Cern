@@ -22,9 +22,6 @@ export interface ParentNodeProps {
 export type MouseEv = React.MouseEvent<HTMLElement, MouseEvent>;
 export type IconMouseEv = React.MouseEvent<SVGSVGElement, MouseEvent>;
 
-const iconClass =
-  "h-5 w-5 text-white stroke-1 hover:text-blue hover:dark:text-green transition-all cursor-pointer";
-
 export default function ParentNode({
   uid,
   name,
@@ -65,9 +62,12 @@ export default function ParentNode({
       ? "text-yellow-200 dark:text-yellow-500"
       : "text-white";
 
-  const styles = `border-l-[1px] border-transparent text-left transition before:relative before:inline-block before:w-[15px]  before:align-middle before:border before:border-t-[0.5px] before:border-0 before:text-white before:align-middle ${
+  const componentClasses = `border-l-[1px] border-transparent text-left transition before:relative before:inline-block before:w-[15px]  before:border-t-[0.5px] before:border-0 before:text-white before:align-middle ${
     nodeEnd ? "last-event-line" : ""
   } ${root && "before:opacity-0"}`;
+
+  const inconClasses =
+    "h-5 w-5 text-white stroke-1 hover:text-blue hover:dark:text-green transition-all cursor-pointer";
 
   return (
     <li
@@ -76,15 +76,18 @@ export default function ParentNode({
       } ${root && "border-none"}`}
     >
       <div
-        className={`relative flex items-center whitespace-nowrap py-[1px] text-xs ${styles} left-[-1px]`}
+        className={`relative flex items-center whitespace-nowrap py-[1px] text-xs ${componentClasses} left-[-1px]`}
       >
         {show ? (
           <MinusCircleIcon
             onClick={showChildrenHandler}
-            className={`${iconClass}`}
+            className={`${inconClasses}`}
           />
         ) : (
-          <PlusCircleIcon onClick={showChildrenHandler} className={`${iconClass}`} />
+          <PlusCircleIcon
+            onClick={showChildrenHandler}
+            className={`${inconClasses}`}
+          />
         )}
 
         <span
