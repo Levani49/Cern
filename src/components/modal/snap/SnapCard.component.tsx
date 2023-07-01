@@ -15,8 +15,8 @@ export default function SnapCard({
   ...rest
 }: Props): JSX.Element {
   return (
-    <div className="flex flex-1 flex-col justify-between  rounded " {...rest}>
-      <div className="mb-2 flex h-full flex-col items-center gap-4 rounded bg-transparentDark px-2 py-4 transition-all">
+    <div className="flex flex-1 flex-col gap-5 rounded " {...rest}>
+      <div className="mb-2 flex h-full flex-col items-center gap-4 rounded bg-transparentDark px-2 py-6 transition-all">
         <Icon />
         <p className="text-center text-sm text-gray-300">{text}</p>
       </div>
