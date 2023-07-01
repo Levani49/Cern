@@ -6,6 +6,6 @@ import { setDroneMode } from "@features/camera/cameraSlice";
 
 const ee = new EventsEmitter();
 
-ee.on("stop", () => store.dispatch(setDroneMode("idle")));
+ee.on("stopDrone", () => store.dispatch(setDroneMode("idle")));
 
 export default ee;

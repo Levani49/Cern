@@ -1,7 +1,5 @@
 import { Camera } from "@react-three/fiber";
 
-import { Euler } from "three";
-
 import { DroneTypes } from "@type/app.types";
 
 export type ViewModes =
@@ -22,7 +20,7 @@ export type OrthographicProps =
       top: number;
       bottom: number;
       position: [x: number, y: number, z: number];
-      rotation: Euler;
+      rotation: [x: number, y: number, z: number];
       near: number;
       far: number;
     }
@@ -48,4 +46,5 @@ export interface ICameraSettings {
   viewMode: ViewModes;
   orthographicCameraProps: OrthographicProps | undefined;
   perspectiveCameraProps: PerspectiveProps | undefined;
+  triggerCameraEffect: "idle" | "pending" | "success";
 }

@@ -1,11 +1,15 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
+import {
+  selectCameraEffect,
+  triggerCameraEffect
+} from "@/features/camera/cameraSlice";
 import { saveAs } from "file-saver";
 
 import { ReactComponent as DownloadFileIcon } from "@assets/svg/downloadFileIcon.svg";
 import { ReactComponent as UploadFileIcon } from "@assets/svg/uploadFileIcon.svg";
 
-import { useAppDispatch } from "@store/hooks";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
 import store from "@store/store";
 
 import { hydrateClippingPlanes, setSnapIsLoading } from "@features/model/modelSlice";
@@ -30,6 +34,19 @@ const SnapTexts = {
 export default function SnapModal({ open, onClose }: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const triggerEffect = useAppSelector(selectCameraEffect);
+
+  useEffect(() => {
+    if (triggerEffect === "success") {
+      const state = store.getState();
+      const stateJSON = JSON.stringify(state);
+      const blob = new Blob([stateJSON], { type: "application/json" });
+      const timestamp = new Date().toISOString();
+      const filename = `${timestamp}-tracer-snapshot.snap`;
+      saveAs(blob, filename);
+      dispatch(triggerCameraEffect("idle"));
+    }
+  }, [triggerEffect, dispatch]);
 
   useEscapeKeydown(() => onClose(false));
 
@@ -41,12 +58,7 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
 
   const handleSaveSnapshot = (): void => {
     onClose(false);
-    const state = store.getState();
-    const stateJSON = JSON.stringify(state);
-    const blob = new Blob([stateJSON], { type: "application/json" });
-    const timestamp = new Date().toISOString();
-    const filename = `${timestamp}-tracer-snapshot.snap`;
-    saveAs(blob, filename);
+    dispatch(triggerCameraEffect("pending"));
   };
 
   const handleFileChange = (): void => {

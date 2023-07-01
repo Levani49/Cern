@@ -24,7 +24,7 @@ body {
 }
 
 .bgDark::backdrop {
-  background: rgb(28, 28, 28);
+  background: black;
 }
 
 .bgLight::backdrop {

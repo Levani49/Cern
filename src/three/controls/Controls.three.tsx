@@ -5,6 +5,10 @@ import { OrbitControlsProps } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 
+import { useAppSelector } from "@store/hooks";
+
+import { selectCameraType } from "@features/camera/cameraSlice";
+
 import CustomOrbitControl from "@three/lib/modified_orbit_controls/CustomOrbitControl";
 import PlayerControl from "@three/player-control/PlayerControl.three";
 
@@ -13,6 +17,7 @@ import useDrone from "@hooks/useDrone/useDrone.hook";
 export default function Controls(): JSX.Element {
   const { camera } = useThree();
   const { currentMode } = useDrone();
+  const cameraType = useAppSelector(selectCameraType);
 
   const controlsRef = useRef<OrbitControlsProps>(null);
 
@@ -34,7 +39,7 @@ export default function Controls(): JSX.Element {
     window.addEventListener("pointerdown", stopDampingEffect);
 
     return () => window.removeEventListener("pointerdown", stopDampingEffect);
-  }, [currentMode]);
+  }, [currentMode, cameraType]);
 
   const enableControls = currentMode === "circle" || currentMode === "idle";
 

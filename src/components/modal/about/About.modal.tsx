@@ -37,7 +37,7 @@ export default function AboutModal(): JSX.Element {
           </span>
         </div>
 
-        <div className="grid grid-cols-2 place-items-center gap-1 sm:grid-cols-4">
+        <div className="grid grid-cols-2 place-items-center gap-2 sm:grid-cols-4">
           {TEMP_INFO.employees.map((employee: Employee) => {
             const { id, ...rest } = employee;
 
