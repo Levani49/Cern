@@ -9,11 +9,11 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const YEAR = 31536000;
+const MONTH = 2592000;
 
 app.use(compression());
 app.use((_, res, next) => {
-  res.setHeader("Cache-Control", `max-age=${YEAR}`);
+  res.setHeader("Cache-Control", `max-age=${MONTH}`);
   next();
 });
 
