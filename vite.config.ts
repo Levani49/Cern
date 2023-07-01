@@ -7,7 +7,6 @@ import { defineConfig } from "vite";
 import viteCompression from "vite-plugin-compression";
 import svgr from "vite-plugin-svgr";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [viteCompression(), react(), svgr()],
   test: {
@@ -34,8 +33,13 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          main: ["./src/styles/index.css"]
+        manualChunks(id) {
+          if (
+            id.includes("@react-three/cannon") ||
+            id.includes("@react-three/fiber")
+          ) {
+            return id.toString().split("node_modules/")[1].split("/")[0].toString();
+          }
         }
       }
     }

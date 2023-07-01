@@ -11,7 +11,7 @@ import Tree from "@components/tree/tree/Tree.component";
 const Canvas = lazy(() => import("@three/canvas/canvas.three"));
 const Logo = lazy(() => import("@components/logo/Logo.component"));
 
-function App(): JSX.Element {
+export default function App(): JSX.Element {
   return (
     <ErrorHandler>
       <header className="fixed top-0 z-50 flex w-full flex-auto select-none flex-col items-center justify-center">
@@ -31,5 +31,3 @@ function App(): JSX.Element {
     </ErrorHandler>
   );
 }
-
-export default App;
