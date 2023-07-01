@@ -60,6 +60,7 @@ export default function Controls(): JSX.Element {
       ref={controlsRef}
       enabled={enableControls}
       autoRotate={currentMode === "circle"}
+      maxDistance={100}
       makeDefault
     />
   );
