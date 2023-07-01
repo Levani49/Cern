@@ -36,7 +36,9 @@ export default defineConfig({
         manualChunks(id) {
           if (
             id.includes("@react-three/cannon") ||
-            id.includes("@react-three/fiber")
+            id.includes("@react-three/fiber") ||
+            id.includes("html2canvas") ||
+            id.includes("react-media-recorder-2")
           ) {
             return id.toString().split("node_modules/")[1].split("/")[0].toString();
           }
