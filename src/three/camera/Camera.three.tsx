@@ -44,6 +44,7 @@ export default function Camera(): JSX.Element {
         height: size.height
       })
     );
+
     camera.updateProjectionMatrix();
 
     if (cameraEffect === "pending") {

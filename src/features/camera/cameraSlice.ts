@@ -21,6 +21,7 @@ import { isMobile } from "@utils/isMobile.utils";
 
 import type {
   CameraTypes,
+  coordinates,
   ICameraSettings,
   OrthographicProps,
   PerspectiveProps,
@@ -32,7 +33,7 @@ const cameraViews = new CameraViews();
 const defaultPosition = isMobile() ? [4, 4, 4] : [3, 3, 3];
 
 const initialState: ICameraSettings = {
-  defaultPosition: defaultPosition as [number, number, number],
+  defaultPosition: defaultPosition as [x: number, y: number, z: number],
   currentState: "idle",
   droneType: "idle",
   camera: null,
@@ -65,10 +66,14 @@ export const cameraSlice = createSlice({
   initialState,
   reducers: {
     rehydrate: (state, action) => {
-      const newState = action.payload.camera;
+      const newState = action.payload.camera as ICameraSettings;
       newState.triggerCameraEffect = "idle";
 
       return newState || state;
+    },
+
+    setDefaultPosition: (state, action: PayloadAction<coordinates>) => {
+      state.defaultPosition = action.payload;
     },
 
     setCameraPosition: (
@@ -214,12 +219,13 @@ export const {
   setRightView,
   setBackView,
   setTopView,
-  triggerCameraEffect
+  triggerCameraEffect,
+  setDefaultPosition
 } = cameraSlice.actions;
 
 export const selectDefaultCameraPosition = (
   state: RootState
-): [number, number, number] => state.camera.defaultPosition;
+): coordinates | undefined => state.camera.defaultPosition;
 
 export const selectOrthographicCameraProps = (state: RootState): OrthographicProps =>
   state.camera.orthographicCameraProps;
