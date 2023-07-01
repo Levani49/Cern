@@ -41,8 +41,8 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
       const state = store.getState();
       const stateJSON = JSON.stringify(state);
       const blob = new Blob([stateJSON], { type: "application/json" });
-      const timestamp = new Date().toISOString();
-      const filename = `${timestamp}-tracer-snapshot.snap`;
+      const timestamp = new Date().toLocaleString();
+      const filename = `tracer-core-snapshot${timestamp}.snap`;
       saveAs(blob, filename);
       dispatch(triggerCameraEffect("idle"));
     }
