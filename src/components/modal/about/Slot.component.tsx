@@ -16,7 +16,7 @@ export default function Slot({
   role
 }: Props): JSX.Element {
   const componentClasses = twMerge(
-    "flex w-[150px] h-[145px] justify-between flex-col items-center gap-1 rounded bg-transparent px-1 py-2 transition-all ease-in-out ",
+    "flex w-[150px] h-[140px] justify-between flex-col items-center gap-1 rounded bg-transparent px-1 py-2 transition-all ease-in-out ",
     className
   );
 
