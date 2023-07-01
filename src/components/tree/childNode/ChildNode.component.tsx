@@ -11,12 +11,18 @@ export interface ChildNodeProps {
   nodeEnd?: boolean;
 }
 
-export default function ChildNode({ name, uid, modelState, nodeEnd }: ChildNodeProps): JSX.Element {
+export default function ChildNode({
+  name,
+  uid,
+  modelState,
+  nodeEnd
+}: ChildNodeProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const onClickHandler = (e: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
     e.stopPropagation();
-    const state: GeometryState = modelState === "isLoaded" ? "notLoaded" : "isLoaded";
+    const state: GeometryState =
+      modelState === "isLoaded" ? "notLoaded" : "isLoaded";
 
     dispatch(
       updateChildNodeState({
@@ -37,7 +43,7 @@ export default function ChildNode({ name, uid, modelState, nodeEnd }: ChildNodeP
 
   return (
     <li
-      className={`relative left-[-1px] flex items-center border-l-[1px] border-white ${
+      className={`relative left-[-1px] flex items-center border-l-[0.5px] border-white ${
         nodeEnd && "last-child-event-line border-l border-solid border-transparent"
       } ${innerState}`}
     >

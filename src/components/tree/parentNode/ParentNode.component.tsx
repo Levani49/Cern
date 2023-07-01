@@ -62,7 +62,7 @@ export default function ParentNode({
       ? "text-yellow-200 dark:text-yellow-500"
       : "text-white";
 
-  const componentClasses = `border-l-[1px] border-transparent text-left transition before:relative before:inline-block before:w-[15px]  before:border-t-[0.5px] before:border-0 before:text-white before:align-middle ${
+  const componentClasses = `border-l-[0.5px] border-transparent text-left transition before:relative before:inline-block before:w-[15px]  before:border-t-[0.5px] before:border-0 before:text-white before:align-middle ${
     nodeEnd ? "last-event-line" : ""
   } ${root && "before:opacity-0"}`;
 
