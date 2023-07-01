@@ -9,27 +9,31 @@ export default class Helix {
     heightStep: 0.05,
     initialHeight: 0.5,
     speed: 0.18,
-    fullCircle: 144
+    fullCircle: 100
   };
 
   start(camera: Camera, cb: emptyFunc | undefined = undefined): void {
-    const { angleStep, radius, heightStep, initialHeight, speed, fullCircle } =
-      this.configuration;
     let i = 0;
+
+    const radius = Math.sqrt(
+      Math.pow(camera.position.x, 2) + Math.pow(camera.position.z, 2)
+    );
+    const phi = Math.atan2(camera.position.z, camera.position.x);
 
     const s = (): void => {
       this.animationRef = requestAnimationFrame(s);
 
-      const x = Math.cos(angleStep * i) * radius;
-      const y = i * heightStep + initialHeight;
-      const z = Math.sin(angleStep * i) * radius;
+      const rad = radius + i * 1.5;
 
+      const x = Math.cos(phi + i) * rad;
+      const y = camera.position.y + 0.01;
+      const z = Math.sin(phi + i) * rad;
+      console.log(i);
+      i += 0.0125;
       camera.position.set(x, y, z);
       camera.lookAt(0, 0, 0);
 
-      i += speed;
-
-      if (i > fullCircle) {
+      if (i > 12.6) {
         this.stop();
         if (cb) {
           cb();
