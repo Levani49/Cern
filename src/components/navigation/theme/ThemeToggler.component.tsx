@@ -14,10 +14,12 @@ export default function ThemeToggler(): JSX.Element {
   };
 
   if (isDarkMode) {
+    document.body.style.transition = "background-color 1s"; // Add transition property
     document.body.style.background = "black";
     document.body.classList.add("bgDark");
     document.body.classList.remove("bgLight");
   } else {
+    document.body.style.transition = "background-color 1s"; // Add transition property
     document.body.style.background = "rgb(171, 171, 171)";
     document.body.classList.add("bgLight");
     document.body.classList.remove("bgDark");

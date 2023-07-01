@@ -24,14 +24,17 @@ body {
 }
 
 .bgDark::backdrop {
+  transition: background-color 0.5s;
   background: black;
 }
 
 .bgLight::backdrop {
+  transition: background-color 0.5s;
   background: rgb(171, 171, 171);
 }
 
 body::backdrop {
+  transition: background-color 0.5s;
   background: black;
 }
 
