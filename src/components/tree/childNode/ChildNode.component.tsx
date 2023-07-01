@@ -36,7 +36,7 @@ export default function ChildNode({
   let innerState: string;
 
   if (modelState === "isLoaded") {
-    innerState = "text-green";
+    innerState = "text-[#0054ff] dark:text-green";
   } else {
     innerState = "text-white";
   }
