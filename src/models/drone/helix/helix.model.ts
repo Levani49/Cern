@@ -4,16 +4,13 @@ import { emptyFunc } from "@type/app.types";
 
 export default class Helix {
   public configuration = {
-    radius: 6.6,
-    angleStep: 0.05,
-    heightStep: 0.05,
-    initialHeight: 0.5,
-    speed: 0.18,
-    fullCircle: 100
+    speed: 0.012,
+    finishLine: 12.6
   };
 
   start(camera: Camera, cb: emptyFunc | undefined = undefined): void {
-    let i = 0;
+    const { speed, finishLine } = this.configuration;
+    let iterator = 0;
 
     const radius = Math.sqrt(
       Math.pow(camera.position.x, 2) + Math.pow(camera.position.z, 2)
@@ -23,17 +20,18 @@ export default class Helix {
     const s = (): void => {
       this.animationRef = requestAnimationFrame(s);
 
-      const rad = radius + i * 1.5;
+      const incrementedRadius = radius + iterator * 1.5;
 
-      const x = Math.cos(phi + i) * rad;
+      const x = Math.cos(phi + iterator) * incrementedRadius;
       const y = camera.position.y + 0.01;
-      const z = Math.sin(phi + i) * rad;
-      console.log(i);
-      i += 0.0125;
+      const z = Math.sin(phi + iterator) * incrementedRadius;
+
+      iterator += speed;
+
       camera.position.set(x, y, z);
       camera.lookAt(0, 0, 0);
 
-      if (i > 12.6) {
+      if (iterator > finishLine) {
         this.stop();
         if (cb) {
           cb();
