@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import { ModelCut } from "@/types/app.types";
-import { useControls } from "leva";
+import { Leva, useControls } from "leva";
 
 import { useAppDispatch } from "@store/hooks";
 
@@ -19,7 +19,7 @@ export default function ModelInfo(): JSX.Element {
   const dispatch = useAppDispatch();
   const { selectedModel } = useSelectedModel();
 
-  const [{ Name, Opacity, Wireframe, Cuttype }, set] = useControls(() => ({
+  const controls = useControls(() => ({
     Name: {
       value: "",
       disabled: true
@@ -48,16 +48,18 @@ export default function ModelInfo(): JSX.Element {
         cType = "Full cut";
       }
 
-      set({
+      controls[1]({
         Name: name,
         Opacity: opacity,
         Wireframe: wireframe,
         Cuttype: cType
       });
     }
-  }, [selectedModel, set]);
+  }, [selectedModel, controls]);
 
   useEffect(() => {
+    const { Wireframe, Opacity, Cuttype } = controls[0];
+
     if (selectedModel) {
       dispatch(setModelWireframe(Wireframe));
       dispatch(setModelsOpacity(Opacity));
@@ -68,11 +70,19 @@ export default function ModelInfo(): JSX.Element {
         dispatch(updateLocalModelCut(("-" + Cuttype) as ModelCut));
       }
     }
-  }, [Opacity, selectedModel, dispatch, Wireframe, Cuttype]);
+  }, [selectedModel, dispatch, controls]);
 
-  console.log(Name, Opacity, Wireframe, Cuttype);
-
-  return <></>;
+  return (
+    <div style={{ width: "150px" }}>
+      <Leva
+        theme={{
+          sizes: {
+            rootWidth: "260px"
+          }
+        }}
+      />
+    </div>
+  );
 }
 
 // import { ChangeEvent } from "react";
