@@ -26,25 +26,27 @@ export default function Navigation(): JSX.Element {
   return (
     <>
       {showMenuBar && (
-        <nav className="flex w-full items-center justify-center gap-2 rounded-sm  bg-customGray py-2 pl-4 pr-4 sm:w-auto">
-          <NavTitle />
-          <NavigationBar />
-          <GeometryMenu />
-          <EventsMenu />
-          <DroneMenu />
-          <CameraViewMenu />
-          <GeometryCutsMenu />
-          <OpacirtyMenu />
-          <WireframeMenu />
-          <Settings />
-          <Report />
-          <div className="hidden items-center gap-2 sm:flex">
-            <ThemeToggler />
-            <FullScreenMenu />
-            <Link />
-            <AboutMenu />
-          </div>
-        </nav>
+        <header className="fixed left-1/2 top-0 z-50 flex flex-auto  -translate-x-1/2 transform select-none flex-col items-center justify-center">
+          <nav className=" flex  w-full  items-center justify-center gap-2 rounded-sm  bg-customGray py-2 pl-4 pr-4 sm:w-auto">
+            <NavTitle />
+            <NavigationBar />
+            <GeometryMenu />
+            <EventsMenu />
+            <DroneMenu />
+            <CameraViewMenu />
+            <GeometryCutsMenu />
+            <OpacirtyMenu />
+            <WireframeMenu />
+            <Settings />
+            <Report />
+            <div className="hidden items-center gap-2 sm:flex">
+              <ThemeToggler />
+              <FullScreenMenu />
+              <Link />
+              <AboutMenu />
+            </div>
+          </nav>
+        </header>
       )}
       <ShowMenuBar />
     </>

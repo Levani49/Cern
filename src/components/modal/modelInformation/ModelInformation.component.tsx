@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { ModelCut } from "@/types/app.types";
 import { Leva, useControls } from "leva";
 
-import { useAppDispatch } from "@store/hooks";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import {
+  selectModelModal,
   setModelsOpacity,
   setModelWireframe,
   updateLocalModelCut
@@ -13,23 +14,33 @@ import {
 
 import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
 
+type Position = {
+  x?: number;
+  y?: number;
+};
+
 const cutTypes = ["cut1", "cut2", "cut3", "cut4", "Full cut"];
 
-export default function ModelInfo(): JSX.Element {
+export default function ModelInformation(): JSX.Element {
   const dispatch = useAppDispatch();
+  const show = useAppSelector(selectModelModal);
+
+  const [lastPosition, setLastPosition] = useState<Position>({
+    x: 0,
+    y: 0
+  });
   const { selectedModel } = useSelectedModel();
 
-  const controls = useControls(() => ({
+  const [data, set] = useControls(() => ({
     Name: {
-      value: "",
-      disabled: true
+      value: ""
     },
     Cuttype: {
       value: "cut3",
       options: cutTypes
     },
     Opacity: {
-      value: 1,
+      value: 4,
       min: 0,
       max: 1,
       step: 0.01
@@ -48,17 +59,17 @@ export default function ModelInfo(): JSX.Element {
         cType = "Full cut";
       }
 
-      controls[1]({
+      set({
         Name: name,
         Opacity: opacity,
         Wireframe: wireframe,
         Cuttype: cType
       });
     }
-  }, [selectedModel, controls]);
+  }, [selectedModel, set]);
 
   useEffect(() => {
-    const { Wireframe, Opacity, Cuttype } = controls[0];
+    const { Wireframe, Opacity, Cuttype } = data;
 
     if (selectedModel) {
       dispatch(setModelWireframe(Wireframe));
@@ -70,15 +81,30 @@ export default function ModelInfo(): JSX.Element {
         dispatch(updateLocalModelCut(("-" + Cuttype) as ModelCut));
       }
     }
-  }, [selectedModel, dispatch, controls]);
+  }, [selectedModel, dispatch, data]);
 
   return (
-    <div style={{ width: "150px" }}>
+    <div className="z-99999999">
       <Leva
+        hidden={!show}
         theme={{
           sizes: {
-            rootWidth: "260px"
+            rootWidth: "220px",
+            controlWidth: "120px"
+          },
+          colors: {
+            accent1: "#dfe6e9",
+            accent2: "rgb(50, 207, 142)",
+            accent3: "rgb(38,38,38)"
           }
+        }}
+        titleBar={{
+          title: "Model information",
+          drag: true,
+          onDragEnd: (e): void => {
+            setLastPosition(e);
+          },
+          position: lastPosition
         }}
       />
     </div>
