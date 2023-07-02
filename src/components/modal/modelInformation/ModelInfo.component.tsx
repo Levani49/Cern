@@ -29,7 +29,7 @@ export default function ModelInfo(): JSX.Element {
       options: cutTypes
     },
     Opacity: {
-      value: 4,
+      value: 1,
       min: 0,
       max: 1,
       step: 0.01
