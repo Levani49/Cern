@@ -31,10 +31,16 @@ export function raycast({
   raycaster.setFromCamera(mouse, camera);
   const models = scene.children.filter((model) => model.userData.name);
 
-  const intersects = raycaster.intersectObjects(models, true);
-  if (intersects.length > 0) {
-    return intersects[0].object.userData as UserData;
-  } else {
-    return undefined;
+  let intersectedModel: undefined | UserData = undefined;
+
+  for (const model of models) {
+    const intersects = raycaster.intersectObject(model, true);
+
+    if (intersects.length > 0) {
+      intersectedModel = intersects[0].object.userData as UserData;
+      break;
+    }
   }
+
+  return intersectedModel;
 }
