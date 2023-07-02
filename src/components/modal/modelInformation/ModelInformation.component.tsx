@@ -26,8 +26,8 @@ export default function ModelInformation(): JSX.Element {
   const show = useAppSelector(selectModelModal);
 
   const [lastPosition, setLastPosition] = useState<Position>({
-    x: 0,
-    y: 0
+    x: -16,
+    y: 56
   });
   const { selectedModel } = useSelectedModel();
 
