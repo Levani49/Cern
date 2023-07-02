@@ -38,7 +38,8 @@ export default defineConfig({
             id.includes("@react-three/cannon") ||
             id.includes("@react-three/fiber") ||
             id.includes("html2canvas") ||
-            id.includes("react-media-recorder-2")
+            id.includes("react-media-recorder-2") ||
+            id.includes("leva")
           ) {
             return id.toString().split("node_modules/")[1].split("/")[0].toString();
           }

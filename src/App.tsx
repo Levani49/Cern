@@ -1,7 +1,6 @@
 import { lazy, Suspense } from "react";
 
 import ErrorHandler from "@components/error/ErrorHandler.component";
-import ModelInfo from "@components/modal/modelInfo/ModelInfo.component";
 import Navigation from "@components/navigation/navigation";
 import VideoPulse from "@components/screen-recording/screenRecording.component";
 import FlyOverlay from "@components/three/fly-graph/FlyGraph.component";
@@ -10,6 +9,10 @@ import Tree from "@components/tree/tree/Tree.component";
 
 const Canvas = lazy(() => import("@three/canvas/canvas.three"));
 const Logo = lazy(() => import("@components/logo/Logo.component"));
+const ModelInformationContainer = lazy(
+  () =>
+    import("@components/modal/modelInformation/ModelInformationContainer.component")
+);
 
 export default function App(): JSX.Element {
   return (
@@ -21,12 +24,12 @@ export default function App(): JSX.Element {
         <Suspense fallback={null}>
           <Canvas />
           <Logo />
+          <ModelInformationContainer />
         </Suspense>
       </main>
       <Tree />
       <Stats />
       <FlyOverlay />
-      <ModelInfo />
       <VideoPulse />
     </ErrorHandler>
   );
