@@ -24,17 +24,17 @@ export default function ModelInfo(): JSX.Element {
       value: "",
       disabled: true
     },
+    Cuttype: {
+      value: "cut3",
+      options: cutTypes
+    },
     Opacity: {
       value: 4,
       min: 0,
       max: 1,
       step: 0.01
     },
-    Wireframe: false,
-    Cuttype: {
-      value: "cut3",
-      options: cutTypes
-    }
+    Wireframe: false
   }));
 
   useEffect(() => {
