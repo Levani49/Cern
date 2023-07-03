@@ -39,12 +39,12 @@ export default function InfoTool({
       <div className="flex items-center gap-2">
         {show ? (
           <MinusCircleIcon
-            className="icon text-[rgb(55,60,75)]"
+            className="icon h-4 w-4 text-[rgb(55,60,75)]"
             onClick={(): void => setShow((prev) => !prev)}
           />
         ) : (
           <PlusCircleIcon
-            className="icon text-[rgb(55,60,75)]"
+            className="icon  h-4 w-4  text-[rgb(55,60,75)]"
             onClick={(): void => setShow((prev) => !prev)}
           />
         )}
