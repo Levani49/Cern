@@ -13,7 +13,7 @@ export default function EventLine({
     <ul className="block pl-[11px]">
       <li
         className={`border-l border-[rgb(55,60,75)] text-xs ${
-          lastEvent && "last-event-line"
+          lastEvent && "last-event-line-events"
         }`}
       >
         <div className="relative left-0 block overflow-ellipsis whitespace-nowrap border-[rgb(55,60,75)] py-[1px] text-left align-middle transition before:relative  before:inline-block before:w-[15px] before:border before:border-t-[1px] before:border-[rgb(55,60,75)] before:align-middle">

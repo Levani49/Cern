@@ -50,7 +50,7 @@ export default function InfoTool({
         )}
 
         <span
-          className={`select-none text-xs ${active && "text-blue"} ${
+          className={`select-none text-xs capitalize ${active && "text-blue"} ${
             active && "dark:text-green"
           }`}
         >{`event ${eventName}`}</span>
