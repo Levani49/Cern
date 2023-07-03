@@ -20,7 +20,7 @@ export default function ShowMenuBar(): JSX.Element {
         <NavIcon
           Icon={ArrowDownIcon}
           onClick={handleClick}
-          className="flex h-5 w-12 items-center justify-center rounded-b-2xl border border-t-0 border-transparentGray bg-customGray p-[3px]"
+          className="fixed left-1/2 top-0 z-50 flex  h-5 w-12 flex-auto -translate-x-1/2 transform select-none flex-col items-center  justify-center rounded-b-2xl border border-t-0 border-transparentGray bg-customGray p-[3px]"
         />
       )}
     </>
