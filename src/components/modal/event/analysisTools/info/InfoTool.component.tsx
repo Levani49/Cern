@@ -38,13 +38,21 @@ export default function InfoTool({
     <div className="mt-1">
       <div className="flex items-center gap-2">
         {show ? (
-          <MinusCircleIcon className="icon" onClick={(): void => setShow((prev) => !prev)} />
+          <MinusCircleIcon
+            className="icon text-[rgb(55,60,75)]"
+            onClick={(): void => setShow((prev) => !prev)}
+          />
         ) : (
-          <PlusCircleIcon className="icon" onClick={(): void => setShow((prev) => !prev)} />
+          <PlusCircleIcon
+            className="icon text-[rgb(55,60,75)]"
+            onClick={(): void => setShow((prev) => !prev)}
+          />
         )}
 
         <span
-          className={`select-none text-xs ${active && "text-blue"} ${active && "dark:text-green"}`}
+          className={`select-none text-xs ${active && "text-blue"} ${
+            active && "dark:text-green"
+          }`}
         >{`event ${eventName}`}</span>
       </div>
       <div className={`${!show && "hidden"}`}>

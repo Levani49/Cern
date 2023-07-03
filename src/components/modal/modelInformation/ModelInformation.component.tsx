@@ -104,6 +104,7 @@ export default function ModelInformation(): JSX.Element {
           onDragEnd: (e): void => {
             setLastPosition(e);
           },
+          filter: false,
           position: lastPosition
         }}
       />

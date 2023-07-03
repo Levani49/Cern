@@ -178,7 +178,7 @@ export default function FileActions(): JSX.Element {
 
   return (
     <>
-      <div className="flex w-full items-center justify-between">
+      <div className="flex w-full items-center justify-between text-[#8c92a4]">
         <input
           hidden
           type="file"
@@ -190,7 +190,7 @@ export default function FileActions(): JSX.Element {
           title="Upload file"
           onClick={(): void => document.getElementById("handleFileUpload")?.click()}
         >
-          <ArrowUpTrayIcon className="icon" />
+          <ArrowUpTrayIcon className="icon text-[#8c92a4]" />
         </button>
         <div className="flex items-center gap-2">
           <button
@@ -198,10 +198,10 @@ export default function FileActions(): JSX.Element {
             disabled={isLoading}
             onClick={loadPreviousEvent}
           >
-            <ChevronLeftIcon className="icon" />
+            <ChevronLeftIcon className="icon text-[#8c92a4]" />
           </button>
-          <span className="select-none text-xs font-medium text-light">
-            group {eventNumber.eventGroup}{" "}
+          <span className="font-mediumt select-none text-xs">
+            Group {eventNumber.eventGroup}{" "}
             {eventNumber.eventIndex.toString().padStart(2, "0")}/50
           </span>
           <button
@@ -209,14 +209,14 @@ export default function FileActions(): JSX.Element {
             disabled={isLoading}
             onClick={loadNextEvent}
           >
-            <ChevronRightIcon className="icon" />
+            <ChevronRightIcon className="icon text-[#8c92a4]" />
           </button>
         </div>
         <button
           title="Load event from database"
           onClick={(): void => setShowGroupSelection((prev) => !prev)}
         >
-          <FolderIcon className="icon" />
+          <FolderIcon className="icon text-[#8c92a4]" />
         </button>
       </div>
       <div className={`flex gap-2 ${showGroupSelection ? "" : "hidden"}`}>
