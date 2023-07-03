@@ -36,7 +36,7 @@ export default function FilterInput({
         <span className="text-sm">{filterProp}</span>
       </div>
       <input
-        className="ml-[-3px] mt-[1px] w-16 flex-grow rounded-t-sm border border-transparentGray bg-[rgb(41,45,57)] px-[0.25rem] py-[0.1rem] text-sm text-white outline-none md:flex-grow-0"
+        className="ml-[-3px] mt-[1px] w-16 flex-grow rounded-t-sm border border-transparentGray bg-[rgb(41,45,57)] px-[0.25rem] py-[0.1rem] text-sm text-[#8C92A4] outline-none md:flex-grow-0"
         onChange={handleInputChange}
         value={value ? value : ""}
       />
