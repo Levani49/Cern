@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import { ReactComponent as MinusCircleIcon } from "@assets/svg/minusCircleIcon.svg";
 import { ReactComponent as PlusCircleIcon } from "@assets/svg/plusCircleIcon.svg";
 
+import { useAppDispatch } from "@store/hooks";
+
+import { setEventNumber } from "@features/event/eventSlice";
+
 import EventLine from "./EventLine.component";
 
 interface Props {
@@ -27,12 +31,29 @@ export default function InfoTool({
   active = false
 }: Props): JSX.Element {
   const [show, setShow] = useState(false);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (showEventDetails) {
       setShow(true);
     }
   }, [showEventDetails]);
+
+  const handleEventLoad = (): void => {
+    if (active) {
+      return;
+    }
+
+    const eventGroup = eventName.split(" ")[0];
+    const eventIndex = eventName.split(" ")[1].split("/")[0];
+
+    dispatch(
+      setEventNumber({
+        eventGroup,
+        eventIndex: Number(eventIndex)
+      })
+    );
+  };
 
   return (
     <div className="mt-1">
@@ -50,8 +71,10 @@ export default function InfoTool({
         )}
 
         <span
-          className={`select-none text-xs capitalize ${active && "text-blue"} ${
-            active && "dark:text-green"
+          role="presentation"
+          onClick={handleEventLoad}
+          className={`cursor-pointer select-none text-xs capitalize hover:text-blue dark:hover:text-green  ${
+            active && "text-blue dark:text-green"
           }`}
         >{`event ${eventName}`}</span>
       </div>

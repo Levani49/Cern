@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import { selectLoadedEvents } from "@features/event/eventSlice";
+import { LoadedEvents } from "@features/event/eventSlice.types";
 import {
   selectCurrentEventAnalysisTool,
   selectEventsModalState,
@@ -36,12 +37,22 @@ export default function EventsModal(): JSX.Element {
     dispatch(showEventsModal(false));
   };
 
+  const filteredEvents = loadedEvents.reduce(
+    (accumulator: LoadedEvents[], event) => {
+      if (!accumulator.some((obj) => obj.eventName === event.eventName)) {
+        accumulator.push(event);
+      }
+      return accumulator;
+    },
+    []
+  );
+
   const renderCurrentTool = (): JSX.Element | JSX.Element[] => {
     switch (memoizedAnalysisTool) {
       case "info":
         return (
           <div className="flex flex-col gap-1">
-            {[...loadedEvents].reverse().map((event, index): JSX.Element => {
+            {filteredEvents.map((event, index): JSX.Element => {
               return (
                 <InfoTool
                   active={index === 0}

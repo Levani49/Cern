@@ -75,7 +75,7 @@ const eventSlice = createSlice({
       const eventName = `${state.eventNumber.eventGroup} ${state.eventNumber.eventIndex}/50`;
       state.event = action.payload;
       state.eventGeneralInfo = eventGeneralInfo;
-      state.loadedEvents.push({ ...eventGeneralInfo, eventName });
+      state.loadedEvents.unshift({ ...eventGeneralInfo, eventName });
     },
     setEventNumber: (state, action: PayloadAction<EventsSlice["eventNumber"]>) => {
       state.eventNumber = action.payload;
