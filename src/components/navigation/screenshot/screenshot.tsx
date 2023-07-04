@@ -12,7 +12,16 @@ export default function Screenshot(): JSX.Element {
     const timestamp = new Date().toLocaleString();
     const filename = `tracer-screenshot-${timestamp}.png`;
 
-    html2canvas(element).then((canvas) => {
+    html2canvas(element, {
+      onclone: (clonedDocument) => {
+        Array.from(clonedDocument.querySelectorAll("h1")).forEach((heading) => {
+          heading.style.marginTop = "-17px";
+        });
+        Array.from(clonedDocument.querySelectorAll("span")).forEach((span) => {
+          span.style.marginTop = "-17px";
+        });
+      }
+    }).then((canvas) => {
       const dataURL = canvas.toDataURL("image/png");
       saveAs(dataURL, filename);
     });
