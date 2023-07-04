@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useReactMediaRecorder } from "react-media-recorder-2";
 
-import useEscapeKeydown from "@/hooks/useEscapeKeydown/useEscapeKeydown.hook";
-
 import { ReactComponent as PlayIcon } from "@assets/svg/play.svg";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
@@ -15,6 +13,8 @@ import {
 import Button from "@components/button/Button.component";
 import NavIcon from "@components/navigation/navIcon/navIcon";
 import TransitionModal from "@components/transition-modal/transition.modal";
+
+import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 export default function RecordScreen(): JSX.Element {
   const dispatch = useAppDispatch();

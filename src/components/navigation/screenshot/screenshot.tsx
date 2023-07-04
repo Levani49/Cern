@@ -9,7 +9,7 @@ export default function Screenshot(): JSX.Element {
   function handleScreenshot(): void {
     const element = document.body;
 
-    const timestamp = new Date().toISOString();
+    const timestamp = new Date().toLocaleString();
     const filename = `tracer-screenshot-${timestamp}.png`;
 
     html2canvas(element).then((canvas) => {

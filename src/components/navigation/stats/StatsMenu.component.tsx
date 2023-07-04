@@ -16,6 +16,7 @@ export default function StatsMenu(): JSX.Element {
 
   return (
     <NavIcon
+      className="hidden sm:block"
       Icon={ChartBarIcon}
       active={showRendererStatsMenu}
       onClick={toggleRendererStatsMenu}

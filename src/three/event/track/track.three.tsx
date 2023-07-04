@@ -1,34 +1,23 @@
 import { useMemo } from "react";
 
-import { useAppSelector } from "@store/hooks";
+import useEvent from "@hooks/useEvent/useEvent.hook";
 
-import {
-  selectEvent,
-  selectEventParameters,
-  selectTrackFilter
-} from "@features/event/eventSlice";
-
-import TrackService from "@models/event/track/track.model";
 import { TrackMesh } from "@models/event/track/track.model.types";
 
-const trackService = new TrackService();
-
 export default function Track(): JSX.Element {
-  const event = useAppSelector(selectEvent);
-  const eventParameters = useAppSelector(selectEventParameters);
-  const trackFilterValues = useAppSelector(selectTrackFilter);
+  const { event, eventParameters, trackFilterValues, TRACK } = useEvent();
 
   const tracksToDraw = useMemo(() => {
     if (event) {
       if (Array.isArray(event.Event.Track)) {
-        trackService.init(event.Event.Track[0]);
+        TRACK.init(event.Event.Track[0]);
       } else {
-        trackService.init(event.Event.Track);
+        TRACK.init(event.Event.Track);
       }
-      return trackService.drawTracksMain(trackFilterValues);
+      return TRACK.drawTracksMain(trackFilterValues);
     }
     return null;
-  }, [event, trackFilterValues]);
+  }, [event, trackFilterValues, TRACK]);
 
   if (tracksToDraw && eventParameters.tracks) {
     return (

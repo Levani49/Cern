@@ -1,4 +1,5 @@
 import { useThree } from "@react-three/fiber";
+import { useEffect } from "react";
 
 import { BackSide } from "three";
 
@@ -32,6 +33,30 @@ const Raycast = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const { width, height } = size;
+
+  useEffect(() => {
+    let timeoutId = 0;
+    const debounce = 10;
+
+    const handleIntersectionOnMouseMove = (e: Ev): void => {
+      clearTimeout(timeoutId);
+
+      timeoutId = window.setTimeout(() => {
+        const model = raycast({ mouse, raycaster, camera, scene, width, height, e });
+
+        if (model) {
+          document.body.style.cursor = "pointer";
+        } else {
+          document.body.style.cursor = "auto";
+        }
+      }, debounce);
+    };
+
+    window.addEventListener("pointermove", handleIntersectionOnMouseMove);
+
+    return () =>
+      window.removeEventListener("pointermove", handleIntersectionOnMouseMove);
+  }, [camera, raycaster, mouse, width, height, scene]);
 
   const handleMouseDown = (e: Ev): void => {
     mouseDown.x = e.clientX;

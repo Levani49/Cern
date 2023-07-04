@@ -1,5 +1,4 @@
 import { Physics } from "@react-three/cannon";
-import { Loader } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { lazy, Suspense } from "react";
 
@@ -14,10 +13,11 @@ import {
 } from "@features/model/modelSlice";
 
 import Camera from "@three/camera/Camera.three";
+import Loader from "@three/customLoader/customLoader.three";
 import Lights from "@three/light/Light.three";
 import Raycast from "@three/raycast/Raycast.three";
 
-const Detector = lazy(() => import("@/three/detector/Detector.three"));
+const Detector = lazy(() => import("@three/detector/Detector.three"));
 const Controls = lazy(() => import("@three/controls/Controls.three"));
 const Axis = lazy(() => import("@three/axis/Axis.three"));
 const Grid = lazy(() => import("@three/grid/Grid.three"));
@@ -46,22 +46,24 @@ export default function Scene(): JSX.Element {
         frameloop="demand"
         camera={{ manual: true, position: defaultPosition }}
       >
-        <Physics gravity={[0, 0, 0]}>
-          <Suspense fallback={null}>{!snapIsLoading && <Detector />}</Suspense>
-          <Suspense fallback={null}>
-            <Axis />
-            <Event />
-            <Grid />
-            <ParticleSystem />
-            <StatsDispatcher />
-          </Suspense>
-          <Raycast />
-          <Lights />
-          <Camera />
-          <Controls />
-        </Physics>
+        <Suspense fallback={null}>{!snapIsLoading && <Detector />}</Suspense>
+        <Suspense fallback={null}>
+          <Axis />
+          <Event />
+          <Grid />
+          <ParticleSystem />
+          <StatsDispatcher />
+        </Suspense>
+        <Raycast />
+        <Lights />
+        <Suspense fallback={null}>
+          <Physics gravity={[0, 0, 0]}>
+            <Camera />
+            <Controls />
+          </Physics>
+        </Suspense>
       </Canvas>
-      <Loader containerStyles={{ backgroundColor: "transparent" }} />
+      <Loader />
     </>
   );
 }

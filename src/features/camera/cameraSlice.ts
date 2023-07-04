@@ -15,12 +15,13 @@ import {
 
 import CameraViews from "@models/cameraViews/cameraViews.model";
 
-import ee from "@utils/droneEvent.utils";
+import eventsEmitter from "@utils/eventEmitter.utils";
 import { startDroneMode, stopDroneMode } from "@utils/handleDrone.utils";
-import { isDesktop } from "@utils/isDesktop.utils";
+import { isMobile } from "@utils/isMobile.utils";
 
 import type {
   CameraTypes,
+  coordinates,
   ICameraSettings,
   OrthographicProps,
   PerspectiveProps,
@@ -29,10 +30,10 @@ import type {
 
 const cameraViews = new CameraViews();
 
-const defaultPosition = isDesktop() ? [3, 3, 3] : [4, 4, 4];
+const defaultPosition = isMobile() ? [4, 4, 4] : [3, 3, 3];
 
 const initialState: ICameraSettings = {
-  defaultPosition: defaultPosition as [number, number, number],
+  defaultPosition: defaultPosition as [x: number, y: number, z: number],
   currentState: "idle",
   droneType: "idle",
   camera: null,
@@ -40,6 +41,7 @@ const initialState: ICameraSettings = {
   showFlyModal: false,
   viewMode: "iso",
   orthographicCameraProps: undefined,
+  triggerCameraEffect: "idle",
   perspectiveCameraProps: {
     fov: 75,
     position: [0, 0, 0],
@@ -64,7 +66,14 @@ export const cameraSlice = createSlice({
   initialState,
   reducers: {
     rehydrate: (state, action) => {
-      return action.payload.camera || state;
+      const newState = action.payload.camera as ICameraSettings;
+      newState.triggerCameraEffect = "idle";
+
+      return newState || state;
+    },
+
+    setDefaultPosition: (state, action: PayloadAction<coordinates>) => {
+      state.defaultPosition = action.payload;
     },
 
     setCameraPosition: (
@@ -153,7 +162,7 @@ export const cameraSlice = createSlice({
 
     setDroneMode: (state, action: PayloadAction<DroneTypes>) => {
       state.droneType = action.payload;
-      const handleFinish = (): boolean => ee.emit("stop");
+      const handleFinish = (): boolean => eventsEmitter.emit("stopDrone");
 
       if (state.camera) {
         switch (state.droneType) {
@@ -176,6 +185,13 @@ export const cameraSlice = createSlice({
 
     setFlyModalState: (state, action: PayloadAction<boolean>) => {
       state.showFlyModal = action.payload;
+    },
+
+    triggerCameraEffect: (
+      state,
+      action: PayloadAction<ICameraSettings["triggerCameraEffect"]>
+    ) => {
+      state.triggerCameraEffect = action.payload;
     },
 
     setCameraType: (
@@ -202,12 +218,14 @@ export const {
   setBottomView,
   setRightView,
   setBackView,
-  setTopView
+  setTopView,
+  triggerCameraEffect,
+  setDefaultPosition
 } = cameraSlice.actions;
 
 export const selectDefaultCameraPosition = (
   state: RootState
-): [number, number, number] => state.camera.defaultPosition;
+): coordinates | undefined => state.camera.defaultPosition;
 
 export const selectOrthographicCameraProps = (state: RootState): OrthographicProps =>
   state.camera.orthographicCameraProps;
@@ -218,6 +236,9 @@ export const selectDroneState = (state: RootState): DroneTypes =>
   state.camera.droneType;
 export const selectFlyModalState = (state: RootState): boolean =>
   state.camera.showFlyModal;
+export const selectCameraEffect = (
+  state: RootState
+): ICameraSettings["triggerCameraEffect"] => state.camera.triggerCameraEffect;
 export const selectCameraViewMode = (state: RootState): ViewModes =>
   state.camera.viewMode;
 export const selectCameraType = (state: RootState): CameraTypes =>

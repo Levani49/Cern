@@ -1,21 +1,23 @@
 import { memo, useEffect, useMemo } from "react";
 
+import { isMobile } from "@/utils/isMobile.utils";
+
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
-import { selectEventNumber } from "@features/event/eventSlice";
 import {
   selectParticleAnimation,
   setParticleAnimationState
 } from "@features/global/globalsSlice";
 
 import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
+import useEvent from "@hooks/useEvent/useEvent.hook";
 
 import Particles from "./Particles.three";
 
 const ParticleSystem = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const startParticleAnimation = useAppSelector(selectParticleAnimation);
-  const eventNumber = useAppSelector(selectEventNumber);
+  const { eventNumber } = useEvent();
 
   useEffect(() => {
     dispatch(setParticleAnimationState(true));
@@ -29,13 +31,20 @@ const ParticleSystem = (): JSX.Element => {
     };
   }, [dispatch, eventNumber]);
 
+  const particleProps = {
+    particlesSize: 0.00525,
+    numberOfParticles: 1000,
+    lifeExpectancy: 600
+  };
+
   return (
     <>
-      {startParticleAnimation && (
+      {isMobile() === false && startParticleAnimation && (
         <Particles
-          onFinish={memoizedOnFinishHandler}
-          explosionSpeed={0.25}
-          electronSpeed={0.435}
+          onComplete={memoizedOnFinishHandler}
+          electronSpeed={0.235}
+          explosionSpeed={0.045}
+          {...particleProps}
         />
       )}
     </>

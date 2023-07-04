@@ -178,30 +178,45 @@ export default function FileActions(): JSX.Element {
 
   return (
     <>
-      <div className="flex w-full items-center justify-between">
-        <input hidden type="file" accept=".xml" id="handleFileUpload" onChange={handleFileUpload} />
+      <div className="flex w-full items-center justify-between text-[#8c92a4]">
+        <input
+          hidden
+          type="file"
+          accept=".xml"
+          id="handleFileUpload"
+          onChange={handleFileUpload}
+        />
         <button
           title="Upload file"
           onClick={(): void => document.getElementById("handleFileUpload")?.click()}
         >
-          <ArrowUpTrayIcon className="icon" />
+          <ArrowUpTrayIcon className="icon text-[#8c92a4]" />
         </button>
         <div className="flex items-center gap-2">
-          <button title="Load previous event" disabled={isLoading} onClick={loadPreviousEvent}>
-            <ChevronLeftIcon className="icon" />
+          <button
+            title="Load previous event"
+            disabled={isLoading}
+            onClick={loadPreviousEvent}
+          >
+            <ChevronLeftIcon className="icon text-[#8c92a4]" />
           </button>
-          <span className="select-none text-xs font-medium text-light">
-            group {eventNumber.eventGroup} {eventNumber.eventIndex.toString().padStart(2, "0")}/50
+          <span className="font-mediumt select-none text-xs">
+            Group {eventNumber.eventGroup}{" "}
+            {eventNumber.eventIndex.toString().padStart(2, "0")}/50
           </span>
-          <button title="Load Next event" disabled={isLoading} onClick={loadNextEvent}>
-            <ChevronRightIcon className="icon" />
+          <button
+            title="Load Next event"
+            disabled={isLoading}
+            onClick={loadNextEvent}
+          >
+            <ChevronRightIcon className="icon text-[#8c92a4]" />
           </button>
         </div>
         <button
           title="Load event from database"
           onClick={(): void => setShowGroupSelection((prev) => !prev)}
         >
-          <FolderIcon className="icon" />
+          <FolderIcon className="icon text-[#8c92a4]" />
         </button>
       </div>
       <div className={`flex gap-2 ${showGroupSelection ? "" : "hidden"}`}>
@@ -217,7 +232,10 @@ export default function FileActions(): JSX.Element {
           styles={customStyles}
           onChange={handleEventChange}
         />
-        <button className="rounded bg-green px-2 py-1 text-xs uppercase" onClick={handleLoad}>
+        <button
+          className="rounded bg-green px-2 py-1 text-xs uppercase"
+          onClick={handleLoad}
+        >
           Load
         </button>
       </div>

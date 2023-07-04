@@ -95,7 +95,7 @@ export default function CameraViewMenu(): JSX.Element {
 
   return (
     <div className="group relative inline-flex">
-      <NavIcon Icon={EyeIcon} active title="View options" />
+      <NavIcon Icon={EyeIcon} title="View options" />
       <MenuDropdown>
         {innerHtml}
         <CameraMenu />

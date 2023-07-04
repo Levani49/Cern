@@ -4,32 +4,34 @@ import { emptyFunc } from "@type/app.types";
 
 export default class Helix {
   public configuration = {
-    radius: 6.6,
-    angleStep: 0.05,
-    heightStep: 0.05,
-    initialHeight: 0.5,
-    speed: 0.18,
-    fullCircle: 144
+    speed: 0.012,
+    finishLine: 12.6
   };
 
   start(camera: Camera, cb: emptyFunc | undefined = undefined): void {
-    const { angleStep, radius, heightStep, initialHeight, speed, fullCircle } =
-      this.configuration;
-    let i = 0;
+    const { speed, finishLine } = this.configuration;
+    let iterator = 0;
+
+    const radius = Math.sqrt(
+      Math.pow(camera.position.x, 2) + Math.pow(camera.position.z, 2)
+    );
+    const phi = Math.atan2(camera.position.z, camera.position.x);
 
     const s = (): void => {
       this.animationRef = requestAnimationFrame(s);
 
-      const x = Math.cos(angleStep * i) * radius;
-      const y = i * heightStep + initialHeight;
-      const z = Math.sin(angleStep * i) * radius;
+      const incrementedRadius = radius + iterator * 1.5;
+
+      const x = Math.cos(phi + iterator) * incrementedRadius;
+      const y = camera.position.y + 0.01;
+      const z = Math.sin(phi + iterator) * incrementedRadius;
+
+      iterator += speed;
 
       camera.position.set(x, y, z);
       camera.lookAt(0, 0, 0);
 
-      i += speed;
-
-      if (i > fullCircle) {
+      if (iterator > finishLine) {
         this.stop();
         if (cb) {
           cb();

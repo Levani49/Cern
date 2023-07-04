@@ -33,7 +33,7 @@ export default function FilterTool(): JSX.Element {
   };
 
   return (
-    <div className="flex flex-col justify-between gap-2 p-2">
+    <div className="flex flex-col justify-between  p-2">
       <div className="flex w-full flex-col gap-2 md:flex-row md:justify-between">
         <FilterContainer title="Tracks">
           <FilterInput

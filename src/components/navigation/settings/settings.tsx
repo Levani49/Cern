@@ -1,3 +1,7 @@
+import { lazy, Suspense } from "react";
+
+import FullScreenMenu from "@/components/navigation/fullscreen/FullScreenMenu.component";
+
 import { ReactComponent as SettingsIcon } from "@assets/svg/settings.svg";
 
 import AboutMenu from "@components/navigation/about/AboutMenu.component";
@@ -6,14 +10,19 @@ import MenuDropdown from "@components/navigation/dropdown/MenuDropdown.component
 import GridMenu from "@components/navigation/grid/GridMenu.component";
 import Link from "@components/navigation/link/link.component";
 import NavIcon from "@components/navigation/navIcon/navIcon";
-import RecordScreen from "@components/navigation/recordScreen/recordScreen";
-import Screenshot from "@components/navigation/screenshot/screenshot";
 import SnapMenu from "@components/navigation/snap/SnapMenu.component";
 import StatsMenu from "@components/navigation/stats/StatsMenu.component";
 import ThemeToggler from "@components/navigation/theme/ThemeToggler.component";
 
-import { isDesktop } from "@utils/isDesktop.utils";
 import { supportsScreenRecording } from "@utils/supportsScreenRecording.utils";
+
+const Screenshot = lazy(
+  () => import("@components/navigation/screenshot/screenshot")
+);
+
+const RecordScreen = lazy(
+  () => import("@components/navigation/recordScreen/recordScreen")
+);
 
 export default function Utils(): JSX.Element {
   return (
@@ -24,16 +33,16 @@ export default function Utils(): JSX.Element {
         <AxisMenu />
         <GridMenu />
         <SnapMenu />
-        <Screenshot />
-        {supportsScreenRecording() && <RecordScreen />}
-
-        {!isDesktop() && (
-          <>
-            <ThemeToggler />
-            <Link />
-            <AboutMenu />
-          </>
-        )}
+        <Suspense fallback={null}>
+          <Screenshot />
+          {supportsScreenRecording() && <RecordScreen />}
+        </Suspense>
+        <div className="flex flex-col sm:hidden">
+          <FullScreenMenu />
+          <ThemeToggler />
+          <Link />
+          <AboutMenu />
+        </div>
       </MenuDropdown>
     </div>
   );

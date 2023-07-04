@@ -1,4 +1,4 @@
-import { Euler, Matrix4, Spherical, Vector3 } from "three";
+import { Matrix4, Spherical, Vector3 } from "three";
 
 import { SetOrthoArgs } from "@features/camera/cameraSlice";
 
@@ -9,7 +9,7 @@ export interface OrthographicReturnType {
   bottom: number;
   position: [x: number, y: number, z: number];
   matrix: Matrix4;
-  rotation: Euler;
+  rotation: [x: number, y: number, z: number];
   near: number;
   far: number;
 }
@@ -68,7 +68,7 @@ export function calculateOrthographicDimensions(
     bottom: -frustumHeight / 2,
     position: [cameraPosition.x, cameraPosition.y, cameraPosition.z],
     matrix: cameraMatrix,
-    rotation: camera.rotation,
+    rotation: [camera.rotation.x, camera.rotation.y, camera.rotation.z],
     near: 0.01,
     far: 1000
   };

@@ -1,28 +1,28 @@
-import { useState } from 'react';
+import { useState } from "react";
+
+import { twMerge } from "tailwind-merge";
 
 interface Props {
   title: string;
   className?: string;
 }
 
-/**
- * Slider component that displays a form with a title and a range input.
- *
- * @param {Props} props - The props of the component.
- * @param {string} props.title - The title of the slider.
- * @returns {JSX.Element} ReactElement
- */
 export default function Slider({ title, className }: Props): JSX.Element {
   const [state, setState] = useState<number>(0);
 
+  const componentClasses = twMerge(
+    "rounded border-solid p-1 shadow-md mt-2",
+    className
+  );
+
   return (
-    <form className={`shadow-md rounded p-1 border-solid ${className} mt-2`}>
-      <h4 className="block select-none font-light text-xs text-light">{title}</h4>
+    <form className={componentClasses}>
+      <h4 className="block select-none text-xs font-light text-light">{title}</h4>
       <input
         type="range"
         value={state}
         onChange={(e): void => setState(+e.target.value)}
-        className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-blue dark:accent-green bg-transparentLight dark:bg-gray-700"
+        className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-transparentLight accent-blue dark:bg-gray-700 dark:accent-green"
       />
     </form>
   );

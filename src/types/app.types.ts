@@ -13,11 +13,10 @@ export type Employee = {
   name: string;
   src: string;
   role: string;
-  email: string;
+  contact: string;
 };
 export type EmployeeStaticData = {
-  managers: Employee[];
-  developers: Employee[];
+  employees: Employee[];
 };
 
 export type SVGIcon =

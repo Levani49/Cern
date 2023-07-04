@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent } from "react";
 
 interface Props {
   filterProp: string;
@@ -13,7 +13,7 @@ export default function FilterInput({
   filterProp,
   filter,
   value,
-  onChangeHandler,
+  onChangeHandler
 }: Props): JSX.Element {
   // const [value, setValue] = useState<undefined | string>('');
 
@@ -22,8 +22,8 @@ export default function FilterInput({
     const isValid = numberPattern.test(inputValue);
 
     if (isValid) {
-      if (inputValue.indexOf('.') === 0) {
-        onChangeHandler(filter, '0' + inputValue);
+      if (inputValue.indexOf(".") === 0) {
+        onChangeHandler(filter, "0" + inputValue);
       } else {
         onChangeHandler(filter, inputValue);
       }
@@ -31,14 +31,14 @@ export default function FilterInput({
   };
 
   return (
-    <div className="relative flex flex-wrap items-center w-full">
-      <div className="rounded-t-sm border flex justify-center border-transparentGray w-8 mb-[-1px] py-[0.1rem] px-[0.25rem]">
+    <div className="relative flex w-full flex-wrap items-center">
+      <div className="mb-[-1px] flex w-8 justify-center rounded-t-sm border border-transparentGray px-[0.25rem] py-[0.1rem]">
         <span className="text-sm">{filterProp}</span>
       </div>
       <input
-        className="text-light flex-grow ml-[-3px] mt-[1px] w-24 rounded-t-sm text-sm border border-transparentGray bg-transparentLight py-[0.1rem] px-[0.25rem] outline-none md:flex-grow-0"
+        className="ml-[-3px] mt-[1px] w-16 flex-grow rounded-t-sm border border-transparentGray bg-[rgb(41,45,57)] px-[0.25rem] py-[0.1rem] text-sm text-[#8C92A4] outline-none md:flex-grow-0"
         onChange={handleInputChange}
-        value={value ? value : ''}
+        value={value ? value : ""}
       />
     </div>
   );

@@ -1,11 +1,13 @@
-import NavIcon from "@/components/navigation/navIcon/navIcon";
+import { ReactComponent as PauseIcon } from "@assets/svg/pauseIcon.svg";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectScreenRecording,
   setScreenRecording
-} from "@/features/global/globalsSlice";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+} from "@features/global/globalsSlice";
 
-import { ReactComponent as PauseIcon } from "@assets/svg/pauseIcon.svg";
+import NavIcon from "@components/navigation/navIcon/navIcon";
 
 export default function ScreenRecording(): JSX.Element {
   const dispatch = useAppDispatch();

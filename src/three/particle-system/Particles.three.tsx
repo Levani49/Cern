@@ -2,25 +2,31 @@ import { Float } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { setDrawEvents } from "@/features/event/eventSlice";
-import { useAppDispatch } from "@/store/hooks";
 import { MathUtils, Object3D } from "three";
+
+import { useAppDispatch } from "@store/hooks";
+
+import { setDrawEvents } from "@features/event/eventSlice";
 
 import Collision from "./Collision.three";
 import Electron from "./Electron.three";
 
 interface Props {
-  onFinish: () => void;
+  onComplete: () => void;
   electronSpeed: number;
   explosionSpeed: number;
+  numberOfParticles: number;
+  lifeExpectancy: number;
+  particlesSize: number;
 }
 
-const NUMBER_OF_ITERATION = 200;
-
 export default function Particles({
-  onFinish,
+  onComplete,
   electronSpeed,
-  explosionSpeed
+  explosionSpeed,
+  numberOfParticles,
+  lifeExpectancy,
+  particlesSize
 }: Props): JSX.Element {
   const [explode, setExplode] = useState(false);
   const dispatch = useAppDispatch();
@@ -38,7 +44,7 @@ export default function Particles({
   }, [explode, dispatch]);
 
   const electronArray = useMemo(() => {
-    return new Array(500).fill(0, 0).map((_, index) => {
+    return new Array(numberOfParticles).fill(0, 0).map((_, index) => {
       const theta = MathUtils.randFloatSpread(360);
       const phi = MathUtils.randFloatSpread(360);
       const distance = 0.001;
@@ -51,14 +57,14 @@ export default function Particles({
         <Electron
           key={index}
           position={[x, y, z]}
-          size={[0.005]}
+          size={[particlesSize]}
           ref={(ref: Object3D | null): Object3D | null =>
             (electronRefs.current[index] = ref)
           }
         />
       );
     });
-  }, [onFinish]);
+  }, [numberOfParticles, particlesSize]);
 
   useFrame(() => {
     if (explode) {
@@ -72,8 +78,8 @@ export default function Particles({
 
       iterationRef.current += 1;
 
-      if (iterationRef.current === NUMBER_OF_ITERATION) {
-        onFinish();
+      if (iterationRef.current === lifeExpectancy) {
+        onComplete();
       }
     }
   });

@@ -1,7 +1,8 @@
-import { selectMenuBar, setMenuBar } from "@/features/global/globalsSlice";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-
 import { ReactComponent as MenuLogo } from "@assets/svg/menu.svg";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
+import { selectMenuBar, setMenuBar } from "@features/global/globalsSlice";
 
 import NavIcon from "@components/navigation/navIcon/navIcon";
 

@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 
-import { selectIsFullscreen, setFullscreen } from "@/features/global/globalsSlice";
-import useDrone from "@/hooks/useDrone/useDrone.hook";
-
 import { ReactComponent as ArrowsPointingOutIcon } from "@assets/svg/arrowsPointingOut.svg";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
+
+import { selectIsFullscreen, setFullscreen } from "@features/global/globalsSlice";
+
+import useDrone from "@hooks/useDrone/useDrone.hook";
 
 import { supportsFullscreen } from "@utils/supportsFullscreen.utils";
 

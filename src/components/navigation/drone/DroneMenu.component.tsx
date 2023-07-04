@@ -13,7 +13,7 @@ import { useAppDispatch } from "@store/hooks";
 import useDrone from "@hooks/useDrone/useDrone.hook";
 import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
-import { isDesktop } from "@utils/isDesktop.utils";
+import { isMobile } from "@utils/isMobile.utils";
 
 import MenuDropdown from "../dropdown/MenuDropdown.component";
 import NavIcon from "../navIcon/navIcon";
@@ -39,6 +39,7 @@ export default function DroneMenu(): JSX.Element {
       if (mode === "fly") {
         dispatch(setFlyModalState(true));
       }
+
       dispatch(setDroneMode(mode));
     }
   };
@@ -47,17 +48,17 @@ export default function DroneMenu(): JSX.Element {
     { Icon: CircleIcon, mode: "circle", title: "Circle mode" },
     { Icon: HelixIcon, mode: "helix", title: "Helix mode" },
     { Icon: RocketIcon, mode: "rocket", title: "Rocket mode" },
-    { Icon: DollyZoomIcon, mode: "zoom", title: "Zoom mode" },
     { Icon: FilmIcon, mode: "z0", title: "Cinema mode" },
+    { Icon: DollyZoomIcon, mode: "zoom", title: "Zoom mode" },
     { Icon: FlyIcon, mode: "fly", title: "Fly mode" }
   ];
 
-  const desktop = isDesktop();
+  const isMobileDevice = isMobile();
 
   const innerHtml = menuItems.map((item: MenuItem) => {
     const isActive = currentMode !== "idle";
 
-    if (!desktop) {
+    if (isMobileDevice) {
       if (item.mode !== "fly") {
         return (
           <NavIcon

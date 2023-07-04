@@ -29,56 +29,50 @@ export default function AboutModal(): JSX.Element {
       open={show}
       onClose={closeModalHandler}
     >
-      <div className="flex h-full w-full flex-col justify-between gap-2 p-1">
-        <div className="flex flex-col justify-center gap-2 text-center">
+      <div className="flex h-full w-full flex-col justify-between gap-6 p-1">
+        {/* <div className="hidden flex-col justify-center text-center sm:flex">
           <h1 className="text-center text-lg font-bold">Tracer Core</h1>
-          <span className="items-center text-center text-xs font-bold text-gray-500">
+          <span className="items-center text-center text-[10px] font-bold text-gray-500">
             Version: @6.0.0
           </span>
+        </div> */}
+
+        <div className="flex flex-col gap-6">
+          <h1 className="text-center text-lg">Nuclear Engineering Center</h1>
+          <p className="text-center text-xs text-gray-400">
+            <span className=" font-extrabold text-blue dark:text-green">
+              Nuclear Engineering Center
+            </span>{" "}
+            collaborates with <span className="font-medium text-blue">CERN</span>,
+            specializing in 3D modeling and applications. We create immersive 3D
+            models for various CERN teams, visualizing complex concepts. From
+            particle detectors to accelerator designs, our experts bring ideas to
+            life. Through advanced 3D applications, we enhance collaboration and data
+            analysis, supporting particle physics research. Join us at the
+            intersection of nuclear engineering and particle physics, as we drive
+            innovation alongside CERN. Experience the transformative potential of 3D
+            technology in unraveling the mysteries of the universe and shaping the
+            future of scientific exploration.
+          </p>
         </div>
 
-        <div className="flex flex-col gap-2 ">
-          <div className="mt-2 flex justify-center gap-2">
-            {TEMP_INFO.managers.map((employee: Employee) => {
-              const { id, ...rest } = employee;
-              return <Slot className="w-[200px]" key={id} {...rest} />;
-            })}
-          </div>
-          <div className="grid grid-cols-3 gap-1 sm:grid-cols-4">
-            {TEMP_INFO.developers.map((employee: Employee) => {
-              const { id, ...rest } = employee;
-              return <Slot key={id} {...rest} />;
-            })}
-          </div>
+        <div className="grid grid-cols-6 place-items-center sm:grid-cols-11">
+          {TEMP_INFO.employees.map((employee: Employee) => {
+            const { id, ...rest } = employee;
+            return <Slot key={id} {...rest} />;
+          })}
         </div>
 
-        <div className="mt-2 flex flex-col items-center gap-2 text-xs">
-          <div className="flex">
-            <span className="text-gray-300">Read more about us</span>
-            <a
-              href="http://cadcam.ge/"
-              className="ml-1 text-blue underline dark:text-green"
-            >
-              @Nuclear Engineering Center
-            </a>
-          </div>
-
-          <div className="flex">
-            <span className="text-gray-300">In collaboration with</span>
-            <a
-              href="https://cern.ch/"
-              className="ml-[2px] text-blue underline dark:text-green"
-            >
-              @CERN
-            </a>
-          </div>
-
+        <div className="mt-2 flex flex-col items-center gap-4 text-xs">
           <a
-            href="https://gtu.ge/Eng/"
-            className="ml-1 text-blue underline dark:text-green"
+            href="http://cadcam.ge/team/"
+            className="ml-1 rounded bg-transparentDark p-4 font-medium text-white transition-colors hover:bg-green"
+            target="_blank"
+            rel="noreferrer"
           >
-            @Georgian Technical University
+            Read more about us
           </a>
+          <p className="font-medium text-gray-500">All rights reserverd ®</p>
         </div>
       </div>
     </TransitionModal>

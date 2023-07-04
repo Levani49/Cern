@@ -1,5 +1,3 @@
-import { isDesktop } from "@utils/isDesktop.utils";
-
 export default function NavTitle(): JSX.Element {
-  return <>{isDesktop() && <h1 className="text-base text-light">CORE</h1>}</>;
+  return <h1 className="hidden text-base text-light sm:block">CORE</h1>;
 }

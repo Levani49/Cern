@@ -3,6 +3,8 @@ import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
 import { ModelCut } from "@type/app.types";
 
+let renderOrder = 0;
+
 export interface UserData {
   id: string;
   name: string;
@@ -64,7 +66,10 @@ export default class ModelService {
     wireframe = false
   ): void {
     model.userData = userData;
+
     model.traverse((child: Object3D): void => {
+      renderOrder++;
+      child.renderOrder = renderOrder;
       if (child instanceof Mesh) {
         child.userData = userData;
         child.material.metalness = 0;

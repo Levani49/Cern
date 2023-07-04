@@ -9,9 +9,10 @@ export type ErrorHandlerProps = {
 
 export type ErrorHandlerState = {
   hasError: boolean;
+  errorMessage: string;
 };
 
-function ErrorText(): JSX.Element {
+function ErrorText({ message }: { message: string }): JSX.Element {
   return (
     <TransitionModal open={true} title="ERROR">
       <div className="mt-8 flex flex-col items-center justify-center gap-8 pb-2">
@@ -19,6 +20,7 @@ function ErrorText(): JSX.Element {
           Something went wrong. We&apos;re working on it. Please refresh the page or
           try again later.
         </p>
+        <p className="text-center text-xs text-red-500">{message}</p>
         <Button className="px-6 py-2" onClick={(): void => location.reload()}>
           Refresh
         </Button>
@@ -32,11 +34,15 @@ export default class ErrorHandler extends Component<
   ErrorHandlerState
 > {
   state: ErrorHandlerState = {
-    hasError: false
+    hasError: false,
+    errorMessage: "" // Add a new state property to hold the error message
   };
 
-  static getDerivedStateFromError(_: Error): ErrorHandlerState {
-    return { hasError: true };
+  static getDerivedStateFromError(error: Error): ErrorHandlerState {
+    return {
+      hasError: true,
+      errorMessage: error.message // Set the error message in the state
+    };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
@@ -45,7 +51,7 @@ export default class ErrorHandler extends Component<
 
   render(): ReactNode | ReactNode[] {
     if (this.state.hasError) {
-      return <ErrorText />;
+      return <ErrorText message={this.state.errorMessage} />;
     }
 
     return this.props.children;

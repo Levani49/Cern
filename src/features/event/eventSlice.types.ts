@@ -1,34 +1,45 @@
-import { EventDetailsXML, EventOverviewData } from "@services/event/event.service.types";
+import {
+  EventDetailsXML,
+  EventOverviewData
+} from "@services/event/event.service.types";
 
 export interface LoadedEvents extends EventOverviewData {
   eventName: string;
 }
 
+export type EventsToShow = {
+  tracks: boolean;
+  jets: boolean;
+  met: boolean;
+};
+
+export type JetFilter = {
+  phi: string | undefined;
+  eta: string | undefined;
+  et: string | undefined;
+  theta: string | undefined;
+};
+
+export type TrackFilter = {
+  phi: string | undefined;
+  eta: string | undefined;
+  pt: string | undefined;
+  theta: string | undefined;
+};
+
+export type EventNumber = {
+  eventGroup: string;
+  eventIndex: number;
+};
+
 export interface EventsSlice {
   drawEvents: boolean;
-  eventNumber: {
-    eventGroup: string;
-    eventIndex: number;
-  };
+  eventNumber: EventNumber;
   loadedEvents: LoadedEvents[];
   eventGeneralInfo: EventOverviewData;
-  eventsToShow: {
-    tracks: boolean;
-    jets: boolean;
-    met: boolean;
-  };
+  eventsToShow: EventsToShow;
   event: EventDetailsXML | null;
   isLoading: boolean;
-  trackFilter: {
-    phi: string | undefined;
-    eta: string | undefined;
-    pt: string | undefined;
-    theta: string | undefined;
-  };
-  jetFilter: {
-    phi: string | undefined;
-    eta: string | undefined;
-    et: string | undefined;
-    theta: string | undefined;
-  };
+  trackFilter: TrackFilter;
+  jetFilter: JetFilter;
 }

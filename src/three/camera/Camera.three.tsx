@@ -1,14 +1,20 @@
 import { OrthographicCamera, PerspectiveCamera } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
+import { useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 
-import { useAppDispatch } from "@store/hooks";
+import {
+  selectCameraEffect,
+  triggerCameraEffect
+} from "@/features/camera/cameraSlice";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import useCamera from "@hooks/useCamera/useCamera.hook";
 
 export default function Camera(): JSX.Element {
   const dispatch = useAppDispatch();
   const { size, camera } = useThree();
+  const cameraEffect = useAppSelector(selectCameraEffect);
 
   const {
     cameraType,
@@ -16,13 +22,12 @@ export default function Camera(): JSX.Element {
     perspectiveCameraProps,
     setCamera,
     setOrthographicCameraDimensions,
-    setPerspectiveCameraDimensions,
-    setCameraPosition
+    setPerspectiveCameraDimensions
   } = useCamera();
 
   useEffect(() => {
     dispatch(setCamera(camera));
-  }, [camera, dispatch]);
+  }, [camera, setCamera, dispatch]);
 
   useEffect(() => {
     dispatch(
@@ -39,17 +44,22 @@ export default function Camera(): JSX.Element {
         height: size.height
       })
     );
+
     camera.updateProjectionMatrix();
-  }, [camera, size.width, size.height, dispatch]);
 
-  // TODO fix position issue on snapfile
-  useFrame(({ camera }) => {
-    dispatch(
-      setCameraPosition([camera.position.x, camera.position.y, camera.position.z])
-    );
-  });
-
-  camera.lookAt(0, 0, 0);
+    if (cameraEffect === "pending") {
+      dispatch(triggerCameraEffect("success"));
+    }
+  }, [
+    camera,
+    cameraType,
+    size.width,
+    size.height,
+    setOrthographicCameraDimensions,
+    setPerspectiveCameraDimensions,
+    cameraEffect,
+    dispatch
+  ]);
 
   return (
     <>

@@ -40,7 +40,10 @@ const CustomOrbitControl = forwardRef(
     const performance = useThree((state) => state.performance);
     const explCamera = camera || defaultCamera;
     const explDomElement = domElement || events.connected || gl.domElement;
-    const controls = React.useMemo(() => new OrbitControls$1(explCamera), [explCamera]);
+    const controls = React.useMemo(
+      () => new OrbitControls$1(explCamera),
+      [explCamera]
+    );
 
     useFrame(() => {
       if (controls.enabled) {

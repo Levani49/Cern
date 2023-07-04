@@ -5,19 +5,27 @@ import { OrbitControlsProps } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 
+import { useAppSelector } from "@store/hooks";
+
+import { selectCameraType } from "@features/camera/cameraSlice";
+
 import CustomOrbitControl from "@three/lib/modified_orbit_controls/CustomOrbitControl";
-import Player from "@three/player/Player.three";
+import PlayerControl from "@three/player-control/PlayerControl.three";
 
 import useDrone from "@hooks/useDrone/useDrone.hook";
 
 export default function Controls(): JSX.Element {
   const { camera } = useThree();
   const { currentMode } = useDrone();
+  const cameraType = useAppSelector(selectCameraType);
 
   const controlsRef = useRef<OrbitControlsProps>(null);
 
   useEffect(() => {
     const stopDampingEffect = (): void => {
+      if (currentMode) {
+        return;
+      }
       if (controlsRef.current) {
         controlsRef.current.enabled = false;
         controlsRef.current.enableDamping = false;
@@ -31,13 +39,13 @@ export default function Controls(): JSX.Element {
     window.addEventListener("pointerdown", stopDampingEffect);
 
     return () => window.removeEventListener("pointerdown", stopDampingEffect);
-  }, []);
+  }, [currentMode, cameraType]);
 
   const enableControls = currentMode === "circle" || currentMode === "idle";
 
   if (currentMode === "fly") {
     return (
-      <Player
+      <PlayerControl
         currentCameraPosition={[
           camera.position.x,
           camera.position.y,
@@ -48,12 +56,12 @@ export default function Controls(): JSX.Element {
   }
 
   return (
-    enableControls && (
-      <CustomOrbitControl
-        ref={controlsRef}
-        makeDefault
-        autoRotate={currentMode === "circle"}
-      />
-    )
+    <CustomOrbitControl
+      ref={controlsRef}
+      enabled={enableControls}
+      autoRotate={currentMode === "circle"}
+      maxDistance={100}
+      makeDefault
+    />
   );
 }

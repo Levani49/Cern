@@ -7,7 +7,7 @@ import { Track } from "@services/event/event.service.types";
 
 import { TrackInfo, TrackMesh } from "./track.model.types";
 
-export default class TrackService extends EventService {
+export default class TrackModel extends EventService {
   trackInfo: TrackInfo = {
     polylineX: [],
     polylineY: [],
@@ -68,10 +68,7 @@ export default class TrackService extends EventService {
       );
     }
 
-    const incidentPoint = this.calculateIncidentPoint(
-      trackPath[0],
-      trackPath[1]
-    );
+    const incidentPoint = this.calculateIncidentPoint(trackPath[0], trackPath[1]);
     trackPath.unshift(incidentPoint);
 
     const geometry = new BufferGeometry().setFromPoints(trackPath);
@@ -96,12 +93,13 @@ export default class TrackService extends EventService {
       )
     );
     const trackLength = new Vector3(
-      incidentPoint.x - this.trackInfo.polylineX[trackIndex + 1],
-      incidentPoint.y - this.trackInfo.polylineY[trackIndex + 1],
-      incidentPoint.z - this.trackInfo.polylineZ[trackIndex + 1]
+      this.trackInfo.polylineX[trackIndex] -
+        this.trackInfo.polylineX[trackIndex + 1],
+      this.trackInfo.polylineY[trackIndex] -
+        this.trackInfo.polylineY[trackIndex + 1],
+      this.trackInfo.polylineZ[trackIndex] - this.trackInfo.polylineZ[trackIndex + 1]
     ).length();
     const curvatureValue = trackLength / 4;
-
     const pointer1X =
       this.trackInfo.polylineX[trackIndex] +
       curvatureValue *
@@ -116,24 +114,20 @@ export default class TrackService extends EventService {
       this.trackInfo.polylineZ[trackIndex] +
       curvatureValue * Math.cos(this.trackInfo.theta[propertyIndex]);
 
-    let theta0 =
+    let theta0 = Math.asin(
       new Vector2(
         this.trackInfo.polylineX[trackIndex] -
           this.trackInfo.polylineX[trackIndex + 1],
         this.trackInfo.polylineY[trackIndex] -
           this.trackInfo.polylineY[trackIndex + 1]
-      ).length() / trackLength;
-
+      ).length() / trackLength
+    );
     if (this.trackInfo.theta[propertyIndex] >= Math.PI / 2) {
       theta0 = Math.PI - theta0;
     }
-
     const lengthFromPointer1ToPointer2 =
       trackLength -
-      2 *
-        curvatureValue *
-        Math.cos(this.trackInfo.theta[propertyIndex] - theta0); //mandzili sivrceshi gabnevis 1-lsa da me-2 mimtitebel shoris
-
+      2 * curvatureValue * Math.cos(this.trackInfo.theta[propertyIndex] - theta0); //mandzili sivrceshi gabnevis 1-lsa da me-2 mimtitebel shoris
     //track-ebis saboloo wertilis mimartulebis mimtitebeli
     const pointer2X =
       pointer1X +
@@ -180,8 +174,7 @@ export default class TrackService extends EventService {
     // Calculate the vector from the origin to point1
     const originToPoint1 = point1.clone();
     // Calculate the projection of originToPoint1 onto the direction vector
-    const projectionScalar =
-      originToPoint1.dot(direction) / direction.lengthSq();
+    const projectionScalar = originToPoint1.dot(direction) / direction.lengthSq();
     const projection = direction.clone().multiplyScalar(projectionScalar);
 
     // Subtract the projection from point1 to find the point on the line closest to the origin
@@ -190,9 +183,7 @@ export default class TrackService extends EventService {
     return incidentPoint;
   }
 
-  drawTracksMain(
-    trackFilterValues: EventsSlice["trackFilter"]
-  ): TrackMesh[] | void {
+  drawTracksMain(trackFilterValues: EventsSlice["trackFilter"]): TrackMesh[] | void {
     const tracks = [];
     let index = 0;
 
@@ -204,10 +195,11 @@ export default class TrackService extends EventService {
           (trackFilterValues.eta &&
             this.trackInfo.eta[i] < +trackFilterValues.eta) ||
           (trackFilterValues.pt &&
-            this.trackInfo.pt[i] < +trackFilterValues.pt) ||
+            Math.abs(this.trackInfo.pt[i]) < +trackFilterValues.pt) ||
           (trackFilterValues.theta &&
             this.trackInfo.theta[i] < +trackFilterValues.theta)
         ) {
+          index += this.trackInfo.numPolyline[i];
           continue;
         }
         switch (this.trackInfo.numPolyline[i]) {

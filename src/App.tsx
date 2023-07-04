@@ -1,46 +1,33 @@
 import { lazy, Suspense } from "react";
 
+import ErrorHandler from "@components/error/ErrorHandler.component";
+import Header from "@components/navigation/navigation";
 import VideoPulse from "@components/screen-recording/screenRecording.component";
+import FlyOverlay from "@components/three/fly-graph/FlyGraph.component";
+import Stats from "@components/three/stats/Stats.component";
+import Tree from "@components/tree/tree/Tree.component";
 
-import useDrone from "@hooks/useDrone/useDrone.hook";
+const Canvas = lazy(() => import("@three/canvas/canvas.three"));
+const Logo = lazy(() => import("@components/logo/Logo.component"));
+const ModelInformation = lazy(
+  () => import("@components/modal/modelInformation/ModelInformation.component")
+);
 
-import ErrorHandler from "./components/error/ErrorHandler.component";
-import ModelInfo from "./components/modal/modelInfo/ModelInfo.component";
-import Navigation from "./components/navigation/navigation";
-import FlyOverlay from "./components/three/fly-graph/FlyGraph.component";
-import Stats from "./components/three/stats/Stats.component";
-
-const Canvas = lazy(() => import("./three/canvas/canvas.three"));
-const Tree = lazy(() => import("./components/tree/tree/Tree.component"));
-const Logo = lazy(() => import("./components/logo/Logo.component"));
-
-function App(): JSX.Element {
-  const { currentMode } = useDrone();
-
-  const zIndex = currentMode === "fly" ? "z-[99999]" : "z-10";
-
+export default function App(): JSX.Element {
   return (
     <ErrorHandler>
-      <div className="flex">
-        <Navigation />
-      </div>
-      <div className={`absolute ${zIndex} left-0 top-0 h-full w-full`}>
-        <div className="absolute top-14 z-[2002] max-h-[80%]  overflow-y-auto bg-transparent">
-          <Suspense>
-            <Tree />
-          </Suspense>
-        </div>
-        <FlyOverlay />
-        <Stats />
-        <ModelInfo />
-        <Suspense>
+      <Header />
+      <main className="absolute left-0 top-0 z-10 h-full w-full">
+        <Suspense fallback={null}>
           <Canvas />
           <Logo />
+          <ModelInformation />
         </Suspense>
-      </div>
+      </main>
+      <Tree />
+      <Stats />
+      <FlyOverlay />
       <VideoPulse />
     </ErrorHandler>
   );
 }
-
-export default App;

@@ -2,14 +2,18 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import type { RootState } from "@store/store";
 
+import { isMobile } from "@utils/isMobile.utils";
+
 import type { GlobalsSlice } from "./globalsSlice.type";
+
+const axisVisibility = isMobile() === false;
 
 const initialState: GlobalsSlice = {
   prefersDarkMode: true,
   showMenu: true,
   startParticleAnimation: true,
   showStats: false,
-  showAxis: true,
+  showAxis: axisVisibility,
   showGrid: true,
   globalWireframe: false,
   selectedModel: null,
