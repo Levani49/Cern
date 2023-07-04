@@ -23,16 +23,13 @@ export default function Detector(): JSX.Element {
     const activeModels = models
       .filter((model) => model.modelPath !== "nan")
       .map((model: ActiveModel): LocalModel => {
-        // Check if a model with the same ID exists in localModels
         const existingLocalModel = localModels.find(
           (localModel) => localModel.uid === model.uid
         );
 
         if (existingLocalModel) {
-          // If found, return the existing localModel
           return existingLocalModel;
         } else {
-          // Otherwise, return the new model with the cutType
           return {
             ...model,
             cutType

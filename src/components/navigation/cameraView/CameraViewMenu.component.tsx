@@ -1,3 +1,4 @@
+import useEscapeKeydown from "@/hooks/useEscapeKeydown/useEscapeKeydown.hook";
 import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 
 import { ReactComponent as BackViewIcon } from "@assets/svg/back-side.svg";
@@ -18,6 +19,7 @@ import {
   setIsoView,
   setLeftCameraView,
   setRightView,
+  setStopCameraView,
   setTopView
 } from "@features/camera/cameraSlice";
 
@@ -35,6 +37,10 @@ export default function CameraViewMenu(): JSX.Element {
   const handleModeChange = (handler: ActionCreatorWithoutPayload): void => {
     dispatch(handler());
   };
+
+  useEscapeKeydown((): void => {
+    dispatch(setStopCameraView());
+  });
 
   const menuItems = [
     {

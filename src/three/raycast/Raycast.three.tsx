@@ -32,9 +32,8 @@ const Raycast = (): JSX.Element => {
   const { selectedModel } = useSelectedModel();
   const dispatch = useAppDispatch();
 
-  const { width, height } = size;
-
   useEffect(() => {
+    const { width, height } = size;
     let timeoutId = 0;
     const debounce = 10;
 
@@ -56,7 +55,7 @@ const Raycast = (): JSX.Element => {
 
     return () =>
       window.removeEventListener("pointermove", handleIntersectionOnMouseMove);
-  }, [camera, raycaster, mouse, width, height, scene]);
+  }, [camera, raycaster, mouse, size, scene]);
 
   const handleMouseDown = (e: Ev): void => {
     mouseDown.x = e.clientX;
@@ -66,6 +65,7 @@ const Raycast = (): JSX.Element => {
   const handleMouseUp = (e: Ev): void => {
     const mouseUp = { x: e.clientX, y: e.clientY };
     const movementThreshold = 5;
+    const { width, height } = size;
 
     const MOUSE_IS_IN_RANGE =
       Math.abs(mouseUp.x - mouseDown.x) <= movementThreshold &&

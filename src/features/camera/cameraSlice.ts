@@ -75,7 +75,9 @@ export const cameraSlice = createSlice({
     setDefaultPosition: (state, action: PayloadAction<coordinates>) => {
       state.defaultPosition = action.payload;
     },
-
+    setStopCameraView: () => {
+      cameraViews.stop();
+    },
     setCameraPosition: (
       state,
       action: PayloadAction<[x: number, y: number, z: number]>
@@ -220,7 +222,8 @@ export const {
   setBackView,
   setTopView,
   triggerCameraEffect,
-  setDefaultPosition
+  setDefaultPosition,
+  setStopCameraView
 } = cameraSlice.actions;
 
 export const selectDefaultCameraPosition = (
