@@ -28,7 +28,7 @@ interface Props {
 }
 
 const initialState: Props = {
-  margin: [70, 40],
+  margin: [70, 50],
   aligment: "bottom-right",
   scale: 35
 };
