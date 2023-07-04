@@ -30,7 +30,7 @@ import type {
 
 const cameraViews = new CameraViews();
 
-const defaultPosition = isMobile() ? [4, 4, 4] : [3, 3, 3];
+const defaultPosition = isMobile() ? [5, 5, 5] : [3, 3, 3];
 
 const initialState: ICameraSettings = {
   defaultPosition: defaultPosition as [x: number, y: number, z: number],
