@@ -28,9 +28,9 @@ interface Props {
 }
 
 const initialState: Props = {
-  margin: [70, 55],
+  margin: [70, 40],
   aligment: "bottom-right",
-  scale: 40
+  scale: 35
 };
 
 function Axis(): JSX.Element {
@@ -41,7 +41,7 @@ function Axis(): JSX.Element {
   useEffect(() => {
     if (isMobile()) {
       setProperties({
-        margin: [40, 40],
+        margin: [40, 37],
         scale: 25,
         aligment: "top-right"
       });
@@ -52,7 +52,7 @@ function Axis(): JSX.Element {
     const handleResize = (): void => {
       if (window.innerWidth < 768) {
         setProperties({
-          margin: [40, 40],
+          margin: [40, 37],
           scale: 25,
           aligment: "top-right"
         });
