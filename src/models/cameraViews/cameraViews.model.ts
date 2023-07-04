@@ -48,8 +48,13 @@ export default class CameraViews {
   }
 
   leftView(camera: Camera): void {
-    const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
-    const targetPosition = new Vector3(0, 0, distance);
+    const distance = camera.position.distanceTo(new Vector3(0.0001, 0.0001, 0));
+
+    const targetPosition = new Vector3(
+      camera.position.y / 1000,
+      camera.position.y / 1000,
+      distance
+    );
 
     this.prepareTween({
       currentPosition: camera.position,
@@ -62,7 +67,12 @@ export default class CameraViews {
 
   frontView(camera: Camera): void {
     const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
-    const targetPosition = new Vector3(distance, 0, 0);
+
+    const targetPosition = new Vector3(
+      distance,
+      camera.position.y / 1000,
+      camera.position.z / 1000
+    );
 
     this.prepareTween({
       currentPosition: camera.position,
@@ -75,7 +85,11 @@ export default class CameraViews {
 
   bottomView(camera: Camera): void {
     const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
-    const targetPosition = new Vector3(0, -distance, 0);
+    const targetPosition = new Vector3(
+      camera.position.x / 1000,
+      -distance,
+      camera.position.z / 1000
+    );
 
     this.prepareTween({
       currentPosition: camera.position,
@@ -88,7 +102,12 @@ export default class CameraViews {
 
   rightView(camera: Camera): void {
     const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
-    const targetPosition = new Vector3(0, 0, -distance);
+
+    const targetPosition = new Vector3(
+      camera.position.x / 1000,
+      camera.position.y / 1000,
+      -distance
+    );
 
     this.prepareTween({
       currentPosition: camera.position,
@@ -101,7 +120,11 @@ export default class CameraViews {
 
   backView(camera: Camera): void {
     const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
-    const targetPosition = new Vector3(-distance, 0, 0);
+    const targetPosition = new Vector3(
+      -distance,
+      camera.position.y / 1000,
+      camera.position.z / 1000
+    );
 
     this.prepareTween({
       currentPosition: camera.position,
@@ -114,7 +137,11 @@ export default class CameraViews {
 
   topView(camera: Camera): void {
     const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
-    const targetPosition = new Vector3(0, distance, 0);
+    const targetPosition = new Vector3(
+      camera.position.x / 1000,
+      distance,
+      camera.position.z / 1000
+    );
 
     this.prepareTween({
       currentPosition: camera.position,
