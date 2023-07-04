@@ -1,7 +1,5 @@
 import { memo, useEffect, useMemo } from "react";
 
-import { isMobile } from "@/utils/isMobile.utils";
-
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import {
@@ -11,6 +9,8 @@ import {
 
 import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 import useEvent from "@hooks/useEvent/useEvent.hook";
+
+import { isMobile } from "@utils/isMobile.utils";
 
 import Particles from "./Particles.three";
 

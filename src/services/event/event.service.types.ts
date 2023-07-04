@@ -8,12 +8,12 @@ export type EventOverviewData = {
 
 export interface EventDetailsXML {
   Event: {
-    '@_dateTime': string;
-    '@_eventNumber': string;
-    '@_eventProperty': string;
-    '@_lumiBlock': string;
-    '@_runNumber': string;
-    '@_version': string;
+    "@_dateTime": string;
+    "@_eventNumber": string;
+    "@_eventProperty": string;
+    "@_lumiBlock": string;
+    "@_runNumber": string;
+    "@_version": string;
     Track: Track | Track[];
     Jet: Jet | Jet[];
     ETMis: Met | Met[];
@@ -21,8 +21,8 @@ export interface EventDetailsXML {
 }
 
 export type Track = {
-  '@_count': string;
-  '@_storeGateKey': string;
+  "@_count": string;
+  "@_storeGateKey": string;
   d0: string;
   id: string;
   pt: string;
@@ -48,8 +48,8 @@ export type Track = {
 };
 
 export type Jet = {
-  '@_count': string;
-  '@_storeGateKey': string;
+  "@_count": string;
+  "@_storeGateKey": string;
   et: number | string;
   eta: number | string;
   phi: number | string;
@@ -59,14 +59,14 @@ export type Jet = {
 };
 
 export type Met = {
-  '@_count': number;
-  '@_storeGateKey': string;
+  "@_count": number;
+  "@_storeGateKey": string;
   et: number;
   etx: number;
   ety: number;
 };
 
 type AdditionalInfo = {
-  '#text': string;
-  '@_multiple': string;
+  "#text": string;
+  "@_multiple": string;
 };

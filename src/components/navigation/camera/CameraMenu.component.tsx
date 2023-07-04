@@ -1,11 +1,10 @@
-import useEscapeKeydown from "@/hooks/useEscapeKeydown/useEscapeKeydown.hook";
-
 import { ReactComponent as VideoCameraIcon } from "@assets/svg/videoCameraIcon.svg";
 
 import { useAppDispatch } from "@store/hooks";
 
 import useCamera from "@hooks/useCamera/useCamera.hook";
 import useDrone from "@hooks/useDrone/useDrone.hook";
+import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import NavIcon from "../navIcon/navIcon";
 

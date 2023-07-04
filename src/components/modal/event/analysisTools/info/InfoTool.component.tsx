@@ -5,7 +5,8 @@ import { ReactComponent as PlusCircleIcon } from "@assets/svg/plusCircleIcon.svg
 
 import { useAppDispatch } from "@store/hooks";
 
-import { setEventNumber } from "@features/event/eventSlice";
+import { setEventDetailsXML } from "@features/event/eventSlice";
+import { UploadedEvent } from "@features/event/eventSlice.types";
 
 import EventLine from "./EventLine.component";
 
@@ -18,6 +19,7 @@ interface Props {
   date: string;
   time: string;
   active?: boolean;
+  loadedEvent: UploadedEvent;
 }
 
 export default function InfoTool({
@@ -28,6 +30,7 @@ export default function InfoTool({
   runNumber,
   date,
   time,
+  loadedEvent,
   active = false
 }: Props): JSX.Element {
   const [show, setShow] = useState(false);
@@ -44,15 +47,25 @@ export default function InfoTool({
       return;
     }
 
-    const eventGroup = eventName.split(" ")[0];
-    const eventIndex = eventName.split(" ")[1].split("/")[0];
+    const { event, name } = loadedEvent;
 
-    dispatch(
-      setEventNumber({
-        eventGroup,
-        eventIndex: Number(eventIndex)
-      })
-    );
+    dispatch(setEventDetailsXML({ event, fileName: name }));
+
+    // if (isCustom) {
+    //   if (event) {
+    //     dispatch(setEventDetailsXML({ event, fileName: name }));
+    //   }
+    // } else {
+    //   const eventGroup = eventName.split(" ")[0];
+    //   const eventIndex = eventName.split(" ")[1].split("/")[0];
+
+    //   dispatch(
+    //     setEventNumber({
+    //       eventGroup,
+    //       eventIndex: Number(eventIndex)
+    //     })
+    //   );
+    // }
   };
 
   return (

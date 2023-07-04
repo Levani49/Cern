@@ -2,12 +2,12 @@ import { OrthographicCamera, PerspectiveCamera } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
 import {
   selectCameraEffect,
   triggerCameraEffect
-} from "@/features/camera/cameraSlice";
-
-import { useAppDispatch, useAppSelector } from "@store/hooks";
+} from "@features/camera/cameraSlice";
 
 import useCamera from "@hooks/useCamera/useCamera.hook";
 

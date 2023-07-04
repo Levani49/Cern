@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { ModelCut } from "@/types/app.types";
 import { Leva, useControls } from "leva";
+
+import { ModelCut } from "@type/app.types";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 

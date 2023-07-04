@@ -64,6 +64,7 @@ export default function EventsModal(): JSX.Element {
                   runNumber={event.runNumber}
                   date={event.date}
                   time={event.time}
+                  loadedEvent={event.loadedEvent}
                 />
               );
             })}

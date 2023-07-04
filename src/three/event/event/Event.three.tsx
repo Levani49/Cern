@@ -30,7 +30,7 @@ function Event(): JSX.Element {
           .padStart(3, "0")}`
       );
       const event = eventService.parseXmlAsJSON(xmlString);
-      dispatch(setEventDetailsXML(event));
+      dispatch(setEventDetailsXML({ event: event }));
       dispatch(setEventLoading(false));
     };
     asyncCallback();

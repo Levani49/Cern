@@ -1,5 +1,3 @@
-import Report from "@/components/navigation/report/report";
-
 import { useAppSelector } from "@store/hooks";
 
 import { selectMenuBar } from "@features/global/globalsSlice";
@@ -15,6 +13,7 @@ import Link from "@components/navigation/link/link.component";
 import NavigationBar from "@components/navigation/navigationBar/navigationToggler";
 import NavTitle from "@components/navigation/navTitle/navTitle.component";
 import OpacirtyMenu from "@components/navigation/opacity/OpacityMenu.component";
+import Report from "@components/navigation/report/report";
 import Settings from "@components/navigation/settings/settings";
 import ShowMenuBar from "@components/navigation/showMenuBar/showMenuBar";
 import ThemeToggler from "@components/navigation/theme/ThemeToggler.component";

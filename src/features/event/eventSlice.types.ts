@@ -3,8 +3,15 @@ import {
   EventOverviewData
 } from "@services/event/event.service.types";
 
+export interface UploadedEvent {
+  isCustom: boolean;
+  event: EventDetailsXML;
+  name: string;
+}
+
 export interface LoadedEvents extends EventOverviewData {
   eventName: string;
+  loadedEvent: UploadedEvent;
 }
 
 export type EventsToShow = {

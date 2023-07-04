@@ -1,6 +1,6 @@
-import NavIcon from "@/components/navigation/navIcon/navIcon";
-
 import { ReactComponent as MegaPhone } from "@assets/svg/megaphone.svg";
+
+import NavIcon from "@components/navigation/navIcon/navIcon";
 
 export default function Report(): JSX.Element {
   return (

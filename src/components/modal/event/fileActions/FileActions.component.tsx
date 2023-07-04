@@ -130,6 +130,7 @@ export default function FileActions(): JSX.Element {
   const handleFileUpload = (event: ChangeEvent<HTMLInputElement>): void => {
     if (event.target.files) {
       const file = event.target.files[0];
+      const fileName = file.name;
 
       if (file && file.name.endsWith(".xml")) {
         const reader = new FileReader();
@@ -140,7 +141,7 @@ export default function FileActions(): JSX.Element {
             const parsedXmlData = eventService.parseXmlAsJSON(xmlContent);
 
             if (eventFileIsValid(parsedXmlData)) {
-              dispatch(setEventDetailsXML(parsedXmlData));
+              dispatch(setEventDetailsXML({ event: parsedXmlData, fileName }));
               setError(false);
             } else {
               setError(true);

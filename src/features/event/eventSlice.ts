@@ -70,12 +70,40 @@ const eventSlice = createSlice({
     setJetFilters: (state, action: PayloadAction<EventsSlice["jetFilter"]>) => {
       state.jetFilter = action.payload;
     },
-    setEventDetailsXML: (state, action: PayloadAction<EventDetailsXML>) => {
-      const eventGeneralInfo = eventService.getEventGeneralInfo(action.payload);
-      const eventName = `${state.eventNumber.eventGroup} ${state.eventNumber.eventIndex}/50`;
-      state.event = action.payload;
+    setEventDetailsXML: (
+      state,
+      action: PayloadAction<{ event: EventDetailsXML; fileName?: string }>
+    ) => {
+      const { event, fileName } = action.payload;
+      const { eventGroup, eventIndex } = state.eventNumber;
+
+      const eventGeneralInfo = eventService.getEventGeneralInfo(event);
+      const eventName = fileName || `${eventGroup} ${eventIndex}/50`;
+
+      state.event = event;
       state.eventGeneralInfo = eventGeneralInfo;
-      state.loadedEvents.unshift({ ...eventGeneralInfo, eventName });
+
+      if (fileName) {
+        state.loadedEvents.unshift({
+          ...eventGeneralInfo,
+          eventName,
+          loadedEvent: {
+            isCustom: true,
+            event,
+            name: fileName
+          }
+        });
+      } else {
+        state.loadedEvents.unshift({
+          ...eventGeneralInfo,
+          eventName,
+          loadedEvent: {
+            isCustom: false,
+            event: event,
+            name: eventName
+          }
+        });
+      }
     },
     setEventNumber: (state, action: PayloadAction<EventsSlice["eventNumber"]>) => {
       state.eventNumber = action.payload;
