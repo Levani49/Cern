@@ -17,7 +17,7 @@ export default function App(): JSX.Element {
   return (
     <ErrorHandler>
       <Header />
-      <main className="absolute left-0 top-0 z-10 h-full w-full">
+      <main className="absolute left-0 top-0 z-10 h-screen w-screen">
         <Suspense fallback={null}>
           <Canvas />
           <Logo />
