@@ -14,12 +14,14 @@ export default function Screenshot(): JSX.Element {
 
     html2canvas(element, {
       onclone: (clonedDocument) => {
-        Array.from(clonedDocument.querySelectorAll("h1")).forEach((heading) => {
-          heading.style.marginTop = "-17px";
-        });
-        Array.from(clonedDocument.querySelectorAll("span")).forEach((span) => {
-          span.style.marginTop = "-17px";
-        });
+        const navTitle = clonedDocument.getElementById("nav-title");
+        const tree = clonedDocument.getElementById("geometry-tree");
+        if (tree?.style) {
+          tree.style.display = "none";
+        }
+        if (navTitle) {
+          navTitle.style.marginTop = "-17px";
+        }
       }
     }).then((canvas) => {
       const dataURL = canvas.toDataURL("image/png");

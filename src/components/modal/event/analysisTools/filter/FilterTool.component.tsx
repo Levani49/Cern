@@ -32,10 +32,32 @@ export default function FilterTool(): JSX.Element {
     );
   };
 
+  const onTraksFieldsReset = (): void => {
+    dispatch(
+      setTrackFilters({
+        phi: undefined,
+        eta: undefined,
+        theta: undefined,
+        pt: "0.7"
+      })
+    );
+  };
+
+  const onJetsFieldsReset = (): void => {
+    dispatch(
+      setJetFilters({
+        phi: undefined,
+        eta: undefined,
+        theta: undefined,
+        et: undefined
+      })
+    );
+  };
+
   return (
     <div className="flex flex-col justify-between  p-2">
       <div className="flex w-full flex-col gap-2 md:flex-row md:justify-between">
-        <FilterContainer title="Tracks">
+        <FilterContainer title="Tracks" onFieldsReset={onTraksFieldsReset}>
           <FilterInput
             filterProp="φ"
             filter="phi"
@@ -61,7 +83,7 @@ export default function FilterTool(): JSX.Element {
             value={trackFilterValues.theta}
           />
         </FilterContainer>
-        <FilterContainer title="Jets">
+        <FilterContainer title="Jets" onFieldsReset={onJetsFieldsReset}>
           <FilterInput
             filterProp="φ"
             filter="phi"
