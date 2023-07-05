@@ -46,10 +46,10 @@ export default function Scene(): JSX.Element {
         frameloop="demand"
         camera={{ manual: true, position: defaultPosition }}
       >
-        <Suspense fallback={null}>{!snapIsLoading && <Detector />}</Suspense>
+        {/* <Suspense fallback={null}>{!snapIsLoading && <Detector />}</Suspense> */}
         <Suspense fallback={null}>
           <Axis />
-          <Event />
+          {/* <Event /> */}
           <Grid />
           <ParticleSystem />
           <StatsDispatcher />

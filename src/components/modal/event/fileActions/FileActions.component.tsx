@@ -65,7 +65,7 @@ const customStyles: StylesConfig = {
   control: (provided) => ({
     ...provided,
     color: "black",
-    fontSize: "10px",
+    fontSize: "16px",
     padding: "0",
     minHeight: "30px",
     backgroundColor: "rgb(41,45,57)"
@@ -87,7 +87,7 @@ const customStyles: StylesConfig = {
   option: (provided, state) => ({
     ...provided,
     borderRadius: "4px",
-    fontSize: "12px",
+    fontSize: "16px",
     backgroundColor: state.isSelected
       ? "rgb(64, 207, 142)"
       : state.isFocused
@@ -248,7 +248,7 @@ export default function FileActions(): JSX.Element {
           onChange={handleEventChange}
         />
         <button
-          className="rounded bg-gray1  px-2 py-1 text-xs uppercase text-textColor transition hover:bg-black"
+          className="rounded bg-gray1  px-2 py-2 text-xs uppercase text-textColor transition hover:bg-black"
           onClick={handleLoad}
         >
           Load
