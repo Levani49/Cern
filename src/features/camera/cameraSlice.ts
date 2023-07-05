@@ -145,6 +145,10 @@ export const cameraSlice = createSlice({
       state.droneType = action.payload;
       const handleFinish = (): boolean => eventsEmitter.emit("stopDrone");
 
+      if (cameraViews.isActive) {
+        cameraViews.stop();
+      }
+
       if (state.camera) {
         switch (state.droneType) {
           case "idle":
