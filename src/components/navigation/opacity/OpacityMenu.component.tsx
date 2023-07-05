@@ -50,7 +50,7 @@ export default function OpacirtyMenu(): JSX.Element {
             step={0.01}
             type="range"
             value={opacity}
-            className="range-sm h-[3px] w-[100px] cursor-pointer appearance-none rounded-lg bg-gray-700"
+            className="range-sm h-[3px] w-[100px] cursor-pointer appearance-none rounded-lg bg-highlight1 accent-accent2 dark:accent-accent1"
             onChange={onChangeHandler}
           />
         </div>

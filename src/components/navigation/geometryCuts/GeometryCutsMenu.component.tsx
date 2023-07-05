@@ -106,7 +106,7 @@ export default function GeometryCutsMenu(): JSX.Element {
             value={clippingPlanesVal}
             onChange={handleClippingPlanes}
             type="range"
-            className="range-sm h-[3px] w-auto cursor-pointer appearance-none rounded-lg bg-gray-700"
+            className="range-sm h-[3px] w-auto cursor-pointer appearance-none rounded-lg bg-highlight1 accent-accent2 dark:accent-accent1"
           />
         </div>
       )}
