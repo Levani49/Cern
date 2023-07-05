@@ -57,7 +57,11 @@ export default function FilterTool(): JSX.Element {
   return (
     <div className="flex flex-col justify-between  p-2">
       <div className="flex w-full flex-col gap-2 md:flex-row md:justify-between">
-        <FilterContainer title="Tracks" onFieldsReset={onTraksFieldsReset}>
+        <FilterContainer
+          title="Tracks"
+          resetButtonTitle="Reset track values"
+          onFieldsReset={onTraksFieldsReset}
+        >
           <FilterInput
             filterProp="φ"
             filter="phi"
@@ -83,7 +87,11 @@ export default function FilterTool(): JSX.Element {
             value={trackFilterValues.theta}
           />
         </FilterContainer>
-        <FilterContainer title="Jets" onFieldsReset={onJetsFieldsReset}>
+        <FilterContainer
+          title="Jets"
+          resetButtonTitle="Reset JET values"
+          onFieldsReset={onJetsFieldsReset}
+        >
           <FilterInput
             filterProp="φ"
             filter="phi"
