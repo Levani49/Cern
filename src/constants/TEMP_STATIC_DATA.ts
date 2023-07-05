@@ -9,12 +9,13 @@ export const TEMP_INFO: EmployeeStaticData = {
       role: "Director",
       contact: "http://cadcam.ge/sharmazanashvili-personal/"
     },
+
     {
-      id: "3",
-      name: "Kekelia Besik",
-      src: "/assets/images/kekelia-3.png",
-      role: "Deputy",
-      contact: "http://cadcam.ge/kekelia-personal/"
+      id: "5i",
+      name: "Kverenchkhiladze Irakli",
+      src: "/assets/images/kverenchxiladze.png",
+      role: "Fullstack Developer",
+      contact: "http://cadcam.ge/kverenchkhiladze-personal/"
     },
     {
       id: "4",
@@ -24,12 +25,13 @@ export const TEMP_INFO: EmployeeStaticData = {
       contact: "http://cadcam.ge/zurashvili-personal/"
     },
     {
-      id: "5i",
-      name: "Kverenchkhiladze Irakli",
-      src: "/assets/images/kverenchxiladze.png",
-      role: "Fullstack Developer",
-      contact: "http://cadcam.ge/kverenchkhiladze-personal/"
+      id: "3",
+      name: "Kekelia Besik",
+      src: "/assets/images/kekelia-3.png",
+      role: "Deputy",
+      contact: "http://cadcam.ge/kekelia-personal/"
     },
+
     {
       id: "5",
       name: "Tsutskiridze Niko",
@@ -64,20 +66,6 @@ export const TEMP_INFO: EmployeeStaticData = {
       src: "/assets/images/kekelia-3-1.png",
       role: "3D Designer",
       contact: "http://cadcam.ge/page/"
-    },
-    {
-      id: "10",
-      name: "Vashakidze Salome",
-      src: "/assets/images/salome.png",
-      role: "Programmer",
-      contact: "http://cadcam.ge/vashakidze-personal/"
-    },
-    {
-      id: "11",
-      name: "Mariam nozadze",
-      src: "/assets/images/nozadze.png",
-      role: "Frontend developer",
-      contact: "http://cadcam.ge/nozadze-personal/"
     }
   ]
 };

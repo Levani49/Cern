@@ -49,14 +49,14 @@ export default function AboutModal(): JSX.Element {
           </p>
         </div>
 
-        <div className="grid grid-cols-6 place-items-center sm:grid-cols-11">
+        <div className="flex items-center justify-center">
           {TEMP_INFO.employees.map((employee: Employee) => {
             const { id, ...rest } = employee;
             return <Slot key={id} {...rest} />;
           })}
         </div>
 
-        <div className="mt-2 flex flex-col items-center gap-4 text-xs">
+        <div className="flex flex-col items-center gap-4 text-xs">
           <a
             href="http://cadcam.ge/team/"
             className="hover:bg-green ml-1 rounded bg-black p-4 font-medium text-white transition-colors hover:bg-highlight1"
