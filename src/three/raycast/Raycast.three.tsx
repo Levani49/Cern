@@ -41,7 +41,16 @@ const Raycast = (): JSX.Element => {
       clearTimeout(timeoutId);
 
       timeoutId = window.setTimeout(() => {
-        const model = raycast({ mouse, raycaster, camera, scene, width, height, e });
+        const model = raycast({
+          mouse,
+          raycaster,
+          camera,
+          scene,
+          width,
+          height,
+          e,
+          many: false
+        });
 
         if (model) {
           document.body.style.cursor = "pointer";
@@ -72,7 +81,16 @@ const Raycast = (): JSX.Element => {
       Math.abs(mouseUp.y - mouseDown.y) <= movementThreshold;
 
     if (MOUSE_IS_IN_RANGE) {
-      const model = raycast({ mouse, raycaster, camera, scene, width, height, e });
+      const model = raycast({
+        mouse,
+        raycaster,
+        camera,
+        scene,
+        width,
+        height,
+        e,
+        many: true
+      });
       handleSelection(model);
     }
   };
