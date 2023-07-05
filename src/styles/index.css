@@ -20,9 +20,10 @@ body {
   background: black;
   font-family: "Roboto", sans-serif;
   overflow-y: hidden;
+  color: rgb(50, 207, 142);
 }
 
-.bgDark::backdrop {
+.bgdark::backdrop {
   transition: background-color 0.5s;
   background: black;
 }
@@ -139,7 +140,7 @@ body::backdrop {
 
 @layer components {
   .icon {
-    @apply h-[22px] w-[22px] cursor-pointer text-light hover:text-blue dark:hover:text-green;
+    @apply h-[22px] w-[22px] cursor-pointer text-textColor hover:text-accent2 dark:hover:text-accent1;
   }
 
   .modal {
@@ -147,7 +148,7 @@ body::backdrop {
   }
 
   .focus {
-    @apply text-blue;
+    @apply text-accent2;
   }
 
   .cardBackground {

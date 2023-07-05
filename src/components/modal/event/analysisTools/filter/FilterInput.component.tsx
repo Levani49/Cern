@@ -32,11 +32,11 @@ export default function FilterInput({
 
   return (
     <div className="relative flex w-full flex-wrap items-center">
-      <div className="mb-[-1px] flex w-8 justify-center rounded-t-sm border border-transparentGray px-[0.25rem] py-[0.1rem]">
+      <div className="mb-[-1px] flex w-8 justify-center rounded-t-sm border border-highlight1 px-[0.25rem] py-[0.1rem]">
         <span className="text-sm">{filterProp}</span>
       </div>
       <input
-        className="ml-[-3px] mt-[1px] w-16 flex-grow rounded-t-sm border border-transparentGray bg-[rgb(41,45,57)] px-[0.25rem] py-[0.1rem] text-sm text-[#8C92A4] outline-none md:flex-grow-0"
+        className="ml-[-3px] mt-[1px] w-16 flex-grow rounded-t-sm border border-highlight1 bg-gray1 px-[0.25rem] py-[0.1rem] text-sm text-accent3 outline-none md:flex-grow-0"
         onChange={handleInputChange}
         value={value ? value : ""}
       />

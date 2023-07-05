@@ -19,7 +19,7 @@ export default function Checkbox({ id, checked, onClick }: Props): JSX.Element {
       <label
         htmlFor={id}
         className={`relative flex h-4 w-4 cursor-pointer select-none items-center justify-center rounded border border-transparent  hover:border-white  ${
-          checked ? "bg-blue dark:bg-green" : "bg-[rgb(55,60,75)]"
+          checked ? "bg-accent2 dark:bg-accent1" : "bg-gray1"
         } `}
       >
         <svg

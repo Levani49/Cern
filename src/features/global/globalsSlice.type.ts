@@ -1,7 +1,7 @@
 import type { ModelLoadingStates, selectedModel } from "@type/app.types";
 
 export interface GlobalsSlice {
-  prefersDarkMode: boolean;
+  prefersdarkMode: boolean;
   startParticleAnimation: boolean;
   showStats: boolean;
   showAxis: boolean;

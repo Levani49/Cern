@@ -57,7 +57,7 @@ export default function ParentNode({
 
   const innerState =
     modelState === "isLoaded"
-      ? "text-[#0054ff] dark:text-green"
+      ? "text-blue-700 dark:text-accent1"
       : modelState === "partialyLoaded"
       ? "text-black dark:text-yellow-500"
       : "text-white";
@@ -67,7 +67,7 @@ export default function ParentNode({
   } ${root && "before:opacity-0"}`;
 
   const inconClasses =
-    "h-5 w-5 text-white stroke-1 hover:text-blue hover:dark:text-green transition-all cursor-pointer";
+    "h-5 w-5 text-white stroke-1 hover:text-accent2 hover:dark:text-accent1 transition-all cursor-pointer";
 
   return (
     <li

@@ -36,14 +36,14 @@ export default function ChildNode({
   let innerState: string;
 
   if (modelState === "isLoaded") {
-    innerState = "text-[#0054ff] dark:text-green";
+    innerState = "text-blue-700 dark:text-accent1";
   } else {
     innerState = "text-white";
   }
 
   return (
     <li
-      className={`relative left-[-1px] flex items-center border-l-[0.5px] border-white ${
+      className={` relative left-[-1px] flex items-center border-l-[0.5px] border-white ${
         nodeEnd && "last-child-event-line border-l border-solid border-transparent"
       } ${innerState}`}
     >

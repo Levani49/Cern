@@ -17,7 +17,7 @@ export default function EventLine({
         }`}
       >
         <div className="relative left-0 block overflow-ellipsis whitespace-nowrap border-[rgb(55,60,75)] py-[1px] text-left align-middle transition before:relative  before:inline-block before:w-[15px] before:border-[0.5px] before:border-[rgb(55,60,75)] before:align-middle">
-          <span className="ml-[3px] select-none capitalize text-[#8c92a4]">
+          <span className="ml-[3px] select-none capitalize text-accent3">
             {titleLabel} : {title}
           </span>
         </div>

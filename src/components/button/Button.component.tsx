@@ -14,7 +14,7 @@ export default function Button({
   ...props
 }: ButtonProps): JSX.Element {
   const componentClasses = twMerge(
-    "rounded bg-green px-4 py-2 outline-none transition-all ease-in-out hover:bg-transparentDark",
+    "rounded bg-highlight1 px-4 py-2 outline-none transition-all ease-in-out hover:bg-black",
     className
   );
 

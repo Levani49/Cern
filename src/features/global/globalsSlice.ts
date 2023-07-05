@@ -9,7 +9,7 @@ import type { GlobalsSlice } from "./globalsSlice.type";
 const axisVisibility = isMobile() === false;
 
 const initialState: GlobalsSlice = {
-  prefersDarkMode: true,
+  prefersdarkMode: true,
   showMenu: true,
   startParticleAnimation: true,
   showStats: false,
@@ -66,8 +66,8 @@ const globalsSlice = createSlice({
       state.showGrid = action.payload;
     },
 
-    setDarkMode: (state, action: PayloadAction<boolean>) => {
-      state.prefersDarkMode = action.payload;
+    setdarkMode: (state, action: PayloadAction<boolean>) => {
+      state.prefersdarkMode = action.payload;
       if (action.payload) {
         document.documentElement.classList.add("dark");
       } else {
@@ -84,7 +84,7 @@ const globalsSlice = createSlice({
 export default globalsSlice.reducer;
 
 export const {
-  setDarkMode,
+  setdarkMode,
   setParticleAnimationState,
   showRendererStats,
   showAxis,
@@ -102,7 +102,7 @@ export const selectIsFullscreen = (state: RootState): boolean =>
 export const selectSnapModal = (state: RootState): boolean =>
   state.globals.showSnapModal;
 export const selectTheme = (state: RootState): boolean =>
-  state.globals.prefersDarkMode;
+  state.globals.prefersdarkMode;
 export const selectStats = (state: RootState): boolean => state.globals.showStats;
 export const selectAxis = (state: RootState): boolean => state.globals.showAxis;
 export const selectGrid = (state: RootState): boolean => state.globals.showGrid;

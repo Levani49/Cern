@@ -30,20 +30,13 @@ export default function AboutModal(): JSX.Element {
       onClose={closeModalHandler}
     >
       <div className="flex h-full w-full flex-col justify-between gap-6 p-1">
-        {/* <div className="hidden flex-col justify-center text-center sm:flex">
-          <h1 className="text-center text-lg font-bold">Tracer Core</h1>
-          <span className="items-center text-center text-[10px] font-bold text-gray-500">
-            Version: @6.0.0
-          </span>
-        </div> */}
-
         <div className="flex flex-col gap-6">
           <h1 className="text-center text-lg">Nuclear Engineering Center</h1>
           <p className="text-center text-xs text-gray-400">
-            <span className=" font-extrabold text-blue dark:text-green">
+            <span className=" font-extrabold text-accent2 dark:text-accent1">
               Nuclear Engineering Center
             </span>{" "}
-            collaborates with <span className="font-medium text-blue">CERN</span>,
+            collaborates with <span className="font-medium text-accent2">CERN</span>,
             specializing in 3D modeling and applications. We create immersive 3D
             models for various CERN teams, visualizing complex concepts. From
             particle detectors to accelerator designs, our experts bring ideas to
@@ -66,7 +59,7 @@ export default function AboutModal(): JSX.Element {
         <div className="mt-2 flex flex-col items-center gap-4 text-xs">
           <a
             href="http://cadcam.ge/team/"
-            className="ml-1 rounded bg-transparentDark p-4 font-medium text-white transition-colors hover:bg-green"
+            className="hover:bg-green ml-1 rounded bg-black p-4 font-medium text-white transition-colors hover:bg-highlight1"
             target="_blank"
             rel="noreferrer"
           >

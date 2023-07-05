@@ -26,7 +26,7 @@ export default function Navigation(): JSX.Element {
     <>
       {showMenuBar && (
         <header className="fixed bottom-0 left-1/2 z-50 flex flex-auto -translate-x-1/2 transform  select-none flex-col items-center justify-center sm:bottom-auto sm:top-0">
-          <nav className=" flex  w-full  items-center justify-center gap-2 rounded-sm  bg-customGray py-2 pl-4 pr-4 sm:w-auto">
+          <nav className=" flex  w-full  items-center justify-center gap-2 rounded-sm  bg-dark1 py-2 pl-4 pr-4 sm:w-auto">
             <NavTitle />
             <NavigationBar />
             <GeometryMenu />

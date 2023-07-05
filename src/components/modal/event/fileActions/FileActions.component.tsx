@@ -179,7 +179,7 @@ export default function FileActions(): JSX.Element {
 
   return (
     <>
-      <div className="flex w-full items-center justify-between text-[#8c92a4]">
+      <div className="flex w-full items-center justify-between text-accent3">
         <input
           hidden
           type="file"
@@ -191,7 +191,7 @@ export default function FileActions(): JSX.Element {
           title="Upload file"
           onClick={(): void => document.getElementById("handleFileUpload")?.click()}
         >
-          <ArrowUpTrayIcon className="icon text-[#8c92a4]" />
+          <ArrowUpTrayIcon className="icon text-accent3" />
         </button>
         <div className="flex items-center gap-2">
           <button
@@ -199,7 +199,7 @@ export default function FileActions(): JSX.Element {
             disabled={isLoading}
             onClick={loadPreviousEvent}
           >
-            <ChevronLeftIcon className="icon text-[#8c92a4]" />
+            <ChevronLeftIcon className="icon text-accent3" />
           </button>
           <span className="font-mediumt select-none text-xs">
             Group {eventNumber.eventGroup}{" "}
@@ -210,14 +210,14 @@ export default function FileActions(): JSX.Element {
             disabled={isLoading}
             onClick={loadNextEvent}
           >
-            <ChevronRightIcon className="icon text-[#8c92a4]" />
+            <ChevronRightIcon className="icon text-accent3" />
           </button>
         </div>
         <button
           title="Load event from database"
           onClick={(): void => setShowGroupSelection((prev) => !prev)}
         >
-          <FolderIcon className="icon text-[#8c92a4]" />
+          <FolderIcon className="icon text-accent3" />
         </button>
       </div>
       <div className={`flex gap-2 ${showGroupSelection ? "" : "hidden"}`}>
@@ -234,7 +234,7 @@ export default function FileActions(): JSX.Element {
           onChange={handleEventChange}
         />
         <button
-          className="rounded bg-green px-2 py-1 text-xs uppercase"
+          className="bg-green rounded px-2 py-1 text-xs uppercase"
           onClick={handleLoad}
         >
           Load

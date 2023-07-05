@@ -25,7 +25,7 @@ export default function TransitionModal({
   const cancelButtonRef = useRef(null);
 
   const componentClasses = twMerge(
-    "relative transform overflow-hidden rounded-lg bg-customGray text-left shadow-xl transition-all sm:w-full sm:max-w-2xl",
+    "relative transform overflow-hidden rounded-lg bg-dark1 text-left shadow-xl transition-all sm:w-full sm:max-w-2xl",
     className
   );
 
@@ -48,7 +48,7 @@ export default function TransitionModal({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className=" fixed inset-0 bg-[#0b0a0a] bg-opacity-75 transition-opacity" />
+          <div className=" fixed inset-0 bg-dark2 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -63,7 +63,7 @@ export default function TransitionModal({
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <Dialog.Panel className={componentClasses} style={style}>
-                <div className="w-full bg-customGray px-4 pb-4 pt-5 text-white sm:p-4 sm:pb-2">
+                <div className="w-full bg-dark1 px-4 pb-4 pt-5 text-white sm:p-4 sm:pb-2">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 w-full sm:mt-0 sm:text-left">
                       <div className="flex w-full items-center justify-center">
@@ -74,7 +74,7 @@ export default function TransitionModal({
                           {title}
                         </Dialog.Title>
                         {onClose && (
-                          <div className="ml-auto rounded bg-[#3d3d3d] p-1 transition-all hover:bg-[#4d4d4d]">
+                          <div className="ml-auto rounded bg-black p-1 transition-all hover:bg-highlight1">
                             <XMarkIcon
                               className="h-6 cursor-pointer"
                               onClick={(): void => onClose(false)}

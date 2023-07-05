@@ -40,7 +40,7 @@ export default function EventsResultsToggler(): JSX.Element {
               checked={eventParameters[key]}
               onClick={handleEventToggle(key)}
             />
-            <p className="text-xs text-light">{label.toUpperCase()}</p>
+            <p className="text-xs text-textColor">{label.toUpperCase()}</p>
           </div>
         );
       })}

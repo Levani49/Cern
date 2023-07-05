@@ -50,22 +50,6 @@ export default function InfoTool({
     const { event, name } = loadedEvent;
 
     dispatch(setEventDetailsXML({ event, fileName: name }));
-
-    // if (isCustom) {
-    //   if (event) {
-    //     dispatch(setEventDetailsXML({ event, fileName: name }));
-    //   }
-    // } else {
-    //   const eventGroup = eventName.split(" ")[0];
-    //   const eventIndex = eventName.split(" ")[1].split("/")[0];
-
-    //   dispatch(
-    //     setEventNumber({
-    //       eventGroup,
-    //       eventIndex: Number(eventIndex)
-    //     })
-    //   );
-    // }
   };
 
   return (
@@ -73,12 +57,12 @@ export default function InfoTool({
       <div className="flex items-center gap-2">
         {show ? (
           <MinusCircleIcon
-            className="icon h-4 w-4 text-[rgb(55,60,75)]"
+            className="icon h-4 w-4 text-highlight1"
             onClick={(): void => setShow((prev) => !prev)}
           />
         ) : (
           <PlusCircleIcon
-            className="icon  h-4 w-4  text-[rgb(55,60,75)]"
+            className="icon  h-4 w-4  text-highlight1"
             onClick={(): void => setShow((prev) => !prev)}
           />
         )}
@@ -86,8 +70,8 @@ export default function InfoTool({
         <span
           role="presentation"
           onClick={handleEventLoad}
-          className={`cursor-pointer select-none text-xs capitalize hover:text-blue dark:hover:text-green  ${
-            active && "text-blue dark:text-green"
+          className={`cursor-pointer select-none text-xs capitalize hover:text-accent2 dark:hover:text-accent1  ${
+            active && "text-accent2 dark:text-accent1"
           }`}
         >{`event ${eventName}`}</span>
       </div>
