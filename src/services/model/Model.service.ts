@@ -11,6 +11,7 @@ export interface UserData {
   cutType: ModelCut;
   opacity: number;
   wireframe: boolean;
+  renderOrder?: number;
 }
 
 interface OpacityProps {

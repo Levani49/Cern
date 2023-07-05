@@ -30,13 +30,20 @@ interface Props {
   src: string;
   name: string;
   cutType: ModelCut;
+  renderOrder?: number;
 }
 
 const modelService = new ModelService();
 
 const LOW_OPACITY_LEVEL = 0.3;
 
-export default function Model({ src, id, name, cutType }: Props): JSX.Element {
+export default function Model({
+  src,
+  id,
+  name,
+  cutType,
+  renderOrder
+}: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState<number>(1);
   const [wireframe, setWireframe] = useState<boolean>(false);
@@ -64,7 +71,7 @@ export default function Model({ src, id, name, cutType }: Props): JSX.Element {
   useEffect(() => {
     const currentRef = ref.current;
 
-    const userData = { id, name, cutType, opacity, wireframe };
+    const userData = { id, name, cutType, opacity, wireframe, renderOrder };
 
     if (currentRef) {
       if (selectedModel) {

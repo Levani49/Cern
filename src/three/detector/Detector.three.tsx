@@ -70,7 +70,13 @@ export default function Detector(): JSX.Element {
 
         return (
           <Suspense key={uid} fallback={null}>
-            <Model cutType={modelCutType} src={path} name={name} id={uid} />
+            <Model
+              renderOrder={model.renderOrder}
+              cutType={modelCutType}
+              src={path}
+              name={name}
+              id={uid}
+            />
           </Suspense>
         );
       })}

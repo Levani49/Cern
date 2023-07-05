@@ -21,11 +21,15 @@ export function updateNodeAndAncestors(
     }
 
     if (node.children) {
-      const updatedChildren = node.children.map(updateNode).filter(Boolean) as TreeNode[];
+      const updatedChildren = node.children
+        .map(updateNode)
+        .filter(Boolean) as TreeNode[];
 
       if (updatedChildren.length > 0) {
         const newChildren = node.children.map((child) => {
-          const updatedChild = updatedChildren.find((updated) => updated.id === child.id);
+          const updatedChild = updatedChildren.find(
+            (updated) => updated.id === child.id
+          );
           return updatedChild ? updatedChild : child;
         });
 
@@ -33,7 +37,9 @@ export function updateNodeAndAncestors(
         const allLoaded = childrenStates.every((state) => state === "isLoaded");
         const someLoaded = childrenStates.some((state) => state === "isLoaded");
         const allNotLoaded = childrenStates.every((state) => state === "notLoaded");
-        const somePartial = childrenStates.some((state) => state === "partialyLoaded");
+        const somePartial = childrenStates.some(
+          (state) => state === "partialyLoaded"
+        );
 
         let updatedState = node.state;
 
@@ -64,7 +70,9 @@ const updateDescendandNodes = (
     return {
       ...node,
       [propToChange]: value,
-      children: node.children.map((node) => updateDescendandNodes(node, propToChange, value))
+      children: node.children.map((node) =>
+        updateDescendandNodes(node, propToChange, value)
+      )
     };
   } else {
     return {
@@ -88,7 +96,9 @@ export const updateParentNode: UpdateNodeFunction = (
         ...node,
         [propToChange]: modelState,
         children: node.children
-          ? node.children.map((node) => updateDescendandNodes(node, propToChange, modelState))
+          ? node.children.map((node) =>
+              updateDescendandNodes(node, propToChange, modelState)
+            )
           : []
       };
       return updatedNode;
@@ -99,7 +109,13 @@ export const updateParentNode: UpdateNodeFunction = (
         [propToChange]: modelState,
         children: node.children
           ? node.children.map((node) =>
-              updateParentNode(node, nodeId, propToChange, modelState, updateDescendands)
+              updateParentNode(
+                node,
+                nodeId,
+                propToChange,
+                modelState,
+                updateDescendands
+              )
             )
           : []
       };
@@ -128,7 +144,9 @@ export const updateChildNode: UpdateNodeFunction = (
   if (node.children) {
     return {
       ...node,
-      children: node.children.map((node) => updateChildNode(node, nodeId, propToChange, modelState))
+      children: node.children.map((node) =>
+        updateChildNode(node, nodeId, propToChange, modelState)
+      )
     };
   }
 
@@ -154,7 +172,8 @@ export function updateActiveModels(tree: TreeNode[]): ActiveModel[] {
         activeModels.push({
           uid: node.id,
           name: node.name,
-          modelPath: node.modelPath
+          modelPath: node.modelPath,
+          renderOrder: node.renderOrder
         });
       }
     }

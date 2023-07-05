@@ -12,7 +12,8 @@ export const INNER_DETECTOR: TreeNode = {
       id: uid(),
       name: "pixel",
       state: "isLoaded",
-      modelPath: "pixel"
+      modelPath: "pixel",
+      renderOrder: 1
     },
     {
       id: uid(),
@@ -24,7 +25,8 @@ export const INNER_DETECTOR: TreeNode = {
           id: uid(),
           name: "barrel",
           state: "isLoaded",
-          modelPath: "sct-bar"
+          modelPath: "sct-bar",
+          renderOrder: 1
         },
         {
           id: uid(),
@@ -36,13 +38,15 @@ export const INNER_DETECTOR: TreeNode = {
               id: uid(),
               name: "side a",
               state: "isLoaded",
-              modelPath: "sct-sidea"
+              modelPath: "sct-sidea",
+              renderOrder: 1
             },
             {
               id: uid(),
               name: "side c",
               state: "isLoaded",
               modelPath: "sct-sidec",
+              renderOrder: 1,
               nodeEnd: true
             }
           ]
@@ -60,7 +64,8 @@ export const INNER_DETECTOR: TreeNode = {
           id: uid(),
           name: "barrel",
           state: "isLoaded",
-          modelPath: "trt-bar"
+          modelPath: "trt-bar",
+          renderOrder: 1
         },
         {
           id: uid(),
@@ -73,13 +78,15 @@ export const INNER_DETECTOR: TreeNode = {
               id: uid(),
               name: "side a",
               state: "isLoaded",
-              modelPath: "trt-sidea"
+              modelPath: "trt-sidea",
+              renderOrder: 1
             },
             {
               id: uid(),
               name: "side c",
               state: "isLoaded",
               modelPath: "trt-sidec",
+              renderOrder: 1,
               nodeEnd: true
             }
           ]
