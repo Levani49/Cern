@@ -87,7 +87,7 @@ const customStyles: StylesConfig = {
   option: (provided, state) => ({
     ...provided,
     borderRadius: "4px",
-    fontSize: "10px",
+    fontSize: "12px",
     backgroundColor: state.isSelected
       ? "rgb(64, 207, 142)"
       : state.isFocused
