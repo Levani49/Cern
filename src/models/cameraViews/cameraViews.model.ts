@@ -21,7 +21,7 @@ export default class CameraViews {
 
   prepareTween({ currentPosition, targetPosition, camera }: TweenProps): void {
     if (this.isActive) {
-      return;
+      this.stop();
     }
 
     this.isActive = true;

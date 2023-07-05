@@ -107,57 +107,36 @@ export const cameraSlice = createSlice({
     },
 
     setLeftCameraView: (state) => {
-      if (cameraViews.isActive) {
-        return;
-      }
       cameraViews.leftView(state.camera as Camera);
       state.viewMode = "left";
     },
 
     setFrontView: (state) => {
-      if (cameraViews.isActive) {
-        return;
-      }
       cameraViews.frontView(state.camera as Camera);
       state.viewMode = "front";
     },
 
     setTopView: (state) => {
-      if (cameraViews.isActive) {
-        return;
-      }
       cameraViews.topView(state.camera as Camera);
       state.viewMode = "top";
     },
 
     setBottomView: (state) => {
-      if (cameraViews.isActive) {
-        return;
-      }
       cameraViews.bottomView(state.camera as Camera);
       state.viewMode = "bottom";
     },
 
     setRightView: (state) => {
-      if (cameraViews.isActive) {
-        return;
-      }
       cameraViews.rightView(state.camera as Camera);
       state.viewMode = "right";
     },
 
     setIsoView: (state) => {
-      if (cameraViews.isActive) {
-        return;
-      }
       cameraViews.isoView(state.camera as Camera);
       state.viewMode = "iso";
     },
 
     setBackView: (state) => {
-      if (cameraViews.isActive) {
-        return;
-      }
       cameraViews.backView(state.camera as Camera);
       state.viewMode = "iso";
     },
