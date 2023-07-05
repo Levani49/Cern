@@ -67,7 +67,8 @@ const customStyles: StylesConfig = {
     color: "black",
     fontSize: "10px",
     padding: "0",
-    minHeight: "30px"
+    minHeight: "30px",
+    backgroundColor: "rgb(41,45,57)"
   }),
   dropdownIndicator: (provided) => ({
     ...provided,
@@ -77,18 +78,25 @@ const customStyles: StylesConfig = {
   }),
   menu: (provided) => ({
     ...provided,
-    backgroundColor: "rgb(28, 28, 28)",
+    backgroundColor: "rgb(41,45,57)",
+    maxHeight: "200px",
+    position: "relative",
+    overflowY: "auto",
     padding: "0"
   }),
   option: (provided, state) => ({
     ...provided,
     borderRadius: "4px",
-    fontSize: "12px",
+    fontSize: "10px",
     backgroundColor: state.isSelected
       ? "rgb(64, 207, 142)"
       : state.isFocused
-      ? "lightgray"
+      ? "rgba(255, 255, 255, 0.16)"
       : "transparent"
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    color: "rgb(223, 230, 233)"
   })
 };
 
@@ -220,7 +228,13 @@ export default function FileActions(): JSX.Element {
           <FolderIcon className="icon text-accent3" />
         </button>
       </div>
-      <div className={`flex gap-2 ${showGroupSelection ? "" : "hidden"}`}>
+      <div
+        className={`flex flex-col gap-2  transition-all duration-700 ${
+          showGroupSelection
+            ? "mt-4 max-h-96 overflow-y-auto"
+            : "mt-0 max-h-0 overflow-y-hidden"
+        }`}
+      >
         <Select
           options={groupSelectOptions}
           defaultValue={groupSelectOptions[5]}
@@ -234,7 +248,7 @@ export default function FileActions(): JSX.Element {
           onChange={handleEventChange}
         />
         <button
-          className="bg-green rounded px-2 py-1 text-xs uppercase"
+          className="rounded bg-gray1  px-2 py-1 text-xs uppercase text-textColor transition hover:bg-black"
           onClick={handleLoad}
         >
           Load
