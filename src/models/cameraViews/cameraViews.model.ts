@@ -48,7 +48,7 @@ export default class CameraViews {
   }
 
   leftView(camera: Camera): void {
-    const distance = camera.position.distanceTo(new Vector3(0.0001, 0.0001, 0));
+    const distance = this.calculateDistance(camera);
 
     const targetPosition = new Vector3(
       camera.position.y / 1000,
@@ -66,7 +66,7 @@ export default class CameraViews {
   }
 
   frontView(camera: Camera): void {
-    const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
+    const distance = this.calculateDistance(camera);
 
     const targetPosition = new Vector3(
       distance,
@@ -84,7 +84,8 @@ export default class CameraViews {
   }
 
   bottomView(camera: Camera): void {
-    const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
+    const distance = this.calculateDistance(camera);
+
     const targetPosition = new Vector3(
       camera.position.x / 1000,
       -distance,
@@ -101,7 +102,7 @@ export default class CameraViews {
   }
 
   rightView(camera: Camera): void {
-    const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
+    const distance = this.calculateDistance(camera);
 
     const targetPosition = new Vector3(
       camera.position.x / 1000,
@@ -119,7 +120,8 @@ export default class CameraViews {
   }
 
   backView(camera: Camera): void {
-    const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
+    const distance = this.calculateDistance(camera);
+
     const targetPosition = new Vector3(
       -distance,
       camera.position.y / 1000,
@@ -136,7 +138,8 @@ export default class CameraViews {
   }
 
   topView(camera: Camera): void {
-    const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
+    const distance = this.calculateDistance(camera);
+
     const targetPosition = new Vector3(
       camera.position.x / 1000,
       distance,
@@ -153,7 +156,7 @@ export default class CameraViews {
   }
 
   isoView(camera: Camera): void {
-    const distance = camera.position.distanceTo(new Vector3(0, 0, 0)) / 1.732;
+    const distance = this.calculateDistance(camera) / 1.732;
     const targetPosition = new Vector3(distance, distance, distance);
 
     this.prepareTween({
@@ -163,6 +166,12 @@ export default class CameraViews {
     });
 
     this.start();
+  }
+
+  calculateDistance(camera: Camera): number {
+    const distance = camera.position.distanceTo(new Vector3(0, 0, 0));
+
+    return distance < 2 ? 3 : distance;
   }
 
   start(): void {
