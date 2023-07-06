@@ -30,7 +30,7 @@ import type {
 
 const cameraViews = new CameraViews();
 
-const defaultPosition = isMobile() ? [4, 4, 4] : [3, 3, 3];
+const defaultPosition = isMobile() ? [5, 5, 5] : [3, 3, 3];
 
 const initialState: ICameraSettings = {
   defaultPosition: defaultPosition as [x: number, y: number, z: number],
@@ -75,7 +75,9 @@ export const cameraSlice = createSlice({
     setDefaultPosition: (state, action: PayloadAction<coordinates>) => {
       state.defaultPosition = action.payload;
     },
-
+    setStopCameraView: () => {
+      cameraViews.stop();
+    },
     setCameraPosition: (
       state,
       action: PayloadAction<[x: number, y: number, z: number]>
@@ -105,57 +107,36 @@ export const cameraSlice = createSlice({
     },
 
     setLeftCameraView: (state) => {
-      if (cameraViews.isActive) {
-        return;
-      }
       cameraViews.leftView(state.camera as Camera);
       state.viewMode = "left";
     },
 
     setFrontView: (state) => {
-      if (cameraViews.isActive) {
-        return;
-      }
       cameraViews.frontView(state.camera as Camera);
       state.viewMode = "front";
     },
 
     setTopView: (state) => {
-      if (cameraViews.isActive) {
-        return;
-      }
       cameraViews.topView(state.camera as Camera);
       state.viewMode = "top";
     },
 
     setBottomView: (state) => {
-      if (cameraViews.isActive) {
-        return;
-      }
       cameraViews.bottomView(state.camera as Camera);
       state.viewMode = "bottom";
     },
 
     setRightView: (state) => {
-      if (cameraViews.isActive) {
-        return;
-      }
       cameraViews.rightView(state.camera as Camera);
       state.viewMode = "right";
     },
 
     setIsoView: (state) => {
-      if (cameraViews.isActive) {
-        return;
-      }
       cameraViews.isoView(state.camera as Camera);
       state.viewMode = "iso";
     },
 
     setBackView: (state) => {
-      if (cameraViews.isActive) {
-        return;
-      }
       cameraViews.backView(state.camera as Camera);
       state.viewMode = "iso";
     },
@@ -163,6 +144,10 @@ export const cameraSlice = createSlice({
     setDroneMode: (state, action: PayloadAction<DroneTypes>) => {
       state.droneType = action.payload;
       const handleFinish = (): boolean => eventsEmitter.emit("stopDrone");
+
+      if (cameraViews.isActive) {
+        cameraViews.stop();
+      }
 
       if (state.camera) {
         switch (state.droneType) {
@@ -220,7 +205,8 @@ export const {
   setBackView,
   setTopView,
   triggerCameraEffect,
-  setDefaultPosition
+  setDefaultPosition,
+  setStopCameraView
 } = cameraSlice.actions;
 
 export const selectDefaultCameraPosition = (

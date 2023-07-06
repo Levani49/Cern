@@ -114,6 +114,7 @@ export default function RecordScreen(): JSX.Element {
               id="sound"
               type="checkbox"
               checked={recordAudio}
+              className="accent-accent2 dark:accent-accent1"
               onChange={(): void => setRecordAudio((prev) => !prev)}
             />
           </div>

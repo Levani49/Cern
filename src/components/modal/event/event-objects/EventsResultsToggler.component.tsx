@@ -29,7 +29,7 @@ export default function EventsResultsToggler(): JSX.Element {
   };
 
   return (
-    <div className="flex justify-between gap-2">
+    <div className="mt-4 flex justify-between gap-2">
       {eventLabels.map(({ key, label }) => {
         return (
           <div className="flex items-center gap-2" key={key + label}>
@@ -40,7 +40,9 @@ export default function EventsResultsToggler(): JSX.Element {
               checked={eventParameters[key]}
               onClick={handleEventToggle(key)}
             />
-            <p className="text-xs text-light">{label.toUpperCase()}</p>
+            <p className="select-none text-xs text-textColor">
+              {label.toUpperCase()}
+            </p>
           </div>
         );
       })}

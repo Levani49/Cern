@@ -59,11 +59,11 @@ export default function Link(): JSX.Element {
           <div className="flex flex-col gap-2">
             <div className="flex flex-col gap-2">
               <h4 className="ml-1">Share Link</h4>
-              <div className="relative w-full  rounded bg-transparentDark px-4 py-4">
+              <div className="relative w-full  rounded bg-dark2 px-4 py-4">
                 <p className="rounded">{HOST}</p>
                 <Button
                   onClick={handleLinkCopy}
-                  className="absolute right-0 top-0 bg-transparentDark  hover:bg-green"
+                  className="hover:bg-green absolute right-0 top-0  bg-highlight1 hover:bg-dark3"
                 >
                   {linkCopied ? "Copied!" : "Copy"}
                 </Button>
@@ -74,11 +74,11 @@ export default function Link(): JSX.Element {
           <div className="flex flex-col gap-2">
             <div className="flex flex-col gap-2">
               <h4 className="ml-1">Embed</h4>
-              <div className="relative w-full  rounded bg-transparentDark px-4 py-4">
+              <div className="relative w-full  rounded bg-dark2 px-4 py-4">
                 <p className="max-w-[80%] rounded">{EMBED_TEXT}</p>
                 <Button
                   onClick={handleEmbedCopy}
-                  className="absolute right-0 top-0 z-10 bg-transparentDark hover:bg-green"
+                  className="hover:bg-green absolute right-0 top-0 z-10 bg-highlight1 hover:bg-dark3"
                 >
                   {embedCopied ? "Copied!" : "Copy"}
                 </Button>
@@ -89,10 +89,10 @@ export default function Link(): JSX.Element {
           <div className="flex flex-col gap-2">
             <div className="flex flex-col gap-2">
               <h4 className="ml-1">QR Code</h4>
-              <div className="relative w-full  rounded bg-transparentDark px-4 py-4">
+              <div className="relative w-full  rounded bg-dark2 px-4 py-4">
                 <Button
                   onClick={handleDownload}
-                  className="absolute right-0 top-0 z-10 bg-transparentDark hover:bg-green"
+                  className="hover:bg-green absolute right-0 top-0 z-10 bg-highlight1 hover:bg-dark3"
                 >
                   Download
                 </Button>

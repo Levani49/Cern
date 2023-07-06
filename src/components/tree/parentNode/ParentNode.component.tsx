@@ -57,9 +57,9 @@ export default function ParentNode({
 
   const innerState =
     modelState === "isLoaded"
-      ? "text-[#0054ff] dark:text-green"
+      ? "text-blue-700 dark:text-accent1"
       : modelState === "partialyLoaded"
-      ? "text-yellow-200 dark:text-yellow-500"
+      ? "text-black dark:text-yellow-500"
       : "text-white";
 
   const componentClasses = `border-l-[0.5px] border-transparent text-left transition before:relative before:inline-block before:w-[15px]  before:border-t-[0.5px] before:border-0 before:text-white before:align-middle ${
@@ -67,7 +67,7 @@ export default function ParentNode({
   } ${root && "before:opacity-0"}`;
 
   const inconClasses =
-    "h-5 w-5 text-white stroke-1 hover:text-blue hover:dark:text-green transition-all cursor-pointer";
+    "h-5 w-5 text-white stroke-1 hover:text-accent2 hover:dark:text-accent1 transition-all cursor-pointer";
 
   return (
     <li
@@ -92,7 +92,7 @@ export default function ParentNode({
 
         <span
           role="presentation"
-          className={`${innerState} ml-[5px] cursor-pointer  text-xs font-light uppercase transition-all ease-in-out`}
+          className={`${innerState} ml-[5px] cursor-pointer  text-xs uppercase transition-all ease-in-out`}
           onClick={onClickHandler}
         >
           {name}

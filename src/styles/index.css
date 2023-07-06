@@ -19,9 +19,11 @@ body {
   height: 100vh;
   background: black;
   font-family: "Roboto", sans-serif;
+  overflow-y: hidden;
+  color: rgb(50, 207, 142);
 }
 
-.bgDark::backdrop {
+.bgdark::backdrop {
   transition: background-color 0.5s;
   background: black;
 }
@@ -88,9 +90,9 @@ body::backdrop {
 
 .info-graph {
   position: absolute;
-  top: 13.5%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 15.5%;
+  right: 1%;
+  transform: translate(-10%, -50%);
 }
 
 .modal-center {
@@ -138,7 +140,7 @@ body::backdrop {
 
 @layer components {
   .icon {
-    @apply h-[22px] w-[22px] cursor-pointer text-light hover:text-blue dark:hover:text-green;
+    @apply h-[22px] w-[22px] cursor-pointer text-textColor hover:text-accent2 dark:hover:text-accent1;
   }
 
   .modal {
@@ -146,7 +148,7 @@ body::backdrop {
   }
 
   .focus {
-    @apply text-blue;
+    @apply text-accent2;
   }
 
   .cardBackground {

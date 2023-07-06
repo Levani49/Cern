@@ -1,12 +1,11 @@
 import { lazy, Suspense } from "react";
 
-import FullScreenMenu from "@/components/navigation/fullscreen/FullScreenMenu.component";
-
 import { ReactComponent as SettingsIcon } from "@assets/svg/settings.svg";
 
 import AboutMenu from "@components/navigation/about/AboutMenu.component";
 import AxisMenu from "@components/navigation/axis/AxisMenu.component";
 import MenuDropdown from "@components/navigation/dropdown/MenuDropdown.component";
+import FullScreenMenu from "@components/navigation/fullscreen/FullScreenMenu.component";
 import GridMenu from "@components/navigation/grid/GridMenu.component";
 import Link from "@components/navigation/link/link.component";
 import NavIcon from "@components/navigation/navIcon/navIcon";

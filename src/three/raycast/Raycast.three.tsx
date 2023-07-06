@@ -14,6 +14,7 @@ import {
   updateLocalModelCut
 } from "@features/model/modelSlice";
 
+import useDrone from "@hooks/useDrone/useDrone.hook";
 import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
 
 import { UserData } from "@services/model/Model.service";
@@ -32,9 +33,8 @@ const Raycast = (): JSX.Element => {
   const { selectedModel } = useSelectedModel();
   const dispatch = useAppDispatch();
 
-  const { width, height } = size;
-
   useEffect(() => {
+    const { width, height } = size;
     let timeoutId = 0;
     const debounce = 10;
 
@@ -42,7 +42,16 @@ const Raycast = (): JSX.Element => {
       clearTimeout(timeoutId);
 
       timeoutId = window.setTimeout(() => {
-        const model = raycast({ mouse, raycaster, camera, scene, width, height, e });
+        const model = raycast({
+          mouse,
+          raycaster,
+          camera,
+          scene,
+          width,
+          height,
+          e,
+          many: false
+        });
 
         if (model) {
           document.body.style.cursor = "pointer";
@@ -56,7 +65,7 @@ const Raycast = (): JSX.Element => {
 
     return () =>
       window.removeEventListener("pointermove", handleIntersectionOnMouseMove);
-  }, [camera, raycaster, mouse, width, height, scene]);
+  }, [camera, raycaster, mouse, size, scene]);
 
   const handleMouseDown = (e: Ev): void => {
     mouseDown.x = e.clientX;
@@ -66,13 +75,23 @@ const Raycast = (): JSX.Element => {
   const handleMouseUp = (e: Ev): void => {
     const mouseUp = { x: e.clientX, y: e.clientY };
     const movementThreshold = 5;
+    const { width, height } = size;
 
     const MOUSE_IS_IN_RANGE =
       Math.abs(mouseUp.x - mouseDown.x) <= movementThreshold &&
       Math.abs(mouseUp.y - mouseDown.y) <= movementThreshold;
 
     if (MOUSE_IS_IN_RANGE) {
-      const model = raycast({ mouse, raycaster, camera, scene, width, height, e });
+      const model = raycast({
+        mouse,
+        raycaster,
+        camera,
+        scene,
+        width,
+        height,
+        e,
+        many: true
+      });
       handleSelection(model);
     }
   };
@@ -101,4 +120,8 @@ const Raycast = (): JSX.Element => {
   );
 };
 
-export default Raycast;
+export default function RaycastContainer(): JSX.Element {
+  const { currentMode } = useDrone();
+
+  return <>{currentMode !== "fly" && <Raycast />}</>;
+}

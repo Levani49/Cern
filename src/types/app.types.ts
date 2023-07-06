@@ -43,4 +43,5 @@ export interface ActiveModel {
   uid: string;
   name: string;
   modelPath: string;
+  renderOrder?: number;
 }

@@ -1,3 +1,4 @@
+import useEscapeKeydown from "@/hooks/useEscapeKeydown/useEscapeKeydown.hook";
 import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 
 import { ReactComponent as BackViewIcon } from "@assets/svg/back-side.svg";
@@ -18,6 +19,7 @@ import {
   setIsoView,
   setLeftCameraView,
   setRightView,
+  setStopCameraView,
   setTopView
 } from "@features/camera/cameraSlice";
 
@@ -30,11 +32,19 @@ import NavIcon from "../navIcon/navIcon";
 
 export default function CameraViewMenu(): JSX.Element {
   const dispatch = useAppDispatch();
-  const { currentMode } = useDrone();
+  const { currentMode, setDroneMode } = useDrone();
 
   const handleModeChange = (handler: ActionCreatorWithoutPayload): void => {
+    if (currentMode !== "idle") {
+      dispatch(setDroneMode("idle"));
+    }
+
     dispatch(handler());
   };
+
+  useEscapeKeydown((): void => {
+    dispatch(setStopCameraView());
+  });
 
   const menuItems = [
     {
@@ -88,7 +98,6 @@ export default function CameraViewMenu(): JSX.Element {
         Icon={item.Icon}
         title={item.title}
         onClick={(): void => handleModeChange(item.action)}
-        disabled={currentMode !== "idle"}
       />
     );
   });

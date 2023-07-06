@@ -77,6 +77,14 @@ const modelSlice = createSlice({
     },
     updateModelCut: (state, action: PayloadAction<ModelCut>) => {
       state.modelCut = action.payload;
+      if (state.selectedModel) {
+        state.selectedModel = {
+          ...state.selectedModel,
+          cutType: action.payload
+        };
+
+        state.localCut = action.payload;
+      }
     },
     updateLocalModelCut: (state, action: PayloadAction<ModelCut>) => {
       state.localCut = action.payload;

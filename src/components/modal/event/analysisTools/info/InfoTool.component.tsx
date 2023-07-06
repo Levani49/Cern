@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 import { ReactComponent as MinusCircleIcon } from "@assets/svg/minusCircleIcon.svg";
 import { ReactComponent as PlusCircleIcon } from "@assets/svg/plusCircleIcon.svg";
 
+import { useAppDispatch } from "@store/hooks";
+
+import { setEventDetailsXML } from "@features/event/eventSlice";
+import { UploadedEvent } from "@features/event/eventSlice.types";
+
 import EventLine from "./EventLine.component";
 
 interface Props {
@@ -14,6 +19,7 @@ interface Props {
   date: string;
   time: string;
   active?: boolean;
+  loadedEvent: UploadedEvent;
 }
 
 export default function InfoTool({
@@ -24,9 +30,11 @@ export default function InfoTool({
   runNumber,
   date,
   time,
+  loadedEvent,
   active = false
 }: Props): JSX.Element {
   const [show, setShow] = useState(false);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (showEventDetails) {
@@ -34,24 +42,36 @@ export default function InfoTool({
     }
   }, [showEventDetails]);
 
+  const handleEventLoad = (): void => {
+    if (active) {
+      return;
+    }
+
+    const { event, name } = loadedEvent;
+
+    dispatch(setEventDetailsXML({ event, fileName: name }));
+  };
+
   return (
     <div className="mt-1">
       <div className="flex items-center gap-2">
         {show ? (
           <MinusCircleIcon
-            className="icon h-4 w-4 text-[rgb(55,60,75)]"
+            className="icon h-4 w-4 text-highlight1"
             onClick={(): void => setShow((prev) => !prev)}
           />
         ) : (
           <PlusCircleIcon
-            className="icon  h-4 w-4  text-[rgb(55,60,75)]"
+            className="icon  h-4 w-4  text-highlight1"
             onClick={(): void => setShow((prev) => !prev)}
           />
         )}
 
         <span
-          className={`select-none text-xs capitalize ${active && "text-blue"} ${
-            active && "dark:text-green"
+          role="presentation"
+          onClick={handleEventLoad}
+          className={`cursor-pointer select-none text-xs capitalize hover:text-accent2 dark:hover:text-accent1  ${
+            active && "text-accent2 dark:text-accent1"
           }`}
         >{`event ${eventName}`}</span>
       </div>

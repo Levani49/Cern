@@ -14,6 +14,7 @@ interface Props {
   camera: Camera;
   scene: Scene;
   raycaster: Raycaster;
+  many: boolean;
 }
 
 export function raycast({
@@ -23,7 +24,8 @@ export function raycast({
   height,
   camera,
   scene,
-  raycaster
+  raycaster,
+  many
 }: Props): UserData | undefined {
   mouse.x = (e.clientX / width) * 2 - 1;
   mouse.y = -(e.clientY / height) * 2 + 1;
@@ -33,12 +35,19 @@ export function raycast({
 
   let intersectedModel: undefined | UserData = undefined;
 
-  for (const model of models) {
-    const intersects = raycaster.intersectObject(model, true);
+  if (many) {
+    const intersects = raycaster.intersectObjects(models, true);
 
     if (intersects.length > 0) {
       intersectedModel = intersects[0].object.userData as UserData;
-      break;
+    }
+  } else {
+    for (const model of models) {
+      const intersects = raycaster.intersectObject(model, true);
+      if (intersects.length > 0) {
+        intersectedModel = intersects[0].object.userData as UserData;
+        break;
+      }
     }
   }
 

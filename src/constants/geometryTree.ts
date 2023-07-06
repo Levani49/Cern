@@ -15,6 +15,7 @@ export interface TreeNode {
   children?: TreeNode[];
   root?: boolean;
   nodeEnd?: boolean;
+  renderOrder?: number;
 }
 
 export const GEOMETRY_MENU_TREE: TreeNode[] = [

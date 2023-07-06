@@ -1,9 +1,5 @@
 import { useEffect, useRef } from "react";
 
-import {
-  selectCameraEffect,
-  triggerCameraEffect
-} from "@/features/camera/cameraSlice";
 import { saveAs } from "file-saver";
 
 import { ReactComponent as DownloadFileIcon } from "@assets/svg/downloadFileIcon.svg";
@@ -12,6 +8,10 @@ import { ReactComponent as UploadFileIcon } from "@assets/svg/uploadFileIcon.svg
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import store from "@store/store";
 
+import {
+  selectCameraEffect,
+  triggerCameraEffect
+} from "@features/camera/cameraSlice";
 import { hydrateClippingPlanes, setSnapIsLoading } from "@features/model/modelSlice";
 
 import Button from "@components/button/Button.component";

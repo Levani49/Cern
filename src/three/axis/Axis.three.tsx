@@ -1,13 +1,12 @@
 import { GizmoHelper, GizmoViewport } from "@react-three/drei";
-import { memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 
 import { useAppSelector } from "@store/hooks";
 
 import { selectAxis } from "@features/global/globalsSlice";
 
 import useDrone from "@hooks/useDrone/useDrone.hook";
-
-import { isMobile } from "@utils/isMobile.utils";
+import { useEventListener } from "@hooks/useEventListener/useEventListener.hook";
 
 type Aligment =
   | "bottom-right"
@@ -25,12 +24,14 @@ interface Props {
   margin: [number, number];
   aligment: Aligment;
   scale: number;
+  axisHeadScale: number;
 }
 
 const initialState: Props = {
   margin: [70, 50],
   aligment: "bottom-right",
-  scale: 35
+  axisHeadScale: 0.85,
+  scale: 40
 };
 
 function Axis(): JSX.Element {
@@ -38,32 +39,22 @@ function Axis(): JSX.Element {
   const { currentMode } = useDrone();
   const show = useAppSelector(selectAxis);
 
-  useEffect(() => {
-    if (isMobile()) {
-      setProperties({
-        margin: [40, 37],
-        scale: 25,
-        aligment: "top-right"
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleResize = (): void => {
+  useEventListener(
+    "resize",
+    (): void => {
       if (window.innerWidth < 768) {
         setProperties({
           margin: [40, 37],
           scale: 25,
-          aligment: "top-right"
+          aligment: "top-right",
+          axisHeadScale: 0.8
         });
       } else {
         setProperties(initialState);
       }
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    },
+    true
+  );
 
   const disable = currentMode !== "idle";
 
@@ -75,7 +66,7 @@ function Axis(): JSX.Element {
             axisColors={["#ff6b53", "#40CF8E", "#5f6af1"]}
             disabled={disable}
             labelColor="white"
-            axisHeadScale={0.8}
+            axisHeadScale={properties.axisHeadScale}
             scale={properties.scale}
           />
         </GizmoHelper>

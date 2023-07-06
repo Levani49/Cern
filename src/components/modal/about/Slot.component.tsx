@@ -6,10 +6,10 @@ interface Props {
   className?: string;
 }
 
-export default function Slot({ src, contact }: Props): JSX.Element {
+export default function Slot({ src, name, role, contact }: Props): JSX.Element {
   return (
-    <div className="h-12 w-12 overflow-hidden rounded-full transition-all hover:scale-150 hover:cursor-pointer">
-      <a href={contact} target="_blank" rel="noreferrer">
+    <div className="h-8 w-8 overflow-hidden rounded-full transition-all hover:scale-150 hover:cursor-pointer">
+      <a href={contact} target="_blank" rel="noreferrer" title={`${name} : ${role}`}>
         <img className="h-full w-full object-cover" src={src} alt="Personal" />
       </a>
     </div>

@@ -74,8 +74,8 @@ export default function GeometryCutsMenu(): JSX.Element {
   const menuItems = [
     { Icon: LeftWallIcon, mode: "-cut1", title: "1'st cut" },
     { Icon: RightWallIcon, mode: "-cut2", title: "2'nd cut" },
-    { Icon: StairsIcon, mode: "-cut3", title: "2'rd cut" },
-    { Icon: GeometryCoreIcon, mode: "-cut4", title: "Full cut" },
+    { Icon: StairsIcon, mode: "-cut3", title: "3'rd cut" },
+    { Icon: GeometryCoreIcon, mode: "-cut4", title: "4'th cut" },
     { Icon: ScissorIcon, mode: null, title: "Custom cut" }
   ];
 
@@ -98,7 +98,7 @@ export default function GeometryCutsMenu(): JSX.Element {
         <MenuDropdown>{innerHtml}</MenuDropdown>
       </div>
       {cutType === null && (
-        <div className="absolute left-1/2 top-[68px] flex -translate-x-1/2 -translate-y-1/2 transform items-center rounded bg-customGray p-4 ">
+        <div className="absolute left-1/2 top-[68px] flex -translate-x-1/2 -translate-y-1/2 transform items-center rounded bg-dark1 p-4 ">
           <input
             min={-3.14159265}
             max={3.14159265}
@@ -106,7 +106,7 @@ export default function GeometryCutsMenu(): JSX.Element {
             value={clippingPlanesVal}
             onChange={handleClippingPlanes}
             type="range"
-            className="range-sm h-[3px] w-auto cursor-pointer appearance-none rounded-lg bg-gray-700"
+            className="range-sm h-[3px] w-auto cursor-pointer appearance-none rounded-lg bg-highlight1 accent-accent2 dark:accent-accent1"
           />
         </div>
       )}

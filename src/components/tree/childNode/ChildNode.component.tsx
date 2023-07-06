@@ -36,21 +36,21 @@ export default function ChildNode({
   let innerState: string;
 
   if (modelState === "isLoaded") {
-    innerState = "text-[#0054ff] dark:text-green";
+    innerState = "text-blue-700 dark:text-accent1";
   } else {
     innerState = "text-white";
   }
 
   return (
     <li
-      className={`relative left-[-1px] flex items-center border-l-[0.5px] border-white ${
+      className={` relative left-[-1px] flex items-center border-l-[0.5px] border-white ${
         nodeEnd && "last-child-event-line border-l border-solid border-transparent"
       } ${innerState}`}
     >
       <span
         role="presentation"
         onClick={onClickHandler}
-        className="relative left-0 ml-[-0.5px] cursor-pointer overflow-ellipsis whitespace-nowrap border-white text-left align-middle text-xs font-light uppercase transition before:relative before:mr-[2px] before:inline-block before:w-[15px]  before:border-0 before:border-t-[0.5px] before:align-middle before:text-white"
+        className="relative left-0 ml-[-0.5px] cursor-pointer overflow-ellipsis whitespace-nowrap border-white text-left align-middle text-xs  uppercase transition before:relative before:mr-[2px] before:inline-block before:w-[15px]  before:border-0 before:border-t-[0.5px] before:align-middle before:text-white"
       >
         {name}
       </span>

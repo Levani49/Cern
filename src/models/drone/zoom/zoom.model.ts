@@ -5,6 +5,11 @@ import { emptyFunc } from "@type/app.types";
 export default class Zoom {
   start(camera: PerspectiveCamera, cb: emptyFunc | undefined = undefined): void {
     let v = 75;
+    let sign = 1;
+
+    if (camera.position.distanceTo(new Vector3(0, 0, 0)) < 4) {
+      sign = -1;
+    }
 
     const s = (): void => {
       this.animationRef = requestAnimationFrame(s);
@@ -17,9 +22,13 @@ export default class Zoom {
       const lerpDist =
         distance / camera.position.distanceTo(new Vector3(0, 0, 0)) / 50;
 
-      camera.position.lerpVectors(camera.position, new Vector3(0, 0, 0), lerpDist);
+      camera.position.lerpVectors(
+        camera.position,
+        new Vector3(0, 0, 0),
+        sign * lerpDist
+      );
 
-      v += 0.1;
+      v += sign * 0.1;
       camera.fov = v;
 
       if (v > 120) {

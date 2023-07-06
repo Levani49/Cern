@@ -16,14 +16,19 @@ export default function FlyOverlay(): JSX.Element {
     return (
       <>
         {!showFlyModal && (
-          <p className="info-graph top-1/4 z-[5000] text-sm text-white">
-            Pressdown
-            <span className="font-bold text-yellow-500"> W | A | S | D </span>
-            to move, use your mouse to rotate
-            <span className="font-bold text-yellow-500"> CAMERA </span>, Press{" "}
-            <span className="font-bold text-yellow-500"> ESC </span> to exit from
-            mode.
-          </p>
+          <div className="info-graph z-20 text-center text-xs text-white">
+            <b className="text-yellow-500">Pressdown your mouse </b> to fly
+            <br />
+            <b className="text-yellow-500">WASD</b> to move
+            <br />
+            <b className="text-yellow-500">R|F</b> up | down
+            <br />
+            <b className="text-yellow-500">Q|E</b> roll
+            <br />
+            <b className="text-yellow-500">←↑↓→</b> rotation
+            <br />
+            <b className="text-yellow-500">Space</b> correct axis
+          </div>
         )}
         {showFlyModal && (
           <div
