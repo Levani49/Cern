@@ -25,12 +25,14 @@ interface Props {
   margin: [number, number];
   aligment: Aligment;
   scale: number;
+  axisHeadScale: number;
 }
 
 const initialState: Props = {
   margin: [70, 50],
   aligment: "bottom-right",
-  scale: 35
+  axisHeadScale: 0.85,
+  scale: 40
 };
 
 function Axis(): JSX.Element {
@@ -43,7 +45,8 @@ function Axis(): JSX.Element {
       setProperties({
         margin: [40, 37],
         scale: 25,
-        aligment: "top-right"
+        aligment: "top-right",
+        axisHeadScale: 0.8
       });
     }
   }, []);
@@ -54,7 +57,8 @@ function Axis(): JSX.Element {
         setProperties({
           margin: [40, 37],
           scale: 25,
-          aligment: "top-right"
+          aligment: "top-right",
+          axisHeadScale: 0.8
         });
       } else {
         setProperties(initialState);
@@ -75,7 +79,7 @@ function Axis(): JSX.Element {
             axisColors={["#ff6b53", "#40CF8E", "#5f6af1"]}
             disabled={disable}
             labelColor="white"
-            axisHeadScale={0.8}
+            axisHeadScale={properties.axisHeadScale}
             scale={properties.scale}
           />
         </GizmoHelper>
