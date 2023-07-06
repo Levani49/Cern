@@ -74,7 +74,7 @@ export default function GeometryCutsMenu(): JSX.Element {
   const menuItems = [
     { Icon: LeftWallIcon, mode: "-cut1", title: "1'st cut" },
     { Icon: RightWallIcon, mode: "-cut2", title: "2'nd cut" },
-    { Icon: StairsIcon, mode: "-cut3", title: "2'rd cut" },
+    { Icon: StairsIcon, mode: "-cut3", title: "3'rd cut" },
     { Icon: GeometryCoreIcon, mode: "-cut4", title: "Full cut" },
     { Icon: ScissorIcon, mode: null, title: "Custom cut" }
   ];
