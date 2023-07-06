@@ -20,7 +20,6 @@ const SPEED = 2.25;
 export default function PlayerControl({
   currentCameraPosition
 }: Props): JSX.Element {
-  // Get the camera and player controls
   const { camera } = useThree();
   const { moveForward, moveBackward, moveLeft, moveRight } = usePlayerControls();
   const [ref, api] = useSphere(() => ({
@@ -29,7 +28,6 @@ export default function PlayerControl({
     position: [...currentCameraPosition]
   }));
 
-  // Set the player's velocity based on the movement controls
   const velocity = useRef([...currentCameraPosition]);
   useEffect(() => {
     api.velocity.subscribe((v) => (velocity.current = v));

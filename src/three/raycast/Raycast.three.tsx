@@ -14,6 +14,7 @@ import {
   updateLocalModelCut
 } from "@features/model/modelSlice";
 
+import useDrone from "@hooks/useDrone/useDrone.hook";
 import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
 
 import { UserData } from "@services/model/Model.service";
@@ -119,4 +120,8 @@ const Raycast = (): JSX.Element => {
   );
 };
 
-export default Raycast;
+export default function RaycastContainer(): JSX.Element {
+  const { currentMode } = useDrone();
+
+  return <>{currentMode !== "fly" && <Raycast />}</>;
+}

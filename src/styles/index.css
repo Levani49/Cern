@@ -90,9 +90,9 @@ body::backdrop {
 
 .info-graph {
   position: absolute;
-  top: 13.5%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 15.5%;
+  right: 1%;
+  transform: translate(-10%, -50%);
 }
 
 .modal-center {
