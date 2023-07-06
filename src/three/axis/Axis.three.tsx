@@ -1,13 +1,12 @@
 import { GizmoHelper, GizmoViewport } from "@react-three/drei";
-import { memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 
 import { useAppSelector } from "@store/hooks";
 
 import { selectAxis } from "@features/global/globalsSlice";
 
 import useDrone from "@hooks/useDrone/useDrone.hook";
-
-import { isMobile } from "@utils/isMobile.utils";
+import { useEventListener } from "@hooks/useEventListener/useEventListener.hook";
 
 type Aligment =
   | "bottom-right"
@@ -40,19 +39,9 @@ function Axis(): JSX.Element {
   const { currentMode } = useDrone();
   const show = useAppSelector(selectAxis);
 
-  useEffect(() => {
-    if (isMobile()) {
-      setProperties({
-        margin: [40, 37],
-        scale: 25,
-        aligment: "top-right",
-        axisHeadScale: 0.8
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleResize = (): void => {
+  useEventListener(
+    "resize",
+    (): void => {
       if (window.innerWidth < 768) {
         setProperties({
           margin: [40, 37],
@@ -63,11 +52,9 @@ function Axis(): JSX.Element {
       } else {
         setProperties(initialState);
       }
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    },
+    true
+  );
 
   const disable = currentMode !== "idle";
 

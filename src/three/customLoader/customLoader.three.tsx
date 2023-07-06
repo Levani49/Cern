@@ -1,5 +1,7 @@
 import { Loader } from "@react-three/drei";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+import { useEventListener } from "@hooks/useEventListener/useEventListener.hook";
 
 export default function CustomLoader(): JSX.Element {
   const [styles, setStyles] = useState({
@@ -7,17 +9,9 @@ export default function CustomLoader(): JSX.Element {
     top: "auto"
   });
 
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setStyles({
-        bottom: "auto",
-        top: "0px"
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleResize = (): void => {
+  useEventListener(
+    "resize",
+    (): void => {
       if (window.innerWidth < 768) {
         setStyles({
           bottom: "auto",
@@ -29,12 +23,9 @@ export default function CustomLoader(): JSX.Element {
           top: "auto"
         });
       }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    },
+    true
+  );
 
   return (
     <Loader

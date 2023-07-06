@@ -3,43 +3,34 @@
 
 import { OrbitControlsProps } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
-
-import { useAppSelector } from "@store/hooks";
-
-import { selectCameraType } from "@features/camera/cameraSlice";
+import { useRef } from "react";
 
 import CustomOrbitControl from "@three/lib/modified_orbit_controls/CustomOrbitControl";
 import PlayerControl from "@three/player-control/PlayerControl.three";
 
 import useDrone from "@hooks/useDrone/useDrone.hook";
+import { useEventListener } from "@hooks/useEventListener/useEventListener.hook";
 
 export default function Controls(): JSX.Element {
   const { camera } = useThree();
   const { currentMode } = useDrone();
-  const cameraType = useAppSelector(selectCameraType);
 
   const controlsRef = useRef<OrbitControlsProps>(null);
 
-  useEffect(() => {
-    const stopDampingEffect = (): void => {
-      if (currentMode) {
-        return;
+  useEventListener("pointerdown", () => {
+    if (currentMode !== "idle") {
+      return;
+    }
+    if (controlsRef.current) {
+      controlsRef.current.enabled = false;
+      controlsRef.current.enableDamping = false;
+      if (controlsRef.current.update) {
+        controlsRef.current.update();
       }
-      if (controlsRef.current) {
-        controlsRef.current.enabled = false;
-        controlsRef.current.enableDamping = false;
-        if (controlsRef.current.update) {
-          controlsRef.current.update();
-        }
-        controlsRef.current.enableDamping = true;
-        controlsRef.current.enabled = true;
-      }
-    };
-    window.addEventListener("pointerdown", stopDampingEffect);
-
-    return () => window.removeEventListener("pointerdown", stopDampingEffect);
-  }, [currentMode, cameraType]);
+      controlsRef.current.enableDamping = true;
+      controlsRef.current.enabled = true;
+    }
+  });
 
   const enableControls = currentMode === "circle" || currentMode === "idle";
 

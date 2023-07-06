@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { ReactComponent as ArrowDownIcon } from "@assets/svg/arrowDown.svg";
 import { ReactComponent as ArrowUpIcon } from "@assets/svg/arrowUp.svg";
@@ -9,32 +9,24 @@ import { selectMenuBar, setMenuBar } from "@features/global/globalsSlice";
 
 import NavIcon from "@components/navigation/navIcon/navIcon";
 
+import { useEventListener } from "@hooks/useEventListener/useEventListener.hook";
+
 export default function ShowMenuBar(): JSX.Element {
   const [mobileIcon, setMobileIcon] = useState(false);
   const dispatch = useAppDispatch();
   const showMenuBar = useAppSelector(selectMenuBar);
 
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setMobileIcon(true);
-    } else {
-      setMobileIcon(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleResize = (): void => {
+  useEventListener(
+    "resize",
+    (): void => {
       if (window.innerWidth < 768) {
         setMobileIcon(true);
       } else {
         setMobileIcon(false);
       }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    },
+    true
+  );
 
   const handleClick = (): void => {
     dispatch(setMenuBar(true));
