@@ -19,7 +19,7 @@ export default function FilterContainer({
   return (
     <div className="flex flex-col">
       <div className="flex w-full items-center justify-between">
-        <h3 className="text-sm text-accent3">{title}</h3>
+        <h3 className="text-sm text-textColor">{title}</h3>
         <button title={resetButtonTitle}>
           <RefreshIcon className="icon h-4 w-4" onClick={onFieldsReset} />
         </button>

@@ -6,7 +6,7 @@ export const TEMP_INFO: EmployeeStaticData = {
       id: "2",
       name: "Sharmazanashvili Alexander",
       src: "/assets/images/sharmazanashvili-1.jpg",
-      role: "Director",
+      role: "Content creator",
       contact: "http://cadcam.ge/sharmazanashvili-personal/"
     },
 

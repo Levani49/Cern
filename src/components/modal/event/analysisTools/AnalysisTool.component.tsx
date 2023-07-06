@@ -11,7 +11,7 @@ export default function AnalysisTool({
   return (
     <button
       {...rest}
-      className={`hover:border-light w-full cursor-pointer select-none rounded-md border bg-gray1 py-[4px] capitalize text-accent3
+      className={`hover:border-light w-full cursor-pointer select-none rounded-md border bg-highlight1 py-[4px] capitalize text-textColor
       ${!active && "border-transparent"}  
       ${active && "border-light"} `}
     >
