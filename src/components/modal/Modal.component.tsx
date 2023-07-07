@@ -59,8 +59,8 @@ export default function Modal({
             />
           </div>
           <div
-            className={`rounded-t-2xl bg-dark3  px-2 transition-all duration-700 dark:bg-dark1 ${
-              drop ? "max-h-96 py-2" : "max-h-0 py-0"
+            className={`overflow-y-hidden rounded-t-2xl bg-dark3  px-2 transition-all duration-700 dark:bg-dark1 ${
+              drop ? "max-h-[400px] py-2" : "max-h-0 py-0"
             }`}
           >
             {children}

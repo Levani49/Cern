@@ -51,7 +51,7 @@ export default function EventsModal(): JSX.Element {
     switch (memoizedAnalysisTool) {
       case "info":
         return (
-          <div className="flex flex-col gap-1">
+          <div className="max-h-52 overflow-y-auto">
             {filteredEvents.map((event, index): JSX.Element => {
               return (
                 <InfoTool
