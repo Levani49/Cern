@@ -1,3 +1,5 @@
+import Tools from "@/components/navigation/tools/tools";
+
 import { useAppSelector } from "@store/hooks";
 
 import { selectMenuBar } from "@features/global/globalsSlice";
@@ -9,7 +11,6 @@ import EventsMenu from "@components/navigation/events/EventsMenu.component";
 import FullScreenMenu from "@components/navigation/fullscreen/FullScreenMenu.component";
 import GeometryMenu from "@components/navigation/geometry/GeometryMenu.component";
 import GeometryCutsMenu from "@components/navigation/geometryCuts/GeometryCutsMenu.component";
-import Link from "@components/navigation/link/link.component";
 import NavigationBar from "@components/navigation/navigationBar/navigationToggler";
 import NavTitle from "@components/navigation/navTitle/navTitle.component";
 import OpacirtyMenu from "@components/navigation/opacity/OpacityMenu.component";
@@ -17,7 +18,6 @@ import Report from "@components/navigation/report/report";
 import Settings from "@components/navigation/settings/settings";
 import ShowMenuBar from "@components/navigation/showMenuBar/showMenuBar";
 import ThemeToggler from "@components/navigation/theme/ThemeToggler.component";
-import WireframeMenu from "@components/navigation/wireframe/WireframeMenu.component";
 
 export default function Navigation(): JSX.Element {
   const showMenuBar = useAppSelector(selectMenuBar);
@@ -35,13 +35,12 @@ export default function Navigation(): JSX.Element {
             <CameraViewMenu />
             <GeometryCutsMenu />
             <OpacirtyMenu />
-            <WireframeMenu />
+            <Tools />
             <Settings />
             <Report />
             <div className="hidden items-center gap-2 sm:flex">
               <ThemeToggler />
               <FullScreenMenu />
-              <Link />
               <AboutMenu />
             </div>
           </nav>
