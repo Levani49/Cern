@@ -85,30 +85,28 @@ export default function ModelInformation(): JSX.Element {
   }, [selectedModel, dispatch, data]);
 
   return (
-    <div className="z-99999999">
-      <Leva
-        hidden={!show}
-        theme={{
-          sizes: {
-            rootWidth: "220px",
-            controlWidth: "120px"
-          },
-          colors: {
-            accent1: "#dfe6e9",
-            accent2: "rgb(50, 207, 142)",
-            accent3: "rgb(38,38,38)"
-          }
-        }}
-        titleBar={{
-          title: "Model information",
-          drag: true,
-          onDragEnd: (e): void => {
-            setLastPosition(e);
-          },
-          filter: false,
-          position: lastPosition
-        }}
-      />
-    </div>
+    <Leva
+      hidden={!show}
+      theme={{
+        sizes: {
+          rootWidth: "220px",
+          controlWidth: "120px"
+        },
+        colors: {
+          accent1: "#dfe6e9",
+          accent2: "rgb(50, 207, 142)",
+          accent3: "rgb(38,38,38)"
+        }
+      }}
+      titleBar={{
+        title: "Model information",
+        drag: true,
+        onDragEnd: (e): void => {
+          setLastPosition(e);
+        },
+        filter: false,
+        position: lastPosition
+      }}
+    />
   );
 }

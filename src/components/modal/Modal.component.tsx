@@ -24,6 +24,7 @@ export default function Modal({
   children,
   className
 }: Props): JSX.Element {
+  const [zIndex, setZindex] = useState("z-10");
   const nodeRef = useRef<HTMLDivElement | null>(null);
   const [drop, setDrop] = useState(true);
 
@@ -34,8 +35,11 @@ export default function Modal({
   return createPortal(
     <Draggable nodeRef={nodeRef} bounds="parent" handle=".handle">
       <div
+        role="presentation"
         ref={nodeRef}
-        className="modal z-50 min-w-[227px] rounded-xl text-accent3"
+        onPointerDown={(): void => setZindex("z-20")}
+        onPointerUp={(): void => setZindex("z-10")}
+        className={`modal ${zIndex}  min-w-[227px] rounded-xl text-accent3`}
       >
         <div className={c}>
           {/* do not remove class 'handle' since it's used by draggable element, which means that drag events will only trigger on elements which will have <<handle>> class */}
