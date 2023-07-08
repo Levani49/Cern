@@ -34,13 +34,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (
-            id.includes("@react-three/cannon") ||
-            id.includes("@react-three/fiber") ||
-            id.includes("html2canvas") ||
-            id.includes("react-media-recorder-2") ||
-            id.includes("leva")
-          ) {
+          if (id.includes("@react-three")) {
             return id.toString().split("node_modules/")[1].split("/")[0].toString();
           }
         }
