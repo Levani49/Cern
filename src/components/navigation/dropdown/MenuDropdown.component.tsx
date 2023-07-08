@@ -12,5 +12,5 @@ export default function MenuDropdown({ children, className }: Props): JSX.Elemen
     className
   );
 
-  return <div className={defaultClasses}>{children}</div>;
+  return <ul className={defaultClasses}>{children}</ul>;
 }

@@ -1,5 +1,9 @@
 import RcSlider from "rc-slider";
 
+import { useAppSelector } from "@store/hooks";
+
+import { selectTheme } from "@features/global/globalsSlice";
+
 import "rc-slider/assets/index.css";
 
 interface Props {
@@ -11,6 +15,10 @@ interface Props {
 }
 
 export default function Slider({ ...props }: Props): JSX.Element {
+  const isdarkMode = useAppSelector(selectTheme);
+
+  const color = isdarkMode ? "rgb(50, 207, 142)" : "rgb(110, 168, 254)";
+
   return (
     <RcSlider
       {...props}
@@ -20,7 +28,7 @@ export default function Slider({ ...props }: Props): JSX.Element {
         marginTop: "1px"
       }}
       trackStyle={{
-        backgroundColor: "rgb(50, 207, 142)",
+        backgroundColor: color,
         height: "2px",
         marginTop: "1px"
       }}
@@ -31,7 +39,7 @@ export default function Slider({ ...props }: Props): JSX.Element {
         width: "8px",
         height: "16px",
         borderRadius: "2px",
-        backgroundColor: "rgb(50, 207, 142)",
+        backgroundColor: color,
         opacity: "1"
       }}
     />
