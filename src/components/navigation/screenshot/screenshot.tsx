@@ -1,5 +1,4 @@
 import { saveAs } from "file-saver";
-import html2canvas from "html2canvas";
 
 import { ReactComponent as PhotoIcon } from "@assets/svg/photo.svg";
 
@@ -7,25 +6,29 @@ import NavIcon from "@components/navigation/navIcon/navIcon";
 
 export default function Screenshot(): JSX.Element {
   function handleScreenshot(): void {
-    const element = document.body;
+    import("html2canvas").then((html2canvas) => {
+      const element = document.body;
 
-    const timestamp = new Date().toLocaleString();
-    const filename = `tracer-screenshot-${timestamp}.png`;
+      const timestamp = new Date().toLocaleString();
+      const filename = `tracer-screenshot-${timestamp}.png`;
 
-    html2canvas(element, {
-      onclone: (clonedDocument) => {
-        const navTitle = clonedDocument.getElementById("nav-title");
-        const tree = clonedDocument.getElementById("geometry-tree");
-        if (tree?.style) {
-          tree.style.display = "none";
-        }
-        if (navTitle) {
-          navTitle.style.marginTop = "-17px";
-        }
-      }
-    }).then((canvas) => {
-      const dataURL = canvas.toDataURL("image/png");
-      saveAs(dataURL, filename);
+      html2canvas
+        .default(element, {
+          onclone: (clonedDocument) => {
+            const navTitle = clonedDocument.getElementById("nav-title");
+            const tree = clonedDocument.getElementById("geometry-tree");
+            if (tree?.style) {
+              tree.style.display = "none";
+            }
+            if (navTitle) {
+              navTitle.style.marginTop = "-17px";
+            }
+          }
+        })
+        .then((canvas) => {
+          const dataURL = canvas.toDataURL("image/png");
+          saveAs(dataURL, filename);
+        });
     });
   }
 

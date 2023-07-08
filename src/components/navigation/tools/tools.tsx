@@ -5,13 +5,10 @@ import { ReactComponent as HorizontalLines } from "@assets/svg/horizontalLines.s
 import MenuDropdown from "@components/navigation/dropdown/MenuDropdown.component";
 import Link from "@components/navigation/link/link.component";
 import NavIcon from "@components/navigation/navIcon/navIcon";
+import Screenshot from "@components/navigation/screenshot/screenshot";
 import SnapMenu from "@components/navigation/snap/SnapMenu.component";
 
 import { supportsScreenRecording } from "@utils/supportsScreenRecording.utils";
-
-const Screenshot = lazy(
-  () => import("@components/navigation/screenshot/screenshot")
-);
 
 const RecordScreen = lazy(
   () => import("@components/navigation/recordScreen/recordScreen")
