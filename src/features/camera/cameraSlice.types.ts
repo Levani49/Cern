@@ -40,11 +40,14 @@ export type PerspectiveProps =
 
 export interface ICameraSettings {
   defaultPosition: coordinates | undefined;
+  controlRotationSpeed: number;
   currentState: DroneTypes;
   droneType: DroneTypes;
   camera: Camera | null;
   cameraType: CameraTypes;
+  directionalLightIntensity: number;
   showFlyModal: boolean;
+  ambientLightIntensity: number;
   viewMode: ViewModes;
   orthographicCameraProps: OrthographicProps | undefined;
   perspectiveCameraProps: PerspectiveProps | undefined;
