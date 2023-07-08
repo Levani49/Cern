@@ -16,4 +16,5 @@ export interface GlobalsSlice {
   fullScreen: boolean;
   screenRecording: "idle" | "recording" | "stop";
   showMenu: boolean;
+  showUtils: boolean;
 }

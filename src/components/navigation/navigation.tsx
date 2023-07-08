@@ -13,7 +13,7 @@ import GeometryMenu from "@components/navigation/geometry/GeometryMenu.component
 import GeometryCutsMenu from "@components/navigation/geometryCuts/GeometryCutsMenu.component";
 import NavigationBar from "@components/navigation/navigationBar/navigationToggler";
 import NavTitle from "@components/navigation/navTitle/navTitle.component";
-import OpacirtyMenu from "@components/navigation/opacity/OpacityMenu.component";
+import OpacityMenu from "@components/navigation/opacity/OpacityMenu.component";
 import Report from "@components/navigation/report/report";
 import Settings from "@components/navigation/settings/settings";
 import ShowMenuBar from "@components/navigation/showMenuBar/showMenuBar";
@@ -34,7 +34,7 @@ export default function Navigation(): JSX.Element {
             <DroneMenu />
             <CameraViewMenu />
             <GeometryCutsMenu />
-            <OpacirtyMenu />
+            <OpacityMenu />
             <Tools />
             <Settings />
             <Report />

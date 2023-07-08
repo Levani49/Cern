@@ -11,6 +11,7 @@ const axisVisibility = isMobile() === false;
 const initialState: GlobalsSlice = {
   prefersdarkMode: true,
   showMenu: true,
+  showUtils: false,
   startParticleAnimation: true,
   showStats: false,
   showAxis: axisVisibility,
@@ -41,6 +42,9 @@ const globalsSlice = createSlice({
     },
     setSnapModal: (state, action: PayloadAction<boolean>) => {
       state.showSnapModal = action.payload;
+    },
+    setUtilsModal: (state, action: PayloadAction<boolean>) => {
+      state.showUtils = action.payload;
     },
     setMenuBar: (state, action: PayloadAction<boolean>) => {
       state.showMenu = action.payload;
@@ -94,9 +98,12 @@ export const {
   setSnapModal,
   setFullscreen,
   setScreenRecording,
-  setMenuBar
+  setMenuBar,
+  setUtilsModal
 } = globalsSlice.actions;
 
+export const selectUtilsModal = (state: RootState): boolean =>
+  state.globals.showUtils;
 export const selectIsFullscreen = (state: RootState): boolean =>
   state.globals.fullScreen;
 export const selectSnapModal = (state: RootState): boolean =>

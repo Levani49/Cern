@@ -1,8 +1,4 @@
-// import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
-
-// import Checkbox from "@/components/modal/event/event-objects/Checkbox.component";
-// import Slider from "@/components/slider/slider.component";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import {
   selectAmbientLightIntensity,
@@ -12,8 +8,20 @@ import {
   setControlRotationSpeed,
   setDirectionalLightIntensity
 } from "@features/camera/cameraSlice";
+import {
+  selectAxis,
+  selectGrid,
+  selectStats,
+  setUtilsModal,
+  showAxis,
+  showGrid,
+  showRendererStats
+} from "@features/global/globalsSlice";
 
+import CheckboxHandler from "@components/modal/settings/checkboxHandler";
 import SliderHandler from "@components/modal/settings/sliderHandler";
+
+import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import Modal from "../Modal.component";
 
@@ -22,6 +30,13 @@ export default function SettingsModal(): JSX.Element {
   const rotationSpeed = useAppSelector(selectRotationSpeed);
   const ambientLightIntensity = useAppSelector(selectAmbientLightIntensity);
   const directionalLightIntensity = useAppSelector(selectDirectionalLightIntensity);
+  const statsIsActive = useAppSelector(selectStats);
+  const axisIsActive = useAppSelector(selectAxis);
+  const gridIsActive = useAppSelector(selectGrid);
+
+  useEscapeKeydown(() => {
+    dispatch(setUtilsModal(false));
+  });
 
   const handRotationSpeedupdate = (e: number | number[]): void => {
     if (typeof e !== "object") {
@@ -41,7 +56,23 @@ export default function SettingsModal(): JSX.Element {
     }
   };
 
-  const elements = [
+  const handleAxisToggle = (): void => {
+    dispatch(showAxis(!axisIsActive));
+  };
+
+  const handleGridToggle = (): void => {
+    dispatch(showGrid(!gridIsActive));
+  };
+
+  const handleStatsToggle = (): void => {
+    dispatch(showRendererStats(!statsIsActive));
+  };
+
+  const handleCloseModal = (): void => {
+    dispatch(setUtilsModal(false));
+  };
+
+  const sliderElements = [
     {
       title: "Camera rotation speed",
       step: 0.01,
@@ -71,19 +102,41 @@ export default function SettingsModal(): JSX.Element {
     }
   ];
 
-  const innerHtml = elements.map((element, idx) => (
+  const checkboxElements = [
+    {
+      title: "Axis",
+      id: "axis",
+      checked: axisIsActive,
+      onClick: handleAxisToggle
+    },
+    {
+      title: "Grid",
+      id: "grid",
+      checked: gridIsActive,
+      onClick: handleGridToggle
+    },
+    {
+      title: "Stats",
+      id: "stats",
+      checked: statsIsActive,
+      onClick: handleStatsToggle
+    }
+  ];
+
+  const sliderHtml = sliderElements.map((element, idx) => (
     <SliderHandler key={idx + element.title} {...element} />
   ));
 
+  const checkboxHtml = checkboxElements.map((element, idx) => (
+    <CheckboxHandler key={element.title + idx} {...element} />
+  ));
+
   return (
-    <Modal
-      title="Settings"
-      show={true}
-      onCloseHandler={(): void => {
-        /* */
-      }}
-    >
-      <div className="mt-2 text-xs">{innerHtml}</div>
+    <Modal title="Settings" show={true} onCloseHandler={handleCloseModal}>
+      <div className="mt-2 flex items-center justify-between px-2 text-xs">
+        {checkboxHtml}
+      </div>
+      <div className="mt-3 text-xs">{sliderHtml}</div>
     </Modal>
   );
 }
