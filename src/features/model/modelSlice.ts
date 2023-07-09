@@ -71,9 +71,21 @@ const modelSlice = createSlice({
     },
     setModelWireframe: (state, action: PayloadAction<boolean>) => {
       state.modelWireframe = action.payload;
+      if (state.selectedModel) {
+        state.selectedModel = {
+          ...state.selectedModel,
+          wireframe: action.payload
+        };
+      }
     },
     setModelsOpacity: (state, action: PayloadAction<number>) => {
       state.modelOpacity = action.payload;
+      if (state.selectedModel) {
+        state.selectedModel = {
+          ...state.selectedModel,
+          opacity: action.payload
+        };
+      }
     },
     updateModelCut: (state, action: PayloadAction<ModelCut>) => {
       state.modelCut = action.payload;
@@ -88,6 +100,12 @@ const modelSlice = createSlice({
     },
     updateLocalModelCut: (state, action: PayloadAction<ModelCut>) => {
       state.localCut = action.payload;
+      if (state.selectedModel) {
+        state.selectedModel = {
+          ...state.selectedModel,
+          cutType: action.payload
+        };
+      }
     },
     updateModelsLoadingState: (state, action: PayloadAction<ModelLoadingStates>) => {
       state.modelsLoadingState = action.payload;
