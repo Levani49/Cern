@@ -49,6 +49,12 @@ export default function ModelInformation(): JSX.Element {
     }
   };
 
+  const cutType =
+    selectedModel && selectedModel?.cutType
+      ? selectedModel?.cutType.replaceAll("-", "")
+      : "Full cut";
+
+  console.log(cutType);
   return (
     <Modal
       show={show}
@@ -74,17 +80,15 @@ export default function ModelInformation(): JSX.Element {
             </label>
           </div>
           <select
+            key={cutType}
             className="absolute left-0 top-0 h-full w-full opacity-0"
+            defaultValue={cutType}
             onChange={handleCutOptionChange}
           >
             {cutOptions}
           </select>
           <div className="flex h-6 w-full cursor-pointer items-center justify-between rounded bg-gray2  p-1">
-            <span>
-              {selectedModel?.cutType
-                ? selectedModel?.cutType.replaceAll("-", "")
-                : "Full cut"}
-            </span>
+            <span>{cutType}</span>
             <CarretDown className="mr-1 h-2 w-2 fill-accent3" />
           </div>
         </div>
