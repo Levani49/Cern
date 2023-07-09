@@ -132,7 +132,12 @@ export default function SettingsModal(): JSX.Element {
   ));
 
   return (
-    <Modal title="Settings" show={true} onCloseHandler={handleCloseModal}>
+    <Modal
+      id="settings"
+      title="Settings"
+      show={true}
+      onCloseHandler={handleCloseModal}
+    >
       <div className="mt-2 flex items-center justify-between px-2 text-xs">
         {checkboxHtml}
       </div>

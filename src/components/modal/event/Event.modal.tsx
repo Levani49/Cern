@@ -85,7 +85,7 @@ export default function EventsModal(): JSX.Element {
   const currentTool = renderCurrentTool();
 
   return (
-    <Modal title="Events" show={show} onCloseHandler={closeModalHandler}>
+    <Modal id="events" title="Events" show={show} onCloseHandler={closeModalHandler}>
       <div className="py-2">
         <FileActions />
         <EventsResultsToggler />

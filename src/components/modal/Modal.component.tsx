@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Draggable from "react-draggable";
 
+import { selectModals, setModalsOrder } from "@/features/global/globalsSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { twMerge } from "tailwind-merge";
 
 import type { ReactChildren } from "@type/app.types";
@@ -15,6 +17,7 @@ interface Props {
   children: ReactChildren;
   onCloseHandler: () => void;
   className?: string;
+  id: string;
 }
 
 export default function Modal({
@@ -22,24 +25,36 @@ export default function Modal({
   title,
   onCloseHandler,
   children,
-  className
+  className,
+  id
 }: Props): JSX.Element {
-  const [zIndex, setZindex] = useState("z-10");
   const nodeRef = useRef<HTMLDivElement | null>(null);
+  const dispatch = useAppDispatch();
   const [drop, setDrop] = useState(true);
+  const modals = useAppSelector(selectModals);
 
   const c = twMerge("w-full bg-gray1", className);
 
   if (!show) return <></>;
+
+  const currentModal = modals.find((el) => el.id === id);
+
+  const zIndex = currentModal ? currentModal.zIndex : 30;
+
+  const handlePointerDown = (): void => {
+    dispatch(setModalsOrder(id));
+  };
 
   return createPortal(
     <Draggable nodeRef={nodeRef} bounds="parent" handle=".handle">
       <div
         role="presentation"
         ref={nodeRef}
-        onPointerDown={(): void => setZindex("z-20")}
-        onPointerUp={(): void => setZindex("z-10")}
-        className={`modal ${zIndex}  min-w-[227px] rounded-xl text-accent3`}
+        onPointerDown={handlePointerDown}
+        className="modal  min-w-[227px] rounded-xl text-accent3"
+        style={{
+          zIndex: zIndex
+        }}
       >
         <div className={c}>
           {/* do not remove class 'handle' since it's used by draggable element, which means that drag events will only trigger on elements which will have <<handle>> class */}

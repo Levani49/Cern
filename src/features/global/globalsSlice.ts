@@ -4,7 +4,7 @@ import type { RootState } from "@store/store";
 
 import { isMobile } from "@utils/isMobile.utils";
 
-import type { GlobalsSlice } from "./globalsSlice.type";
+import type { GlobalsSlice, ModalOrder } from "./globalsSlice.type";
 
 const axisVisibility = isMobile() === false;
 
@@ -24,7 +24,11 @@ const initialState: GlobalsSlice = {
   showGeometryMenu: true,
   showSnapModal: false,
   fullScreen: false,
-  screenRecording: "idle"
+  screenRecording: "idle",
+  modals: {
+    index: 30,
+    order: []
+  }
 };
 
 const globalsSlice = createSlice({
@@ -33,6 +37,26 @@ const globalsSlice = createSlice({
   reducers: {
     rehydrate: (state, action) => {
       return action.payload.globals || state;
+    },
+    setModalsOrder: (state, action: PayloadAction<string>) => {
+      const id = action.payload;
+
+      const existingModalIndex = state.modals.order.findIndex(
+        (modal) => modal.id === id
+      );
+
+      if (existingModalIndex === -1) {
+        const newModal = {
+          id,
+          zIndex: state.modals.index
+        };
+
+        state.modals.order.push(newModal);
+      } else {
+        state.modals.order[existingModalIndex].zIndex = state.modals.index;
+      }
+
+      state.modals.index++;
     },
     setScreenRecording: (
       state,
@@ -99,9 +123,12 @@ export const {
   setFullscreen,
   setScreenRecording,
   setMenuBar,
-  setUtilsModal
+  setUtilsModal,
+  setModalsOrder
 } = globalsSlice.actions;
 
+export const selectModals = (state: RootState): ModalOrder[] =>
+  state.globals.modals.order;
 export const selectUtilsModal = (state: RootState): boolean =>
   state.globals.showUtils;
 export const selectIsFullscreen = (state: RootState): boolean =>

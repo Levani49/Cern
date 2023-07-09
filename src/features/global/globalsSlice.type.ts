@@ -1,5 +1,10 @@
 import type { ModelLoadingStates, selectedModel } from "@type/app.types";
 
+export type ModalOrder = {
+  id: string;
+  zIndex: number;
+};
+
 export interface GlobalsSlice {
   prefersdarkMode: boolean;
   startParticleAnimation: boolean;
@@ -17,4 +22,8 @@ export interface GlobalsSlice {
   screenRecording: "idle" | "recording" | "stop";
   showMenu: boolean;
   showUtils: boolean;
+  modals: {
+    index: number;
+    order: ModalOrder[];
+  };
 }

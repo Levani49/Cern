@@ -54,9 +54,9 @@ export default function ModelInformation(): JSX.Element {
       ? selectedModel?.cutType.replaceAll("-", "")
       : "Full cut";
 
-  console.log(cutType);
   return (
     <Modal
+      id="modelModal"
       show={show}
       onCloseHandler={(): void => {
         dispatch(setSelectedModel(null));
