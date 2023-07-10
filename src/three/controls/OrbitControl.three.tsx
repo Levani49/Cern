@@ -4,7 +4,7 @@
 import { OrbitControlsProps } from "@react-three/drei";
 import { useRef } from "react";
 
-import { DroneTypes } from "@/types/app.types";
+import { DroneTypes } from "@type/app.types";
 
 import { useAppSelector } from "@store/hooks";
 

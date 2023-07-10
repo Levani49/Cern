@@ -1,8 +1,9 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
-import { useAppSelector } from "@/store/hooks";
 import { AmbientLight, DirectionalLight } from "three";
+
+import { useAppSelector } from "@store/hooks";
 
 import {
   selectAmbientLightIntensity,

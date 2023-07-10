@@ -1,4 +1,4 @@
-import Checkbox from "@/components/modal/event/event-objects/Checkbox.component";
+import Checkbox from "@components/modal/event/event-objects/Checkbox.component";
 
 interface Props {
   title: string;

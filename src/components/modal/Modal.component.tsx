@@ -2,14 +2,16 @@ import { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Draggable from "react-draggable";
 
-import { selectModals, setModalsOrder } from "@/features/global/globalsSlice";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { twMerge } from "tailwind-merge";
 
 import type { ReactChildren } from "@type/app.types";
 
 import { ReactComponent as CarretDown } from "@assets/svg/carretDown.svg";
 import { ReactComponent as XMarkIcon } from "@assets/svg/xMarkIcon.svg";
+
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
+import { selectModals, setModalsOrder } from "@features/global/globalsSlice";
 
 interface Props {
   show: boolean;

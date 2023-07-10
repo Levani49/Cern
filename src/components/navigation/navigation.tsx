@@ -1,5 +1,3 @@
-import Tools from "@/components/navigation/tools/tools";
-
 import { useAppSelector } from "@store/hooks";
 
 import { selectMenuBar } from "@features/global/globalsSlice";
@@ -18,6 +16,7 @@ import Report from "@components/navigation/report/report";
 import Settings from "@components/navigation/settings/settings";
 import ShowMenuBar from "@components/navigation/showMenuBar/showMenuBar";
 import ThemeToggler from "@components/navigation/theme/ThemeToggler.component";
+import Tools from "@components/navigation/tools/tools";
 
 export default function Navigation(): JSX.Element {
   const showMenuBar = useAppSelector(selectMenuBar);
