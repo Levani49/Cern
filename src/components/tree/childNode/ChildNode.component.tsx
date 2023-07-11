@@ -50,7 +50,7 @@ export default function ChildNode({
       <span
         role="presentation"
         onClick={onClickHandler}
-        className="relative left-0 ml-[-0.5px] cursor-pointer overflow-ellipsis whitespace-nowrap border-white text-left align-middle text-xs  uppercase transition before:relative before:mr-[2px] before:inline-block before:w-[15px]  before:border-0 before:border-t-[0.5px] before:align-middle before:text-white"
+        className="relative left-0 ml-[-0.5px] cursor-pointer overflow-ellipsis whitespace-nowrap border-white text-left align-middle text-xs font-light  uppercase transition before:relative before:mr-[2px] before:inline-block before:w-[15px]  before:border-0 before:border-t-[0.5px] before:align-middle before:text-white"
       >
         {name}
       </span>
