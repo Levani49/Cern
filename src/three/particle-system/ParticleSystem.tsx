@@ -2,6 +2,7 @@ import { memo, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
+import { setDrawEvents } from "@features/event/eventSlice";
 import {
   selectParticleAnimation,
   setParticleAnimationState
@@ -31,7 +32,10 @@ const ParticleSystem = (): JSX.Element => {
     }
   }, [dispatch, eventNumber]);
 
-  useEscapeKeydown(() => dispatch(setParticleAnimationState(false)));
+  useEscapeKeydown(() => {
+    dispatch(setParticleAnimationState(false));
+    dispatch(setDrawEvents(true));
+  });
 
   const onComplete = (): void => {
     dispatch(setParticleAnimationState(false));
