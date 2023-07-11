@@ -57,7 +57,7 @@ export default function FlyControl(): JSX.Element {
     <>
       <FlyControls
         dragToLook={true}
-        movementSpeed={1}
+        movementSpeed={0.75}
         rollSpeed={1.25}
         makeDefault
       />

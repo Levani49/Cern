@@ -1,17 +1,19 @@
-import { useThree } from "@react-three/fiber";
+export default {};
 
-import FirstPersonControl from "@three/player-control/PlayerControl.three";
+// import { useThree } from "@react-three/fiber";
 
-export default function PlayerControls(): JSX.Element {
-  const { camera } = useThree();
+// // import FirstPersonControl from "@three/player-control/PlayerControl.three";
 
-  return (
-    <FirstPersonControl
-      currentCameraPosition={[
-        camera.position.x,
-        camera.position.y,
-        camera.position.z
-      ]}
-    />
-  );
-}
+// export default function PlayerControls(): JSX.Element {
+//   const { camera } = useThree();
+
+//   return (
+//     <FirstPersonControl
+//       currentCameraPosition={[
+//         camera.position.x,
+//         camera.position.y,
+//         camera.position.z
+//       ]}
+//     />
+//   );
+// }

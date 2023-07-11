@@ -4,7 +4,11 @@
 import { OrbitControlsProps } from "@react-three/drei";
 import { useRef } from "react";
 
-import { DroneTypes } from "@/types/app.types";
+import { DroneTypes } from "@type/app.types";
+
+import { useAppSelector } from "@store/hooks";
+
+import { selectRotationSpeed } from "@features/camera/cameraSlice";
 
 import CustomOrbitControl from "@three/lib/modified_orbit_controls/CustomOrbitControl";
 
@@ -16,6 +20,7 @@ interface Props {
 
 export default function OrbitControls({ currentMode }: Props): JSX.Element {
   const controlsRef = useRef<OrbitControlsProps>(null);
+  const rotationSpeed = useAppSelector(selectRotationSpeed);
 
   useEventListener("pointerdown", () => {
     if (currentMode !== "idle") {
@@ -37,6 +42,7 @@ export default function OrbitControls({ currentMode }: Props): JSX.Element {
   return (
     <CustomOrbitControl
       ref={controlsRef}
+      rotateSpeed={rotationSpeed}
       enabled={enableControls}
       autoRotate={currentMode === "circle"}
       maxDistance={170}

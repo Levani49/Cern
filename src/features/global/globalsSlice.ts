@@ -4,13 +4,14 @@ import type { RootState } from "@store/store";
 
 import { isMobile } from "@utils/isMobile.utils";
 
-import type { GlobalsSlice } from "./globalsSlice.type";
+import type { GlobalsSlice, ModalOrder } from "./globalsSlice.type";
 
 const axisVisibility = isMobile() === false;
 
 const initialState: GlobalsSlice = {
   prefersdarkMode: true,
   showMenu: true,
+  showUtils: false,
   startParticleAnimation: true,
   showStats: false,
   showAxis: axisVisibility,
@@ -23,7 +24,11 @@ const initialState: GlobalsSlice = {
   showGeometryMenu: true,
   showSnapModal: false,
   fullScreen: false,
-  screenRecording: "idle"
+  screenRecording: "idle",
+  modals: {
+    index: 30,
+    order: []
+  }
 };
 
 const globalsSlice = createSlice({
@@ -33,6 +38,26 @@ const globalsSlice = createSlice({
     rehydrate: (state, action) => {
       return action.payload.globals || state;
     },
+    setModalsOrder: (state, action: PayloadAction<string>) => {
+      const id = action.payload;
+
+      const existingModalIndex = state.modals.order.findIndex(
+        (modal) => modal.id === id
+      );
+
+      if (existingModalIndex === -1) {
+        const newModal = {
+          id,
+          zIndex: state.modals.index
+        };
+
+        state.modals.order.push(newModal);
+      } else {
+        state.modals.order[existingModalIndex].zIndex = state.modals.index;
+      }
+
+      state.modals.index++;
+    },
     setScreenRecording: (
       state,
       action: PayloadAction<GlobalsSlice["screenRecording"]>
@@ -41,6 +66,9 @@ const globalsSlice = createSlice({
     },
     setSnapModal: (state, action: PayloadAction<boolean>) => {
       state.showSnapModal = action.payload;
+    },
+    setUtilsModal: (state, action: PayloadAction<boolean>) => {
+      state.showUtils = action.payload;
     },
     setMenuBar: (state, action: PayloadAction<boolean>) => {
       state.showMenu = action.payload;
@@ -94,9 +122,15 @@ export const {
   setSnapModal,
   setFullscreen,
   setScreenRecording,
-  setMenuBar
+  setMenuBar,
+  setUtilsModal,
+  setModalsOrder
 } = globalsSlice.actions;
 
+export const selectModals = (state: RootState): ModalOrder[] =>
+  state.globals.modals.order;
+export const selectUtilsModal = (state: RootState): boolean =>
+  state.globals.showUtils;
 export const selectIsFullscreen = (state: RootState): boolean =>
   state.globals.fullScreen;
 export const selectSnapModal = (state: RootState): boolean =>

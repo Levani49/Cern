@@ -9,12 +9,17 @@ import type { ReactChildren } from "@type/app.types";
 import { ReactComponent as CarretDown } from "@assets/svg/carretDown.svg";
 import { ReactComponent as XMarkIcon } from "@assets/svg/xMarkIcon.svg";
 
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+
+import { selectModals, setModalsOrder } from "@features/global/globalsSlice";
+
 interface Props {
   show: boolean;
   title: string;
   children: ReactChildren;
   onCloseHandler: () => void;
   className?: string;
+  id: string;
 }
 
 export default function Modal({
@@ -22,20 +27,36 @@ export default function Modal({
   title,
   onCloseHandler,
   children,
-  className
+  className,
+  id
 }: Props): JSX.Element {
   const nodeRef = useRef<HTMLDivElement | null>(null);
+  const dispatch = useAppDispatch();
   const [drop, setDrop] = useState(true);
+  const modals = useAppSelector(selectModals);
 
   const c = twMerge("w-full bg-gray1", className);
 
   if (!show) return <></>;
 
+  const currentModal = modals.find((el) => el.id === id);
+
+  const zIndex = currentModal ? currentModal.zIndex : 30;
+
+  const handlePointerDown = (): void => {
+    dispatch(setModalsOrder(id));
+  };
+
   return createPortal(
     <Draggable nodeRef={nodeRef} bounds="parent" handle=".handle">
       <div
+        role="presentation"
         ref={nodeRef}
-        className="modal z-50 min-w-[227px] rounded-xl text-accent3"
+        onPointerDown={handlePointerDown}
+        className="modal  min-w-[227px] rounded-xl text-accent3"
+        style={{
+          zIndex: zIndex
+        }}
       >
         <div className={c}>
           {/* do not remove class 'handle' since it's used by draggable element, which means that drag events will only trigger on elements which will have <<handle>> class */}
@@ -59,8 +80,8 @@ export default function Modal({
             />
           </div>
           <div
-            className={`rounded-t-2xl bg-dark3  px-2 transition-all duration-700 dark:bg-dark1 ${
-              drop ? "max-h-96 py-2" : "max-h-0 py-0"
+            className={`overflow-y-hidden rounded-t-2xl bg-dark3  px-2 transition-all duration-700 dark:bg-dark1 ${
+              drop ? "max-h-[400px] py-2" : "max-h-0 py-0"
             }`}
           >
             {children}

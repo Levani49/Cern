@@ -248,7 +248,7 @@ export default function FileActions(): JSX.Element {
           onChange={handleEventChange}
         />
         <button
-          className="rounded bg-accent2  px-2 py-2 text-xs uppercase text-textColor transition hover:bg-black"
+          className="rounded bg-accent2 px-2 py-2 text-xs uppercase text-textColor transition hover:bg-black dark:bg-accent1"
           onClick={handleLoad}
         >
           Load

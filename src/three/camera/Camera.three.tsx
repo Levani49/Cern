@@ -64,7 +64,13 @@ export default function Camera(): JSX.Element {
   return (
     <>
       {cameraType === "orthographic" ? (
-        <OrthographicCamera {...orthographicCameraProps} makeDefault manual />
+        <OrthographicCamera
+          {...orthographicCameraProps}
+          near={-1000}
+          far={1000}
+          makeDefault
+          manual
+        />
       ) : (
         <PerspectiveCamera {...perspectiveCameraProps} makeDefault manual />
       )}

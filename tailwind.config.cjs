@@ -14,6 +14,7 @@ module.exports = {
         dark2: "rgba(14, 14, 14, 0.47)",
         dark3: "rgba(8, 8, 8, 0.24)",
         gray1: "rgb(41,45,57)",
+        gray2: "rgb(55,60,75)",
         highlight1: "rgba(255, 255, 255, 0.16)"
       },
       screens: {

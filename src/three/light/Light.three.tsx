@@ -1,10 +1,20 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
-import { DirectionalLight } from "three";
+import { AmbientLight, DirectionalLight } from "three";
+
+import { useAppSelector } from "@store/hooks";
+
+import {
+  selectAmbientLightIntensity,
+  selectDirectionalLightIntensity
+} from "@features/camera/cameraSlice";
 
 export default function Lights(): JSX.Element {
   const dirLight = useRef<DirectionalLight>(null);
+  const ambLight = useRef<AmbientLight>(null);
+  const ambientLightIntensity = useAppSelector(selectAmbientLightIntensity);
+  const directionalLightIntensity = useAppSelector(selectDirectionalLightIntensity);
 
   useFrame(({ camera }) => {
     if (dirLight.current && camera) {
@@ -18,8 +28,17 @@ export default function Lights(): JSX.Element {
 
   return (
     <>
-      <ambientLight position={[0, 0, 0]} intensity={0.6} color="#ffffff" />
-      <directionalLight ref={dirLight} intensity={0.45} color="white" />
+      <ambientLight
+        ref={ambLight}
+        position={[0, 0, 0]}
+        intensity={ambientLightIntensity}
+        color="#ffffff"
+      />
+      <directionalLight
+        ref={dirLight}
+        intensity={directionalLightIntensity}
+        color="white"
+      />
     </>
   );
 }

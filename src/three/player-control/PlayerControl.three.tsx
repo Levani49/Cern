@@ -1,72 +1,74 @@
-import { useSphere } from "@react-three/cannon";
-import { PointerLockControls } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+export default {};
 
-import { BufferGeometry, Material, Mesh, Vector3 } from "three";
+// import { useSphere } from "@react-three/cannon";
+// import { PointerLockControls } from "@react-three/drei";
+// import { useFrame, useThree } from "@react-three/fiber";
+// import { useEffect, useRef } from "react";
 
-import store from "@store/store";
+// import { BufferGeometry, Material, Mesh, Vector3 } from "three";
 
-import { setDroneMode } from "@features/camera/cameraSlice";
+// import store from "@store/store";
 
-import { usePlayerControls } from "@hooks/usePlayercontrols/usePlayerControls";
+// import { setDroneMode } from "@features/camera/cameraSlice";
 
-interface Props {
-  currentCameraPosition: [number, number, number];
-}
+// import { usePlayerControls } from "@hooks/usePlayercontrols/usePlayerControls";
 
-const SPEED = 2.25;
+// interface Props {
+//   currentCameraPosition: [number, number, number];
+// }
 
-export default function PlayerControl({
-  currentCameraPosition
-}: Props): JSX.Element {
-  const { camera } = useThree();
-  const { moveForward, moveBackward, moveLeft, moveRight } = usePlayerControls();
-  const [ref, api] = useSphere(() => ({
-    mass: 1,
-    type: "Dynamic",
-    position: [...currentCameraPosition]
-  }));
+// const SPEED = 2.25;
 
-  const velocity = useRef([...currentCameraPosition]);
-  useEffect(() => {
-    api.velocity.subscribe((v) => (velocity.current = v));
-  }, [api.velocity]);
+// export default function PlayerControl({
+//   currentCameraPosition
+// }: Props): JSX.Element {
+//   const { camera } = useThree();
+//   const { moveForward, moveBackward, moveLeft, moveRight } = usePlayerControls();
+//   const [ref, api] = useSphere(() => ({
+//     mass: 1,
+//     type: "Dynamic",
+//     position: [...currentCameraPosition]
+//   }));
 
-  useFrame(() => {
-    if (ref.current) {
-      ref.current.getWorldPosition(camera.position);
-    }
-    const direction = new Vector3();
+//   const velocity = useRef([...currentCameraPosition]);
+//   useEffect(() => {
+//     api.velocity.subscribe((v) => (velocity.current = v));
+//   }, [api.velocity]);
 
-    const frontVector = new Vector3(
-      0,
-      0,
-      Number(moveBackward) - Number(moveForward)
-    );
-    const sideVector = new Vector3(Number(moveLeft) - Number(moveRight), 0, 0);
+//   useFrame(() => {
+//     if (ref.current) {
+//       ref.current.getWorldPosition(camera.position);
+//     }
+//     const direction = new Vector3();
 
-    direction
-      .subVectors(frontVector, sideVector)
-      .normalize()
-      .multiplyScalar(SPEED)
-      .applyEuler(camera.rotation);
+//     const frontVector = new Vector3(
+//       0,
+//       0,
+//       Number(moveBackward) - Number(moveForward)
+//     );
+//     const sideVector = new Vector3(Number(moveLeft) - Number(moveRight), 0, 0);
 
-    api.velocity.set(direction.x, direction.y, direction.z);
-  });
+//     direction
+//       .subVectors(frontVector, sideVector)
+//       .normalize()
+//       .multiplyScalar(SPEED)
+//       .applyEuler(camera.rotation);
 
-  const hadnelCancel = (): void => {
-    store.dispatch(setDroneMode("idle"));
-  };
+//     api.velocity.set(direction.x, direction.y, direction.z);
+//   });
 
-  return (
-    <>
-      <PointerLockControls onUnlock={hadnelCancel} />
-      <mesh
-        ref={
-          ref as React.MutableRefObject<Mesh<BufferGeometry, Material | Material[]>>
-        }
-      ></mesh>
-    </>
-  );
-}
+//   const hadnelCancel = (): void => {
+//     store.dispatch(setDroneMode("idle"));
+//   };
+
+//   return (
+//     <>
+//       <PointerLockControls onUnlock={hadnelCancel} />
+//       <mesh
+//         ref={
+//           ref as React.MutableRefObject<Mesh<BufferGeometry, Material | Material[]>>
+//         }
+//       ></mesh>
+//     </>
+//   );
+// }

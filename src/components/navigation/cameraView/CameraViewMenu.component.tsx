@@ -1,4 +1,3 @@
-import useEscapeKeydown from "@/hooks/useEscapeKeydown/useEscapeKeydown.hook";
 import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 
 import { ReactComponent as BackViewIcon } from "@assets/svg/back-side.svg";
@@ -24,8 +23,10 @@ import {
 } from "@features/camera/cameraSlice";
 
 import CameraMenu from "@components/navigation/camera/CameraMenu.component";
+import WireframeMenu from "@components/navigation/wireframe/WireframeMenu.component";
 
 import useDrone from "@hooks/useDrone/useDrone.hook";
+import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import MenuDropdown from "../dropdown/MenuDropdown.component";
 import NavIcon from "../navIcon/navIcon";
@@ -108,6 +109,7 @@ export default function CameraViewMenu(): JSX.Element {
       <MenuDropdown>
         {innerHtml}
         <CameraMenu />
+        <WireframeMenu />
       </MenuDropdown>
     </div>
   );

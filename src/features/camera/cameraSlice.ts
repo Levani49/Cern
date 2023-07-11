@@ -42,6 +42,9 @@ const initialState: ICameraSettings = {
   viewMode: "iso",
   orthographicCameraProps: undefined,
   triggerCameraEffect: "idle",
+  controlRotationSpeed: 1,
+  ambientLightIntensity: 0.6,
+  directionalLightIntensity: 0.45,
   perspectiveCameraProps: {
     fov: 75,
     position: [0, 0, 0],
@@ -74,6 +77,15 @@ export const cameraSlice = createSlice({
 
     setDefaultPosition: (state, action: PayloadAction<coordinates>) => {
       state.defaultPosition = action.payload;
+    },
+    setControlRotationSpeed: (state, action: PayloadAction<number>) => {
+      state.controlRotationSpeed = action.payload;
+    },
+    setAmbientLightIntensity: (state, action: PayloadAction<number>) => {
+      state.ambientLightIntensity = action.payload;
+    },
+    setDirectionalLightIntensity: (state, action: PayloadAction<number>) => {
+      state.directionalLightIntensity = action.payload;
     },
     setStopCameraView: () => {
       cameraViews.stop();
@@ -206,7 +218,10 @@ export const {
   setTopView,
   triggerCameraEffect,
   setDefaultPosition,
-  setStopCameraView
+  setStopCameraView,
+  setControlRotationSpeed,
+  setAmbientLightIntensity,
+  setDirectionalLightIntensity
 } = cameraSlice.actions;
 
 export const selectDefaultCameraPosition = (
@@ -217,6 +232,15 @@ export const selectOrthographicCameraProps = (state: RootState): OrthographicPro
   state.camera.orthographicCameraProps;
 export const selectPerspectiveCameraProps = (state: RootState): PerspectiveProps =>
   state.camera.perspectiveCameraProps;
+
+export const selectRotationSpeed = (state: RootState): number =>
+  state.camera.controlRotationSpeed;
+
+export const selectAmbientLightIntensity = (state: RootState): number =>
+  state.camera.ambientLightIntensity;
+
+export const selectDirectionalLightIntensity = (state: RootState): number =>
+  state.camera.directionalLightIntensity;
 
 export const selectDroneState = (state: RootState): DroneTypes =>
   state.camera.droneType;
