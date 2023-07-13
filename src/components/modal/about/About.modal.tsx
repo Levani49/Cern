@@ -19,7 +19,7 @@ export default function AboutModal(): JSX.Element {
   return (
     <TransitionModal
       title="Meet Our Team"
-      className="h-[100%] w-[100vw]"
+      className="sm:max-w-xl"
       open={show}
       onClose={closeModalHandler}
     >

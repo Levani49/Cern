@@ -11,8 +11,6 @@ import {
 import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 import useEvent from "@hooks/useEvent/useEvent.hook";
 
-import { isMobile } from "@utils/isMobile.utils";
-
 import Particles from "./Particles.three";
 
 const ParticleSystem = (): JSX.Element => {
@@ -49,7 +47,7 @@ const ParticleSystem = (): JSX.Element => {
 
   return (
     <>
-      {isMobile() === false && startParticleAnimation && (
+      {startParticleAnimation && (
         <Particles
           onComplete={onComplete}
           electronSpeed={0.235}
