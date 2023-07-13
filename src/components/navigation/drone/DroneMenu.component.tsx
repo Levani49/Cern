@@ -3,7 +3,6 @@ import type { DroneTypes, SVGIcon } from "@type/app.types";
 import { ReactComponent as CircleIcon } from "@assets/svg/circle.svg";
 import { ReactComponent as DroneIcon } from "@assets/svg/drone.svg";
 import { ReactComponent as FilmIcon } from "@assets/svg/film.svg";
-import { ReactComponent as FlyIcon } from "@assets/svg/fly.svg";
 import { ReactComponent as HelixIcon } from "@assets/svg/helix.svg";
 import { ReactComponent as RocketIcon } from "@assets/svg/rocket.svg";
 import { ReactComponent as DollyZoomIcon } from "@assets/svg/zoom.svg";
@@ -49,8 +48,7 @@ export default function DroneMenu(): JSX.Element {
     { Icon: HelixIcon, mode: "helix", title: "Helix mode" },
     { Icon: RocketIcon, mode: "rocket", title: "Rocket mode" },
     { Icon: FilmIcon, mode: "z0", title: "Cinema mode" },
-    { Icon: DollyZoomIcon, mode: "zoom", title: "Zoom mode" },
-    { Icon: FlyIcon, mode: "fly", title: "Fly mode" }
+    { Icon: DollyZoomIcon, mode: "zoom", title: "Zoom mode" }
   ];
 
   const isMobileDevice = isMobile();

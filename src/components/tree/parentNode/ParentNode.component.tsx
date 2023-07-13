@@ -62,7 +62,7 @@ export default function ParentNode({
       ? "text-black dark:text-yellow-500"
       : "text-white";
 
-  const componentClasses = `border-l-[0.5px] border-transparent text-left transition before:relative before:inline-block before:w-[15px]  before:border-t-[0.5px] before:border-0 before:text-white before:align-middle ${
+  const componentClasses = `border-l-[0.5px] border-transparent text-left transition before:relative before:inline-block before:w-[15.5px]  before:border-t-[0.5px] before:border-0 before:text-white before:align-middle ${
     nodeEnd ? "last-event-line" : ""
   } ${root && "before:opacity-0"}`;
 
@@ -92,7 +92,7 @@ export default function ParentNode({
 
         <span
           role="presentation"
-          className={`${innerState} ml-[5px] cursor-pointer text-xs  font-light uppercase transition-all ease-in-out`}
+          className={`${innerState} ml-[5px] cursor-pointer align-middle text-[0.75rem] text-xs font-light   uppercase transition-all ease-in-out`}
           onClick={onClickHandler}
         >
           {name}

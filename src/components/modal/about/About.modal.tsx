@@ -1,5 +1,3 @@
-import type { Employee } from "@type/app.types";
-
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import { selectAboutModalState, showAboutModal } from "@features/modal/modalSlice";
@@ -7,10 +5,6 @@ import { selectAboutModalState, showAboutModal } from "@features/modal/modalSlic
 import TransitionModal from "@components/transition-modal/transition.modal";
 
 import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
-
-import { TEMP_INFO } from "@constants/TEMP_STATIC_DATA";
-
-import Slot from "./Slot.component";
 
 export default function AboutModal(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -29,7 +23,7 @@ export default function AboutModal(): JSX.Element {
       open={show}
       onClose={closeModalHandler}
     >
-      <div className="flex h-full w-full flex-col justify-between gap-6 p-1">
+      <div className="flex h-full w-full flex-col justify-between p-1">
         <div className="flex flex-col gap-6">
           <h1 className="text-center text-lg">Nuclear Engineering Center</h1>
           <p className="text-center text-xs text-gray-400">
@@ -49,14 +43,74 @@ export default function AboutModal(): JSX.Element {
           </p>
         </div>
 
-        <div className="flex items-center justify-center">
-          {TEMP_INFO.employees.map((employee: Employee) => {
-            const { id, ...rest } = employee;
-            return <Slot key={id} {...rest} />;
-          })}
+        <h2 className="mt-6 text-center">Developers</h2>
+        {/* <table className=" table-auto text-xs">
+          <tbody>
+            <tr>
+              <td className="pr-1 text-end">Sharmazanashvili Alexander</td>
+              <td>- Concept Creator, Project Manager</td>
+            </tr>
+            <tr>
+              <td className="pr-1 text-end">Kverenchkhiladze Irakli</td>
+              <td>- Chief Engineer</td>
+            </tr>
+            <tr>
+              <td className="pr-1 text-end">Zurashvili Nino</td>
+              <td>- Chief Engineer</td>
+            </tr>
+            <tr>
+              <td className="pr-1 text-end">Kobakhidze Shota</td>
+              <td>- Geometry Modeling</td>
+            </tr>
+          </tbody>
+        </table> */}
+
+        <div className="mt-2 flex flex-col items-center justify-center gap-1 text-xs">
+          <div className="relative grid grid-cols-[200px,200px] items-center gap-[7px]">
+            <h4 className="pr-1 text-right font-light">
+              SHARMAZANASHVILI Alexander
+            </h4>
+
+            <p>Concept Creator, Project Manager</p>
+          </div>
+          <div className="relative grid grid-cols-[200px,200px] items-center gap-[7px] ">
+            <h4 className="pr-1 text-right font-light">KVERENCHKHILADZE Irakli</h4>
+            <p>Chief Engineer</p>
+          </div>
+          <div className="relative grid grid-cols-[200px,200px] items-center gap-[7px] ">
+            <h4 className="pr-1 text-right font-light">ZURASHVILI Nino</h4>
+            <p>Chief Engineer</p>
+          </div>
+          <div className="relative grid grid-cols-[200px,200px] items-center gap-[7px] ">
+            <h4 className="pr-1 text-right font-light">KOBAKHIDZE Shota</h4>
+            <p>Geometry Modeling</p>
+          </div>
         </div>
 
-        <div className="flex flex-col items-center gap-4 text-xs">
+        {/* <table className="mt-6 w-full caption-bottom align-top text-xs">
+          <tbody>
+            <tr>
+              <th className="pr-1 text-right font-light">
+                SHARMAZANASHVILI Alexander
+              </th>
+              <td> - Concept Creator, Project Manager</td>
+            </tr>
+            <tr>
+              <th className="pr-1 text-right font-light">KVERENCHKHILADZE Irakli</th>
+              <td> - Chief Engineer</td>
+            </tr>
+            <tr>
+              <th className="pr-1 text-right font-light">ZURASHVILI Nino</th>
+              <td> - Chief Engineer</td>
+            </tr>
+            <tr>
+              <th className="pr-1 text-right font-light">KOBAKHIDZE Shota</th>
+              <td> - Geometry Modeling</td>
+            </tr>
+          </tbody>
+        </table> */}
+
+        <div className="mt-6 flex flex-col items-center gap-2 text-xs">
           <a
             href="http://cadcam.ge/team/"
             className="hover:bg-green ml-1 rounded bg-black p-4 font-medium text-white transition-colors hover:bg-highlight1"

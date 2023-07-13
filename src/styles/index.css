@@ -115,7 +115,7 @@ body::backdrop {
 .last-event-line {
   border-image: linear-gradient(
     to bottom,
-    #dfe6e9 50%,
+    #dfe6e9 51%,
     #dfe6e9 50%,
     rgba(108, 219, 141, 0) 50%
   );
