@@ -7,6 +7,7 @@ import Link from "@components/navigation/link/link.component";
 import NavIcon from "@components/navigation/navIcon/navIcon";
 import Screenshot from "@components/navigation/screenshot/screenshot";
 import SnapMenu from "@components/navigation/snap/SnapMenu.component";
+import ThemeToggler from "@components/navigation/theme/ThemeToggler.component";
 
 import { supportsScreenRecording } from "@utils/supportsScreenRecording.utils";
 
@@ -19,6 +20,9 @@ export default function Tools(): JSX.Element {
     <div className="group relative inline-flex">
       <NavIcon Icon={HorizontalLines} title="Tools" />
       <MenuDropdown className="flex-col sm:flex-row">
+        <div className="flex items-center justify-center pt-1 sm:hidden">
+          <ThemeToggler />
+        </div>
         <Suspense fallback={null}>
           <SnapMenu />
           <Screenshot />
