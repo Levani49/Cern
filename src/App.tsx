@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 import ErrorHandler from "@components/error/ErrorHandler.component";
 import Header from "@components/navigation/navigation";
 import VideoPulse from "@components/screen-recording/screenRecording.component";
+import FlyStats from "@components/three/fly-graph/fly-stats.component";
 import FlyOverlay from "@components/three/fly-graph/FlyGraph.component";
 import Stats from "@components/three/stats/Stats.component";
 import Tree from "@components/tree/tree/Tree.component";
@@ -27,6 +28,7 @@ export default function App(): JSX.Element {
       <Tree />
       <Stats />
       <FlyOverlay />
+      <FlyStats />
       <VideoPulse />
     </ErrorHandler>
   );
