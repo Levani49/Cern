@@ -63,7 +63,9 @@ export default function Modal({
           <div className="handle sticky top-0 z-[2000] flex cursor-grab items-center justify-between bg-dark1 px-3 py-2 shadow-md transition-colors hover:text-white dark:bg-gray1">
             <button
               className="flex h-5 w-5 items-center justify-center"
-              onClick={(): void => setDrop(!drop)}
+              onPointerDown={(): void => {
+                setDrop(!drop);
+              }}
             >
               <CarretDown
                 className={`h-3 w-3 transform fill-accent3 transition hover:fill-white ${
