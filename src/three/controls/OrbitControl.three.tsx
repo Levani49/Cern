@@ -41,7 +41,7 @@ export default function OrbitControls({ currentMode }: Props): JSX.Element {
 
   const enableControls = currentMode === "circle" || currentMode === "idle";
 
-  const enablePan = isMobile() === true;
+  const enablePan = isMobile() === false;
 
   return (
     <CustomOrbitControl
