@@ -14,6 +14,8 @@ import CustomOrbitControl from "@three/lib/modified_orbit_controls/CustomOrbitCo
 
 import { useEventListener } from "@hooks/useEventListener/useEventListener.hook";
 
+import { isMobile } from "@utils/isMobile.utils";
+
 interface Props {
   currentMode: DroneTypes;
 }
@@ -39,12 +41,15 @@ export default function OrbitControls({ currentMode }: Props): JSX.Element {
 
   const enableControls = currentMode === "circle" || currentMode === "idle";
 
+  const enablePan = isMobile() === true;
+
   return (
     <CustomOrbitControl
       ref={controlsRef}
       rotateSpeed={rotationSpeed}
       enabled={enableControls}
       autoRotate={currentMode === "circle"}
+      enablePan={enablePan}
       maxDistance={170}
       makeDefault
     />
