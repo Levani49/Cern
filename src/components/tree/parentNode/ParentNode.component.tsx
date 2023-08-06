@@ -92,7 +92,7 @@ export default function ParentNode({
 
         <span
           role="presentation"
-          className={`${innerState} ml-[5px] cursor-pointer align-middle text-[0.75rem] text-xs font-light   uppercase transition-all ease-in-out`}
+          className={`${innerState} ml-[5px] cursor-pointer align-middle text-[0.75rem] text-xs font-medium uppercase  transition-all ease-in-out sm:font-light`}
           onClick={onClickHandler}
         >
           {name}

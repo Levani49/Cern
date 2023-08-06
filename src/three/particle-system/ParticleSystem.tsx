@@ -11,6 +11,8 @@ import {
 import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 import useEvent from "@hooks/useEvent/useEvent.hook";
 
+import { isMobile } from "@utils/isMobile.utils";
+
 import Particles from "./Particles.three";
 
 const ParticleSystem = (): JSX.Element => {
@@ -39,8 +41,10 @@ const ParticleSystem = (): JSX.Element => {
     dispatch(setParticleAnimationState(false));
   };
 
+  const size = isMobile() ? 0.00325 : 0.00525;
+
   const particleProps = {
-    particlesSize: 0.00525,
+    particlesSize: size,
     numberOfParticles: 1000,
     lifeExpectancy: 600
   };

@@ -98,7 +98,7 @@ export default function GeometryCutsMenu(): JSX.Element {
         <MenuDropdown>{innerHtml}</MenuDropdown>
       </div>
       {cutType === null && (
-        <div className="absolute left-1/2 top-[68px] flex -translate-x-1/2 -translate-y-1/2 transform items-center rounded bg-dark1 p-4 ">
+        <div className="absolute bottom-[35px] left-1/2 flex -translate-x-1/2 -translate-y-1/2 transform items-center rounded bg-dark1 p-4 sm:top-[68px] ">
           <input
             min={-3.14159265}
             max={3.14159265}
