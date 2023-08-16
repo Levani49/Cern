@@ -26,7 +26,7 @@ export default function MenuDropdown({
   }, [isVisible]);
 
   const defaultClasses = twMerge(
-    "min-w-[34px] bottom-9 absolute left-1/2 mt-8 hidden h-auto sm:w-auto sm:min-w-fit sm:bottom-auto -translate-x-1/2 transform flex-row rounded border border-gray-600 bg-dark1 group-hover:flex dark:bg-dark1 z-50",
+    "min-w-[34px] bottom-[34px] absolute left-1/2 mt-8 hidden h-auto sm:w-auto sm:min-w-fit sm:bottom-auto -translate-x-1/2 transform flex-row rounded border border-gray-600 bg-dark1 group-hover:flex dark:bg-dark1 z-50",
     className,
     visibility
   );
