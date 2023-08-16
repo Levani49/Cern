@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { toast } from "react-hot-toast";
 
 import { ReactComponent as ArrowsPointingOutIcon } from "@assets/svg/arrowsPointingOut.svg";
 
@@ -30,6 +31,11 @@ export default function FullScreenMenu(): JSX.Element {
   }, []);
 
   const handleFullScreen = (): void => {
+    if (!supportsFullscreen()) {
+      toast.error("Your device doest' support fullscreen");
+      return;
+    }
+
     const element = document.getElementById("fullscreen") as HTMLDivElement;
 
     if (!document.fullscreenElement) {
@@ -42,16 +48,12 @@ export default function FullScreenMenu(): JSX.Element {
   };
 
   return (
-    <>
-      {supportsFullscreen() && (
-        <NavIcon
-          active={isFullscreen}
-          Icon={ArrowsPointingOutIcon}
-          title="Fullscreen Mode"
-          onClick={handleFullScreen}
-          disabled={currentMode === "fly"}
-        />
-      )}
-    </>
+    <NavIcon
+      active={isFullscreen}
+      Icon={ArrowsPointingOutIcon}
+      title="Fullscreen Mode"
+      onClick={handleFullScreen}
+      disabled={currentMode === "fly"}
+    />
   );
 }
