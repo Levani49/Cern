@@ -44,26 +44,6 @@ export default function AboutModal(): JSX.Element {
         </div>
 
         <h2 className="mt-6 text-center">Developers</h2>
-        {/* <table className=" table-auto text-xs">
-          <tbody>
-            <tr>
-              <td className="pr-1 text-end">Sharmazanashvili Alexander</td>
-              <td>- Concept Creator, Project Manager</td>
-            </tr>
-            <tr>
-              <td className="pr-1 text-end">Kverenchkhiladze Irakli</td>
-              <td>- Chief Engineer</td>
-            </tr>
-            <tr>
-              <td className="pr-1 text-end">Zurashvili Nino</td>
-              <td>- Chief Engineer</td>
-            </tr>
-            <tr>
-              <td className="pr-1 text-end">Kobakhidze Shota</td>
-              <td>- Geometry Modeling</td>
-            </tr>
-          </tbody>
-        </table> */}
 
         <div className="mt-2 flex flex-col items-center justify-center gap-1 text-xs">
           <div className="relative grid grid-cols-[200px,200px] items-center gap-[7px]">
@@ -86,29 +66,6 @@ export default function AboutModal(): JSX.Element {
             <p>Geometry Modeling</p>
           </div>
         </div>
-
-        {/* <table className="mt-6 w-full caption-bottom align-top text-xs">
-          <tbody>
-            <tr>
-              <th className="pr-1 text-right font-light">
-                SHARMAZANASHVILI Alexander
-              </th>
-              <td> - Concept Creator, Project Manager</td>
-            </tr>
-            <tr>
-              <th className="pr-1 text-right font-light">KVERENCHKHILADZE Irakli</th>
-              <td> - Chief Engineer</td>
-            </tr>
-            <tr>
-              <th className="pr-1 text-right font-light">ZURASHVILI Nino</th>
-              <td> - Chief Engineer</td>
-            </tr>
-            <tr>
-              <th className="pr-1 text-right font-light">KOBAKHIDZE Shota</th>
-              <td> - Geometry Modeling</td>
-            </tr>
-          </tbody>
-        </table> */}
 
         <div className="mt-6 flex flex-col items-center gap-2 text-xs">
           <a
