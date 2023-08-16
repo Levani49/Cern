@@ -30,7 +30,7 @@ export default function Track(): JSX.Element {
               <lineBasicMaterial
                 attach="material"
                 color="#ffff00"
-                linewidth={10}
+                linewidth={1}
                 linecap="round"
                 linejoin="round"
               />
