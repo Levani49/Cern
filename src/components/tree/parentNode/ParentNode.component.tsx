@@ -67,7 +67,7 @@ export default function ParentNode({
   } ${root && "before:opacity-0"}`;
 
   const inconClasses =
-    "h-5 w-5 text-white stroke-1 hover:text-accent2 hover:dark:text-accent1 transition-all cursor-pointer";
+    "h-5 w-5 block align-middle -ml-[1px] text-white stroke-1 hover:text-accent2 hover:dark:text-accent1 transition-all cursor-pointer";
 
   return (
     <li
@@ -98,7 +98,7 @@ export default function ParentNode({
           {name}
         </span>
       </div>
-      <ul className={`ml-[1.6rem] mt-[-2px] block  p-0 ${!show && "hidden"}`}>
+      <ul className={`ml-[1.54rem] mt-[-2px] block  p-0 ${!show && "hidden"}`}>
         {children}
       </ul>
     </li>
