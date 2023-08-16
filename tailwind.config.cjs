@@ -9,6 +9,7 @@ module.exports = {
         accent1: "rgb(50, 207, 142)",
         accent2: "rgb(110, 168, 254)",
         accent3: "rgb(140, 146, 164)",
+        accent4: "rgb(223, 230, 233)",
         textColor: "rgb(223, 230, 233)",
         dark1: "rgb(24, 28, 32)",
         dark2: "rgba(14, 14, 14, 0.47)",
