@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 import { ReactComponent as HorizontalLines } from "@assets/svg/horizontalLines.svg";
 
 import MenuDropdown from "@components/navigation/dropdown/MenuDropdown.component";
+import FullScreenMenu from "@components/navigation/fullscreen/FullScreenMenu.component";
 import Link from "@components/navigation/link/link.component";
 import NavIcon from "@components/navigation/navIcon/navIcon";
 import Screenshot from "@components/navigation/screenshot/screenshot";
@@ -24,6 +25,8 @@ export default function Tools(): JSX.Element {
           <ThemeToggler />
         </div>
         <Suspense fallback={null}>
+          <FullScreenMenu />
+
           <SnapMenu />
           <Screenshot />
           {supportsScreenRecording() && <RecordScreen />}
