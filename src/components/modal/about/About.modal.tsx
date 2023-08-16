@@ -75,7 +75,6 @@ export default function AboutModal(): JSX.Element {
           >
             Read more about us
           </a>
-          <p className="font-medium text-gray-500">All rights reserverd ®</p>
         </div>
       </div>
     </TransitionModal>
