@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 
 import { ReactComponent as HorizontalLines } from "@assets/svg/horizontalLines.svg";
 
+import AboutMenu from "@components/navigation/about/AboutMenu.component";
 import MenuDropdown from "@components/navigation/dropdown/MenuDropdown.component";
 import FullScreenMenu from "@components/navigation/fullscreen/FullScreenMenu.component";
 import Link from "@components/navigation/link/link.component";
@@ -25,12 +26,14 @@ export default function Tools(): JSX.Element {
           <ThemeToggler />
         </div>
         <Suspense fallback={null}>
-          <FullScreenMenu />
-
           <SnapMenu />
           <Screenshot />
           {supportsScreenRecording() && <RecordScreen />}
         </Suspense>
+        <div className="sm:hidden">
+          <FullScreenMenu />
+          <AboutMenu />
+        </div>
         <Link />
       </MenuDropdown>
     </div>

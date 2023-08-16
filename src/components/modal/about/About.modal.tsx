@@ -6,6 +6,8 @@ import TransitionModal from "@components/transition-modal/transition.modal";
 
 import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
+import { TEMP_INFO } from "@constants/TEMP_STATIC_DATA";
+
 export default function AboutModal(): JSX.Element {
   const dispatch = useAppDispatch();
   const show = useAppSelector(selectAboutModalState);
@@ -46,26 +48,23 @@ export default function AboutModal(): JSX.Element {
         <h2 className="mt-6 text-center">Developers</h2>
 
         <div className="mt-2 flex flex-col items-center justify-center gap-1 text-xs">
-          <div className="relative grid grid-cols-[200px,200px] items-center gap-[7px]">
-            <h4 className="pr-1 text-right font-light">
-              SHARMAZANASHVILI Alexander
-            </h4>
-
-            <p>Concept Creator, Project Manager</p>
-          </div>
-          <div className="relative grid grid-cols-[200px,200px] items-center gap-[7px] ">
-            <h4 className="pr-1 text-right font-light">KVERENCHKHILADZE Irakli</h4>
-            <p>Chief Engineer</p>
-          </div>
-          <div className="relative grid grid-cols-[200px,200px] items-center gap-[7px] ">
-            <h4 className="pr-1 text-right font-light">ZURASHVILI Nino</h4>
-            <p>Chief Engineer</p>
-          </div>
-          <div className="relative grid grid-cols-[200px,200px] items-center gap-[7px] ">
-            <h4 className="pr-1 text-right font-light">KOBAKHIDZE Shota</h4>
-            <p>Geometry Modeling</p>
-          </div>
+          {TEMP_INFO.employees.map((employee) => {
+            return (
+              <div
+                key={employee.id}
+                className="relative grid grid-cols-[200px,200px] items-center gap-[7px] "
+              >
+                <h4 className="pr-1 text-right font-light">{employee.name}</h4>
+                <p>{employee.role}</p>
+              </div>
+            );
+          })}
         </div>
+
+        <p className="mt-6 flex justify-center text-xs">
+          Application is built on three.js version{" "}
+          <span className="ml-1 text-accent1">0.154.0</span>
+        </p>
 
         <div className="mt-6 flex flex-col items-center gap-2 text-xs">
           <a

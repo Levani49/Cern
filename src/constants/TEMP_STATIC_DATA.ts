@@ -14,57 +14,59 @@ export const TEMP_INFO: EmployeeStaticData = {
       id: "5i",
       name: "Kverenchkhiladze Irakli",
       src: "/assets/images/kverenchxiladze.png",
-      role: "Fullstack Developer",
+      role: "Chief Software Developer",
       contact: "http://cadcam.ge/kverenchkhiladze-personal/"
     },
     {
       id: "4",
       name: "Zurashvili Nino",
       src: "/assets/images/niko-1.png",
-      role: "Frontend Developer",
+      role: "Software Developer",
       contact: "http://cadcam.ge/zurashvili-personal/"
+    },
+
+    {
+      id: "6",
+      name: "Alikhanovi Alexander",
+      src: "/assets/images/alixanovi.png",
+      role: "Geometry Designer",
+      contact: "http://cadcam.ge/alikhanovi-personal/"
     },
     {
       id: "3",
       name: "Kekelia Besik",
       src: "/assets/images/kekelia-3.png",
-      role: "Deputy",
+      role: "Geometry Designer",
       contact: "http://cadcam.ge/kekelia-personal/"
     },
 
     {
-      id: "5",
-      name: "Tsutskiridze Niko",
-      src: "/assets/images/tsutskiridze.png",
-      role: "Doctor, Stream Manager",
-      contact: "http://cadcam.ge/tsutskiridze-personal/"
-    },
-    {
-      id: "6",
-      name: "Alikhanovi Alexander",
-      src: "/assets/images/alixanovi.png",
-      role: "3D Designer",
-      contact: "http://cadcam.ge/alikhanovi-personal/"
-    },
-    {
       id: "7",
       name: "Mirziashvili Giorgi",
       src: "/assets/images/Mirziashvili-1.png",
-      role: "3D Designer",
+      role: "Geometry Designer",
       contact: "http://cadcam.ge/mirziashvili-personal/"
     },
-    {
-      id: "8",
-      name: "Dolinski Vladimir",
-      src: "/assets/images/vova.png",
-      role: "3D Designer",
-      contact: "http://cadcam.ge/vladimir-dolinski/"
-    },
+
     {
       id: "9",
       name: "Tsutskiridze Kote",
       src: "/assets/images/kekelia-3-1.png",
-      role: "3D Designer",
+      role: "Geometry Designer",
+      contact: "http://cadcam.ge/page/"
+    },
+    {
+      id: "91",
+      name: "Kobakhidze Shota",
+      src: "/assets/images/kekelia-3-1.png",
+      role: "Geometry Designer",
+      contact: "http://cadcam.ge/page/"
+    },
+    {
+      id: "91-e",
+      name: "Udzilauri Nikoloz",
+      src: "/assets/images/kekelia-3-1.png",
+      role: "UI Concept Creator",
       contact: "http://cadcam.ge/page/"
     }
   ]
