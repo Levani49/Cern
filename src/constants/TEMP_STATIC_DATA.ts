@@ -66,7 +66,7 @@ export const TEMP_INFO: EmployeeStaticData = {
       id: "91-e",
       name: "Udzilauri Nikoloz",
       src: "/assets/images/kekelia-3-1.png",
-      role: "UI Concept Creator",
+      role: "UI Concept Designer",
       contact: "http://cadcam.ge/page/"
     }
   ]
