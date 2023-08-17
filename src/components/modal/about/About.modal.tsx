@@ -62,8 +62,8 @@ export default function AboutModal(): JSX.Element {
         </div>
 
         <p className="mt-6 flex justify-center text-xs">
-          The application is built on three.js version{" "}
-          <span className="ml-1 text-accent2 dark:text-accent1">154</span>
+          The application is built on three.js version
+          <span className="ml-1 text-accent2 dark:text-accent1">r154</span>
         </p>
 
         <div className="mt-6 flex flex-col items-center gap-2 text-xs">
