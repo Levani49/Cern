@@ -1,4 +1,5 @@
 import { ChangeEvent, useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import Select, { StylesConfig } from "react-select";
 
 import { ReactComponent as ArrowUpTrayIcon } from "@assets/svg/arrowUpTrayIcon.svg";
@@ -159,14 +160,14 @@ export default function FileActions(): JSX.Element {
 
         reader.onerror = (): void => {
           console.error("Error reading file:", reader.error);
-          // Handle the error, e.g., display an error message to the user
+          toast.error("Error while reading the file....");
         };
 
         reader.readAsText(file);
         event.target.value = "";
       } else {
         console.error("Invalid file type. Please upload a .xml file.");
-        // Display an error message to the user
+        toast.error("Please upload only .XML files e.g test.xml");
       }
     }
   };

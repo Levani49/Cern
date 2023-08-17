@@ -13,8 +13,12 @@
   background: transparent !important; /* Optional: just make scrollbar invisible */
 }
 
+html,
 body {
   overflow-y: hidden !important;
+}
+
+body {
   max-height: 100vh;
   height: 100vh;
   background: black;
@@ -115,7 +119,7 @@ body::backdrop {
 .last-event-line {
   border-image: linear-gradient(
     to bottom,
-    #dfe6e9 50%,
+    #dfe6e9 51%,
     #dfe6e9 50%,
     rgba(108, 219, 141, 0) 50%
   );

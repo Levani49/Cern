@@ -60,14 +60,14 @@ export default function ParentNode({
       ? "text-blue-700 dark:text-accent1"
       : modelState === "partialyLoaded"
       ? "text-black dark:text-yellow-500"
-      : "text-white";
+      : "text-accent4";
 
-  const componentClasses = `border-l-[0.5px] border-transparent text-left transition before:relative before:inline-block before:w-[15px]  before:border-t-[0.5px] before:border-0 before:text-white before:align-middle ${
+  const componentClasses = `border-l-[0.5px] border-transparent text-left transition before:relative before:inline-block before:w-[15.5px]  before:border-t-[0.5px] before:border-0 before:text-accent4 before:align-middle ${
     nodeEnd ? "last-event-line" : ""
   } ${root && "before:opacity-0"}`;
 
   const inconClasses =
-    "h-5 w-5 text-white stroke-1 hover:text-accent2 hover:dark:text-accent1 transition-all cursor-pointer";
+    "h-[19px] w-[19px] block align-middle -ml-[1px] text-accent4 stroke-1 hover:text-accent2 hover:dark:text-accent1 transition-all cursor-pointer";
 
   return (
     <li
@@ -92,13 +92,13 @@ export default function ParentNode({
 
         <span
           role="presentation"
-          className={`${innerState} ml-[5px] cursor-pointer  text-xs uppercase transition-all ease-in-out`}
+          className={`${innerState} ml-1 cursor-pointer align-middle text-[0.75rem] text-xs font-medium uppercase  transition-all ease-in-out sm:font-light`}
           onClick={onClickHandler}
         >
           {name}
         </span>
       </div>
-      <ul className={`ml-[1.6rem] mt-[-2px] block  p-0 ${!show && "hidden"}`}>
+      <ul className={`ml-[1.515rem] mt-[-2px] block  p-0 ${!show && "hidden"}`}>
         {children}
       </ul>
     </li>

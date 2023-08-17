@@ -1,5 +1,3 @@
-import type { Employee } from "@type/app.types";
-
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
 import { selectAboutModalState, showAboutModal } from "@features/modal/modalSlice";
@@ -9,8 +7,6 @@ import TransitionModal from "@components/transition-modal/transition.modal";
 import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import { TEMP_INFO } from "@constants/TEMP_STATIC_DATA";
-
-import Slot from "./Slot.component";
 
 export default function AboutModal(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -25,11 +21,11 @@ export default function AboutModal(): JSX.Element {
   return (
     <TransitionModal
       title="Meet Our Team"
-      className="h-[100%] w-[100vw]"
+      className="sm:max-w-xl"
       open={show}
       onClose={closeModalHandler}
     >
-      <div className="flex h-full w-full flex-col justify-between gap-6 p-1">
+      <div className="flex h-full w-full flex-col justify-between p-1">
         <div className="flex flex-col gap-6">
           <h1 className="text-center text-lg">Nuclear Engineering Center</h1>
           <p className="text-center text-xs text-gray-400">
@@ -49,14 +45,28 @@ export default function AboutModal(): JSX.Element {
           </p>
         </div>
 
-        <div className="flex items-center justify-center">
-          {TEMP_INFO.employees.map((employee: Employee) => {
-            const { id, ...rest } = employee;
-            return <Slot key={id} {...rest} />;
+        <h2 className="mt-6 text-center">Developers</h2>
+
+        <div className="mt-2 flex flex-col items-center justify-center gap-1 text-xs">
+          {TEMP_INFO.employees.map((employee) => {
+            return (
+              <div
+                key={employee.id}
+                className="relative grid grid-cols-[200px,200px] items-center gap-[7px] "
+              >
+                <h4 className="pr-1 text-right font-light">{employee.name}</h4>
+                <p>{employee.role}</p>
+              </div>
+            );
           })}
         </div>
 
-        <div className="flex flex-col items-center gap-4 text-xs">
+        <p className="mt-6 flex justify-center text-xs">
+          The application is built on three.js version
+          <span className="ml-1 text-accent2 dark:text-accent1">r154</span>
+        </p>
+
+        <div className="mt-6 flex flex-col items-center gap-2 text-xs">
           <a
             href="http://cadcam.ge/team/"
             className="hover:bg-green ml-1 rounded bg-black p-4 font-medium text-white transition-colors hover:bg-highlight1"
@@ -65,7 +75,6 @@ export default function AboutModal(): JSX.Element {
           >
             Read more about us
           </a>
-          <p className="font-medium text-gray-500">All rights reserverd ®</p>
         </div>
       </div>
     </TransitionModal>

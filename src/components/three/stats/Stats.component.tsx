@@ -10,9 +10,11 @@ export default function Stats(): JSX.Element {
   return (
     <>
       {show && (
-        <div className="absolute bottom-[1px] left-1/2 z-[9999] flex -translate-x-1/2 -translate-y-1/2 transform select-none gap-3 text-xs font-normal text-white">
+        <div className="absolute bottom-auto left-2 top-2 z-[9999] flex transform select-none flex-col gap-2 text-xs font-normal text-white sm:bottom-[1px] sm:left-1/2  sm:top-auto sm:-translate-x-1/2 sm:-translate-y-1/2 sm:flex-row">
           <span>TRIANGLES: {triangles}</span>
-          {memory ? <span>MEMORY: {memory} MB</span> : null}
+          {memory ? (
+            <span className="hidden sm:block">MEMORY: {memory} MB</span>
+          ) : null}
           <span>FPS: {fps} </span>
         </div>
       )}

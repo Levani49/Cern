@@ -104,6 +104,16 @@ const eventSlice = createSlice({
           }
         });
       }
+
+      state.loadedEvents = state.loadedEvents.reduce(
+        (accumulator: LoadedEvents[], event) => {
+          if (!accumulator.some((obj) => obj.eventName === event.eventName)) {
+            accumulator.push(event);
+          }
+          return accumulator;
+        },
+        []
+      );
     },
     setEventNumber: (state, action: PayloadAction<EventsSlice["eventNumber"]>) => {
       state.eventNumber = action.payload;

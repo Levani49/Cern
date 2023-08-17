@@ -2,6 +2,7 @@ import { memo, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 
+import { setDrawEvents } from "@features/event/eventSlice";
 import {
   selectParticleAnimation,
   setParticleAnimationState
@@ -31,21 +32,26 @@ const ParticleSystem = (): JSX.Element => {
     }
   }, [dispatch, eventNumber]);
 
-  useEscapeKeydown(() => dispatch(setParticleAnimationState(false)));
+  useEscapeKeydown(() => {
+    dispatch(setParticleAnimationState(false));
+    dispatch(setDrawEvents(true));
+  });
 
   const onComplete = (): void => {
     dispatch(setParticleAnimationState(false));
   };
 
+  const size = isMobile() ? 0.00325 : 0.00525;
+
   const particleProps = {
-    particlesSize: 0.00525,
+    particlesSize: size,
     numberOfParticles: 1000,
     lifeExpectancy: 600
   };
 
   return (
     <>
-      {isMobile() === false && startParticleAnimation && (
+      {startParticleAnimation && (
         <Particles
           onComplete={onComplete}
           electronSpeed={0.235}

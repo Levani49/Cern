@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import type { ModelCut } from "@type/app.types";
 
 import { ReactComponent as GeometryCoreIcon } from "@assets/svg/geometry-core.svg";
@@ -27,10 +29,10 @@ export default function GeometryCutsMenu(): JSX.Element {
   const localCutType = useAppSelector(selectLocalGeometryCutType);
   const selectedModel = useAppSelector(selectSelectedModel);
   const clippingPlanesVal = useAppSelector(selectClippingPlanesNormal);
-
-  let Icon;
+  const [visible, setVisible] = useState(false);
 
   const switchExpression = selectedModel ? localCutType : cutType;
+  let Icon;
 
   switch (switchExpression) {
     case "-cut1":
@@ -50,6 +52,12 @@ export default function GeometryCutsMenu(): JSX.Element {
   }
 
   const handleModeChange = (modelCut: ModelCut): void => {
+    if (modelCut === null) {
+      // hide dropdown if clicked doesn't matter what visible state is, this basically used to detect update in parent component
+      // via use effect..
+      setVisible(!visible);
+    }
+
     if (selectedModel) {
       if (localCutType === modelCut) {
         dispatch(updateLocalModelCut(""));
@@ -95,10 +103,10 @@ export default function GeometryCutsMenu(): JSX.Element {
     <>
       <div className="group relative inline-flex">
         <NavIcon Icon={Icon} title="Geometry Cut Options" active />
-        <MenuDropdown>{innerHtml}</MenuDropdown>
+        <MenuDropdown isVisible={visible}>{innerHtml}</MenuDropdown>
       </div>
       {cutType === null && (
-        <div className="absolute left-1/2 top-[68px] flex -translate-x-1/2 -translate-y-1/2 transform items-center rounded bg-dark1 p-4 ">
+        <div className="absolute bottom-[35px] left-1/2 flex -translate-x-1/2 -translate-y-1/2 transform items-center rounded bg-dark1 p-4 sm:top-[68px] ">
           <input
             min={-3.14159265}
             max={3.14159265}

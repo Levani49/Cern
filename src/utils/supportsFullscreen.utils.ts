@@ -1,5 +1,1 @@
-export function supportsFullscreen(): boolean {
-  const bodyElement = document.documentElement as HTMLElement;
-
-  return !!bodyElement.requestFullscreen;
-}
+export const supportsFullscreen = (): boolean => document.fullscreenEnabled;
