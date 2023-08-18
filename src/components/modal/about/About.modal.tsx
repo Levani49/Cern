@@ -20,14 +20,14 @@ export default function AboutModal(): JSX.Element {
 
   return (
     <TransitionModal
-      title="Meet Our Team"
+      title="Tracer Core 6.0 / 2023"
       className="sm:max-w-xl"
       open={show}
       onClose={closeModalHandler}
     >
       <div className="flex h-full w-full flex-col justify-between p-1">
         <div className="flex flex-col gap-6">
-          <h1 className="text-center text-lg">Nuclear Engineering Center</h1>
+          <h1 className="mt-4 text-center text-lg">Nuclear Engineering Center</h1>
           <p className="text-center text-xs text-gray-400">
             <span className=" font-extrabold text-accent2 dark:text-accent1">
               Nuclear Engineering Center
@@ -62,7 +62,7 @@ export default function AboutModal(): JSX.Element {
         </div>
 
         <p className="mt-6 flex justify-center text-xs">
-          The application is built on three.js version
+          Three.js version
           <span className="ml-1 text-accent2 dark:text-accent1">r154</span>
         </p>
 

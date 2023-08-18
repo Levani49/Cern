@@ -69,7 +69,7 @@ export default function TransitionModal({
                       <div className="flex w-full items-center justify-center">
                         <Dialog.Title
                           as="h3"
-                          className="text-center text-lg font-semibold leading-6 text-white"
+                          className=" text-center text-lg leading-6 text-white"
                         >
                           {title}
                         </Dialog.Title>
