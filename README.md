@@ -18,7 +18,7 @@ To ensure that you can use this project without any issues, please make sure tha
 
 ## Installation
 
-To get started with this project, follow these steps:
+To get started with this project, follow these steps :
 
 1. Clone the repository to your local machine.
 
