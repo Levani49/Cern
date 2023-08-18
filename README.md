@@ -1,6 +1,6 @@
 # Tracer Core
 
-Project Link: [tracer-core-new](https://tracer-core-new.web.cern.ch/)
+Project Link: [tracer-core-new](https://tracer-core.web.cern.ch/)
 
 ## Welcome
 
