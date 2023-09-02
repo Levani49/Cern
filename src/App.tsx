@@ -1,13 +1,14 @@
 import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 
-import ErrorHandler from "@components/error/ErrorHandler.component";
 import Header from "@components/navigation/navigation";
 import VideoPulse from "@components/screen-recording/screenRecording.component";
 import FlyStats from "@components/three/fly-graph/fly-stats.component";
 import FlyOverlay from "@components/three/fly-graph/FlyGraph.component";
 import Stats from "@components/three/stats/Stats.component";
 import Tree from "@components/tree/tree/Tree.component";
+
+import { validateEnvironmentVariables } from "@utils/validateEnvironmentVariables";
 
 const Canvas = lazy(() => import("@three/canvas/canvas.three"));
 const Logo = lazy(() => import("@components/logo/Logo.component"));
@@ -16,8 +17,10 @@ const ModelInformation = lazy(
 );
 
 export default function App(): JSX.Element {
+  validateEnvironmentVariables();
+
   return (
-    <ErrorHandler>
+    <>
       <Header />
       <main className="absolute left-0 top-0 z-10 h-screen w-screen">
         <Suspense fallback={null}>
@@ -32,6 +35,6 @@ export default function App(): JSX.Element {
       <FlyStats />
       <VideoPulse />
       <Toaster position="top-right" />
-    </ErrorHandler>
+    </>
   );
 }

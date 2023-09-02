@@ -9,10 +9,14 @@ import App from "./App";
 
 import "./styles/index.css";
 
+import ErrorHandler from "@components/error/ErrorHandler.component";
+
 createRoot(document.getElementById("root") as HTMLElement).render(
   <StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <ErrorHandler>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </ErrorHandler>
   </StrictMode>
 );
