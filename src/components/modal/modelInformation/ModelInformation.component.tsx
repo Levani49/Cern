@@ -74,7 +74,7 @@ export default function ModelInformation(): JSX.Element {
           />
         </div>
         <div className="relative grid grid-cols-[auto,120px] items-center gap-[7px] ">
-          <div className="relative flex h-full items-center">
+          <div className="relative flex h-4 items-center">
             <label htmlFor="label" className="overflow-hidden whitespace-nowrap ">
               Cuttype
             </label>
