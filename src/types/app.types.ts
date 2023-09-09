@@ -53,7 +53,6 @@ export type Employee = {
   id: string;
   name: string;
   role: string;
-  contact: string;
 };
 export type EmployeeStaticData = {
   employees: Employee[];

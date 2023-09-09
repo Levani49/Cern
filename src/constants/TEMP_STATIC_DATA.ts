@@ -1,64 +1,56 @@
 import { EmployeeStaticData } from "#/types/app.types";
+import { uid } from "#/utils/uid";
 
 export const TEMP_INFO: EmployeeStaticData = {
   employees: [
     {
-      id: "2",
+      id: uid(),
       name: "Sharmazanashvili Alexander",
       role: "Project manager, Concept creator",
-      contact: "http://cadcam.ge/sharmazanashvili-personal/",
     },
 
     {
-      id: "5i",
+      id: uid(),
       name: "Kverenchkhiladze Irakli",
       role: "Chief Software developer",
-      contact: "http://cadcam.ge/kverenchkhiladze-personal/",
     },
     {
-      id: "4",
+      id: uid(),
       name: "Zurashvili Nino",
       role: "Software developer",
-      contact: "http://cadcam.ge/zurashvili-personal/",
     },
 
     {
-      id: "6",
+      id: uid(),
       name: "Alikhanovi Alexander",
       role: "Geometry designer",
-      contact: "http://cadcam.ge/alikhanovi-personal/",
     },
     {
-      id: "3",
+      id: uid(),
       name: "Kekelia Besik",
       role: "Geometry designer",
-      contact: "http://cadcam.ge/kekelia-personal/",
     },
 
     {
-      id: "7",
+      id: uid(),
       name: "Mirziashvili Giorgi",
       role: "Geometry designer",
-      contact: "http://cadcam.ge/mirziashvili-personal/",
     },
 
     {
-      id: "9",
+      id: uid(),
       name: "Tsutskiridze Kote",
       role: "Geometry designer",
-      contact: "http://cadcam.ge/page/",
     },
     {
-      id: "91",
+      id: uid(),
       name: "Kobakhidze Shota",
       role: "Geometry designer",
-      contact: "http://cadcam.ge/page/",
     },
     {
-      id: "91-e",
+      id: uid(),
       name: "Udzilauri Nikoloz",
       role: "UI Concept designer",
-      contact: "http://cadcam.ge/page/",
     },
   ],
 };
