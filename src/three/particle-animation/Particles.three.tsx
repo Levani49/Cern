@@ -7,8 +7,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { setDrawEvents } from "#/store/features/eventSlice";
 import { useAppDispatch } from "#/store/hooks";
 
-import Collision from "./Collision";
-import Electron from "./Electron";
+import Collision from "./Collision.three";
+import Electron from "./Electron.three";
 
 interface Props {
   onComplete: () => void;

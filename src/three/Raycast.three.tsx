@@ -1,4 +1,4 @@
-import { UserData } from "#/services/model/Model.service";
+import { UserData } from "#/models/Model";
 import { BackSide } from "three";
 
 import { useThree } from "@react-three/fiber";

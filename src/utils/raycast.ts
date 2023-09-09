@@ -1,4 +1,4 @@
-import { UserData } from "#/services/model/Model.service";
+import { UserData } from "#/models/Model";
 import { Raycaster, Scene, Vector2 } from "three";
 
 import { Camera } from "@react-three/fiber";

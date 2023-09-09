@@ -10,9 +10,9 @@ import {
 } from "#/store/features/eventSlice";
 import { useAppDispatch, useAppSelector } from "#/store/hooks";
 
-import Jet from "./Jet";
-import Met from "./Met";
-import Tracks from "./track";
+import Jet from "./Jet.three";
+import Met from "./Met.three";
+import Track from "./Track.three";
 
 const EventHandler = new Event();
 
@@ -36,7 +36,7 @@ function EventVisualisation() {
     <>
       {drawEvents && (
         <>
-          <Tracks />
+          <Track />
           <Jet />
           <Met />
         </>

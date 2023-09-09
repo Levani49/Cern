@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import useEscapeKeydown from "#/hooks/useEscapeKeydown";
 import useEvent from "#/hooks/useEvent.hook";
 
-import Particles from "./Particles";
+import Particles from "./Particles.three";
 
 const ParticleSystem = () => {
   const dispatch = useAppDispatch();

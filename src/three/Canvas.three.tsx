@@ -1,9 +1,10 @@
-import Camera from "#/three/Camera";
-import Loader from "#/three/CustomLoader";
-import Detector from "#/three/Detector";
-import Grid from "#/three/Grid";
-import Lights from "#/three/Light";
-import Raycast from "#/three/Raycast";
+import Camera from "#/three/Camera.three";
+import Loader from "#/three/CustomLoader.three";
+import Detector from "#/three/Detector.three";
+import Grid from "#/three/Grid.three";
+import Lights from "#/three/Light.three";
+import Raycast from "#/three/Raycast.three";
+import StatsDispatcher from "#/three/Stats.three";
 import { NoToneMapping } from "three";
 
 import { Canvas } from "@react-three/fiber";
@@ -16,13 +17,12 @@ import {
 } from "#/store/features/modelSlice";
 import { useAppSelector } from "#/store/hooks";
 
-const Controls = lazy(() => import("#/three/Controls"));
-const Axis = lazy(() => import("#/three/Axis"));
-const Event = lazy(() => import("#/three/event/EventVisualisation"));
+const Controls = lazy(() => import("#/three/Controls.three"));
+const Axis = lazy(() => import("#/three/Axis.three"));
+const Event = lazy(() => import("#/three/event/EventVisualisation.three"));
 const ParticleSystem = lazy(
-  () => import("#/three/particle-animation/ParticleSystem")
+  () => import("#/three/particle-animation/ParticleSystem.three")
 );
-const StatsDispatcher = lazy(() => import("#/three/Stats"));
 
 export default function Scene() {
   const defaultPosition = useAppSelector(selectDefaultCameraPosition);

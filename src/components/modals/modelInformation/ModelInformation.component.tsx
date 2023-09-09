@@ -1,5 +1,5 @@
 import { ModelCut } from "#/types/app.types";
-import { ReactComponent as CarretDown } from "#/assets/svg/carretDown.svg";
+import Icons from "#/utils/icons";
 import {
   selectModelModal,
   setModelsOpacity,
@@ -84,7 +84,7 @@ export default function ModelInformation() {
           </select>
           <div className="flex h-6 w-full cursor-pointer items-center justify-between rounded bg-gray2  p-1">
             <span>{cutType}</span>
-            <CarretDown className="mr-1 h-2 w-2 fill-accent3" />
+            <Icons.CarretDown className="mr-1 h-2 w-2 fill-accent3" />
           </div>
         </div>
         <div className="relative  grid grid-cols-[auto,120px] items-center gap-[7px]">

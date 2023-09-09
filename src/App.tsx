@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 
 import { validateEnvironmentVariables } from "#/utils/validateEnvironmentVariables";
+import ModelInformation from "#/components/modals/modelInformation/ModelInformation.component";
 import Navigation from "#/components/navigation/Navigation";
 import ScreenRecording from "#/components/ScreenRecording";
 import FlyOverlay from "#/components/three/FlyGraph";
@@ -9,11 +10,8 @@ import FlyStats from "#/components/three/FlyStats";
 import Stats from "#/components/three/Stats";
 import Tree from "#/components/tree/tree/Tree";
 
-const Canvas = lazy(() => import("#/three/Canvas"));
+const Canvas = lazy(() => import("#/three/Canvas.three"));
 const Logo = lazy(() => import("#/components/Logo.component"));
-const ModelInformation = lazy(
-  () => import("#/components/modals/modelInformation/ModelInformation.component")
-);
 
 export default function App() {
   validateEnvironmentVariables();
@@ -25,9 +23,9 @@ export default function App() {
         <Suspense fallback={null}>
           <Canvas />
           <Logo />
-          <ModelInformation />
         </Suspense>
       </main>
+      <ModelInformation />
       <Tree />
       <Stats />
       <FlyOverlay />
