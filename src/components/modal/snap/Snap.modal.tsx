@@ -1,23 +1,22 @@
-import { useEffect, useRef } from "react";
-
 import { saveAs } from "file-saver";
 
-import { ReactComponent as DownloadFileIcon } from "@assets/svg/downloadFileIcon.svg";
-import { ReactComponent as UploadFileIcon } from "@assets/svg/uploadFileIcon.svg";
+import { useEffect, useRef } from "react";
 
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-import store from "@store/store";
-
+import { ReactComponent as DownloadFileIcon } from "#/assets/svg/downloadFileIcon.svg";
+import { ReactComponent as UploadFileIcon } from "#/assets/svg/uploadFileIcon.svg";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
+import store from "#/store/store";
 import {
   selectCameraEffect,
-  triggerCameraEffect
-} from "@features/camera/cameraSlice";
-import { hydrateClippingPlanes, setSnapIsLoading } from "@features/model/modelSlice";
-
-import Button from "@components/button/Button.component";
-import TransitionModal from "@components/transition-modal/transition.modal";
-
-import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
+  triggerCameraEffect,
+} from "#/features/camera/cameraSlice";
+import {
+  hydrateClippingPlanes,
+  setSnapIsLoading,
+} from "#/features/model/modelSlice";
+import Button from "#/components/button/Button.component";
+import TransitionModal from "#/components/transition-modal/transition.modal";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import SnapCard from "./SnapCard.component";
 
@@ -28,10 +27,10 @@ const SnapTexts = {
               progress. This file can be used later to restore the application exactly as it was.`,
   upload: `Load a previously saved file to restore your application to its previous state,
               including all data, settings, and progress. This allows you to pick up where you left
-              off or continue from a specific point.`
+              off or continue from a specific point.`,
 };
 
-export default function SnapModal({ open, onClose }: Props): JSX.Element {
+export default function SnapModal({ open, onClose }: Props) {
   const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const triggerEffect = useAppSelector(selectCameraEffect);
@@ -101,7 +100,7 @@ export default function SnapModal({ open, onClose }: Props): JSX.Element {
 
         Object.defineProperty(inputRef.current, "files", {
           value: fileList.files,
-          writable: true
+          writable: true,
         });
 
         handleFileChange();

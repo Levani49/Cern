@@ -1,14 +1,12 @@
-import { ReactComponent as VideoCameraIcon } from "@assets/svg/videoCameraIcon.svg";
-
-import { useAppDispatch } from "@store/hooks";
-
-import useCamera from "@hooks/useCamera/useCamera.hook";
-import useDrone from "@hooks/useDrone/useDrone.hook";
-import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
+import { ReactComponent as VideoCameraIcon } from "#/assets/svg/videoCameraIcon.svg";
+import { useAppDispatch } from "#/store/hooks";
+import useCamera from "#/hooks/useCamera/useCamera.hook";
+import useDrone from "#/hooks/useDrone/useDrone.hook";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import NavIcon from "../navIcon/navIcon";
 
-export default function CameraMenu(): JSX.Element {
+export default function CameraMenu() {
   const dispatch = useAppDispatch();
   const { cameraType, setCameraType } = useCamera();
   const { currentMode } = useDrone();

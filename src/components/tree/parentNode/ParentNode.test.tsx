@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 
-import store from "@store/store";
+import store from "#/store/store";
 
 import ParentNode, { ParentNodeProps } from "./ParentNode.component";
 
@@ -12,7 +12,7 @@ describe("ParentNode component", () => {
     modelState: "notLoaded",
     nodeEnd: false,
     showChildren: true,
-    children: <h1>Test child</h1>
+    children: <h1>Test child</h1>,
   };
 
   test("renders children correctly", () => {

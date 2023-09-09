@@ -1,3 +1,3 @@
-export default function Clusters(): JSX.Element {
+export default function Clusters() {
   return <></>;
 }

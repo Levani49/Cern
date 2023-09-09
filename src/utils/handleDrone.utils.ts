@@ -1,11 +1,11 @@
+import Cinema from "#/models/drone/cinema/cinema.model";
+import Helix from "#/models/drone/helix/helix.model";
+import Rocket from "#/models/drone/rocket/rocket.model";
+import Zoom from "#/models/drone/zoom/zoom.model";
+
 import { Camera } from "@react-three/fiber";
 
-import { DroneTypes, emptyFunc } from "@type/app.types";
-
-import Cinema from "@models/drone/cinema/cinema.model";
-import Helix from "@models/drone/helix/helix.model";
-import Rocket from "@models/drone/rocket/rocket.model";
-import Zoom from "@models/drone/zoom/zoom.model";
+import { DroneTypes, emptyFunc } from "#/types/app.types";
 
 const helix = new Helix();
 const rocket = new Rocket();

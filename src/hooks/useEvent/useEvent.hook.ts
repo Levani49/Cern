@@ -1,26 +1,24 @@
+import JetModel from "#/models/event/jet/jet.model";
+import MetModel from "#/models/event/met/met.model";
+import TrackModel from "#/models/event/track/track.model";
+import { EventDetailsXML } from "#/services/event/event.service.types";
+
 import { useMemo } from "react";
 
-import { useAppSelector } from "@store/hooks";
-
+import { useAppSelector } from "#/store/hooks";
 import {
   selectEvent,
   selectEventNumber,
   selectEventParameters,
   selectJetFilter,
-  selectTrackFilter
-} from "@features/event/eventSlice";
+  selectTrackFilter,
+} from "#/features/event/eventSlice";
 import {
   EventNumber,
   EventsToShow,
   JetFilter,
-  TrackFilter
-} from "@features/event/eventSlice.types";
-
-import { EventDetailsXML } from "@services/event/event.service.types";
-
-import JetModel from "@models/event/jet/jet.model";
-import MetModel from "@models/event/met/met.model";
-import TrackModel from "@models/event/track/track.model";
+  TrackFilter,
+} from "#/features/event/eventSlice.types";
 
 const jetService = new JetModel();
 const trackService = new TrackModel();
@@ -42,7 +40,7 @@ export default function useEvent(): useEvent {
       trackFilterValues,
       JET: jetService,
       MET: metModel,
-      TRACK: trackService
+      TRACK: trackService,
     }),
     [event, eventParameters, trackFilterValues, eventNumber, jetFilterValues]
   );

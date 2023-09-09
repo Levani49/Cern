@@ -1,10 +1,9 @@
 import { saveAs } from "file-saver";
 
-import { ReactComponent as PhotoIcon } from "@assets/svg/photo.svg";
+import { ReactComponent as PhotoIcon } from "#/assets/svg/photo.svg";
+import NavIcon from "#/components/navigation/navIcon/navIcon";
 
-import NavIcon from "@components/navigation/navIcon/navIcon";
-
-export default function Screenshot(): JSX.Element {
+export default function Screenshot() {
   function handleScreenshot(): void {
     import("html2canvas").then((html2canvas) => {
       const element = document.body;
@@ -23,7 +22,7 @@ export default function Screenshot(): JSX.Element {
             if (navTitle) {
               navTitle.style.marginTop = "-17px";
             }
-          }
+          },
         })
         .then((canvas) => {
           const dataURL = canvas.toDataURL("image/png");

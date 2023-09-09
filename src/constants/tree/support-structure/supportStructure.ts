@@ -1,6 +1,5 @@
-import { uid } from "@utils/uid.util";
-
-import { TreeNode } from "@constants/geometryTree";
+import { uid } from "#/utils/uid.util";
+import { TreeNode } from "#/constants/geometryTree";
 
 export const SUPPORT_STRUCTURE: TreeNode = {
   id: uid(),
@@ -19,13 +18,13 @@ export const SUPPORT_STRUCTURE: TreeNode = {
           id: uid(),
           name: "feed and rails",
           state: "notLoaded",
-          modelPath: "feet"
+          modelPath: "feet",
         },
         {
           id: uid(),
           name: "bt warm structure",
           state: "notLoaded",
-          modelPath: "warm-structure"
+          modelPath: "warm-structure",
         },
         {
           id: uid(),
@@ -38,18 +37,18 @@ export const SUPPORT_STRUCTURE: TreeNode = {
               id: uid(),
               name: "side a",
               state: "notLoaded",
-              modelPath: "hf-truck-sidea"
+              modelPath: "hf-truck-sidea",
             },
             {
               id: uid(),
               name: "side c",
               state: "notLoaded",
               modelPath: "hf-truck-sidec",
-              nodeEnd: true
-            }
-          ]
-        }
-      ]
-    }
-  ]
+              nodeEnd: true,
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };

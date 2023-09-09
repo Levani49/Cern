@@ -1,9 +1,8 @@
+import EventService from "#/services/event/event.service";
+import { Track } from "#/services/event/event.service.types";
 import { BufferGeometry, CubicBezierCurve3, Vector2, Vector3 } from "three";
 
-import { EventsSlice } from "@features/event/eventSlice.types";
-
-import EventService from "@services/event/event.service";
-import { Track } from "@services/event/event.service.types";
+import { EventsSlice } from "#/features/event/eventSlice.types";
 
 import { TrackInfo, TrackMesh } from "./track.model.types";
 
@@ -19,7 +18,7 @@ export default class TrackModel extends EventService {
     numPolyline: [],
     count: null,
     SGK: "",
-    pt: []
+    pt: [],
   };
 
   init(track: Track): void {
@@ -75,7 +74,7 @@ export default class TrackModel extends EventService {
 
     return {
       geometry,
-      color: "#ff0000"
+      color: "#ff0000",
     };
   }
   drawCurvedTracks(propertyIndex: number, trackIndex: number): TrackMesh {
@@ -165,7 +164,7 @@ export default class TrackModel extends EventService {
 
     return {
       geometry,
-      color: "#ff0000"
+      color: "#ff0000",
     };
   }
 

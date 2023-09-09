@@ -5,13 +5,13 @@
 //! My own controls to address the issue with damping and sphericalDelta.
 //! Please do not modify this file!
 //!
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// eslint-disable-next-line #/typesscript-eslint/ban-ts-comment
 // @ts-nocheck
 /* eslint-disable */
+import _extends from "@babel/runtime/helpers/esm/extends";
+
 import { useFrame, useThree } from "@react-three/fiber";
 import React, { forwardRef } from "react";
-
-import _extends from "@babel/runtime/helpers/esm/extends";
 
 import { OrbitControls as OrbitControls$1 } from "./modified_orbit_controls.js";
 
@@ -82,11 +82,11 @@ const CustomOrbitControl = forwardRef(
       if (makeDefault) {
         const old = get().controls;
         set({
-          controls
+          controls,
         });
         return () =>
           set({
-            controls: old
+            controls: old,
           });
       }
     }, [makeDefault, controls]);
@@ -96,7 +96,7 @@ const CustomOrbitControl = forwardRef(
         {
           ref: ref,
           object: controls,
-          enableDamping: enableDamping
+          enableDamping: enableDamping,
         },
         restProps
       )

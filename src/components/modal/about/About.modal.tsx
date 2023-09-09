@@ -1,14 +1,10 @@
-import { useAppDispatch, useAppSelector } from "@store/hooks";
+import { TEMP_INFO } from "#/constants/TEMP_STATIC_DATA";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
+import { selectAboutModalState, showAboutModal } from "#/features/modal/modalSlice";
+import TransitionModal from "#/components/transition-modal/transition.modal";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
-import { selectAboutModalState, showAboutModal } from "@features/modal/modalSlice";
-
-import TransitionModal from "@components/transition-modal/transition.modal";
-
-import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
-
-import { TEMP_INFO } from "@constants/TEMP_STATIC_DATA";
-
-export default function AboutModal(): JSX.Element {
+export default function AboutModal() {
   const dispatch = useAppDispatch();
   const show = useAppSelector(selectAboutModalState);
 

@@ -1,19 +1,15 @@
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 
-import { ReactComponent as ArrowsPointingOutIcon } from "@assets/svg/arrowsPointingOut.svg";
-
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
-import { selectIsFullscreen, setFullscreen } from "@features/global/globalsSlice";
-
-import useDrone from "@hooks/useDrone/useDrone.hook";
-
-import { supportsFullscreen } from "@utils/supportsFullscreen.utils";
+import { supportsFullscreen } from "#/utils/supportsFullscreen.utils";
+import { ReactComponent as ArrowsPointingOutIcon } from "#/assets/svg/arrowsPointingOut.svg";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
+import { selectIsFullscreen, setFullscreen } from "#/features/global/globalsSlice";
+import useDrone from "#/hooks/useDrone/useDrone.hook";
 
 import NavIcon from "../navIcon/navIcon";
 
-export default function FullScreenMenu(): JSX.Element {
+export default function FullScreenMenu() {
   const dispatch = useAppDispatch();
   const isFullscreen = useAppSelector(selectIsFullscreen);
 

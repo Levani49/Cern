@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-import type { SVGIcon } from "@type/app.types";
+import type { SVGIcon } from "#/types/app.types";
 
 interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   Icon: SVGIcon;
@@ -15,7 +15,7 @@ export default function NavIcon({
   active,
   iconClass,
   ...other
-}: Props): JSX.Element {
+}: Props) {
   const componentClasses = twMerge(
     "z-50 rounded border-2 border-transparent p-1 transition-all hover:border-[#dfe6e926]",
     className

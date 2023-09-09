@@ -1,13 +1,12 @@
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import {
   selectAmbientLightIntensity,
   selectDirectionalLightIntensity,
   selectRotationSpeed,
   setAmbientLightIntensity,
   setControlRotationSpeed,
-  setDirectionalLightIntensity
-} from "@features/camera/cameraSlice";
+  setDirectionalLightIntensity,
+} from "#/features/camera/cameraSlice";
 import {
   selectAxis,
   selectGrid,
@@ -15,17 +14,15 @@ import {
   setUtilsModal,
   showAxis,
   showGrid,
-  showRendererStats
-} from "@features/global/globalsSlice";
-
-import CheckboxHandler from "@components/modal/settings/checkboxHandler";
-import SliderHandler from "@components/modal/settings/sliderHandler";
-
-import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
+  showRendererStats,
+} from "#/features/global/globalsSlice";
+import CheckboxHandler from "#/components/modal/settings/checkboxHandler";
+import SliderHandler from "#/components/modal/settings/sliderHandler";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import Modal from "../Modal.component";
 
-export default function SettingsModal(): JSX.Element {
+export default function SettingsModal() {
   const dispatch = useAppDispatch();
   const rotationSpeed = useAppSelector(selectRotationSpeed);
   const ambientLightIntensity = useAppSelector(selectAmbientLightIntensity);
@@ -80,7 +77,7 @@ export default function SettingsModal(): JSX.Element {
       max: 3,
       defaultValue: rotationSpeed,
       value: rotationSpeed,
-      onChange: handRotationSpeedupdate
+      onChange: handRotationSpeedupdate,
     },
     {
       title: "Brightness",
@@ -89,7 +86,7 @@ export default function SettingsModal(): JSX.Element {
       max: 1,
       defaultValue: ambientLightIntensity,
       value: ambientLightIntensity,
-      onChange: handleBrightnessUpdate
+      onChange: handleBrightnessUpdate,
     },
     {
       title: "Contrast",
@@ -98,8 +95,8 @@ export default function SettingsModal(): JSX.Element {
       max: 1,
       defaultValue: directionalLightIntensity,
       value: directionalLightIntensity,
-      onChange: handleContrastUpdate
-    }
+      onChange: handleContrastUpdate,
+    },
   ];
 
   const checkboxElements = [
@@ -107,20 +104,20 @@ export default function SettingsModal(): JSX.Element {
       title: "Axis",
       id: "axis",
       checked: axisIsActive,
-      onClick: handleAxisToggle
+      onClick: handleAxisToggle,
     },
     {
       title: "Grid",
       id: "grid",
       checked: gridIsActive,
-      onClick: handleGridToggle
+      onClick: handleGridToggle,
     },
     {
       title: "Stats",
       id: "stats",
       checked: statsIsActive,
-      onClick: handleStatsToggle
-    }
+      onClick: handleStatsToggle,
+    },
   ];
 
   const sliderHtml = sliderElements.map((element, idx) => (

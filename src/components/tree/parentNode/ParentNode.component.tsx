@@ -1,13 +1,10 @@
 import { useCallback, useState } from "react";
 
-import { ReactComponent as MinusCircleIcon } from "@assets/svg/minusCircleIcon.svg";
-import { ReactComponent as PlusCircleIcon } from "@assets/svg/plusCircleIcon.svg";
-
-import { useAppDispatch } from "@store/hooks";
-
-import { updateParentNodeState } from "@features/tree/treeSlice";
-
-import { GeometryState } from "@constants/geometryTree";
+import { ReactComponent as MinusCircleIcon } from "#/assets/svg/minusCircleIcon.svg";
+import { ReactComponent as PlusCircleIcon } from "#/assets/svg/plusCircleIcon.svg";
+import { GeometryState } from "#/constants/geometryTree";
+import { useAppDispatch } from "#/store/hooks";
+import { updateParentNodeState } from "#/features/tree/treeSlice";
 
 export interface ParentNodeProps {
   root?: boolean | undefined;
@@ -29,8 +26,8 @@ export default function ParentNode({
   showChildren,
   children,
   nodeEnd,
-  root
-}: ParentNodeProps): JSX.Element {
+  root,
+}: ParentNodeProps) {
   const dispatch = useAppDispatch();
   const [show, setShow] = useState(showChildren);
 
@@ -43,7 +40,7 @@ export default function ParentNode({
           nodeId: uid,
           propToChange: "state",
           value: state,
-          restrictAncestorsUpdate: false
+          restrictAncestorsUpdate: false,
         })
       );
     },

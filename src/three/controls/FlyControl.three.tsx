@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 
 import { FlyControls } from "../lib/FlyControls";
 
-export default function FlyControl(): JSX.Element {
+export default function FlyControl() {
   const { camera, gl } = useThree();
   const controlsRef = useRef<FlyControls | null>(null);
 
@@ -30,7 +30,7 @@ export default function FlyControl(): JSX.Element {
   return <></>;
 }
 
-// export default function FlyControl(): JSX.Element {
+// export default function FlyControl() {
 //   const { camera, controls } = useThree();
 //   const clockRef = useRef<Clock>(new Clock());
 //   const isPointerDown = useRef<"forward" | "backward" | "idle">("idle");

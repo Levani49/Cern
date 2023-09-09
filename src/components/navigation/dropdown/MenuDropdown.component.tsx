@@ -1,19 +1,15 @@
-import { useEffect, useState } from "react";
-
 import { twMerge } from "tailwind-merge";
 
-import type { ReactChildren } from "@type/app.types";
+import { useEffect, useState } from "react";
+
+import type { ReactChildren } from "#/types/app.types";
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
   children: ReactChildren;
   isVisible?: boolean;
 }
 
-export default function MenuDropdown({
-  children,
-  isVisible,
-  className
-}: Props): JSX.Element {
+export default function MenuDropdown({ children, isVisible, className }: Props) {
   const [visibility, setVisibility] = useState<
     "hidden group-hover:hidden" | undefined
   >(undefined);

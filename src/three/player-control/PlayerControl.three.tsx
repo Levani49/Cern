@@ -7,11 +7,11 @@ export default {};
 
 // import { BufferGeometry, Material, Mesh, Vector3 } from "three";
 
-// import store from "@store/store";
+// import store from "#/store/store";
 
-// import { setDroneMode } from "@features/camera/cameraSlice";
+// import { setDroneMode } from "#/features/camera/cameraSlice";
 
-// import { usePlayerControls } from "@hooks/usePlayercontrols/usePlayerControls";
+// import { usePlayerControls } from "#/hooks/usePlayercontrols/usePlayerControls";
 
 // interface Props {
 //   currentCameraPosition: [number, number, number];
@@ -21,7 +21,7 @@ export default {};
 
 // export default function PlayerControl({
 //   currentCameraPosition
-// }: Props): JSX.Element {
+// }: Props) {
 //   const { camera } = useThree();
 //   const { moveForward, moveBackward, moveLeft, moveRight } = usePlayerControls();
 //   const [ref, api] = useSphere(() => ({

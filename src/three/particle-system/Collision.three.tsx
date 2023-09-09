@@ -1,11 +1,11 @@
+import { Group } from "three";
+
 import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 
-import { Group } from "three";
-
 import Electron from "./Electron.three";
 
-// export function Ship(): JSX.Element {
+// export function Ship() {
 //   const exhaust = useRef()
 
 //   useFrame(({ clock }) => {
@@ -30,7 +30,7 @@ interface Props {
   speed: number;
 }
 
-export default function Collision({ onCollision, speed }: Props): JSX.Element {
+export default function Collision({ onCollision, speed }: Props) {
   const [show, setShow] = useState(true);
   const electron1Ref = useRef<Group>(null);
   const electron2Ref = useRef<Group>(null);

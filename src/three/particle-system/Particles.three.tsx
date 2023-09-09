@@ -1,12 +1,11 @@
+import { MathUtils, Object3D } from "three";
+
 import { Float } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { MathUtils, Object3D } from "three";
-
-import { useAppDispatch } from "@store/hooks";
-
-import { setDrawEvents } from "@features/event/eventSlice";
+import { useAppDispatch } from "#/store/hooks";
+import { setDrawEvents } from "#/features/event/eventSlice";
 
 import Collision from "./Collision.three";
 import Electron from "./Electron.three";
@@ -26,8 +25,8 @@ export default function Particles({
   explosionSpeed,
   numberOfParticles,
   lifeExpectancy,
-  particlesSize
-}: Props): JSX.Element {
+  particlesSize,
+}: Props) {
   const [explode, setExplode] = useState(false);
   const dispatch = useAppDispatch();
   const electronRefs = useRef<Array<Object3D | null>>([]);

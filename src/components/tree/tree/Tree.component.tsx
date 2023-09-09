@@ -1,18 +1,16 @@
 import { useEffect, useMemo } from "react";
 
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import {
   selectModelsLoadingState,
-  updateModelsLoadingState
-} from "@features/model/modelSlice";
-import { selectGeometryMenu, selectGeometryTree } from "@features/tree/treeSlice";
-
-import useLoadingStatus from "@hooks/useLoading/useLoading";
+  updateModelsLoadingState,
+} from "#/features/model/modelSlice";
+import { selectGeometryMenu, selectGeometryTree } from "#/features/tree/treeSlice";
+import useLoadingStatus from "#/hooks/useLoading/useLoading";
 
 import RecursiveTree from "../recursiveTree/RecursiveTree.component";
 
-export default function Tree(): JSX.Element {
+export default function Tree() {
   const dispatch = useAppDispatch();
   const { isLoading, isLoaded } = useLoadingStatus();
   const loadedStatus = useAppSelector(selectModelsLoadingState);

@@ -4,7 +4,7 @@ interface Props {
   label: string;
 }
 
-export default function AlgorithmCheckBox({ label }: Props): JSX.Element {
+export default function AlgorithmCheckBox({ label }: Props) {
   const [checked, setChecked] = useState<boolean>(false);
 
   return (

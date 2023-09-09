@@ -1,9 +1,8 @@
 import { act, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 
-import store from "@store/store";
-
-import { showRendererStats } from "@features/global/globalsSlice";
+import store from "#/store/store";
+import { showRendererStats } from "#/features/global/globalsSlice";
 
 import Stats from "./Stats.component";
 

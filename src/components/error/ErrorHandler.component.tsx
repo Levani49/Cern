@@ -1,7 +1,7 @@
 import { Component, ErrorInfo, ReactNode } from "react";
 
-import Button from "@components/button/Button.component";
-import TransitionModal from "@components/transition-modal/transition.modal";
+import Button from "#/components/button/Button.component";
+import TransitionModal from "#/components/transition-modal/transition.modal";
 
 export type ErrorHandlerProps = {
   children: ReactNode;
@@ -12,7 +12,7 @@ export type ErrorHandlerState = {
   errorMessage: string;
 };
 
-function ErrorText({ message }: { message: string }): JSX.Element {
+function ErrorText({ message }: { message: string }) {
   return (
     <TransitionModal open={true} title="ERROR">
       <div className="mt-8 flex flex-col items-center justify-center gap-8 pb-2">
@@ -35,13 +35,13 @@ export default class ErrorHandler extends Component<
 > {
   state: ErrorHandlerState = {
     hasError: false,
-    errorMessage: "" // Add a new state property to hold the error message
+    errorMessage: "", // Add a new state property to hold the error message
   };
 
   static getDerivedStateFromError(error: Error): ErrorHandlerState {
     return {
       hasError: true,
-      errorMessage: error.message // Set the error message in the state
+      errorMessage: error.message, // Set the error message in the state
     };
   }
 

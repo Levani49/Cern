@@ -1,31 +1,26 @@
+import { UserData } from "#/services/model/Model.service";
+import { BackSide } from "three";
+
 import { useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 
-import { BackSide } from "three";
-
-import { selectedModel } from "@type/app.types";
-
-import { useAppDispatch } from "@store/hooks";
-
+import { selectedModel } from "#/types/app.types";
+import { raycast } from "#/utils/raycast.utils";
+import { useAppDispatch } from "#/store/hooks";
 import {
   setModelsOpacity,
   setModelWireframe,
   setSelectedModel,
-  updateLocalModelCut
-} from "@features/model/modelSlice";
-
-import useDrone from "@hooks/useDrone/useDrone.hook";
-import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
-
-import { UserData } from "@services/model/Model.service";
-
-import { raycast } from "@utils/raycast.utils";
+  updateLocalModelCut,
+} from "#/features/model/modelSlice";
+import useDrone from "#/hooks/useDrone/useDrone.hook";
+import useSelectedModel from "#/hooks/useSelectedModel/useSelectedModel";
 
 type Ev = { clientX: number; clientY: number };
 
 const mouseDown = {
   x: 0,
-  y: 0
+  y: 0,
 };
 
 const Raycast = (): JSX.Element => {
@@ -50,7 +45,7 @@ const Raycast = (): JSX.Element => {
           width,
           height,
           e,
-          many: false
+          many: false,
         });
 
         if (model) {
@@ -90,7 +85,7 @@ const Raycast = (): JSX.Element => {
         width,
         height,
         e,
-        many: true
+        many: true,
       });
       handleSelection(model);
     }
@@ -120,7 +115,7 @@ const Raycast = (): JSX.Element => {
   );
 };
 
-export default function RaycastContainer(): JSX.Element {
+export default function RaycastContainer() {
   const { currentMode } = useDrone();
 
   return <>{currentMode !== "fly" && <Raycast />}</>;

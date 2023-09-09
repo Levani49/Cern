@@ -1,7 +1,7 @@
 import {
   EventDetailsXML,
-  EventOverviewData
-} from "@services/event/event.service.types";
+  EventOverviewData,
+} from "#/services/event/event.service.types";
 
 export interface UploadedEvent {
   isCustom: boolean;

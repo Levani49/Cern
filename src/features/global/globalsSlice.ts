@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import type { RootState } from "@store/store";
-
-import { isMobile } from "@utils/isMobile.utils";
+import { isMobile } from "#/utils/isMobile.utils";
+import type { RootState } from "#/store/store";
 
 import type { GlobalsSlice, ModalOrder } from "./globalsSlice.type";
 
@@ -27,8 +26,8 @@ const initialState: GlobalsSlice = {
   screenRecording: "idle",
   modals: {
     index: 30,
-    order: []
-  }
+    order: [],
+  },
 };
 
 const globalsSlice = createSlice({
@@ -48,7 +47,7 @@ const globalsSlice = createSlice({
       if (existingModalIndex === -1) {
         const newModal = {
           id,
-          zIndex: state.modals.index
+          zIndex: state.modals.index,
         };
 
         state.modals.order.push(newModal);
@@ -105,8 +104,8 @@ const globalsSlice = createSlice({
 
     setParticleAnimationState: (state, action: PayloadAction<boolean>) => {
       state.startParticleAnimation = action.payload;
-    }
-  }
+    },
+  },
 });
 
 export default globalsSlice.reducer;
@@ -124,7 +123,7 @@ export const {
   setScreenRecording,
   setMenuBar,
   setUtilsModal,
-  setModalsOrder
+  setModalsOrder,
 } = globalsSlice.actions;
 
 export const selectModals = (state: RootState): ModalOrder[] =>

@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 
-import { ReactComponent as InfoIcon } from "@assets/svg/info.svg";
+import { ReactComponent as InfoIcon } from "#/assets/svg/info.svg";
 
 import SvgIcon from "./SvgIcon.component";
 

@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import type { CurrentAnalysisTool } from "@type/app.types";
-
-import type { RootState } from "@store/store";
+import type { CurrentAnalysisTool } from "#/types/app.types";
+import type { RootState } from "#/store/store";
 
 import type { Modal } from "./modalSlice.types";
 
@@ -12,9 +11,9 @@ const initialState: Modal = {
   eventsModalIsOpen: false,
   events: {
     analysisTools: {
-      currentTool: "info"
-    }
-  }
+      currentTool: "info",
+    },
+  },
 };
 
 export const modalsSlice = createSlice({
@@ -41,8 +40,8 @@ export const modalsSlice = createSlice({
       action: PayloadAction<CurrentAnalysisTool>
     ) => {
       state.events.analysisTools.currentTool = action.payload;
-    }
-  }
+    },
+  },
 });
 
 export default modalsSlice.reducer;
@@ -51,7 +50,7 @@ export const {
   showSettingsModal,
   showAboutModal,
   showEventsModal,
-  setEventCurrentAnalysisTool
+  setEventCurrentAnalysisTool,
 } = modalsSlice.actions;
 
 /**

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import useDrone from "@hooks/useDrone/useDrone.hook";
+import useDrone from "#/hooks/useDrone/useDrone.hook";
 
-export default function FlyStats(): JSX.Element {
+export default function FlyStats() {
   const { showFlyModal, currentMode } = useDrone();
   const [speed, setSpeed] = useState(0.8);
 

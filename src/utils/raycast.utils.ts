@@ -1,8 +1,7 @@
-import { Camera } from "@react-three/fiber";
-
+import { UserData } from "#/services/model/Model.service";
 import { Raycaster, Scene, Vector2 } from "three";
 
-import { UserData } from "@services/model/Model.service";
+import { Camera } from "@react-three/fiber";
 
 type Ev = { clientX: number; clientY: number };
 
@@ -25,7 +24,7 @@ export function raycast({
   camera,
   scene,
   raycaster,
-  many
+  many,
 }: Props): UserData | undefined {
   mouse.x = (e.clientX / width) * 2 - 1;
   mouse.y = -(e.clientY / height) * 2 + 1;

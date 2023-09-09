@@ -1,8 +1,7 @@
-import { ReactComponent as MegaPhone } from "@assets/svg/megaphone.svg";
+import { ReactComponent as MegaPhone } from "#/assets/svg/megaphone.svg";
+import NavIcon from "#/components/navigation/navIcon/navIcon";
 
-import NavIcon from "@components/navigation/navIcon/navIcon";
-
-export default function Report(): JSX.Element {
+export default function Report() {
   return (
     <>
       {import.meta.env.VITE_ENV === "development" && (

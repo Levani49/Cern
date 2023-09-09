@@ -18,20 +18,7 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["./src/components/*"],
-      "@models/*": ["./src/models/*"],
-      "@services/*": ["./src/services/*"],
-      "@ui/*": ["./src/ui/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@context/*": ["./src/context/*"],
-      "@constants/*": ["./src/constants/*"],
-      "@three/*": ["./src/three/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@store/*": ["./src/store/*"],
-      "@features/*": ["./src/features/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@type/*": ["./src/types/*"]
+      "#/*": ["./src/*"]
     }
   },
   "include": [

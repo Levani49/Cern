@@ -1,11 +1,11 @@
 import { Camera } from "@react-three/fiber";
 
-import { emptyFunc } from "@type/app.types";
+import { emptyFunc } from "#/types/app.types";
 
 export default class Helix {
   public configuration = {
     speed: 0.012,
-    finishLine: 12.6
+    finishLine: 12.6,
   };
 
   start(camera: Camera, cb: emptyFunc | undefined = undefined): void {

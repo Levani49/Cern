@@ -1,23 +1,21 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
-import { selectStats } from "@features/global/globalsSlice";
-import { setRendererStats } from "@features/renderer/rendererSlice";
-
-import StatsUtils from "@utils/stats.utils";
+import StatsUtils from "#/utils/stats.utils";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
+import { selectStats } from "#/features/global/globalsSlice";
+import { setRendererStats } from "#/features/renderer/rendererSlice";
 
 const stats = new StatsUtils();
 
-export default function StatsDispatcher(): JSX.Element {
+export default function StatsDispatcher() {
   const dispatch = useAppDispatch();
   const { scene } = useThree();
   const showStats = useAppSelector(selectStats);
   const statsRef = useRef<{ triangles: number; fps: number; memory: number }>({
     triangles: 0,
     fps: 0,
-    memory: 0
+    memory: 0,
   });
 
   useEffect(() => {
@@ -47,7 +45,7 @@ export default function StatsDispatcher(): JSX.Element {
         setRendererStats({
           triangles: statsRef.current.triangles,
           fps: statsRef.current.fps,
-          memory: statsRef.current.memory
+          memory: statsRef.current.memory,
         })
       );
     }, 1000);

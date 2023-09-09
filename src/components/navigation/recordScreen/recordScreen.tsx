@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
 import { useReactMediaRecorder } from "react-media-recorder-2";
 
-import { ReactComponent as PlayIcon } from "@assets/svg/play.svg";
-
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
+import { ReactComponent as PlayIcon } from "#/assets/svg/play.svg";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import {
   selectScreenRecording,
-  setScreenRecording
-} from "@features/global/globalsSlice";
+  setScreenRecording,
+} from "#/features/global/globalsSlice";
+import Button from "#/components/button/Button.component";
+import NavIcon from "#/components/navigation/navIcon/navIcon";
+import TransitionModal from "#/components/transition-modal/transition.modal";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
-import Button from "@components/button/Button.component";
-import NavIcon from "@components/navigation/navIcon/navIcon";
-import TransitionModal from "@components/transition-modal/transition.modal";
-
-import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
-
-export default function RecordScreen(): JSX.Element {
+export default function RecordScreen() {
   const dispatch = useAppDispatch();
   const recording = useAppSelector(selectScreenRecording);
   const [showResults, setShowResults] = useState(false);
@@ -26,7 +22,7 @@ export default function RecordScreen(): JSX.Element {
   const { status, startRecording, stopRecording, mediaBlobUrl, clearBlobUrl } =
     useReactMediaRecorder({
       screen: true,
-      audio: recordAudio
+      audio: recordAudio,
     });
 
   useEscapeKeydown(() => {

@@ -1,15 +1,12 @@
 import { useState } from "react";
 
-import type { ModelCut } from "@type/app.types";
-
-import { ReactComponent as GeometryCoreIcon } from "@assets/svg/geometry-core.svg";
-import { ReactComponent as LeftWallIcon } from "@assets/svg/left-wall.svg";
-import { ReactComponent as RightWallIcon } from "@assets/svg/right-wall.svg";
-import { ReactComponent as ScissorIcon } from "@assets/svg/scissor.svg";
-import { ReactComponent as StairsIcon } from "@assets/svg/stairs.svg";
-
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
+import type { ModelCut } from "#/types/app.types";
+import { ReactComponent as GeometryCoreIcon } from "#/assets/svg/geometry-core.svg";
+import { ReactComponent as LeftWallIcon } from "#/assets/svg/left-wall.svg";
+import { ReactComponent as RightWallIcon } from "#/assets/svg/right-wall.svg";
+import { ReactComponent as ScissorIcon } from "#/assets/svg/scissor.svg";
+import { ReactComponent as StairsIcon } from "#/assets/svg/stairs.svg";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import {
   selectClippingPlanesNormal,
   selectGeometriesCutType,
@@ -17,13 +14,13 @@ import {
   selectSelectedModel,
   setClippingPlanesNormal,
   updateLocalModelCut,
-  updateModelCut
-} from "@features/model/modelSlice";
+  updateModelCut,
+} from "#/features/model/modelSlice";
 
 import MenuDropdown from "../dropdown/MenuDropdown.component";
 import NavIcon from "../navIcon/navIcon";
 
-export default function GeometryCutsMenu(): JSX.Element {
+export default function GeometryCutsMenu() {
   const dispatch = useAppDispatch();
   const cutType = useAppSelector(selectGeometriesCutType);
   const localCutType = useAppSelector(selectLocalGeometryCutType);
@@ -84,7 +81,7 @@ export default function GeometryCutsMenu(): JSX.Element {
     { Icon: RightWallIcon, mode: "-cut2", title: "2'nd cut" },
     { Icon: StairsIcon, mode: "-cut3", title: "3'rd cut" },
     { Icon: GeometryCoreIcon, mode: "-cut4", title: "4'th cut" },
-    { Icon: ScissorIcon, mode: null, title: "Custom cut" }
+    { Icon: ScissorIcon, mode: null, title: "Custom cut" },
   ];
 
   const innerHtml = menuItems.map((item) => {

@@ -1,8 +1,6 @@
-import { useAppDispatch } from "@store/hooks";
-
-import { updateChildNodeState } from "@features/tree/treeSlice";
-
-import { GeometryState } from "@constants/geometryTree";
+import { GeometryState } from "#/constants/geometryTree";
+import { useAppDispatch } from "#/store/hooks";
+import { updateChildNodeState } from "#/features/tree/treeSlice";
 
 export interface ChildNodeProps {
   uid: string;
@@ -15,8 +13,8 @@ export default function ChildNode({
   name,
   uid,
   modelState,
-  nodeEnd
-}: ChildNodeProps): JSX.Element {
+  nodeEnd,
+}: ChildNodeProps) {
   const dispatch = useAppDispatch();
 
   const onClickHandler = (e: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
@@ -28,7 +26,7 @@ export default function ChildNode({
       updateChildNodeState({
         nodeId: uid,
         propToChange: "state",
-        value: state
+        value: state,
       })
     );
   };

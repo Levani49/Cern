@@ -1,14 +1,14 @@
-import { Camera } from "@react-three/fiber";
-
 import { Vector3 } from "three";
 
-import { emptyFunc } from "@type/app.types";
+import { Camera } from "@react-three/fiber";
+
+import { emptyFunc } from "#/types/app.types";
 
 export default class Rocket {
   public configuration = {
     maxHeight: 18,
     lerpSpeed: 0.00375,
-    threshold: 2
+    threshold: 2,
   };
 
   start(camera: Camera, cb: emptyFunc | undefined = undefined): void {

@@ -1,17 +1,13 @@
 import { useState } from "react";
 
-import { ReactComponent as ArrowDownIcon } from "@assets/svg/arrowDown.svg";
-import { ReactComponent as ArrowUpIcon } from "@assets/svg/arrowUp.svg";
+import { ReactComponent as ArrowDownIcon } from "#/assets/svg/arrowDown.svg";
+import { ReactComponent as ArrowUpIcon } from "#/assets/svg/arrowUp.svg";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
+import { selectMenuBar, setMenuBar } from "#/features/global/globalsSlice";
+import NavIcon from "#/components/navigation/navIcon/navIcon";
+import { useEventListener } from "#/hooks/useEventListener/useEventListener.hook";
 
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
-import { selectMenuBar, setMenuBar } from "@features/global/globalsSlice";
-
-import NavIcon from "@components/navigation/navIcon/navIcon";
-
-import { useEventListener } from "@hooks/useEventListener/useEventListener.hook";
-
-export default function ShowMenuBar(): JSX.Element {
+export default function ShowMenuBar() {
   const [mobileIcon, setMobileIcon] = useState(false);
   const dispatch = useAppDispatch();
   const showMenuBar = useAppSelector(selectMenuBar);

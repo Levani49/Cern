@@ -1,6 +1,5 @@
-import { uid } from "@utils/uid.util";
-
-import { TreeNode } from "@constants/geometryTree";
+import { uid } from "#/utils/uid.util";
+import { TreeNode } from "#/constants/geometryTree";
 
 export const MAGNET_SYSTEMS: TreeNode = {
   id: uid(),
@@ -26,9 +25,9 @@ export const MAGNET_SYSTEMS: TreeNode = {
               name: "barrel toroid",
               state: "notLoaded",
               modelPath: "barrel-toroid",
-              nodeEnd: true
-            }
-          ]
+              nodeEnd: true,
+            },
+          ],
         },
         {
           id: uid(),
@@ -47,16 +46,16 @@ export const MAGNET_SYSTEMS: TreeNode = {
                   id: uid(),
                   name: "endcap toroid",
                   state: "notLoaded",
-                  modelPath: "end-cap-toroid-sidea"
+                  modelPath: "end-cap-toroid-sidea",
                 },
                 {
                   id: uid(),
                   name: "tower & turret",
                   state: "notLoaded",
                   modelPath: "tower-turret-sidea",
-                  nodeEnd: true
-                }
-              ]
+                  nodeEnd: true,
+                },
+              ],
             },
             {
               id: uid(),
@@ -69,20 +68,20 @@ export const MAGNET_SYSTEMS: TreeNode = {
                   id: uid(),
                   name: "endcap toroid",
                   state: "notLoaded",
-                  modelPath: "end-cap-toroid-sidec"
+                  modelPath: "end-cap-toroid-sidec",
                 },
                 {
                   id: uid(),
                   name: "tower & turret",
                   state: "notLoaded",
                   modelPath: "tower-turret-sidec",
-                  nodeEnd: true
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
+                  nodeEnd: true,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };

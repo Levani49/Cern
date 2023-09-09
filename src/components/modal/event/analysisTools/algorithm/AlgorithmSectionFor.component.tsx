@@ -5,10 +5,7 @@ interface Props {
   algorithmsList: string[];
 }
 
-export default function AlgorithmSectionFor({
-  title,
-  algorithmsList
-}: Props): JSX.Element {
+export default function AlgorithmSectionFor({ title, algorithmsList }: Props) {
   const innerHtml = algorithmsList.map((algorithm) => {
     return <AlgorithmCheckBox key={algorithm} label={algorithm} />;
   });

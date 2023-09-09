@@ -1,12 +1,10 @@
 import { GizmoHelper, GizmoViewport } from "@react-three/drei";
 import { memo, useState } from "react";
 
-import { useAppSelector } from "@store/hooks";
-
-import { selectAxis } from "@features/global/globalsSlice";
-
-import useDrone from "@hooks/useDrone/useDrone.hook";
-import { useEventListener } from "@hooks/useEventListener/useEventListener.hook";
+import { useAppSelector } from "#/store/hooks";
+import { selectAxis } from "#/features/global/globalsSlice";
+import useDrone from "#/hooks/useDrone/useDrone.hook";
+import { useEventListener } from "#/hooks/useEventListener/useEventListener.hook";
 
 type Aligment =
   | "bottom-right"
@@ -31,10 +29,10 @@ const initialState: Props = {
   margin: [70, 50],
   aligment: "bottom-right",
   axisHeadScale: 0.85,
-  scale: 40
+  scale: 40,
 };
 
-function Axis(): JSX.Element {
+function Axis() {
   const [properties, setProperties] = useState<Props>(initialState);
   const { currentMode } = useDrone();
   const show = useAppSelector(selectAxis);
@@ -47,7 +45,7 @@ function Axis(): JSX.Element {
           margin: [40, 37],
           scale: 25,
           aligment: "top-right",
-          axisHeadScale: 0.8
+          axisHeadScale: 0.8,
         });
       } else {
         setProperties(initialState);

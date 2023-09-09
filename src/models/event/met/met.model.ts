@@ -1,6 +1,5 @@
+import { Met } from "#/services/event/event.service.types";
 import { BufferAttribute, BufferGeometry, Vector3 } from "three";
-
-import { Met } from "@services/event/event.service.types";
 
 import { MetInfo } from "./met.model.types";
 
@@ -9,7 +8,7 @@ export default class MetService {
     energyX: 0,
     energyY: 0,
     energyT: 0,
-    phi: null
+    phi: null,
   };
   init(met: Met): void {
     this.metInfo.energyX = met.etx;
@@ -20,7 +19,14 @@ export default class MetService {
   drawMet(): { geometry: BufferGeometry } {
     const start = new Vector3(0, 0, 0);
     const end = new Vector3(this.metInfo.energyX * 5, this.metInfo.energyY * 5, 0);
-    const vertices = new Float32Array([start.x, start.y, start.z, end.x, end.y, end.z]);
+    const vertices = new Float32Array([
+      start.x,
+      start.y,
+      start.z,
+      end.x,
+      end.y,
+      end.z,
+    ]);
     const geometry = new BufferGeometry();
     geometry.setAttribute("position", new BufferAttribute(vertices, 3));
 

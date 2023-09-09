@@ -1,14 +1,14 @@
 import { useEffect, useMemo, useRef } from "react";
 
-import useEvent from "@hooks/useEvent/useEvent.hook";
+import useEvent from "#/hooks/useEvent/useEvent.hook";
 
-export default function Met(): JSX.Element {
+export default function Met() {
   const { event, eventParameters, MET } = useEvent();
   const lineRef = useRef(null);
 
   useEffect(() => {
     if (lineRef.current) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // eslint-disable-next-line #/typesscript-eslint/ban-ts-comment
       // @ts-ignore
       lineRef.current.computeLineDistances();
     }
@@ -28,7 +28,7 @@ export default function Met(): JSX.Element {
 
   if (metToDraw && eventParameters.met) {
     return (
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // eslint-disable-next-line #/typesscript-eslint/ban-ts-comment
       // @ts-ignore
       <line ref={lineRef} geometry={metToDraw.geometry}>
         <lineDashedMaterial

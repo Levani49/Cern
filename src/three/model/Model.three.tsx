@@ -1,23 +1,19 @@
-import { useLoader } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
-
+import ModelService from "#/services/model/Model.service";
 import { Mesh, Object3D } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-import { ModelCut } from "@type/app.types";
+import { useLoader } from "@react-three/fiber";
+import { useEffect, useRef, useState } from "react";
 
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
+import { ModelCut } from "#/types/app.types";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import {
   selectClippingPlanes,
   selectClippingPlanesNormal,
-  setSelectedModel
-} from "@features/model/modelSlice";
-
-import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
-import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
-
-import ModelService from "@services/model/Model.service";
+  setSelectedModel,
+} from "#/features/model/modelSlice";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown/useEscapeKeydown.hook";
+import useSelectedModel from "#/hooks/useSelectedModel/useSelectedModel";
 
 export interface Event {
   stopPropagation: () => void;
@@ -37,13 +33,7 @@ const modelService = new ModelService();
 
 const LOW_OPACITY_LEVEL = 0.3;
 
-export default function Model({
-  src,
-  id,
-  name,
-  cutType,
-  renderOrder
-}: Props): JSX.Element {
+export default function Model({ src, id, name, cutType, renderOrder }: Props) {
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState<number>(1);
   const [wireframe, setWireframe] = useState<boolean>(false);
@@ -55,7 +45,7 @@ export default function Model({
     modelOpacityLevel,
     globalOpacityLevel,
     modelWireframe,
-    globalWireframe
+    globalWireframe,
   } = useSelectedModel();
 
   const model = useLoader(
@@ -104,13 +94,13 @@ export default function Model({
       if (selectedModel && selectedModel.id !== id) {
         modelService.updateOpacity({
           model: currentRef,
-          opacity: LOW_OPACITY_LEVEL
+          opacity: LOW_OPACITY_LEVEL,
         });
       } else {
         modelService.updateOpacity({
           model: currentRef,
           opacity: opacity,
-          updateUserData: true
+          updateUserData: true,
         });
       }
     }
@@ -124,7 +114,7 @@ export default function Model({
         modelService.updateOpacity({
           model: currentRef,
           opacity: modelOpacityLevel,
-          updateUserData: true
+          updateUserData: true,
         });
         setOpacity(modelOpacityLevel);
       }
@@ -139,7 +129,7 @@ export default function Model({
         modelService.updateWireframe({
           model: currentRef,
           wireframe: modelWireframe,
-          updateUserData: true
+          updateUserData: true,
         });
         setWireframe(modelWireframe);
       }
@@ -161,7 +151,7 @@ export default function Model({
       modelService.updateWireframe({
         model: currentRef,
         wireframe: globalWireframe,
-        updateUserData: true
+        updateUserData: true,
       });
     }
 

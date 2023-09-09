@@ -1,23 +1,19 @@
-import { Camera } from "@react-three/fiber";
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import CameraViews from "#/models/cameraViews/cameraViews.model";
+import {
+  calculateOrthographicDimensions,
+  calculatePerspectiveDimesnions,
+} from "#/three/camera/camera.utils";
 import { WritableDraft } from "immer/dist/internal";
 import { Camera as OriginCamera } from "three";
 
-import type { DroneTypes } from "@type/app.types";
+import { Camera } from "@react-three/fiber";
 
-import type { RootState } from "@store/store";
-
-import {
-  calculateOrthographicDimensions,
-  calculatePerspectiveDimesnions
-} from "@three/camera/camera.utils";
-
-import CameraViews from "@models/cameraViews/cameraViews.model";
-
-import eventsEmitter from "@utils/eventEmitter.utils";
-import { startDroneMode, stopDroneMode } from "@utils/handleDrone.utils";
-import { isMobile } from "@utils/isMobile.utils";
+import type { DroneTypes } from "#/types/app.types";
+import eventsEmitter from "#/utils/eventEmitter.utils";
+import { startDroneMode, stopDroneMode } from "#/utils/handleDrone.utils";
+import { isMobile } from "#/utils/isMobile.utils";
+import type { RootState } from "#/store/store";
 
 import type {
   CameraTypes,
@@ -25,7 +21,7 @@ import type {
   ICameraSettings,
   OrthographicProps,
   PerspectiveProps,
-  ViewModes
+  ViewModes,
 } from "./cameraSlice.types";
 
 const cameraViews = new CameraViews();
@@ -50,8 +46,8 @@ const initialState: ICameraSettings = {
     position: [0, 0, 0],
     aspect: 1,
     near: 0.1,
-    far: 200
-  }
+    far: 200,
+  },
 };
 
 interface OrthoCamera extends OriginCamera {
@@ -196,8 +192,8 @@ export const cameraSlice = createSlice({
       action: PayloadAction<"perspective" | "orthographic">
     ) => {
       state.cameraType = action.payload;
-    }
-  }
+    },
+  },
 });
 
 export default cameraSlice.reducer;
@@ -221,7 +217,7 @@ export const {
   setStopCameraView,
   setControlRotationSpeed,
   setAmbientLightIntensity,
-  setDirectionalLightIntensity
+  setDirectionalLightIntensity,
 } = cameraSlice.actions;
 
 export const selectDefaultCameraPosition = (

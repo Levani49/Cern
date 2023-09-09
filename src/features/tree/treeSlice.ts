@@ -1,22 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import type { ActiveModel } from "@type/app.types";
-
-import type { RootState } from "@store/store";
-
-import { isMobile } from "@utils/isMobile.utils";
-
+import type { ActiveModel } from "#/types/app.types";
+import { isMobile } from "#/utils/isMobile.utils";
 import {
   GEOMETRY_MENU_TREE,
   GeometryState,
-  TreeNode
-} from "@constants/geometryTree";
+  TreeNode,
+} from "#/constants/geometryTree";
+import type { RootState } from "#/store/store";
 
 import {
   updateActiveModels,
   updateChildNode,
   updateNodeAndAncestors,
-  updateParentNode
+  updateParentNode,
 } from "./geometryMenuUtils";
 import type { GeometryTreeSlice, UpdateNodePayloadAction } from "./treeSlice.types";
 
@@ -25,7 +22,7 @@ const showGeometryMenu = isMobile() === false;
 const initialState: GeometryTreeSlice = {
   tree: GEOMETRY_MENU_TREE,
   activeModels: updateActiveModels(GEOMETRY_MENU_TREE),
-  showGeometryMenu
+  showGeometryMenu,
 };
 
 export const geometrySlice = createSlice({
@@ -82,8 +79,8 @@ export const geometrySlice = createSlice({
     },
     setGeometryMenuVisibility: (state, action: PayloadAction<boolean>) => {
       state.showGeometryMenu = action.payload;
-    }
-  }
+    },
+  },
 });
 
 export default geometrySlice.reducer;
@@ -91,7 +88,7 @@ export default geometrySlice.reducer;
 export const {
   updateChildNodeState,
   updateParentNodeState,
-  setGeometryMenuVisibility
+  setGeometryMenuVisibility,
 } = geometrySlice.actions;
 export const selectGeometryTree = (state: RootState): TreeNode[] => state.tree.tree;
 export const selectActiveGeometries = (state: RootState): ActiveModel[] =>

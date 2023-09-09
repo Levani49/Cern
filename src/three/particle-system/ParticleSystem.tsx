@@ -1,17 +1,14 @@
 import { memo, useEffect } from "react";
 
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
-import { setDrawEvents } from "@features/event/eventSlice";
+import { isMobile } from "#/utils/isMobile.utils";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
+import { setDrawEvents } from "#/features/event/eventSlice";
 import {
   selectParticleAnimation,
-  setParticleAnimationState
-} from "@features/global/globalsSlice";
-
-import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
-import useEvent from "@hooks/useEvent/useEvent.hook";
-
-import { isMobile } from "@utils/isMobile.utils";
+  setParticleAnimationState,
+} from "#/features/global/globalsSlice";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown/useEscapeKeydown.hook";
+import useEvent from "#/hooks/useEvent/useEvent.hook";
 
 import Particles from "./Particles.three";
 
@@ -46,7 +43,7 @@ const ParticleSystem = (): JSX.Element => {
   const particleProps = {
     particlesSize: size,
     numberOfParticles: 1000,
-    lifeExpectancy: 600
+    lifeExpectancy: 600,
   };
 
   return (

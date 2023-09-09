@@ -1,6 +1,6 @@
 import { Matrix4, Spherical, Vector3 } from "three";
 
-import { SetOrthoArgs } from "@features/camera/cameraSlice";
+import { SetOrthoArgs } from "#/features/camera/cameraSlice";
 
 export interface OrthographicReturnType {
   left: number;
@@ -33,7 +33,7 @@ export function calculatePerspectiveDimesnions(
   const position = [
     radius * Math.sin(sphere.theta) * Math.sin(sphere.phi),
     radius * Math.cos(sphere.phi),
-    radius * Math.cos(sphere.theta) * Math.sin(sphere.phi)
+    radius * Math.cos(sphere.theta) * Math.sin(sphere.phi),
   ] as [x: number, y: number, z: number];
 
   return {
@@ -41,7 +41,7 @@ export function calculatePerspectiveDimesnions(
     position,
     aspect: width / height,
     near: 0.01,
-    far: 1000
+    far: 1000,
   };
 }
 export function calculateOrthographicDimensions(
@@ -70,6 +70,6 @@ export function calculateOrthographicDimensions(
     matrix: cameraMatrix,
     rotation: [camera.rotation.x, camera.rotation.y, camera.rotation.z],
     near: 0.01,
-    far: 1000
+    far: 1000,
   };
 }

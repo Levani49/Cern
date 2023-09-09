@@ -6,7 +6,7 @@ interface Props {
   className?: string;
 }
 
-export default function Slot({ src, name, role, contact }: Props): JSX.Element {
+export default function Slot({ src, name, role, contact }: Props) {
   return (
     <div className="h-8 w-8 overflow-hidden rounded-full transition-all hover:scale-150 hover:cursor-pointer">
       <a href={contact} target="_blank" rel="noreferrer" title={`${name} : ${role}`}>

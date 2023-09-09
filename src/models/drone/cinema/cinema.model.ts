@@ -1,9 +1,9 @@
-import { Camera } from "@react-three/fiber";
-
 import { Easing, Tween } from "@tweenjs/tween.js";
 import { Vector3 } from "three";
 
-import { emptyFunc } from "@type/app.types";
+import { Camera } from "@react-three/fiber";
+
+import { emptyFunc } from "#/types/app.types";
 
 export default class Cinema {
   animationRef = 0;
@@ -17,7 +17,7 @@ export default class Cinema {
       new Vector3(0, 0, 21),
       new Vector3(12, 3, 28),
       new Vector3(22, 16, 14),
-      new Vector3(camera.position.x, camera.position.y, camera.position.z)
+      new Vector3(camera.position.x, camera.position.y, camera.position.z),
     ];
 
     let currentIndex = 0;
@@ -40,7 +40,7 @@ export default class Cinema {
       tw = new Tween({
         x: startPosition.x,
         y: startPosition.y,
-        z: startPosition.z
+        z: startPosition.z,
       })
         .to({ x: targetPosition.x, y: targetPosition.y, z: targetPosition.z }, 3500)
         .easing(Easing.Quadratic.InOut)

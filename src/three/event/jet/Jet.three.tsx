@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 
-import useEvent from "@hooks/useEvent/useEvent.hook";
+import useEvent from "#/hooks/useEvent/useEvent.hook";
 
-export default function Jet(): JSX.Element {
+export default function Jet() {
   const { event, eventParameters, jetFilterValues, JET } = useEvent();
 
   const jetConesToDraw = useMemo(() => {

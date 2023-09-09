@@ -1,12 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-import type { RootState } from "@store/store";
-
-import EventService from "@services/event/event.service";
+import EventService from "#/services/event/event.service";
 import {
   EventDetailsXML,
-  EventOverviewData
-} from "@services/event/event.service.types";
+  EventOverviewData,
+} from "#/services/event/event.service.types";
+
+import type { RootState } from "#/store/store";
 
 import {
   EventNumber,
@@ -14,7 +13,7 @@ import {
   EventsToShow,
   JetFilter,
   LoadedEvents,
-  TrackFilter
+  TrackFilter,
 } from "./eventSlice.types";
 
 const eventService = new EventService();
@@ -23,7 +22,7 @@ const initialState: EventsSlice = {
   drawEvents: false,
   eventNumber: {
     eventGroup: "E",
-    eventIndex: 5
+    eventIndex: 5,
   },
   loadedEvents: [],
   eventGeneralInfo: {
@@ -31,12 +30,12 @@ const initialState: EventsSlice = {
     eventNumber: "",
     lumiBlock: "",
     date: "",
-    time: ""
+    time: "",
   },
   eventsToShow: {
     tracks: true,
     jets: true,
-    met: true
+    met: true,
   },
   event: null,
   isLoading: false,
@@ -44,14 +43,14 @@ const initialState: EventsSlice = {
     phi: undefined,
     eta: undefined,
     theta: undefined,
-    pt: "0.7"
+    pt: "0.7",
   },
   jetFilter: {
     phi: undefined,
     eta: undefined,
     theta: undefined,
-    et: undefined
-  }
+    et: undefined,
+  },
 };
 
 const eventSlice = createSlice({
@@ -90,8 +89,8 @@ const eventSlice = createSlice({
           loadedEvent: {
             isCustom: true,
             event,
-            name: fileName
-          }
+            name: fileName,
+          },
         });
       } else {
         state.loadedEvents.unshift({
@@ -100,8 +99,8 @@ const eventSlice = createSlice({
           loadedEvent: {
             isCustom: false,
             event: event,
-            name: eventName
-          }
+            name: eventName,
+          },
         });
       }
 
@@ -127,8 +126,8 @@ const eventSlice = createSlice({
     },
     setEventLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
-    }
-  }
+    },
+  },
 });
 
 export default eventSlice.reducer;
@@ -140,7 +139,7 @@ export const {
   setTrackFilters,
   setJetFilters,
   setDrawEvents,
-  rehydrate
+  rehydrate,
 } = eventSlice.actions;
 export const selectEventGeneralInfo = (state: RootState): EventOverviewData =>
   state.event.eventGeneralInfo;

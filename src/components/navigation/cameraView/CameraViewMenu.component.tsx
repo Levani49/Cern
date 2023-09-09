@@ -1,16 +1,14 @@
 import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 
-import { ReactComponent as BackViewIcon } from "@assets/svg/back-side.svg";
-import { ReactComponent as BottomViewIcon } from "@assets/svg/bottom-view.svg";
-import { ReactComponent as EyeIcon } from "@assets/svg/eye.svg";
-import { ReactComponent as FrontSideBox } from "@assets/svg/front-side-box.svg";
-import { ReactComponent as IsoBox } from "@assets/svg/isoBox.svg";
-import { ReactComponent as LeftSideBox } from "@assets/svg/left-side-box.svg";
-import { ReactComponent as RightIcon } from "@assets/svg/rightSide.svg";
-import { ReactComponent as TopViewIcon } from "@assets/svg/top-view.svg";
-
-import { useAppDispatch } from "@store/hooks";
-
+import { ReactComponent as BackViewIcon } from "#/assets/svg/back-side.svg";
+import { ReactComponent as BottomViewIcon } from "#/assets/svg/bottom-view.svg";
+import { ReactComponent as EyeIcon } from "#/assets/svg/eye.svg";
+import { ReactComponent as FrontSideBox } from "#/assets/svg/front-side-box.svg";
+import { ReactComponent as IsoBox } from "#/assets/svg/isoBox.svg";
+import { ReactComponent as LeftSideBox } from "#/assets/svg/left-side-box.svg";
+import { ReactComponent as RightIcon } from "#/assets/svg/rightSide.svg";
+import { ReactComponent as TopViewIcon } from "#/assets/svg/top-view.svg";
+import { useAppDispatch } from "#/store/hooks";
 import {
   setBackView,
   setBottomView,
@@ -19,19 +17,17 @@ import {
   setLeftCameraView,
   setRightView,
   setStopCameraView,
-  setTopView
-} from "@features/camera/cameraSlice";
-
-import CameraMenu from "@components/navigation/camera/CameraMenu.component";
-import WireframeMenu from "@components/navigation/wireframe/WireframeMenu.component";
-
-import useDrone from "@hooks/useDrone/useDrone.hook";
-import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
+  setTopView,
+} from "#/features/camera/cameraSlice";
+import CameraMenu from "#/components/navigation/camera/CameraMenu.component";
+import WireframeMenu from "#/components/navigation/wireframe/WireframeMenu.component";
+import useDrone from "#/hooks/useDrone/useDrone.hook";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import MenuDropdown from "../dropdown/MenuDropdown.component";
 import NavIcon from "../navIcon/navIcon";
 
-export default function CameraViewMenu(): JSX.Element {
+export default function CameraViewMenu() {
   const dispatch = useAppDispatch();
   const { currentMode, setDroneMode } = useDrone();
 
@@ -52,44 +48,44 @@ export default function CameraViewMenu(): JSX.Element {
       Icon: TopViewIcon,
       action: setTopView,
       title: "Top view",
-      mode: "top"
+      mode: "top",
     },
     {
       Icon: LeftSideBox,
       action: setLeftCameraView,
       title: "Left view",
-      mode: "left"
+      mode: "left",
     },
     {
       Icon: IsoBox,
       action: setIsoView,
       title: "Iso view",
-      mode: "default"
+      mode: "default",
     },
     {
       Icon: FrontSideBox,
       action: setFrontView,
       title: "Front view",
-      mode: "front"
+      mode: "front",
     },
     {
       Icon: RightIcon,
       action: setRightView,
       title: "Right view",
-      mode: "right"
+      mode: "right",
     },
     {
       Icon: BackViewIcon,
       action: setBackView,
       title: "Back view",
-      mode: "back"
+      mode: "back",
     },
     {
       Icon: BottomViewIcon,
       action: setBottomView,
       title: "Bottom view",
-      mode: "bottom"
-    }
+      mode: "bottom",
+    },
   ];
 
   const innerHtml = menuItems.map((item) => {

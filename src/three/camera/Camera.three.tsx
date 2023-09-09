@@ -2,16 +2,14 @@ import { OrthographicCamera, PerspectiveCamera } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import {
   selectCameraEffect,
-  triggerCameraEffect
-} from "@features/camera/cameraSlice";
+  triggerCameraEffect,
+} from "#/features/camera/cameraSlice";
+import useCamera from "#/hooks/useCamera/useCamera.hook";
 
-import useCamera from "@hooks/useCamera/useCamera.hook";
-
-export default function Camera(): JSX.Element {
+export default function Camera() {
   const dispatch = useAppDispatch();
   const { size, camera } = useThree();
   const cameraEffect = useAppSelector(selectCameraEffect);
@@ -22,7 +20,7 @@ export default function Camera(): JSX.Element {
     perspectiveCameraProps,
     setCamera,
     setOrthographicCameraDimensions,
-    setPerspectiveCameraDimensions
+    setPerspectiveCameraDimensions,
   } = useCamera();
 
   useEffect(() => {
@@ -34,14 +32,14 @@ export default function Camera(): JSX.Element {
       setOrthographicCameraDimensions({
         camera,
         width: size.width,
-        height: size.height
+        height: size.height,
       })
     );
     dispatch(
       setPerspectiveCameraDimensions({
         camera,
         width: size.width,
-        height: size.height
+        height: size.height,
       })
     );
 
@@ -58,7 +56,7 @@ export default function Camera(): JSX.Element {
     setOrthographicCameraDimensions,
     setPerspectiveCameraDimensions,
     cameraEffect,
-    dispatch
+    dispatch,
   ]);
 
   return (

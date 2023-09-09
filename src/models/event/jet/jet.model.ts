@@ -1,9 +1,8 @@
+import EventService from "#/services/event/event.service";
+import { Jet } from "#/services/event/event.service.types";
 import { ConeGeometry, Matrix4, Quaternion, Vector3 } from "three";
 
-import { EventsSlice } from "@features/event/eventSlice.types";
-
-import EventService from "@services/event/event.service";
-import { Jet } from "@services/event/event.service.types";
+import { EventsSlice } from "#/features/event/eventSlice.types";
 
 import { JetCone, JetInfo } from "./jet.model.types";
 
@@ -17,7 +16,7 @@ export default class JetModel extends EventService {
     eta: [],
     count: null,
     SGK: "",
-    et: []
+    et: [],
   };
 
   init(jet: Jet): void {

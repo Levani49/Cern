@@ -1,16 +1,15 @@
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import {
   selectJetFilter,
   selectTrackFilter,
   setJetFilters,
-  setTrackFilters
-} from "@features/event/eventSlice";
+  setTrackFilters,
+} from "#/features/event/eventSlice";
 
 import FilterContainer from "./FilterContainer.component";
 import FilterInput from "./FilterInput.component";
 
-export default function FilterTool(): JSX.Element {
+export default function FilterTool() {
   const dispatch = useAppDispatch();
   const trackFilterValues = useAppSelector(selectTrackFilter);
   const jetFilterValues = useAppSelector(selectJetFilter);
@@ -19,7 +18,7 @@ export default function FilterTool(): JSX.Element {
     dispatch(
       setTrackFilters({
         ...trackFilterValues,
-        [key]: value
+        [key]: value,
       })
     );
   };
@@ -27,7 +26,7 @@ export default function FilterTool(): JSX.Element {
     dispatch(
       setJetFilters({
         ...jetFilterValues,
-        [key]: value
+        [key]: value,
       })
     );
   };
@@ -38,7 +37,7 @@ export default function FilterTool(): JSX.Element {
         phi: undefined,
         eta: undefined,
         theta: undefined,
-        pt: "0.7"
+        pt: "0.7",
       })
     );
   };
@@ -49,7 +48,7 @@ export default function FilterTool(): JSX.Element {
         phi: undefined,
         eta: undefined,
         theta: undefined,
-        et: undefined
+        et: undefined,
       })
     );
   };

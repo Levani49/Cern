@@ -1,20 +1,18 @@
-import { useState } from "react";
-
 import { saveAs } from "file-saver";
 
-import { ReactComponent as LinkIcon } from "@assets/svg/link.svg";
-import { ReactComponent as QrCode } from "@assets/svg/qrCode.svg";
+import { useState } from "react";
 
-import Button from "@components/button/Button.component";
-import NavIcon from "@components/navigation/navIcon/navIcon";
-import TransitionModal from "@components/transition-modal/transition.modal";
-
-import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
+import { ReactComponent as LinkIcon } from "#/assets/svg/link.svg";
+import { ReactComponent as QrCode } from "#/assets/svg/qrCode.svg";
+import Button from "#/components/button/Button.component";
+import NavIcon from "#/components/navigation/navIcon/navIcon";
+import TransitionModal from "#/components/transition-modal/transition.modal";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 const HOST = import.meta.env.VITE_HOST;
 const EMBED_TEXT = `<iframe src="${HOST}/?embed=true" style="width: 560px; height: 560px"></iframe>`;
 
-export default function Link(): JSX.Element {
+export default function Link() {
   const [embedCopied, setEmbedCopied] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
   const [open, setOpen] = useState(false);

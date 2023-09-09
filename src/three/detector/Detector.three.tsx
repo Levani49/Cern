@@ -1,20 +1,17 @@
+import Model from "#/three/model/Model.three";
+
 import { Suspense, useEffect, useState } from "react";
 
-import { ActiveModel, ModelCut } from "@type/app.types";
-
-import { useAppSelector } from "@store/hooks";
-
-import { selectSelectedModel } from "@features/model/modelSlice";
-
-import Model from "@three/model/Model.three";
-
-import { useDetectorState } from "@hooks/useDetectorState/useDetectorState";
+import { ActiveModel, ModelCut } from "#/types/app.types";
+import { useAppSelector } from "#/store/hooks";
+import { selectSelectedModel } from "#/features/model/modelSlice";
+import { useDetectorState } from "#/hooks/useDetectorState/useDetectorState";
 
 interface LocalModel extends ActiveModel {
   cutType: ModelCut;
 }
 
-export default function Detector(): JSX.Element {
+export default function Detector() {
   const [localModels, setLocalModels] = useState<LocalModel[]>([]);
   const { models, cutType, localCutType } = useDetectorState();
   const selectedModel = useAppSelector(selectSelectedModel);
@@ -32,7 +29,7 @@ export default function Detector(): JSX.Element {
         } else {
           return {
             ...model,
-            cutType
+            cutType,
           };
         }
       });
@@ -54,7 +51,7 @@ export default function Detector(): JSX.Element {
 
         return {
           ...model,
-          cutType: modelCutType
+          cutType: modelCutType,
         };
       });
 

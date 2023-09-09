@@ -1,22 +1,21 @@
 import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 
-import Header from "@components/navigation/navigation";
-import VideoPulse from "@components/screen-recording/screenRecording.component";
-import FlyStats from "@components/three/fly-graph/fly-stats.component";
-import FlyOverlay from "@components/three/fly-graph/FlyGraph.component";
-import Stats from "@components/three/stats/Stats.component";
-import Tree from "@components/tree/tree/Tree.component";
+import { validateEnvironmentVariables } from "#/utils/validateEnvironmentVariables";
+import Header from "#/components/navigation/navigation";
+import VideoPulse from "#/components/screen-recording/screenRecording.component";
+import FlyStats from "#/components/three/fly-graph/fly-stats.component";
+import FlyOverlay from "#/components/three/fly-graph/FlyGraph.component";
+import Stats from "#/components/three/stats/Stats.component";
+import Tree from "#/components/tree/tree/Tree.component";
 
-import { validateEnvironmentVariables } from "@utils/validateEnvironmentVariables";
-
-const Canvas = lazy(() => import("@three/canvas/canvas.three"));
-const Logo = lazy(() => import("@components/logo/Logo.component"));
+const Canvas = lazy(() => import("#/three/canvas/canvas.three"));
+const Logo = lazy(() => import("#/components/logo/Logo.component"));
 const ModelInformation = lazy(
-  () => import("@components/modal/modelInformation/ModelInformation.component")
+  () => import("#/components/modal/modelInformation/ModelInformation.component")
 );
 
-export default function App(): JSX.Element {
+export default function App() {
   validateEnvironmentVariables();
 
   return (

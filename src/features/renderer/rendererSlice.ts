@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import type { RootState } from "@store/store";
+import type { RootState } from "#/store/store";
 
 import type { RendererInfo, RendererType } from "./rendererSlice.types";
 
@@ -9,8 +9,8 @@ const initialState: RendererInfo = {
   renderer: {
     triangles: 0,
     fps: 0,
-    memory: 0
-  }
+    memory: 0,
+  },
 };
 
 /**
@@ -28,10 +28,10 @@ export const infoSlice = createSlice({
     setRendererStats: (state, action: PayloadAction<RendererType>) => {
       state.renderer = {
         ...state.renderer,
-        ...action.payload
+        ...action.payload,
       };
-    }
-  }
+    },
+  },
 });
 
 export default infoSlice.reducer;

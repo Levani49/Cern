@@ -13,8 +13,8 @@ export default function FilterInput({
   filterProp,
   filter,
   value,
-  onChangeHandler
-}: Props): JSX.Element {
+  onChangeHandler,
+}: Props) {
   // const [value, setValue] = useState<undefined | string>('');
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {

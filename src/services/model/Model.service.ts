@@ -1,7 +1,7 @@
 import { Mesh, Object3D } from "three";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
-import { ModelCut } from "@type/app.types";
+import { ModelCut } from "#/types/app.types";
 
 let renderOrder = 0;
 
@@ -38,7 +38,7 @@ export default class ModelService {
         if (updateUserData) {
           child.userData = {
             ...child.userData,
-            opacity
+            opacity,
           };
         }
       }
@@ -53,7 +53,7 @@ export default class ModelService {
         if (updateUserData) {
           child.userData = {
             ...child.userData,
-            wireframe
+            wireframe,
           };
         }
       }

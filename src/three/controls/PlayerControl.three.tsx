@@ -2,9 +2,9 @@ export default {};
 
 // import { useThree } from "@react-three/fiber";
 
-// // import FirstPersonControl from "@three/player-control/PlayerControl.three";
+// // import FirstPersonControl from "#/three/player-control/PlayerControl.three";
 
-// export default function PlayerControls(): JSX.Element {
+// export default function PlayerControls() {
 //   const { camera } = useThree();
 
 //   return (

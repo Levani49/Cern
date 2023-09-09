@@ -1,11 +1,10 @@
-import { Camera } from "@react-three/fiber";
-import { useMemo } from "react";
-
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { WritableDraft } from "immer/dist/internal";
 
-import { useAppSelector } from "@store/hooks";
+import { Camera } from "@react-three/fiber";
+import { useMemo } from "react";
 
+import { useAppSelector } from "#/store/hooks";
 import {
   selectCameraType,
   selectOrthographicCameraProps,
@@ -15,13 +14,13 @@ import {
   setCameraType,
   SetOrthoArgs,
   setOrthographicCameraDimensions,
-  setPerspectiveCameraDimensions
-} from "@features/camera/cameraSlice";
+  setPerspectiveCameraDimensions,
+} from "#/features/camera/cameraSlice";
 import {
   CameraTypes,
   OrthographicProps,
-  PerspectiveProps
-} from "@features/camera/cameraSlice.types";
+  PerspectiveProps,
+} from "#/features/camera/cameraSlice.types";
 
 export default function useCamera(): UseCamera {
   const cameraType = useAppSelector(selectCameraType);
@@ -37,7 +36,7 @@ export default function useCamera(): UseCamera {
       setCamera,
       setCameraPosition,
       setOrthographicCameraDimensions,
-      setPerspectiveCameraDimensions
+      setPerspectiveCameraDimensions,
     }),
     [cameraType, orthographicCameraProps, perspectiveCameraProps]
   );

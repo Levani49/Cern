@@ -1,6 +1,5 @@
-import { uid } from "@utils/uid.util";
-
-import { TreeNode } from "@constants/geometryTree";
+import { uid } from "#/utils/uid.util";
+import { TreeNode } from "#/constants/geometryTree";
 
 export const MUON_SPECTROMETER: TreeNode = {
   id: uid(),
@@ -18,22 +17,22 @@ export const MUON_SPECTROMETER: TreeNode = {
           id: uid(),
           name: "bi inner",
           state: "notLoaded",
-          modelPath: "muon-barrel-inner"
+          modelPath: "muon-barrel-inner",
         },
         {
           id: uid(),
           name: "bi middle",
           state: "notLoaded",
-          modelPath: "muon-barrel-middle"
+          modelPath: "muon-barrel-middle",
         },
         {
           id: uid(),
           name: "bi outer",
           state: "notLoaded",
           modelPath: "muon-barrel-outer",
-          nodeEnd: true
-        }
-      ]
+          nodeEnd: true,
+        },
+      ],
     },
     {
       id: uid(),
@@ -58,22 +57,22 @@ export const MUON_SPECTROMETER: TreeNode = {
                   id: uid(),
                   name: "sw chambers",
                   state: "notLoaded",
-                  modelPath: "small-wheel-chambers-sidea"
+                  modelPath: "small-wheel-chambers-sidea",
                 },
                 {
                   id: uid(),
                   name: "njd shielding",
                   state: "notLoaded",
-                  modelPath: "small-wheel-njd-sidea"
+                  modelPath: "small-wheel-njd-sidea",
                 },
                 {
                   id: uid(),
                   name: "hub",
                   state: "notLoaded",
                   modelPath: "small-wheel-hub-sidea",
-                  nodeEnd: true
-                }
-              ]
+                  nodeEnd: true,
+                },
+              ],
             },
             {
               id: uid(),
@@ -85,43 +84,43 @@ export const MUON_SPECTROMETER: TreeNode = {
                   id: uid(),
                   name: "tgc1",
                   state: "notLoaded",
-                  modelPath: "tgc-sidea"
+                  modelPath: "tgc-sidea",
                 },
                 {
                   id: uid(),
                   name: "mdt",
                   state: "notLoaded",
-                  modelPath: "muon-big-wheel-mdt-sidea"
+                  modelPath: "muon-big-wheel-mdt-sidea",
                 },
                 {
                   id: uid(),
                   name: "tgc2",
                   state: "notLoaded",
-                  modelPath: "tgc2-sidea"
+                  modelPath: "tgc2-sidea",
                 },
                 {
                   id: uid(),
                   name: "tgc3",
                   state: "notLoaded",
                   modelPath: "tgc3-sidea",
-                  nodeEnd: true
-                }
-              ]
+                  nodeEnd: true,
+                },
+              ],
             },
             {
               id: uid(),
               name: "ex extra wheel",
               state: "notLoaded",
-              modelPath: "extra-wheel-sidea"
+              modelPath: "extra-wheel-sidea",
             },
             {
               id: uid(),
               name: "eo outer wheel",
               state: "notLoaded",
               modelPath: "outer-wheel-sidea",
-              nodeEnd: true
-            }
-          ]
+              nodeEnd: true,
+            },
+          ],
         },
         {
           id: uid(),
@@ -140,22 +139,22 @@ export const MUON_SPECTROMETER: TreeNode = {
                   id: uid(),
                   name: "sw chambers",
                   state: "notLoaded",
-                  modelPath: "small-wheel-chambers-sidec"
+                  modelPath: "small-wheel-chambers-sidec",
                 },
                 {
                   id: uid(),
                   name: "njd shielding",
                   state: "notLoaded",
-                  modelPath: "small-wheel-njd-sidec"
+                  modelPath: "small-wheel-njd-sidec",
                 },
                 {
                   id: uid(),
                   name: "hub",
                   state: "notLoaded",
                   modelPath: "small-wheel-hub-sidec",
-                  nodeEnd: true
-                }
-              ]
+                  nodeEnd: true,
+                },
+              ],
             },
             {
               id: uid(),
@@ -167,45 +166,45 @@ export const MUON_SPECTROMETER: TreeNode = {
                   id: uid(),
                   name: "tgc1",
                   state: "notLoaded",
-                  modelPath: "tgc-sidec"
+                  modelPath: "tgc-sidec",
                 },
                 {
                   id: uid(),
                   name: "mdt",
                   state: "notLoaded",
-                  modelPath: "muon-big-wheel-mdt-sidec"
+                  modelPath: "muon-big-wheel-mdt-sidec",
                 },
                 {
                   id: uid(),
                   name: "tgc2",
                   state: "notLoaded",
-                  modelPath: "tgc2-sidec"
+                  modelPath: "tgc2-sidec",
                 },
                 {
                   id: uid(),
                   name: "tgc3",
                   state: "notLoaded",
                   modelPath: "tgc3-sidec",
-                  nodeEnd: true
-                }
-              ]
+                  nodeEnd: true,
+                },
+              ],
             },
             {
               id: uid(),
               name: "ex extra wheel",
               state: "notLoaded",
-              modelPath: "extra-wheel-sidec"
+              modelPath: "extra-wheel-sidec",
             },
             {
               id: uid(),
               name: "eo outer wheel",
               state: "notLoaded",
               modelPath: "outer-wheel-sidec",
-              nodeEnd: true
-            }
-          ]
-        }
-      ]
-    }
-  ]
+              nodeEnd: true,
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };

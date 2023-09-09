@@ -1,4 +1,4 @@
-import { EmployeeStaticData } from "@type/app.types";
+import { EmployeeStaticData } from "#/types/app.types";
 
 export const TEMP_INFO: EmployeeStaticData = {
   employees: [
@@ -7,7 +7,7 @@ export const TEMP_INFO: EmployeeStaticData = {
       name: "Sharmazanashvili Alexander",
       src: "/assets/images/sharmazanashvili-1.jpg",
       role: "Project manager, Concept creator",
-      contact: "http://cadcam.ge/sharmazanashvili-personal/"
+      contact: "http://cadcam.ge/sharmazanashvili-personal/",
     },
 
     {
@@ -15,14 +15,14 @@ export const TEMP_INFO: EmployeeStaticData = {
       name: "Kverenchkhiladze Irakli",
       src: "/assets/images/kverenchxiladze.png",
       role: "Chief Software developer",
-      contact: "http://cadcam.ge/kverenchkhiladze-personal/"
+      contact: "http://cadcam.ge/kverenchkhiladze-personal/",
     },
     {
       id: "4",
       name: "Zurashvili Nino",
       src: "/assets/images/niko-1.png",
       role: "Software developer",
-      contact: "http://cadcam.ge/zurashvili-personal/"
+      contact: "http://cadcam.ge/zurashvili-personal/",
     },
 
     {
@@ -30,14 +30,14 @@ export const TEMP_INFO: EmployeeStaticData = {
       name: "Alikhanovi Alexander",
       src: "/assets/images/alixanovi.png",
       role: "Geometry designer",
-      contact: "http://cadcam.ge/alikhanovi-personal/"
+      contact: "http://cadcam.ge/alikhanovi-personal/",
     },
     {
       id: "3",
       name: "Kekelia Besik",
       src: "/assets/images/kekelia-3.png",
       role: "Geometry designer",
-      contact: "http://cadcam.ge/kekelia-personal/"
+      contact: "http://cadcam.ge/kekelia-personal/",
     },
 
     {
@@ -45,7 +45,7 @@ export const TEMP_INFO: EmployeeStaticData = {
       name: "Mirziashvili Giorgi",
       src: "/assets/images/Mirziashvili-1.png",
       role: "Geometry designer",
-      contact: "http://cadcam.ge/mirziashvili-personal/"
+      contact: "http://cadcam.ge/mirziashvili-personal/",
     },
 
     {
@@ -53,21 +53,21 @@ export const TEMP_INFO: EmployeeStaticData = {
       name: "Tsutskiridze Kote",
       src: "/assets/images/kekelia-3-1.png",
       role: "Geometry designer",
-      contact: "http://cadcam.ge/page/"
+      contact: "http://cadcam.ge/page/",
     },
     {
       id: "91",
       name: "Kobakhidze Shota",
       src: "/assets/images/kekelia-3-1.png",
       role: "Geometry designer",
-      contact: "http://cadcam.ge/page/"
+      contact: "http://cadcam.ge/page/",
     },
     {
       id: "91-e",
       name: "Udzilauri Nikoloz",
       src: "/assets/images/kekelia-3-1.png",
       role: "UI Concept designer",
-      contact: "http://cadcam.ge/page/"
-    }
-  ]
+      contact: "http://cadcam.ge/page/",
+    },
+  ],
 };

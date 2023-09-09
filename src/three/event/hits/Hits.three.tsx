@@ -1,3 +1,3 @@
-export default function Hits(): JSX.Element {
+export default function Hits() {
   return <></>;
 }

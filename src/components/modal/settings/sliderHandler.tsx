@@ -1,4 +1,4 @@
-import Slider from "@components/slider/slider.component";
+import Slider from "#/components/slider/slider.component";
 
 interface Props {
   title: string;
@@ -10,11 +10,7 @@ interface Props {
   onChange: (e: number | number[]) => void;
 }
 
-export default function SliderHandler({
-  value,
-  title,
-  ...rest
-}: Props): JSX.Element {
+export default function SliderHandler({ value, title, ...rest }: Props) {
   const convertToPercentage = (value: number, min: number, max: number): number => {
     const range = max - min;
     const percentage = ((value - min) / range) * 100;

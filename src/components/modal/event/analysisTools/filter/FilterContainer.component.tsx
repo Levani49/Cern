@@ -1,6 +1,5 @@
-import { ReactChildren } from "@type/app.types";
-
-import { ReactComponent as RefreshIcon } from "@assets/svg/refresh.svg";
+import { ReactChildren } from "#/types/app.types";
+import { ReactComponent as RefreshIcon } from "#/assets/svg/refresh.svg";
 
 interface Props {
   title: string;
@@ -14,8 +13,8 @@ export default function FilterContainer({
   title,
   children,
   resetButtonTitle,
-  onFieldsReset
-}: Props): JSX.Element {
+  onFieldsReset,
+}: Props) {
   return (
     <div className="flex flex-col">
       <div className="flex w-full items-center justify-between">

@@ -1,9 +1,9 @@
+import { twMerge } from "tailwind-merge";
+
 import { Dialog, Transition } from "@headlessui/react";
 import { CSSProperties, Fragment, useRef } from "react";
 
-import { twMerge } from "tailwind-merge";
-
-import { ReactComponent as XMarkIcon } from "@assets/svg/xMarkIcon.svg";
+import { ReactComponent as XMarkIcon } from "#/assets/svg/xMarkIcon.svg";
 
 interface Props {
   open: boolean;
@@ -20,8 +20,8 @@ export default function TransitionModal({
   title,
   children,
   onClose,
-  style
-}: Props): JSX.Element {
+  style,
+}: Props) {
   const cancelButtonRef = useRef(null);
 
   const componentClasses = twMerge(

@@ -1,6 +1,6 @@
 import { Camera } from "@react-three/fiber";
 
-import { DroneTypes } from "@type/app.types";
+import { DroneTypes } from "#/types/app.types";
 
 export type coordinates = [x: number, y: number, z: number];
 

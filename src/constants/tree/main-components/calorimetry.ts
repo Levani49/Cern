@@ -1,6 +1,5 @@
-import { uid } from "@utils/uid.util";
-
-import { TreeNode } from "@constants/geometryTree";
+import { uid } from "#/utils/uid.util";
+import { TreeNode } from "#/constants/geometryTree";
 
 export const CALORIMETRY: TreeNode = {
   id: uid(),
@@ -18,7 +17,7 @@ export const CALORIMETRY: TreeNode = {
           id: uid(),
           name: "barrel",
           state: "notLoaded",
-          modelPath: "lar-barrel"
+          modelPath: "lar-barrel",
         },
         {
           id: uid(),
@@ -37,22 +36,22 @@ export const CALORIMETRY: TreeNode = {
                   id: uid(),
                   name: "lar emec",
                   state: "notLoaded",
-                  modelPath: "lar-emec-sidea"
+                  modelPath: "lar-emec-sidea",
                 },
                 {
                   id: uid(),
                   name: "lar hec",
                   state: "notLoaded",
-                  modelPath: "lar-hec-sidea"
+                  modelPath: "lar-hec-sidea",
                 },
                 {
                   id: uid(),
                   name: "lar fcal",
                   state: "notLoaded",
                   modelPath: "lar-fcal-sidea",
-                  nodeEnd: true
-                }
-              ]
+                  nodeEnd: true,
+                },
+              ],
             },
             {
               id: uid(),
@@ -65,26 +64,26 @@ export const CALORIMETRY: TreeNode = {
                   id: uid(),
                   name: "lar emec",
                   state: "notLoaded",
-                  modelPath: "lar-emec-sidec"
+                  modelPath: "lar-emec-sidec",
                 },
                 {
                   id: uid(),
                   name: "lar hec",
                   state: "notLoaded",
-                  modelPath: "lar-hec-sidec"
+                  modelPath: "lar-hec-sidec",
                 },
                 {
                   id: uid(),
                   name: "lar fcal",
                   state: "notLoaded",
                   modelPath: "lar-fcal-sidec",
-                  nodeEnd: true
-                }
-              ]
-            }
-          ]
-        }
-      ]
+                  nodeEnd: true,
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
       id: uid(),
@@ -97,7 +96,7 @@ export const CALORIMETRY: TreeNode = {
           id: uid(),
           name: "barrel",
           state: "notLoaded",
-          modelPath: "tile-barrel"
+          modelPath: "tile-barrel",
         },
         {
           id: uid(),
@@ -110,18 +109,18 @@ export const CALORIMETRY: TreeNode = {
               id: uid(),
               name: "side a",
               state: "notLoaded",
-              modelPath: "tile-end-cap-sidea"
+              modelPath: "tile-end-cap-sidea",
             },
             {
               id: uid(),
               name: "side c",
               state: "notLoaded",
               modelPath: "tile-end-cap-sidec",
-              nodeEnd: true
-            }
-          ]
-        }
-      ]
-    }
-  ]
+              nodeEnd: true,
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };

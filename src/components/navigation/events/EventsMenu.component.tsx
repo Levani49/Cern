@@ -1,13 +1,14 @@
-import { ReactComponent as EventsIcon } from "@assets/svg/events.svg";
-
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
-import { selectEventsModalState, showEventsModal } from "@features/modal/modalSlice";
+import { ReactComponent as EventsIcon } from "#/assets/svg/events.svg";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
+import {
+  selectEventsModalState,
+  showEventsModal,
+} from "#/features/modal/modalSlice";
 
 import EventsModal from "../../modal/event/Event.modal";
 import NavIcon from "../navIcon/navIcon";
 
-export default function EventsMenu(): JSX.Element {
+export default function EventsMenu() {
   const dispatch = useAppDispatch();
   const active = useAppSelector(selectEventsModalState);
 

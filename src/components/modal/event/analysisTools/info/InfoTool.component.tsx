@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { ReactComponent as MinusCircleIcon } from "@assets/svg/minusCircleIcon.svg";
-import { ReactComponent as PlusCircleIcon } from "@assets/svg/plusCircleIcon.svg";
-
-import { useAppDispatch } from "@store/hooks";
-
-import { setEventDetailsXML } from "@features/event/eventSlice";
-import { UploadedEvent } from "@features/event/eventSlice.types";
+import { ReactComponent as MinusCircleIcon } from "#/assets/svg/minusCircleIcon.svg";
+import { ReactComponent as PlusCircleIcon } from "#/assets/svg/plusCircleIcon.svg";
+import { useAppDispatch } from "#/store/hooks";
+import { setEventDetailsXML } from "#/features/event/eventSlice";
+import { UploadedEvent } from "#/features/event/eventSlice.types";
 
 import EventLine from "./EventLine.component";
 
@@ -31,8 +29,8 @@ export default function InfoTool({
   date,
   time,
   loadedEvent,
-  active = false
-}: Props): JSX.Element {
+  active = false,
+}: Props) {
   const [show, setShow] = useState(false);
   const dispatch = useAppDispatch();
 

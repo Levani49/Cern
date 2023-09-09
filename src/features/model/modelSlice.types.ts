@@ -1,6 +1,6 @@
 import { Plane } from "three";
 
-import { ModelCut, ModelLoadingStates, selectedModel } from "@type/app.types";
+import { ModelCut, ModelLoadingStates, selectedModel } from "#/types/app.types";
 
 export interface ModelSlice {
   modelWireframe: boolean;

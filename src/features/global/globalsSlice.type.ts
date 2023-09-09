@@ -1,4 +1,4 @@
-import type { ModelLoadingStates, selectedModel } from "@type/app.types";
+import type { ModelLoadingStates, selectedModel } from "#/types/app.types";
 
 export type ModalOrder = {
   id: string;

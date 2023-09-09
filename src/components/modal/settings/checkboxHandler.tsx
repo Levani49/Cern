@@ -1,4 +1,4 @@
-import Checkbox from "@components/modal/event/event-objects/Checkbox.component";
+import Checkbox from "#/components/modal/event/event-objects/Checkbox.component";
 
 interface Props {
   title: string;
@@ -7,7 +7,7 @@ interface Props {
   onClick: () => void;
 }
 
-export default function CheckboxHandler({ title, ...rest }: Props): JSX.Element {
+export default function CheckboxHandler({ title, ...rest }: Props) {
   return (
     <div className="flex items-center gap-2">
       <span>{title}</span>

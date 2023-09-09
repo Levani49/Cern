@@ -1,8 +1,7 @@
-import { useAppDispatch } from "@store/hooks";
+import { useAppDispatch } from "#/store/hooks";
+import useDrone from "#/hooks/useDrone/useDrone.hook";
 
-import useDrone from "@hooks/useDrone/useDrone.hook";
-
-export default function FlyOverlay(): JSX.Element {
+export default function FlyOverlay() {
   const dispatch = useAppDispatch();
   const { currentMode, setFlyModalState, showFlyModal } = useDrone();
 

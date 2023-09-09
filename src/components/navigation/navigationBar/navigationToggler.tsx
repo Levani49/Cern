@@ -1,12 +1,9 @@
-import { ReactComponent as MenuLogo } from "@assets/svg/menu.svg";
+import { ReactComponent as MenuLogo } from "#/assets/svg/menu.svg";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
+import { selectMenuBar, setMenuBar } from "#/features/global/globalsSlice";
+import NavIcon from "#/components/navigation/navIcon/navIcon";
 
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
-import { selectMenuBar, setMenuBar } from "@features/global/globalsSlice";
-
-import NavIcon from "@components/navigation/navIcon/navIcon";
-
-export default function NavigationBar(): JSX.Element {
+export default function NavigationBar() {
   const dispatch = useAppDispatch();
   const show = useAppSelector(selectMenuBar);
 

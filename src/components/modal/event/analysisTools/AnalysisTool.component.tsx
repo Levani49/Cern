@@ -3,11 +3,7 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   active: boolean;
 }
 
-export default function AnalysisTool({
-  title,
-  active,
-  ...rest
-}: Props): JSX.Element {
+export default function AnalysisTool({ title, active, ...rest }: Props) {
   return (
     <button
       {...rest}

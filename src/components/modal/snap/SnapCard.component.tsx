@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react";
 
-import { ReactChildren } from "@type/app.types";
+import { ReactChildren } from "#/types/app.types";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   text: string;
@@ -8,12 +8,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   children: ReactChildren;
 }
 
-export default function SnapCard({
-  text,
-  Icon,
-  children,
-  ...rest
-}: Props): JSX.Element {
+export default function SnapCard({ text, Icon, children, ...rest }: Props) {
   return (
     <div className="flex flex-1 flex-col gap-5 rounded " {...rest}>
       <div className="mb-2 flex h-full flex-col items-center gap-4 rounded bg-dark2 px-2 py-6 transition-all">

@@ -1,24 +1,21 @@
+import EventService from "#/services/event/event.service";
+
 import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import Select, { StylesConfig } from "react-select";
 
-import { ReactComponent as ArrowUpTrayIcon } from "@assets/svg/arrowUpTrayIcon.svg";
-import { ReactComponent as ChevronLeftIcon } from "@assets/svg/chervonLeftIcon.svg";
-import { ReactComponent as ChevronRightIcon } from "@assets/svg/chervonRightIcon.svg";
-import { ReactComponent as FolderIcon } from "@assets/svg/folderIcon.svg";
-
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
+import { eventFileIsValid } from "#/utils/eventFileIsValid.utils";
+import { ReactComponent as ArrowUpTrayIcon } from "#/assets/svg/arrowUpTrayIcon.svg";
+import { ReactComponent as ChevronLeftIcon } from "#/assets/svg/chervonLeftIcon.svg";
+import { ReactComponent as ChevronRightIcon } from "#/assets/svg/chervonRightIcon.svg";
+import { ReactComponent as FolderIcon } from "#/assets/svg/folderIcon.svg";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import {
   selectEventIsLoading,
   selectEventNumber,
   setEventDetailsXML,
-  setEventNumber
-} from "@features/event/eventSlice";
-
-import EventService from "@services/event/event.service";
-
-import { eventFileIsValid } from "@utils/eventFileIsValid.utils";
+  setEventNumber,
+} from "#/features/event/eventSlice";
 
 type HandleOptionChange = {
   value: string;
@@ -43,13 +40,13 @@ const groupSelectOptions = [
   "o",
   "p",
   "q",
-  "r"
+  "r",
 ].map((group) => {
   const g = group.toUpperCase();
 
   return {
     value: g,
-    label: `group ${g}`
+    label: `group ${g}`,
   };
 });
 
@@ -57,7 +54,7 @@ const eventSelectOptions = Array.from({ length: 50 }, (_, index) => index + 1).m
   (eventNumber) => {
     return {
       value: eventNumber,
-      label: `Event #${eventNumber}`
+      label: `Event #${eventNumber}`,
     };
   }
 );
@@ -69,13 +66,13 @@ const customStyles: StylesConfig = {
     fontSize: "16px",
     padding: "0",
     minHeight: "30px",
-    backgroundColor: "rgb(41,45,57)"
+    backgroundColor: "rgb(41,45,57)",
   }),
   dropdownIndicator: (provided) => ({
     ...provided,
     padding: "0px",
     paddingLeft: "2px",
-    paddingRight: "2px"
+    paddingRight: "2px",
   }),
   menu: (provided) => ({
     ...provided,
@@ -83,7 +80,7 @@ const customStyles: StylesConfig = {
     maxHeight: "200px",
     position: "relative",
     overflowY: "auto",
-    padding: "0"
+    padding: "0",
   }),
   option: (provided, state) => ({
     ...provided,
@@ -93,17 +90,17 @@ const customStyles: StylesConfig = {
       ? "rgb(64, 207, 142)"
       : state.isFocused
       ? "rgba(255, 255, 255, 0.16)"
-      : "transparent"
+      : "transparent",
   }),
   singleValue: (provided) => ({
     ...provided,
-    color: "rgb(223, 230, 233)"
-  })
+    color: "rgb(223, 230, 233)",
+  }),
 };
 
 const eventService = new EventService();
 
-export default function FileActions(): JSX.Element {
+export default function FileActions() {
   const dispatch = useAppDispatch();
   const eventNumber = useAppSelector(selectEventNumber);
   const [error, setError] = useState(false);
@@ -121,7 +118,7 @@ export default function FileActions(): JSX.Element {
     dispatch(
       setEventNumber({
         ...eventNumber,
-        eventIndex: index
+        eventIndex: index,
       })
     );
   };
@@ -131,7 +128,7 @@ export default function FileActions(): JSX.Element {
     dispatch(
       setEventNumber({
         ...eventNumber,
-        eventIndex: index
+        eventIndex: index,
       })
     );
   };

@@ -1,17 +1,14 @@
+import { twMerge } from "tailwind-merge";
+
 import { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Draggable from "react-draggable";
 
-import { twMerge } from "tailwind-merge";
-
-import type { ReactChildren } from "@type/app.types";
-
-import { ReactComponent as CarretDown } from "@assets/svg/carretDown.svg";
-import { ReactComponent as XMarkIcon } from "@assets/svg/xMarkIcon.svg";
-
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
-import { selectModals, setModalsOrder } from "@features/global/globalsSlice";
+import type { ReactChildren } from "#/types/app.types";
+import { ReactComponent as CarretDown } from "#/assets/svg/carretDown.svg";
+import { ReactComponent as XMarkIcon } from "#/assets/svg/xMarkIcon.svg";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
+import { selectModals, setModalsOrder } from "#/features/global/globalsSlice";
 
 interface Props {
   show: boolean;
@@ -28,8 +25,8 @@ export default function Modal({
   onCloseHandler,
   children,
   className,
-  id
-}: Props): JSX.Element {
+  id,
+}: Props) {
   const nodeRef = useRef<HTMLDivElement | null>(null);
   const dispatch = useAppDispatch();
   const [drop, setDrop] = useState(true);
@@ -55,7 +52,7 @@ export default function Modal({
         onPointerDown={handlePointerDown}
         className="modal  min-w-[227px] rounded-xl text-accent3"
         style={{
-          zIndex: zIndex
+          zIndex: zIndex,
         }}
       >
         <div className={c}>
@@ -91,7 +88,7 @@ export default function Modal({
         </div>
       </div>
     </Draggable>,
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // eslint-disable-next-line #/typesscript-eslint/no-non-null-assertion
     document.getElementById("modal")!
   );
 }

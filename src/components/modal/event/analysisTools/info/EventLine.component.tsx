@@ -4,11 +4,7 @@ interface Props {
   lastEvent?: boolean;
 }
 
-export default function EventLine({
-  title,
-  titleLabel,
-  lastEvent
-}: Props): JSX.Element {
+export default function EventLine({ title, titleLabel, lastEvent }: Props) {
   return (
     <ul className="block pl-[8px]">
       <li

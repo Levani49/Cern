@@ -1,12 +1,12 @@
 export const n = null;
 // import { Bloom, EffectComposer } from "@react-three/postprocessing";
 // import { useAppSelector } from "../../app/hooks";
-// import { selectParticleAnimationState } from "@features/globalsSlice";
+// import { selectParticleAnimationState } from "#/features/globalsSlice";
 
 // /**
 //  *
 //  */
-// export default function Effects(): JSX.Element {
+// export default function Effects() {
 //   const showEffects = useAppSelector(selectParticleAnimationState);
 
 //   return (

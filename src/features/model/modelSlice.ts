@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Plane, Vector3 } from "three";
 
-import { ModelCut, ModelLoadingStates, selectedModel } from "@type/app.types";
-
-import type { RootState } from "@store/store";
+import { ModelCut, ModelLoadingStates, selectedModel } from "#/types/app.types";
+import type { RootState } from "#/store/store";
 
 import type { ModelSlice } from "./modelSlice.types";
 
@@ -19,9 +18,9 @@ const initialState: ModelSlice = {
   clippingPlanesNormal: 3.14159265,
   clippingPlanes: [
     new Plane(new Vector3(1, 0, 0), 0),
-    new Plane(new Vector3(-1, 0, 0), 0)
+    new Plane(new Vector3(-1, 0, 0), 0),
   ],
-  snapIsLoading: false
+  snapIsLoading: false,
 };
 
 const modelSlice = createSlice({
@@ -74,7 +73,7 @@ const modelSlice = createSlice({
       if (state.selectedModel) {
         state.selectedModel = {
           ...state.selectedModel,
-          wireframe: action.payload
+          wireframe: action.payload,
         };
       }
     },
@@ -83,7 +82,7 @@ const modelSlice = createSlice({
       if (state.selectedModel) {
         state.selectedModel = {
           ...state.selectedModel,
-          opacity: action.payload
+          opacity: action.payload,
         };
       }
     },
@@ -92,7 +91,7 @@ const modelSlice = createSlice({
       if (state.selectedModel) {
         state.selectedModel = {
           ...state.selectedModel,
-          cutType: action.payload
+          cutType: action.payload,
         };
 
         state.localCut = action.payload;
@@ -103,7 +102,7 @@ const modelSlice = createSlice({
       if (state.selectedModel) {
         state.selectedModel = {
           ...state.selectedModel,
-          cutType: action.payload
+          cutType: action.payload,
         };
       }
     },
@@ -119,8 +118,8 @@ const modelSlice = createSlice({
         state.selectedModel = action.payload;
         state.showModelModal = true;
       }
-    }
-  }
+    },
+  },
 });
 
 export default modelSlice.reducer;
@@ -135,7 +134,7 @@ export const {
   updateLocalModelCut,
   setClippingPlanesNormal,
   hydrateClippingPlanes,
-  setSnapIsLoading
+  setSnapIsLoading,
 } = modelSlice.actions;
 
 export const selectSelectedModel = (state: RootState): selectedModel =>

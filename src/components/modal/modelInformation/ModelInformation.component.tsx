@@ -1,26 +1,21 @@
-import { ModelCut } from "@type/app.types";
-
-import { ReactComponent as CarretDown } from "@assets/svg/carretDown.svg";
-
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
+import { ModelCut } from "#/types/app.types";
+import { ReactComponent as CarretDown } from "#/assets/svg/carretDown.svg";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import {
   selectModelModal,
   setModelsOpacity,
   setModelWireframe,
   setSelectedModel,
-  updateLocalModelCut
-} from "@features/model/modelSlice";
-
-import Checkbox from "@components/modal/event/event-objects/Checkbox.component";
-import Modal from "@components/modal/Modal.component";
-import Slider from "@components/slider/slider.component";
-
-import useSelectedModel from "@hooks/useSelectedModel/useSelectedModel";
+  updateLocalModelCut,
+} from "#/features/model/modelSlice";
+import Checkbox from "#/components/modal/event/event-objects/Checkbox.component";
+import Modal from "#/components/modal/Modal.component";
+import Slider from "#/components/slider/slider.component";
+import useSelectedModel from "#/hooks/useSelectedModel/useSelectedModel";
 
 const cutTypes = ["cut1", "cut2", "cut3", "cut4", "Full cut"];
 
-export default function ModelInformation(): JSX.Element {
+export default function ModelInformation() {
   const dispatch = useAppDispatch();
   const show = useAppSelector(selectModelModal);
   const { selectedModel } = useSelectedModel();

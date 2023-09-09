@@ -1,10 +1,9 @@
 import { Grid } from "@react-three/drei";
 
-import { useAppSelector } from "@store/hooks";
+import { useAppSelector } from "#/store/hooks";
+import { selectGrid } from "#/features/global/globalsSlice";
 
-import { selectGrid } from "@features/global/globalsSlice";
-
-export default function CustomGrid(): JSX.Element {
+export default function CustomGrid() {
   const show = useAppSelector(selectGrid);
 
   return (

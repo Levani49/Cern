@@ -1,16 +1,15 @@
+import { AmbientLight, DirectionalLight } from "three";
+
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
-import { AmbientLight, DirectionalLight } from "three";
-
-import { useAppSelector } from "@store/hooks";
-
+import { useAppSelector } from "#/store/hooks";
 import {
   selectAmbientLightIntensity,
-  selectDirectionalLightIntensity
-} from "@features/camera/cameraSlice";
+  selectDirectionalLightIntensity,
+} from "#/features/camera/cameraSlice";
 
-export default function Lights(): JSX.Element {
+export default function Lights() {
   const dirLight = useRef<DirectionalLight>(null);
   const ambLight = useRef<AmbientLight>(null);
   const ambientLightIntensity = useAppSelector(selectAmbientLightIntensity);

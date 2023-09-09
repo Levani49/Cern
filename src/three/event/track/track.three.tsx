@@ -1,10 +1,10 @@
+import { TrackMesh } from "#/models/event/track/track.model.types";
+
 import { useMemo } from "react";
 
-import useEvent from "@hooks/useEvent/useEvent.hook";
+import useEvent from "#/hooks/useEvent/useEvent.hook";
 
-import { TrackMesh } from "@models/event/track/track.model.types";
-
-export default function Track(): JSX.Element {
+export default function Track() {
   const { event, eventParameters, trackFilterValues, TRACK } = useEvent();
 
   const tracksToDraw = useMemo(() => {
@@ -24,7 +24,7 @@ export default function Track(): JSX.Element {
       <group name="tracks">
         {tracksToDraw.map((track: TrackMesh, i: number): JSX.Element => {
           return (
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // eslint-disable-next-line #/typesscript-eslint/ban-ts-comment
             // @ts-ignore
             <line key={i} geometry={track.geometry}>
               <lineBasicMaterial

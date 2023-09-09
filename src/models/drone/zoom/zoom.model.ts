@@ -1,6 +1,6 @@
 import { MathUtils, PerspectiveCamera, Vector3 } from "three";
 
-import { emptyFunc } from "@type/app.types";
+import { emptyFunc } from "#/types/app.types";
 
 export default class Zoom {
   start(camera: PerspectiveCamera, cb: emptyFunc | undefined = undefined): void {

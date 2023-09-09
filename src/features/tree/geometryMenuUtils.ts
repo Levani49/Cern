@@ -1,6 +1,5 @@
-import type { ActiveModel } from "@type/app.types";
-
-import { GeometryState, TreeNode } from "@constants/geometryTree";
+import type { ActiveModel } from "#/types/app.types";
+import { GeometryState, TreeNode } from "#/constants/geometryTree";
 
 type UpdateNodeFunction = (
   node: TreeNode,
@@ -72,12 +71,12 @@ const updateDescendandNodes = (
       [propToChange]: value,
       children: node.children.map((node) =>
         updateDescendandNodes(node, propToChange, value)
-      )
+      ),
     };
   } else {
     return {
       ...node,
-      [propToChange]: value
+      [propToChange]: value,
     };
   }
 };
@@ -99,7 +98,7 @@ export const updateParentNode: UpdateNodeFunction = (
           ? node.children.map((node) =>
               updateDescendandNodes(node, propToChange, modelState)
             )
-          : []
+          : [],
       };
       return updatedNode;
     } else {
@@ -117,7 +116,7 @@ export const updateParentNode: UpdateNodeFunction = (
                 updateDescendands
               )
             )
-          : []
+          : [],
       };
       return updatedNode;
     }
@@ -127,7 +126,7 @@ export const updateParentNode: UpdateNodeFunction = (
       ...node,
       children: node.children.map((node) =>
         updateParentNode(node, nodeId, propToChange, modelState, updateDescendands)
-      )
+      ),
     };
   } else {
     // Node does not have children, return it without any changes
@@ -146,14 +145,14 @@ export const updateChildNode: UpdateNodeFunction = (
       ...node,
       children: node.children.map((node) =>
         updateChildNode(node, nodeId, propToChange, modelState)
-      )
+      ),
     };
   }
 
   if (node.id === nodeId) {
     return {
       ...node,
-      [propToChange]: modelState
+      [propToChange]: modelState,
     };
   }
   return node;
@@ -173,7 +172,7 @@ export function updateActiveModels(tree: TreeNode[]): ActiveModel[] {
           uid: node.id,
           name: node.name,
           modelPath: node.modelPath,
-          renderOrder: node.renderOrder
+          renderOrder: node.renderOrder,
         });
       }
     }

@@ -1,13 +1,15 @@
-import { ReactNode } from "react";
 import { render, screen } from "@testing-library/react";
+import { ReactNode } from "react";
 
 import ErrorHandler from "./ErrorHandler.component";
 
-const MockedErrorHandler = ({ children }: { children: ReactNode | ReactNode[] }): JSX.Element => (
-  <ErrorHandler>{children}</ErrorHandler>
-);
+const MockedErrorHandler = ({
+  children,
+}: {
+  children: ReactNode | ReactNode[];
+}): JSX.Element => <ErrorHandler>{children}</ErrorHandler>;
 
-function ThrowErrorComponent({ test }: { test: boolean }): JSX.Element {
+function ThrowErrorComponent({ test }: { test: boolean }) {
   if (test) {
     throw new Error("Test error");
   }
@@ -21,7 +23,7 @@ describe("ErrorHandler component", () => {
     render(
       <MockedErrorHandler>
         <ThrowErrorComponent test={false} />
-      </MockedErrorHandler>,
+      </MockedErrorHandler>
     );
     expect(screen.getByText("No Error")).toBeInTheDocument();
   });
@@ -30,13 +32,13 @@ describe("ErrorHandler component", () => {
     render(
       <MockedErrorHandler>
         <ThrowErrorComponent test={true} />
-      </MockedErrorHandler>,
+      </MockedErrorHandler>
     );
 
     expect(
       await screen.findByText(
-        "Something went wrong. We're working on it. Please refresh the page or try again later.",
-      ),
+        "Something went wrong. We're working on it. Please refresh the page or try again later."
+      )
     ).toBeInTheDocument();
   });
 });

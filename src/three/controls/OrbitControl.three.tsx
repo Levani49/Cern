@@ -1,26 +1,22 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// eslint-disable-next-line #/typesscript-eslint/ban-ts-comment
 // @ts-nocheck
+
+import CustomOrbitControl from "#/three/lib/modified_orbit_controls/CustomOrbitControl";
 
 import { OrbitControlsProps } from "@react-three/drei";
 import { useRef } from "react";
 
-import { DroneTypes } from "@type/app.types";
-
-import { useAppSelector } from "@store/hooks";
-
-import { selectRotationSpeed } from "@features/camera/cameraSlice";
-
-import CustomOrbitControl from "@three/lib/modified_orbit_controls/CustomOrbitControl";
-
-import { useEventListener } from "@hooks/useEventListener/useEventListener.hook";
-
-import { isMobile } from "@utils/isMobile.utils";
+import { DroneTypes } from "#/types/app.types";
+import { isMobile } from "#/utils/isMobile.utils";
+import { useAppSelector } from "#/store/hooks";
+import { selectRotationSpeed } from "#/features/camera/cameraSlice";
+import { useEventListener } from "#/hooks/useEventListener/useEventListener.hook";
 
 interface Props {
   currentMode: DroneTypes;
 }
 
-export default function OrbitControls({ currentMode }: Props): JSX.Element {
+export default function OrbitControls({ currentMode }: Props) {
   const controlsRef = useRef<OrbitControlsProps>(null);
   const rotationSpeed = useAppSelector(selectRotationSpeed);
 

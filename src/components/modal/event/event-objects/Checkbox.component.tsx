@@ -5,7 +5,7 @@ interface Props {
   id: string;
 }
 
-export default function Checkbox({ id, checked, onClick }: Props): JSX.Element {
+export default function Checkbox({ id, checked, onClick }: Props) {
   return (
     <>
       <input

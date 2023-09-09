@@ -1,12 +1,12 @@
 import { Loader } from "@react-three/drei";
 import { useState } from "react";
 
-import { useEventListener } from "@hooks/useEventListener/useEventListener.hook";
+import { useEventListener } from "#/hooks/useEventListener/useEventListener.hook";
 
-export default function CustomLoader(): JSX.Element {
+export default function CustomLoader() {
   const [styles, setStyles] = useState({
     bottom: "0px",
-    top: "auto"
+    top: "auto",
   });
 
   useEventListener(
@@ -15,12 +15,12 @@ export default function CustomLoader(): JSX.Element {
       if (window.innerWidth < 768) {
         setStyles({
           bottom: "auto",
-          top: "0px"
+          top: "0px",
         });
       } else {
         setStyles({
           bottom: "0px",
-          top: "auto"
+          top: "auto",
         });
       }
     },
@@ -34,17 +34,17 @@ export default function CustomLoader(): JSX.Element {
         width: "100vw",
         height: "5px",
         display: "block",
-        ...styles
+        ...styles,
       }}
       innerStyles={{
         width: "100%",
-        backgroundColor: "black"
+        backgroundColor: "black",
       }}
       barStyles={{
-        background: "rgb(38, 158, 108)"
+        background: "rgb(38, 158, 108)",
       }}
       dataStyles={{
-        display: "none"
+        display: "none",
       }}
     />
   );

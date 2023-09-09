@@ -1,15 +1,13 @@
 import { useMemo } from "react";
 
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-
-import { selectLoadedEvents } from "@features/event/eventSlice";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
+import { selectLoadedEvents } from "#/features/event/eventSlice";
 import {
   selectCurrentEventAnalysisTool,
   selectEventsModalState,
-  showEventsModal
-} from "@features/modal/modalSlice";
-
-import useEscapeKeydown from "@hooks/useEscapeKeydown/useEscapeKeydown.hook";
+  showEventsModal,
+} from "#/features/modal/modalSlice";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown/useEscapeKeydown.hook";
 
 import Modal from "../Modal.component";
 import AlgorithmTool from "./analysisTools/algorithm/AlgorithmTool.component";
@@ -19,7 +17,7 @@ import InfoTool from "./analysisTools/info/InfoTool.component";
 import EventsResultsToggler from "./event-objects/EventsResultsToggler.component";
 import FileActions from "./fileActions/FileActions.component";
 
-export default function EventsModal(): JSX.Element {
+export default function EventsModal() {
   const dispatch = useAppDispatch();
   const show = useAppSelector(selectEventsModalState);
   const loadedEvents = useAppSelector(selectLoadedEvents);
