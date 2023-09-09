@@ -9,7 +9,7 @@ import App from "./App";
 
 import "./styles/index.css";
 
-import ErrorHandler from "#/components/error/ErrorHandler.component";
+import ErrorHandler from "#/components/ErrorBoundary";
 
 createRoot(document.getElementById("root") as HTMLElement).render(
   <StrictMode>

@@ -3,8 +3,8 @@ import { useCallback, useState } from "react";
 import { ReactComponent as MinusCircleIcon } from "#/assets/svg/minusCircleIcon.svg";
 import { ReactComponent as PlusCircleIcon } from "#/assets/svg/plusCircleIcon.svg";
 import { GeometryState } from "#/constants/geometryTree";
+import { updateParentNodeState } from "#/store/features/treeSlice";
 import { useAppDispatch } from "#/store/hooks";
-import { updateParentNodeState } from "#/features/tree/treeSlice";
 
 export interface ParentNodeProps {
   root?: boolean | undefined;

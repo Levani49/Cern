@@ -1,6 +1,6 @@
 import { GeometryState } from "#/constants/geometryTree";
+import { updateChildNodeState } from "#/store/features/treeSlice";
 import { useAppDispatch } from "#/store/hooks";
-import { updateChildNodeState } from "#/features/tree/treeSlice";
 
 export interface ChildNodeProps {
   uid: string;

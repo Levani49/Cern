@@ -1,4 +1,4 @@
-import { uid } from "#/utils/uid.util";
+import { uid } from "#/utils/uid";
 import { TreeNode } from "#/constants/geometryTree";
 
 export const BEAM_PIPE: TreeNode = {

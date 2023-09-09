@@ -1,4 +1,4 @@
-import { uid } from "#/utils/uid.util";
+import { uid } from "#/utils/uid";
 import { CAVERN } from "#/constants/tree/cavern/cavern";
 import { MAIN_COMPONENTS } from "#/constants/tree/main-components/main-components";
 import { SUPPORT_STRUCTURE } from "#/constants/tree/support-structure/supportStructure";

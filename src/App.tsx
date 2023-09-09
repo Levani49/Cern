@@ -2,17 +2,17 @@ import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 
 import { validateEnvironmentVariables } from "#/utils/validateEnvironmentVariables";
-import Header from "#/components/navigation/navigation";
-import VideoPulse from "#/components/screen-recording/screenRecording.component";
-import FlyStats from "#/components/three/fly-graph/fly-stats.component";
-import FlyOverlay from "#/components/three/fly-graph/FlyGraph.component";
-import Stats from "#/components/three/stats/Stats.component";
+import Navigation from "#/components/navigation/Navigation";
+import ScreenRecording from "#/components/ScreenRecording.component";
+import FlyOverlay from "#/components/three/FlyGraph.component";
+import FlyStats from "#/components/three/FlyStats.component";
+import Stats from "#/components/three/Stats.component";
 import Tree from "#/components/tree/tree/Tree.component";
 
-const Canvas = lazy(() => import("#/three/canvas/canvas.three"));
-const Logo = lazy(() => import("#/components/logo/Logo.component"));
+const Canvas = lazy(() => import("#/three/Canvas.three"));
+const Logo = lazy(() => import("#/components/Logo.component"));
 const ModelInformation = lazy(
-  () => import("#/components/modal/modelInformation/ModelInformation.component")
+  () => import("#/components/modals/modelInformation/ModelInformation.component")
 );
 
 export default function App() {
@@ -20,7 +20,7 @@ export default function App() {
 
   return (
     <>
-      <Header />
+      <Navigation />
       <main className="absolute left-0 top-0 z-10 h-screen w-screen">
         <Suspense fallback={null}>
           <Canvas />
@@ -32,7 +32,7 @@ export default function App() {
       <Stats />
       <FlyOverlay />
       <FlyStats />
-      <VideoPulse />
+      <ScreenRecording />
       <Toaster position="top-right" />
     </>
   );

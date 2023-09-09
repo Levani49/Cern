@@ -1,12 +1,12 @@
 import { useEffect, useMemo } from "react";
 
-import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import {
   selectModelsLoadingState,
   updateModelsLoadingState,
-} from "#/features/model/modelSlice";
-import { selectGeometryMenu, selectGeometryTree } from "#/features/tree/treeSlice";
-import useLoadingStatus from "#/hooks/useLoading/useLoading";
+} from "#/store/features/modelSlice";
+import { selectGeometryMenu, selectGeometryTree } from "#/store/features/treeSlice";
+import { useAppDispatch, useAppSelector } from "#/store/hooks";
+import useLoadingStatus from "#/hooks/useLoading";
 
 import RecursiveTree from "../recursiveTree/RecursiveTree.component";
 
