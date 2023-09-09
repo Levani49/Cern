@@ -9,7 +9,7 @@ import TransitionModal from "#/components/Transition.modal";
 import useEscapeKeydown from "#/hooks/useEscapeKeydown";
 
 const HOST = import.meta.env.VITE_HOST;
-const EMBED_TEXT = `<iframe src="${HOST}/?embed=true" style="width: 560px; height: 560px"></iframe>`;
+const EMBED_TEXT = `<iframe src="${HOST}" style="width: 560px; height: 560px"></iframe>`;
 
 export default function Link() {
   const [embedCopied, setEmbedCopied] = useState(false);
