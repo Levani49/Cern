@@ -2,7 +2,7 @@ import { TEMP_INFO } from "#/constants/TEMP_STATIC_DATA";
 import { selectAboutModalState, showAboutModal } from "#/store/features/modalSlice";
 import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import TransitionModal from "#/components/Transition.modal";
-import useEscapeKeydown from "#/hooks/useEscapeKeydown.hook";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown";
 
 export default function AboutModal() {
   const dispatch = useAppDispatch();

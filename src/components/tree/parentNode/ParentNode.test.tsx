@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 
 import store from "#/store/store";
 
-import ParentNode, { ParentNodeProps } from "./ParentNode.component";
+import ParentNode, { ParentNodeProps } from "./ParentNode";
 
 describe("ParentNode component", () => {
   const mockProps: ParentNodeProps = {

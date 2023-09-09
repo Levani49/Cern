@@ -4,7 +4,7 @@ import {
 } from "#/store/features/eventSlice";
 import { useAppDispatch, useAppSelector } from "#/store/hooks";
 
-import Checkbox from "./Checkbox.component";
+import Checkbox from "./Checkbox";
 
 export default function EventsResultsToggler() {
   const dispatch = useAppDispatch();

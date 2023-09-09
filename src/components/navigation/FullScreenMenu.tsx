@@ -6,7 +6,7 @@ import { supportsFullscreen } from "#/utils/supportsFullscreen";
 import { selectIsFullscreen, setFullscreen } from "#/store/features/globalsSlice";
 import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import NavIcon from "#/components/navigation/NavIcon";
-import useDrone from "#/hooks/useDrone.hook";
+import useDrone from "#/hooks/useDrone";
 
 export default function FullScreenMenu() {
   const dispatch = useAppDispatch();

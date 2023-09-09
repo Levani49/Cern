@@ -8,7 +8,7 @@ import {
   updateLocalModelCut,
 } from "#/store/features/modelSlice";
 import { useAppDispatch, useAppSelector } from "#/store/hooks";
-import Checkbox from "#/components/modals/event/event-objects/Checkbox.component";
+import Checkbox from "#/components/modals/event/event-objects/Checkbox";
 import Modal from "#/components/modals/Modal.component";
 import Slider from "#/components/Slider.component";
 import useSelectedModel from "#/hooks/useSelectedModel";

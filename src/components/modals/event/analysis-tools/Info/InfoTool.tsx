@@ -5,7 +5,7 @@ import Icons from "#/utils/icons";
 import { setEventDetailsXML } from "#/store/features/eventSlice";
 import { useAppDispatch } from "#/store/hooks";
 
-import EventLine from "./EventLine.component";
+import EventLine from "./EventLine";
 
 interface Props {
   eventName: string;

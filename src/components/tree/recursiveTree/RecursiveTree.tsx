@@ -2,8 +2,8 @@ import { memo } from "react";
 
 import { TreeNode } from "#/constants/geometryTree";
 
-import ChildNode from "../childNode/ChildNode.component";
-import ParentNode from "../parentNode/ParentNode.component";
+import ChildNode from "../childNode/ChildNode";
+import ParentNode from "../parentNode/ParentNode";
 
 interface Props {
   tree: TreeNode[];

@@ -4,7 +4,7 @@ import Icons from "#/utils/icons";
 import { selectMenuBar, setMenuBar } from "#/store/features/globalsSlice";
 import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import NavIcon from "#/components/navigation/NavIcon";
-import useEventListener from "#/hooks/useEventListener.hook";
+import useEventListener from "#/hooks/useEventListener";
 
 export default function ShowMenuBar() {
   const [mobileIcon, setMobileIcon] = useState(false);

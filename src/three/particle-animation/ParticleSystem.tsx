@@ -7,10 +7,10 @@ import {
   setParticleAnimationState,
 } from "#/store/features/globalsSlice";
 import { useAppDispatch, useAppSelector } from "#/store/hooks";
-import useEscapeKeydown from "#/hooks/useEscapeKeydown.hook";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown";
 import useEvent from "#/hooks/useEvent.hook";
 
-import Particles from "./Particles.three";
+import Particles from "./Particles";
 
 const ParticleSystem = () => {
   const dispatch = useAppDispatch();

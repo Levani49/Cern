@@ -8,7 +8,7 @@ import { selectGeometryMenu, selectGeometryTree } from "#/store/features/treeSli
 import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import useLoadingStatus from "#/hooks/useLoading";
 
-import RecursiveTree from "../recursiveTree/RecursiveTree.component";
+import RecursiveTree from "../recursiveTree/RecursiveTree";
 
 export default function Tree() {
   const dispatch = useAppDispatch();

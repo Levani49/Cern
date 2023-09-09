@@ -12,7 +12,7 @@ import {
   setSelectedModel,
 } from "#/store/features/modelSlice";
 import { useAppDispatch, useAppSelector } from "#/store/hooks";
-import useEscapeKeydown from "#/hooks/useEscapeKeydown.hook";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown";
 import useSelectedModel from "#/hooks/useSelectedModel";
 
 export interface Event {

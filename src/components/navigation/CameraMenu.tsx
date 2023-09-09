@@ -1,9 +1,9 @@
 import Icons from "#/utils/icons";
 import { useAppDispatch } from "#/store/hooks";
 import NavIcon from "#/components/navigation/NavIcon";
-import useCamera from "#/hooks/useCamera.hook";
-import useDrone from "#/hooks/useDrone.hook";
-import useEscapeKeydown from "#/hooks/useEscapeKeydown.hook";
+import useCamera from "#/hooks/useCamera";
+import useDrone from "#/hooks/useDrone";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown";
 
 export default function CameraMenu() {
   const dispatch = useAppDispatch();

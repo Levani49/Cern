@@ -5,7 +5,7 @@ import { EventDetailsXML, EventOverviewData } from "./event.service.types";
 export default class EventService {
   private base = import.meta.env.VITE_XML_PROVIDER;
   private parser = new XMLParser({
-    ignoreAttributes: false
+    ignoreAttributes: false,
   });
 
   fetch = async (xmlPath: string): Promise<string> => {
@@ -39,7 +39,7 @@ export default class EventService {
       eventNumber: event.Event["@_eventNumber"],
       lumiBlock: event.Event["@_lumiBlock"],
       date: dateTime.split(" ")[0],
-      time: dateTime.split(" ")[1]
+      time: dateTime.split(" ")[1],
     };
   };
 

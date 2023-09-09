@@ -5,7 +5,7 @@ import {
 } from "#/store/features/modalSlice";
 import { useAppDispatch, useAppSelector } from "#/store/hooks";
 
-import AnalysisTool from "./AnalysisTool.component";
+import AnalysisTool from "./AnalysisTool";
 
 export default function AnalysisTools() {
   const dispatch = useAppDispatch();

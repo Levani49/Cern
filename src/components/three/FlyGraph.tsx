@@ -1,5 +1,5 @@
 import { useAppDispatch } from "#/store/hooks";
-import useDrone from "#/hooks/useDrone.hook";
+import useDrone from "#/hooks/useDrone";
 
 export default function FlyOverlay() {
   const dispatch = useAppDispatch();

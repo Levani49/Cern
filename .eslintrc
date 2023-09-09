@@ -59,7 +59,7 @@
       }
     },
     {
-      "files": ["**.three.tsx"],
+      "files": ["./src/three/**/*.*"],
       "rules": {
         "react/no-unknown-property": [
           "error",

@@ -7,15 +7,15 @@ import {
   showEventsModal,
 } from "#/store/features/modalSlice";
 import { useAppDispatch, useAppSelector } from "#/store/hooks";
-import EventsResultsToggler from "#/components/modals/event/event-objects/EventsResultsToggler.component";
-import FileActions from "#/components/modals/event/file-actions/FileActions.component";
-import useEscapeKeydown from "#/hooks/useEscapeKeydown.hook";
+import EventsResultsToggler from "#/components/modals/event/event-objects/EventsResultsToggler";
+import FileActions from "#/components/modals/event/file-actions/FileActions";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown";
 
 import Modal from "../Modal.component";
-import AlgorithmTool from "./analysis-tools/algorithm/AlgorithmTool.component";
-import AnalysisTools from "./analysis-tools/AnalysisTools.component";
-import FilterTool from "./analysis-tools/filter/FilterTool.component";
-import InfoTool from "./analysis-tools/Info/InfoTool.component";
+import AlgorithmTool from "./analysis-tools/algorithm/AlgorithmTool";
+import AnalysisTools from "./analysis-tools/AnalysisTools";
+import FilterTool from "./analysis-tools/filter/FilterTool";
+import InfoTool from "./analysis-tools/Info/InfoTool";
 
 export default function EventsModal() {
   const dispatch = useAppDispatch();

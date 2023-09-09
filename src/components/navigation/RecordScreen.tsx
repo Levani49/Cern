@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import Button from "#/components/Button.component";
 import NavIcon from "#/components/navigation/NavIcon";
 import TransitionModal from "#/components/Transition.modal";
-import useEscapeKeydown from "#/hooks/useEscapeKeydown.hook";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown";
 
 export default function RecordScreen() {
   const dispatch = useAppDispatch();

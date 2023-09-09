@@ -4,7 +4,7 @@ import {
   TRACK_ALGORITHMS,
 } from "#/constants/event";
 
-import AlgorithmSectionFor from "./AlgorithmSectionFor.component";
+import AlgorithmSectionFor from "./AlgorithmSectionFor";
 
 export default function AlgorithmTool() {
   return (

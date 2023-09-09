@@ -13,7 +13,7 @@ import {
   updateLocalModelCut,
 } from "#/store/features/modelSlice";
 import { useAppDispatch } from "#/store/hooks";
-import useDrone from "#/hooks/useDrone.hook";
+import useDrone from "#/hooks/useDrone";
 import useSelectedModel from "#/hooks/useSelectedModel";
 
 type Ev = { clientX: number; clientY: number };

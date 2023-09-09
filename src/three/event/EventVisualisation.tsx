@@ -10,9 +10,9 @@ import {
 } from "#/store/features/eventSlice";
 import { useAppDispatch, useAppSelector } from "#/store/hooks";
 
-import Jet from "./Jet.three";
-import Met from "./Met.three";
-import Tracks from "./track.three";
+import Jet from "./Jet";
+import Met from "./Met";
+import Tracks from "./track";
 
 const EventHandler = new Event();
 

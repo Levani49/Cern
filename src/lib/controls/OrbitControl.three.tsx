@@ -9,7 +9,7 @@ import CustomOrbitControl from "#/lib/controls/modified_orbit_controls/CustomOrb
 import { isMobile } from "#/utils/isMobile";
 import { selectRotationSpeed } from "#/store/features/cameraSlice";
 import { useAppSelector } from "#/store/hooks";
-import useEventListener from "#/hooks/useEventListener.hook";
+import useEventListener from "#/hooks/useEventListener";
 
 interface Props {
   currentMode: DroneTypes;

@@ -3,8 +3,8 @@ import Icons from "#/utils/icons";
 import { isMobile } from "#/utils/isMobile";
 import { useAppDispatch } from "#/store/hooks";
 import NavIcon from "#/components/navigation/NavIcon";
-import useDrone from "#/hooks/useDrone.hook";
-import useEscapeKeydown from "#/hooks/useEscapeKeydown.hook";
+import useDrone from "#/hooks/useDrone";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown";
 
 import MenuDropdown from "./MenuDropdown";
 

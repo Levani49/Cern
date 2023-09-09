@@ -1,4 +1,4 @@
-import Model from "#/three/Model.three";
+import Model from "#/three/Model";
 
 import { Suspense, useEffect, useState } from "react";
 

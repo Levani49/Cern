@@ -3,8 +3,8 @@ import { memo, useState } from "react";
 
 import { selectAxis } from "#/store/features/globalsSlice";
 import { useAppSelector } from "#/store/hooks";
-import useDrone from "#/hooks/useDrone.hook";
-import useEventListener from "#/hooks/useEventListener.hook";
+import useDrone from "#/hooks/useDrone";
+import useEventListener from "#/hooks/useEventListener";
 
 type Aligment =
   | "bottom-right"

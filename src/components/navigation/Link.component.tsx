@@ -6,7 +6,7 @@ import Icons from "#/utils/icons";
 import Button from "#/components/Button.component";
 import NavIcon from "#/components/navigation/NavIcon";
 import TransitionModal from "#/components/Transition.modal";
-import useEscapeKeydown from "#/hooks/useEscapeKeydown.hook";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown";
 
 const HOST = import.meta.env.VITE_HOST;
 const EMBED_TEXT = `<iframe src="${HOST}/?embed=true" style="width: 560px; height: 560px"></iframe>`;

@@ -3,13 +3,13 @@ import { Toaster } from "react-hot-toast";
 
 import { validateEnvironmentVariables } from "#/utils/validateEnvironmentVariables";
 import Navigation from "#/components/navigation/Navigation";
-import ScreenRecording from "#/components/ScreenRecording.component";
-import FlyOverlay from "#/components/three/FlyGraph.component";
-import FlyStats from "#/components/three/FlyStats.component";
-import Stats from "#/components/three/Stats.component";
-import Tree from "#/components/tree/tree/Tree.component";
+import ScreenRecording from "#/components/ScreenRecording";
+import FlyOverlay from "#/components/three/FlyGraph";
+import FlyStats from "#/components/three/FlyStats";
+import Stats from "#/components/three/Stats";
+import Tree from "#/components/tree/tree/Tree";
 
-const Canvas = lazy(() => import("#/three/Canvas.three"));
+const Canvas = lazy(() => import("#/three/Canvas"));
 const Logo = lazy(() => import("#/components/Logo.component"));
 const ModelInformation = lazy(
   () => import("#/components/modals/modelInformation/ModelInformation.component")

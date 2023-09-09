@@ -7,7 +7,7 @@ import {
   triggerCameraEffect,
 } from "#/store/features/cameraSlice";
 import { useAppDispatch, useAppSelector } from "#/store/hooks";
-import useCamera from "#/hooks/useCamera.hook";
+import useCamera from "#/hooks/useCamera";
 
 export default function Camera() {
   const dispatch = useAppDispatch();

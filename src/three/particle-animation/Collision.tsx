@@ -3,7 +3,7 @@ import { Group } from "three";
 import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 
-import Electron from "./Electron.three";
+import Electron from "./Electron";
 
 interface Props {
   onCollision: () => void;

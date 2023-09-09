@@ -1,7 +1,7 @@
 import { Loader } from "@react-three/drei";
 import { useState } from "react";
 
-import useEventListener from "#/hooks/useEventListener.hook";
+import useEventListener from "#/hooks/useEventListener";
 
 export default function CustomLoader() {
   const [styles, setStyles] = useState({

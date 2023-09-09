@@ -1,4 +1,4 @@
-import AlgorithmCheckBox from "./AlgorithmCheckBox.component";
+import AlgorithmCheckBox from "./AlgorithmCheckBox";
 
 interface Props {
   title: string;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import useDrone from "#/hooks/useDrone.hook";
+import useDrone from "#/hooks/useDrone";
 
 export default function FlyStats() {
   const { showFlyModal, currentMode } = useDrone();

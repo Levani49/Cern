@@ -19,7 +19,7 @@ import { useAppDispatch, useAppSelector } from "#/store/hooks";
 import Modal from "#/components/modals/Modal.component";
 import SettingCheckBox from "#/components/modals/settings/SettingsCheckbox";
 import SettingsSlider from "#/components/modals/settings/SettingsSlider";
-import useEscapeKeydown from "#/hooks/useEscapeKeydown.hook";
+import useEscapeKeydown from "#/hooks/useEscapeKeydown";
 
 export default function SettingsMod() {
   const dispatch = useAppDispatch();

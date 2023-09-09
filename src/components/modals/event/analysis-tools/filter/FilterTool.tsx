@@ -6,8 +6,8 @@ import {
 } from "#/store/features/eventSlice";
 import { useAppDispatch, useAppSelector } from "#/store/hooks";
 
-import FilterContainer from "./FilterContainer.component";
-import FilterInput from "./FilterInput.component";
+import FilterContainer from "./FilterContainer";
+import FilterInput from "./FilterInput";
 
 export default function FilterTool() {
   const dispatch = useAppDispatch();
