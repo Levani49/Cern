@@ -52,7 +52,6 @@ export type ModelInfo = {
 export type Employee = {
   id: string;
   name: string;
-  src: string;
   role: string;
   contact: string;
 };
