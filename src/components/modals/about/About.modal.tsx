@@ -16,7 +16,7 @@ export default function AboutModal() {
 
   return (
     <TransitionModal
-      title="Tracer TileCal 2.0 / 2023"
+      title="Tracer Core 6.0 / 2023"
       className="sm:max-w-xl"
       open={show}
       onClose={closeModalHandler}
