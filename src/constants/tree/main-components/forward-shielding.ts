@@ -1,6 +1,5 @@
-import { uid } from "@utils/uid.util";
-
-import { TreeNode } from "@constants/geometryTree";
+import { uid } from "#/utils/uid";
+import { TreeNode } from "#/constants/geometryTree";
 
 export const FORWARD_SHIELDING: TreeNode = {
   id: uid(),
@@ -12,14 +11,14 @@ export const FORWARD_SHIELDING: TreeNode = {
       id: uid(),
       name: "side a",
       state: "notLoaded",
-      modelPath: "forward-shielding-sidea"
+      modelPath: "forward-shielding-sidea",
     },
     {
       id: uid(),
       name: "side c",
       state: "notLoaded",
       modelPath: "forward-shielding-sidec",
-      nodeEnd: true
-    }
-  ]
+      nodeEnd: true,
+    },
+  ],
 };

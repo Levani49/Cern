@@ -1,8 +1,7 @@
-import { uid } from "@utils/uid.util";
-
-import { CAVERN } from "@constants/tree/cavern/cavern";
-import { MAIN_COMPONENTS } from "@constants/tree/main-components/main-components";
-import { SUPPORT_STRUCTURE } from "@constants/tree/support-structure/supportStructure";
+import { uid } from "#/utils/uid";
+import { CAVERN } from "#/constants/tree/cavern/cavern";
+import { MAIN_COMPONENTS } from "#/constants/tree/main-components/main-components";
+import { SUPPORT_STRUCTURE } from "#/constants/tree/support-structure/supportStructure";
 
 export type GeometryState = "notLoaded" | "partialyLoaded" | "isLoaded";
 
@@ -25,6 +24,6 @@ export const GEOMETRY_MENU_TREE: TreeNode[] = [
     state: "partialyLoaded",
     showChildren: true,
     root: true,
-    children: [MAIN_COMPONENTS, SUPPORT_STRUCTURE, CAVERN]
-  }
+    children: [MAIN_COMPONENTS, SUPPORT_STRUCTURE, CAVERN],
+  },
 ];

@@ -1,6 +1,5 @@
-import { uid } from "@utils/uid.util";
-
-import { TreeNode } from "@constants/geometryTree";
+import { uid } from "#/utils/uid";
+import { TreeNode } from "#/constants/geometryTree";
 
 export const ITK: TreeNode = {
   id: uid(),
@@ -25,7 +24,7 @@ export const ITK: TreeNode = {
               id: uid(),
               name: "barrel",
               state: "notLoaded",
-              modelPath: "itk-pixel-layout-inner-barrel"
+              modelPath: "itk-pixel-layout-inner-barrel",
             },
             {
               id: uid(),
@@ -38,18 +37,18 @@ export const ITK: TreeNode = {
                   id: uid(),
                   name: "side a",
                   state: "notLoaded",
-                  modelPath: "itk-pixel-layout-inner-endcap-sidea"
+                  modelPath: "itk-pixel-layout-inner-endcap-sidea",
                 },
                 {
                   id: uid(),
                   name: "side c",
                   state: "notLoaded",
                   modelPath: "itk-pixel-layout-inner-endcap-sidec",
-                  nodeEnd: true
-                }
-              ]
-            }
-          ]
+                  nodeEnd: true,
+                },
+              ],
+            },
+          ],
         },
         {
           id: uid(),
@@ -62,7 +61,7 @@ export const ITK: TreeNode = {
               id: uid(),
               name: "barrel",
               state: "notLoaded",
-              modelPath: "itk-pixel-layout-outer-barrel"
+              modelPath: "itk-pixel-layout-outer-barrel",
             },
             {
               id: uid(),
@@ -74,16 +73,16 @@ export const ITK: TreeNode = {
                   id: uid(),
                   name: "side a",
                   state: "notLoaded",
-                  modelPath: "itk-pixel-layout-outer-endcap-sidea"
+                  modelPath: "itk-pixel-layout-outer-endcap-sidea",
                 },
                 {
                   id: uid(),
                   name: "side c",
                   state: "notLoaded",
                   modelPath: "itk-pixel-layout-outer-endcap-sidec",
-                  nodeEnd: true
-                }
-              ]
+                  nodeEnd: true,
+                },
+              ],
             },
             {
               id: uid(),
@@ -96,20 +95,20 @@ export const ITK: TreeNode = {
                   id: uid(),
                   name: "side a",
                   state: "notLoaded",
-                  modelPath: "pixel-pp1-side-a"
+                  modelPath: "pixel-pp1-side-a",
                 },
                 {
                   id: uid(),
                   name: "side c",
                   state: "notLoaded",
                   modelPath: "pixel-pp1-side-c",
-                  nodeEnd: true
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
+                  nodeEnd: true,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };

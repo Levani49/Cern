@@ -1,11 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 
-import store from "@store/store";
+import { GEOMETRY_MENU_TREE } from "#/constants/geometryTree";
+import store from "#/store/store";
 
-import { GEOMETRY_MENU_TREE } from "@constants/geometryTree";
-
-import RecursiveTree from "./RecursiveTree.component";
+import RecursiveTree from "./RecursiveTree";
 
 describe("RecursiveTree", () => {
   it("should render the tree correctly", () => {

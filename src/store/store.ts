@@ -1,12 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import cameraReducer from "@features/camera/cameraSlice";
-import eventReducer from "@features/event/eventSlice";
-import globalsReducer from "@features/global/globalsSlice";
-import modalsreducer from "@features/modal/modalSlice";
-import modelReducer from "@features/model/modelSlice";
-import infoReducer from "@features/renderer/rendererSlice";
-import treeReducer from "@features/tree/treeSlice";
+import cameraReducer from "#/store/features/cameraSlice";
+import eventReducer from "#/store/features/eventSlice";
+import globalsReducer from "#/store/features/globalsSlice";
+import modalsreducer from "#/store/features/modalSlice";
+import modelReducer from "#/store/features/modelSlice";
+import infoReducer from "#/store/features/rendererSlice";
+import treeReducer from "#/store/features/treeSlice";
 
 const combinedReducers = {
   globals: globalsReducer,
@@ -15,7 +15,7 @@ const combinedReducers = {
   modal: modalsreducer,
   tree: treeReducer,
   model: modelReducer,
-  event: eventReducer
+  event: eventReducer,
 };
 
 export const rootReducer = combineReducers(combinedReducers);
@@ -24,7 +24,7 @@ const store = configureStore({
   reducer: rootReducer,
   devTools: import.meta.env.VITE_ENV === "development",
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false })
+    getDefaultMiddleware({ serializableCheck: false }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

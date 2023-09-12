@@ -1,73 +1,56 @@
-import { EmployeeStaticData } from "@type/app.types";
+import { EmployeeStaticData } from "#/types/app.types";
+import { uid } from "#/utils/uid";
 
 export const TEMP_INFO: EmployeeStaticData = {
   employees: [
     {
-      id: "2",
+      id: uid(),
       name: "Sharmazanashvili Alexander",
-      src: "/assets/images/sharmazanashvili-1.jpg",
       role: "Project manager, Concept creator",
-      contact: "http://cadcam.ge/sharmazanashvili-personal/"
     },
 
     {
-      id: "5i",
+      id: uid(),
       name: "Kverenchkhiladze Irakli",
-      src: "/assets/images/kverenchxiladze.png",
       role: "Chief Software developer",
-      contact: "http://cadcam.ge/kverenchkhiladze-personal/"
     },
     {
-      id: "4",
+      id: uid(),
       name: "Zurashvili Nino",
-      src: "/assets/images/niko-1.png",
       role: "Software developer",
-      contact: "http://cadcam.ge/zurashvili-personal/"
     },
 
     {
-      id: "6",
+      id: uid(),
       name: "Alikhanovi Alexander",
-      src: "/assets/images/alixanovi.png",
       role: "Geometry designer",
-      contact: "http://cadcam.ge/alikhanovi-personal/"
     },
     {
-      id: "3",
+      id: uid(),
       name: "Kekelia Besik",
-      src: "/assets/images/kekelia-3.png",
       role: "Geometry designer",
-      contact: "http://cadcam.ge/kekelia-personal/"
     },
 
     {
-      id: "7",
+      id: uid(),
       name: "Mirziashvili Giorgi",
-      src: "/assets/images/Mirziashvili-1.png",
       role: "Geometry designer",
-      contact: "http://cadcam.ge/mirziashvili-personal/"
     },
 
     {
-      id: "9",
+      id: uid(),
       name: "Tsutskiridze Kote",
-      src: "/assets/images/kekelia-3-1.png",
       role: "Geometry designer",
-      contact: "http://cadcam.ge/page/"
     },
     {
-      id: "91",
+      id: uid(),
       name: "Kobakhidze Shota",
-      src: "/assets/images/kekelia-3-1.png",
       role: "Geometry designer",
-      contact: "http://cadcam.ge/page/"
     },
     {
-      id: "91-e",
+      id: uid(),
       name: "Udzilauri Nikoloz",
-      src: "/assets/images/kekelia-3-1.png",
       role: "UI Concept designer",
-      contact: "http://cadcam.ge/page/"
-    }
-  ]
+    },
+  ],
 };

@@ -1,24 +1,22 @@
-import { useAppSelector } from "@store/hooks";
+import { selectMenuBar } from "#/store/features/globalsSlice";
+import { useAppSelector } from "#/store/hooks";
+import AboutMenu from "#/components/navigation/AboutMenu";
+import CameraViewMenu from "#/components/navigation/CameraViewMenu";
+import DroneMenu from "#/components/navigation/DroneMenu";
+import EventsMenu from "#/components/navigation/EventsMenu";
+import FullScreenMenu from "#/components/navigation/FullScreenMenu";
+import GeometryCutsMenu from "#/components/navigation/GeometryCutsMenu";
+import GeometryMenu from "#/components/navigation/GeometryMenu";
+import NavigationBar from "#/components/navigation/NavigationToggler";
+import NavTitle from "#/components/navigation/NavTitle";
+import OpacityMenu from "#/components/navigation/OpacityMenu";
+import Report from "#/components/navigation/Report";
+import Settings from "#/components/navigation/Settings";
+import ShowMenuBar from "#/components/navigation/ShowMenuBar";
+import ThemeToggler from "#/components/navigation/ThemeToggler";
+import Tools from "#/components/navigation/Tools";
 
-import { selectMenuBar } from "@features/global/globalsSlice";
-
-import AboutMenu from "@components/navigation/about/AboutMenu.component";
-import CameraViewMenu from "@components/navigation/cameraView/CameraViewMenu.component";
-import DroneMenu from "@components/navigation/drone/DroneMenu.component";
-import EventsMenu from "@components/navigation/events/EventsMenu.component";
-import FullScreenMenu from "@components/navigation/fullscreen/FullScreenMenu.component";
-import GeometryMenu from "@components/navigation/geometry/GeometryMenu.component";
-import GeometryCutsMenu from "@components/navigation/geometryCuts/GeometryCutsMenu.component";
-import NavigationBar from "@components/navigation/navigationBar/navigationToggler";
-import NavTitle from "@components/navigation/navTitle/navTitle.component";
-import OpacityMenu from "@components/navigation/opacity/OpacityMenu.component";
-import Report from "@components/navigation/report/report";
-import Settings from "@components/navigation/settings/settings";
-import ShowMenuBar from "@components/navigation/showMenuBar/showMenuBar";
-import ThemeToggler from "@components/navigation/theme/ThemeToggler.component";
-import Tools from "@components/navigation/tools/tools";
-
-export default function Navigation(): JSX.Element {
+export default function Navigation() {
   const showMenuBar = useAppSelector(selectMenuBar);
 
   return (

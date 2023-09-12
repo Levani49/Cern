@@ -1,6 +1,5 @@
-import { uid } from "@utils/uid.util";
-
-import { TreeNode } from "@constants/geometryTree";
+import { uid } from "#/utils/uid";
+import { TreeNode } from "#/constants/geometryTree";
 
 export const INNER_DETECTOR: TreeNode = {
   id: uid(),
@@ -13,7 +12,7 @@ export const INNER_DETECTOR: TreeNode = {
       name: "pixel",
       state: "isLoaded",
       modelPath: "pixel",
-      renderOrder: 1
+      renderOrder: 1,
     },
     {
       id: uid(),
@@ -26,7 +25,7 @@ export const INNER_DETECTOR: TreeNode = {
           name: "barrel",
           state: "isLoaded",
           modelPath: "sct-bar",
-          renderOrder: 1
+          renderOrder: 1,
         },
         {
           id: uid(),
@@ -39,7 +38,7 @@ export const INNER_DETECTOR: TreeNode = {
               name: "side a",
               state: "isLoaded",
               modelPath: "sct-sidea",
-              renderOrder: 1
+              renderOrder: 1,
             },
             {
               id: uid(),
@@ -47,11 +46,11 @@ export const INNER_DETECTOR: TreeNode = {
               state: "isLoaded",
               modelPath: "sct-sidec",
               renderOrder: 1,
-              nodeEnd: true
-            }
-          ]
-        }
-      ]
+              nodeEnd: true,
+            },
+          ],
+        },
+      ],
     },
     {
       id: uid(),
@@ -65,7 +64,7 @@ export const INNER_DETECTOR: TreeNode = {
           name: "barrel",
           state: "isLoaded",
           modelPath: "trt-bar",
-          renderOrder: 1
+          renderOrder: 1,
         },
         {
           id: uid(),
@@ -79,7 +78,7 @@ export const INNER_DETECTOR: TreeNode = {
               name: "side a",
               state: "isLoaded",
               modelPath: "trt-sidea",
-              renderOrder: 1
+              renderOrder: 1,
             },
             {
               id: uid(),
@@ -87,11 +86,11 @@ export const INNER_DETECTOR: TreeNode = {
               state: "isLoaded",
               modelPath: "trt-sidec",
               renderOrder: 1,
-              nodeEnd: true
-            }
-          ]
-        }
-      ]
-    }
-  ]
+              nodeEnd: true,
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };
