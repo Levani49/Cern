@@ -17,7 +17,7 @@ export const CALORIMETRY: TreeNode = {
           id: uid(),
           name: "barrel",
           state: "notLoaded",
-          modelPath: "lar-barrel",
+          modelPath: "main-components/calorimetry/lar/barrel/lar-barrel",
         },
         {
           id: uid(),
