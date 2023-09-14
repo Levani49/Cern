@@ -92,10 +92,6 @@ export const selectActiveGeometries = (state: RootState): ActiveModel[] =>
 export const selectGeometryMenu = (state: RootState): boolean =>
   state.tree.showGeometryMenu;
 
-//   import type { ActiveModel } from "@type/app.types";
-
-// import { GeometryState, TreeNode } from "@constants/geometryTree";
-
 type UpdateNodeFunction = (
   node: TreeNode,
   nodeId: string,

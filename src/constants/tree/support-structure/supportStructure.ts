@@ -18,13 +18,14 @@ export const SUPPORT_STRUCTURE: TreeNode = {
           id: uid(),
           name: "feed and rails",
           state: "notLoaded",
-          modelPath: "feet",
+          modelPath: "/support-structure/mechanical-structure/feet/feet",
         },
         {
           id: uid(),
           name: "bt warm structure",
           state: "notLoaded",
-          modelPath: "warm-structure",
+          modelPath:
+            "/support-structure/mechanical-structure/warm-structure/warm-structure",
         },
         {
           id: uid(),
@@ -37,13 +38,15 @@ export const SUPPORT_STRUCTURE: TreeNode = {
               id: uid(),
               name: "side a",
               state: "notLoaded",
-              modelPath: "hf-truck-sidea",
+              modelPath:
+                "/support-structure/mechanical-structure/hf-truck/side-a/hf-truck-sidea",
             },
             {
               id: uid(),
               name: "side c",
               state: "notLoaded",
-              modelPath: "hf-truck-sidec",
+              modelPath:
+                "/support-structure/mechanical-structure/hf-truck/side-c/hf-truck-sidec",
               nodeEnd: true,
             },
           ],
