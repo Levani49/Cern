@@ -115,13 +115,15 @@ export const CALORIMETRY: TreeNode = {
               id: uid(),
               name: "side a",
               state: "notLoaded",
-              modelPath: "tile-end-cap-sidea",
+              modelPath:
+                "main-components/calorimetry/tile/barrel-extension/side-a/tile-end-cap-sidea",
             },
             {
               id: uid(),
               name: "side c",
               state: "notLoaded",
-              modelPath: "tile-end-cap-sidec",
+              modelPath:
+                "main-components/calorimetry/tile/barrel-extension/side-c/tile-end-cap-sidec",
               nodeEnd: true,
             },
           ],
