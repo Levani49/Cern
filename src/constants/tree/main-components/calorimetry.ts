@@ -36,19 +36,22 @@ export const CALORIMETRY: TreeNode = {
                   id: uid(),
                   name: "lar emec",
                   state: "notLoaded",
-                  modelPath: "lar-emec-sidea",
+                  modelPath:
+                    "main-components/calorimetry/lar/endcap/side-a/lar-emec/lar-emec-sidea",
                 },
                 {
                   id: uid(),
                   name: "lar hec",
                   state: "notLoaded",
-                  modelPath: "lar-hec-sidea",
+                  modelPath:
+                    "main-components/calorimetry/lar/endcap/side-a/lar-hec/lar-hec-sidea",
                 },
                 {
                   id: uid(),
                   name: "lar fcal",
                   state: "notLoaded",
-                  modelPath: "lar-fcal-sidea",
+                  modelPath:
+                    "main-components/calorimetry/lar/endcap/side-a/lar-fcal/lar-fcal-sidea",
                   nodeEnd: true,
                 },
               ],
@@ -64,19 +67,22 @@ export const CALORIMETRY: TreeNode = {
                   id: uid(),
                   name: "lar emec",
                   state: "notLoaded",
-                  modelPath: "lar-emec-sidec",
+                  modelPath:
+                    "main-components/calorimetry/lar/endcap/side-c/lar-emec/lar-emec-sidec",
                 },
                 {
                   id: uid(),
                   name: "lar hec",
                   state: "notLoaded",
-                  modelPath: "lar-hec-sidec",
+                  modelPath:
+                    "main-components/calorimetry/lar/endcap/side-c/lar-hec/lar-hec-sidec",
                 },
                 {
                   id: uid(),
                   name: "lar fcal",
                   state: "notLoaded",
-                  modelPath: "lar-fcal-sidec",
+                  modelPath:
+                    "main-components/calorimetry/lar/endcap/side-c/lar-fcal/lar-fcal-sidec",
                   nodeEnd: true,
                 },
               ],
