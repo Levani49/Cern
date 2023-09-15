@@ -17,19 +17,22 @@ export const MUON_SPECTROMETER: TreeNode = {
           id: uid(),
           name: "bi inner",
           state: "notLoaded",
-          modelPath: "muon-barrel-inner",
+          modelPath:
+            "main-components/muon-spectrometer/barrel/bi-inner/muon-barrel-inner",
         },
         {
           id: uid(),
           name: "bi middle",
           state: "notLoaded",
-          modelPath: "muon-barrel-middle",
+          modelPath:
+            "main-components/muon-spectrometer/barrel/bi-middle/muon-barrel-middle",
         },
         {
           id: uid(),
           name: "bi outer",
           state: "notLoaded",
-          modelPath: "muon-barrel-outer",
+          modelPath:
+            "main-components/muon-spectrometer/barrel/bi-outer/muon-barrel-outer",
           nodeEnd: true,
         },
       ],
@@ -57,19 +60,22 @@ export const MUON_SPECTROMETER: TreeNode = {
                   id: uid(),
                   name: "sw chambers",
                   state: "notLoaded",
-                  modelPath: "small-wheel-chambers-sidea",
+                  modelPath:
+                    "main-components/muon-spectrometer/endcap/side-a/ei-small-wheel/sw-chambers/small-wheel-chambers-sidea",
                 },
                 {
                   id: uid(),
                   name: "njd shielding",
                   state: "notLoaded",
-                  modelPath: "small-wheel-njd-sidea",
+                  modelPath:
+                    "main-components/muon-spectrometer/endcap/side-a/ei-small-wheel/njd-shielding/small-wheel-njd-sidea",
                 },
                 {
                   id: uid(),
                   name: "hub",
                   state: "notLoaded",
-                  modelPath: "small-wheel-hub-sidea",
+                  modelPath:
+                    "main-components/muon-spectrometer/endcap/side-a/ei-small-wheel/hub/small-wheel-hub-sidea",
                   nodeEnd: true,
                 },
               ],
@@ -84,25 +90,29 @@ export const MUON_SPECTROMETER: TreeNode = {
                   id: uid(),
                   name: "tgc1",
                   state: "notLoaded",
-                  modelPath: "tgc-sidea",
+                  modelPath:
+                    "main-components/muon-spectrometer/endcap/side-a/ei-big-wheel/tgc1/tgc-sidea",
                 },
                 {
                   id: uid(),
                   name: "mdt",
                   state: "notLoaded",
-                  modelPath: "muon-big-wheel-mdt-sidea",
+                  modelPath:
+                    "main-components/muon-spectrometer/endcap/side-a/ei-big-wheel/mdt/muon-big-wheel-mdt-sidea",
                 },
                 {
                   id: uid(),
                   name: "tgc2",
                   state: "notLoaded",
-                  modelPath: "tgc2-sidea",
+                  modelPath:
+                    "main-components/muon-spectrometer/endcap/side-a/ei-big-wheel/tgc2/tgc2-sidea",
                 },
                 {
                   id: uid(),
                   name: "tgc3",
                   state: "notLoaded",
-                  modelPath: "tgc3-sidea",
+                  modelPath:
+                    "main-components/muon-spectrometer/endcap/side-a/ei-big-wheel/tgc3/tgc3-sidea",
                   nodeEnd: true,
                 },
               ],
@@ -111,13 +121,15 @@ export const MUON_SPECTROMETER: TreeNode = {
               id: uid(),
               name: "ex extra wheel",
               state: "notLoaded",
-              modelPath: "extra-wheel-sidea",
+              modelPath:
+                "main-components/muon-spectrometer/endcap/side-a/ex-extra-wheel/extra-wheel-sidea",
             },
             {
               id: uid(),
               name: "eo outer wheel",
               state: "notLoaded",
-              modelPath: "outer-wheel-sidea",
+              modelPath:
+                "main-components/muon-spectrometer/endcap/side-a/eo-outer-wheel/outer-wheel-sidea",
               nodeEnd: true,
             },
           ],
