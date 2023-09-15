@@ -12,13 +12,15 @@ export const PLATFORMS: TreeNode = {
       id: uid(),
       name: "even sectors",
       state: "notLoaded",
-      modelPath: "access-platforms-even-sectors",
+      modelPath:
+        "main-components/platforms/even-sectors/access-platforms-even-sectors",
     },
     {
       id: uid(),
       name: "odd sectors",
       state: "notLoaded",
-      modelPath: "access-platforms-odd-sectors",
+      modelPath:
+        "main-components/platforms/odd-sectors/access-platforms-odd-sectors",
     },
     {
       id: uid(),
@@ -30,25 +32,26 @@ export const PLATFORMS: TreeNode = {
           id: uid(),
           name: "top platforms",
           state: "notLoaded",
-          modelPath: "hs-arche",
+          modelPath: "main-components/platforms/hs-platforms/top-platforms/hs-arche",
         },
         {
           id: uid(),
           name: "central pit platforms",
           state: "notLoaded",
-          modelPath: "hs-central-pit-structure",
+          modelPath:
+            "main-components/platforms/hs-platforms/central-pit-platforms/hs-central-pit-structure",
         },
         {
           id: uid(),
           name: "us15 platforms",
           state: "notLoaded",
-          modelPath: "hs-us",
+          modelPath: "main-components/platforms/hs-platforms/us15-platforms/hs-us",
         },
         {
           id: uid(),
           name: "usa15 platforms",
           state: "notLoaded",
-          modelPath: "hs-usa",
+          modelPath: "main-components/platforms/hs-platforms/usa15-platforms/hs-usa",
           nodeEnd: true,
         },
       ],
@@ -64,13 +67,15 @@ export const PLATFORMS: TreeNode = {
           id: uid(),
           name: "side a",
           state: "notLoaded",
-          modelPath: "ho-side-a-platforms",
+          modelPath:
+            "main-components/platforms/ho-platforms/side-a/ho-side-a-platforms",
         },
         {
           id: uid(),
           name: "side c",
           state: "notLoaded",
-          modelPath: "ho-side-c-platforms",
+          modelPath:
+            "main-components/platforms/ho-platforms/side-c/ho-side-c-platforms",
           nodeEnd: true,
         },
       ],

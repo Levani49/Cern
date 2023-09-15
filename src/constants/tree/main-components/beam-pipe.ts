@@ -5,6 +5,6 @@ export const BEAM_PIPE: TreeNode = {
   id: uid(),
   name: "beam pipe",
   state: "notLoaded",
-  modelPath: "beam",
+  modelPath: "main-components/beam-pipe/beam",
   nodeEnd: true,
 };
