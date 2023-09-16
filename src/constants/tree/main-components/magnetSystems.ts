@@ -48,13 +48,14 @@ export const MAGNET_SYSTEMS: TreeNode = {
                   name: "endcap toroid",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/magnet-systems/toroid/endcap/side-a/end-cap-toroid-sidea",
+                    "main-components/magnet-systems/toroid/endcap/side-a/endcap-toroid/end-cap-toroid-sidea",
                 },
                 {
                   id: uid(),
                   name: "tower & turret",
                   state: "notLoaded",
-                  modelPath: "tower-turret-sidea",
+                  modelPath:
+                    "main-components/magnet-systems/toroid/endcap/side-a/tower-and-turret/tower-turret-sidea",
                   nodeEnd: true,
                 },
               ],
