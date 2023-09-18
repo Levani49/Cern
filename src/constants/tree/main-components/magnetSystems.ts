@@ -25,7 +25,7 @@ export const MAGNET_SYSTEMS: TreeNode = {
               name: "barrel toroid",
               state: "notLoaded",
               modelPath:
-                "main-components/magnet-systems/toroid/barrel/barrel-toroid/barrel-toroid",
+                "core/main-components/magnet-systems/toroid/barrel/barrel-toroid/barrel-toroid",
               nodeEnd: true,
             },
           ],
@@ -48,14 +48,14 @@ export const MAGNET_SYSTEMS: TreeNode = {
                   name: "endcap toroid",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/magnet-systems/toroid/endcap/side-a/endcap-toroid/end-cap-toroid-sidea",
+                    "core/main-components/magnet-systems/toroid/endcap/side-a/endcap-toroid/end-cap-toroid-sidea",
                 },
                 {
                   id: uid(),
                   name: "tower & turret",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/magnet-systems/toroid/endcap/side-a/tower-and-turret/tower-turret-sidea",
+                    "core/main-components/magnet-systems/toroid/endcap/side-a/tower-and-turret/tower-turret-sidea",
                   nodeEnd: true,
                 },
               ],
@@ -72,14 +72,14 @@ export const MAGNET_SYSTEMS: TreeNode = {
                   name: "endcap toroid",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/magnet-systems/toroid/endcap/side-c/endcap-toroid/end-cap-toroid-sidec",
+                    "core/main-components/magnet-systems/toroid/endcap/side-c/endcap-toroid/end-cap-toroid-sidec",
                 },
                 {
                   id: uid(),
                   name: "tower & turret",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/magnet-systems/toroid/endcap/side-c/tower-and-turret/tower-turret-sidec",
+                    "core/main-components/magnet-systems/toroid/endcap/side-c/tower-and-turret/tower-turret-sidec",
                   nodeEnd: true,
                 },
               ],

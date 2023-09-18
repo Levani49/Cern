@@ -17,7 +17,7 @@ export const CALORIMETRY: TreeNode = {
           id: uid(),
           name: "barrel",
           state: "notLoaded",
-          modelPath: "main-components/calorimetry/lar/barrel/lar-barrel",
+          modelPath: "core/main-components/calorimetry/lar/barrel/lar-barrel",
         },
         {
           id: uid(),
@@ -37,21 +37,21 @@ export const CALORIMETRY: TreeNode = {
                   name: "lar emec",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/calorimetry/lar/endcap/side-a/lar-emec/lar-emec-sidea",
+                    "core/main-components/calorimetry/lar/endcap/side-a/lar-emec/lar-emec-sidea",
                 },
                 {
                   id: uid(),
                   name: "lar hec",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/calorimetry/lar/endcap/side-a/lar-hec/lar-hec-sidea",
+                    "core/main-components/calorimetry/lar/endcap/side-a/lar-hec/lar-hec-sidea",
                 },
                 {
                   id: uid(),
                   name: "lar fcal",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/calorimetry/lar/endcap/side-a/lar-fcal/lar-fcal-sidea",
+                    "core/main-components/calorimetry/lar/endcap/side-a/lar-fcal/lar-fcal-sidea",
                   nodeEnd: true,
                 },
               ],
@@ -68,21 +68,21 @@ export const CALORIMETRY: TreeNode = {
                   name: "lar emec",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/calorimetry/lar/endcap/side-c/lar-emec/lar-emec-sidec",
+                    "core/main-components/calorimetry/lar/endcap/side-c/lar-emec/lar-emec-sidec",
                 },
                 {
                   id: uid(),
                   name: "lar hec",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/calorimetry/lar/endcap/side-c/lar-hec/lar-hec-sidec",
+                    "core/main-components/calorimetry/lar/endcap/side-c/lar-hec/lar-hec-sidec",
                 },
                 {
                   id: uid(),
                   name: "lar fcal",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/calorimetry/lar/endcap/side-c/lar-fcal/lar-fcal-sidec",
+                    "core/main-components/calorimetry/lar/endcap/side-c/lar-fcal/lar-fcal-sidec",
                   nodeEnd: true,
                 },
               ],
@@ -102,7 +102,7 @@ export const CALORIMETRY: TreeNode = {
           id: uid(),
           name: "barrel",
           state: "notLoaded",
-          modelPath: "main-components/calorimetry/tile/barrel/tile-barrel",
+          modelPath: "core/main-components/calorimetry/tile/barrel/tile-barrel",
         },
         {
           id: uid(),
@@ -116,14 +116,14 @@ export const CALORIMETRY: TreeNode = {
               name: "side a",
               state: "notLoaded",
               modelPath:
-                "main-components/calorimetry/tile/barrel-extension/side-a/tile-end-cap-sidea",
+                "core/main-components/calorimetry/tile/barrel-extension/side-a/tile-end-cap-sidea",
             },
             {
               id: uid(),
               name: "side c",
               state: "notLoaded",
               modelPath:
-                "main-components/calorimetry/tile/barrel-extension/side-c/tile-end-cap-sidec",
+                "core/main-components/calorimetry/tile/barrel-extension/side-c/tile-end-cap-sidec",
               nodeEnd: true,
             },
           ],

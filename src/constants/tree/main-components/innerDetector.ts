@@ -11,7 +11,7 @@ export const INNER_DETECTOR: TreeNode = {
       id: uid(),
       name: "pixel",
       state: "isLoaded",
-      modelPath: "main-components/inner-detector/pixel/pixel",
+      modelPath: "core/main-components/inner-detector/pixel/pixel",
       renderOrder: 1,
     },
     {
@@ -24,7 +24,7 @@ export const INNER_DETECTOR: TreeNode = {
           id: uid(),
           name: "barrel",
           state: "isLoaded",
-          modelPath: "main-components/inner-detector/sct/barrel/sct-bar",
+          modelPath: "core/main-components/inner-detector/sct/barrel/sct-bar",
           renderOrder: 1,
         },
         {
@@ -38,7 +38,7 @@ export const INNER_DETECTOR: TreeNode = {
               name: "side a",
               state: "isLoaded",
               modelPath:
-                "main-components/inner-detector/sct/endcap/side-a/sct-sidea",
+                "core/main-components/inner-detector/sct/endcap/side-a/sct-sidea",
               renderOrder: 1,
             },
             {
@@ -46,7 +46,7 @@ export const INNER_DETECTOR: TreeNode = {
               name: "side c",
               state: "isLoaded",
               modelPath:
-                "main-components/inner-detector/sct/endcap/side-c/sct-sidec",
+                "core/main-components/inner-detector/sct/endcap/side-c/sct-sidec",
               renderOrder: 1,
               nodeEnd: true,
             },
@@ -65,7 +65,7 @@ export const INNER_DETECTOR: TreeNode = {
           id: uid(),
           name: "barrel",
           state: "isLoaded",
-          modelPath: "main-components/inner-detector/trt/barrel/trt-bar",
+          modelPath: "core/main-components/inner-detector/trt/barrel/trt-bar",
           renderOrder: 1,
         },
         {
@@ -80,7 +80,7 @@ export const INNER_DETECTOR: TreeNode = {
               name: "side a",
               state: "isLoaded",
               modelPath:
-                "main-components/inner-detector/trt/endcap/side-a/trt-sidea",
+                "core/main-components/inner-detector/trt/endcap/side-a/trt-sidea",
               renderOrder: 1,
             },
             {
@@ -88,7 +88,7 @@ export const INNER_DETECTOR: TreeNode = {
               name: "side c",
               state: "isLoaded",
               modelPath:
-                "main-components/inner-detector/trt/endcap/side-c/trt-sidec",
+                "core/main-components/inner-detector/trt/endcap/side-c/trt-sidec",
               renderOrder: 1,
               nodeEnd: true,
             },

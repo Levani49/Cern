@@ -11,13 +11,15 @@ export const FORWARD_SHIELDING: TreeNode = {
       id: uid(),
       name: "side a",
       state: "notLoaded",
-      modelPath: "main-components/forward-shielding/side-a/forward-shielding-sidea",
+      modelPath:
+        "core/main-components/forward-shielding/side-a/forward-shielding-sidea",
     },
     {
       id: uid(),
       name: "side c",
       state: "notLoaded",
-      modelPath: "main-components/forward-shielding/side-c/forward-shielding-sidec",
+      modelPath:
+        "core/main-components/forward-shielding/side-c/forward-shielding-sidec",
       nodeEnd: true,
     },
   ],

@@ -25,7 +25,7 @@ export const ITK: TreeNode = {
               name: "barrel",
               state: "notLoaded",
               modelPath:
-                "main-components/itk/pixel-detector/pixel-inner-detector/barrel/itk-pixel-layout-inner-barrel",
+                "core/main-components/itk/pixel-detector/pixel-inner-detector/barrel/itk-pixel-layout-inner-barrel",
             },
             {
               id: uid(),
@@ -39,14 +39,14 @@ export const ITK: TreeNode = {
                   name: "side a",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/itk/pixel-detector/pixel-inner-detector/endcap/side-a/itk-pixel-layout-inner-endcap-sidea",
+                    "core/main-components/itk/pixel-detector/pixel-inner-detector/endcap/side-a/itk-pixel-layout-inner-endcap-sidea",
                 },
                 {
                   id: uid(),
                   name: "side c",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/itk/pixel-detector/pixel-inner-detector/endcap/side-c/itk-pixel-layout-inner-endcap-sidec",
+                    "core/main-components/itk/pixel-detector/pixel-inner-detector/endcap/side-c/itk-pixel-layout-inner-endcap-sidec",
                   nodeEnd: true,
                 },
               ],
@@ -65,7 +65,7 @@ export const ITK: TreeNode = {
               name: "barrel",
               state: "notLoaded",
               modelPath:
-                "main-components/itk/pixel-detector/pixel-outer-detector/barrel/itk-pixel-layout-outer-barrel",
+                "core/main-components/itk/pixel-detector/pixel-outer-detector/barrel/itk-pixel-layout-outer-barrel",
             },
             {
               id: uid(),
@@ -78,14 +78,14 @@ export const ITK: TreeNode = {
                   name: "side a",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/itk/pixel-detector/pixel-outer-detector/endcap/side-a/itk-pixel-layout-outer-endcap-sidea",
+                    "core/main-components/itk/pixel-detector/pixel-outer-detector/endcap/side-a/itk-pixel-layout-outer-endcap-sidea",
                 },
                 {
                   id: uid(),
                   name: "side c",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/itk/pixel-detector/pixel-outer-detector/endcap/side-c/itk-pixel-layout-outer-endcap-sidec",
+                    "core/main-components/itk/pixel-detector/pixel-outer-detector/endcap/side-c/itk-pixel-layout-outer-endcap-sidec",
                   nodeEnd: true,
                 },
               ],
@@ -102,14 +102,14 @@ export const ITK: TreeNode = {
                   name: "side a",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/itk/pixel-detector/pixel-outer-detector/pixel-pp1/side-a/pixel-pp1-side-a",
+                    "core/main-components/itk/pixel-detector/pixel-outer-detector/pixel-pp1/side-a/pixel-pp1-side-a",
                 },
                 {
                   id: uid(),
                   name: "side c",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/itk/pixel-detector/pixel-outer-detector/pixel-pp1/side-c/pixel-pp1-side-c",
+                    "core/main-components/itk/pixel-detector/pixel-outer-detector/pixel-pp1/side-c/pixel-pp1-side-c",
                   nodeEnd: true,
                 },
               ],

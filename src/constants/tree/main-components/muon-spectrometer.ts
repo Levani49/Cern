@@ -18,21 +18,21 @@ export const MUON_SPECTROMETER: TreeNode = {
           name: "bi inner",
           state: "notLoaded",
           modelPath:
-            "main-components/muon-spectrometer/barrel/bi-inner/muon-barrel-inner",
+            "core/main-components/muon-spectrometer/barrel/bi-inner/muon-barrel-inner",
         },
         {
           id: uid(),
           name: "bi middle",
           state: "notLoaded",
           modelPath:
-            "main-components/muon-spectrometer/barrel/bi-middle/muon-barrel-middle",
+            "core/main-components/muon-spectrometer/barrel/bi-middle/muon-barrel-middle",
         },
         {
           id: uid(),
           name: "bi outer",
           state: "notLoaded",
           modelPath:
-            "main-components/muon-spectrometer/barrel/bi-outer/muon-barrel-outer",
+            "core/main-components/muon-spectrometer/barrel/bi-outer/muon-barrel-outer",
           nodeEnd: true,
         },
       ],
@@ -61,21 +61,21 @@ export const MUON_SPECTROMETER: TreeNode = {
                   name: "sw chambers",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/muon-spectrometer/endcap/side-a/ei-small-wheel/sw-chambers/small-wheel-chambers-sidea",
+                    "core/main-components/muon-spectrometer/endcap/side-a/ei-small-wheel/sw-chambers/small-wheel-chambers-sidea",
                 },
                 {
                   id: uid(),
                   name: "njd shielding",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/muon-spectrometer/endcap/side-a/ei-small-wheel/njd-shielding/small-wheel-njd-sidea",
+                    "core/main-components/muon-spectrometer/endcap/side-a/ei-small-wheel/njd-shielding/small-wheel-njd-sidea",
                 },
                 {
                   id: uid(),
                   name: "hub",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/muon-spectrometer/endcap/side-a/ei-small-wheel/hub/small-wheel-hub-sidea",
+                    "core/main-components/muon-spectrometer/endcap/side-a/ei-small-wheel/hub/small-wheel-hub-sidea",
                   nodeEnd: true,
                 },
               ],
@@ -91,28 +91,28 @@ export const MUON_SPECTROMETER: TreeNode = {
                   name: "tgc1",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/muon-spectrometer/endcap/side-a/ei-big-wheel/tgc1/tgc-sidea",
+                    "core/main-components/muon-spectrometer/endcap/side-a/ei-big-wheel/tgc1/tgc-sidea",
                 },
                 {
                   id: uid(),
                   name: "mdt",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/muon-spectrometer/endcap/side-a/ei-big-wheel/mdt/muon-big-wheel-mdt-sidea",
+                    "core/main-components/muon-spectrometer/endcap/side-a/ei-big-wheel/mdt/muon-big-wheel-mdt-sidea",
                 },
                 {
                   id: uid(),
                   name: "tgc2",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/muon-spectrometer/endcap/side-a/ei-big-wheel/tgc2/tgc2-sidea",
+                    "core/main-components/muon-spectrometer/endcap/side-a/ei-big-wheel/tgc2/tgc2-sidea",
                 },
                 {
                   id: uid(),
                   name: "tgc3",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/muon-spectrometer/endcap/side-a/ei-big-wheel/tgc3/tgc3-sidea",
+                    "core/main-components/muon-spectrometer/endcap/side-a/ei-big-wheel/tgc3/tgc3-sidea",
                   nodeEnd: true,
                 },
               ],
@@ -122,14 +122,14 @@ export const MUON_SPECTROMETER: TreeNode = {
               name: "ex extra wheel",
               state: "notLoaded",
               modelPath:
-                "main-components/muon-spectrometer/endcap/side-a/ex-extra-wheel/extra-wheel-sidea",
+                "core/main-components/muon-spectrometer/endcap/side-a/ex-extra-wheel/extra-wheel-sidea",
             },
             {
               id: uid(),
               name: "eo outer wheel",
               state: "notLoaded",
               modelPath:
-                "main-components/muon-spectrometer/endcap/side-a/eo-outer-wheel/outer-wheel-sidea",
+                "core/main-components/muon-spectrometer/endcap/side-a/eo-outer-wheel/outer-wheel-sidea",
               nodeEnd: true,
             },
           ],
@@ -152,21 +152,21 @@ export const MUON_SPECTROMETER: TreeNode = {
                   name: "sw chambers",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/muon-spectrometer/endcap/side-c/ei-small-wheel/sw-chambers/small-wheel-chambers-sidec",
+                    "core/main-components/muon-spectrometer/endcap/side-c/ei-small-wheel/sw-chambers/small-wheel-chambers-sidec",
                 },
                 {
                   id: uid(),
                   name: "njd shielding",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/muon-spectrometer/endcap/side-c/ei-small-wheel/njd-shielding/small-wheel-njd-sidec",
+                    "core/main-components/muon-spectrometer/endcap/side-c/ei-small-wheel/njd-shielding/small-wheel-njd-sidec",
                 },
                 {
                   id: uid(),
                   name: "hub",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/muon-spectrometer/endcap/side-c/ei-small-wheel/hub/small-wheel-hub-sidec",
+                    "core/main-components/muon-spectrometer/endcap/side-c/ei-small-wheel/hub/small-wheel-hub-sidec",
                   nodeEnd: true,
                 },
               ],
@@ -182,28 +182,28 @@ export const MUON_SPECTROMETER: TreeNode = {
                   name: "tgc1",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/muon-spectrometer/endcap/side-c/ei-big-wheel/tgc1/tgc-sidec",
+                    "core/main-components/muon-spectrometer/endcap/side-c/ei-big-wheel/tgc1/tgc-sidec",
                 },
                 {
                   id: uid(),
                   name: "mdt",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/muon-spectrometer/endcap/side-c/ei-big-wheel/mdt/muon-big-wheel-mdt-sidec",
+                    "core/main-components/muon-spectrometer/endcap/side-c/ei-big-wheel/mdt/muon-big-wheel-mdt-sidec",
                 },
                 {
                   id: uid(),
                   name: "tgc2",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/muon-spectrometer/endcap/side-c/ei-big-wheel/tgc2/tgc2-sidec",
+                    "core/main-components/muon-spectrometer/endcap/side-c/ei-big-wheel/tgc2/tgc2-sidec",
                 },
                 {
                   id: uid(),
                   name: "tgc3",
                   state: "notLoaded",
                   modelPath:
-                    "main-components/muon-spectrometer/endcap/side-c/ei-big-wheel/tgc3/tgc3-sidec",
+                    "core/main-components/muon-spectrometer/endcap/side-c/ei-big-wheel/tgc3/tgc3-sidec",
                   nodeEnd: true,
                 },
               ],
@@ -213,14 +213,14 @@ export const MUON_SPECTROMETER: TreeNode = {
               name: "ex extra wheel",
               state: "notLoaded",
               modelPath:
-                "main-components/muon-spectrometer/endcap/side-c/ex-extra-wheel/extra-wheel-sidec",
+                "core/main-components/muon-spectrometer/endcap/side-c/ex-extra-wheel/extra-wheel-sidec",
             },
             {
               id: uid(),
               name: "eo outer wheel",
               state: "notLoaded",
               modelPath:
-                "main-components/muon-spectrometer/endcap/side-c/eo-outer-wheel/outer-wheel-sidec",
+                "core/main-components/muon-spectrometer/endcap/side-c/eo-outer-wheel/outer-wheel-sidec",
               nodeEnd: true,
             },
           ],
