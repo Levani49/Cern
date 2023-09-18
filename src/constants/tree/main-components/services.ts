@@ -54,7 +54,8 @@ export const SERVICES: TreeNode = {
           id: uid(),
           name: "patch panels",
           state: "notLoaded",
-          modelPath: "nan",
+          modelPath:
+            "main-components/services/muon-services/patch-panels/mspatchpannel",
         },
         {
           id: uid(),
