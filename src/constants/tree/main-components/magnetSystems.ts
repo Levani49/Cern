@@ -24,7 +24,8 @@ export const MAGNET_SYSTEMS: TreeNode = {
               id: uid(),
               name: "barrel toroid",
               state: "notLoaded",
-              modelPath: "barrel-toroid",
+              modelPath:
+                "core/main-components/magnet-systems/toroid/barrel/barrel-toroid/barrel-toroid",
               nodeEnd: true,
             },
           ],
@@ -46,13 +47,15 @@ export const MAGNET_SYSTEMS: TreeNode = {
                   id: uid(),
                   name: "endcap toroid",
                   state: "notLoaded",
-                  modelPath: "end-cap-toroid-sidea",
+                  modelPath:
+                    "core/main-components/magnet-systems/toroid/endcap/side-a/endcap-toroid/end-cap-toroid-sidea",
                 },
                 {
                   id: uid(),
                   name: "tower & turret",
                   state: "notLoaded",
-                  modelPath: "tower-turret-sidea",
+                  modelPath:
+                    "core/main-components/magnet-systems/toroid/endcap/side-a/tower-and-turret/tower-turret-sidea",
                   nodeEnd: true,
                 },
               ],
@@ -68,13 +71,15 @@ export const MAGNET_SYSTEMS: TreeNode = {
                   id: uid(),
                   name: "endcap toroid",
                   state: "notLoaded",
-                  modelPath: "end-cap-toroid-sidec",
+                  modelPath:
+                    "core/main-components/magnet-systems/toroid/endcap/side-c/endcap-toroid/end-cap-toroid-sidec",
                 },
                 {
                   id: uid(),
                   name: "tower & turret",
                   state: "notLoaded",
-                  modelPath: "tower-turret-sidec",
+                  modelPath:
+                    "core/main-components/magnet-systems/toroid/endcap/side-c/tower-and-turret/tower-turret-sidec",
                   nodeEnd: true,
                 },
               ],

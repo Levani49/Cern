@@ -1,5 +1,7 @@
+import { BufferGeometry, Mesh } from "three";
+
 import { useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 import StatsUtils from "#/utils/stats";
 import { selectStats } from "#/store/features/globalsSlice";
@@ -12,43 +14,38 @@ export default function StatsDispatcher() {
   const dispatch = useAppDispatch();
   const { scene } = useThree();
   const showStats = useAppSelector(selectStats);
-  const statsRef = useRef<{ triangles: number; fps: number; memory: number }>({
-    triangles: 0,
-    fps: 0,
-    memory: 0,
-  });
 
   useEffect(() => {
+    if (!showStats) {
+      return;
+    }
+
     const intervalId = setInterval(() => {
-      if (!showStats) {
-        return;
-      }
-      let triangleCount = 0;
+      let triangles = 0;
+
       scene.traverse((object) => {
         if (object.type === "Mesh") {
-          const mesh = object as THREE.Mesh;
-          const geometry = mesh.geometry as THREE.BufferGeometry;
+          const mesh = object as Mesh;
+          const geometry = mesh.geometry as BufferGeometry;
           const index = geometry.getIndex();
 
           if (index !== null) {
-            const numTriangles = index.array.length / 3;
-            triangleCount += numTriangles;
+            const numberOfTriangles = index.array.length / 3;
+            triangles += numberOfTriangles;
+          } else {
+            triangles += geometry.attributes.position.count / 3;
           }
         }
       });
 
-      statsRef.current.triangles = triangleCount;
-      statsRef.current.fps = stats.fps;
-      statsRef.current.memory = stats.memory;
-
       dispatch(
         setRendererStats({
-          triangles: statsRef.current.triangles,
-          fps: statsRef.current.fps,
-          memory: statsRef.current.memory,
+          triangles: triangles,
+          fps: stats.fps,
+          memory: stats.memory,
         })
       );
-    }, 1000);
+    }, 2000);
 
     return () => clearInterval(intervalId);
   }, [dispatch, scene, showStats]);

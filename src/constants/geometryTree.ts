@@ -3,6 +3,10 @@ import { CAVERN } from "#/constants/tree/cavern/cavern";
 import { MAIN_COMPONENTS } from "#/constants/tree/main-components/main-components";
 import { SUPPORT_STRUCTURE } from "#/constants/tree/support-structure/supportStructure";
 
+// import { CAVERN } from "#/constants/tree/core/cavern/cavern";
+// import { MAIN_COMPONENTS } from "#/constants/tree/core/main-components/main-components";
+// import { SUPPORT_STRUCTURE } from "#/constants/tree/core/support-structure/supportStructure";
+
 export type GeometryState = "notLoaded" | "partialyLoaded" | "isLoaded";
 
 export interface TreeNode {
