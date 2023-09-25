@@ -3,7 +3,7 @@ import { Toaster } from "react-hot-toast";
 
 import { validateEnvironmentVariables } from "#/utils/validateEnvironmentVariables";
 import ModelInformation from "#/components/modals/modelInformation/ModelInformation.component";
-import Navigation from "#/components/navigation/nav";
+import Navigation from "#/components/navigation/navigation";
 import ScreenRecording from "#/components/ScreenRecording";
 import FlyOverlay from "#/components/three/FlyGraph";
 import FlyStats from "#/components/three/FlyStats";
