@@ -27,7 +27,6 @@ export default function Navigation() {
             <NavTitle />
             <NavigationBar />
             <GeometryMenu />
-            <EventsMenu />
             <DroneMenu />
             <CameraViewMenu />
             <GeometryCutsMenu />
